@@ -2,7 +2,7 @@
 
 ## Goal
 
-> Provide a common api accross all registries.
+> Provide a common api across all registries.
 
 ## Quick contributing guide
 
