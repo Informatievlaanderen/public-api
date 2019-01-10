@@ -119,8 +119,11 @@ The new version 1.2 of the European Union Public Licence (EUPL) is published in 
 * [Autofac](https://github.com/autofac/Autofac/blob/develop/LICENSE) - _An addictive .NET IoC container._ - [MIT](https://choosealicense.com/licenses/mit/)
 * [AutoFixture](https://github.com/AutoFixture/AutoFixture/blob/master/LICENCE.txt) - _AutoFixture is an open source library for .NET designed to minimize the 'Arrange' phase of your unit tests in order to maximize maintainability._ - [MIT](https://choosealicense.com/licenses/mit/)
 * [FluentAssertions](https://github.com/fluentassertions/fluentassertions/blob/master/LICENSE) - _Fluent API for asserting the results of unit tests._ - [Apache License 2.0](https://choosealicense.com/licenses/apache-2.0/)
-* [.NET Topology Suite](https://github.com/NetTopologySuite/NetTopologySuite/blob/develop/License.md) - _A .NET GIS solution that is fast and reliable for the .NET platform._ - [BSD](https://choosealicense.com/licenses/bsd-3-clause/)
 * [Serilog](https://github.com/serilog/serilog/blob/dev/LICENSE) - _Simple .NET logging with fully-structured events._ - [Apache License 2.0](https://choosealicense.com/licenses/apache-2.0/)
+* [RestSharp](https://github.com/restsharp/RestSharp/blob/master/LICENSE.txt) - _Simple REST and HTTP API Client for .NET_ - [Apache License 2.0](https://choosealicense.com/licenses/apache-2.0/)
+* [FeatureToggle](https://github.com/jason-roberts/FeatureToggle/blob/master/LICENSE.txt) - _Simple, reliable feature toggles in .NET_ - [Apache License 2.0](https://choosealicense.com/licenses/apache-2.0/)
+* [Marvin.Cache.Headers](https://github.com/KevinDockx/HttpCacheHeaders/blob/master/LICENSE) - _ASP.NET Core middleware that adds HttpCache headers to responses (Cache-Control, Expires, ETag, Last-Modified), and implements cache expiration & validation models._ - [MIT](https://choosealicense.com/licenses/mit/)
+* [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis/blob/master/LICENSE) - _General purpose redis client_ - [MIT](https://choosealicense.com/licenses/mit/)
 
 ### Tooling
 
@@ -139,17 +142,13 @@ The new version 1.2 of the European Union Public Licence (EUPL) is published in 
 
 ### Flemish Government Frameworks
 
-* [Be.Vlaanderen.Basisregisters.AggregateSource](https://github.com/informatievlaanderen/command-handling/blob/master/LICENSE) - _Lightweight infrastructure for doing command handling and eventsourcing using aggregates._ - [MIT](https://choosealicense.com/licenses/mit/)
 * [Be.Vlaanderen.Basisregisters.Api](https://github.com/informatievlaanderen/api/blob/master/LICENSE) - _Common API infrastructure and helpers._ - [MIT](https://choosealicense.com/licenses/mit/)
-* [Be.Vlaanderen.Basisregisters.CommandHandling](https://github.com/informatievlaanderen/command-handling/blob/master/LICENSE) - _Lightweight infrastructure for doing command handling and eventsourcing using aggregates._ - [MIT](https://choosealicense.com/licenses/mit/)
-* [Be.Vlaanderen.Basisregisters.EventHandling](https://github.com/informatievlaanderen/event-handling/blob/master/LICENSE) - _Lightweight event handling infrastructure._ - [MIT](https://choosealicense.com/licenses/mit/)
-* [Be.Vlaanderen.Basisregisters.ProjectionHandling](https://github.com/informatievlaanderen/projection-handling/blob/master/LICENSE) - _Lightweight projection handling infrastructure._ - [MIT](https://choosealicense.com/licenses/mit/)
 
 ### Flemish Government Libraries
 
 * [Be.Vlaanderen.Basisregisters.Build.Pipeline](https://github.com/informatievlaanderen/build-pipeline/blob/master/LICENSE) - _Contains generic files for all Basisregisters Vlaanderen pipelines._ - [MIT](https://choosealicense.com/licenses/mit/)
-* [Be.Vlaanderen.Basisregisters.Testing.Infrastructure.Events](https://github.com/informatievlaanderen/infrastructure-tests/blob/master/LICENSE) - _Infrastructure unit-tests to validate assemblies._ - [MIT](https://choosealicense.com/licenses/mit/)
 * [Be.Vlaanderen.Basisregisters.DataDog](https://github.com/informatievlaanderen/datadog-tracing/blob/master/LICENSE) - _A C# Implementation of Data Dog Tracing._ - [MIT](https://choosealicense.com/licenses/mit/)
-* [Be.Vlaanderen.Basisregisters.Shaperon](https://github.com/informatievlaanderen/shaperon/blob/master/LICENSE) - _Lightweight dbase and shape record handling._ - [MIT](https://choosealicense.com/licenses/mit/)
-* [Be.Vlaanderen.Basisregisters.Crab](https://github.com/informatievlaanderen/crab/blob/master/LICENSE) - _Common Crab functionality._ - [EUPL-1.2](https://choosealicense.com/licenses/eupl-1.2/)
-* [Be.Vlaanderen.Basisregisters.GrAr](https://github.com/informatievlaanderen/grar-common/blob/master/LICENSE) - _Common code for all GR/AR base registries._ - [EUPL-1.2](https://choosealicense.com/licenses/eupl-1.2/)
+
+### Flemish Government Applications
+
+* [Be.Vlaanderen.Basisregisters.MunicipalityRegistry](https://github.com/Informatievlaanderen/municipality-registry/blob/master/LICENSE) - _Reference municipality registry._ - [EUPL-1.2](https://choosealicense.com/licenses/eupl-1.2/)
