@@ -1,0 +1,11 @@
+Be.Vlaanderen.Basisregisters.Api
+Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac
+
+Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy
+
+FeatureToggle
+Marvin.Cache.Headers
+StackExchange.Redis
+
+SourceLink.Embed.AllSourceFiles
+SourceLink.Copy.PdbFiles

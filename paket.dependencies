@@ -1,0 +1,76 @@
+// Only the target frameworks that are used in projects.
+// If you change the target framework of the projects then you need to run paket install again.
+framework: netstandard20, netcoreapp22, net472
+
+// When doing development as a non-employee, uncomment this to use the public NuGet feed
+source https://api.nuget.org/v3/index.json
+
+// When doing development as an employee, uncomment this to use the private NuGet proxy
+// source https://informatievlaanderen.myget.org/F/nuget-mirror/api/v3/index.json username: "%MYGET_FEED_USER%" password: "%MYGET_FEED_PASS%" authtype: "basic"
+
+// This is what Microsoft likes to do from now on, except it makes no sense
+// - It does not work for self contained apps
+// - It requires you to pre install this new "GAC" on every machine
+// - It requires huge Docker base images to contain this new "GAC"
+// nuget Microsoft.AspNetCore.All 2.0.0
+
+// DOTNETCORE ISSUES
+nuget Microsoft.NETCore.App 2.2.0
+nuget Microsoft.NETCore.DotNetAppHost 2.2.0
+nuget Microsoft.NETCore.DotNetHostResolver 2.2.0
+nuget Microsoft.NETCore.DotNetHostPolicy 2.2.0
+nuget NETStandard.Library 2.0.3
+
+// PRODUCTION STUFF
+nuget Microsoft.Extensions.Configuration 2.2.0
+nuget Microsoft.Extensions.Configuration.CommandLine 2.2.0
+nuget Microsoft.Extensions.Configuration.FileExtensions 2.2.0
+nuget Microsoft.Extensions.Configuration.EnvironmentVariables 2.2.0
+nuget Microsoft.Extensions.Configuration.Json 2.2.0
+
+nuget Autofac 4.8.1
+nuget Autofac.Extensions.DependencyInjection 4.3.1
+
+nuget RestSharp 106.5.4
+nuget FeatureToggle 4.0.2
+nuget Marvin.Cache.Headers 3.0.0
+nuget StackExchange.Redis 2.0.513
+
+nuget Serilog 2.7.1
+nuget Serilog.Settings.Configuration 3.0.1
+nuget Serilog.Extensions.Logging 2.0.2
+nuget Serilog.Sinks.Console 3.1.1
+nuget Serilog.Sinks.File 4.0.0
+nuget Serilog.Enrichers.Thread 3.0.0
+nuget Serilog.Enrichers.Environment 2.1.2
+
+// VBR STUFF
+nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy copy_content_to_output_dir: always
+
+nuget Be.Vlaanderen.Basisregisters.Build.Pipeline ~> 1.5
+
+nuget Be.Vlaanderen.Basisregisters.Api ~> 1.1
+
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac ~> 1.0
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql ~> 1.0
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore ~> 1.0
+
+// DOCS STUFF
+nuget Structurizr.Core 0.9.0
+nuget Structurizr.Client 0.9.0
+nuget Structurizr.AdrTools 0.9.0
+
+// TEST STUFF
+nuget Microsoft.NET.Test.Sdk 15.9.0
+nuget Microsoft.EntityFrameworkCore.InMemory 2.2.0
+nuget xunit 2.4.1
+nuget xunit.runner.visualstudio 2.4.1
+nuget xunit.categories 2.0.4
+nuget AutoFixture 4.6.0
+nuget AutoFixture.Xunit2 4.6.0
+nuget FluentAssertions 5.5.3
+
+// BUILD STUFF
+nuget FAKE 4.64.13 // Don't update to v5!
+nuget SourceLink.Embed.AllSourceFiles 2.8.3 copy_local: true
+nuget SourceLink.Copy.PdbFiles 2.8.3 copy_local: true

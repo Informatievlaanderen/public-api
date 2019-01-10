@@ -1,0 +1,16 @@
+Autofac.Extensions.DependencyInjection
+
+RestSharp
+
+FeatureToggle
+Marvin.Cache.Headers
+StackExchange.Redis
+
+Serilog
+Serilog.Settings.Configuration
+Serilog.Extensions.Logging
+Serilog.Sinks.Console
+Serilog.Enrichers.Thread
+Serilog.Enrichers.Environment
+
+Be.Vlaanderen.Basisregisters.Api
