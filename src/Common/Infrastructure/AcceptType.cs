@@ -43,6 +43,27 @@ namespace Common.Infrastructure
             }
         }
 
+        public static AcceptType ToAcceptType(this string format)
+        {
+            format = format.ToLowerInvariant();
+
+            switch (format)
+            {
+                default:
+                case "json":
+                    return AcceptType.Json;
+
+                case "jsonld":
+                    return AcceptType.JsonLd;
+
+                case "xml":
+                    return AcceptType.Xml;
+
+                case "atom":
+                    return AcceptType.Atom;
+            }
+        }
+
         public static AcceptType DetermineAcceptType(this RequestHeaders requestHeaders)
         {
             var headersByQuality = requestHeaders.Accept.OrderBy(x => x.Quality);

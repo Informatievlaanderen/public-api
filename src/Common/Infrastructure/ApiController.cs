@@ -39,7 +39,7 @@ namespace Common.Infrastructure
         {
             var acceptType = string.IsNullOrWhiteSpace(format)
                 ? requestHeaders.DetermineAcceptType()
-                : ToAcceptType(format);
+                : format.ToAcceptType();
 
             if (_redis != null)
             {
@@ -82,7 +82,7 @@ namespace Common.Infrastructure
         {
             var acceptType = string.IsNullOrWhiteSpace(format)
                 ? requestHeaders.DetermineAcceptType()
-                : ToAcceptType(format);
+                : format.ToAcceptType();
 
             return await GetFromBackendAsync(
                 restClient,
@@ -112,27 +112,6 @@ namespace Common.Infrastructure
             handleNotOkResponseAction(response.StatusCode);
 
             throw new ApiException("Fout bij de bron.", (int)response.StatusCode, response.ErrorException);
-        }
-
-        private static AcceptType ToAcceptType(string format)
-        {
-            format = format.ToLowerInvariant();
-
-            switch (format)
-            {
-                default:
-                case "json":
-                    return AcceptType.Json;
-
-                case "jsonld":
-                    return AcceptType.JsonLd;
-
-                case "xml":
-                    return AcceptType.Xml;
-
-                case "atom":
-                    return AcceptType.Atom;
-            }
         }
     }
 }

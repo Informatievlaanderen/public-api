@@ -11,24 +11,24 @@ namespace Public.Api.Infrastructure
     public class RedisStoreKeyGenerator : IStoreKeyGenerator
     {
         private const string MunicipalityCacheKey = "legacy/municipality:{0}.{1}";
-        private static readonly Regex MunicipalityRegex = new Regex(@"/v1/gemeenten/(?<id>\d*)", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+        private static readonly Regex MunicipalityRegex = new Regex(@"/v1/gemeenten/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
         private const string PostalCacheKey = "legacy/postalinfo:{0}.{1}";
-        private static readonly Regex PostalRegex = new Regex(@"/v1/postinfo/(?<id>\d*)", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+        private static readonly Regex PostalRegex = new Regex(@"/v1/postinfo/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
         private const string StreetNameCacheKey = "legacy/streetname:{0}.{1}";
-        private static readonly Regex StreetNameRegex = new Regex(@"/v1/straatnamen/(?<id>\d*)", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+        private static readonly Regex StreetNameRegex = new Regex(@"/v1/straatnamen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
         private const string AddressCacheKey = "legacy/address:{0}.{1}";
-        private static readonly Regex AddressRegex = new Regex(@"/v1/adressen/(?<id>\d*)", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+        private static readonly Regex AddressRegex = new Regex(@"/v1/adressen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
         private const string ParcelCacheKey = "legacy/parcel:{0}.{1}";
-        private static readonly Regex ParcelRegex = new Regex(@"/v1/percelen/(?<id>\d*)", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+        private static readonly Regex ParcelRegex = new Regex(@"/v1/percelen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
         // TODO: Add the others
 
         private const string BuildingCacheKey = "legacy/building:{0}.{1}";
-        private static readonly Regex BuildingRegex = new Regex(@"/v1/gebouwen/(?<id>\d*)", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+        private static readonly Regex BuildingRegex = new Regex(@"/v1/gebouwen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
         private static readonly IStoreKeyGenerator DefaultStoreKeyGenerator = new DefaultStoreKeyGenerator();
 
@@ -72,7 +72,10 @@ namespace Public.Api.Infrastructure
                 return DefaultStoreKeyGenerator.GenerateStoreKey(context);
 
             var requestHeaders = context.HttpRequest.GetTypedHeaders();
-            var acceptType = requestHeaders.DetermineAcceptType();
+            var format = regexResult.Groups["format"];
+            var acceptType = format.Success
+                ? format.Value.Substring(1).ToAcceptType()
+                : requestHeaders.DetermineAcceptType();
 
             return Task.FromResult(new StoreKey
             {
