@@ -7,9 +7,11 @@ namespace Public.Api.Infrastructure
     using Marvin.Cache.Headers.Domain;
     using Marvin.Cache.Headers.Interfaces;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.Extensions.Logging;
 
     public class RedisStoreKeyGenerator : IStoreKeyGenerator
     {
+        private readonly ILogger<RedisStoreKeyGenerator> _logger;
         private const string MunicipalityCacheKey = "legacy/municipality:{0}.{1}";
         private static readonly Regex MunicipalityRegex = new Regex(@"/v1/gemeenten/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
@@ -32,9 +34,13 @@ namespace Public.Api.Infrastructure
 
         private static readonly IStoreKeyGenerator DefaultStoreKeyGenerator = new DefaultStoreKeyGenerator();
 
+        public RedisStoreKeyGenerator(ILogger<RedisStoreKeyGenerator> logger) => _logger = logger;
+
         public Task<StoreKey> GenerateStoreKey(StoreKeyContext context)
         {
             var resourcePath = context.HttpRequest.Path.ToString().ToLowerInvariant();
+
+            _logger.LogDebug("Generate store key for '{path}'", resourcePath);
 
             // http://cc.davelozinski.com/c-sharp/fastest-way-to-check-if-a-string-occurs-within-a-string
             if (resourcePath.StartsWith("/v1/gemeenten/"))
@@ -60,7 +66,7 @@ namespace Public.Api.Infrastructure
             return DefaultStoreKeyGenerator.GenerateStoreKey(context);
         }
 
-        private static Task<StoreKey> GenerateStoreKey(
+        private Task<StoreKey> GenerateStoreKey(
             StoreKeyContext context,
             string resourcePath,
             Regex regex,
@@ -77,10 +83,14 @@ namespace Public.Api.Infrastructure
                 ? format.Value.Substring(1).ToAcceptType()
                 : requestHeaders.DetermineAcceptType();
 
-            return Task.FromResult(new StoreKey
-            {
-                { "cacheKey", string.Format(cacheKeyFormat, regexResult.Groups["id"], acceptType.ToString()).ToLowerInvariant() }
-            });
+            var cacheKey = string.Format(
+                cacheKeyFormat,
+                regexResult.Groups["id"],
+                acceptType.ToString()).ToLowerInvariant();
+
+            _logger.LogDebug("Generated store key for '{path}' --> '{cacheKey}'", resourcePath, cacheKey);
+
+            return Task.FromResult(new StoreKey { { "cacheKey", cacheKey } });
         }
     }
 }

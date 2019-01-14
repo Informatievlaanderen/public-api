@@ -6,6 +6,7 @@ namespace Public.Api.Infrastructure
     using System.Threading.Tasks;
     using Marvin.Cache.Headers;
     using Marvin.Cache.Headers.Interfaces;
+    using Microsoft.Extensions.Logging;
     using StackExchange.Redis;
 
     public class RedisStore : IValidatorValueStore
@@ -20,14 +21,23 @@ if redis.call('exists', KEYS[1]) == 0 then
 end
 ";
 
+        private readonly ILogger<RedisStore> _logger;
         private readonly ConnectionMultiplexer _redis;
 
-        public RedisStore(ConnectionMultiplexer redis) => _redis = redis;
+        public RedisStore(
+            ILogger<RedisStore> logger,
+            ConnectionMultiplexer redis)
+        {
+            _logger = logger;
+            _redis = redis;
+        }
 
         public async Task<ValidatorValue> GetAsync(StoreKey key)
         {
             if (key.Values.Any(x => x.Contains("/docs")))
                 return null;
+
+            _logger.LogDebug("Checking Redis for key '{key}'", key.ToString());
 
             var db = _redis.GetDatabase();
 

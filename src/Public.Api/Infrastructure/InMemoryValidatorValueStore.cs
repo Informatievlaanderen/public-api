@@ -5,16 +5,23 @@ namespace Public.Api.Infrastructure
     using System.Collections.Concurrent;
     using System.Threading.Tasks;
     using System.Linq;
+    using Microsoft.Extensions.Logging;
 
     public class InMemoryValidatorValueStore : IValidatorValueStore
     {
+        private readonly ILogger<InMemoryValidatorValueStore> _logger;
+
         private readonly ConcurrentDictionary<string, ValidatorValue> _store
             = new ConcurrentDictionary<string, ValidatorValue>();
+
+        public InMemoryValidatorValueStore(ILogger<InMemoryValidatorValueStore> logger) => _logger = logger;
 
         public async Task<ValidatorValue> GetAsync(StoreKey key)
         {
             if (key.Values.Any(x => x.Contains("/docs")))
                 return null;
+
+            _logger.LogDebug("Checking InMemory for key '{key}'", key.ToString());
 
             return Get(key.ToString());
         }

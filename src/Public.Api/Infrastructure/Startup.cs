@@ -33,8 +33,14 @@ namespace Public.Api.Infrastructure
         private IContainer _applicationContainer;
 
         private readonly IConfiguration _configuration;
+        private readonly ILoggerFactory _loggerFactory;
 
-        public Startup(IConfiguration configuration) => _configuration = configuration;
+        public Startup(IConfiguration configuration,
+            ILoggerFactory loggerFactory)
+        {
+            _configuration = configuration;
+            _loggerFactory = loggerFactory;
+        }
 
         /// <summary>Configures services for the application.</summary>
         /// <param name="services">The collection of services to configure the application with.</param>
@@ -82,15 +88,15 @@ namespace Public.Api.Infrastructure
                         validationModelOptions.VaryByAll = false;
                         validationModelOptions.Vary = new List<string> { "Accept", "Accept-Encoding" };
                     },
-                    storeKeyGeneratorFunc: _ => new RedisStoreKeyGenerator(),
+                    storeKeyGeneratorFunc: _ => new RedisStoreKeyGenerator(_loggerFactory.CreateLogger<RedisStoreKeyGenerator>()),
                     validatorValueStoreFunc: x =>
                     {
                         var redisProvider = x.GetService<ConnectionMultiplexerProvider>();
                         var redis = redisProvider.GetConnectionMultiplexer();
 
                         return redis != null
-                            ? new RedisStore(redis) as IValidatorValueStore
-                            : new InMemoryValidatorValueStore() as IValidatorValueStore;
+                            ? new RedisStore(_loggerFactory.CreateLogger<RedisStore>(), redis) as IValidatorValueStore
+                            : new InMemoryValidatorValueStore(_loggerFactory.CreateLogger<InMemoryValidatorValueStore>()) as IValidatorValueStore;
                     })
 
                 .Configure<MunicipalityRegistry.Api.Legacy.Infrastructure.Options.ResponseOptions>(_configuration.GetSection("ApiConfiguration:MunicipalityRegistry"));
