@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/informatievlaanderen/public-api/compare/v1.0.0...v1.0.1) (2019-01-14)
+
+
+### Bug Fixes
+
+* correctly deduce accepttype from fileextension when it is passed ([5557e81](https://github.com/informatievlaanderen/public-api/commit/5557e81))
+
 # 1.0.0 (2019-01-10)
 
 
