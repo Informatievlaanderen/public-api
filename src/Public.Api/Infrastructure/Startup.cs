@@ -64,6 +64,7 @@ namespace Public.Api.Infrastructure
                     {
                         typeof(Startup).GetTypeInfo().Assembly.GetName().Name,
                         typeof(MunicipalityRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
+                        typeof(StreetNameRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                     },
                     _configuration.GetSection("Cors").GetChildren().Select(c => c.Value).ToArray())
 
@@ -99,7 +100,8 @@ namespace Public.Api.Infrastructure
                             : new InMemoryValidatorValueStore(_loggerFactory.CreateLogger<InMemoryValidatorValueStore>()) as IValidatorValueStore;
                     })
 
-                .Configure<MunicipalityRegistry.Api.Legacy.Infrastructure.Options.ResponseOptions>(_configuration.GetSection("ApiConfiguration:MunicipalityRegistry"));
+                .Configure<MunicipalityRegistry.Api.Legacy.Infrastructure.Options.ResponseOptions>(_configuration.GetSection("ApiConfiguration:MunicipalityRegistry"))
+                .Configure<StreetNameRegistry.Api.Legacy.Infrastructure.Options.ResponseOptions>(_configuration.GetSection("ApiConfiguration:StreetNameRegistry"));
 
             var containerBuilder = new ContainerBuilder();
 

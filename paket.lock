@@ -147,6 +147,8 @@ NUGET
     Be.Vlaanderen.Basisregisters.GrAr.Legacy (3.0) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (1.0.9) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 3.0)
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (1.0) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 3.0)
     Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (1.0.2)
     Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (1.0.1)
     Be.Vlaanderen.Basisregisters.Utilities.ToStringBuilder (1.0.1)

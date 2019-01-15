@@ -46,6 +46,7 @@ nuget Serilog.Enrichers.Environment 2.1.2
 
 // VBR STUFF
 nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline ~> 1.5
 
