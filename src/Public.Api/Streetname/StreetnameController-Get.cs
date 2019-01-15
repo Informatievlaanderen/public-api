@@ -65,7 +65,7 @@ namespace Public.Api.StreetName
         /// <response code="404">Als de straatnaam niet gevonden kan worden.</response>
         /// <response code="304">Als de straatnaam niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("{straatnaamId}.{format}")]
+        [HttpGet("straatnamen/{straatnaamId}.{format}")]
         [ProducesResponseType(typeof(StreetNameResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status404NotFound)]
