@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/informatievlaanderen/public-api/compare/v1.1.0...v1.1.1) (2019-01-15)
+
+
+### Bug Fixes
+
+* update route for streetname detail ([9f8eed0](https://github.com/informatievlaanderen/public-api/commit/9f8eed0))
+
 # [1.1.0](https://github.com/informatievlaanderen/public-api/compare/v1.0.2...v1.1.0) (2019-01-15)
 
 
