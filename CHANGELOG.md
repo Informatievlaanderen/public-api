@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/informatievlaanderen/public-api/compare/v1.1.1...v1.2.0) (2019-01-17)
+
+
+### Features
+
+* add postal codes ([d762918](https://github.com/informatievlaanderen/public-api/commit/d762918))
+
 ## [1.1.1](https://github.com/informatievlaanderen/public-api/compare/v1.1.0...v1.1.1) (2019-01-15)
 
 
