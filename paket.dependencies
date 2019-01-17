@@ -31,12 +31,12 @@ nuget Microsoft.Extensions.Configuration.Json 2.2.0
 nuget Autofac 4.8.1
 nuget Autofac.Extensions.DependencyInjection 4.3.1
 
-nuget RestSharp 106.5.4
+nuget RestSharp 106.6.7
 nuget FeatureToggle 4.0.2
 nuget Marvin.Cache.Headers 3.0.0
-nuget StackExchange.Redis 2.0.513
+nuget StackExchange.Redis 2.0.519
 
-nuget Serilog 2.7.1
+nuget Serilog 2.8.0
 nuget Serilog.Settings.Configuration 3.0.1
 nuget Serilog.Extensions.Logging 2.0.2
 nuget Serilog.Sinks.Console 3.1.1
@@ -47,6 +47,7 @@ nuget Serilog.Enrichers.Environment 2.1.2
 // VBR STUFF
 nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline ~> 1.5
 
@@ -69,7 +70,7 @@ nuget xunit.runner.visualstudio 2.4.1
 nuget xunit.categories 2.0.4
 nuget AutoFixture 4.6.0
 nuget AutoFixture.Xunit2 4.6.0
-nuget FluentAssertions 5.5.3
+nuget FluentAssertions 5.6.0
 
 // BUILD STUFF
 nuget FAKE 4.64.13 // Don't update to v5!

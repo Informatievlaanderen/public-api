@@ -3,6 +3,7 @@ Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac
 
 Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy
+Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy
 
 FeatureToggle
 Marvin.Cache.Headers

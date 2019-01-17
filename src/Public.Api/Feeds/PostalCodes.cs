@@ -9,7 +9,6 @@ namespace Public.Api.Feeds
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Net.Http.Headers;
-    using StreetNameRegistry.Api.Legacy.StreetName.Responses;
     using Newtonsoft.Json.Converters;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
@@ -17,11 +16,12 @@ namespace Public.Api.Feeds
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
+    using PostalRegistry.Api.Legacy.PostalInformation.Responses;
 
     public partial class FeedController
     {
         /// <summary>
-        /// Vraag een lijst met wijzigingen van straatnamen op in het Atom formaat.
+        /// Vraag een lijst met wijzigingen van post informatie op in het Atom formaat.
         /// </summary>
         /// <param name="actionContextAccessor"></param>
         /// <param name="restClients"></param>
@@ -31,22 +31,22 @@ namespace Public.Api.Feeds
         /// <param name="embed">Om volledige objecten terug te krijgen, zet embed op true.</param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met straatnamen gelukt is.</response>
+        /// <response code="200">Als de opvraging van een lijst met post informatie gelukt is.</response>
         /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("straatnamen")]
+        [HttpGet("postinfo")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(StreetNameSyndicationResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PostalInformationSyndicationResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 12 * 60 * 60)] // Hours, Minutes, Second
-        public async Task<IActionResult> GetStreetNames(
+        public async Task<IActionResult> GetPostalCodes(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IIndex<string, Lazy<IRestClient>> restClients,
             [FromQuery] long? from,
@@ -55,7 +55,7 @@ namespace Public.Api.Feeds
             [FromQuery] bool? embed,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
-            => await GetStreetNames(
+            => await GetPostalCodes(
                 null,
                 actionContextAccessor,
                 restClients,
@@ -67,9 +67,9 @@ namespace Public.Api.Feeds
                 cancellationToken);
 
         /// <summary>
-        /// Vraag een lijst met wijzigingen van straatnamen op in het XML of Atom formaat.
+        /// Vraag een lijst met wijzigingen van post informatie op in het XML of Atom formaat.
         /// </summary>
-        /// <param name="format">Gewenste formaat: straatnamen.xml of straatnamen.atom</param>
+        /// <param name="format">Gewenste formaat: postinfo.xml of postinfo.atom</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="restClients"></param>
         /// <param name="from">Optionele start id om van te beginnen.</param>
@@ -78,22 +78,22 @@ namespace Public.Api.Feeds
         /// <param name="embed">Om volledige objecten terug te krijgen, zet embed op true.</param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met straatnamen gelukt is.</response>
+        /// <response code="200">Als de opvraging van een lijst met post informatie gelukt is.</response>
         /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("straatnamen.{format}")]
+        [HttpGet("postinfo.{format}")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(StreetNameSyndicationResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PostalInformationSyndicationResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 12 * 60 * 60)] // Hours, Minutes, Second
-        public async Task<IActionResult> GetStreetNames(
+        public async Task<IActionResult> GetPostalCodes(
             [FromRoute] string format,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IIndex<string, Lazy<IRestClient>> restClients,
@@ -110,7 +110,7 @@ namespace Public.Api.Feeds
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            var restClient = restClients["StreetNameRegistry"].Value;
+            var restClient = restClients["PostalRegistry"].Value;
 
             from = from ?? 0;
             offset = offset ?? 0;
@@ -130,7 +130,7 @@ namespace Public.Api.Feeds
             }
 
             RestRequest BackendRequest() => CreateBackendSyndicationRequest(
-                "straatnamen",
+                "postcodes",
                 from.Value,
                 offset.Value,
                 limit.Value,
