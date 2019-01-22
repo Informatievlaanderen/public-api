@@ -21,7 +21,7 @@ namespace Public.Api.Parcel
         /// <summary>
         /// Vraag een perceel op.
         /// </summary>
-        /// <param name="perceelId">Identificator van het perceel.</param>
+        /// <param name="capaKey">Identificator van het perceel.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -30,7 +30,7 @@ namespace Public.Api.Parcel
         /// <response code="404">Als het perceel niet gevonden kan worden.</response>
         /// <response code="410">Als het perceel verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("percelen/{perceelId}")]
+        [HttpGet("percelen/{capaKey}")]
         [ProducesResponseType(typeof(ParcelResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status404NotFound)]
@@ -44,13 +44,13 @@ namespace Public.Api.Parcel
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
         public async Task<IActionResult> Get(
-            [FromRoute] string perceelId,
+            [FromRoute] string capaKey,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
             => await Get(
                 null,
-                perceelId,
+                capaKey,
                 actionContextAccessor,
                 ifNoneMatch,
                 cancellationToken);
@@ -59,7 +59,7 @@ namespace Public.Api.Parcel
         /// Vraag een perceel op.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="perceelId">Identificator van het perceel.</param>
+        /// <param name="capaKey">Identificator van het perceel.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -69,7 +69,7 @@ namespace Public.Api.Parcel
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als het perceel verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("percelen/{perceelId}.{format}")]
+        [HttpGet("percelen/{capaKey}.{format}")]
         [ProducesResponseType(typeof(ParcelResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status404NotFound)]
@@ -85,7 +85,7 @@ namespace Public.Api.Parcel
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
         public async Task<IActionResult> Get(
             [FromRoute] string format,
-            [FromRoute] string perceelId,
+            [FromRoute] string capaKey,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
@@ -115,9 +115,9 @@ namespace Public.Api.Parcel
                 }
             }
 
-            RestRequest BackendRequest() => CreateBackendDetailRequest(perceelId);
+            RestRequest BackendRequest() => CreateBackendDetailRequest(capaKey);
 
-            var cacheKey = $"legacy/parcel:{perceelId}";
+            var cacheKey = $"legacy/parcel:{capaKey}";
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleNotFound, cancellationToken)
@@ -126,10 +126,10 @@ namespace Public.Api.Parcel
             return new BackendResponseResult(value);
         }
 
-        protected RestRequest CreateBackendDetailRequest(string perceelId)
+        protected RestRequest CreateBackendDetailRequest(string capaKey)
         {
-            var request = new RestRequest("percelen/{perceelId}");
-            request.AddParameter("perceelId", perceelId, ParameterType.UrlSegment);
+            var request = new RestRequest("percelen/{capaKey}");
+            request.AddParameter("capaKey", capaKey, ParameterType.UrlSegment);
             return request;
         }
     }
