@@ -1,3 +1,16 @@
+# [2.0.0](https://github.com/informatievlaanderen/public-api/compare/v1.2.0...v2.0.0) (2019-01-22)
+
+
+### Features
+
+* add parcel, fixes [#1](https://github.com/informatievlaanderen/public-api/issues/1) ([c792c95](https://github.com/informatievlaanderen/public-api/commit/c792c95))
+* syndication always returns full objects ([0f5f78e](https://github.com/informatievlaanderen/public-api/commit/0f5f78e)), closes [#3](https://github.com/informatievlaanderen/public-api/issues/3)
+
+
+### BREAKING CHANGES
+
+* Syndication does not have an embed option anymore. It is always the full response.
+
 # [1.2.0](https://github.com/informatievlaanderen/public-api/compare/v1.1.1...v1.2.0) (2019-01-17)
 
 
