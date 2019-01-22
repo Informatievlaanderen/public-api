@@ -28,7 +28,6 @@ namespace Public.Api.Feeds
         /// <param name="from">Optionele start id om van te beginnen.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="embed">Om volledige objecten terug te krijgen, zet embed op true.</param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van een lijst met post informatie gelukt is.</response>
@@ -52,7 +51,6 @@ namespace Public.Api.Feeds
             [FromQuery] long? from,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
-            [FromQuery] bool? embed,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
             => await GetPostalCodes(
@@ -62,7 +60,6 @@ namespace Public.Api.Feeds
                 from,
                 offset,
                 limit,
-                embed,
                 ifNoneMatch,
                 cancellationToken);
 
@@ -75,7 +72,6 @@ namespace Public.Api.Feeds
         /// <param name="from">Optionele start id om van te beginnen.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="embed">Om volledige objecten terug te krijgen, zet embed op true.</param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van een lijst met post informatie gelukt is.</response>
@@ -100,7 +96,6 @@ namespace Public.Api.Feeds
             [FromQuery] long? from,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
-            [FromQuery] bool? embed,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
@@ -115,7 +110,6 @@ namespace Public.Api.Feeds
             from = from ?? 0;
             offset = offset ?? 0;
             limit = limit ?? DefaultLimit;
-            embed = embed ?? false;
 
             void HandleBadRequest(HttpStatusCode statusCode)
             {
@@ -133,8 +127,7 @@ namespace Public.Api.Feeds
                 "postcodes",
                 from.Value,
                 offset.Value,
-                limit.Value,
-                embed.Value);
+                limit.Value);
 
             var value = await GetFromBackendAsync(
                 format,

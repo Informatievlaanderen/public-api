@@ -20,9 +20,9 @@ namespace Public.Api.Feeds
             ILogger<FeedController> logger)
             : base(redis, logger) { }
 
-        private static RestRequest CreateBackendSyndicationRequest(string resourcename, long from, int offset, int limit, bool embed)
+        private static RestRequest CreateBackendSyndicationRequest(string resourcename, long from, int offset, int limit)
         {
-            var request = new RestRequest($"{resourcename}/sync?embed={embed}");
+            var request = new RestRequest($"{resourcename}/sync?embed=true");
             request.AddHeader(AddPaginationExtension.HeaderName, $"{offset},{limit}");
             request.AddHeader(ExtractFilteringRequestExtension.HeaderName, $"{{ position: {from} }}");
             return request;
