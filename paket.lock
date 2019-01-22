@@ -15,7 +15,7 @@ NUGET
       NETStandard.Library (>= 1.6.1) - restriction: || (&& (== net472) (< net452)) (== netcoreapp2.2) (== netstandard2.0)
       xunit.extensibility.core (>= 2.0 < 3.0) - restriction: || (== net472) (&& (== netcoreapp2.2) (>= net452)) (&& (== netstandard2.0) (>= net452))
       xunit.extensibility.core (>= 2.2 < 3.0) - restriction: || (&& (== net472) (< net452)) (== netcoreapp2.2) (== netstandard2.0)
-    Be.Vlaanderen.Basisregisters.AggregateSource (1.2)
+    Be.Vlaanderen.Basisregisters.AggregateSource (1.4)
       Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (>= 1.0 < 2.0)
       Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (>= 1.0 < 2.0)
       Be.Vlaanderen.Basisregisters.Utilities.ToStringBuilder (>= 1.0 < 2.0)
@@ -145,10 +145,12 @@ NUGET
       System.Data.Common (>= 4.3)
     Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic (1.0.2)
     Be.Vlaanderen.Basisregisters.GrAr.Legacy (3.0) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (1.2.3) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (1.3) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 3.0)
-    Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (1.0) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (1.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (1.0) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 3.0)
+    Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (1.0.3) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (1.2.3) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 3.0)
     Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (1.0.2)
     Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (1.0.1)
