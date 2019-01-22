@@ -75,6 +75,7 @@ namespace Public.Api.PostalInfo
         /// <response code="200">Als de opvraging van een lijst met post informatie over postcodes gelukt is.</response>
         /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
+        /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("postinfo.{format}")]
         [ProducesResponseType(typeof(List<PostalInformationListResponse>), StatusCodes.Status200OK)]
@@ -85,6 +86,7 @@ namespace Public.Api.PostalInfo
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PostalInformationListResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 12 * 60 * 60)] // Hours, Minutes, Second
         public async Task<IActionResult> List(

@@ -26,8 +26,9 @@ namespace Public.Api.StreetName
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de straatnaam gevonden is.</response>
-        /// <response code="404">Als de straatnaam niet gevonden kan worden.</response>
         /// <response code="304">Als de straatnaam niet gewijzigd is ten opzicht van uw verzoek.</response>
+        /// <response code="404">Als de straatnaam niet gevonden kan worden.</response>
+        /// <response code="410">Als de straatnaam verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("straatnamen/{straatnaamId}")]
         [ProducesResponseType(typeof(StreetNameResponse), StatusCodes.Status200OK)]
@@ -39,6 +40,7 @@ namespace Public.Api.StreetName
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(StreetNameResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(StreetNameNotFoundResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(StreetNameGoneResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
         public async Task<IActionResult> Get(
@@ -62,8 +64,10 @@ namespace Public.Api.StreetName
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de straatnaam gevonden is.</response>
-        /// <response code="404">Als de straatnaam niet gevonden kan worden.</response>
         /// <response code="304">Als de straatnaam niet gewijzigd is ten opzicht van uw verzoek.</response>
+        /// <response code="404">Als de straatnaam niet gevonden kan worden.</response>
+        /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
+        /// <response code="410">Als de straatnaam verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("straatnamen/{straatnaamId}.{format}")]
         [ProducesResponseType(typeof(StreetNameResponse), StatusCodes.Status200OK)]
@@ -75,6 +79,8 @@ namespace Public.Api.StreetName
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(StreetNameResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(StreetNameNotFoundResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(StreetNameGoneResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
         public async Task<IActionResult> Get(

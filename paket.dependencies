@@ -52,7 +52,7 @@ nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy copy_content_to_out
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline ~> 1.5
 
-nuget Be.Vlaanderen.Basisregisters.Api ~> 1.1
+nuget Be.Vlaanderen.Basisregisters.Api ~> 1.4
 
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac ~> 1.0
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql ~> 1.0
