@@ -66,6 +66,7 @@ namespace Public.Api.Infrastructure
                         typeof(MunicipalityRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                         typeof(StreetNameRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                         typeof(ParcelRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
+                        typeof(PostalRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                     },
                     _configuration.GetSection("Cors").GetChildren().Select(c => c.Value).ToArray())
 
@@ -103,6 +104,7 @@ namespace Public.Api.Infrastructure
 
                 .Configure<MunicipalityRegistry.Api.Legacy.Infrastructure.Options.ResponseOptions>(_configuration.GetSection("ApiConfiguration:MunicipalityRegistry"))
                 .Configure<ParcelRegistry.Api.Legacy.Infrastructure.Options.ResponseOptions>(_configuration.GetSection("ApiConfiguration:ParcelRegistry"))
+                .Configure<PostalRegistry.Api.Legacy.Infrastructure.Options.ResponseOptions>(_configuration.GetSection("ApiConfiguration:PostalRegistry"))
                 .Configure<StreetNameRegistry.Api.Legacy.Infrastructure.Options.ResponseOptions>(_configuration.GetSection("ApiConfiguration:StreetNameRegistry"));
 
             var containerBuilder = new ContainerBuilder();

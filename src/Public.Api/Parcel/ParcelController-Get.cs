@@ -32,7 +32,7 @@ namespace Public.Api.Parcel
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("percelen/{capaKey}")]
         [ProducesResponseType(typeof(ParcelResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status304NotModified)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
@@ -71,7 +71,7 @@ namespace Public.Api.Parcel
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("percelen/{capaKey}.{format}")]
         [ProducesResponseType(typeof(ParcelResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status304NotModified)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]

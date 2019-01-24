@@ -31,7 +31,7 @@ namespace Public.Api.PostalInfo
         /// <response code="500"> Als er een interne fout is opgetreden.</response>
         [HttpGet("postinfo/{postCode}")]
         [ProducesResponseType(typeof(PostalInformationResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status304NotModified)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
@@ -68,7 +68,7 @@ namespace Public.Api.PostalInfo
         /// <response code="500"> Als er een interne fout is opgetreden.</response>
         [HttpGet("postinfo/{postCode}.{format}")]
         [ProducesResponseType(typeof(PostalInformationResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status304NotModified)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]

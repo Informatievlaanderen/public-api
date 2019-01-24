@@ -36,7 +36,7 @@ namespace Public.Api.Feeds
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("gemeenten")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status304NotModified)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
@@ -80,7 +80,7 @@ namespace Public.Api.Feeds
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("gemeenten.{format}")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status304NotModified)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
