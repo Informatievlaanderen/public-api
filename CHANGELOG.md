@@ -1,3 +1,11 @@
+## [2.0.3](https://github.com/informatievlaanderen/public-api/compare/v2.0.2...v2.0.3) (2019-01-24)
+
+
+### Bug Fixes
+
+* not modified 304 examples have to be empty ([0e14165](https://github.com/informatievlaanderen/public-api/commit/0e14165))
+* not modified 304 must not contain a body ([4d7d755](https://github.com/informatievlaanderen/public-api/commit/4d7d755))
+
 ## [2.0.2](https://github.com/informatievlaanderen/public-api/compare/v2.0.1...v2.0.2) (2019-01-22)
 
 
