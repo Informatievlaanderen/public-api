@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/informatievlaanderen/public-api/compare/v2.0.3...v2.1.0) (2019-03-06)
+
+
+### Features
+
+* add addresses ([2b12cb9](https://github.com/informatievlaanderen/public-api/commit/2b12cb9))
+
 ## [2.0.3](https://github.com/informatievlaanderen/public-api/compare/v2.0.2...v2.0.3) (2019-01-24)
 
 
