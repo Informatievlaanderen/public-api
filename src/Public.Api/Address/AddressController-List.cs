@@ -28,6 +28,11 @@ namespace Public.Api.Address
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de adressen.</param>
+        /// <param name="busNummer">Filter op het busnummer van het adres.</param>
+        /// <param name="huisNummer">Filter op het huisnummer van het adres.</param>
+        /// <param name="postCode">Filter op de postcode van het adres.</param>
+        /// <param name="straatNaam">Filter op de straatnaam van het adres.</param>
+        /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -50,6 +55,11 @@ namespace Public.Api.Address
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string gemeenteNaam,
+            [FromQuery] string busNummer,
+            [FromQuery] string huisNummer,
+            [FromQuery] string postCode,
+            [FromQuery] string straatNaam,
+            [FromQuery] string homoniemToevoeging,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
@@ -58,6 +68,11 @@ namespace Public.Api.Address
                 offset,
                 limit,
                 gemeenteNaam,
+                busNummer,
+                huisNummer,
+                postCode,
+                straatNaam,
+                homoniemToevoeging,
                 actionContextAccessor,
                 ifNoneMatch,
                 cancellationToken);
@@ -69,6 +84,11 @@ namespace Public.Api.Address
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de adressen.</param>
+        /// <param name="busNummer">Filter op het busnummer van het adres.</param>
+        /// <param name="huisNummer">Filter op het huisnummer van het adres.</param>
+        /// <param name="postCode">Filter op de postcode van het adres.</param>
+        /// <param name="straatNaam">Filter op de straatnaam van het adres.</param>
+        /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -94,6 +114,11 @@ namespace Public.Api.Address
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string gemeenteNaam,
+            [FromQuery] string busNummer,
+            [FromQuery] string huisNummer,
+            [FromQuery] string postCode,
+            [FromQuery] string straatNaam,
+            [FromQuery] string homoniemToevoeging,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
@@ -120,7 +145,16 @@ namespace Public.Api.Address
                 }
             }
 
-            RestRequest BackendRequest() => CreateBackendListRequest(offset.Value, limit.Value, taal.Value, gemeenteNaam);
+            RestRequest BackendRequest() => CreateBackendListRequest(
+                offset.Value,
+                limit.Value,
+                taal.Value,
+                gemeenteNaam,
+                busNummer,
+                huisNummer,
+                postCode,
+                straatNaam,
+                homoniemToevoeging);
 
             var cacheKey = $"legacy/address-list:{offset}-{limit}-{taal}";
 
@@ -131,14 +165,30 @@ namespace Public.Api.Address
             return new BackendResponseResult(value);
         }
 
-        protected RestRequest CreateBackendListRequest(int offset, int limit, Taal taal, string gemeenteNaam)
+        protected RestRequest CreateBackendListRequest(
+            int offset,
+            int limit,
+            Taal taal,
+            string municipalityName,
+            string boxNumber,
+            string houseNumber,
+            string postalCode,
+            string streetName,
+            string homonymAddition)
         {
             var request = new RestRequest("adressen?taal={taal}");
             request.AddHeader(AddPaginationExtension.HeaderName, $"{offset},{limit}");
             request.AddParameter("taal", taal, ParameterType.UrlSegment);
 
-            if (!string.IsNullOrEmpty(gemeenteNaam))
-                request.AddHeader(ExtractFilteringRequestExtension.HeaderName, $"{{ municipalityName: \"{gemeenteNaam}\" }}");
+            // TODO: Add filters for:
+            //public string BoxNumber { get; set; }
+            //public string HouseNumber { get; set; }
+            //public string PostalCode { get; set; }
+            //public string StreetName { get; set; }
+            //public string HomonymAddition { get; set; }
+
+            if (!string.IsNullOrEmpty(municipalityName))
+                request.AddHeader(ExtractFilteringRequestExtension.HeaderName, $"{{ municipalityName: \"{municipalityName}\" }}");
 
             return request;
         }

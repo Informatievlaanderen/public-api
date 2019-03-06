@@ -28,6 +28,10 @@ namespace Public.Api.StreetName
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de straatnamen.</param>
+        /// <param name="naamNl">Filter op het Nederlandse deel van de straatnaam (bevat).</param>
+        /// <param name="naamFr">Filter op het Franse deel van de straatnaam (bevat).</param>
+        /// <param name="naamDe">Filter op het Duitse deel van de straatnaam (bevat).</param>
+        /// <param name="naamEn">Filter op het Engelse deel van de straatnaam (bevat).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -50,6 +54,10 @@ namespace Public.Api.StreetName
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string gemeenteNaam,
+            [FromQuery] string naamNl,
+            [FromQuery] string naamFr,
+            [FromQuery] string naamDe,
+            [FromQuery] string naamEn,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
@@ -58,6 +66,10 @@ namespace Public.Api.StreetName
                 offset,
                 limit,
                 gemeenteNaam,
+                naamNl,
+                naamFr,
+                naamDe,
+                naamEn,
                 actionContextAccessor,
                 ifNoneMatch,
                 cancellationToken);
@@ -69,6 +81,10 @@ namespace Public.Api.StreetName
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de straatnamen.</param>
+        /// <param name="naamNl">Filter op het Nederlandse deel van de straatnaam (bevat).</param>
+        /// <param name="naamFr">Filter op het Franse deel van de straatnaam (bevat).</param>
+        /// <param name="naamDe">Filter op het Duitse deel van de straatnaam (bevat).</param>
+        /// <param name="naamEn">Filter op het Engelse deel van de straatnaam (bevat).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -94,6 +110,10 @@ namespace Public.Api.StreetName
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string gemeenteNaam,
+            [FromQuery] string naamNl,
+            [FromQuery] string naamFr,
+            [FromQuery] string naamDe,
+            [FromQuery] string naamEn,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
@@ -120,7 +140,15 @@ namespace Public.Api.StreetName
                 }
             }
 
-            RestRequest BackendRequest() => CreateBackendListRequest(offset.Value, limit.Value, taal.Value, gemeenteNaam);
+            RestRequest BackendRequest() => CreateBackendListRequest(
+                offset.Value,
+                limit.Value,
+                taal.Value,
+                gemeenteNaam,
+                naamNl,
+                naamFr,
+                naamDe,
+                naamEn);
 
             var cacheKey = $"legacy/streetname-list:{offset}-{limit}-{taal}";
 
@@ -131,14 +159,28 @@ namespace Public.Api.StreetName
             return new BackendResponseResult(value);
         }
 
-        protected RestRequest CreateBackendListRequest(int offset, int limit, Taal taal, string gemeenteNaam)
+        protected RestRequest CreateBackendListRequest(
+            int offset,
+            int limit,
+            Taal taal,
+            string municipalityName,
+            string nameDutch,
+            string nameFrench,
+            string nameGerman,
+            string nameEnglish)
         {
             var request = new RestRequest("straatnamen?taal={taal}");
             request.AddHeader(AddPaginationExtension.HeaderName, $"{offset},{limit}");
             request.AddParameter("taal", taal, ParameterType.UrlSegment);
 
-            if (!string.IsNullOrEmpty(gemeenteNaam))
-                request.AddHeader(ExtractFilteringRequestExtension.HeaderName, $"{{ municipalityName: \"{gemeenteNaam}\" }}");
+            // TODO: Add filters for:
+            //public string NameDutch { get; set; }
+            //public string NameFrench { get; set; }
+            //public string NameGerman { get; set; }
+            //public string NameEnglish { get; set; }
+
+            if (!string.IsNullOrEmpty(municipalityName))
+                request.AddHeader(ExtractFilteringRequestExtension.HeaderName, $"{{ municipalityName: \"{municipalityName}\" }}");
 
             return request;
         }
