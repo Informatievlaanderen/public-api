@@ -19,6 +19,8 @@ namespace Public.Api.PostalInfo
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Newtonsoft.Json;
+    using PostalRegistry.Api.Legacy.PostalInformation.Query;
 
     public partial class PostalCodeController
     {
@@ -131,14 +133,18 @@ namespace Public.Api.PostalInfo
             return new BackendResponseResult(value);
         }
 
-        protected RestRequest CreateBackendListRequest(int offset, int limit, Taal taal, string gemeenteNaam)
+        protected RestRequest CreateBackendListRequest(int offset, int limit, Taal taal, string municipalityName)
         {
             var request = new RestRequest("postcodes?taal={taal}");
             request.AddHeader(AddPaginationExtension.HeaderName, $"{offset},{limit}");
             request.AddParameter("taal", taal, ParameterType.UrlSegment);
 
-            if (!string.IsNullOrEmpty(gemeenteNaam))
-                request.AddHeader(ExtractFilteringRequestExtension.HeaderName, $"{{ municipalityName: \"{gemeenteNaam}\" }}");
+            var filter = new PostalInformationFilter
+            {
+                MunicipalityName = municipalityName
+            };
+
+            request.AddHeader(ExtractFilteringRequestExtension.HeaderName, JsonConvert.SerializeObject(filter));
 
             return request;
         }
