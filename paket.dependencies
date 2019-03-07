@@ -59,6 +59,9 @@ nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac ~> 1.0
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql ~> 1.0
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore ~> 1.0
 
+nuget Be.Vlaanderen.Basisregisters.GrAr.Common ~> 5.3
+nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance ~> 5.3
+
 // DOCS STUFF
 nuget Structurizr.Core 0.9.0
 nuget Structurizr.Client 0.9.0
