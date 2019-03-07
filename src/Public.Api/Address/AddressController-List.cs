@@ -17,8 +17,10 @@ namespace Public.Api.Address
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
+    using AddressRegistry.Api.Legacy.Address.Query;
     using AddressRegistry.Api.Legacy.Address.Responses;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Newtonsoft.Json;
 
     public partial class AddressController
     {
@@ -27,10 +29,10 @@ namespace Public.Api.Address
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de adressen.</param>
         /// <param name="busNummer">Filter op het busnummer van het adres.</param>
         /// <param name="huisNummer">Filter op het huisnummer van het adres.</param>
         /// <param name="postCode">Filter op de postcode van het adres.</param>
+        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de adressen.</param>
         /// <param name="straatNaam">Filter op de straatnaam van het adres.</param>
         /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres.</param>
         /// <param name="actionContextAccessor"></param>
@@ -54,10 +56,10 @@ namespace Public.Api.Address
         public async Task<IActionResult> List(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
-            [FromQuery] string gemeenteNaam,
             [FromQuery] string busNummer,
             [FromQuery] string huisNummer,
             [FromQuery] string postCode,
+            [FromQuery] string gemeenteNaam,
             [FromQuery] string straatNaam,
             [FromQuery] string homoniemToevoeging,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -67,10 +69,10 @@ namespace Public.Api.Address
                 null,
                 offset,
                 limit,
-                gemeenteNaam,
                 busNummer,
                 huisNummer,
                 postCode,
+                gemeenteNaam,
                 straatNaam,
                 homoniemToevoeging,
                 actionContextAccessor,
@@ -83,10 +85,10 @@ namespace Public.Api.Address
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de adressen.</param>
         /// <param name="busNummer">Filter op het busnummer van het adres.</param>
         /// <param name="huisNummer">Filter op het huisnummer van het adres.</param>
         /// <param name="postCode">Filter op de postcode van het adres.</param>
+        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de adressen.</param>
         /// <param name="straatNaam">Filter op de straatnaam van het adres.</param>
         /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres.</param>
         /// <param name="actionContextAccessor"></param>
@@ -113,10 +115,10 @@ namespace Public.Api.Address
             [FromRoute] string format,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
-            [FromQuery] string gemeenteNaam,
             [FromQuery] string busNummer,
             [FromQuery] string huisNummer,
             [FromQuery] string postCode,
+            [FromQuery] string gemeenteNaam,
             [FromQuery] string straatNaam,
             [FromQuery] string homoniemToevoeging,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -149,10 +151,10 @@ namespace Public.Api.Address
                 offset.Value,
                 limit.Value,
                 taal.Value,
-                gemeenteNaam,
                 busNummer,
                 huisNummer,
                 postCode,
+                gemeenteNaam,
                 straatNaam,
                 homoniemToevoeging);
 
@@ -169,10 +171,10 @@ namespace Public.Api.Address
             int offset,
             int limit,
             Taal taal,
-            string municipalityName,
             string boxNumber,
             string houseNumber,
             string postalCode,
+            string municipalityName,
             string streetName,
             string homonymAddition)
         {
@@ -180,15 +182,17 @@ namespace Public.Api.Address
             request.AddHeader(AddPaginationExtension.HeaderName, $"{offset},{limit}");
             request.AddParameter("taal", taal, ParameterType.UrlSegment);
 
-            // TODO: Add filters for:
-            //public string BoxNumber { get; set; }
-            //public string HouseNumber { get; set; }
-            //public string PostalCode { get; set; }
-            //public string StreetName { get; set; }
-            //public string HomonymAddition { get; set; }
+            var filter = new AddressFilter
+            {
+                BoxNumber = boxNumber,
+                HouseNumber = houseNumber,
+                PostalCode = postalCode,
+                MunicipalityName = municipalityName,
+                StreetName = streetName,
+                HomonymAddition = homonymAddition
+            };
 
-            if (!string.IsNullOrEmpty(municipalityName))
-                request.AddHeader(ExtractFilteringRequestExtension.HeaderName, $"{{ municipalityName: \"{municipalityName}\" }}");
+            request.AddHeader(ExtractFilteringRequestExtension.HeaderName, JsonConvert.SerializeObject(filter));
 
             return request;
         }

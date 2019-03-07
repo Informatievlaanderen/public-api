@@ -19,6 +19,8 @@ namespace Public.Api.StreetName
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Newtonsoft.Json;
+    using StreetNameRegistry.Api.Legacy.StreetName.Query;
 
     public partial class StreetNameController
     {
@@ -173,14 +175,16 @@ namespace Public.Api.StreetName
             request.AddHeader(AddPaginationExtension.HeaderName, $"{offset},{limit}");
             request.AddParameter("taal", taal, ParameterType.UrlSegment);
 
-            // TODO: Add filters for:
-            //public string NameDutch { get; set; }
-            //public string NameFrench { get; set; }
-            //public string NameGerman { get; set; }
-            //public string NameEnglish { get; set; }
+            var filter = new StreetNameFilter
+            {
+                MunicipalityName = municipalityName,
+                NameDutch = nameDutch,
+                NameFrench = nameFrench,
+                NameGerman = nameGerman,
+                NameEnglish = nameEnglish
+            };
 
-            if (!string.IsNullOrEmpty(municipalityName))
-                request.AddHeader(ExtractFilteringRequestExtension.HeaderName, $"{{ municipalityName: \"{municipalityName}\" }}");
+            request.AddHeader(ExtractFilteringRequestExtension.HeaderName, JsonConvert.SerializeObject(filter));
 
             return request;
         }
