@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/informatievlaanderen/public-api/compare/v2.1.0...v2.2.0) (2019-03-07)
+
+
+### Features
+
+* add address and streetname filters ([2fd13d8](https://github.com/informatievlaanderen/public-api/commit/2fd13d8))
+
 # [2.1.0](https://github.com/informatievlaanderen/public-api/compare/v2.0.3...v2.1.0) (2019-03-06)
 
 
