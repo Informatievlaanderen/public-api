@@ -68,6 +68,7 @@ namespace Public.Api.Infrastructure
                         typeof(StreetNameRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                         typeof(AddressRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                         typeof(ParcelRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
+                        typeof(PublicServiceRegistry.Api.Backoffice.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                     },
                     _configuration.GetSection("Cors").GetChildren().Select(c => c.Value).ToArray())
 
@@ -111,9 +112,10 @@ namespace Public.Api.Infrastructure
 
             var containerBuilder = new ContainerBuilder();
 
-            containerBuilder.RegisterModule(new ApiConfigurationModule(_configuration));
-            containerBuilder.RegisterModule(new DataDogModule(_configuration));
-            containerBuilder.RegisterModule(new RedisModule(_configuration));
+            containerBuilder
+                .RegisterModule(new ApiConfigurationModule(_configuration))
+                .RegisterModule(new DataDogModule(_configuration))
+                .RegisterModule(new RedisModule(_configuration));
 
             containerBuilder.Populate(services);
 

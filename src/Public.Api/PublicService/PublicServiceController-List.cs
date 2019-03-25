@@ -1,7 +1,9 @@
-namespace Public.Api.Address
+namespace Public.Api.PublicService
 {
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Api.Search.Pagination;
+    using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Infrastructure;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
@@ -10,82 +12,82 @@ namespace Public.Api.Address
     using Newtonsoft.Json.Converters;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
+    using System.Collections.Generic;
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Legacy.Address.Responses;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using PublicServiceRegistry.Api.Backoffice.PublicService.Responses;
 
-    public partial class AddressController
+    public partial class PublicServiceController
     {
         /// <summary>
-        /// Vraag een adres op.
+        /// Vraag een lijst met dienstverleningen op.
         /// </summary>
-        /// <param name="adresId">Identificator van het adres.</param>
+        /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
+        /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als het adres gevonden is.</response>
-        /// <response code="304">Als het adres niet gewijzigd is ten opzicht van uw verzoek.</response>
-        /// <response code="404">Als het adres niet gevonden kan worden.</response>
-        /// <response code="410">Als het adres verwijderd is.</response>
+        /// <response code="200">Als de opvraging van een lijst met dienstverleningen gelukt is.</response>
+        /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
+        /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adressen/{adresId}")]
-        [ProducesResponseType(typeof(AddressResponse), StatusCodes.Status200OK)]
+        [HttpGet("dienstverleningen")]
+        [ProducesResponseType(typeof(List<PublicServiceListResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "CorrelationId", "string", "Correlatie identificator van de respons.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AddressResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PublicServiceListResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(AddressNotFoundResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(AddressGoneResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
-        public async Task<IActionResult> Get(
-            [FromRoute] string adresId,
+        [HttpCacheExpiration(MaxAge = 12 * 60 * 60)] // Hours, Minutes, Second
+        public async Task<IActionResult> List(
+            [FromQuery] int? offset,
+            [FromQuery] int? limit,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
-            => await Get(
+            => await List(
                 null,
-                adresId,
+                offset,
+                limit,
                 actionContextAccessor,
                 ifNoneMatch,
                 cancellationToken);
 
         /// <summary>
-        /// Vraag een adres op.
+        /// Vraag een lijst met dienstverleningen op.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="adresId">Identificator van het adres.</param>
+        /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
+        /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als het adres gevonden is.</response>
-        /// <response code="304">Als het adres niet gewijzigd is ten opzicht van uw verzoek.</response>
-        /// <response code="404">Als het adres niet gevonden kan worden.</response>
+        /// <response code="200">Als de opvraging van een lijst met dienstverleningen gelukt is.</response>
+        /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
+        /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
-        /// <response code="410">Als het adres verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adressen/{adresId}.{format}")]
-        [ProducesResponseType(typeof(AddressResponse), StatusCodes.Status200OK)]
+        [HttpGet("dienstverleningen.{format}")]
+        [ProducesResponseType(typeof(List<PublicServiceListResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "CorrelationId", "string", "Correlatie identificator van de respons.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AddressResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PublicServiceListResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(AddressNotFoundResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(AddressGoneResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
-        public async Task<IActionResult> Get(
+        [HttpCacheExpiration(MaxAge = 12 * 60 * 60)] // Hours, Minutes, Second
+        public async Task<IActionResult> List(
             [FromRoute] string format,
-            [FromRoute] string adresId,
+            [FromQuery] int? offset,
+            [FromQuery] int? limit,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
@@ -96,9 +98,11 @@ namespace Public.Api.Address
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            const string notFoundExceptionMessage = "Onbestaand adres.";
+            offset = offset ?? 0;
+            limit = limit ?? DefaultLimit;
+            Taal? taal = Taal.NL;
 
-            void HandleNotFound(HttpStatusCode statusCode)
+            void HandleBadRequest(HttpStatusCode statusCode)
             {
                 switch (statusCode)
                 {
@@ -107,29 +111,28 @@ namespace Public.Api.Address
 
                     case HttpStatusCode.BadRequest:
                         throw new ApiException("Ongeldige vraag.", StatusCodes.Status400BadRequest);
-
-                    case HttpStatusCode.NotFound:
-                        throw new ApiException(string.IsNullOrWhiteSpace(notFoundExceptionMessage)
-                            ? "Niet gevonden."
-                            : notFoundExceptionMessage, StatusCodes.Status404NotFound);
                 }
             }
 
-            RestRequest BackendRequest() => CreateBackendDetailRequest(adresId);
+            RestRequest BackendRequest() => CreateBackendListRequest(
+                offset.Value,
+                limit.Value);
 
-            var cacheKey = $"legacy/address:{adresId}";
+            var cacheKey = $"legacy/publicservice-list:{offset}-{limit}-{taal}";
 
             var value = await (CacheToggle.FeatureEnabled
-                ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleNotFound, cancellationToken)
-                : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), HandleNotFound, cancellationToken));
+                ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken)
+                : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken));
 
             return new BackendResponseResult(value);
         }
 
-        protected RestRequest CreateBackendDetailRequest(string adresId)
+        protected RestRequest CreateBackendListRequest(
+            int offset,
+            int limit)
         {
-            var request = new RestRequest("adressen/{adresId}");
-            request.AddParameter("adresId", adresId, ParameterType.UrlSegment);
+            var request = new RestRequest("dienstverleningen");
+            request.AddHeader(AddPaginationExtension.HeaderName, $"{offset},{limit}");
             return request;
         }
     }

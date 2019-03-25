@@ -32,6 +32,9 @@ namespace Public.Api.Infrastructure
         private const string BuildingCacheKey = "legacy/building:{0}.{1}";
         private static readonly Regex BuildingRegex = new Regex(@"/v1/gebouwen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
+        private const string PublicServiceCacheKey = "legacy/publicservice:{0}.{1}";
+        private static readonly Regex PublicServiceRegex = new Regex(@"/v1/dienstverleningen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+
         private static readonly IStoreKeyGenerator DefaultStoreKeyGenerator = new DefaultStoreKeyGenerator();
 
         public RedisStoreKeyGenerator(ILogger<RedisStoreKeyGenerator> logger) => _logger = logger;
@@ -62,6 +65,9 @@ namespace Public.Api.Infrastructure
 
             if (resourcePath.StartsWith("/v1/gebouwen/"))
                 return GenerateStoreKey(context, resourcePath, BuildingRegex, BuildingCacheKey);
+
+            if (resourcePath.StartsWith("/v1/dienstverleningen/"))
+                return GenerateStoreKey(context, resourcePath, PublicServiceRegex, PublicServiceCacheKey);
 
             return DefaultStoreKeyGenerator.GenerateStoreKey(context);
         }
