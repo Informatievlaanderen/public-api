@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/informatievlaanderen/public-api/compare/v2.2.1...v2.3.0) (2019-03-25)
+
+
+### Features
+
+* add publicservice registry ([9063f14](https://github.com/informatievlaanderen/public-api/commit/9063f14))
+
 ## [2.2.1](https://github.com/informatievlaanderen/public-api/compare/v2.2.0...v2.2.1) (2019-03-07)
 
 
