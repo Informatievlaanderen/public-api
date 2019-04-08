@@ -1,3 +1,10 @@
+## [2.3.3](https://github.com/informatievlaanderen/public-api/compare/v2.3.2...v2.3.3) (2019-04-08)
+
+
+### Bug Fixes
+
+* manual hold for production ([ad5685c](https://github.com/informatievlaanderen/public-api/commit/ad5685c))
+
 ## [2.3.2](https://github.com/informatievlaanderen/public-api/compare/v2.3.1...v2.3.2) (2019-04-08)
 
 
