@@ -4,7 +4,6 @@ executors:
   job-executor:
     docker:
       - image: basisregisters/build-agent:latest
-    working_directory: /tmp
 
 jobs:
   build:
@@ -87,6 +86,7 @@ jobs:
           root: workspace
           paths:
             - semver
+
   push_to_production:
     executor: job-executor
 
