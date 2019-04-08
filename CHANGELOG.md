@@ -1,3 +1,11 @@
+## [2.3.1](https://github.com/informatievlaanderen/public-api/compare/v2.3.0...v2.3.1) (2019-04-08)
+
+
+### Bug Fixes
+
+* push docker to production registry ([e8d38a5](https://github.com/informatievlaanderen/public-api/commit/e8d38a5))
+* push docker to production registry ([d248ba9](https://github.com/informatievlaanderen/public-api/commit/d248ba9))
+
 # [2.3.0](https://github.com/informatievlaanderen/public-api/compare/v2.2.1...v2.3.0) (2019-03-25)
 
 
