@@ -78,7 +78,7 @@ jobs:
             - ~/.nuget/packages
             - packages
 
-      - copy_docker_to_production:
+      - run:
           name: Copy Docker images to production
           command: |
             eval $(AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PRD AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PRD aws ecr get-login --no-include-email --region eu-west-1 | sed 's|https://||')
