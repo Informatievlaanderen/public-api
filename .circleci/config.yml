@@ -94,14 +94,16 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
 
+      - setup_remote_docker
+
       - run:
           name: Copy Docker images to production
           command: |
             SEMVER=$(cat /tmp/workspace/semver)
             eval $(AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID     AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY     aws ecr get-login --no-include-email --region eu-west-1 | sed 's|https://||')
             eval $(AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID_PRD AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY_PRD aws ecr get-login --no-include-email --region eu-west-1 | sed 's|https://||')
-            docker pull $BUILD_DOCKER_REGISTRY/oslo/api-legacy:SEMVER
-            docker tag  $BUILD_DOCKER_REGISTRY/oslo/api-legacy:SEMVER $BUILD_DOCKER_REGISTRY_PRD/public-api/api-legacy:$SEMVER
+            docker pull $BUILD_DOCKER_REGISTRY/oslo/api-legacy:$SEMVER
+            docker tag  $BUILD_DOCKER_REGISTRY/oslo/api-legacy:$SEMVER $BUILD_DOCKER_REGISTRY_PRD/public-api/api-legacy:$SEMVER
             docker push $BUILD_DOCKER_REGISTRY_PRD/public-api/api-legacy:$SEMVER
 
 workflows:
