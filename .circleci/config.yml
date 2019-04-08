@@ -87,10 +87,6 @@ jobs:
           root: workspace
           paths:
             - semver
-
-  hold:
-    type: approval
-
   push_to_production:
     executor: job-executor
 
@@ -114,6 +110,7 @@ workflows:
     jobs:
       - build
       - hold:
+          type: approval
           requires:
             - build
       - push_to_production:
