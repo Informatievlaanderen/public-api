@@ -115,6 +115,12 @@ workflows:
           type: approval
           requires:
             - build
+          branches:
+            only:
+              - master
       - push_to_production:
           requires:
             - hold
+          branches:
+            only:
+              - master
