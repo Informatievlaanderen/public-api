@@ -1,3 +1,11 @@
+## [2.3.4](https://github.com/informatievlaanderen/public-api/compare/v2.3.3...v2.3.4) (2019-04-08)
+
+
+### Bug Fixes
+
+* only run push to prod on master branch ([330b081](https://github.com/informatievlaanderen/public-api/commit/330b081))
+* only run push to prod on master branch ([3e5ea82](https://github.com/informatievlaanderen/public-api/commit/3e5ea82))
+
 ## [2.3.3](https://github.com/informatievlaanderen/public-api/compare/v2.3.2...v2.3.3) (2019-04-08)
 
 
