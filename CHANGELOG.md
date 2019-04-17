@@ -1,3 +1,15 @@
+# [2.4.0](https://github.com/informatievlaanderen/public-api/compare/v2.3.4...v2.4.0) (2019-04-17)
+
+
+### Bug Fixes
+
+* install datadog in docker ([9ce8867](https://github.com/informatievlaanderen/public-api/commit/9ce8867))
+
+
+### Features
+
+* update dependencies and add datadog ([9010c84](https://github.com/informatievlaanderen/public-api/commit/9010c84))
+
 ## [2.3.4](https://github.com/informatievlaanderen/public-api/compare/v2.3.3...v2.3.4) (2019-04-08)
 
 
