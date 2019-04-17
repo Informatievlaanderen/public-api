@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/informatievlaanderen/public-api/compare/v2.5.1...v2.6.0) (2019-04-17)
+
+
+### Features
+
+* use proper logging for aws fargate ([124cbaa](https://github.com/informatievlaanderen/public-api/commit/124cbaa))
+
 ## [2.5.1](https://github.com/informatievlaanderen/public-api/compare/v2.5.0...v2.5.1) (2019-04-17)
 
 
