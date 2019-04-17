@@ -13,7 +13,7 @@ ENV DD_INTEGRATIONS=/opt/datadog/integrations.json
 RUN apt-get update && \
     apt-get install curl jq -y && \
     curl -LO https://github.com/DataDog/dd-trace-dotnet/releases/download/v1.0.0/datadog-dotnet-apm_1.0.0_amd64.deb && \
-    dpkg -i ./datadog-dotnet-apm_1.0.0_amd64.deb &&
+    dpkg -i ./datadog-dotnet-apm_1.0.0_amd64.deb && \
     chmod +x ./init.sh
 
 EXPOSE 2080/tcp
