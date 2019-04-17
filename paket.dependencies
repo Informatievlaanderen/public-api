@@ -22,6 +22,8 @@ nuget Microsoft.NETCore.DotNetHostPolicy 2.2.0
 nuget NETStandard.Library 2.0.3
 
 // PRODUCTION STUFF
+nuget Datadog.Trace.ClrProfiler.Managed 1.0.0
+
 nuget Microsoft.Extensions.Configuration 2.2.0
 nuget Microsoft.Extensions.Configuration.CommandLine 2.2.0
 nuget Microsoft.Extensions.Configuration.FileExtensions 2.2.0
@@ -34,7 +36,7 @@ nuget Autofac.Extensions.DependencyInjection 4.4.0
 nuget RestSharp 106.6.9
 nuget FeatureToggle 4.0.2
 nuget Marvin.Cache.Headers 3.1.0
-nuget StackExchange.Redis 2.0.571
+nuget StackExchange.Redis 2.0.601
 
 nuget Serilog 2.8.0
 nuget Serilog.Settings.Configuration 3.0.1
@@ -54,14 +56,14 @@ nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice copy_con
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline ~> 1.5
 
-nuget Be.Vlaanderen.Basisregisters.Api ~> 1.8
+nuget Be.Vlaanderen.Basisregisters.Api ~> 2.3
 
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac ~> 1.0
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql ~> 1.0
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore ~> 1.0
 
-nuget Be.Vlaanderen.Basisregisters.GrAr.Common ~> 5.3
-nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance ~> 5.3
+nuget Be.Vlaanderen.Basisregisters.GrAr.Common ~> 6.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance ~> 6.0
 
 // DOCS STUFF
 nuget Structurizr.Core 0.9.0
@@ -69,7 +71,7 @@ nuget Structurizr.Client 0.9.0
 nuget Structurizr.AdrTools 0.9.0
 
 // TEST STUFF
-nuget Microsoft.NET.Test.Sdk 15.9.0
+nuget Microsoft.NET.Test.Sdk 16.0.1
 nuget Microsoft.EntityFrameworkCore.InMemory 2.2.0
 nuget xunit 2.4.1
 nuget xunit.runner.visualstudio 2.4.1

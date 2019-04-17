@@ -26,16 +26,21 @@ namespace Public.Api.Infrastructure
     using Marvin.Cache.Headers.Interfaces;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Swashbuckle.AspNetCore.Filters;
+    using System.Globalization;
 
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup
     {
+        private const string DefaultCulture = "en-GB";
+        private const string SupportedCultures = "en-GB;en-US;en;nl-BE;nl";
+
         private IContainer _applicationContainer;
 
         private readonly IConfiguration _configuration;
         private readonly ILoggerFactory _loggerFactory;
 
-        public Startup(IConfiguration configuration,
+        public Startup(
+            IConfiguration configuration,
             ILoggerFactory loggerFactory)
         {
             _configuration = configuration;
@@ -47,30 +52,54 @@ namespace Public.Api.Infrastructure
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services
-                .ConfigureDefaultForApi<Startup>(
-                    (provider, description) => new Info
+                .ConfigureDefaultForApi<Startup>(new StartupConfigureOptions
+                {
+                    Cors =
                     {
-                        Version = description.ApiVersion.ToString(),
-                        Title = "Basisregisters Vlaanderen API",
-                        Description = GetApiLeadingText(description),
-                        Contact = new Contact
+                        Origins = _configuration
+                            .GetSection("Cors")
+                            .GetChildren()
+                            .Select(c => c.Value)
+                            .ToArray()
+                    },
+                    Swagger =
+                    {
+                        ApiInfo = (provider, description) => new Info
                         {
-                            Name = "Informatie Vlaanderen",
-                            Email = "informatie.vlaanderen@vlaanderen.be",
-                            Url = "https://legacy.basisregisters.vlaanderen"
+                            Version = description.ApiVersion.ToString(),
+                            Title = "Basisregisters Vlaanderen API",
+                            Description = GetApiLeadingText(description),
+                            Contact = new Contact
+                            {
+                                Name = "Informatie Vlaanderen",
+                                Email = "informatie.vlaanderen@vlaanderen.be",
+                                Url = "https://legacy.basisregisters.vlaanderen"
+                            }
+                        },
+                        XmlCommentPaths = new []
+                        {
+                            typeof(Startup).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(MunicipalityRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(PostalRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(StreetNameRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(AddressRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(ParcelRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(PublicServiceRegistry.Api.Backoffice.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                         }
                     },
-                    new []
+                    Localization =
                     {
-                        typeof(Startup).GetTypeInfo().Assembly.GetName().Name,
-                        typeof(MunicipalityRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
-                        typeof(PostalRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
-                        typeof(StreetNameRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
-                        typeof(AddressRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
-                        typeof(ParcelRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
-                        typeof(PublicServiceRegistry.Api.Backoffice.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
+                        DefaultCulture = new CultureInfo(DefaultCulture),
+                        SupportedCultures = SupportedCultures
+                            .Split(';', StringSplitOptions.RemoveEmptyEntries)
+                            .Select(x => new CultureInfo(x.Trim()))
+                            .ToArray()
                     },
-                    _configuration.GetSection("Cors").GetChildren().Select(c => c.Value).ToArray())
+                    MiddlewareHooks =
+                    {
+                        FluentValidation = fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>(),
+                    }
+                })
 
                 .AddSingleton<IActionContextAccessor, ActionContextAccessor>()
 
@@ -125,11 +154,14 @@ namespace Public.Api.Infrastructure
                 .AsImplementedInterfaces()
                 .AsSelf();
 
-            containerBuilder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+            containerBuilder
+                .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .Where(t => t.IsSubClassOfGeneric(typeof(RegistryApiController<>)))
                 .WithAttributeFiltering();
 
-            containerBuilder.RegisterType<FeedController>().WithAttributeFiltering();
+            containerBuilder
+                .RegisterType<FeedController>()
+                .WithAttributeFiltering();
 
             _applicationContainer = containerBuilder.Build();
 
@@ -157,13 +189,16 @@ namespace Public.Api.Infrastructure
                     pathToCheck => pathToCheck != "/");
             }
 
-            app.UseDefaultForApi(new StartupOptions
+            app.UseDefaultForApi(new StartupUseOptions
             {
-                ApplicationContainer = _applicationContainer,
-                ServiceProvider = serviceProvider,
-                HostingEnvironment = env,
-                ApplicationLifetime = appLifetime,
-                LoggerFactory = loggerFactory,
+                Common =
+                {
+                    ApplicationContainer = _applicationContainer,
+                    ServiceProvider = serviceProvider,
+                    HostingEnvironment = env,
+                    ApplicationLifetime = appLifetime,
+                    LoggerFactory = loggerFactory,
+                },
                 Api =
                 {
                     VersionProvider = apiVersionProvider,
