@@ -45,6 +45,7 @@ nuget Serilog.Sinks.Console 3.1.1
 nuget Serilog.Sinks.File 4.0.0
 nuget Serilog.Enrichers.Thread 3.0.0
 nuget Serilog.Enrichers.Environment 2.1.3
+nuget Serilog.Formatting.Compact 1.0.0
 
 // VBR STUFF
 nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy copy_content_to_output_dir: always

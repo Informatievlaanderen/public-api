@@ -11,7 +11,7 @@ ENV CORECLR_PROFILER_PATH=/opt/datadog/Datadog.Trace.ClrProfiler.Native.so
 ENV DD_INTEGRATIONS=/opt/datadog/integrations.json
 
 RUN apt-get update && \
-    apt-get install curl -y && \
+    apt-get install curl jq -y && \
     curl -LO https://github.com/DataDog/dd-trace-dotnet/releases/download/v1.0.0/datadog-dotnet-apm_1.0.0_amd64.deb && \
     dpkg -i ./datadog-dotnet-apm_1.0.0_amd64.deb
 
@@ -19,4 +19,4 @@ EXPOSE 2080/tcp
 ENV ASPNETCORE_URLS http://*:2080
 
 ENV DD_SERVICE_NAME=public-api
-ENTRYPOINT ["./Public.Api"]
+ENTRYPOINT ["sh", "-c", ' sed -i "s/REPLACE_CONTAINERID/$(curl -s http://169.254.170.2/v2/metadata | jq -r ".Containers[] | select(.Labels[\"com.amazonaws.ecs.container-name\"] | contains(\"basisregisters-\") and contains(\"-public-api\")) | .DockerId")/g" appsettings.json ; ./Public.Api']

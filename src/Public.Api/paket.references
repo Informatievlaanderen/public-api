@@ -16,6 +16,7 @@ Be.Vlaanderen.Basisregisters.GrAr.Provenance
 FeatureToggle
 Marvin.Cache.Headers
 StackExchange.Redis
+Serilog.Formatting.Compact
 
 SourceLink.Embed.AllSourceFiles
 SourceLink.Copy.PdbFiles
