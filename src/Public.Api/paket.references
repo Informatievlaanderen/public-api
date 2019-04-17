@@ -1,5 +1,3 @@
-Datadog.Trace.ClrProfiler.Managed
-
 Be.Vlaanderen.Basisregisters.Api
 Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac
 
@@ -16,7 +14,6 @@ Be.Vlaanderen.Basisregisters.GrAr.Provenance
 FeatureToggle
 Marvin.Cache.Headers
 StackExchange.Redis
-Serilog.Formatting.Compact
 
 SourceLink.Embed.AllSourceFiles
 SourceLink.Copy.PdbFiles
