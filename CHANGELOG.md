@@ -1,3 +1,10 @@
+## [2.5.1](https://github.com/informatievlaanderen/public-api/compare/v2.5.0...v2.5.1) (2019-04-17)
+
+
+### Bug Fixes
+
+* add forgotten line extension for docker run ([62a4e8e](https://github.com/informatievlaanderen/public-api/commit/62a4e8e))
+
 # [2.5.0](https://github.com/informatievlaanderen/public-api/compare/v2.4.0...v2.5.0) (2019-04-17)
 
 
