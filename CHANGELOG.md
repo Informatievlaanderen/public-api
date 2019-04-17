@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/informatievlaanderen/public-api/compare/v2.4.0...v2.5.0) (2019-04-17)
+
+
+### Features
+
+* add containerid to serilog on aws ([211bb14](https://github.com/informatievlaanderen/public-api/commit/211bb14))
+
 # [2.4.0](https://github.com/informatievlaanderen/public-api/compare/v2.3.4...v2.4.0) (2019-04-17)
 
 
