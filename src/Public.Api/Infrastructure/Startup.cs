@@ -186,23 +186,23 @@ namespace Public.Api.Infrastructure
                     StartupHelpers.SetupSourceListener(serviceProvider.GetRequiredService<TraceSource>());
 
                 var sha1 = SHA1.Create();
-                var traceSourceFactory = serviceProvider.GetRequiredService<Func<string, TraceSource>>();
+                var traceSourceFactory = serviceProvider.GetRequiredService<Func<long, TraceSource>>();
 
                 app.UseDataDogTracing(
                     request =>
                     {
-                        var traceId = "42";
+                        var traceId = 42L;
                         if (request.Headers.TryGetValue("X-Amzn-Trace-Id", out var stringValues))
                         {
-                            traceId = stringValues
+                            var awsTraceId = stringValues
                                 .ToString()
                                 .Replace("\"", string.Empty)
                                 .Replace("Root=", string.Empty);
 
-                            var traceIdHash = sha1.ComputeHash(Encoding.UTF8.GetBytes(traceId));
+                            var traceIdHash = sha1.ComputeHash(Encoding.UTF8.GetBytes(awsTraceId));
                             var traceIdHex = BitConverter.ToString(traceIdHash).Replace("-", string.Empty);
                             var traceIdNumber = BigInteger.Parse(traceIdHex, NumberStyles.HexNumber);
-                            traceId = BigInteger.Remainder(traceIdNumber, new BigInteger(Math.Pow(10, 14))).ToString();
+                            traceId = (long) BigInteger.Remainder(traceIdNumber, new BigInteger(Math.Pow(10, 14)));
                         }
 
                         return traceSourceFactory(traceId);
