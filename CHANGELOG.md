@@ -1,3 +1,10 @@
+## [2.8.1](https://github.com/informatievlaanderen/public-api/compare/v2.8.0...v2.8.1) (2019-04-18)
+
+
+### Bug Fixes
+
+* properly register tracesource factory ([c4adbee](https://github.com/informatievlaanderen/public-api/commit/c4adbee))
+
 # [2.8.0](https://github.com/informatievlaanderen/public-api/compare/v2.7.3...v2.8.0) (2019-04-18)
 
 
