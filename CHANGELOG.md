@@ -1,3 +1,10 @@
+# [2.10.0](https://github.com/informatievlaanderen/public-api/compare/v2.9.0...v2.10.0) (2019-04-18)
+
+
+### Features
+
+* add traceid to logcontext ([beeb0f1](https://github.com/informatievlaanderen/public-api/commit/beeb0f1))
+
 # [2.9.0](https://github.com/informatievlaanderen/public-api/compare/v2.8.3...v2.9.0) (2019-04-18)
 
 
