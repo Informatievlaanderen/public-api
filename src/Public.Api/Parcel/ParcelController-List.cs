@@ -8,6 +8,7 @@ namespace Public.Api.Parcel
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.Api.Search.Pagination;
     using Infrastructure;
+    using Infrastructure.Configuration;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,6 @@ namespace Public.Api.Parcel
     using Microsoft.Extensions.Options;
     using Microsoft.Net.Http.Headers;
     using Newtonsoft.Json.Converters;
-    using ParcelRegistry.Api.Legacy.Infrastructure.Options;
     using ParcelRegistry.Api.Legacy.Parcel.Responses;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
@@ -50,7 +50,7 @@ namespace Public.Api.Parcel
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<ResponseOptions> responseOptions,
+            [FromServices] IOptions<ParcelOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
             => await List(
@@ -94,7 +94,7 @@ namespace Public.Api.Parcel
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<ResponseOptions> responseOptions,
+            [FromServices] IOptions<ParcelOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {

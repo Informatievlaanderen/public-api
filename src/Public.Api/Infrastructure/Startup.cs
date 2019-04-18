@@ -20,6 +20,7 @@ namespace Public.Api.Infrastructure
     using Microsoft.Extensions.Logging;
     using Swashbuckle.AspNetCore.Swagger;
     using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
+    using Configuration;
     using Feeds;
     using Marvin.Cache.Headers.Interfaces;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -135,11 +136,11 @@ namespace Public.Api.Infrastructure
                             : new InMemoryValidatorValueStore(_loggerFactory.CreateLogger<InMemoryValidatorValueStore>()) as IValidatorValueStore;
                     })
 
-                .Configure<MunicipalityRegistry.Api.Legacy.Infrastructure.Options.ResponseOptions>(_configuration.GetSection("ApiConfiguration:MunicipalityRegistry"))
-                .Configure<PostalRegistry.Api.Legacy.Infrastructure.Options.ResponseOptions>(_configuration.GetSection("ApiConfiguration:PostalRegistry"))
-                .Configure<StreetNameRegistry.Api.Legacy.Infrastructure.Options.ResponseOptions>(_configuration.GetSection("ApiConfiguration:StreetNameRegistry"))
-                .Configure<AddressRegistry.Api.Legacy.Infrastructure.Options.ResponseOptions>(_configuration.GetSection("ApiConfiguration:AddressRegistry"))
-                .Configure<ParcelRegistry.Api.Legacy.Infrastructure.Options.ResponseOptions>(_configuration.GetSection("ApiConfiguration:ParcelRegistry"));
+                .Configure<MunicipalityOptions>(_configuration.GetSection("ApiConfiguration:MunicipalityRegistry"))
+                .Configure<PostalOptions>(_configuration.GetSection("ApiConfiguration:PostalRegistry"))
+                .Configure<StreetNameOptions>(_configuration.GetSection("ApiConfiguration:StreetNameRegistry"))
+                .Configure<AddressOptions>(_configuration.GetSection("ApiConfiguration:AddressRegistry"))
+                .Configure<ParcelOptions>(_configuration.GetSection("ApiConfiguration:ParcelRegistry"));
 
             var containerBuilder = new ContainerBuilder();
 

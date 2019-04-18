@@ -18,10 +18,10 @@ namespace Public.Api.StreetName
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
+    using Infrastructure.Configuration;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
     using Newtonsoft.Json;
-    using StreetNameRegistry.Api.Legacy.Infrastructure.Options;
     using StreetNameRegistry.Api.Legacy.StreetName.Query;
 
     public partial class StreetNameController
@@ -64,7 +64,7 @@ namespace Public.Api.StreetName
             [FromQuery] string naamDe,
             [FromQuery] string naamEn,
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<ResponseOptions> responseOptions,
+            [FromServices] IOptions<StreetNameOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
             => await List(
@@ -123,7 +123,7 @@ namespace Public.Api.StreetName
             [FromQuery] string naamDe,
             [FromQuery] string naamEn,
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<ResponseOptions> responseOptions,
+            [FromServices] IOptions<StreetNameOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
