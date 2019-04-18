@@ -19,7 +19,9 @@ namespace Public.Api.StreetName
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.Extensions.Options;
     using Newtonsoft.Json;
+    using StreetNameRegistry.Api.Legacy.Infrastructure.Options;
     using StreetNameRegistry.Api.Legacy.StreetName.Query;
 
     public partial class StreetNameController
@@ -35,6 +37,7 @@ namespace Public.Api.StreetName
         /// <param name="naamDe">Filter op het Duitse deel van de straatnaam (bevat).</param>
         /// <param name="naamEn">Filter op het Engelse deel van de straatnaam (bevat).</param>
         /// <param name="actionContextAccessor"></param>
+        /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van een lijst met straatnamen gelukt is.</response>
@@ -61,6 +64,7 @@ namespace Public.Api.StreetName
             [FromQuery] string naamDe,
             [FromQuery] string naamEn,
             [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IOptions<ResponseOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
             => await List(
@@ -73,6 +77,7 @@ namespace Public.Api.StreetName
                 naamDe,
                 naamEn,
                 actionContextAccessor,
+                responseOptions,
                 ifNoneMatch,
                 cancellationToken);
 
@@ -88,6 +93,7 @@ namespace Public.Api.StreetName
         /// <param name="naamDe">Filter op het Duitse deel van de straatnaam (bevat).</param>
         /// <param name="naamEn">Filter op het Engelse deel van de straatnaam (bevat).</param>
         /// <param name="actionContextAccessor"></param>
+        /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van een lijst met straatnamen gelukt is.</response>
@@ -117,6 +123,7 @@ namespace Public.Api.StreetName
             [FromQuery] string naamDe,
             [FromQuery] string naamEn,
             [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IOptions<ResponseOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
@@ -158,7 +165,7 @@ namespace Public.Api.StreetName
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken)
                 : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken));
 
-            return new BackendResponseResult(value);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
         protected RestRequest CreateBackendListRequest(

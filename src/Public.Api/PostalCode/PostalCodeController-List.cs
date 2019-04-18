@@ -19,7 +19,9 @@ namespace Public.Api.PostalInfo
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.Extensions.Options;
     using Newtonsoft.Json;
+    using PostalRegistry.Api.Legacy.Infrastructure.Options;
     using PostalRegistry.Api.Legacy.PostalInformation.Query;
 
     public partial class PostalCodeController
@@ -31,6 +33,7 @@ namespace Public.Api.PostalInfo
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de postcodes.</param>
         /// <param name="actionContextAccessor"></param>
+        /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van een lijst met post informatie over postcodes gelukt is.</response>
@@ -53,6 +56,7 @@ namespace Public.Api.PostalInfo
             [FromQuery] int? limit,
             [FromQuery] string gemeenteNaam,
             [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IOptions<ResponseOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
             => await List(
@@ -61,6 +65,7 @@ namespace Public.Api.PostalInfo
                 limit,
                 gemeenteNaam,
                 actionContextAccessor,
+                responseOptions,
                 ifNoneMatch,
                 cancellationToken);
 
@@ -72,6 +77,7 @@ namespace Public.Api.PostalInfo
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de postcodes.</param>
         /// <param name="actionContextAccessor"></param>
+        /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van een lijst met post informatie over postcodes gelukt is.</response>
@@ -97,6 +103,7 @@ namespace Public.Api.PostalInfo
             [FromQuery] int? limit,
             [FromQuery] string gemeenteNaam,
             [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IOptions<ResponseOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
@@ -130,7 +137,7 @@ namespace Public.Api.PostalInfo
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken)
                 : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken));
 
-            return new BackendResponseResult(value);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
         protected RestRequest CreateBackendListRequest(int offset, int limit, Taal taal, string municipalityName)
