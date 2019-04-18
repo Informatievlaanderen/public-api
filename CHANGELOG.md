@@ -1,3 +1,10 @@
+# [2.8.0](https://github.com/informatievlaanderen/public-api/compare/v2.7.3...v2.8.0) (2019-04-18)
+
+
+### Features
+
+* add extra debug logging for traceagent ([c01a7fa](https://github.com/informatievlaanderen/public-api/commit/c01a7fa))
+
 ## [2.7.3](https://github.com/informatievlaanderen/public-api/compare/v2.7.2...v2.7.3) (2019-04-18)
 
 
