@@ -183,8 +183,17 @@ namespace Public.Api.Infrastructure
                 if (debugDataDogToggle.FeatureEnabled)
                     StartupHelpers.SetupSourceListener(serviceProvider.GetRequiredService<TraceSource>());
 
+                var traceSourceFactory = serviceProvider.GetRequiredService<Func<string, TraceSource>>();
+
                 app.UseDataDogTracing(
-                    serviceProvider.GetRequiredService<TraceSource>(),
+                    request =>
+                    {
+                        var traceId = "unknown";
+                        if (request.Headers.TryGetValue("X-Amzn-Trace-Id", out var stringValues))
+                            traceId = stringValues.ToString();
+
+                        return traceSourceFactory(traceId);
+                    },
                     _configuration["DataDog:ServiceName"],
                     pathToCheck => pathToCheck != "/");
             }
