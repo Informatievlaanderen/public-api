@@ -114,7 +114,7 @@ namespace Public.Api.Parcel
 
             RestRequest BackendRequest() => CreateBackendListRequest(offset.Value, limit.Value);
 
-            var cacheKey = $"legacy/parcel-list:{offset}-{limit}";
+            var cacheKey = CreateCacheKeyForRequestQuery("legacy/parcel-list:");
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken)

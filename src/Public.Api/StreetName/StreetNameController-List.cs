@@ -152,7 +152,7 @@ namespace Public.Api.StreetName
                 naamDe,
                 naamEn);
 
-            var cacheKey = $"legacy/streetname-list:{offset}-{limit}-{taal}";
+            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/streetname-list:{taal}");
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken)
