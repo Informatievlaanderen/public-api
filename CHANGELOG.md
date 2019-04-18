@@ -1,3 +1,10 @@
+## [2.7.1](https://github.com/informatievlaanderen/public-api/compare/v2.7.0...v2.7.1) (2019-04-18)
+
+
+### Bug Fixes
+
+* properly register datadog with autofac ([4f1d68a](https://github.com/informatievlaanderen/public-api/commit/4f1d68a))
+
 # [2.7.0](https://github.com/informatievlaanderen/public-api/compare/v2.6.0...v2.7.0) (2019-04-18)
 
 
