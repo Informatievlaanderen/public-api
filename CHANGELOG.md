@@ -1,3 +1,10 @@
+## [2.8.2](https://github.com/informatievlaanderen/public-api/compare/v2.8.1...v2.8.2) (2019-04-18)
+
+
+### Bug Fixes
+
+* properly parse aws trace id to datadog apm trace id ([87dfbef](https://github.com/informatievlaanderen/public-api/commit/87dfbef))
+
 ## [2.8.1](https://github.com/informatievlaanderen/public-api/compare/v2.8.0...v2.8.1) (2019-04-18)
 
 
