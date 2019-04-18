@@ -196,6 +196,7 @@ namespace Public.Api.Infrastructure
                         try
                         {
                             logger.LogDebug("Trying to parse traceid from {Headers}", request.Headers);
+
                             if (request.Headers.TryGetValue("X-Amzn-Trace-Id", out var stringValues))
                             {
                                 var awsTraceId = stringValues
@@ -209,6 +210,8 @@ namespace Public.Api.Infrastructure
                                 traceId = (long)BigInteger.Remainder(traceIdNumber, new BigInteger(Math.Pow(10, 14)));
                                 traceId = Math.Abs(traceId);
                             }
+
+                            logger.LogDebug("Generated {ParsedTraceId}", traceId);
                         }
                         catch (Exception e)
                         {
