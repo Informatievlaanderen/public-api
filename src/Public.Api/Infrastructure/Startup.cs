@@ -27,6 +27,8 @@ namespace Public.Api.Infrastructure
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Swashbuckle.AspNetCore.Filters;
     using System.Globalization;
+    using System.Security.Cryptography;
+    using System.Numerics;
 
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup
@@ -183,14 +185,21 @@ namespace Public.Api.Infrastructure
                 if (debugDataDogToggle.FeatureEnabled)
                     StartupHelpers.SetupSourceListener(serviceProvider.GetRequiredService<TraceSource>());
 
+                var sha1 = SHA1.Create();
                 var traceSourceFactory = serviceProvider.GetRequiredService<Func<string, TraceSource>>();
 
                 app.UseDataDogTracing(
                     request =>
                     {
-                        var traceId = "unknown";
+                        var traceId = "42";
                         if (request.Headers.TryGetValue("X-Amzn-Trace-Id", out var stringValues))
+                        {
                             traceId = stringValues.ToString();
+                            var traceIdHash = sha1.ComputeHash(Encoding.UTF8.GetBytes(traceId));
+                            var traceIdHex = BitConverter.ToString(traceIdHash).Replace("-", string.Empty);
+                            var traceIdNumber = BigInteger.Parse(traceIdHex, NumberStyles.HexNumber);
+                            traceId = BigInteger.Remainder(traceIdNumber, new BigInteger(Math.Pow(10, 14))).ToString();
+                        }
 
                         return traceSourceFactory(traceId);
                     },
