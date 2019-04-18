@@ -1,3 +1,10 @@
+# [2.9.0](https://github.com/informatievlaanderen/public-api/compare/v2.8.3...v2.9.0) (2019-04-18)
+
+
+### Features
+
+* add traceid to log output when available ([8f7cff1](https://github.com/informatievlaanderen/public-api/commit/8f7cff1))
+
 ## [2.8.3](https://github.com/informatievlaanderen/public-api/compare/v2.8.2...v2.8.3) (2019-04-18)
 
 
