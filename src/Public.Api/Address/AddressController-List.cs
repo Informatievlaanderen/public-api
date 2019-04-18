@@ -158,7 +158,7 @@ namespace Public.Api.Address
                 straatNaam,
                 homoniemToevoeging);
 
-            var cacheKey = $"legacy/address-list:{offset}-{limit}-{taal}";
+            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/address-list:{taal}");
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken)

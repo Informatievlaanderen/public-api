@@ -124,7 +124,7 @@ namespace Public.Api.PostalInfo
 
             RestRequest BackendRequest() => CreateBackendListRequest(offset.Value, limit.Value, taal.Value, gemeenteNaam);
 
-            var cacheKey = $"legacy/postalinfo-list:{offset}-{limit}-{taal}";
+            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/postalinfo-list:{taal}");
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken)

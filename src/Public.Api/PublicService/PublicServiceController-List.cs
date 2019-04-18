@@ -118,7 +118,7 @@ namespace Public.Api.PublicService
                 offset.Value,
                 limit.Value);
 
-            var cacheKey = $"legacy/publicservice-list:{offset}-{limit}-{taal}";
+            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/publicservice-list:{taal}");
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken)

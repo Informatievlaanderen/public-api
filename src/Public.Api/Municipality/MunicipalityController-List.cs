@@ -118,7 +118,7 @@ namespace Public.Api.Municipality
 
             RestRequest BackendRequest() => CreateBackendListRequest(offset.Value, limit.Value, taal.Value);
 
-            var cacheKey = $"legacy/municipality-list:{offset}-{limit}-{taal}";
+            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/municipality-list:{taal}");
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken)
