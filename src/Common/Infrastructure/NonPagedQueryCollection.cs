@@ -1,0 +1,33 @@
+namespace Common.Infrastructure
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.AspNetCore.Http.Internal;
+    using Microsoft.Extensions.Primitives;
+
+    public class NonPagedQueryCollection : QueryCollection
+    {
+        public NonPagedQueryCollection(IEnumerable<KeyValuePair<string, StringValues>> store)
+            : base(Filter(store))
+        { }
+
+        private static readonly IEnumerable<string> PageQueryParameters = new[] {"limit", "offset"};
+
+        private static Dictionary<string, StringValues> Filter(IEnumerable<KeyValuePair<string, StringValues>> query)
+        {
+            if (query == null)
+                return new Dictionary<string, StringValues>();
+            
+            bool IsNotPageParameter(KeyValuePair<string, StringValues> keyValuePair) =>
+                false == PageQueryParameters.Contains(keyValuePair.Key, StringComparer.InvariantCultureIgnoreCase);
+
+            return query
+                .Where(queryParameter => queryParameter.Value.Count > 0)
+                .Where(IsNotPageParameter)
+                .ToDictionary(queryParameter => queryParameter.Key, queryParameter => queryParameter.Value);
+        }
+
+        public bool IsEmpty => Count == 0;
+    }
+}
