@@ -1,3 +1,10 @@
+## [2.8.3](https://github.com/informatievlaanderen/public-api/compare/v2.8.2...v2.8.3) (2019-04-18)
+
+
+### Bug Fixes
+
+* prevent traceid from being negative ([e487f95](https://github.com/informatievlaanderen/public-api/commit/e487f95))
+
 ## [2.8.2](https://github.com/informatievlaanderen/public-api/compare/v2.8.1...v2.8.2) (2019-04-18)
 
 
