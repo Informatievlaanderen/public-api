@@ -1,3 +1,10 @@
+## [2.7.2](https://github.com/informatievlaanderen/public-api/compare/v2.7.1...v2.7.2) (2019-04-18)
+
+
+### Bug Fixes
+
+* traceid has to be numeric ([c489d52](https://github.com/informatievlaanderen/public-api/commit/c489d52))
+
 ## [2.7.1](https://github.com/informatievlaanderen/public-api/compare/v2.7.0...v2.7.1) (2019-04-18)
 
 
