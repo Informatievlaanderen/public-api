@@ -29,8 +29,6 @@ namespace Public.Api.Infrastructure
     using System.Globalization;
     using System.Security.Cryptography;
     using System.Numerics;
-    using Serilog;
-    using Serilog.Context;
 
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup
@@ -189,23 +187,32 @@ namespace Public.Api.Infrastructure
 
                 var sha1 = SHA1.Create();
                 var traceSourceFactory = serviceProvider.GetRequiredService<Func<long, TraceSource>>();
+                var logger = loggerFactory.CreateLogger<Startup>();
 
                 app.UseDataDogTracing(
                     request =>
                     {
                         var traceId = 42L;
-                        if (request.Headers.TryGetValue("X-Amzn-Trace-Id", out var stringValues))
+                        try
                         {
-                            var awsTraceId = stringValues
-                                .ToString()
-                                .Replace("\"", string.Empty)
-                                .Replace("Root=", string.Empty);
+                            logger.LogDebug("Trying to parse traceid from {Headers}", request.Headers);
+                            if (request.Headers.TryGetValue("X-Amzn-Trace-Id", out var stringValues))
+                            {
+                                var awsTraceId = stringValues
+                                    .ToString()
+                                    .Replace("\"", string.Empty)
+                                    .Replace("Root=", string.Empty);
 
-                            var traceIdHash = sha1.ComputeHash(Encoding.UTF8.GetBytes(awsTraceId));
-                            var traceIdHex = BitConverter.ToString(traceIdHash).Replace("-", string.Empty);
-                            var traceIdNumber = BigInteger.Parse(traceIdHex, NumberStyles.HexNumber);
-                            traceId = (long) BigInteger.Remainder(traceIdNumber, new BigInteger(Math.Pow(10, 14)));
-                            traceId = Math.Abs(traceId);
+                                var traceIdHash = sha1.ComputeHash(Encoding.UTF8.GetBytes(awsTraceId));
+                                var traceIdHex = BitConverter.ToString(traceIdHash).Replace("-", string.Empty);
+                                var traceIdNumber = BigInteger.Parse(traceIdHex, NumberStyles.HexNumber);
+                                traceId = (long)BigInteger.Remainder(traceIdNumber, new BigInteger(Math.Pow(10, 14)));
+                                traceId = Math.Abs(traceId);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            logger.LogError(e, "Failed to parse Trace Id from {Headers}.", request.Headers);
                         }
 
                         return traceSourceFactory(traceId);
