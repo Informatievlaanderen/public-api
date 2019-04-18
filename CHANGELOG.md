@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/informatievlaanderen/public-api/compare/v2.6.0...v2.7.0) (2019-04-18)
+
+
+### Features
+
+* plug in traceid from amazon, hopefully ([f05a068](https://github.com/informatievlaanderen/public-api/commit/f05a068))
+
 # [2.6.0](https://github.com/informatievlaanderen/public-api/compare/v2.5.1...v2.6.0) (2019-04-17)
 
 
