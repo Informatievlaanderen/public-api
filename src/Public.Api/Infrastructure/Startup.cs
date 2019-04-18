@@ -194,7 +194,11 @@ namespace Public.Api.Infrastructure
                         var traceId = "42";
                         if (request.Headers.TryGetValue("X-Amzn-Trace-Id", out var stringValues))
                         {
-                            traceId = stringValues.ToString();
+                            traceId = stringValues
+                                .ToString()
+                                .Replace("\"", string.Empty)
+                                .Replace("Root=", string.Empty);
+
                             var traceIdHash = sha1.ComputeHash(Encoding.UTF8.GetBytes(traceId));
                             var traceIdHex = BitConverter.ToString(traceIdHash).Replace("-", string.Empty);
                             var traceIdNumber = BigInteger.Parse(traceIdHex, NumberStyles.HexNumber);
