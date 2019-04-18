@@ -1,3 +1,10 @@
+## [2.7.3](https://github.com/informatievlaanderen/public-api/compare/v2.7.2...v2.7.3) (2019-04-18)
+
+
+### Bug Fixes
+
+* remove aws root tag from trace id generation ([c1e2988](https://github.com/informatievlaanderen/public-api/commit/c1e2988))
+
 ## [2.7.2](https://github.com/informatievlaanderen/public-api/compare/v2.7.1...v2.7.2) (2019-04-18)
 
 
