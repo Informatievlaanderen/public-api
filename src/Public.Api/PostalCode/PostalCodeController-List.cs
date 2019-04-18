@@ -18,10 +18,10 @@ namespace Public.Api.PostalInfo
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
+    using Infrastructure.Configuration;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
     using Newtonsoft.Json;
-    using PostalRegistry.Api.Legacy.Infrastructure.Options;
     using PostalRegistry.Api.Legacy.PostalInformation.Query;
 
     public partial class PostalCodeController
@@ -56,7 +56,7 @@ namespace Public.Api.PostalInfo
             [FromQuery] int? limit,
             [FromQuery] string gemeenteNaam,
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<ResponseOptions> responseOptions,
+            [FromServices] IOptions<PostalOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
             => await List(
@@ -103,7 +103,7 @@ namespace Public.Api.PostalInfo
             [FromQuery] int? limit,
             [FromQuery] string gemeenteNaam,
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<ResponseOptions> responseOptions,
+            [FromServices] IOptions<PostalOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {

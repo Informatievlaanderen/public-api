@@ -19,7 +19,7 @@ namespace Public.Api.Address
     using System.Threading.Tasks;
     using AddressRegistry.Api.Legacy.Address.Query;
     using AddressRegistry.Api.Legacy.Address.Responses;
-    using AddressRegistry.Api.Legacy.Infrastructure.Options;
+    using Infrastructure.Configuration;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
     using Newtonsoft.Json;
@@ -66,7 +66,7 @@ namespace Public.Api.Address
             [FromQuery] string straatNaam,
             [FromQuery] string homoniemToevoeging,
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<ResponseOptions> responseOptions,
+            [FromServices] IOptions<AddressOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
             => await List(
@@ -128,7 +128,7 @@ namespace Public.Api.Address
             [FromQuery] string straatNaam,
             [FromQuery] string homoniemToevoeging,
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<ResponseOptions> responseOptions,
+            [FromServices] IOptions<AddressOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {

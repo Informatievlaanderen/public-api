@@ -17,6 +17,8 @@ namespace Public.Api.Feeds
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
+    using Infrastructure.Configuration;
+    using Microsoft.Extensions.Options;
 
     public partial class FeedController
     {
@@ -25,6 +27,7 @@ namespace Public.Api.Feeds
         /// </summary>
         /// <param name="actionContextAccessor"></param>
         /// <param name="restClients"></param>
+        /// <param name="responseOptions"></param>
         /// <param name="from">Optionele start id om van te beginnen.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
@@ -48,6 +51,7 @@ namespace Public.Api.Feeds
         public async Task<IActionResult> GetMunicipalities(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IIndex<string, Lazy<IRestClient>> restClients,
+            [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromQuery] long? from,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
@@ -57,6 +61,7 @@ namespace Public.Api.Feeds
                 null,
                 actionContextAccessor,
                 restClients,
+                responseOptions,
                 from,
                 offset,
                 limit,
@@ -93,6 +98,7 @@ namespace Public.Api.Feeds
             [FromRoute] string format,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IIndex<string, Lazy<IRestClient>> restClients,
+            [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromQuery] long? from,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
@@ -137,7 +143,7 @@ namespace Public.Api.Feeds
                 HandleBadRequest,
                 cancellationToken);
 
-            return new BackendResponseResult(value);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.Syndication.NextUri);
         }
     }
 }

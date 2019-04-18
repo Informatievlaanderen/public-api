@@ -30,23 +30,28 @@ namespace Common.Infrastructure
             var parameters = requestQuery
                 .Aggregate("", (result, filterQueryParameter) => $"{result}&{filterQueryParameter.Key}={filterQueryParameter.Value}");
 
-            var isXml = ContentType?.ToLower().Contains("xml") ?? false;
-            var regexSettings = new
-            {
+            var isXml = ContentType.ToLower().Contains("xml");
+            var replaceData = new {
                 Pattern = isXml
-                    ? $"(<volgende>{Xml.Escape(nextPageUrlValePattern)})(</volgende>)"
+                    ? GetXmlPatternFor(nextPageUrlValePattern)
                     : $"(\"volgende\"\\s*:\\s*\"{nextPageUrlValePattern})(\")",
                 Replacement = isXml
                     ? $"$1{Xml.Escape(parameters)}$2"
-                    : $"$1{parameters}$2",
-                Options = RegexOptions.IgnoreCase
+                    : $"$1{parameters}$2"
             };
 
             Content = Regex.Replace(
                 Content,
-                regexSettings.Pattern,
-                regexSettings.Replacement,
-                regexSettings.Options);
+                replaceData.Pattern,
+                replaceData.Replacement,
+                RegexOptions.IgnoreCase);
+        }
+
+        private string GetXmlPatternFor(string nextPageUrlValePattern)
+        {
+            return Regex.IsMatch(Content, "<feed xmlns=\"http://www.w3.org/2005/Atom\">")
+                ? $"(<link href=\"{Xml.Escape(nextPageUrlValePattern)})(\" rel=\"next\" />)"
+                : $"(<volgende>{Xml.Escape(nextPageUrlValePattern)})(</volgende>)";
         }
 
         private static class Xml

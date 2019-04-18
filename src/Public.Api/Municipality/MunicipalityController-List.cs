@@ -9,13 +9,13 @@ namespace Public.Api.Municipality
     using Be.Vlaanderen.Basisregisters.Api.Search.Pagination;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Infrastructure;
+    using Infrastructure.Configuration;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
     using Microsoft.Net.Http.Headers;
-    using MunicipalityRegistry.Api.Legacy.Infrastructure.Options;
     using MunicipalityRegistry.Api.Legacy.Municipality.Responses;
     using Newtonsoft.Json.Converters;
     using RestSharp;
@@ -52,7 +52,7 @@ namespace Public.Api.Municipality
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<ResponseOptions> responseOptions,
+            [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
             => await List(
@@ -97,7 +97,7 @@ namespace Public.Api.Municipality
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<ResponseOptions> responseOptions,
+            [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
