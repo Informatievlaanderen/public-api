@@ -30,6 +30,7 @@ namespace Public.Api.Infrastructure
     using System.Security.Cryptography;
     using System.Numerics;
     using Serilog;
+    using Serilog.Context;
 
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup
@@ -207,7 +208,6 @@ namespace Public.Api.Infrastructure
                             traceId = Math.Abs(traceId);
                         }
 
-                        Log.ForContext("TraceId", traceId);
                         return traceSourceFactory(traceId);
                     },
                     _configuration["DataDog:ServiceName"],
