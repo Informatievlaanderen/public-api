@@ -203,6 +203,7 @@ namespace Public.Api.Infrastructure
                             var traceIdHex = BitConverter.ToString(traceIdHash).Replace("-", string.Empty);
                             var traceIdNumber = BigInteger.Parse(traceIdHex, NumberStyles.HexNumber);
                             traceId = (long) BigInteger.Remainder(traceIdNumber, new BigInteger(Math.Pow(10, 14)));
+                            traceId = Math.Abs(traceId);
                         }
 
                         return traceSourceFactory(traceId);
