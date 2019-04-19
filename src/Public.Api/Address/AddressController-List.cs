@@ -171,7 +171,7 @@ namespace Public.Api.Address
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken)
                 : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken));
 
-            return  BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
         protected RestRequest CreateBackendListRequest(

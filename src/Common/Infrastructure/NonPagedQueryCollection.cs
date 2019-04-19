@@ -8,6 +8,8 @@ namespace Common.Infrastructure
 
     public class NonPagedQueryCollection : QueryCollection
     {
+        public bool IsEmpty => Count == 0;
+
         public NonPagedQueryCollection(IEnumerable<KeyValuePair<string, StringValues>> store)
             : base(Filter(store))
         { }
@@ -27,7 +29,5 @@ namespace Common.Infrastructure
                 .Where(IsNotPageParameter)
                 .ToDictionary(queryParameter => queryParameter.Key, queryParameter => queryParameter.Value);
         }
-
-        public bool IsEmpty => Count == 0;
     }
 }
