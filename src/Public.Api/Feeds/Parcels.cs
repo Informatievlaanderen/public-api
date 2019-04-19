@@ -48,7 +48,7 @@ namespace Public.Api.Feeds
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 12 * 60 * 60)] // Hours, Minutes, Second
-        public async Task<IActionResult> GetParcels(
+        public async Task<IActionResult> GetParcelsFeed(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IIndex<string, Lazy<IRestClient>> restClients,
             [FromServices] IOptions<AddressOptions> responseOptions,
@@ -57,7 +57,7 @@ namespace Public.Api.Feeds
             [FromQuery] int? limit,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
-            => await GetParcels(
+            => await GetParcelsFeedWithFormat(
                 null,
                 actionContextAccessor,
                 restClients,
@@ -95,7 +95,7 @@ namespace Public.Api.Feeds
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 12 * 60 * 60)] // Hours, Minutes, Second
-        public async Task<IActionResult> GetParcels(
+        public async Task<IActionResult> GetParcelsFeedWithFormat(
             [FromRoute] string format,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IIndex<string, Lazy<IRestClient>> restClients,

@@ -41,12 +41,12 @@ namespace Public.Api.Municipality
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(MunicipalityNotFoundResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
-        public async Task<IActionResult> Get(
+        public async Task<IActionResult> GetMunicipality(
             [FromRoute] string nisCode,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
-            => await Get(
+            => await GetMunicipalityWithFormat(
                 null,
                 nisCode,
                 actionContextAccessor,
@@ -79,7 +79,7 @@ namespace Public.Api.Municipality
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
-        public async Task<IActionResult> Get(
+        public async Task<IActionResult> GetMunicipalityWithFormat(
             [FromRoute] string format,
             [FromRoute] string nisCode,
             [FromServices] IActionContextAccessor actionContextAccessor,

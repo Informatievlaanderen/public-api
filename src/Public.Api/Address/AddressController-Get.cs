@@ -43,12 +43,12 @@ namespace Public.Api.Address
         [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(AddressGoneResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
-        public async Task<IActionResult> Get(
+        public async Task<IActionResult> GetAddress(
             [FromRoute] string adresId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
-            => await Get(
+            => await GetAddressWithFormat(
                 null,
                 adresId,
                 actionContextAccessor,
@@ -83,7 +83,7 @@ namespace Public.Api.Address
         [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(AddressGoneResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
-        public async Task<IActionResult> Get(
+        public async Task<IActionResult> GetAddressWithFormat(
             [FromRoute] string format,
             [FromRoute] string adresId,
             [FromServices] IActionContextAccessor actionContextAccessor,

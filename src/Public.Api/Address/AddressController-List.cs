@@ -55,7 +55,7 @@ namespace Public.Api.Address
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 12 * 60 * 60)] // Hours, Minutes, Second
-        public async Task<IActionResult> List(
+        public async Task<IActionResult> ListAddresses(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
@@ -69,7 +69,7 @@ namespace Public.Api.Address
             [FromServices] IOptions<AddressOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
-            => await List(
+            => await ListAddressesWithFormat(
                 null,
                 offset,
                 limit,
@@ -119,7 +119,7 @@ namespace Public.Api.Address
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 12 * 60 * 60)] // Hours, Minutes, Second
-        public async Task<IActionResult> List(
+        public async Task<IActionResult> ListAddressesWithFormat(
             [FromRoute] string format,
             [FromQuery] int? offset,
             [FromQuery] int? limit,

@@ -43,12 +43,12 @@ namespace Public.Api.Parcel
         [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(ParcelGoneResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
-        public async Task<IActionResult> Get(
+        public async Task<IActionResult> GetParcel(
             [FromRoute] string capaKey,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
-            => await Get(
+            => await GetParcelWithFormat(
                 null,
                 capaKey,
                 actionContextAccessor,
@@ -83,7 +83,7 @@ namespace Public.Api.Parcel
         [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(ParcelGoneResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
-        public async Task<IActionResult> Get(
+        public async Task<IActionResult> GetParcelWithFormat(
             [FromRoute] string format,
             [FromRoute] string capaKey,
             [FromServices] IActionContextAccessor actionContextAccessor,

@@ -26,7 +26,7 @@ namespace Public.Api.PublicService
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat (id, naam, bevoegde-overheid).</param>
+        /// <param name="sort">Optionele sortering van het resultaat (id, naam, verantwoordelijke-autoriteit).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -45,14 +45,14 @@ namespace Public.Api.PublicService
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 12 * 60 * 60)] // Hours, Minutes, Second
-        public async Task<IActionResult> List(
+        public async Task<IActionResult> ListPublicServices(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
-            => await List(
+            => await ListPublicServicesWithFormat(
                 null,
                 offset,
                 limit,
@@ -67,7 +67,7 @@ namespace Public.Api.PublicService
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat (id, naam, bevoegde-overheid).</param>
+        /// <param name="sort">Optionele sortering van het resultaat (id, naam, verantwoordelijke-autoriteit).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -88,7 +88,7 @@ namespace Public.Api.PublicService
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 12 * 60 * 60)] // Hours, Minutes, Second
-        public async Task<IActionResult> List(
+        public async Task<IActionResult> ListPublicServicesWithFormat(
             [FromRoute] string format,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
@@ -138,11 +138,13 @@ namespace Public.Api.PublicService
             Taal taal,
             string sort)
         {
-            // id, naam, bevoegde-overheid
+            // id, naam, verantwoordelijke-autoriteit
             var sortMapping = new Dictionary<string, string>
             {
                 { "Id", "PublicServiceId" },
                 { "Naam", "Name" },
+                { "VerantwoordelijkeAutoriteit", "CompetentAuthorityName" },
+                { "Verantwoordelijke-Autoriteit", "CompetentAuthorityName" },
                 { "BevoegdeOverheid", "CompetentAuthorityName" },
                 { "Bevoegde-Overheid", "CompetentAuthorityName" },
                 { "ExportToOrafin", "ExportToOrafin" },

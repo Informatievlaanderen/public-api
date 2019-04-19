@@ -48,7 +48,7 @@ namespace Public.Api.Feeds
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 12 * 60 * 60)] // Hours, Minutes, Second
-        public async Task<IActionResult> GetMunicipalities(
+        public async Task<IActionResult> GetMunicipalitiesFeed(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IIndex<string, Lazy<IRestClient>> restClients,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
@@ -57,7 +57,7 @@ namespace Public.Api.Feeds
             [FromQuery] int? limit,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
-            => await GetMunicipalities(
+            => await GetMunicipalitiesFeedWithFormat(
                 null,
                 actionContextAccessor,
                 restClients,
@@ -95,7 +95,7 @@ namespace Public.Api.Feeds
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 12 * 60 * 60)] // Hours, Minutes, Second
-        public async Task<IActionResult> GetMunicipalities(
+        public async Task<IActionResult> GetMunicipalitiesFeedWithFormat(
             [FromRoute] string format,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IIndex<string, Lazy<IRestClient>> restClients,

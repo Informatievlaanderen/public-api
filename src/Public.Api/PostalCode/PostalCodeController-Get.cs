@@ -41,12 +41,12 @@ namespace Public.Api.PostalInfo
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(PostalInformationNotFoundResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
-        public async Task<IActionResult> Get(
+        public async Task<IActionResult> GetPostalCode(
             [FromRoute] string postCode,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
-            => await Get(
+            => await GetPostalCodeWithFormat(
                 null,
                 postCode,
                 actionContextAccessor,
@@ -79,7 +79,7 @@ namespace Public.Api.PostalInfo
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
-        public async Task<IActionResult> Get(
+        public async Task<IActionResult> GetPostalCodeWithFormat(
             [FromRoute] string format,
             [FromRoute] string postCode,
             [FromServices] IActionContextAccessor actionContextAccessor,
