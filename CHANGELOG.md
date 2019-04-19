@@ -1,3 +1,16 @@
+# [2.13.0](https://github.com/informatievlaanderen/public-api/compare/v2.12.2...v2.13.0) (2019-04-19)
+
+
+### Bug Fixes
+
+* add mapping from public names to internal names for sort ([d69562a](https://github.com/informatievlaanderen/public-api/commit/d69562a))
+* pass in descending sort order properly ([3ddf511](https://github.com/informatievlaanderen/public-api/commit/3ddf511))
+
+
+### Features
+
+* add sorting, fixes [#7](https://github.com/informatievlaanderen/public-api/issues/7) ([03e61d4](https://github.com/informatievlaanderen/public-api/commit/03e61d4))
+
 ## [2.12.2](https://github.com/informatievlaanderen/public-api/compare/v2.12.1...v2.12.2) (2019-04-19)
 
 ## [2.12.1](https://github.com/informatievlaanderen/public-api/compare/v2.12.0...v2.12.1) (2019-04-19)
