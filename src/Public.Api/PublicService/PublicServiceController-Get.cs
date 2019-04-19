@@ -21,7 +21,7 @@ namespace Public.Api.PublicService
         /// <summary>
         /// Vraag een dienstverlening op.
         /// </summary>
-        /// <param name="publicServiceId">Identificator van de dienstverlening.</param>
+        /// <param name="dvrCode">Identificator van de dienstverlening.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -29,7 +29,7 @@ namespace Public.Api.PublicService
         /// <response code="304">Als de dienstverlening niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="404">Als de dienstverlening niet gevonden kan worden.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("dienstverleningen/{publicServiceId}")]
+        [HttpGet("dienstverleningen/{dvrCode}")]
         [ProducesResponseType(typeof(PublicServiceResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status404NotFound)]
@@ -42,13 +42,13 @@ namespace Public.Api.PublicService
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
         public async Task<IActionResult> Get(
-            [FromRoute] string publicServiceId,
+            [FromRoute] string dvrCode,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
             => await Get(
                 null,
-                publicServiceId,
+                dvrCode,
                 actionContextAccessor,
                 ifNoneMatch,
                 cancellationToken);
@@ -57,7 +57,7 @@ namespace Public.Api.PublicService
         /// Vraag een dienstverlening op.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="publicServiceId">Identificator van de dienstverlening.</param>
+        /// <param name="dvrCode">Identificator van de dienstverlening.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -66,7 +66,7 @@ namespace Public.Api.PublicService
         /// <response code="404">Als de dienstverlening niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("dienstverleningen/{publicServiceId}.{format}")]
+        [HttpGet("dienstverleningen/{dvrCode}.{format}")]
         [ProducesResponseType(typeof(PublicServiceResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status404NotFound)]
@@ -81,7 +81,7 @@ namespace Public.Api.PublicService
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
         public async Task<IActionResult> Get(
             [FromRoute] string format,
-            [FromRoute] string publicServiceId,
+            [FromRoute] string dvrCode,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
@@ -111,9 +111,9 @@ namespace Public.Api.PublicService
                 }
             }
 
-            RestRequest BackendRequest() => CreateBackendDetailRequest(publicServiceId);
+            RestRequest BackendRequest() => CreateBackendDetailRequest(dvrCode);
 
-            var cacheKey = $"legacy/publicservice:{publicServiceId}";
+            var cacheKey = $"legacy/publicservice:{dvrCode}";
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleNotFound, cancellationToken)
@@ -122,10 +122,10 @@ namespace Public.Api.PublicService
             return new BackendResponseResult(value);
         }
 
-        protected RestRequest CreateBackendDetailRequest(string publicServiceId)
+        protected RestRequest CreateBackendDetailRequest(string dvrCode)
         {
-            var request = new RestRequest("dienstverleningen/{publicServiceId}");
-            request.AddParameter("publicServiceId", publicServiceId, ParameterType.UrlSegment);
+            var request = new RestRequest("dienstverleningen/{dvrCode}");
+            request.AddParameter("dvrCode", dvrCode, ParameterType.UrlSegment);
             return request;
         }
     }

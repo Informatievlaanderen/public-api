@@ -126,10 +126,10 @@ namespace Public.Api.StreetName
             return new BackendResponseResult(value);
         }
 
-        protected RestRequest CreateBackendDetailRequest(string straatnaamId)
+        protected RestRequest CreateBackendDetailRequest(string streetNameId)
         {
-            var request = new RestRequest("straatnamen/{straatnaamId}");
-            request.AddParameter("straatnaamId", straatnaamId, ParameterType.UrlSegment);
+            var request = new RestRequest("straatnamen/{streetNameId}");
+            request.AddParameter("streetNameId", streetNameId, ParameterType.UrlSegment);
             return request;
         }
     }

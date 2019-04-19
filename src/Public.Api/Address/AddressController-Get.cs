@@ -126,10 +126,10 @@ namespace Public.Api.Address
             return new BackendResponseResult(value);
         }
 
-        protected RestRequest CreateBackendDetailRequest(string adresId)
+        protected RestRequest CreateBackendDetailRequest(string addressId)
         {
-            var request = new RestRequest("adressen/{adresId}");
-            request.AddParameter("adresId", adresId, ParameterType.UrlSegment);
+            var request = new RestRequest("adressen/{addressId}");
+            request.AddParameter("addressId", addressId, ParameterType.UrlSegment);
             return request;
         }
     }
