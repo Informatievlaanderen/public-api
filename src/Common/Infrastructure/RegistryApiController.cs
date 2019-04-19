@@ -72,8 +72,8 @@ namespace Common.Infrastructure
                     .Query
                     .Where(ParameterHasValue)
                     .OrderBy(queryParameter => queryParameter.Key)
-                    .Aggregate(keyBaseValue, (key, queryParameter) => $"{key}-{queryParameter.Key}:{queryParameter.Value}")
-                    .Replace(":-", ":");
+                    .Aggregate(keyBaseValue, (key, queryParameter) => $"{key}-({queryParameter.Key}:{queryParameter.Value})")
+                    .Replace(":-(", ":(");
         }
     }
 }
