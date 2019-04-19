@@ -2,6 +2,7 @@ namespace Common.Infrastructure
 {
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Xml.Linq;
 
     public class BackendResponse
     {
@@ -9,10 +10,15 @@ namespace Common.Infrastructure
         public string ContentType { get; set; }
         public bool CameFromCache { get; set; }
 
-        public BackendResponse(string content, string contentType, bool cameFromCache)
+        private bool IsXmlContent => ContentType == AcceptTypes.Xml || ContentType == AcceptTypes.Atom;
+
+        public BackendResponse(
+            string content,
+            string contentType,
+            bool cameFromCache)
         {
             Content = content;
-            ContentType = contentType;
+            ContentType = contentType.ToLowerInvariant();
             CameFromCache = cameFromCache;
         }
 
@@ -22,7 +28,7 @@ namespace Common.Infrastructure
                 return;
 
             var parameters = requestQuery
-                .Aggregate("", (result, filterQueryParameter) => $"{result}&{filterQueryParameter.Key}={filterQueryParameter.Value}");
+                .Aggregate(string.Empty, (result, filterQueryParameter) => $"{result}&{filterQueryParameter.Key}={filterQueryParameter.Value}");
 
             Content = Regex.Replace(
                 Content,
@@ -31,8 +37,6 @@ namespace Common.Infrastructure
                 RegexOptions.IgnoreCase);
         }
 
-        private bool IsXmlContent => ContentType == AcceptTypes.Xml || ContentType == AcceptTypes.Atom;
-
         private string GetNextPagePattern(string nextPageUrlOption)
         {
             const string numberPatternPlaceholder = "__NUMBER_PATTERN_PLACEHOLDER_THAT_WONT_BE_REGEX_ESCAPED__";
@@ -40,6 +44,7 @@ namespace Common.Infrastructure
             var nextPageUrlValePattern = Regex
                 .Escape(nextPageUrlOptionWithPlaceholders)
                 .Replace(numberPatternPlaceholder, "\\d+");
+
             var escapedValuePattern = EscapeForContentType(nextPageUrlValePattern);
 
             if (IsXmlContent)
@@ -50,7 +55,6 @@ namespace Common.Infrastructure
             return $"(\"volgende\"\\s*:\\s*\"{escapedValuePattern})(\")";
         }
 
-        private string EscapeForContentType(string value) => IsXmlContent ? new System.Xml.Linq.XText(value).ToString() : value;
-
+        private string EscapeForContentType(string value) => IsXmlContent ? new XText(value).ToString() : value;
     }
 }

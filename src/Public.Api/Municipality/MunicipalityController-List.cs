@@ -6,6 +6,7 @@ namespace Public.Api.Municipality
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Api.Search.Filtering;
     using Be.Vlaanderen.Basisregisters.Api.Search.Pagination;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Infrastructure;
@@ -16,7 +17,9 @@ namespace Public.Api.Municipality
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
     using Microsoft.Net.Http.Headers;
+    using MunicipalityRegistry.Api.Legacy.Municipality.Query;
     using MunicipalityRegistry.Api.Legacy.Municipality.Responses;
+    using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
@@ -28,6 +31,11 @@ namespace Public.Api.Municipality
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
+        /// <param name="nisCode">Filter op de NIS Code van de gemeente.</param>
+        /// <param name="naamNl">Filter op het Nederlandse deel van de gemeente (bevat).</param>
+        /// <param name="naamFr">Filter op het Franse deel van de gemeente (bevat).</param>
+        /// <param name="naamDe">Filter op het Duitse deel van de gemeente (bevat).</param>
+        /// <param name="naamEn">Filter op het Engelse deel van de gemeente (bevat).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -51,6 +59,11 @@ namespace Public.Api.Municipality
         public async Task<IActionResult> List(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
+            [FromQuery] string nisCode,
+            [FromQuery] string naamNl,
+            [FromQuery] string naamFr,
+            [FromQuery] string naamDe,
+            [FromQuery] string naamEn,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -59,6 +72,11 @@ namespace Public.Api.Municipality
                 null,
                 offset,
                 limit,
+                nisCode,
+                naamNl,
+                naamFr,
+                naamDe,
+                naamEn,
                 actionContextAccessor,
                 responseOptions,
                 ifNoneMatch,
@@ -70,6 +88,11 @@ namespace Public.Api.Municipality
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
+        /// <param name="nisCode">Filter op de NIS Code van de gemeente.</param>
+        /// <param name="naamNl">Filter op het Nederlandse deel van de gemeente (bevat).</param>
+        /// <param name="naamFr">Filter op het Franse deel van de gemeente (bevat).</param>
+        /// <param name="naamDe">Filter op het Duitse deel van de gemeente (bevat).</param>
+        /// <param name="naamEn">Filter op het Engelse deel van de gemeente (bevat).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -96,6 +119,11 @@ namespace Public.Api.Municipality
             [FromRoute] string format,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
+            [FromQuery] string nisCode,
+            [FromQuery] string naamNl,
+            [FromQuery] string naamFr,
+            [FromQuery] string naamDe,
+            [FromQuery] string naamEn,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -123,7 +151,15 @@ namespace Public.Api.Municipality
                 }
             }
 
-            RestRequest BackendRequest() => CreateBackendListRequest(offset.Value, limit.Value, taal.Value);
+            RestRequest BackendRequest() => CreateBackendListRequest(
+                offset.Value,
+                limit.Value,
+                taal.Value,
+                nisCode,
+                naamNl,
+                naamFr,
+                naamDe,
+                naamEn);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/municipality-list:{taal}");
 
@@ -134,11 +170,31 @@ namespace Public.Api.Municipality
             return  BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        protected RestRequest CreateBackendListRequest(int offset, int limit, Taal taal)
+        protected RestRequest CreateBackendListRequest(
+            int offset,
+            int limit,
+            Taal taal,
+            string nisCode,
+            string nameDutch,
+            string nameFrench,
+            string nameGerman,
+            string nameEnglish)
         {
             var request = new RestRequest("gemeenten?taal={taal}");
             request.AddHeader(AddPaginationExtension.HeaderName, $"{offset},{limit}");
             request.AddParameter("taal", taal, ParameterType.UrlSegment);
+
+            var filter = new MunicipalityFilter
+            {
+                NisCode = nisCode,
+                NameDutch = nameDutch,
+                NameFrench = nameFrench,
+                NameGerman = nameGerman,
+                NameEnglish = nameEnglish
+            };
+
+            request.AddHeader(ExtractFilteringRequestExtension.HeaderName, JsonConvert.SerializeObject(filter));
+
             return request;
         }
     }

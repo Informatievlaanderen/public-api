@@ -129,7 +129,11 @@ namespace Public.Api.PostalInfo
                 }
             }
 
-            RestRequest BackendRequest() => CreateBackendListRequest(offset.Value, limit.Value, taal.Value, gemeenteNaam);
+            RestRequest BackendRequest() => CreateBackendListRequest(
+                offset.Value,
+                limit.Value,
+                taal.Value,
+                gemeenteNaam);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/postalinfo-list:{taal}");
 

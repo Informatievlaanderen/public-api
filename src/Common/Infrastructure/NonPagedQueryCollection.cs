@@ -11,8 +11,7 @@ namespace Common.Infrastructure
         public bool IsEmpty => Count == 0;
 
         public NonPagedQueryCollection(IEnumerable<KeyValuePair<string, StringValues>> store)
-            : base(Filter(store))
-        { }
+            : base(Filter(store)) { }
 
         private static readonly IEnumerable<string> PageQueryParameters = new[] {"limit", "offset"};
 
@@ -21,8 +20,8 @@ namespace Common.Infrastructure
             if (query == null)
                 return new Dictionary<string, StringValues>();
             
-            bool IsNotPageParameter(KeyValuePair<string, StringValues> keyValuePair) =>
-                false == PageQueryParameters.Contains(keyValuePair.Key, StringComparer.InvariantCultureIgnoreCase);
+            bool IsNotPageParameter(KeyValuePair<string, StringValues> keyValuePair)
+                => PageQueryParameters.Contains(keyValuePair.Key, StringComparer.InvariantCultureIgnoreCase) == false;
 
             return query
                 .Where(queryParameter => queryParameter.Value.Count > 0)

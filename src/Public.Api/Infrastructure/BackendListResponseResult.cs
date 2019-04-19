@@ -6,8 +6,7 @@ namespace Public.Api.Infrastructure
     public class BackendListResponseResult : BackendResponseResult
     {
         private BackendListResponseResult(BackendResponse response)
-            : base(response)
-        { }
+            : base(response) { }
 
         public static BackendListResponseResult Create(
             BackendResponse response,
@@ -15,6 +14,7 @@ namespace Public.Api.Infrastructure
             string nextPageUrlOption)
         {
             var nonPagedQueryCollection = new NonPagedQueryCollection(requestQuery);
+
             response.UpdateNextPageUrlWithQueryParameters(nonPagedQueryCollection, nextPageUrlOption);
 
             return new BackendListResponseResult(response);
