@@ -1,3 +1,13 @@
+## [2.10.4](https://github.com/informatievlaanderen/public-api/compare/v2.10.3...v2.10.4) (2019-04-19)
+
+
+### Bug Fixes
+
+* add query parameters to the next page link of a list ([30efff1](https://github.com/informatievlaanderen/public-api/commit/30efff1))
+* add query parameters to the next uri for atom feeds ([eaaf944](https://github.com/informatievlaanderen/public-api/commit/eaaf944))
+* create cache key based of full request query of a list ([e31dc15](https://github.com/informatievlaanderen/public-api/commit/e31dc15))
+* group parameter name + value in cachekey format ([650d59a](https://github.com/informatievlaanderen/public-api/commit/650d59a))
+
 ## [2.10.3](https://github.com/informatievlaanderen/public-api/compare/v2.10.2...v2.10.3) (2019-04-19)
 
 ## [2.10.2](https://github.com/informatievlaanderen/public-api/compare/v2.10.1...v2.10.2) (2019-04-18)
