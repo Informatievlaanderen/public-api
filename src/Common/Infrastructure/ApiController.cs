@@ -14,7 +14,6 @@ namespace Common.Infrastructure
 
     public abstract class ApiController<T> : ApiController
     {
-        protected const int DefaultLimit = 100;
         private const string ValueKey = "value";
 
         private readonly ConnectionMultiplexer _redis;
@@ -31,7 +30,7 @@ namespace Common.Infrastructure
         protected async Task<BackendResponse> GetFromCacheThenFromBackendAsync(
             string format,
             IRestClient restClient,
-            Func<RestRequest> createBackendRequestFunc,
+            Func<IRestRequest> createBackendRequestFunc,
             string cacheKey,
             RequestHeaders requestHeaders,
             Action<HttpStatusCode> handleNotOkResponseAction,
@@ -75,7 +74,7 @@ namespace Common.Infrastructure
         protected async Task<BackendResponse> GetFromBackendAsync(
             string format,
             IRestClient restClient,
-            Func<RestRequest> createBackendRequestFunc,
+            Func<IRestRequest> createBackendRequestFunc,
             RequestHeaders requestHeaders,
             Action<HttpStatusCode> handleNotOkResponseAction,
             CancellationToken cancellationToken)
@@ -94,7 +93,7 @@ namespace Common.Infrastructure
 
         private static async Task<BackendResponse> GetFromBackendAsync(
             IRestClient restClient,
-            Func<RestRequest> createBackendRequestFunc,
+            Func<IRestRequest> createBackendRequestFunc,
             AcceptType acceptType,
             Action<HttpStatusCode> handleNotOkResponseAction,
             CancellationToken cancellationToken)

@@ -3,10 +3,8 @@ namespace Public.Api.Feeds
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using Microsoft.AspNetCore.Mvc;
-    using RestSharp;
-    using Be.Vlaanderen.Basisregisters.Api.Search.Filtering;
-    using Be.Vlaanderen.Basisregisters.Api.Search.Pagination;
     using Microsoft.Extensions.Logging;
+    using RestSharp;
 
     [ApiVersion("1.0")]
     [AdvertiseApiVersions("1.0")]
@@ -20,12 +18,13 @@ namespace Public.Api.Feeds
             ILogger<FeedController> logger)
             : base(redis, logger) { }
 
-        private static RestRequest CreateBackendSyndicationRequest(string resourcename, long from, int offset, int limit)
-        {
-            var request = new RestRequest($"{resourcename}/sync?embed=true");
-            request.AddHeader(AddPaginationExtension.HeaderName, $"{offset},{limit}");
-            request.AddHeader(ExtractFilteringRequestExtension.HeaderName, $"{{ position: {from} }}");
-            return request;
-        }
+        private static IRestRequest CreateBackendSyndicationRequest(
+            string resourcename,
+            long? from,
+            int? offset,
+            int? limit)
+            => new RestRequest($"{resourcename}/sync?embed=true")
+                .AddPagination(offset, limit)
+                .AddFiltering(new { position = from ?? 0 });
     }
 }

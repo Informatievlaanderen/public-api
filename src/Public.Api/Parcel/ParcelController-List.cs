@@ -1,12 +1,9 @@
 namespace Public.Api.Parcel
 {
-    using System.Collections.Generic;
-    using System.Net;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Be.Vlaanderen.Basisregisters.Api.Search.Pagination;
+    using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
     using Marvin.Cache.Headers;
@@ -19,6 +16,10 @@ namespace Public.Api.Parcel
     using ParcelRegistry.Api.Legacy.Parcel.Responses;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
+    using System.Collections.Generic;
+    using System.Net;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class ParcelController
     {
@@ -27,6 +28,7 @@ namespace Public.Api.Parcel
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
+        /// <param name="sort">Optionele sortering van het resultaat.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -49,6 +51,7 @@ namespace Public.Api.Parcel
         public async Task<IActionResult> List(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
+            [FromQuery] string sort,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<ParcelOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -57,6 +60,7 @@ namespace Public.Api.Parcel
                 null,
                 offset,
                 limit,
+                sort,
                 actionContextAccessor,
                 responseOptions,
                 ifNoneMatch,
@@ -68,6 +72,7 @@ namespace Public.Api.Parcel
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
+        /// <param name="sort">Optionele sortering van het resultaat.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -93,6 +98,7 @@ namespace Public.Api.Parcel
             [FromRoute] string format,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
+            [FromQuery] string sort,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<ParcelOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -104,8 +110,7 @@ namespace Public.Api.Parcel
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            offset = offset ?? 0;
-            limit = limit ?? DefaultLimit;
+            var taal = Taal.NL;
 
             void HandleBadRequest(HttpStatusCode statusCode)
             {
@@ -119,9 +124,13 @@ namespace Public.Api.Parcel
                 }
             }
 
-            RestRequest BackendRequest() => CreateBackendListRequest(offset.Value, limit.Value);
+            IRestRequest BackendRequest() => CreateBackendListRequest(
+                offset,
+                limit,
+                taal,
+                sort);
 
-            var cacheKey = CreateCacheKeyForRequestQuery("legacy/parcel-list:");
+            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/parcel-list:{taal}");
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken)
@@ -130,11 +139,16 @@ namespace Public.Api.Parcel
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        protected RestRequest CreateBackendListRequest(int offset, int limit)
+        protected IRestRequest CreateBackendListRequest(
+            int? offset,
+            int? limit,
+            Taal taal,
+            string sort)
         {
-            var request = new RestRequest("percelen");
-            request.AddHeader(AddPaginationExtension.HeaderName, $"{offset},{limit}");
-            return request;
+            return new RestRequest("percelen?taal={taal}")
+                .AddParameter("taal", taal, ParameterType.UrlSegment)
+                .AddPagination(offset, limit)
+                .AddSorting(sort);
         }
     }
 }

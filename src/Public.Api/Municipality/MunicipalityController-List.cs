@@ -1,14 +1,9 @@
 namespace Public.Api.Municipality
 {
-    using System.Collections.Generic;
-    using System.Net;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Be.Vlaanderen.Basisregisters.Api.Search.Filtering;
-    using Be.Vlaanderen.Basisregisters.Api.Search.Pagination;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
     using Marvin.Cache.Headers;
@@ -19,10 +14,13 @@ namespace Public.Api.Municipality
     using Microsoft.Net.Http.Headers;
     using MunicipalityRegistry.Api.Legacy.Municipality.Query;
     using MunicipalityRegistry.Api.Legacy.Municipality.Responses;
-    using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
+    using System.Collections.Generic;
+    using System.Net;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class MunicipalityController
     {
@@ -31,7 +29,8 @@ namespace Public.Api.Municipality
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="nisCode">Filter op de NIS Code van de gemeente.</param>
+        /// <param name="sort">Optionele sortering van het resultaat.</param>
+        /// <param name="nisCode">Filter op de NIS Code van de gemeente (bevat).</param>
         /// <param name="naamNl">Filter op het Nederlandse deel van de gemeente (bevat).</param>
         /// <param name="naamFr">Filter op het Franse deel van de gemeente (bevat).</param>
         /// <param name="naamDe">Filter op het Duitse deel van de gemeente (bevat).</param>
@@ -59,6 +58,7 @@ namespace Public.Api.Municipality
         public async Task<IActionResult> List(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
+            [FromQuery] string sort,
             [FromQuery] string nisCode,
             [FromQuery] string naamNl,
             [FromQuery] string naamFr,
@@ -72,6 +72,7 @@ namespace Public.Api.Municipality
                 null,
                 offset,
                 limit,
+                sort,
                 nisCode,
                 naamNl,
                 naamFr,
@@ -88,7 +89,8 @@ namespace Public.Api.Municipality
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="nisCode">Filter op de NIS Code van de gemeente.</param>
+        /// <param name="sort">Optionele sortering van het resultaat.</param>
+        /// <param name="nisCode">Filter op de NIS Code van de gemeente (bevat).</param>
         /// <param name="naamNl">Filter op het Nederlandse deel van de gemeente (bevat).</param>
         /// <param name="naamFr">Filter op het Franse deel van de gemeente (bevat).</param>
         /// <param name="naamDe">Filter op het Duitse deel van de gemeente (bevat).</param>
@@ -119,6 +121,7 @@ namespace Public.Api.Municipality
             [FromRoute] string format,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
+            [FromQuery] string sort,
             [FromQuery] string nisCode,
             [FromQuery] string naamNl,
             [FromQuery] string naamFr,
@@ -135,9 +138,7 @@ namespace Public.Api.Municipality
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            offset = offset ?? 0;
-            limit = limit ?? DefaultLimit;
-            Taal? taal = Taal.NL;
+            var taal = Taal.NL;
 
             void HandleBadRequest(HttpStatusCode statusCode)
             {
@@ -151,10 +152,11 @@ namespace Public.Api.Municipality
                 }
             }
 
-            RestRequest BackendRequest() => CreateBackendListRequest(
-                offset.Value,
-                limit.Value,
-                taal.Value,
+            IRestRequest BackendRequest() => CreateBackendListRequest(
+                offset,
+                limit,
+                taal,
+                sort,
                 nisCode,
                 naamNl,
                 naamFr,
@@ -170,20 +172,17 @@ namespace Public.Api.Municipality
             return  BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        protected RestRequest CreateBackendListRequest(
-            int offset,
-            int limit,
+        protected IRestRequest CreateBackendListRequest(
+            int? offset,
+            int? limit,
             Taal taal,
+            string sort,
             string nisCode,
             string nameDutch,
             string nameFrench,
             string nameGerman,
             string nameEnglish)
         {
-            var request = new RestRequest("gemeenten?taal={taal}");
-            request.AddHeader(AddPaginationExtension.HeaderName, $"{offset},{limit}");
-            request.AddParameter("taal", taal, ParameterType.UrlSegment);
-
             var filter = new MunicipalityFilter
             {
                 NisCode = nisCode,
@@ -193,9 +192,11 @@ namespace Public.Api.Municipality
                 NameEnglish = nameEnglish
             };
 
-            request.AddHeader(ExtractFilteringRequestExtension.HeaderName, JsonConvert.SerializeObject(filter));
-
-            return request;
+            return new RestRequest("gemeenten?taal={taal}")
+                .AddParameter("taal", taal, ParameterType.UrlSegment)
+                .AddPagination(offset, limit)
+                .AddFiltering(filter)
+                .AddSorting(sort);
         }
     }
 }

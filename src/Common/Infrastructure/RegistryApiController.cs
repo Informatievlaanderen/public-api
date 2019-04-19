@@ -30,7 +30,7 @@ namespace Common.Infrastructure
 
         protected async Task<BackendResponse> GetFromCacheThenFromBackendAsync(
             string format,
-            Func<RestRequest> createBackendRequestFunc,
+            Func<IRestRequest> createBackendRequestFunc,
             string cacheKey,
             RequestHeaders requestHeaders,
             Action<HttpStatusCode> handleNotOkResponseAction,
@@ -46,7 +46,7 @@ namespace Common.Infrastructure
 
         protected async Task<BackendResponse> GetFromBackendAsync(
             string format,
-            Func<RestRequest> createBackendRequestFunc,
+            Func<IRestRequest> createBackendRequestFunc,
             RequestHeaders requestHeaders,
             Action<HttpStatusCode> handleNotOkResponseAction,
             CancellationToken cancellationToken)

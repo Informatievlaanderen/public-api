@@ -74,6 +74,7 @@ namespace Public.Api.Feeds
         /// <param name="format">Gewenste formaat: gemeenten.xml of gemeenten.atom</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="restClients"></param>
+        /// <param name="responseOptions"></param>
         /// <param name="from">Optionele start id om van te beginnen.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
@@ -111,12 +112,6 @@ namespace Public.Api.Feeds
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            var restClient = restClients["MunicipalityRegistry"].Value;
-
-            from = from ?? 0;
-            offset = offset ?? 0;
-            limit = limit ?? DefaultLimit;
-
             void HandleBadRequest(HttpStatusCode statusCode)
             {
                 switch (statusCode)
@@ -129,15 +124,15 @@ namespace Public.Api.Feeds
                 }
             }
 
-            RestRequest BackendRequest() => CreateBackendSyndicationRequest(
+            IRestRequest BackendRequest() => CreateBackendSyndicationRequest(
                 "gemeenten",
-                from.Value,
-                offset.Value,
-                limit.Value);
+                from,
+                offset,
+                limit);
 
             var value = await GetFromBackendAsync(
                 format,
-                restClient,
+                restClients["MunicipalityRegistry"].Value,
                 BackendRequest,
                 Request.GetTypedHeaders(),
                 HandleBadRequest,

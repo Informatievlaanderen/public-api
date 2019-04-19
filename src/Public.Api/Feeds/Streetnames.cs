@@ -112,12 +112,6 @@ namespace Public.Api.Feeds
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            var restClient = restClients["StreetNameRegistry"].Value;
-
-            from = from ?? 0;
-            offset = offset ?? 0;
-            limit = limit ?? DefaultLimit;
-
             void HandleBadRequest(HttpStatusCode statusCode)
             {
                 switch (statusCode)
@@ -130,15 +124,15 @@ namespace Public.Api.Feeds
                 }
             }
 
-            RestRequest BackendRequest() => CreateBackendSyndicationRequest(
+            IRestRequest BackendRequest() => CreateBackendSyndicationRequest(
                 "straatnamen",
-                from.Value,
-                offset.Value,
-                limit.Value);
+                from,
+                offset,
+                limit);
 
             var value = await GetFromBackendAsync(
                 format,
-                restClient,
+                restClients["StreetNameRegistry"].Value,
                 BackendRequest,
                 Request.GetTypedHeaders(),
                 HandleBadRequest,

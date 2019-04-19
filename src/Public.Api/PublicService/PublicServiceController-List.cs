@@ -2,22 +2,22 @@ namespace Public.Api.PublicService
 {
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Be.Vlaanderen.Basisregisters.Api.Search.Pagination;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using Common.Infrastructure;
     using Infrastructure;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Net.Http.Headers;
     using Newtonsoft.Json.Converters;
+    using PublicServiceRegistry.Api.Backoffice.PublicService.Responses;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using System.Collections.Generic;
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using PublicServiceRegistry.Api.Backoffice.PublicService.Responses;
 
     public partial class PublicServiceController
     {
@@ -26,6 +26,7 @@ namespace Public.Api.PublicService
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
+        /// <param name="sort">Optionele sortering van het resultaat.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -47,6 +48,7 @@ namespace Public.Api.PublicService
         public async Task<IActionResult> List(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
+            [FromQuery] string sort,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
@@ -54,6 +56,7 @@ namespace Public.Api.PublicService
                 null,
                 offset,
                 limit,
+                sort,
                 actionContextAccessor,
                 ifNoneMatch,
                 cancellationToken);
@@ -64,6 +67,7 @@ namespace Public.Api.PublicService
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
+        /// <param name="sort">Optionele sortering van het resultaat.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -88,6 +92,7 @@ namespace Public.Api.PublicService
             [FromRoute] string format,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
+            [FromQuery] string sort,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
@@ -98,9 +103,7 @@ namespace Public.Api.PublicService
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            offset = offset ?? 0;
-            limit = limit ?? DefaultLimit;
-            Taal? taal = Taal.NL;
+            var taal = Taal.NL;
 
             void HandleBadRequest(HttpStatusCode statusCode)
             {
@@ -114,9 +117,11 @@ namespace Public.Api.PublicService
                 }
             }
 
-            RestRequest BackendRequest() => CreateBackendListRequest(
-                offset.Value,
-                limit.Value);
+            IRestRequest BackendRequest() => CreateBackendListRequest(
+                offset,
+                limit,
+                taal,
+                sort);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/publicservice-list:{taal}");
 
@@ -127,13 +132,16 @@ namespace Public.Api.PublicService
             return new BackendResponseResult(value);
         }
 
-        protected RestRequest CreateBackendListRequest(
-            int offset,
-            int limit)
+        protected IRestRequest CreateBackendListRequest(
+            int? offset,
+            int? limit,
+            Taal taal,
+            string sort)
         {
-            var request = new RestRequest("dienstverleningen");
-            request.AddHeader(AddPaginationExtension.HeaderName, $"{offset},{limit}");
-            return request;
+            return new RestRequest("dienstverleningen?taal={taal}")
+                .AddParameter("taal", taal, ParameterType.UrlSegment)
+                .AddPagination(offset, limit)
+                .AddSorting(sort);
         }
     }
 }

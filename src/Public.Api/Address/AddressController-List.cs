@@ -1,14 +1,18 @@
 namespace Public.Api.Address
 {
+    using AddressRegistry.Api.Legacy.Address.Query;
+    using AddressRegistry.Api.Legacy.Address.Responses;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Be.Vlaanderen.Basisregisters.Api.Search.Pagination;
-    using Be.Vlaanderen.Basisregisters.Api.Search.Filtering;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using Common.Infrastructure;
     using Infrastructure;
+    using Infrastructure.Configuration;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.Extensions.Options;
     using Microsoft.Net.Http.Headers;
     using Newtonsoft.Json.Converters;
     using RestSharp;
@@ -17,12 +21,6 @@ namespace Public.Api.Address
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Legacy.Address.Query;
-    using AddressRegistry.Api.Legacy.Address.Responses;
-    using Infrastructure.Configuration;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using Microsoft.Extensions.Options;
-    using Newtonsoft.Json;
 
     public partial class AddressController
     {
@@ -31,6 +29,7 @@ namespace Public.Api.Address
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
+        /// <param name="sort">Optionele sortering van het resultaat.</param>
         /// <param name="busNummer">Filter op het busnummer van het adres.</param>
         /// <param name="huisNummer">Filter op het huisnummer van het adres.</param>
         /// <param name="postCode">Filter op de postcode van het adres.</param>
@@ -59,6 +58,7 @@ namespace Public.Api.Address
         public async Task<IActionResult> List(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
+            [FromQuery] string sort,
             [FromQuery] string busNummer,
             [FromQuery] string huisNummer,
             [FromQuery] string postCode,
@@ -73,6 +73,7 @@ namespace Public.Api.Address
                 null,
                 offset,
                 limit,
+                sort,
                 busNummer,
                 huisNummer,
                 postCode,
@@ -90,6 +91,7 @@ namespace Public.Api.Address
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
+        /// <param name="sort">Optionele sortering van het resultaat.</param>
         /// <param name="busNummer">Filter op het busnummer van het adres.</param>
         /// <param name="huisNummer">Filter op het huisnummer van het adres.</param>
         /// <param name="postCode">Filter op de postcode van het adres.</param>
@@ -121,6 +123,7 @@ namespace Public.Api.Address
             [FromRoute] string format,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
+            [FromQuery] string sort,
             [FromQuery] string busNummer,
             [FromQuery] string huisNummer,
             [FromQuery] string postCode,
@@ -138,9 +141,7 @@ namespace Public.Api.Address
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            offset = offset ?? 0;
-            limit = limit ?? DefaultLimit;
-            Taal? taal = Taal.NL;
+            var taal = Taal.NL;
 
             void HandleBadRequest(HttpStatusCode statusCode)
             {
@@ -154,10 +155,11 @@ namespace Public.Api.Address
                 }
             }
 
-            RestRequest BackendRequest() => CreateBackendListRequest(
-                offset.Value,
-                limit.Value,
-                taal.Value,
+            IRestRequest BackendRequest() => CreateBackendListRequest(
+                offset,
+                limit,
+                taal,
+                sort,
                 busNummer,
                 huisNummer,
                 postCode,
@@ -174,10 +176,11 @@ namespace Public.Api.Address
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        protected RestRequest CreateBackendListRequest(
-            int offset,
-            int limit,
+        protected IRestRequest CreateBackendListRequest(
+            int? offset,
+            int? limit,
             Taal taal,
+            string sort,
             string boxNumber,
             string houseNumber,
             string postalCode,
@@ -185,10 +188,6 @@ namespace Public.Api.Address
             string streetName,
             string homonymAddition)
         {
-            var request = new RestRequest("adressen?taal={taal}");
-            request.AddHeader(AddPaginationExtension.HeaderName, $"{offset},{limit}");
-            request.AddParameter("taal", taal, ParameterType.UrlSegment);
-
             var filter = new AddressFilter
             {
                 BoxNumber = boxNumber,
@@ -199,9 +198,11 @@ namespace Public.Api.Address
                 HomonymAddition = homonymAddition
             };
 
-            request.AddHeader(ExtractFilteringRequestExtension.HeaderName, JsonConvert.SerializeObject(filter));
-
-            return request;
+            return new RestRequest("adressen?taal={taal}")
+                .AddParameter("taal", taal, ParameterType.UrlSegment)
+                .AddPagination(offset, limit)
+                .AddFiltering(filter)
+                .AddSorting(sort);
         }
     }
 }

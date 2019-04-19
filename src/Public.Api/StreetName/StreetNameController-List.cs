@@ -2,27 +2,25 @@ namespace Public.Api.StreetName
 {
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Be.Vlaanderen.Basisregisters.Api.Search.Pagination;
-    using Be.Vlaanderen.Basisregisters.Api.Search.Filtering;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using Common.Infrastructure;
     using Infrastructure;
+    using Infrastructure.Configuration;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.Extensions.Options;
     using Microsoft.Net.Http.Headers;
     using Newtonsoft.Json.Converters;
     using RestSharp;
+    using StreetNameRegistry.Api.Legacy.StreetName.Query;
     using StreetNameRegistry.Api.Legacy.StreetName.Responses;
     using Swashbuckle.AspNetCore.Filters;
     using System.Collections.Generic;
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
-    using Infrastructure.Configuration;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using Microsoft.Extensions.Options;
-    using Newtonsoft.Json;
-    using StreetNameRegistry.Api.Legacy.StreetName.Query;
 
     public partial class StreetNameController
     {
@@ -31,6 +29,7 @@ namespace Public.Api.StreetName
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
+        /// <param name="sort">Optionele sortering van het resultaat.</param>
         /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de straatnamen.</param>
         /// <param name="naamNl">Filter op het Nederlandse deel van de straatnaam (bevat).</param>
         /// <param name="naamFr">Filter op het Franse deel van de straatnaam (bevat).</param>
@@ -58,6 +57,7 @@ namespace Public.Api.StreetName
         public async Task<IActionResult> List(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
+            [FromQuery] string sort,
             [FromQuery] string gemeenteNaam,
             [FromQuery] string naamNl,
             [FromQuery] string naamFr,
@@ -71,6 +71,7 @@ namespace Public.Api.StreetName
                 null,
                 offset,
                 limit,
+                sort,
                 gemeenteNaam,
                 naamNl,
                 naamFr,
@@ -87,6 +88,7 @@ namespace Public.Api.StreetName
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
+        /// <param name="sort">Optionele sortering van het resultaat.</param>
         /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de straatnamen.</param>
         /// <param name="naamNl">Filter op het Nederlandse deel van de straatnaam (bevat).</param>
         /// <param name="naamFr">Filter op het Franse deel van de straatnaam (bevat).</param>
@@ -117,6 +119,7 @@ namespace Public.Api.StreetName
             [FromRoute] string format,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
+            [FromQuery] string sort,
             [FromQuery] string gemeenteNaam,
             [FromQuery] string naamNl,
             [FromQuery] string naamFr,
@@ -133,9 +136,7 @@ namespace Public.Api.StreetName
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            offset = offset ?? 0;
-            limit = limit ?? DefaultLimit;
-            Taal? taal = Taal.NL;
+            var taal = Taal.NL;
 
             void HandleBadRequest(HttpStatusCode statusCode)
             {
@@ -149,10 +150,11 @@ namespace Public.Api.StreetName
                 }
             }
 
-            RestRequest BackendRequest() => CreateBackendListRequest(
-                offset.Value,
-                limit.Value,
-                taal.Value,
+            IRestRequest BackendRequest() => CreateBackendListRequest(
+                offset,
+                limit,
+                taal,
+                sort,
                 gemeenteNaam,
                 naamNl,
                 naamFr,
@@ -168,20 +170,17 @@ namespace Public.Api.StreetName
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        protected RestRequest CreateBackendListRequest(
-            int offset,
-            int limit,
+        protected IRestRequest CreateBackendListRequest(
+            int? offset,
+            int? limit,
             Taal taal,
+            string sort,
             string municipalityName,
             string nameDutch,
             string nameFrench,
             string nameGerman,
             string nameEnglish)
         {
-            var request = new RestRequest("straatnamen?taal={taal}");
-            request.AddHeader(AddPaginationExtension.HeaderName, $"{offset},{limit}");
-            request.AddParameter("taal", taal, ParameterType.UrlSegment);
-
             var filter = new StreetNameFilter
             {
                 MunicipalityName = municipalityName,
@@ -191,9 +190,11 @@ namespace Public.Api.StreetName
                 NameEnglish = nameEnglish
             };
 
-            request.AddHeader(ExtractFilteringRequestExtension.HeaderName, JsonConvert.SerializeObject(filter));
-
-            return request;
+            return new RestRequest("straatnamen?taal={taal}")
+                .AddParameter("taal", taal, ParameterType.UrlSegment)
+                .AddPagination(offset, limit)
+                .AddFiltering(filter)
+                .AddSorting(sort);
         }
     }
 }

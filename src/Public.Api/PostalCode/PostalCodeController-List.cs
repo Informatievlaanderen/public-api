@@ -2,27 +2,25 @@ namespace Public.Api.PostalInfo
 {
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Be.Vlaanderen.Basisregisters.Api.Search.Pagination;
-    using Be.Vlaanderen.Basisregisters.Api.Search.Filtering;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using Common.Infrastructure;
     using Infrastructure;
+    using Infrastructure.Configuration;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.Extensions.Options;
     using Microsoft.Net.Http.Headers;
     using Newtonsoft.Json.Converters;
-    using RestSharp;
+    using PostalRegistry.Api.Legacy.PostalInformation.Query;
     using PostalRegistry.Api.Legacy.PostalInformation.Responses;
+    using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using System.Collections.Generic;
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
-    using Infrastructure.Configuration;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using Microsoft.Extensions.Options;
-    using Newtonsoft.Json;
-    using PostalRegistry.Api.Legacy.PostalInformation.Query;
 
     public partial class PostalCodeController
     {
@@ -31,6 +29,7 @@ namespace Public.Api.PostalInfo
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
+        /// <param name="sort">Optionele sortering van het resultaat.</param>
         /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de postcodes.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
@@ -54,6 +53,7 @@ namespace Public.Api.PostalInfo
         public async Task<IActionResult> List(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
+            [FromQuery] string sort,
             [FromQuery] string gemeenteNaam,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<PostalOptions> responseOptions,
@@ -63,6 +63,7 @@ namespace Public.Api.PostalInfo
                 null,
                 offset,
                 limit,
+                sort,
                 gemeenteNaam,
                 actionContextAccessor,
                 responseOptions,
@@ -75,6 +76,7 @@ namespace Public.Api.PostalInfo
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
+        /// <param name="sort">Optionele sortering van het resultaat.</param>
         /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de postcodes.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
@@ -101,6 +103,7 @@ namespace Public.Api.PostalInfo
             [FromRoute] string format,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
+            [FromQuery] string sort,
             [FromQuery] string gemeenteNaam,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<PostalOptions> responseOptions,
@@ -113,9 +116,7 @@ namespace Public.Api.PostalInfo
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            offset = offset ?? 0;
-            limit = limit ?? DefaultLimit;
-            Taal? taal = Taal.NL;
+            var taal = Taal.NL;
 
             void HandleBadRequest(HttpStatusCode statusCode)
             {
@@ -129,10 +130,11 @@ namespace Public.Api.PostalInfo
                 }
             }
 
-            RestRequest BackendRequest() => CreateBackendListRequest(
-                offset.Value,
-                limit.Value,
-                taal.Value,
+            IRestRequest BackendRequest() => CreateBackendListRequest(
+                offset,
+                limit,
+                taal,
+                sort,
                 gemeenteNaam);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/postalinfo-list:{taal}");
@@ -144,20 +146,23 @@ namespace Public.Api.PostalInfo
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        protected RestRequest CreateBackendListRequest(int offset, int limit, Taal taal, string municipalityName)
+        protected IRestRequest CreateBackendListRequest(
+            int? offset,
+            int? limit,
+            Taal taal,
+            string sort,
+            string municipalityName)
         {
-            var request = new RestRequest("postcodes?taal={taal}");
-            request.AddHeader(AddPaginationExtension.HeaderName, $"{offset},{limit}");
-            request.AddParameter("taal", taal, ParameterType.UrlSegment);
-
             var filter = new PostalInformationFilter
             {
                 MunicipalityName = municipalityName
             };
 
-            request.AddHeader(ExtractFilteringRequestExtension.HeaderName, JsonConvert.SerializeObject(filter));
-
-            return request;
+            return new RestRequest("postcodes?taal={taal}")
+                .AddParameter("taal", taal, ParameterType.UrlSegment)
+                .AddPagination(offset, limit)
+                .AddFiltering(filter)
+                .AddSorting(sort);
         }
     }
 }
