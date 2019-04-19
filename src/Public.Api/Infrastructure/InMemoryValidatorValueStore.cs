@@ -1,10 +1,10 @@
 namespace Public.Api.Infrastructure
 {
+    using System.Collections.Concurrent;
+    using System.Linq;
+    using System.Threading.Tasks;
     using Marvin.Cache.Headers;
     using Marvin.Cache.Headers.Interfaces;
-    using System.Collections.Concurrent;
-    using System.Threading.Tasks;
-    using System.Linq;
     using Microsoft.Extensions.Logging;
 
     public class InMemoryValidatorValueStore : IValidatorValueStore

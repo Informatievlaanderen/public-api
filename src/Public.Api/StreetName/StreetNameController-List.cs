@@ -1,5 +1,9 @@
 namespace Public.Api.StreetName
 {
+    using System.Collections.Generic;
+    using System.Net;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
@@ -17,10 +21,6 @@ namespace Public.Api.StreetName
     using StreetNameRegistry.Api.Legacy.StreetName.Query;
     using StreetNameRegistry.Api.Legacy.StreetName.Responses;
     using Swashbuckle.AspNetCore.Filters;
-    using System.Collections.Generic;
-    using System.Net;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public partial class StreetNameController
     {

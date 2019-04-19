@@ -1,8 +1,8 @@
 namespace Common.Infrastructure
 {
+    using Microsoft.AspNetCore.Http.Headers;
     using System;
     using System.Linq;
-    using Microsoft.AspNetCore.Http.Headers;
 
     public enum AcceptType
     {

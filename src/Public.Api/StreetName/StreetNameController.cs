@@ -1,7 +1,7 @@
 namespace Public.Api.StreetName
 {
-    using Be.Vlaanderen.Basisregisters.Api;
     using Autofac.Features.AttributeFilters;
+    using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using FeatureToggle;
     using Microsoft.AspNetCore.Mvc;

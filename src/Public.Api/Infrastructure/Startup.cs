@@ -2,32 +2,32 @@ namespace Public.Api.Infrastructure
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
+    using System.Numerics;
     using System.Reflection;
+    using System.Security.Cryptography;
     using System.Text;
-    using Be.Vlaanderen.Basisregisters.Api;
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
     using Autofac.Features.AttributeFilters;
+    using Be.Vlaanderen.Basisregisters.Api;
+    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
     using Common.Infrastructure;
     using Common.Infrastructure.Modules;
+    using Configuration;
+    using Feeds;
     using Marvin.Cache.Headers;
+    using Marvin.Cache.Headers.Interfaces;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-    using Swashbuckle.AspNetCore.Swagger;
-    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
-    using Configuration;
-    using Feeds;
-    using Marvin.Cache.Headers.Interfaces;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Swashbuckle.AspNetCore.Filters;
-    using System.Globalization;
-    using System.Security.Cryptography;
-    using System.Numerics;
+    using Swashbuckle.AspNetCore.Swagger;
 
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup

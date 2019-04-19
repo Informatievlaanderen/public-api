@@ -1,20 +1,20 @@
 namespace Public.Api.PublicService
 {
+    using System.Net;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Infrastructure;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Net.Http.Headers;
     using Newtonsoft.Json.Converters;
+    using PublicServiceRegistry.Api.Backoffice.PublicService.Responses;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
-    using System.Net;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using PublicServiceRegistry.Api.Backoffice.PublicService.Responses;
 
     public partial class PublicServiceController
     {

@@ -1,5 +1,9 @@
 namespace Public.Api.Address
 {
+    using System.Collections.Generic;
+    using System.Net;
+    using System.Threading;
+    using System.Threading.Tasks;
     using AddressRegistry.Api.Legacy.Address.Query;
     using AddressRegistry.Api.Legacy.Address.Responses;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
@@ -17,10 +21,6 @@ namespace Public.Api.Address
     using Newtonsoft.Json.Converters;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
-    using System.Collections.Generic;
-    using System.Net;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public partial class AddressController
     {

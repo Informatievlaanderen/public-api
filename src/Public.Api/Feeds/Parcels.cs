@@ -1,24 +1,24 @@
 namespace Public.Api.Feeds
 {
-    using Be.Vlaanderen.Basisregisters.Api.ETag;
-    using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Autofac.Features.Indexed;
-    using Infrastructure;
-    using Marvin.Cache.Headers;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using Microsoft.Net.Http.Headers;
-    using Newtonsoft.Json.Converters;
-    using RestSharp;
-    using Swashbuckle.AspNetCore.Filters;
     using System;
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
-    using ParcelRegistry.Api.Legacy.Parcel.Responses;
+    using Autofac.Features.Indexed;
+    using Be.Vlaanderen.Basisregisters.Api.ETag;
+    using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Infrastructure;
     using Infrastructure.Configuration;
+    using Marvin.Cache.Headers;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
+    using Microsoft.Net.Http.Headers;
+    using Newtonsoft.Json.Converters;
+    using ParcelRegistry.Api.Legacy.Parcel.Responses;
+    using RestSharp;
+    using Swashbuckle.AspNetCore.Filters;
 
     public partial class FeedController
     {

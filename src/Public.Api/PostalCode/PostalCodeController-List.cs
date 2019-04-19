@@ -1,5 +1,9 @@
-namespace Public.Api.PostalInfo
+namespace Public.Api.PostalCode
 {
+    using System.Collections.Generic;
+    using System.Net;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
@@ -17,10 +21,6 @@ namespace Public.Api.PostalInfo
     using PostalRegistry.Api.Legacy.PostalInformation.Responses;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
-    using System.Collections.Generic;
-    using System.Net;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     public partial class PostalCodeController
     {
