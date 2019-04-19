@@ -1,3 +1,11 @@
+# [2.11.0](https://github.com/informatievlaanderen/public-api/compare/v2.10.4...v2.11.0) (2019-04-19)
+
+
+### Features
+
+* add brotli compression ([945beaa](https://github.com/informatievlaanderen/public-api/commit/945beaa))
+* add filtering on municipality ([2b32549](https://github.com/informatievlaanderen/public-api/commit/2b32549))
+
 ## [2.10.4](https://github.com/informatievlaanderen/public-api/compare/v2.10.3...v2.10.4) (2019-04-19)
 
 
