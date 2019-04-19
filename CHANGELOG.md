@@ -1,3 +1,10 @@
+## [2.13.1](https://github.com/informatievlaanderen/public-api/compare/v2.13.0...v2.13.1) (2019-04-19)
+
+
+### Bug Fixes
+
+* add available sort fields to documentation) ([e0a14d8](https://github.com/informatievlaanderen/public-api/commit/e0a14d8))
+
 # [2.13.0](https://github.com/informatievlaanderen/public-api/compare/v2.12.2...v2.13.0) (2019-04-19)
 
 
