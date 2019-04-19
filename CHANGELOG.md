@@ -1,3 +1,10 @@
+## [2.12.1](https://github.com/informatievlaanderen/public-api/compare/v2.12.0...v2.12.1) (2019-04-19)
+
+
+### Bug Fixes
+
+* add responseoptions for swagger ([0e26e62](https://github.com/informatievlaanderen/public-api/commit/0e26e62))
+
 # [2.12.0](https://github.com/informatievlaanderen/public-api/compare/v2.11.0...v2.12.0) (2019-04-19)
 
 
