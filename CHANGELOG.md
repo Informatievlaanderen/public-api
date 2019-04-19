@@ -1,3 +1,10 @@
+# [2.14.0](https://github.com/informatievlaanderen/public-api/compare/v2.13.2...v2.14.0) (2019-04-19)
+
+
+### Features
+
+* move to sockets transport ([a5282a1](https://github.com/informatievlaanderen/public-api/commit/a5282a1))
+
 ## [2.13.2](https://github.com/informatievlaanderen/public-api/compare/v2.13.1...v2.13.2) (2019-04-19)
 
 
