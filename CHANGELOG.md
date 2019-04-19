@@ -1,3 +1,10 @@
+## [2.13.2](https://github.com/informatievlaanderen/public-api/compare/v2.13.1...v2.13.2) (2019-04-19)
+
+
+### Bug Fixes
+
+* make sure every action has a unique name for redoc urls ([9434615](https://github.com/informatievlaanderen/public-api/commit/9434615))
+
 ## [2.13.1](https://github.com/informatievlaanderen/public-api/compare/v2.13.0...v2.13.1) (2019-04-19)
 
 
