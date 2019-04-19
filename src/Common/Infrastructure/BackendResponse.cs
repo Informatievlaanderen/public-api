@@ -21,42 +21,36 @@ namespace Common.Infrastructure
             if (string.IsNullOrWhiteSpace(nextPageUrlOption) || requestQuery.IsEmpty)
                 return;
 
+            var parameters = requestQuery
+                .Aggregate("", (result, filterQueryParameter) => $"{result}&{filterQueryParameter.Key}={filterQueryParameter.Value}");
+
+            Content = Regex.Replace(
+                Content,
+                GetNextPagePattern(nextPageUrlOption),
+                $"$1{EscapeForContentType(parameters)}$2",
+                RegexOptions.IgnoreCase);
+        }
+
+        private bool IsXmlContent => ContentType == AcceptTypes.Xml || ContentType == AcceptTypes.Atom;
+
+        private string GetNextPagePattern(string nextPageUrlOption)
+        {
             const string numberPatternPlaceholder = "__NUMBER_PATTERN_PLACEHOLDER_THAT_WONT_BE_REGEX_ESCAPED__";
             var nextPageUrlOptionWithPlaceholders = string.Format(nextPageUrlOption, numberPatternPlaceholder, numberPatternPlaceholder);
             var nextPageUrlValePattern = Regex
                 .Escape(nextPageUrlOptionWithPlaceholders)
                 .Replace(numberPatternPlaceholder, "\\d+");
+            var escapedValuePattern = EscapeForContentType(nextPageUrlValePattern);
 
-            var parameters = requestQuery
-                .Aggregate("", (result, filterQueryParameter) => $"{result}&{filterQueryParameter.Key}={filterQueryParameter.Value}");
+            if (IsXmlContent)
+                return Content.Contains("<feed xmlns=\"http://www.w3.org/2005/Atom\">")
+                    ? $"(<link href=\"{escapedValuePattern})(\" rel=\"next\" />)"
+                    : $"(<volgende>{escapedValuePattern})(</volgende>)";
 
-            var isXml = ContentType.ToLower().Contains("xml");
-            var replaceData = new {
-                Pattern = isXml
-                    ? GetXmlPatternFor(nextPageUrlValePattern)
-                    : $"(\"volgende\"\\s*:\\s*\"{nextPageUrlValePattern})(\")",
-                Replacement = isXml
-                    ? $"$1{Xml.Escape(parameters)}$2"
-                    : $"$1{parameters}$2"
-            };
-
-            Content = Regex.Replace(
-                Content,
-                replaceData.Pattern,
-                replaceData.Replacement,
-                RegexOptions.IgnoreCase);
+            return $"(\"volgende\"\\s*:\\s*\"{escapedValuePattern})(\")";
         }
 
-        private string GetXmlPatternFor(string nextPageUrlValePattern)
-        {
-            return Regex.IsMatch(Content, "<feed xmlns=\"http://www.w3.org/2005/Atom\">")
-                ? $"(<link href=\"{Xml.Escape(nextPageUrlValePattern)})(\" rel=\"next\" />)"
-                : $"(<volgende>{Xml.Escape(nextPageUrlValePattern)})(</volgende>)";
-        }
+        private string EscapeForContentType(string value) => IsXmlContent ? new System.Xml.Linq.XText(value).ToString() : value;
 
-        private static class Xml
-        {
-            public static string Escape(string str) => new System.Xml.Linq.XText(str).ToString();
-        }
     }
 }
