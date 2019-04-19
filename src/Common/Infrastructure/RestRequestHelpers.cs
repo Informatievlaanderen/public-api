@@ -54,14 +54,14 @@ namespace Common.Infrastructure
 
         private static string CreateSortObject(this string sort)
         {
-            if (!string.IsNullOrWhiteSpace(sort))
+            if (string.IsNullOrWhiteSpace(sort))
                 return string.Empty;
 
             var sortPieces = sort.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             var sortField = sortPieces.First().ToLowerInvariant();
 
             return sortField.StartsWith("-")
-                ? $"descending,{sortField}"
+                ? $"descending,{sortField.Substring(1)}"
                 : $"ascending,{sortField}";
         }
     }
