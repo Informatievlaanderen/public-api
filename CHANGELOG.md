@@ -1,3 +1,10 @@
+# [2.12.0](https://github.com/informatievlaanderen/public-api/compare/v2.11.0...v2.12.0) (2019-04-19)
+
+
+### Features
+
+* add parcels feed ([a011c60](https://github.com/informatievlaanderen/public-api/commit/a011c60))
+
 # [2.11.0](https://github.com/informatievlaanderen/public-api/compare/v2.10.4...v2.11.0) (2019-04-19)
 
 
