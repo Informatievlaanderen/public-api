@@ -158,11 +158,16 @@ namespace Public.Api.PostalInfo
                 MunicipalityName = municipalityName
             };
 
+            var sortMapping = new Dictionary<string, string>
+            {
+                { "PostCode", "PostalCode" },
+            };
+
             return new RestRequest("postcodes?taal={taal}")
                 .AddParameter("taal", taal, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
                 .AddFiltering(filter)
-                .AddSorting(sort);
+                .AddSorting(sort, sortMapping);
         }
     }
 }

@@ -138,10 +138,18 @@ namespace Public.Api.PublicService
             Taal taal,
             string sort)
         {
+            var sortMapping = new Dictionary<string, string>
+            {
+                { "Id", "PublicServiceId" },
+                { "Naam", "Name" },
+                { "CompetentAuthorityName", "CompetentAuthorityName" }, // TODO: What is this in dutch?
+                { "ExportToOrafin", "ExportToOrafin" },
+            };
+
             return new RestRequest("dienstverleningen?taal={taal}")
                 .AddParameter("taal", taal, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
-                .AddSorting(sort);
+                .AddSorting(sort, sortMapping);
         }
     }
 }

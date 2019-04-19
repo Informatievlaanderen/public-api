@@ -6,6 +6,7 @@ namespace Common.Infrastructure
     using Newtonsoft.Json;
     using RestSharp;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     public static class RestRequestHelpers
@@ -15,10 +16,13 @@ namespace Common.Infrastructure
 
         public static IRestRequest AddSorting(
             this IRestRequest request,
-            string sort)
+            string sort,
+            Dictionary<string, string> sortMapping)
         {
-            if (!string.IsNullOrWhiteSpace(sort))
-                request.AddHeader(AddSortingExtension.HeaderName, sort.CreateSortObject());
+            var sortHeader = sort.CreateSortObject(sortMapping);
+
+            if (!string.IsNullOrWhiteSpace(sortHeader))
+                request.AddHeader(AddSortingExtension.HeaderName, sortHeader);
 
             return request;
         }
@@ -52,7 +56,9 @@ namespace Common.Infrastructure
             return request;
         }
 
-        private static string CreateSortObject(this string sort)
+        private static string CreateSortObject(
+            this string sort,
+            Dictionary<string, string> sortMapping)
         {
             if (string.IsNullOrWhiteSpace(sort))
                 return string.Empty;
@@ -60,9 +66,18 @@ namespace Common.Infrastructure
             var sortPieces = sort.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             var sortField = sortPieces.First().ToLowerInvariant();
 
+            var originalSortField = sortField.StartsWith("-")
+               ? sortField.Substring(1)
+               : sortField;
+
+            var normalisedSortMapping = sortMapping.ToDictionary(x => x.Key.ToLowerInvariant(), x => x.Value.ToLowerInvariant());
+
+            if (!normalisedSortMapping.ContainsKey(originalSortField))
+                return string.Empty;
+
             return sortField.StartsWith("-")
-                ? $"descending,{sortField.Substring(1)}"
-                : $"ascending,{sortField}";
+                ? $"descending,{normalisedSortMapping[originalSortField]}"
+                : $"ascending,{normalisedSortMapping[originalSortField]}";
         }
     }
 }

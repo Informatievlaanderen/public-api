@@ -145,10 +145,15 @@ namespace Public.Api.Parcel
             Taal taal,
             string sort)
         {
+            var sortMapping = new Dictionary<string, string>
+            {
+                { "Id", "OsloId" },
+            };
+
             return new RestRequest("percelen?taal={taal}")
                 .AddParameter("taal", taal, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
-                .AddSorting(sort);
+                .AddSorting(sort, sortMapping);
         }
     }
 }

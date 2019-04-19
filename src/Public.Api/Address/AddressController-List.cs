@@ -198,11 +198,19 @@ namespace Public.Api.Address
                 HomonymAddition = homonymAddition
             };
 
+            var sortMapping = new Dictionary<string, string>
+            {
+                { "BusNummer", "BoxNumber" },
+                { "HuisNummer", "HouseNumber" },
+                { "PostCode", "PostalCode" },
+                { "Id", "OsloId" },
+            };
+
             return new RestRequest("adressen?taal={taal}")
                 .AddParameter("taal", taal, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
                 .AddFiltering(filter)
-                .AddSorting(sort);
+                .AddSorting(sort, sortMapping);
         }
     }
 }

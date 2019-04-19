@@ -190,11 +190,20 @@ namespace Public.Api.StreetName
                 NameEnglish = nameEnglish
             };
 
+            var sortMapping = new Dictionary<string, string>
+            {
+                { "Id", "OsloId" },
+                { "NaamNl", "NameDutch" },
+                { "NaamEn", "NameEnglish" },
+                { "NaamFr", "NameFrench" },
+                { "NaamDe", "NameGerman" },
+            };
+
             return new RestRequest("straatnamen?taal={taal}")
                 .AddParameter("taal", taal, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
                 .AddFiltering(filter)
-                .AddSorting(sort);
+                .AddSorting(sort, sortMapping);
         }
     }
 }

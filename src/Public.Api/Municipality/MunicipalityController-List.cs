@@ -192,11 +192,21 @@ namespace Public.Api.Municipality
                 NameEnglish = nameEnglish
             };
 
+            var sortMapping = new Dictionary<string, string>
+            {
+                { "NisCode", "NisCode" },
+                { "Naam", "DefaultName" },
+                { "NaamNl", "NameDutch" },
+                { "NaamEn", "NameEnglish" },
+                { "NaamFr", "NameFrench" },
+                { "NaamDe", "NameGerman" },
+            };
+
             return new RestRequest("gemeenten?taal={taal}")
                 .AddParameter("taal", taal, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
                 .AddFiltering(filter)
-                .AddSorting(sort);
+                .AddSorting(sort, sortMapping);
         }
     }
 }
