@@ -29,13 +29,13 @@ namespace Public.Api.Address
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat.</param>
-        /// <param name="busNummer">Filter op het busnummer van het adres.</param>
-        /// <param name="huisNummer">Filter op het huisnummer van het adres.</param>
-        /// <param name="postCode">Filter op de postcode van het adres.</param>
-        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de adressen.</param>
-        /// <param name="straatNaam">Filter op de straatnaam van het adres.</param>
-        /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres.</param>
+        /// <param name="sort">Optionele sortering van het resultaat (id, postcode, huisnummer, busnummer).</param>
+        /// <param name="busNummer">Filter op het busnummer van het adres (exact).</param>
+        /// <param name="huisNummer">Filter op het huisnummer van het adres (exact).</param>
+        /// <param name="postCode">Filter op de postcode van het adres (exact).</param>
+        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de adressen (exact).</param>
+        /// <param name="straatNaam">Filter op de straatnaam van het adres (exact).</param>
+        /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -91,13 +91,13 @@ namespace Public.Api.Address
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat.</param>
-        /// <param name="busNummer">Filter op het busnummer van het adres.</param>
-        /// <param name="huisNummer">Filter op het huisnummer van het adres.</param>
-        /// <param name="postCode">Filter op de postcode van het adres.</param>
-        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de adressen.</param>
-        /// <param name="straatNaam">Filter op de straatnaam van het adres.</param>
-        /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres.</param>
+        /// <param name="sort">Optionele sortering van het resultaat (id, postcode, huisnummer, busnummer).</param>
+        /// <param name="busNummer">Filter op het busnummer van het adres (exact).</param>
+        /// <param name="huisNummer">Filter op het huisnummer van het adres (exact).</param>
+        /// <param name="postCode">Filter op de postcode van het adres (exact).</param>
+        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de adressen (exact).</param>
+        /// <param name="straatNaam">Filter op de straatnaam van het adres (exact).</param>
+        /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -198,6 +198,7 @@ namespace Public.Api.Address
                 HomonymAddition = homonymAddition
             };
 
+            // id, postcode, huisnummer, busnummer
             var sortMapping = new Dictionary<string, string>
             {
                 { "BusNummer", "BoxNumber" },

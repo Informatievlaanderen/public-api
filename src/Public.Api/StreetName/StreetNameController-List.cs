@@ -29,8 +29,8 @@ namespace Public.Api.StreetName
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat.</param>
-        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de straatnamen.</param>
+        /// <param name="sort">Optionele sortering van het resultaat (id, naam-nl, naam-fr, naam-de, naam-en).</param>
+        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de straatnamen (exact).</param>
         /// <param name="naamNl">Filter op het Nederlandse deel van de straatnaam (bevat).</param>
         /// <param name="naamFr">Filter op het Franse deel van de straatnaam (bevat).</param>
         /// <param name="naamDe">Filter op het Duitse deel van de straatnaam (bevat).</param>
@@ -88,8 +88,8 @@ namespace Public.Api.StreetName
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat.</param>
-        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de straatnamen.</param>
+        /// <param name="sort">Optionele sortering van het resultaat (id, naam-nl, naam-fr, naam-de, naam-en).</param>
+        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de straatnamen (exact).</param>
         /// <param name="naamNl">Filter op het Nederlandse deel van de straatnaam (bevat).</param>
         /// <param name="naamFr">Filter op het Franse deel van de straatnaam (bevat).</param>
         /// <param name="naamDe">Filter op het Duitse deel van de straatnaam (bevat).</param>
@@ -190,13 +190,18 @@ namespace Public.Api.StreetName
                 NameEnglish = nameEnglish
             };
 
+            // id, naam-nl, naam-fr, naam-de, naam-en
             var sortMapping = new Dictionary<string, string>
             {
                 { "Id", "OsloId" },
                 { "NaamNl", "NameDutch" },
+                { "Naam-Nl", "NameDutch" },
                 { "NaamEn", "NameEnglish" },
+                { "Naam-En", "NameEnglish" },
                 { "NaamFr", "NameFrench" },
+                { "Naam-Fr", "NameFrench" },
                 { "NaamDe", "NameGerman" },
+                { "Naam-De", "NameGerman" },
             };
 
             return new RestRequest("straatnamen?taal={taal}")

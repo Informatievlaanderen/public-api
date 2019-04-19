@@ -26,7 +26,7 @@ namespace Public.Api.PublicService
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat.</param>
+        /// <param name="sort">Optionele sortering van het resultaat (id, naam, bevoegde-overheid).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -67,7 +67,7 @@ namespace Public.Api.PublicService
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat.</param>
+        /// <param name="sort">Optionele sortering van het resultaat (id, naam, bevoegde-overheid).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -138,11 +138,13 @@ namespace Public.Api.PublicService
             Taal taal,
             string sort)
         {
+            // id, naam, bevoegde-overheid
             var sortMapping = new Dictionary<string, string>
             {
                 { "Id", "PublicServiceId" },
                 { "Naam", "Name" },
-                { "CompetentAuthorityName", "CompetentAuthorityName" }, // TODO: What is this in dutch?
+                { "BevoegdeOverheid", "CompetentAuthorityName" },
+                { "Bevoegde-Overheid", "CompetentAuthorityName" },
                 { "ExportToOrafin", "ExportToOrafin" },
             };
 

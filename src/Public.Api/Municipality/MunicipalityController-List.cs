@@ -29,8 +29,8 @@ namespace Public.Api.Municipality
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat.</param>
-        /// <param name="nisCode">Filter op de NIS Code van de gemeente (bevat).</param>
+        /// <param name="sort">Optionele sortering van het resultaat (niscode, naam, naam-nl, naam-fr, naam-de, naam-en).</param>
+        /// <param name="nisCode">Filter op de NIS code van de gemeente (bevat).</param>
         /// <param name="naamNl">Filter op het Nederlandse deel van de gemeente (bevat).</param>
         /// <param name="naamFr">Filter op het Franse deel van de gemeente (bevat).</param>
         /// <param name="naamDe">Filter op het Duitse deel van de gemeente (bevat).</param>
@@ -89,8 +89,8 @@ namespace Public.Api.Municipality
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat.</param>
-        /// <param name="nisCode">Filter op de NIS Code van de gemeente (bevat).</param>
+        /// <param name="sort">Optionele sortering van het resultaat (niscode, naam, naam-nl, naam-fr, naam-de, naam-en).</param>
+        /// <param name="nisCode">Filter op de NIS code van de gemeente (bevat).</param>
         /// <param name="naamNl">Filter op het Nederlandse deel van de gemeente (bevat).</param>
         /// <param name="naamFr">Filter op het Franse deel van de gemeente (bevat).</param>
         /// <param name="naamDe">Filter op het Duitse deel van de gemeente (bevat).</param>
@@ -192,14 +192,19 @@ namespace Public.Api.Municipality
                 NameEnglish = nameEnglish
             };
 
+            // niscode, naam, naam-nl, naam-fr, naam-de, naam-en
             var sortMapping = new Dictionary<string, string>
             {
                 { "NisCode", "NisCode" },
                 { "Naam", "DefaultName" },
                 { "NaamNl", "NameDutch" },
+                { "Naam-Nl", "NameDutch" },
                 { "NaamEn", "NameEnglish" },
+                { "Naam-En", "NameEnglish" },
                 { "NaamFr", "NameFrench" },
+                { "Naam-Fr", "NameFrench" },
                 { "NaamDe", "NameGerman" },
+                { "Naam-De", "NameGerman" },
             };
 
             return new RestRequest("gemeenten?taal={taal}")

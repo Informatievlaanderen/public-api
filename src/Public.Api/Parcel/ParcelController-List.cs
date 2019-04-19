@@ -28,7 +28,7 @@ namespace Public.Api.Parcel
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat.</param>
+        /// <param name="sort">Optionele sortering van het resultaat (id).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -72,7 +72,7 @@ namespace Public.Api.Parcel
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat.</param>
+        /// <param name="sort">Optionele sortering van het resultaat (id).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
