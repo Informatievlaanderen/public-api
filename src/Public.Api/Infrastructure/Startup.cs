@@ -6,8 +6,6 @@ namespace Public.Api.Infrastructure
     using System.Reflection;
     using System.Text;
     using Be.Vlaanderen.Basisregisters.Api;
-    using Be.Vlaanderen.Basisregisters.DataDog.Tracing;
-    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore;
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
     using Autofac.Features.AttributeFilters;
@@ -33,6 +31,8 @@ namespace Public.Api.Infrastructure
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup
     {
+        private static readonly SHA1 Sha1 = SHA1.Create();
+
         private const string DefaultCulture = "en-GB";
         private const string SupportedCultures = "en-GB;en-US;en;nl-BE;nl";
 
@@ -180,70 +180,48 @@ namespace Public.Api.Infrastructure
             ApiDataDogToggle datadogToggle,
             ApiDebugDataDogToggle debugDataDogToggle)
         {
-            if (datadogToggle.FeatureEnabled)
-            {
-                if (debugDataDogToggle.FeatureEnabled)
-                    StartupHelpers.SetupSourceListener(serviceProvider.GetRequiredService<TraceSource>());
-
-                var sha1 = SHA1.Create();
-                var traceSourceFactory = serviceProvider.GetRequiredService<Func<long, TraceSource>>();
-                var logger = loggerFactory.CreateLogger<Startup>();
-
-                app.UseDataDogTracing(
-                    request =>
+            app
+                .UseDatadog<Startup>(
+                    serviceProvider,
+                    loggerFactory,
+                    datadogToggle,
+                    debugDataDogToggle,
+                    _configuration["DataDog:ServiceName"],
+                    "X-Amzn-Trace-Id",
+                    traceHeader =>
                     {
-                        var traceId = 42L;
-                        try
-                        {
-                            logger.LogDebug("Trying to parse traceid from {Headers}", request.Headers);
-
-                            if (request.Headers.TryGetValue("X-Amzn-Trace-Id", out var stringValues))
-                            {
-                                var awsTraceId = stringValues
+                        var awsTraceId = traceHeader
                                     .ToString()
                                     .Replace("\"", string.Empty)
                                     .Replace("Root=", string.Empty);
 
-                                var traceIdHash = sha1.ComputeHash(Encoding.UTF8.GetBytes(awsTraceId));
-                                var traceIdHex = BitConverter.ToString(traceIdHash).Replace("-", string.Empty);
-                                var traceIdNumber = BigInteger.Parse(traceIdHex, NumberStyles.HexNumber);
-                                traceId = (long)BigInteger.Remainder(traceIdNumber, new BigInteger(Math.Pow(10, 14)));
-                                traceId = Math.Abs(traceId);
-                            }
+                        var traceIdHash = Sha1.ComputeHash(Encoding.UTF8.GetBytes(awsTraceId));
+                        var traceIdHex = BitConverter.ToString(traceIdHash).Replace("-", string.Empty);
+                        var traceIdNumber = BigInteger.Parse(traceIdHex, NumberStyles.HexNumber);
+                        var traceId = (long)BigInteger.Remainder(traceIdNumber, new BigInteger(Math.Pow(10, 14)));
+                        return Math.Abs(traceId);
+                    })
 
-                            logger.LogDebug("Generated {ParsedTraceId}", traceId);
-                        }
-                        catch (Exception e)
-                        {
-                            logger.LogError(e, "Failed to parse Trace Id from {Headers}.", request.Headers);
-                        }
-
-                        return traceSourceFactory(traceId);
+                .UseDefaultForApi(new StartupUseOptions
+                {
+                    Common =
+                    {
+                        ApplicationContainer = _applicationContainer,
+                        ServiceProvider = serviceProvider,
+                        HostingEnvironment = env,
+                        ApplicationLifetime = appLifetime,
+                        LoggerFactory = loggerFactory,
                     },
-                    _configuration["DataDog:ServiceName"],
-                    pathToCheck => pathToCheck != "/");
-            }
-
-            app.UseDefaultForApi(new StartupUseOptions
-            {
-                Common =
-                {
-                    ApplicationContainer = _applicationContainer,
-                    ServiceProvider = serviceProvider,
-                    HostingEnvironment = env,
-                    ApplicationLifetime = appLifetime,
-                    LoggerFactory = loggerFactory,
-                },
-                Api =
-                {
-                    VersionProvider = apiVersionProvider,
-                    Info = groupName => $"Basisregisters Vlaanderen - Base Registries API {groupName}"
-                },
-                MiddlewareHooks =
-                {
-                    AfterResponseCompression = x => x.UseHttpCacheHeaders(),
-                }
-            });
+                    Api =
+                    {
+                        VersionProvider = apiVersionProvider,
+                        Info = groupName => $"Basisregisters Vlaanderen - Base Registries API {groupName}"
+                    },
+                    MiddlewareHooks =
+                    {
+                        AfterResponseCompression = x => x.UseHttpCacheHeaders(),
+                    }
+                });
         }
 
         private string GetApiLeadingText(ApiVersionDescription description)
