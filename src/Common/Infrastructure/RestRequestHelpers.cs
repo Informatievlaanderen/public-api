@@ -51,7 +51,10 @@ namespace Common.Infrastructure
             object filter)
         {
             if (filter != null)
-                request.AddHeader(ExtractFilteringRequestExtension.HeaderName, JsonConvert.SerializeObject(filter));
+            {
+                var escapedFilterHeaderValue = Uri.EscapeDataString(JsonConvert.SerializeObject(filter));
+                request.AddHeader(ExtractFilteringRequestExtension.HeaderName, escapedFilterHeaderValue);
+            }
 
             return request;
         }
