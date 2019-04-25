@@ -36,9 +36,7 @@ namespace Common.Infrastructure
             Action<HttpStatusCode> handleNotOkResponseAction,
             CancellationToken cancellationToken)
         {
-            var acceptType = string.IsNullOrWhiteSpace(format)
-                ? requestHeaders.DetermineAcceptType()
-                : format.ToAcceptType();
+            var acceptType = requestHeaders.DetermineAcceptType(format);
 
             if (_redis != null)
             {
@@ -78,18 +76,12 @@ namespace Common.Infrastructure
             RequestHeaders requestHeaders,
             Action<HttpStatusCode> handleNotOkResponseAction,
             CancellationToken cancellationToken)
-        {
-            var acceptType = string.IsNullOrWhiteSpace(format)
-                ? requestHeaders.DetermineAcceptType()
-                : format.ToAcceptType();
-
-            return await GetFromBackendAsync(
+            => await GetFromBackendAsync(
                 restClient,
                 createBackendRequestFunc,
-                acceptType,
+                requestHeaders.DetermineAcceptType(format),
                 handleNotOkResponseAction,
                 cancellationToken);
-        }
 
         private static async Task<BackendResponse> GetFromBackendAsync(
             IRestClient restClient,

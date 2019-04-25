@@ -3,6 +3,8 @@ namespace Common.Infrastructure
     using Microsoft.AspNetCore.Http.Headers;
     using System;
     using System.Linq;
+    using Microsoft.Net.Http.Headers;
+    using System.Net.Mime;
 
     public enum AcceptType
     {
@@ -14,9 +16,9 @@ namespace Common.Infrastructure
 
     public static class AcceptTypes
     {
-        public const string Json = "application/json";
+        public const string Json = MediaTypeNames.Application.Json;
         public const string JsonLd = "application/ld+json";
-        public const string Xml = "application/xml";
+        public const string Xml = MediaTypeNames.Application.Xml;
         public const string Atom = "application/atom+xml";
     }
 
@@ -43,50 +45,41 @@ namespace Common.Infrastructure
             }
         }
 
-        public static AcceptType ToAcceptType(this string format)
+        public static AcceptType DetermineAcceptType(this RequestHeaders requestHeaders, string format)
         {
-            format = format.ToLowerInvariant();
-
-            switch (format)
-            {
-                default:
-                case "json":
-                    return AcceptType.Json;
-
-                case "jsonld":
-                    return AcceptType.JsonLd;
-
-                case "xml":
-                    return AcceptType.Xml;
-
-                case "atom":
-                    return AcceptType.Atom;
-            }
+            return Enum.TryParse(format, ignoreCase: true, out AcceptType acceptType)
+                    ? acceptType
+                    : requestHeaders.DetermineAcceptType();
         }
 
         public static AcceptType DetermineAcceptType(this RequestHeaders requestHeaders)
         {
-            var headersByQuality = requestHeaders.Accept.OrderBy(x => x.Quality);
-
-            foreach (var headerWithQuality in headersByQuality)
+            var headersByQuality = requestHeaders
+                .Accept
+                .OrderBy(header => header.Quality)
+                .Where(header => header.MediaType.HasValue);
+            
+            foreach (var headerValue in headersByQuality)
             {
-                if (!headerWithQuality.MediaType.HasValue)
-                    continue;
-
-                if (headerWithQuality.MediaType.Value.ToLowerInvariant().Contains("atom".ToLowerInvariant()))
+                if (headerValue.Contains(AcceptTypes.Atom))
                     return AcceptType.Atom;
 
-                if (headerWithQuality.MediaType.Value.ToLowerInvariant().Contains("xml".ToLowerInvariant()))
+                if (headerValue.Contains(AcceptTypes.Xml))
                     return AcceptType.Xml;
 
-                if (headerWithQuality.MediaType.Value.ToLowerInvariant().Contains("ld+json".ToLowerInvariant()))
+                if (headerValue.Contains(AcceptTypes.JsonLd))
                     return AcceptType.JsonLd;
 
-                if (headerWithQuality.MediaType.Value.ToLowerInvariant().Contains("json".ToLowerInvariant()))
+                if (headerValue.Contains(AcceptTypes.Json))
                     return AcceptType.Json;
             }
 
             return AcceptType.Json;
+        }
+
+        private static bool Contains(this MediaTypeHeaderValue headerValue, string mineType)
+        {
+            return headerValue.MediaType.Value.Contains(mineType, StringComparison.InvariantCultureIgnoreCase);
         }
     }
 }
