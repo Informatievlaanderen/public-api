@@ -86,7 +86,7 @@ namespace Public.Api.Infrastructure
             var requestHeaders = context.HttpRequest.GetTypedHeaders();
             var format = regexResult.Groups["format"];
             var acceptType = format.Success
-                ? format.Value.Substring(1).ToAcceptType()
+                ? requestHeaders.DetermineAcceptType(format.Value.Substring(1))
                 : requestHeaders.DetermineAcceptType();
 
             var cacheKey = string.Format(
