@@ -1,3 +1,5 @@
+## [2.14.2](https://github.com/informatievlaanderen/public-api/compare/v2.14.1...v2.14.2) (2019-04-25)
+
 ## [2.14.1](https://github.com/informatievlaanderen/public-api/compare/v2.14.0...v2.14.1) (2019-04-25)
 
 
