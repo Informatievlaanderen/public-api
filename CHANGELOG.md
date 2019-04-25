@@ -1,3 +1,10 @@
+## [2.14.1](https://github.com/informatievlaanderen/public-api/compare/v2.14.0...v2.14.1) (2019-04-25)
+
+
+### Bug Fixes
+
+* escape postalcode filterheader value ([f333546](https://github.com/informatievlaanderen/public-api/commit/f333546))
+
 # [2.14.0](https://github.com/informatievlaanderen/public-api/compare/v2.13.2...v2.14.0) (2019-04-19)
 
 
