@@ -31,6 +31,7 @@ namespace Public.Api.Feeds
         /// <param name="from">Optionele start id om van te beginnen.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
+        /// <param name="embed">De velden die moeten teruggegeven worden: event en/of object</param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van een lijst met adressen gelukt is.</response>
@@ -55,6 +56,7 @@ namespace Public.Api.Feeds
             [FromQuery] long? from,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
+            [FromQuery] string embed,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
             => await GetAddressesFeedWithFormat(
@@ -65,6 +67,7 @@ namespace Public.Api.Feeds
                 from,
                 offset,
                 limit,
+                embed,
                 ifNoneMatch,
                 cancellationToken);
 
@@ -78,6 +81,7 @@ namespace Public.Api.Feeds
         /// <param name="from">Optionele start id om van te beginnen.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
+        /// <param name="embed">De velden die moeten teruggegeven worden: event en/of object</param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van een lijst met adressen gelukt is.</response>
@@ -103,6 +107,7 @@ namespace Public.Api.Feeds
             [FromQuery] long? from,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
+            [FromQuery] string embed,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
@@ -128,7 +133,8 @@ namespace Public.Api.Feeds
                 "adressen",
                 from,
                 offset,
-                limit);
+                limit,
+                embed);
 
             var value = await GetFromBackendAsync(
                 format,
