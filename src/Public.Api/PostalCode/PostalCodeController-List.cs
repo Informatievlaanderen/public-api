@@ -21,6 +21,7 @@ namespace Public.Api.PostalCode
     using PostalRegistry.Api.Legacy.PostalInformation.Responses;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class PostalCodeController
     {
@@ -42,8 +43,8 @@ namespace Public.Api.PostalCode
         [HttpGet("postinfo")]
         [ProducesResponseType(typeof(List<PostalInformationListResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PostalInformationListResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]
@@ -90,8 +91,8 @@ namespace Public.Api.PostalCode
         [HttpGet("postinfo.{format}")]
         [ProducesResponseType(typeof(List<PostalInformationListResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PostalInformationListResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]

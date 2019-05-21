@@ -20,6 +20,7 @@ namespace Public.Api.Parcel
     using ParcelRegistry.Api.Legacy.Parcel.Responses;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class ParcelController
     {
@@ -40,8 +41,8 @@ namespace Public.Api.Parcel
         [HttpGet("percelen")]
         [ProducesResponseType(typeof(List<ParcelListResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(ParcelListResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]
@@ -85,8 +86,8 @@ namespace Public.Api.Parcel
         [HttpGet("percelen.{format}")]
         [ProducesResponseType(typeof(List<ParcelListResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(ParcelListResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]

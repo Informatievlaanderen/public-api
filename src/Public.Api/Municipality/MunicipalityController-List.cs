@@ -21,6 +21,7 @@ namespace Public.Api.Municipality
     using Newtonsoft.Json.Converters;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class MunicipalityController
     {
@@ -46,8 +47,8 @@ namespace Public.Api.Municipality
         [HttpGet("gemeenten")]
         [ProducesResponseType(typeof(List<MunicipalityListResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "CorrelationId", "string", "Correlatie identificator van de respons.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(MunicipalityListResponseExamples), jsonConverter: typeof(StringEnumConverter))]
@@ -107,8 +108,8 @@ namespace Public.Api.Municipality
         [HttpGet("gemeenten.{format}")]
         [ProducesResponseType(typeof(List<MunicipalityListResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "CorrelationId", "string", "Correlatie identificator van de respons.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(MunicipalityListResponseExamples), jsonConverter: typeof(StringEnumConverter))]

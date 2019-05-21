@@ -21,6 +21,7 @@ namespace Public.Api.Address
     using Newtonsoft.Json.Converters;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class AddressController
     {
@@ -47,8 +48,8 @@ namespace Public.Api.Address
         [HttpGet("adressen")]
         [ProducesResponseType(typeof(List<AddressListResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AddressListResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]
@@ -110,8 +111,8 @@ namespace Public.Api.Address
         [HttpGet("adressen.{format}")]
         [ProducesResponseType(typeof(List<AddressListResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AddressListResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]

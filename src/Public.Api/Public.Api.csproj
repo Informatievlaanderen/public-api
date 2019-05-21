@@ -17,11 +17,11 @@
 
   <ItemGroup>
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy\content\MunicipalityRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy\content\PostalRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
+    <!-- <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy\content\PostalRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy\content\StreetNameRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy\content\AddressRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy\content\ParcelRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice\content\PublicServiceRegistry.Api.Backoffice.xml" CopyToOutputDirectory="Always" />
+    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice\content\PublicServiceRegistry.Api.Backoffice.xml" CopyToOutputDirectory="Always" /> -->
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +29,27 @@
     <Content Include="appsettings.json" CopyToOutputDirectory="Always" />
     <Content Include="appsettings.*.json" CopyToOutputDirectory="Always" />
     <Content Include="init.sh" CopyToOutputDirectory="Always" />
+
+    <Compile Remove="Address\**" />
+    <Compile Remove="Parcel\**" />
+    <Compile Remove="PostalCode\**" />
+    <Compile Remove="PublicService\**" />
+    <Compile Remove="StreetName\**" />
+    <Content Remove="Address\**" />
+    <Content Remove="Parcel\**" />
+    <Content Remove="PostalCode\**" />
+    <Content Remove="PublicService\**" />
+    <Content Remove="StreetName\**" />
+    <EmbeddedResource Remove="Address\**" />
+    <EmbeddedResource Remove="Parcel\**" />
+    <EmbeddedResource Remove="PostalCode\**" />
+    <EmbeddedResource Remove="PublicService\**" />
+    <EmbeddedResource Remove="StreetName\**" />
+    <None Remove="Address\**" />
+    <None Remove="Parcel\**" />
+    <None Remove="PostalCode\**" />
+    <None Remove="PublicService\**" />
+    <None Remove="StreetName\**" />
   </ItemGroup>
 
   <ItemGroup>

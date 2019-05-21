@@ -15,6 +15,7 @@ namespace Public.Api.StreetName
     using RestSharp;
     using StreetNameRegistry.Api.Legacy.StreetName.Responses;
     using Swashbuckle.AspNetCore.Filters;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class StreetNameController
     {
@@ -33,8 +34,8 @@ namespace Public.Api.StreetName
         [HttpGet("straatnamen/{straatnaamId}")]
         [ProducesResponseType(typeof(StreetNameResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "CorrelationId", "string", "Correlatie identificator van de respons.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(StreetNameResponseExamples), jsonConverter: typeof(StringEnumConverter))]
@@ -72,8 +73,8 @@ namespace Public.Api.StreetName
         [HttpGet("straatnamen/{straatnaamId}.{format}")]
         [ProducesResponseType(typeof(StreetNameResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(BasicApiProblem), StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "CorrelationId", "string", "Correlatie identificator van de respons.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(StreetNameResponseExamples), jsonConverter: typeof(StringEnumConverter))]
