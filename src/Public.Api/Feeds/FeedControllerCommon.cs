@@ -24,14 +24,12 @@ namespace Public.Api.Feeds
             int? offset,
             int? limit,
             string embed)
-        {
-            return new RestRequest($"{resourcename}/sync?embed=true")
-                   .AddPagination(offset, limit)
-                   .AddFiltering(new
-                   {
-                       position = from ?? 0,
-                       embed = embed ?? string.Empty
-                   });
-        }
+            => new RestRequest($"{resourcename}/sync?embed=true")
+                    .AddPagination(offset, limit)
+                    .AddFiltering(new
+                    {
+                        position = @from ?? 0,
+                        embed = embed ?? string.Empty
+                    });
     }
 }
