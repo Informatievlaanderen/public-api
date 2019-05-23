@@ -1,3 +1,10 @@
+# [2.16.0](https://github.com/informatievlaanderen/public-api/compare/v2.15.1...v2.16.0) (2019-05-23)
+
+
+### Features
+
+* add postal ([b41df5e](https://github.com/informatievlaanderen/public-api/commit/b41df5e))
+
 ## [2.15.1](https://github.com/informatievlaanderen/public-api/compare/v2.15.0...v2.15.1) (2019-05-22)
 
 # [2.15.0](https://github.com/informatievlaanderen/public-api/compare/v2.14.2...v2.15.0) (2019-05-21)
