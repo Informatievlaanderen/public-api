@@ -173,6 +173,7 @@ NUGET
       Microsoft.CSharp (>= 4.5)
     Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (2.3.4) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 6.1 < 7.0)
+    Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (1.4) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.ProblemDetails (3.1.1)
       Microsoft.AspNetCore.Mvc.Core (>= 2.2.2)
       System.Reflection.Metadata (>= 1.6)
