@@ -32,7 +32,6 @@
 
     <Compile Remove="Address\**" />
     <Compile Remove="Parcel\**" />
-    <Compile Remove="PostalCode\**" />
     <Compile Remove="PublicService\**" />
     <Compile Remove="StreetName\**" />
     <Content Remove="Address\**" />
