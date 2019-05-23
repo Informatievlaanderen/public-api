@@ -1,3 +1,10 @@
+# [2.17.0](https://github.com/informatievlaanderen/public-api/compare/v2.16.0...v2.17.0) (2019-05-23)
+
+
+### Features
+
+* add postal to api ([a09deaf](https://github.com/informatievlaanderen/public-api/commit/a09deaf))
+
 # [2.16.0](https://github.com/informatievlaanderen/public-api/compare/v2.15.1...v2.16.0) (2019-05-23)
 
 
