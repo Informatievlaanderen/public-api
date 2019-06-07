@@ -24,7 +24,7 @@ nuget StackExchange.Redis 2.0.601
 // VBR STUFF
 nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy copy_content_to_output_dir: always
-// nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy copy_content_to_output_dir: always
 // nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy copy_content_to_output_dir: always
 // nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy copy_content_to_output_dir: always
 // nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice copy_content_to_output_dir: always
@@ -42,13 +42,13 @@ nuget Structurizr.Client 0.9.0
 nuget Structurizr.AdrTools 0.9.0
 
 // TEST STUFF
-nuget Microsoft.NET.Test.Sdk 16.1.0
+nuget Microsoft.NET.Test.Sdk 16.1.1
 nuget Microsoft.EntityFrameworkCore.InMemory 2.2.4
 nuget xunit 2.4.1
 nuget xunit.runner.visualstudio 2.4.1
 nuget xunit.categories 2.0.4
-nuget AutoFixture 4.8.0
-nuget AutoFixture.Xunit2 4.8.0
+nuget AutoFixture 4.9.0
+nuget AutoFixture.Xunit2 4.9.0
 nuget FluentAssertions 5.6.0
 
 // BUILD STUFF
