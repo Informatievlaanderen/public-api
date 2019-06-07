@@ -1,3 +1,10 @@
+# [2.18.0](https://github.com/informatievlaanderen/public-api/compare/v2.17.0...v2.18.0) (2019-06-07)
+
+
+### Features
+
+* add streetname registry ([2d6a89e](https://github.com/informatievlaanderen/public-api/commit/2d6a89e))
+
 # [2.17.0](https://github.com/informatievlaanderen/public-api/compare/v2.16.0...v2.17.0) (2019-05-23)
 
 
