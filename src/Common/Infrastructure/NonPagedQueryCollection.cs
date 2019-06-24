@@ -19,7 +19,7 @@ namespace Common.Infrastructure
         {
             if (query == null)
                 return new Dictionary<string, StringValues>();
-            
+
             bool IsNotPageParameter(KeyValuePair<string, StringValues> keyValuePair)
                 => PageQueryParameters.Contains(keyValuePair.Key, StringComparer.InvariantCultureIgnoreCase) == false;
 
