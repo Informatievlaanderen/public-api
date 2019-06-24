@@ -25,7 +25,7 @@ nuget StackExchange.Redis 2.0.601
 nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy copy_content_to_output_dir: always
-// nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy copy_content_to_output_dir: always
 // nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy copy_content_to_output_dir: always
 // nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice copy_content_to_output_dir: always
 
