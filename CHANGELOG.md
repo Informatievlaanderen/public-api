@@ -1,3 +1,17 @@
+# [2.19.0](https://github.com/informatievlaanderen/public-api/compare/v2.18.0...v2.19.0) (2019-06-26)
+
+
+### Bug Fixes
+
+* add streetname feed ([7ea9c52](https://github.com/informatievlaanderen/public-api/commit/7ea9c52))
+* correctly return querystring ([08cefa7](https://github.com/informatievlaanderen/public-api/commit/08cefa7))
+
+
+### Features
+
+* add address back to public api ([880d1ae](https://github.com/informatievlaanderen/public-api/commit/880d1ae))
+* add addressmatch / addressregistry ([c4da753](https://github.com/informatievlaanderen/public-api/commit/c4da753))
+
 # [2.18.0](https://github.com/informatievlaanderen/public-api/compare/v2.17.0...v2.18.0) (2019-06-07)
 
 
