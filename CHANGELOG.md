@@ -1,3 +1,10 @@
+## [2.19.2](https://github.com/informatievlaanderen/public-api/compare/v2.19.1...v2.19.2) (2019-06-28)
+
+
+### Bug Fixes
+
+* make sure swagger works ([7862bf7](https://github.com/informatievlaanderen/public-api/commit/7862bf7))
+
 ## [2.19.1](https://github.com/informatievlaanderen/public-api/compare/v2.19.0...v2.19.1) (2019-06-28)
 
 # [2.19.0](https://github.com/informatievlaanderen/public-api/compare/v2.18.0...v2.19.0) (2019-06-26)
