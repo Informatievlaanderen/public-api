@@ -139,7 +139,7 @@ namespace Public.Api.Municipality
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            var taal = Taal.NL;
+            const Taal taal = Taal.NL;
 
             void HandleBadRequest(HttpStatusCode statusCode)
             {
@@ -173,7 +173,7 @@ namespace Public.Api.Municipality
             return  BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        protected IRestRequest CreateBackendListRequest(
+        private static IRestRequest CreateBackendListRequest(
             int? offset,
             int? limit,
             Taal taal,

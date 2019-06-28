@@ -127,7 +127,7 @@ namespace Public.Api.StreetName
             return new BackendResponseResult(value);
         }
 
-        protected RestRequest CreateBackendDetailRequest(string streetNameId)
+        private static RestRequest CreateBackendDetailRequest(string streetNameId)
         {
             var request = new RestRequest("straatnamen/{streetNameId}");
             request.AddParameter("streetNameId", streetNameId, ParameterType.UrlSegment);

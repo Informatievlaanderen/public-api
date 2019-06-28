@@ -123,7 +123,7 @@ namespace Public.Api.Municipality
             return new BackendResponseResult(value);
         }
 
-        protected RestRequest CreateBackendDetailRequest(string nisCode)
+        private static RestRequest CreateBackendDetailRequest(string nisCode)
         {
             var request = new RestRequest("gemeenten/{nisCode}");
             request.AddParameter("nisCode", nisCode, ParameterType.UrlSegment);

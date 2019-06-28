@@ -127,7 +127,7 @@ namespace Public.Api.Address
             return new BackendResponseResult(value);
         }
 
-        protected RestRequest CreateBackendDetailRequest(string addressId)
+        private static RestRequest CreateBackendDetailRequest(string addressId)
         {
             var request = new RestRequest("adressen/{addressId}");
             request.AddParameter("addressId", addressId, ParameterType.UrlSegment);

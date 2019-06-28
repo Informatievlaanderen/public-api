@@ -1,6 +1,5 @@
 namespace Public.Api.Address
 {
-    using AddressRegistry.Api.Legacy.AddressMatch.Requests;
     using AddressRegistry.Api.Legacy.AddressMatch.Responses;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
@@ -16,6 +15,7 @@ namespace Public.Api.Address
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class AddressController
     {
@@ -75,6 +75,7 @@ namespace Public.Api.Address
         /// <summary>
         /// Voer een adres match vraag uit en krijg de adressen die gematcht worden.
         /// </summary>
+        /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="busNummer">Filter op het busnummer van het adres.</param>
         /// <param name="huisNummer">Filter op het huisnummer van het adres.</param>
         /// <param name="postCode">Filter op de postcode van het adres.</param>
@@ -149,7 +150,7 @@ namespace Public.Api.Address
             return BackendListResponseResult.Create(response, Request.Query, string.Empty);
         }
 
-        protected IRestRequest CreateBackendMatchRequest(
+        private static IRestRequest CreateBackendMatchRequest(
             Taal taal,
             string boxNumber,
             string houseNumber,
@@ -160,22 +161,18 @@ namespace Public.Api.Address
             string kadStreetCode,
             string rrStreetCode,
             string index)
-        {
-            var filter = new AddressMatchRequest
-            {
-                Busnummer = boxNumber,
-                Huisnummer = houseNumber,
-                Postcode = postalCode,
-                Gemeentenaam = municipalityName,
-                Straatnaam = streetName,
-                Niscode = nisCode,
-                KadStraatcode = kadStreetCode,
-                RrStraatcode = rrStreetCode,
-                Index = index,
-            };
-
-            return new RestRequest(
-                    "adresmatch?taal={taal}&busnummer={busnummer}&huisnummer={huisnummer}&postcode={postcode}&gemeentenaam={gemeentenaam}&niscode={niscode}&straatnaam={straatnaam}&kadstraatcode={kadstraatcode}&rrstraatcode={rrstraatcode}&index={index}")
+            => new RestRequest(
+                    "adresmatch?" +
+                    "taal={taal}&" +
+                    "busnummer={busnummer}&" +
+                    "huisnummer={huisnummer}&" +
+                    "postcode={postcode}&" +
+                    "gemeentenaam={gemeentenaam}&" +
+                    "niscode={niscode}&" +
+                    "straatnaam={straatnaam}&" +
+                    "kadstraatcode={kadstraatcode}&" +
+                    "rrstraatcode={rrstraatcode}&" +
+                    "index={index}")
                 .AddParameter("taal", taal, ParameterType.UrlSegment)
                 .AddParameter("busnummer", boxNumber, ParameterType.UrlSegment)
                 .AddParameter("huisnummer", houseNumber, ParameterType.UrlSegment)
@@ -186,6 +183,5 @@ namespace Public.Api.Address
                 .AddParameter("kadStreetCode", kadStreetCode, ParameterType.UrlSegment)
                 .AddParameter("rrstraatcode", rrStreetCode, ParameterType.UrlSegment)
                 .AddParameter("index", index, ParameterType.UrlSegment);
-        }
     }
 }

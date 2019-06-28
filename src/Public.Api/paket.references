@@ -9,6 +9,7 @@ Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy
 // Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice
 
 Be.Vlaanderen.Basisregisters.GrAr.Common
+Be.Vlaanderen.Basisregisters.GrAr.Legacy
 Be.Vlaanderen.Basisregisters.GrAr.Provenance
 
 FeatureToggle

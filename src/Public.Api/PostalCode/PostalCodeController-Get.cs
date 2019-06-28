@@ -123,7 +123,7 @@ namespace Public.Api.PostalCode
             return new BackendResponseResult(value);
         }
 
-        protected RestRequest CreateBackendDetailRequest(string postalCode)
+        private static RestRequest CreateBackendDetailRequest(string postalCode)
         {
             var request = new RestRequest("postcodes/{postalCode}");
             request.AddParameter("postalCode", postalCode, ParameterType.UrlSegment);
