@@ -5,11 +5,6 @@ namespace Public.Api.Infrastructure
 
     public class Program
     {
-        private static readonly DevelopmentCertificate DevelopmentCertificate =
-            new DevelopmentCertificate(
-                "api.dev.gemeente.basisregisters.vlaanderen.be.pfx",
-                "gemeenteregister!");
-
         public static void Main(string[] args) => CreateWebHostBuilder(args).Build().Run();
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
@@ -19,9 +14,7 @@ namespace Public.Api.Infrastructure
                     {
                         Hosting =
                         {
-                            HttpPort = 2080,
-                            HttpsPort = 2443,
-                            HttpsCertificate = DevelopmentCertificate.ToCertificate,
+                            HttpPort = 2080
                         },
                         Logging =
                         {
