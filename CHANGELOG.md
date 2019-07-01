@@ -1,3 +1,10 @@
+# [2.20.0](https://github.com/informatievlaanderen/public-api/compare/v2.19.2...v2.20.0) (2019-07-01)
+
+
+### Features
+
+* only cache registry urls ([3bb58f3](https://github.com/informatievlaanderen/public-api/commit/3bb58f3))
+
 ## [2.19.2](https://github.com/informatievlaanderen/public-api/compare/v2.19.1...v2.19.2) (2019-06-28)
 
 
