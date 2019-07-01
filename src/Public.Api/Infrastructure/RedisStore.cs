@@ -34,7 +34,7 @@ end
 
         public async Task<ValidatorValue> GetAsync(StoreKey key)
         {
-            if (key.Values.Any(x => x.Contains("/docs")))
+            if (!ShouldCacheValue(key.Values.FirstOrDefault()))
                 return null;
 
             _logger.LogDebug("Checking Redis for key '{key}'", key.ToString());
@@ -68,7 +68,7 @@ end
 
         public async Task SetAsync(StoreKey key, ValidatorValue eTag)
         {
-            if (key.Values.Any(x => x.Contains("/docs/")))
+            if (!ShouldCacheValue(key.Values.FirstOrDefault()))
                 return;
 
             var db = _redis.GetDatabase();
@@ -85,6 +85,16 @@ end
                 new RedisKey[] { key.ToString() },
                 Array.ConvertAll(hashValues, value => (RedisValue)value),
                 CommandFlags.FireAndForget);
+        }
+
+        private static bool ShouldCacheValue(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+                return false;
+
+            path = path.ToLowerInvariant();
+
+            return RedisStoreKeyGenerator.PathPrefixes.Any(prefix => path.Contains(prefix));
         }
     }
 }
