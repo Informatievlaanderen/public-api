@@ -1,3 +1,10 @@
+# [2.21.0](https://github.com/informatievlaanderen/public-api/compare/v2.20.0...v2.21.0) (2019-07-03)
+
+
+### Features
+
+* add bosa preparation ([ed41c00](https://github.com/informatievlaanderen/public-api/commit/ed41c00))
+
 # [2.20.0](https://github.com/informatievlaanderen/public-api/compare/v2.19.2...v2.20.0) (2019-07-01)
 
 
