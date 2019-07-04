@@ -21,7 +21,7 @@ namespace Public.Api.Address
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromBody] AddressBosaRequest searchBody,
+            [FromBody] BosaAddressRequest searchBody,
             CancellationToken cancellationToken = default)
             => await SearchBestAddAddressWithFormat(
                 null,
@@ -37,7 +37,7 @@ namespace Public.Api.Address
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromBody] AddressBosaRequest searchBody,
+            [FromBody] BosaAddressRequest searchBody,
             CancellationToken cancellationToken = default)
         {
             format = !string.IsNullOrWhiteSpace(format)
@@ -71,7 +71,7 @@ namespace Public.Api.Address
         }
 
         private static IRestRequest CreateBackendSearchBestAddRequest(
-            AddressBosaRequest searchBody)
+            BosaAddressRequest searchBody)
         {
             return new RestRequest("adressen/bosa", Method.POST)
                 .AddJsonBody(searchBody);
