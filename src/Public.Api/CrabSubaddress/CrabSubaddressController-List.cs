@@ -1,9 +1,11 @@
-namespace Public.Api.Municipality
+namespace Public.Api.CrabSubaddress
 {
     using System.Collections.Generic;
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
+    using AddressRegistry.Api.Legacy.Address.Responses;
+    using AddressRegistry.Api.Legacy.CrabSubaddress;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
@@ -16,120 +18,96 @@ namespace Public.Api.Municipality
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
     using Microsoft.Net.Http.Headers;
-    using MunicipalityRegistry.Api.Legacy.Municipality.Query;
-    using MunicipalityRegistry.Api.Legacy.Municipality.Responses;
     using Newtonsoft.Json.Converters;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
-    public partial class MunicipalityController
+    public partial class CrabSubaddressController
     {
         /// <summary>
-        /// Vraag een lijst met actieve gemeenten op.
+        /// Vraag een lijst met actieve adressen op.
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat (niscode, naam, naam-nl, naam-fr, naam-de, naam-en).</param>
-        /// <param name="nisCode">Filter op de NIS code van de gemeente (bevat).</param>
-        /// <param name="naamNl">Filter op het Nederlandse deel van de gemeente (bevat).</param>
-        /// <param name="naamFr">Filter op het Franse deel van de gemeente (bevat).</param>
-        /// <param name="naamDe">Filter op het Duitse deel van de gemeente (bevat).</param>
-        /// <param name="naamEn">Filter op het Engelse deel van de gemeente (bevat).</param>
+        /// <param name="sort">Optionele sortering van het resultaat (id, postcode, huisnummer, busnummer).</param>
+        /// <param name="crabSubadresId">Filter op het crab subadres id van het adres (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met gemeenten gelukt is.</response>
+        /// <response code="200">Als de opvraging van een lijst met adressen gelukt is.</response>
         /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gemeenten")]
-        [ProducesResponseType(typeof(List<MunicipalityListResponse>), StatusCodes.Status200OK)]
+        [HttpGet("crabsubadressen")]
+        [ProducesResponseType(typeof(List<AddressListResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "CorrelationId", "string", "Correlatie identificator van de respons.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(MunicipalityListResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AddressListResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 12 * 60 * 60)] // Hours, Minutes, Second
-        public async Task<IActionResult> ListMunicipalities(
+        public async Task<IActionResult> ListCrabSubaddresses(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] string nisCode,
-            [FromQuery] string naamNl,
-            [FromQuery] string naamFr,
-            [FromQuery] string naamDe,
-            [FromQuery] string naamEn,
+            [FromQuery] int? crabSubadresId,
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<MunicipalityOptions> responseOptions,
+            [FromServices] IOptions<AddressOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
-            => await ListMunicipalitiesWithFormat(
+            => await ListCrabSubaddressesWithFormat(
                 null,
                 offset,
                 limit,
                 sort,
-                nisCode,
-                naamNl,
-                naamFr,
-                naamDe,
-                naamEn,
+                crabSubadresId,
                 actionContextAccessor,
                 responseOptions,
                 ifNoneMatch,
                 cancellationToken);
 
         /// <summary>
-        /// Vraag een lijst met actieve gemeenten op.
+        /// Vraag een lijst met actieve adressen op.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat (niscode, naam, naam-nl, naam-fr, naam-de, naam-en).</param>
-        /// <param name="nisCode">Filter op de NIS code van de gemeente (bevat).</param>
-        /// <param name="naamNl">Filter op het Nederlandse deel van de gemeente (bevat).</param>
-        /// <param name="naamFr">Filter op het Franse deel van de gemeente (bevat).</param>
-        /// <param name="naamDe">Filter op het Duitse deel van de gemeente (bevat).</param>
-        /// <param name="naamEn">Filter op het Engelse deel van de gemeente (bevat).</param>
+        /// <param name="sort">Optionele sortering van het resultaat (id).</param>
+        /// <param name="crabSubadresId">Filter op het crab subadres id van het adres (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met gemeenten gelukt is.</response>
+        /// <response code="200">Als de opvraging van een lijst met adressen gelukt is.</response>
         /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gemeenten.{format}")]
-        [ProducesResponseType(typeof(List<MunicipalityListResponse>), StatusCodes.Status200OK)]
+        [HttpGet("crabsubadressen.{format}")]
+        [ProducesResponseType(typeof(List<AddressListResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "CorrelationId", "string", "Correlatie identificator van de respons.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(MunicipalityListResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AddressListResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 12 * 60 * 60)] // Hours, Minutes, Second
-        public async Task<IActionResult> ListMunicipalitiesWithFormat(
+        public async Task<IActionResult> ListCrabSubaddressesWithFormat(
             [FromRoute] string format,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] string nisCode,
-            [FromQuery] string naamNl,
-            [FromQuery] string naamFr,
-            [FromQuery] string naamDe,
-            [FromQuery] string naamEn,
+            [FromQuery] int? crabSubadresId,
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<MunicipalityOptions> responseOptions,
+            [FromServices] IOptions<AddressOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
@@ -156,60 +134,39 @@ namespace Public.Api.Municipality
             IRestRequest BackendRequest() => CreateBackendListRequest(
                 offset,
                 limit,
-                taal,
                 sort,
-                nisCode,
-                naamNl,
-                naamFr,
-                naamDe,
-                naamEn);
+                crabSubadresId);
 
-            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/municipality-list:{taal}");
+            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/crabsubaddresses-list:{taal}");
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken)
                 : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken));
 
-            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.CrabSubadressenVolgendeUrl);
         }
 
         private static IRestRequest CreateBackendListRequest(
             int? offset,
             int? limit,
-            Taal taal,
             string sort,
-            string nisCode,
-            string nameDutch,
-            string nameFrench,
-            string nameGerman,
-            string nameEnglish)
+            int? crabSubaddressId)
         {
-            var filter = new MunicipalityFilter
+            var filter = new CrabSubaddressAddressFilter
             {
-                NisCode = nisCode,
-                NameDutch = nameDutch,
-                NameFrench = nameFrench,
-                NameGerman = nameGerman,
-                NameEnglish = nameEnglish
+                CrabSubaddressId = crabSubaddressId
             };
 
-            // niscode, naam, naam-nl, naam-fr, naam-de, naam-en
             var sortMapping = new Dictionary<string, string>
             {
-                { "NisCode", "NisCode" },
-                { "Naam", "DefaultName" },
-                { "NaamNl", "NameDutch" },
-                { "Naam-Nl", "NameDutch" },
-                { "NaamEn", "NameEnglish" },
-                { "Naam-En", "NameEnglish" },
-                { "NaamFr", "NameFrench" },
-                { "Naam-Fr", "NameFrench" },
-                { "NaamDe", "NameGerman" },
-                { "Naam-De", "NameGerman" },
+                { "CrabSubadresId", "SubaddressId" },
+                { "CrabSubadres", "SubaddressId" },
+                { "Subadres", "SubaddressId" },
+                { "SubadresId", "SubaddressId" },
+                { "Id", "SubaddressId" },
             };
 
-            return new RestRequest("gemeenten?taal={taal}")
-                .AddParameter("taal", taal, ParameterType.UrlSegment)
+            return new RestRequest("crabsubadressen")
                 .AddPagination(offset, limit)
                 .AddFiltering(filter)
                 .AddSorting(sort, sortMapping);

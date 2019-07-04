@@ -1,4 +1,4 @@
-namespace Public.Api.StreetName
+namespace Public.Api.Municipality
 {
     using System.Net;
     using System.Threading;
@@ -11,19 +11,19 @@ namespace Public.Api.StreetName
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
     using Microsoft.Net.Http.Headers;
+    using MunicipalityRegistry.Api.Legacy.Municipality.Requests;
     using RestSharp;
-    using StreetNameRegistry.Api.Legacy.StreetName.Requests;
 
-    public partial class StreetNameController
+    public partial class MunicipalityController
     {
-        [HttpPost("bosa/straatnamen")]
-        public async Task<IActionResult> SearchBestAddStreetName(
+        [HttpPost("bosa/gemeenten")]
+        public async Task<IActionResult> SearchBestAddMunicipality(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromBody] BosaStreetNameRequest searchBody,
+            [FromBody] BosaMunicipalityRequest searchBody,
             CancellationToken cancellationToken = default)
-            => await SearchBestAddStreetNameWithFormat(
+            => await SearchBestAddMunicipalityWithFormat(
                 null,
                 actionContextAccessor,
                 responseOptions,
@@ -31,13 +31,13 @@ namespace Public.Api.StreetName
                 searchBody,
                 cancellationToken);
 
-        [HttpPost("bosa/straatnamen.{format}")]
-        public async Task<IActionResult> SearchBestAddStreetNameWithFormat(
+        [HttpPost("bosa/gemeenten.{format}")]
+        public async Task<IActionResult> SearchBestAddMunicipalityWithFormat(
             [FromRoute] string format,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromBody] BosaStreetNameRequest searchBody,
+            [FromBody] BosaMunicipalityRequest searchBody,
             CancellationToken cancellationToken = default)
         {
             format = !string.IsNullOrWhiteSpace(format)
@@ -71,9 +71,9 @@ namespace Public.Api.StreetName
         }
 
         private static IRestRequest CreateBackendSearchBestAddRequest(
-            BosaStreetNameRequest searchBody)
+            BosaMunicipalityRequest searchBody)
         {
-            return new RestRequest("straatnamen/bosa", Method.POST)
+            return new RestRequest("gemeenten/bosa", Method.POST)
                 .AddJsonBody(searchBody);
         }
     }

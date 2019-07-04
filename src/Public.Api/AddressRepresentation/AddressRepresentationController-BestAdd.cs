@@ -1,8 +1,9 @@
-namespace Public.Api.StreetName
+namespace Public.Api.AddressRepresentation
 {
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
+    using AddressRegistry.Api.Legacy.Address.Requests;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Infrastructure;
     using Infrastructure.Configuration;
@@ -12,18 +13,17 @@ namespace Public.Api.StreetName
     using Microsoft.Extensions.Options;
     using Microsoft.Net.Http.Headers;
     using RestSharp;
-    using StreetNameRegistry.Api.Legacy.StreetName.Requests;
 
-    public partial class StreetNameController
+    public partial class AddressRepresentationController
     {
-        [HttpPost("bosa/straatnamen")]
-        public async Task<IActionResult> SearchBestAddStreetName(
+        [HttpPost("bosa/adresvoorstellingen")]
+        public async Task<IActionResult> SearchBestAddAddressRepresentation(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromBody] BosaStreetNameRequest searchBody,
+            [FromBody] AddressRepresentationBosaRequest searchBody,
             CancellationToken cancellationToken = default)
-            => await SearchBestAddStreetNameWithFormat(
+            => await SearchBestAddAddressRepresentationWithFormat(
                 null,
                 actionContextAccessor,
                 responseOptions,
@@ -31,13 +31,13 @@ namespace Public.Api.StreetName
                 searchBody,
                 cancellationToken);
 
-        [HttpPost("bosa/straatnamen.{format}")]
-        public async Task<IActionResult> SearchBestAddStreetNameWithFormat(
+        [HttpPost("bosa/adresvoorstellingen.{format}")]
+        public async Task<IActionResult> SearchBestAddAddressRepresentationWithFormat(
             [FromRoute] string format,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromBody] BosaStreetNameRequest searchBody,
+            [FromBody] AddressRepresentationBosaRequest searchBody,
             CancellationToken cancellationToken = default)
         {
             format = !string.IsNullOrWhiteSpace(format)
@@ -71,9 +71,9 @@ namespace Public.Api.StreetName
         }
 
         private static IRestRequest CreateBackendSearchBestAddRequest(
-            BosaStreetNameRequest searchBody)
+            AddressRepresentationBosaRequest searchBody)
         {
-            return new RestRequest("straatnamen/bosa", Method.POST)
+            return new RestRequest("adressen/bosa/adresvoorstellingen", Method.POST)
                 .AddJsonBody(searchBody);
         }
     }

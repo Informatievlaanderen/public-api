@@ -16,9 +16,9 @@ nuget Microsoft.NETCore.DotNetHostPolicy 2.2.4
 nuget NETStandard.Library 2.0.3
 
 // PRODUCTION STUFF
-nuget RestSharp 106.6.9
+nuget RestSharp 106.6.10
 nuget FeatureToggle 4.0.2
-nuget Marvin.Cache.Headers 3.1.0
+nuget Marvin.Cache.Headers 3.2.0
 nuget StackExchange.Redis 2.0.601
 
 // VBR STUFF
