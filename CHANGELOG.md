@@ -1,3 +1,16 @@
+# [2.22.0](https://github.com/informatievlaanderen/public-api/compare/v2.21.0...v2.22.0) (2019-07-04)
+
+
+### Bug Fixes
+
+* use correct bestadd request objects ([597a03e](https://github.com/informatievlaanderen/public-api/commit/597a03e))
+* use correct bestadd request objects ([e28ad04](https://github.com/informatievlaanderen/public-api/commit/e28ad04))
+
+
+### Features
+
+* add bosa, crab subaddress, crab housenumber endpoints ([a716b8d](https://github.com/informatievlaanderen/public-api/commit/a716b8d))
+
 # [2.21.0](https://github.com/informatievlaanderen/public-api/compare/v2.20.0...v2.21.0) (2019-07-03)
 
 
