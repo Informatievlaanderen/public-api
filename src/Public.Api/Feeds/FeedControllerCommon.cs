@@ -24,11 +24,11 @@ namespace Public.Api.Feeds
             int? offset,
             int? limit,
             string embed)
-            => new RestRequest($"{resourcename}/sync?embed=true")
+            => new RestRequest($"{resourcename}/sync")
                     .AddPagination(offset, limit)
                     .AddFiltering(new
                     {
-                        position = @from ?? 0,
+                        position = from ?? 0,
                         embed = embed ?? string.Empty
                     });
     }
