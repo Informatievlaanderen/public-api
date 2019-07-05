@@ -1,3 +1,15 @@
+# [2.23.0](https://github.com/informatievlaanderen/public-api/compare/v2.22.0...v2.23.0) (2019-07-05)
+
+
+### Bug Fixes
+
+* use newer api ([afe4955](https://github.com/informatievlaanderen/public-api/commit/afe4955))
+
+
+### Features
+
+* use correct last modified date ([7c7128f](https://github.com/informatievlaanderen/public-api/commit/7c7128f))
+
 # [2.22.0](https://github.com/informatievlaanderen/public-api/compare/v2.21.0...v2.22.0) (2019-07-04)
 
 
