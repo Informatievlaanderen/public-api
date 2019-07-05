@@ -134,7 +134,8 @@ namespace Public.Api.Infrastructure
                         return redis != null
                             ? new RedisStore(_loggerFactory.CreateLogger<RedisStore>(), redis) as IValidatorValueStore
                             : new InMemoryValidatorValueStore(_loggerFactory.CreateLogger<InMemoryValidatorValueStore>()) as IValidatorValueStore;
-                    })
+                    },
+                    lastModifiedInjectorFunc: _ => new RedisLastModifiedInjector())
 
                 .ConfigureRegistryOptions<MunicipalityOptions>(_configuration.GetSection("ApiConfiguration:MunicipalityRegistry"))
                 .ConfigureRegistryOptions<PostalOptions>(_configuration.GetSection("ApiConfiguration:PostalRegistry"))
