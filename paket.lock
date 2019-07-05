@@ -19,7 +19,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.Utilities.ToStringBuilder (>= 1.0 < 2.0)
       Newtonsoft.Json (>= 12.0.2)
       NodaTime (>= 2.4.5)
-    Be.Vlaanderen.Basisregisters.Api (7.0.1)
+    Be.Vlaanderen.Basisregisters.Api (7.0.2)
       Autofac (>= 4.9.2)
       Autofac.Extensions.DependencyInjection (>= 4.4)
       Be.Vlaanderen.Basisregisters.AggregateSource (>= 3.0 < 4.0)
@@ -171,7 +171,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.Crab (>= 1.0 < 2.0)
       Be.Vlaanderen.Basisregisters.GrAr.Common (10.0.1)
       Microsoft.CSharp (>= 4.5)
-    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (2.6.4) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (2.7) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 10.0.1)
     Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (1.6.3) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.ProblemDetails (3.1.1)
