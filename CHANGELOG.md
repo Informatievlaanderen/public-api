@@ -1,3 +1,10 @@
+## [2.24.1](https://github.com/informatievlaanderen/public-api/compare/v2.24.0...v2.24.1) (2019-07-08)
+
+
+### Bug Fixes
+
+* use correct response types for crabhousenumber ([124fa12](https://github.com/informatievlaanderen/public-api/commit/124fa12))
+
 # [2.24.0](https://github.com/informatievlaanderen/public-api/compare/v2.23.0...v2.24.0) (2019-07-08)
 
 
