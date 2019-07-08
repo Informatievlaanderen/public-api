@@ -1,5 +1,6 @@
 namespace Public.Api.Infrastructure
 {
+    using System.Globalization;
     using System.Threading.Tasks;
     using Common.Infrastructure;
     using Microsoft.AspNetCore.Http;
@@ -20,6 +21,9 @@ namespace Public.Api.Infrastructure
         public override Task ExecuteResultAsync(ActionContext context)
         {
             context.HttpContext.Response.Headers.Add("x-cached", _response.CameFromCache ? "yes" : "no");
+
+            if (_response.CameFromCache)
+                context.HttpContext.Response.Headers.Add("x-last-modified", _response.LastModified.ToString("O", CultureInfo.InvariantCulture));
 
             return base.ExecuteResultAsync(context);
         }

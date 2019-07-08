@@ -1,6 +1,7 @@
 namespace Common.Infrastructure
 {
     using System;
+    using System.Globalization;
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace Common.Infrastructure
     public abstract class ApiController<T> : ApiController
     {
         private const string ValueKey = "value";
+        private const string LastModifiedKey = "lastModified";
 
         private readonly ConnectionMultiplexer _redis;
         private readonly ILogger<T> _logger;
@@ -52,8 +54,21 @@ namespace Common.Infrastructure
                             ValueKey,
                             CommandFlags.PreferSlave);
 
+                    var cachedLastModified =
+                        await db.HashGetAsync(
+                            key,
+                            LastModifiedKey,
+                            CommandFlags.PreferSlave);
+
                     if (cachedValue.HasValue)
-                        return new BackendResponse(cachedValue, acceptType.ToMimeTypeString(), true);
+                        return new BackendResponse(
+                            cachedValue,
+                            DateTimeOffset.ParseExact(
+                                cachedLastModified,
+                                "O",
+                                CultureInfo.InvariantCulture),
+                            acceptType.ToMimeTypeString(),
+                            true);
                 }
                 catch (Exception ex)
                 {
@@ -98,7 +113,7 @@ namespace Common.Infrastructure
             var response = await restClient.ExecuteTaskAsync(backendRequest, cancellationToken);
 
             if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
-                return new BackendResponse(response.Content, contentType, false);
+                return new BackendResponse(response.Content, DateTimeOffset.UtcNow, contentType, false);
 
             handleNotOkResponseAction(response.StatusCode);
 

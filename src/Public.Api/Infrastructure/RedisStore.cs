@@ -94,7 +94,7 @@ end
 
             path = path.ToLowerInvariant();
 
-            return RedisStoreKeyGenerator.PathPrefixes.Any(prefix => path.Contains(prefix));
+            return RedisStoreKeyGenerator.CachePrefixes.Any(prefix => path.Contains(prefix));
         }
     }
 }

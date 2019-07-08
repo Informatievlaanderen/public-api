@@ -13,45 +13,52 @@ namespace Public.Api.Infrastructure
     {
         private readonly ILogger<RedisStoreKeyGenerator> _logger;
 
-        private const string MunicipalityPrefix = "/v1/gemeenten/";
-        private const string MunicipalityCacheKey = "legacy/municipality:{0}.{1}";
+        private const string MunicipalityPathPrefix = "/v1/gemeenten/";
+        private const string MunicipalityCachePrefix = "legacy/municipality:";
+        private const string MunicipalityCacheKey = MunicipalityCachePrefix + "{0}.{1}";
         private static readonly Regex MunicipalityRegex = new Regex(@"/v1/gemeenten/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
-        private const string PostalPrefix = "/v1/postinfo/";
-        private const string PostalCacheKey = "legacy/postalinfo:{0}.{1}";
+        private const string PostalPathPrefix = "/v1/postinfo/";
+        private const string PostalCachePrefix = "legacy/postalinfo:";
+        private const string PostalCacheKey = PostalCachePrefix + "{0}.{1}";
         private static readonly Regex PostalRegex = new Regex(@"/v1/postinfo/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
-        private const string StreetNamePrefix = "/v1/straatnamen/";
-        private const string StreetNameCacheKey = "legacy/streetname:{0}.{1}";
+        private const string StreetNamePathPrefix = "/v1/straatnamen/";
+        private const string StreetNameCachePrefix = "legacy/streetname:";
+        private const string StreetNameCacheKey = StreetNameCachePrefix + "{0}.{1}";
         private static readonly Regex StreetNameRegex = new Regex(@"/v1/straatnamen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
-        private const string AddressPrefix = "/v1/adressen/";
-        private const string AddressCacheKey = "legacy/address:{0}.{1}";
+        private const string AddressPathPrefix = "/v1/adressen/";
+        private const string AddressCachePrefix = "legacy/address:";
+        private const string AddressCacheKey = AddressCachePrefix + "{0}.{1}";
         private static readonly Regex AddressRegex = new Regex(@"/v1/adressen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
-        private const string ParcelPrefix = "/v1/percelen/";
-        private const string ParcelCacheKey = "legacy/parcel:{0}.{1}";
+        private const string ParcelPathPrefix = "/v1/percelen/";
+        private const string ParcelCachePrefix = "legacy/parcel:";
+        private const string ParcelCacheKey = ParcelCachePrefix + "{0}.{1}";
         private static readonly Regex ParcelRegex = new Regex(@"/v1/percelen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
         // TODO: Add the others
 
-        private const string BuildingPrefix = "/v1/gebouwen/";
-        private const string BuildingCacheKey = "legacy/building:{0}.{1}";
+        private const string BuildingPathPrefix = "/v1/gebouwen/";
+        private const string BuildingCachePrefix = "legacy/building:";
+        private const string BuildingCacheKey = BuildingCachePrefix + "{0}.{1}";
         private static readonly Regex BuildingRegex = new Regex(@"/v1/gebouwen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
-        private const string PublicServicePrefix = "/v1/dienstverleningen/";
-        private const string PublicServiceCacheKey = "legacy/publicservice:{0}.{1}";
+        private const string PublicServicePathPrefix = "/v1/dienstverleningen/";
+        private const string PublicServiceCachePrefix = "legacy/publicservice:";
+        private const string PublicServiceCacheKey = PublicServiceCachePrefix + "{0}.{1}";
         private static readonly Regex PublicServiceRegex = new Regex(@"/v1/dienstverleningen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
-        public static readonly string[] PathPrefixes =
+        public static readonly string[] CachePrefixes =
         {
-            MunicipalityPrefix.ToLowerInvariant(),
-            PostalPrefix.ToLowerInvariant(),
-            StreetNamePrefix.ToLowerInvariant(),
-            AddressPrefix.ToLowerInvariant(),
-            ParcelPrefix.ToLowerInvariant(),
-            BuildingPrefix.ToLowerInvariant(),
-            PublicServicePrefix.ToLowerInvariant()
+            MunicipalityCachePrefix.ToLowerInvariant(),
+            PostalCachePrefix.ToLowerInvariant(),
+            StreetNameCachePrefix.ToLowerInvariant(),
+            AddressCachePrefix.ToLowerInvariant(),
+            ParcelCachePrefix.ToLowerInvariant(),
+            BuildingCachePrefix.ToLowerInvariant(),
+            PublicServiceCachePrefix.ToLowerInvariant()
         };
 
         private static readonly IStoreKeyGenerator DefaultStoreKeyGenerator = new DefaultStoreKeyGenerator();
@@ -65,27 +72,27 @@ namespace Public.Api.Infrastructure
             _logger.LogDebug("Generate store key for '{path}'", resourcePath);
 
             // http://cc.davelozinski.com/c-sharp/fastest-way-to-check-if-a-string-occurs-within-a-string
-            if (resourcePath.StartsWith(MunicipalityPrefix))
+            if (resourcePath.StartsWith(MunicipalityPathPrefix))
                 return GenerateStoreKey(context, resourcePath, MunicipalityRegex, MunicipalityCacheKey);
 
-            if (resourcePath.StartsWith(PostalPrefix))
+            if (resourcePath.StartsWith(PostalPathPrefix))
                 return GenerateStoreKey(context, resourcePath, PostalRegex, PostalCacheKey);
 
-            if (resourcePath.StartsWith(StreetNamePrefix))
+            if (resourcePath.StartsWith(StreetNamePathPrefix))
                 return GenerateStoreKey(context, resourcePath, StreetNameRegex, StreetNameCacheKey);
 
-            if (resourcePath.StartsWith(AddressPrefix))
+            if (resourcePath.StartsWith(AddressPathPrefix))
                 return GenerateStoreKey(context, resourcePath, AddressRegex, AddressCacheKey);
 
-            if (resourcePath.StartsWith(ParcelPrefix))
+            if (resourcePath.StartsWith(ParcelPathPrefix))
                 return GenerateStoreKey(context, resourcePath, ParcelRegex, ParcelCacheKey);
 
             // TODO: Add the others
 
-            if (resourcePath.StartsWith(BuildingPrefix))
+            if (resourcePath.StartsWith(BuildingPathPrefix))
                 return GenerateStoreKey(context, resourcePath, BuildingRegex, BuildingCacheKey);
 
-            if (resourcePath.StartsWith(PublicServicePrefix))
+            if (resourcePath.StartsWith(PublicServicePathPrefix))
                 return GenerateStoreKey(context, resourcePath, PublicServiceRegex, PublicServiceCacheKey);
 
             return DefaultStoreKeyGenerator.GenerateStoreKey(context);

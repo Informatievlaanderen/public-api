@@ -1,5 +1,6 @@
 namespace Common.Infrastructure
 {
+    using System;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Xml.Linq;
@@ -7,6 +8,7 @@ namespace Common.Infrastructure
     public class BackendResponse
     {
         public string Content { get; set; }
+        public DateTimeOffset LastModified { get; set; }
         public string ContentType { get; set; }
         public bool CameFromCache { get; set; }
 
@@ -14,10 +16,12 @@ namespace Common.Infrastructure
 
         public BackendResponse(
             string content,
+            DateTimeOffset lastModified,
             string contentType,
             bool cameFromCache)
         {
             Content = content;
+            LastModified = lastModified;
             ContentType = contentType.ToLowerInvariant();
             CameFromCache = cameFromCache;
         }

@@ -1,6 +1,7 @@
 namespace Public.Api.Infrastructure
 {
     using System;
+    using System.Globalization;
     using System.Threading.Tasks;
     using Marvin.Cache.Headers;
     using Marvin.Cache.Headers.Domain;
@@ -9,8 +10,17 @@ namespace Public.Api.Infrastructure
     public class RedisLastModifiedInjector : DefaultLastModifiedInjector, ILastModifiedInjector
     {
         public new Task<DateTimeOffset> CalculateLastModified(ResourceContext context)
-            => context.ValidatorValue == null
-                ? base.CalculateLastModified(context)
-                : Task.FromResult(context.ValidatorValue.LastModified);
+        {
+            if (context.ValidatorValue != null)
+                return Task.FromResult(context.ValidatorValue.LastModified);
+
+            if (context.HttpRequest.HttpContext.Response.Headers.ContainsKey("x-last-modified"))
+                return Task.FromResult(DateTimeOffset.ParseExact(
+                    context.HttpRequest.HttpContext.Response.Headers["x-last-modified"],
+                    "O",
+                    CultureInfo.InvariantCulture));
+
+            return base.CalculateLastModified(context);
+        }
     }
 }

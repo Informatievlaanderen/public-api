@@ -46,11 +46,9 @@ namespace Common.Infrastructure
         }
 
         public static AcceptType DetermineAcceptType(this RequestHeaders requestHeaders, string format)
-        {
-            return Enum.TryParse(format, ignoreCase: true, out AcceptType acceptType)
-                    ? acceptType
-                    : requestHeaders.DetermineAcceptType();
-        }
+            => Enum.TryParse(format, ignoreCase: true, out AcceptType acceptType)
+                ? acceptType
+                : requestHeaders.DetermineAcceptType();
 
         public static AcceptType DetermineAcceptType(this RequestHeaders requestHeaders)
         {
@@ -78,8 +76,6 @@ namespace Common.Infrastructure
         }
 
         private static bool Contains(this MediaTypeHeaderValue headerValue, string mineType)
-        {
-            return headerValue.MediaType.Value.Contains(mineType, StringComparison.InvariantCultureIgnoreCase);
-        }
+            => headerValue.MediaType.Value.Contains(mineType, StringComparison.InvariantCultureIgnoreCase);
     }
 }
