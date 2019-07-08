@@ -1,3 +1,10 @@
+# [2.24.0](https://github.com/informatievlaanderen/public-api/compare/v2.23.0...v2.24.0) (2019-07-08)
+
+
+### Features
+
+* return last modified from cache ([4013f72](https://github.com/informatievlaanderen/public-api/commit/4013f72))
+
 # [2.23.0](https://github.com/informatievlaanderen/public-api/compare/v2.22.0...v2.23.0) (2019-07-05)
 
 
