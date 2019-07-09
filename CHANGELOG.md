@@ -1,3 +1,11 @@
+## [2.24.2](https://github.com/informatievlaanderen/public-api/compare/v2.24.1...v2.24.2) (2019-07-09)
+
+
+### Bug Fixes
+
+* return 406 if accept type cannot be determined ([af0c834](https://github.com/informatievlaanderen/public-api/commit/af0c834))
+* use different error message for 406 ([7539b9e](https://github.com/informatievlaanderen/public-api/commit/7539b9e))
+
 ## [2.24.1](https://github.com/informatievlaanderen/public-api/compare/v2.24.0...v2.24.1) (2019-07-08)
 
 
