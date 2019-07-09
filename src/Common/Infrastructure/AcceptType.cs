@@ -5,6 +5,8 @@ namespace Common.Infrastructure
     using System.Linq;
     using Microsoft.Net.Http.Headers;
     using System.Net.Mime;
+    using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Microsoft.AspNetCore.Http;
 
     public enum AcceptType
     {
@@ -56,7 +58,7 @@ namespace Common.Infrastructure
                 .Accept
                 .OrderBy(header => header.Quality)
                 .Where(header => header.MediaType.HasValue);
-            
+
             foreach (var headerValue in headersByQuality)
             {
                 if (headerValue.Contains(AcceptTypes.Atom))
@@ -72,7 +74,7 @@ namespace Common.Infrastructure
                     return AcceptType.Json;
             }
 
-            return AcceptType.Json;
+            throw new ApiException("Accept type is not acceptable", StatusCodes.Status406NotAcceptable);
         }
 
         private static bool Contains(this MediaTypeHeaderValue headerValue, string mineType)
