@@ -1,3 +1,10 @@
+# [2.25.0](https://github.com/informatievlaanderen/public-api/compare/v2.24.2...v2.25.0) (2019-07-09)
+
+
+### Features
+
+* add 406 response types ([869f178](https://github.com/informatievlaanderen/public-api/commit/869f178))
+
 ## [2.24.2](https://github.com/informatievlaanderen/public-api/compare/v2.24.1...v2.24.2) (2019-07-09)
 
 
