@@ -74,7 +74,7 @@ namespace Common.Infrastructure
                     return AcceptType.Json;
             }
 
-            throw new ApiException("Accept type is not acceptable", StatusCodes.Status406NotAcceptable);
+            throw new ApiException("Ongeldig formaat.", StatusCodes.Status406NotAcceptable);
         }
 
         private static bool Contains(this MediaTypeHeaderValue headerValue, string mineType)
