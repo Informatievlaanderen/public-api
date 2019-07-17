@@ -1,3 +1,10 @@
+# [2.26.0](https://github.com/informatievlaanderen/public-api/compare/v2.25.0...v2.26.0) (2019-07-17)
+
+
+### Features
+
+* add parcelregistry ([0608a72](https://github.com/informatievlaanderen/public-api/commit/0608a72))
+
 # [2.25.0](https://github.com/informatievlaanderen/public-api/compare/v2.24.2...v2.25.0) (2019-07-09)
 
 
