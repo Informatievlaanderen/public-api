@@ -29,18 +29,21 @@ namespace Public.Api.Parcel
         /// <response code="200">Als het perceel gevonden is.</response>
         /// <response code="304">Als het perceel niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="404">Als het perceel niet gevonden kan worden.</response>
+        /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als het perceel verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("percelen/{capaKey}")]
         [ProducesResponseType(typeof(ParcelResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "CorrelationId", "string", "Correlatie identificator van de respons.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(ParcelResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(ParcelNotFoundResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(ParcelGoneResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
@@ -99,7 +102,7 @@ namespace Public.Api.Parcel
 
             const string notFoundExceptionMessage = "Onbestaand perceel.";
 
-            void HandleNotFound(HttpStatusCode statusCode)
+            void HandleBadRequest(HttpStatusCode statusCode)
             {
                 switch (statusCode)
                 {
@@ -121,13 +124,13 @@ namespace Public.Api.Parcel
             var cacheKey = $"legacy/parcel:{capaKey}";
 
             var value = await (CacheToggle.FeatureEnabled
-                ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleNotFound, cancellationToken)
-                : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), HandleNotFound, cancellationToken));
+                ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken)
+                : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken));
 
             return new BackendResponseResult(value);
         }
 
-        protected RestRequest CreateBackendDetailRequest(string capaKey)
+        private static RestRequest CreateBackendDetailRequest(string capaKey)
         {
             var request = new RestRequest("percelen/{capaKey}");
             request.AddParameter("capaKey", capaKey, ParameterType.UrlSegment);

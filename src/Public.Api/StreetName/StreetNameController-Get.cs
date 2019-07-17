@@ -103,7 +103,7 @@ namespace Public.Api.StreetName
 
             const string notFoundExceptionMessage = "Onbestaande straatnaam.";
 
-            void HandleNotFound(HttpStatusCode statusCode)
+            void HandleBadRequest(HttpStatusCode statusCode)
             {
                 switch (statusCode)
                 {
@@ -125,8 +125,8 @@ namespace Public.Api.StreetName
             var cacheKey = $"legacy/streetname:{straatnaamId}";
 
             var value = await (CacheToggle.FeatureEnabled
-                ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleNotFound, cancellationToken)
-                : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), HandleNotFound, cancellationToken));
+                ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken)
+                : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken));
 
             return new BackendResponseResult(value);
         }

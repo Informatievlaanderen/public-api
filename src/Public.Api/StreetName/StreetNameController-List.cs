@@ -198,7 +198,7 @@ namespace Public.Api.StreetName
             // id, naam-nl, naam-fr, naam-de, naam-en
             var sortMapping = new Dictionary<string, string>
             {
-                { "Id", "OsloId" },
+                { "Id", "PersistentLocalId" },
                 { "NaamNl", "NameDutch" },
                 { "Naam-Nl", "NameDutch" },
                 { "NaamEn", "NameEnglish" },

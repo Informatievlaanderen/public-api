@@ -105,7 +105,7 @@ namespace Public.Api.Address
 
             const string notFoundExceptionMessage = "Onbestaand adres.";
 
-            void HandleNotFound(HttpStatusCode statusCode)
+            void HandleBadRequest(HttpStatusCode statusCode)
             {
                 switch (statusCode)
                 {
@@ -127,8 +127,8 @@ namespace Public.Api.Address
             var cacheKey = $"legacy/address:{adresId}";
 
             var value = await (CacheToggle.FeatureEnabled
-                ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleNotFound, cancellationToken)
-                : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), HandleNotFound, cancellationToken));
+                ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken)
+                : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken));
 
             return new BackendResponseResult(value);
         }

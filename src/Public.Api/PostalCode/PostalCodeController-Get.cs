@@ -99,7 +99,7 @@ namespace Public.Api.PostalCode
 
             const string notFoundExceptionMessage = "Onbestaande postcode.";
 
-            void HandleNotFound(HttpStatusCode statusCode)
+            void HandleBadRequest(HttpStatusCode statusCode)
             {
                 switch (statusCode)
                 {
@@ -121,8 +121,8 @@ namespace Public.Api.PostalCode
             var cacheKey = $"legacy/postalinfo:{postCode}";
 
             var value = await (CacheToggle.FeatureEnabled
-                ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleNotFound, cancellationToken)
-                : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), HandleNotFound, cancellationToken));
+                ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken)
+                : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken));
 
             return new BackendResponseResult(value);
         }

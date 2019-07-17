@@ -18,6 +18,7 @@ namespace Common.Infrastructure
 
     public static class AcceptTypes
     {
+        public const string Any = "*/*";
         public const string Json = MediaTypeNames.Application.Json;
         public const string JsonLd = "application/ld+json";
         public const string Xml = MediaTypeNames.Application.Xml;
@@ -71,6 +72,9 @@ namespace Common.Infrastructure
                     return AcceptType.JsonLd;
 
                 if (headerValue.Contains(AcceptTypes.Json))
+                    return AcceptType.Json;
+
+                if (headerValue.Contains(AcceptTypes.Any))
                     return AcceptType.Json;
             }
 

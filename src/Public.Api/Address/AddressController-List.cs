@@ -209,7 +209,7 @@ namespace Public.Api.Address
                 { "BusNummer", "BoxNumber" },
                 { "HuisNummer", "HouseNumber" },
                 { "PostCode", "PostalCode" },
-                { "Id", "OsloId" },
+                { "Id", "PersistentLocalId" },
             };
 
             return new RestRequest("adressen?taal={taal}")

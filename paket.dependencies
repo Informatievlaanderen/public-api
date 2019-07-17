@@ -26,8 +26,8 @@ nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      ~> 2.7 c
 nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            ~> 1.7 copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        ~> 1.9 copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           ~> 1.5 copy_content_to_output_dir: always
-// nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          ~> 0.0 copy_content_to_output_dir: always
-// nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            ~> 0.0 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          ~> 1.4 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            ~> 1.9 copy_content_to_output_dir: always
 // nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice ~> 0.0 copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline ~> 1.6
@@ -49,8 +49,8 @@ nuget Microsoft.EntityFrameworkCore.InMemory 2.2.4
 nuget xunit 2.4.1
 nuget xunit.runner.visualstudio 2.4.1
 nuget xunit.categories 2.0.4
-nuget AutoFixture 4.10.0
-nuget AutoFixture.Xunit2 4.10.0
+nuget AutoFixture 4.11.0
+nuget AutoFixture.Xunit2 4.11.0
 nuget FluentAssertions 5.7.0
 
 // BUILD STUFF

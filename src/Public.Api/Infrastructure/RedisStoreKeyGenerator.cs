@@ -33,17 +33,15 @@ namespace Public.Api.Infrastructure
         private const string AddressCacheKey = AddressCachePrefix + "{0}.{1}";
         private static readonly Regex AddressRegex = new Regex(@"/v1/adressen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
-        private const string ParcelPathPrefix = "/v1/percelen/";
-        private const string ParcelCachePrefix = "legacy/parcel:";
-        private const string ParcelCacheKey = ParcelCachePrefix + "{0}.{1}";
-        private static readonly Regex ParcelRegex = new Regex(@"/v1/percelen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
-
-        // TODO: Add the others
-
         private const string BuildingPathPrefix = "/v1/gebouwen/";
         private const string BuildingCachePrefix = "legacy/building:";
         private const string BuildingCacheKey = BuildingCachePrefix + "{0}.{1}";
         private static readonly Regex BuildingRegex = new Regex(@"/v1/gebouwen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+
+        private const string ParcelPathPrefix = "/v1/percelen/";
+        private const string ParcelCachePrefix = "legacy/parcel:";
+        private const string ParcelCacheKey = ParcelCachePrefix + "{0}.{1}";
+        private static readonly Regex ParcelRegex = new Regex(@"/v1/percelen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
         private const string PublicServicePathPrefix = "/v1/dienstverleningen/";
         private const string PublicServiceCachePrefix = "legacy/publicservice:";
@@ -56,8 +54,8 @@ namespace Public.Api.Infrastructure
             PostalCachePrefix.ToLowerInvariant(),
             StreetNameCachePrefix.ToLowerInvariant(),
             AddressCachePrefix.ToLowerInvariant(),
-            ParcelCachePrefix.ToLowerInvariant(),
             BuildingCachePrefix.ToLowerInvariant(),
+            ParcelCachePrefix.ToLowerInvariant(),
             PublicServiceCachePrefix.ToLowerInvariant()
         };
 
@@ -84,13 +82,11 @@ namespace Public.Api.Infrastructure
             if (resourcePath.StartsWith(AddressPathPrefix))
                 return GenerateStoreKey(context, resourcePath, AddressRegex, AddressCacheKey);
 
-            if (resourcePath.StartsWith(ParcelPathPrefix))
-                return GenerateStoreKey(context, resourcePath, ParcelRegex, ParcelCacheKey);
-
-            // TODO: Add the others
-
             if (resourcePath.StartsWith(BuildingPathPrefix))
                 return GenerateStoreKey(context, resourcePath, BuildingRegex, BuildingCacheKey);
+
+            if (resourcePath.StartsWith(ParcelPathPrefix))
+                return GenerateStoreKey(context, resourcePath, ParcelRegex, ParcelCacheKey);
 
             if (resourcePath.StartsWith(PublicServicePathPrefix))
                 return GenerateStoreKey(context, resourcePath, PublicServiceRegex, PublicServiceCacheKey);

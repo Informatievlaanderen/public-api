@@ -1,9 +1,9 @@
-//namespace Public.Api.Infrastructure.Configuration
-//{
-//    using ParcelRegistry.Api.Legacy.Infrastructure.Options;
+namespace Public.Api.Infrastructure.Configuration
+{
+    using ParcelRegistry.Api.Legacy.Infrastructure.Options;
 
-//    public class ParcelOptions : ResponseOptions, IRegistryOptions
-//    {
-//        public SyndicationOptions Syndication { get; set; }
-//    }
-//}
+    public class ParcelOptions : ResponseOptions, IRegistryOptions
+    {
+        public SyndicationOptions Syndication { get; set; }
+    }
+}
