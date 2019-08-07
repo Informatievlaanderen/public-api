@@ -18,7 +18,7 @@ namespace Public.Api.Municipality
         private const string Registry = "MunicipalityRegistry";
 
         protected override string NotFoundExceptionMessage => "Onbestaande gemeente.";
-        protected override string GoneExceptionMessage => "Gemeente verwijderd";
+        protected override string GoneExceptionMessage => "Verwijderde gemeente.";
 
         public MunicipalityController(
             [KeyFilter(Registry)] IRestClient restClient,

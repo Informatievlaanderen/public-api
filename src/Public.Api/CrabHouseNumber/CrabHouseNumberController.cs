@@ -18,7 +18,7 @@ namespace Public.Api.CrabHouseNumber
         private const string Registry = "AddressRegistry";
 
         protected override string NotFoundExceptionMessage => "Onbestaand adres.";
-        protected override string GoneExceptionMessage => "Adres verwijderd";
+        protected override string GoneExceptionMessage => "Verwijderd adres.";
 
         public CrabHouseNumberController(
             [KeyFilter(Registry)] IRestClient restClient,

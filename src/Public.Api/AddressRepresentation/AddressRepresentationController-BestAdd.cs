@@ -50,7 +50,7 @@ namespace Public.Api.AddressRepresentation
                 format,
                 BackendRequest,
                 Request.GetTypedHeaders(),
-                HandleBadRequest,
+                CreateDefaultHandleBadRequest(),
                 cancellationToken);
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);

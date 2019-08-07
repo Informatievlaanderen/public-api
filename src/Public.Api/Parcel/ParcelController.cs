@@ -18,7 +18,7 @@ namespace Public.Api.Parcel
         private const string Registry = "ParcelRegistry";
 
         protected override string NotFoundExceptionMessage => "Onbestaand perceel.";
-        protected override string GoneExceptionMessage => "Perceel verwijderd";
+        protected override string GoneExceptionMessage => "Verwijderd perceel.";
 
         public ParcelController(
             [KeyFilter(Registry)] IRestClient restClient,

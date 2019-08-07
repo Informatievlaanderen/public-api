@@ -18,7 +18,7 @@ namespace Public.Api.PostalCode
         private const string Registry = "PostalRegistry";
 
         protected override string NotFoundExceptionMessage => "Onbestaande postcode.";
-        protected override string GoneExceptionMessage => "Postcode verwijderd";
+        protected override string GoneExceptionMessage => "Verwijderde postcode.";
 
         public PostalCodeController(
             [KeyFilter(Registry)] IRestClient restClient,

@@ -118,8 +118,8 @@ namespace Public.Api.PublicService
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/publicservice-list:{taal}");
 
             var value = await (CacheToggle.FeatureEnabled
-                ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken)
-                : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken));
+                ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)
+                : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken));
 
             return new BackendResponseResult(value);
         }

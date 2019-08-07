@@ -81,25 +81,77 @@ namespace Common.Infrastructure
                     .Replace(":-(", ":(");
         }
 
-        protected void HandleBadRequest(HttpStatusCode statusCode)
+        //protected void HandleBadRequest(HttpStatusCode statusCode)
+        //{
+        //    switch (statusCode)
+        //    {
+        //        case HttpStatusCode.NotAcceptable:
+        //            throw new ApiException("Ongeldig formaat.", StatusCodes.Status406NotAcceptable);
+
+        //        case HttpStatusCode.BadRequest:
+        //            throw new ApiException("Ongeldige vraag.", StatusCodes.Status400BadRequest);
+
+        //        case HttpStatusCode.Gone:
+        //            throw new ApiException(string.IsNullOrWhiteSpace(GoneExceptionMessage)
+        //                ? "Verwijderd."
+        //                : GoneExceptionMessage, StatusCodes.Status410Gone);
+
+        //        case HttpStatusCode.NotFound:
+        //            throw new ApiException(string.IsNullOrWhiteSpace(NotFoundExceptionMessage)
+        //                ? "Niet gevonden."
+        //                : NotFoundExceptionMessage, StatusCodes.Status404NotFound);
+        //    }
+        //}
+
+        protected Action<HttpStatusCode> CreateDefaultHandleBadRequest()
+        {
+            return CreateHandleBadRequest(
+                goneExceptionMessage: GoneExceptionMessage,
+                notFoundExceptionMessage: NotFoundExceptionMessage);
+        }
+
+        protected Action<HttpStatusCode> CreateHandleBadRequest(
+            string notAcceptableExceptionMessage = null,
+            string badRequestExceptionMessage = null,
+            string goneExceptionMessage = null,
+            string notFoundExceptionMessage = null)
+        {
+            return httpStatusCode => HandleBadRequest(
+                httpStatusCode,
+                notAcceptableExceptionMessage,
+                badRequestExceptionMessage,
+                goneExceptionMessage,
+                notFoundExceptionMessage);
+        }
+
+        private void HandleBadRequest(
+            HttpStatusCode statusCode,
+            string notAcceptableExceptionMessage,
+            string badRequestExceptionMessage,
+            string goneExceptionMessage,
+            string notFoundExceptionMessage)
         {
             switch (statusCode)
             {
                 case HttpStatusCode.NotAcceptable:
-                    throw new ApiException("Ongeldig formaat.", StatusCodes.Status406NotAcceptable);
+                    throw new ApiException(string.IsNullOrWhiteSpace(notAcceptableExceptionMessage)
+                        ? "Ongeldig formaat."
+                        : notAcceptableExceptionMessage, StatusCodes.Status406NotAcceptable);
 
                 case HttpStatusCode.BadRequest:
-                    throw new ApiException("Ongeldige vraag.", StatusCodes.Status400BadRequest);
+                    throw new ApiException(string.IsNullOrWhiteSpace(badRequestExceptionMessage)
+                        ? "Ongeldige vraag."
+                        : badRequestExceptionMessage, StatusCodes.Status400BadRequest);
 
                 case HttpStatusCode.Gone:
-                    throw new ApiException(string.IsNullOrWhiteSpace(GoneExceptionMessage)
-                        ? "Verwijderd"
+                    throw new ApiException(string.IsNullOrWhiteSpace(goneExceptionMessage)
+                        ? "Verwijderd."
                         : GoneExceptionMessage, StatusCodes.Status410Gone);
 
                 case HttpStatusCode.NotFound:
-                    throw new ApiException(string.IsNullOrWhiteSpace(NotFoundExceptionMessage)
+                    throw new ApiException(string.IsNullOrWhiteSpace(notFoundExceptionMessage)
                         ? "Niet gevonden."
-                        : NotFoundExceptionMessage, StatusCodes.Status404NotFound);
+                        : notFoundExceptionMessage, StatusCodes.Status404NotFound);
             }
         }
     }
