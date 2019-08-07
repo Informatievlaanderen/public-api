@@ -1,3 +1,10 @@
+## [2.27.1](https://github.com/informatievlaanderen/public-api/compare/v2.27.0...v2.27.1) (2019-08-07)
+
+
+### Bug Fixes
+
+* add Gone to bad request + refactoring ([b2d9fc6](https://github.com/informatievlaanderen/public-api/commit/b2d9fc6))
+
 # [2.27.0](https://github.com/informatievlaanderen/public-api/compare/v2.26.0...v2.27.0) (2019-08-06)
 
 
