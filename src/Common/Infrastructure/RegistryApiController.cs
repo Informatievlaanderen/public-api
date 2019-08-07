@@ -6,7 +6,9 @@ namespace Common.Infrastructure
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
+    using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using FeatureToggle;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Http.Headers;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Primitives;
@@ -17,6 +19,9 @@ namespace Common.Infrastructure
         private readonly IRestClient _restClient;
 
         protected readonly IFeatureToggle CacheToggle;
+
+        protected abstract string GoneExceptionMessage { get; }
+        protected abstract string NotFoundExceptionMessage { get; }
 
         protected RegistryApiController(
             IRestClient restClient,
@@ -74,6 +79,28 @@ namespace Common.Infrastructure
                     .OrderBy(queryParameter => queryParameter.Key)
                     .Aggregate(keyBaseValue, (key, queryParameter) => $"{key}-({queryParameter.Key}:{queryParameter.Value})")
                     .Replace(":-(", ":(");
+        }
+
+        protected void HandleBadRequest(HttpStatusCode statusCode)
+        {
+            switch (statusCode)
+            {
+                case HttpStatusCode.NotAcceptable:
+                    throw new ApiException("Ongeldig formaat.", StatusCodes.Status406NotAcceptable);
+
+                case HttpStatusCode.BadRequest:
+                    throw new ApiException("Ongeldige vraag.", StatusCodes.Status400BadRequest);
+
+                case HttpStatusCode.Gone:
+                    throw new ApiException(string.IsNullOrWhiteSpace(GoneExceptionMessage)
+                        ? "Verwijderd"
+                        : GoneExceptionMessage, StatusCodes.Status410Gone);
+
+                case HttpStatusCode.NotFound:
+                    throw new ApiException(string.IsNullOrWhiteSpace(NotFoundExceptionMessage)
+                        ? "Niet gevonden."
+                        : NotFoundExceptionMessage, StatusCodes.Status404NotFound);
+            }
         }
     }
 }

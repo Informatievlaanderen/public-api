@@ -1,7 +1,6 @@
 namespace Public.Api.Municipality
 {
     using System.Collections.Generic;
-    using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
@@ -144,18 +143,6 @@ namespace Public.Api.Municipality
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
             const Taal taal = Taal.NL;
-
-            void HandleBadRequest(HttpStatusCode statusCode)
-            {
-                switch (statusCode)
-                {
-                    case HttpStatusCode.NotAcceptable:
-                        throw new ApiException("Ongeldig formaat.", StatusCodes.Status406NotAcceptable);
-
-                    case HttpStatusCode.BadRequest:
-                        throw new ApiException("Ongeldige vraag.", StatusCodes.Status400BadRequest);
-                }
-            }
 
             IRestRequest BackendRequest() => CreateBackendListRequest(
                 offset,

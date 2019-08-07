@@ -1,6 +1,5 @@
 namespace Public.Api.StreetName
 {
-    using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
@@ -100,25 +99,6 @@ namespace Public.Api.StreetName
                 : actionContextAccessor.ActionContext.GetValueFromHeader("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
-
-            const string notFoundExceptionMessage = "Onbestaande straatnaam.";
-
-            void HandleBadRequest(HttpStatusCode statusCode)
-            {
-                switch (statusCode)
-                {
-                    case HttpStatusCode.NotAcceptable:
-                        throw new ApiException("Ongeldig formaat.", StatusCodes.Status406NotAcceptable);
-
-                    case HttpStatusCode.BadRequest:
-                        throw new ApiException("Ongeldige vraag.", StatusCodes.Status400BadRequest);
-
-                    case HttpStatusCode.NotFound:
-                        throw new ApiException(string.IsNullOrWhiteSpace(notFoundExceptionMessage)
-                            ? "Niet gevonden."
-                            : notFoundExceptionMessage, StatusCodes.Status404NotFound);
-                }
-            }
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(straatnaamId);
 
