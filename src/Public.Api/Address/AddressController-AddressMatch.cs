@@ -12,7 +12,6 @@ namespace Public.Api.Address
     using Newtonsoft.Json.Converters;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
-    using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -126,18 +125,6 @@ namespace Public.Api.Address
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
             var taal = Taal.NL;
-
-            void HandleBadRequest(HttpStatusCode statusCode)
-            {
-                switch (statusCode)
-                {
-                    case HttpStatusCode.NotAcceptable:
-                        throw new ApiException("Ongeldig formaat.", StatusCodes.Status406NotAcceptable);
-
-                    case HttpStatusCode.BadRequest:
-                        throw new ApiException("Ongeldige vraag.", StatusCodes.Status400BadRequest);
-                }
-            }
 
             IRestRequest BackendRequest() => CreateBackendMatchRequest(
                 taal,

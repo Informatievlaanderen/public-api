@@ -17,6 +17,9 @@ namespace Public.Api.Address
     {
         private const string Registry = "AddressRegistry";
 
+        protected override string NotFoundExceptionMessage => "Onbestaand adres.";
+        protected override string GoneExceptionMessage => "Adres verwijderd";
+
         public AddressController(
             [KeyFilter(Registry)] IRestClient restClient,
             [KeyFilter(Registry)] IFeatureToggle cacheToggle,

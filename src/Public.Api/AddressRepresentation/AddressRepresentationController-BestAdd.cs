@@ -1,10 +1,8 @@
 namespace Public.Api.AddressRepresentation
 {
-    using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
     using AddressRegistry.Api.Legacy.Address.Requests;
-    using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Infrastructure;
     using Infrastructure.Configuration;
     using Microsoft.AspNetCore.Http;
@@ -45,18 +43,6 @@ namespace Public.Api.AddressRepresentation
                 : actionContextAccessor.ActionContext.GetValueFromHeader("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
-
-            void HandleBadRequest(HttpStatusCode statusCode)
-            {
-                switch (statusCode)
-                {
-                    case HttpStatusCode.NotAcceptable:
-                        throw new ApiException("Ongeldig formaat.", StatusCodes.Status406NotAcceptable);
-
-                    case HttpStatusCode.BadRequest:
-                        throw new ApiException("Ongeldige vraag.", StatusCodes.Status400BadRequest);
-                }
-            }
 
             IRestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
 

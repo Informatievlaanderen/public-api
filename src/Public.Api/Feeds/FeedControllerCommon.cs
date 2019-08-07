@@ -1,7 +1,10 @@
 namespace Public.Api.Feeds
 {
+    using System.Net;
     using Be.Vlaanderen.Basisregisters.Api;
+    using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
@@ -31,5 +34,17 @@ namespace Public.Api.Feeds
                         position = from ?? 0,
                         embed = embed ?? string.Empty
                     });
+
+        protected void HandleBadRequest(HttpStatusCode statusCode)
+        {
+            switch (statusCode)
+            {
+                case HttpStatusCode.NotAcceptable:
+                    throw new ApiException("Ongeldig formaat.", StatusCodes.Status406NotAcceptable);
+
+                case HttpStatusCode.BadRequest:
+                    throw new ApiException("Ongeldige vraag.", StatusCodes.Status400BadRequest);
+            }
+        }
     }
 }
