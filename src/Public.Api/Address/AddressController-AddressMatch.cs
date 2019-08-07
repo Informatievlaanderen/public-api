@@ -138,7 +138,7 @@ namespace Public.Api.Address
                 rrStraatcode,
                 index);
 
-            var response = await GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), HandleBadRequest, cancellationToken);
+            var response = await GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken);
 
             return BackendListResponseResult.Create(response, Request.Query, string.Empty);
         }

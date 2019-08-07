@@ -18,7 +18,7 @@ namespace Public.Api.StreetName
         private const string Registry = "StreetNameRegistry";
 
         protected override string NotFoundExceptionMessage => "Onbestaande straatnaam.";
-        protected override string GoneExceptionMessage => "Straatnaam verwijderd";
+        protected override string GoneExceptionMessage => "Verwijderde straatnaam.";
 
         public StreetNameController(
             [KeyFilter(Registry)] IRestClient restClient,

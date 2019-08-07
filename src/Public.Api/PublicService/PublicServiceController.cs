@@ -18,7 +18,7 @@ namespace Public.Api.PublicService
         private const string Registry = "PublicServiceRegistry";
 
         protected override string NotFoundExceptionMessage => "Onbestaande dienstverlening.";
-        protected override string GoneExceptionMessage => "Dienstverlening verwijderd";
+        protected override string GoneExceptionMessage => "Verwijderde dienstverlening.";
 
         public PublicServiceController(
             [KeyFilter(Registry)] IRestClient restClient,
