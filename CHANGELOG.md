@@ -1,3 +1,10 @@
+# [2.28.0](https://github.com/informatievlaanderen/public-api/compare/v2.27.1...v2.28.0) (2019-08-08)
+
+
+### Features
+
+* add publicservice objects ([100d42d](https://github.com/informatievlaanderen/public-api/commit/100d42d))
+
 ## [2.27.1](https://github.com/informatievlaanderen/public-api/compare/v2.27.0...v2.27.1) (2019-08-07)
 
 
