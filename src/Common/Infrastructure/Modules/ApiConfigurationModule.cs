@@ -13,12 +13,15 @@ namespace Common.Infrastructure.Modules
     {
         private readonly string _downstreamUser;
         private readonly string _downstreamPass;
+        private readonly string _serviceName;
         private readonly ApiConfigurationSection _apiConfiguration = new ApiConfigurationSection();
 
         public ApiConfigurationModule(IConfiguration configuration)
         {
             _downstreamUser = configuration["RegistryAuthUser"];
             _downstreamPass = configuration["RegistryAuthPass"];
+
+            _serviceName = configuration["DataDog:ServiceName"];
 
             configuration.GetSection("ApiConfiguration").Bind(_apiConfiguration);
         }
@@ -27,25 +30,33 @@ namespace Common.Infrastructure.Modules
         {
             foreach (var registry in _apiConfiguration)
             {
-                RegisterRestClient(registry.Key, registry.Value.ApiUrl, _downstreamUser, _downstreamPass, builder);
+                RegisterRestClient(registry.Key, registry.Value.ApiUrl, _downstreamUser, _downstreamPass, _serviceName, builder);
                 RegisterApiCacheToggle(registry.Key, registry.Value.UseCache, builder);
             }
         }
 
-        internal static void RegisterRestClient(
+        private static void RegisterRestClient(
             string name,
             string baseUrl,
             string user,
             string password,
+            string serviceName,
             ContainerBuilder builder)
-            => builder
+        {
+            builder
                 .RegisterType<RestClient>()
                 .WithProperty("BaseUrl", new Uri(baseUrl))
                 .WithProperty("CookieContainer", new CookieContainer())
                 .WithProperty("Authenticator", new HttpBasicAuthenticator(user, password))
-                .Keyed<IRestClient>(name);
+                .Keyed<RestClient>(name);
 
-        internal static void RegisterApiCacheToggle(string name, bool toggleValue, ContainerBuilder builder)
+            builder
+                .Register(context => new TraceRestClient(context.ResolveNamed<RestClient>(name), serviceName))
+                .Keyed<TraceRestClient>(name)
+                .Keyed<IRestClient>(name);
+        }
+
+        private static void RegisterApiCacheToggle(string name, bool toggleValue, ContainerBuilder builder)
             => builder
                 .Register(c =>
                 {
