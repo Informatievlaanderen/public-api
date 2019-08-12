@@ -1,3 +1,10 @@
+# [2.29.0](https://github.com/informatievlaanderen/public-api/compare/v2.28.1...v2.29.0) (2019-08-12)
+
+
+### Features
+
+* add tracing to rest calls ([e545ea8](https://github.com/informatievlaanderen/public-api/commit/e545ea8))
+
 ## [2.28.1](https://github.com/informatievlaanderen/public-api/compare/v2.28.0...v2.28.1) (2019-08-09)
 
 # [2.28.0](https://github.com/informatievlaanderen/public-api/compare/v2.27.1...v2.28.0) (2019-08-08)
