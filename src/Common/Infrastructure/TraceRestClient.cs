@@ -19,7 +19,7 @@ namespace Common.Infrastructure
     public class TraceRestClient : IRestClient
     {
         private const string DefaultServiceName = "rest";
-        private const string TypeName = "rest";
+        private const string TypeName = "web";
 
         private string ServiceName { get; }
 
