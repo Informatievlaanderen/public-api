@@ -1,3 +1,10 @@
+## [2.29.1](https://github.com/informatievlaanderen/public-api/compare/v2.29.0...v2.29.1) (2019-08-13)
+
+
+### Bug Fixes
+
+* rest tracing is of type web ([6c17db1](https://github.com/informatievlaanderen/public-api/commit/6c17db1))
+
 # [2.29.0](https://github.com/informatievlaanderen/public-api/compare/v2.28.1...v2.29.0) (2019-08-12)
 
 
