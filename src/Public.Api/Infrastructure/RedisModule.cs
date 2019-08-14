@@ -42,7 +42,8 @@ namespace Public.Api.Infrastructure
             options.KeepAlive = 60;
             options.ReconnectRetryPolicy = new ExponentialRetry(5000);
 
-            var redis = ConnectionMultiplexer.Connect(options);
+            var connectionMultiplexer = ConnectionMultiplexer.Connect(options);
+            var redis = new TraceConnectionMultiplexer(connectionMultiplexer);
 
             builder
                 .RegisterInstance(new ConnectionMultiplexerProvider(useRedis, redis))

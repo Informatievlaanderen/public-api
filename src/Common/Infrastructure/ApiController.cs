@@ -18,7 +18,7 @@ namespace Common.Infrastructure
         private const string ValueKey = "value";
         private const string LastModifiedKey = "lastModified";
 
-        private readonly ConnectionMultiplexer _redis;
+        private readonly IConnectionMultiplexer _redis;
         private readonly ILogger<T> _logger;
 
         protected ApiController(

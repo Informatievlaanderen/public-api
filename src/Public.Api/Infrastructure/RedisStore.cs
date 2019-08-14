@@ -22,11 +22,11 @@ end
 ";
 
         private readonly ILogger<RedisStore> _logger;
-        private readonly ConnectionMultiplexer _redis;
+        private readonly IConnectionMultiplexer _redis;
 
         public RedisStore(
             ILogger<RedisStore> logger,
-            ConnectionMultiplexer redis)
+            IConnectionMultiplexer redis)
         {
             _logger = logger;
             _redis = redis;

@@ -5,14 +5,19 @@ namespace Common.Infrastructure
     public class ConnectionMultiplexerProvider
     {
         private readonly ApiRedisToggle _useRedis;
-        private readonly ConnectionMultiplexer _connectionMultiplexer;
+        private readonly IConnectionMultiplexer _connectionMultiplexer;
 
-        public ConnectionMultiplexerProvider(ApiRedisToggle useRedis, ConnectionMultiplexer connectionMultiplexer)
+        public ConnectionMultiplexerProvider(
+            ApiRedisToggle useRedis,
+            IConnectionMultiplexer connectionMultiplexer)
         {
             _useRedis = useRedis;
             _connectionMultiplexer = connectionMultiplexer;
         }
 
-        public ConnectionMultiplexer GetConnectionMultiplexer() => _useRedis.FeatureEnabled ? _connectionMultiplexer : null;
+        public IConnectionMultiplexer GetConnectionMultiplexer()
+            => _useRedis.FeatureEnabled
+                ? _connectionMultiplexer
+                : null;
     }
 }

@@ -325,17 +325,19 @@ namespace Common.Infrastructure
 
         public async Task<IRestResponse<T>> ExecuteTaskAsync<T>(IRestRequest request, CancellationToken token)
         {
-            var span = _spanSource.Begin("rest.request", ServiceName, request.Resource, TypeName);
+            const string name = "rest." + nameof(ExecuteTaskAsync);
+            var span = _spanSource.Begin(name, ServiceName, BuildResource(request), TypeName);
             try
             {
-                span.SetMeta("http.method", request.Method.ToString());
-                span.SetMeta("http.path", request.Resource);
+                span?.SetMeta("http.method", request.Method.ToString());
+                span?.SetMeta("http.path", request.Resource);
 
-                request.AddHeader(StartupHelpers.DefaultTraceHeader, span.TraceId.ToString());
+                if (span != null)
+                    request.AddHeader(StartupHelpers.DefaultTraceHeader, span.TraceId.ToString());
 
                 var response = await _restClient.ExecuteTaskAsync<T>(request, token);
 
-                span.SetMeta("http.status_code", response.StatusCode.ToString());
+                span?.SetMeta("http.status_code", response.StatusCode.ToString());
 
                 return response;
             }
@@ -382,17 +384,19 @@ namespace Common.Infrastructure
 
         public async Task<IRestResponse> ExecuteTaskAsync(IRestRequest request, CancellationToken token)
         {
-            var span = _spanSource.Begin("rest.request", ServiceName, BuildResource(request), TypeName);
+            const string name = "rest." + nameof(ExecuteTaskAsync);
+            var span = _spanSource.Begin(name, ServiceName, BuildResource(request), TypeName);
             try
             {
-                span.SetMeta("http.method", request.Method.ToString());
-                span.SetMeta("http.path", request.Resource);
+                span?.SetMeta("http.method", request.Method.ToString());
+                span?.SetMeta("http.path", request.Resource);
 
-                request.AddHeader(StartupHelpers.DefaultTraceHeader, span.TraceId.ToString());
+                if (span != null)
+                    request.AddHeader(StartupHelpers.DefaultTraceHeader, span.TraceId.ToString());
 
                 var response = await _restClient.ExecuteTaskAsync(request, token);
 
-                span.SetMeta("http.status_code", response.StatusCode.ToString());
+                span?.SetMeta("http.status_code", response.StatusCode.ToString());
 
                 return response;
             }
