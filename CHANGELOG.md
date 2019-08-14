@@ -1,3 +1,10 @@
+## [2.30.1](https://github.com/informatievlaanderen/public-api/compare/v2.30.0...v2.30.1) (2019-08-14)
+
+
+### Bug Fixes
+
+* pass in correct servicename for redis trace ([861ba6a](https://github.com/informatievlaanderen/public-api/commit/861ba6a))
+
 # [2.30.0](https://github.com/informatievlaanderen/public-api/compare/v2.29.1...v2.30.0) (2019-08-14)
 
 
