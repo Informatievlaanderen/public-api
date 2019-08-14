@@ -10,6 +10,7 @@ namespace Public.Api.Infrastructure
         private readonly bool _redis;
         private readonly string _redisConnectionstring;
         private readonly string _clientName;
+        private readonly string _serviceName;
 
         public RedisModule(IConfiguration configuration)
         {
@@ -18,6 +19,8 @@ namespace Public.Api.Infrastructure
 
             _redisConnectionstring = configuration["Redis:ConnectionString"];
             _clientName = configuration["Redis:ClientName"];
+
+            _serviceName = configuration["DataDog:ServiceName"];
         }
 
         protected override void Load(ContainerBuilder builder)
@@ -43,7 +46,7 @@ namespace Public.Api.Infrastructure
             options.ReconnectRetryPolicy = new ExponentialRetry(5000);
 
             var connectionMultiplexer = ConnectionMultiplexer.Connect(options);
-            var redis = new TraceConnectionMultiplexer(connectionMultiplexer);
+            var redis = new TraceConnectionMultiplexer(connectionMultiplexer, _serviceName);
 
             builder
                 .RegisterInstance(new ConnectionMultiplexerProvider(useRedis, redis))
