@@ -1,3 +1,10 @@
+# [2.30.0](https://github.com/informatievlaanderen/public-api/compare/v2.29.1...v2.30.0) (2019-08-14)
+
+
+### Features
+
+* add tracing of redis ([df26757](https://github.com/informatievlaanderen/public-api/commit/df26757))
+
 ## [2.29.1](https://github.com/informatievlaanderen/public-api/compare/v2.29.0...v2.29.1) (2019-08-13)
 
 
