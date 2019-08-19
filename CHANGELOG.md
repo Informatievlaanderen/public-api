@@ -1,3 +1,10 @@
+## [2.30.2](https://github.com/informatievlaanderen/public-api/compare/v2.30.1...v2.30.2) (2019-08-19)
+
+
+### Bug Fixes
+
+* change public parameters for crab address endpoints to objectid ([9f8bd42](https://github.com/informatievlaanderen/public-api/commit/9f8bd42))
+
 ## [2.30.1](https://github.com/informatievlaanderen/public-api/compare/v2.30.0...v2.30.1) (2019-08-14)
 
 
