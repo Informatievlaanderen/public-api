@@ -55,8 +55,12 @@ namespace Common.Infrastructure
 
         public static AcceptType DetermineAcceptType(this RequestHeaders requestHeaders)
         {
-            var headersByQuality = requestHeaders
-                .Accept
+            var acceptHeaders = requestHeaders.Accept;
+
+            if (acceptHeaders == null || acceptHeaders.Count == 0)
+                return AcceptType.Json;
+
+            var headersByQuality = acceptHeaders
                 .OrderBy(header => header.Quality)
                 .Where(header => header.MediaType.HasValue);
 
