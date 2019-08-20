@@ -1,3 +1,10 @@
+## [2.30.3](https://github.com/informatievlaanderen/public-api/compare/v2.30.2...v2.30.3) (2019-08-20)
+
+
+### Bug Fixes
+
+* default to json with missing accept type ([4e7ecb7](https://github.com/informatievlaanderen/public-api/commit/4e7ecb7))
+
 ## [2.30.2](https://github.com/informatievlaanderen/public-api/compare/v2.30.1...v2.30.2) (2019-08-19)
 
 
