@@ -18,25 +18,25 @@ nuget NETStandard.Library 2.0.3
 // PRODUCTION STUFF
 nuget RestSharp 106.6.10
 nuget FeatureToggle 4.0.2
-nuget Marvin.Cache.Headers 3.2.0
+nuget Marvin.Cache.Headers 4.0.0
 nuget StackExchange.Redis 2.0.601
 
 // VBR STUFF
-nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      ~> 2.7 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            ~> 1.7 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        ~> 1.9 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           ~> 1.5 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          ~> 1.4 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            ~> 1.9 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice ~> 1.7 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      ~> 2.8  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            ~> 1.9  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        ~> 1.12 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           ~> 1.10 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          ~> 1.7  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            ~> 1.11 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice ~> 1.8  copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline ~> 1.6
 
-nuget Be.Vlaanderen.Basisregisters.Api ~> 7.1
+nuget Be.Vlaanderen.Basisregisters.Api ~> 7.2
 
-nuget Be.Vlaanderen.Basisregisters.GrAr.Common ~> 10.0
-nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy ~> 10.0
-nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance ~> 10.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Common ~> 11.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy ~> 11.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance ~> 11.0
 
 // DOCS STUFF
 nuget Structurizr.Core 0.9.0
@@ -51,7 +51,7 @@ nuget xunit.runner.visualstudio 2.4.1
 nuget xunit.categories 2.0.4
 nuget AutoFixture 4.11.0
 nuget AutoFixture.Xunit2 4.11.0
-nuget FluentAssertions 5.7.0
+nuget FluentAssertions 5.8.0
 
 // BUILD STUFF
 nuget FAKE 4.64.13 // Don't update to v5!

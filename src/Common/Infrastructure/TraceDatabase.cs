@@ -481,6 +481,7 @@ namespace Common.Infrastructure
             var span = _spanSource.Begin(name, ServiceName, _database.Multiplexer.ClientName, TypeName);
             try
             {
+                span?.SetMeta("redis.raw_command", script);
                 span?.SetMeta("redis.script", script);
 
                 return await _database.ScriptEvaluateAsync(script, keys, values, flags);

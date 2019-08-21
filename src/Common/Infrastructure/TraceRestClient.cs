@@ -333,7 +333,10 @@ namespace Common.Infrastructure
                 span?.SetMeta("http.path", request.Resource);
 
                 if (span != null)
-                    request.AddHeader(StartupHelpers.DefaultTraceHeader, span.TraceId.ToString());
+                {
+                    request.AddHeader(DataDogOptions.DefaultTraceIdHeaderName, span.TraceId.ToString());
+                    request.AddHeader(DataDogOptions.DefaultParentSpanIdHeaderName, span.SpanId.ToString());
+                }
 
                 var response = await _restClient.ExecuteTaskAsync<T>(request, token);
 
@@ -392,7 +395,10 @@ namespace Common.Infrastructure
                 span?.SetMeta("http.path", request.Resource);
 
                 if (span != null)
-                    request.AddHeader(StartupHelpers.DefaultTraceHeader, span.TraceId.ToString());
+                {
+                    request.AddHeader(DataDogOptions.DefaultTraceIdHeaderName, span.TraceId.ToString());
+                    request.AddHeader(DataDogOptions.DefaultParentSpanIdHeaderName, span.SpanId.ToString());
+                }
 
                 var response = await _restClient.ExecuteTaskAsync(request, token);
 

@@ -183,26 +183,37 @@ namespace Public.Api.Infrastructure
             ApiDebugDataDogToggle debugDataDogToggle)
         {
             app
-                .UseDatadog<Startup>(
-                    serviceProvider,
-                    loggerFactory,
-                    datadogToggle,
-                    debugDataDogToggle,
-                    _configuration["DataDog:ServiceName"],
-                    "X-Amzn-Trace-Id",
-                    traceHeader =>
+                .UseDataDog<Startup>(new DataDogOptions
+                {
+                    Common =
                     {
-                        var awsTraceId = traceHeader
-                                    .ToString()
-                                    .Replace("\"", string.Empty)
-                                    .Replace("Root=", string.Empty);
+                        ServiceProvider = serviceProvider,
+                        LoggerFactory = loggerFactory
+                    },
+                    Toggles =
+                    {
+                        Enable = datadogToggle,
+                        Debug = debugDataDogToggle
+                    },
+                    Tracing =
+                    {
+                        ServiceName = _configuration["DataDog:ServiceName"],
+                        TraceIdHeaderName = "X-Amzn-Trace-Id",
+                        TraceIdGenerator = traceHeader =>
+                        {
+                            var awsTraceId = traceHeader
+                                .ToString()
+                                .Replace("\"", string.Empty)
+                                .Replace("Root=", string.Empty);
 
-                        var traceIdHash = Sha1.ComputeHash(Encoding.UTF8.GetBytes(awsTraceId));
-                        var traceIdHex = BitConverter.ToString(traceIdHash).Replace("-", string.Empty);
-                        var traceIdNumber = BigInteger.Parse(traceIdHex, NumberStyles.HexNumber);
-                        var traceId = (long)BigInteger.Remainder(traceIdNumber, new BigInteger(Math.Pow(10, 14)));
-                        return Math.Abs(traceId);
-                    })
+                            var traceIdHash = Sha1.ComputeHash(Encoding.UTF8.GetBytes(awsTraceId));
+                            var traceIdHex = BitConverter.ToString(traceIdHash).Replace("-", string.Empty);
+                            var traceIdNumber = BigInteger.Parse(traceIdHex, NumberStyles.HexNumber);
+                            var traceId = (long)BigInteger.Remainder(traceIdNumber, new BigInteger(Math.Pow(10, 14)));
+                            return Math.Abs(traceId);
+                        }
+                    }
+                })
 
                 .UseDefaultForApi(new StartupUseOptions
                 {
