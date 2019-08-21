@@ -1,3 +1,10 @@
+# [2.31.0](https://github.com/informatievlaanderen/public-api/compare/v2.30.3...v2.31.0) (2019-08-21)
+
+
+### Features
+
+* pass span id to downstream rest apis ([2625514](https://github.com/informatievlaanderen/public-api/commit/2625514))
+
 ## [2.30.3](https://github.com/informatievlaanderen/public-api/compare/v2.30.2...v2.30.3) (2019-08-20)
 
 
