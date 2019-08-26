@@ -1,3 +1,10 @@
+## [2.32.2](https://github.com/informatievlaanderen/public-api/compare/v2.32.1...v2.32.2) (2019-08-26)
+
+
+### Bug Fixes
+
+* use fixed datadog tracing ([3878521](https://github.com/informatievlaanderen/public-api/commit/3878521))
+
 ## [2.32.1](https://github.com/informatievlaanderen/public-api/compare/v2.32.0...v2.32.1) (2019-08-26)
 
 
