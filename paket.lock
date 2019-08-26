@@ -19,7 +19,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.Utilities.ToStringBuilder (>= 1.1 < 2.0)
       Newtonsoft.Json (>= 12.0.2)
       NodaTime (>= 2.4.6)
-    Be.Vlaanderen.Basisregisters.Api (7.3)
+    Be.Vlaanderen.Basisregisters.Api (7.3.2)
       Autofac (>= 4.9.4)
       Autofac.Extensions.DependencyInjection (>= 4.4)
       Be.Vlaanderen.Basisregisters.AggregateSource (>= 3.2 < 4.0)

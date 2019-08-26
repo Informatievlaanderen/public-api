@@ -228,7 +228,16 @@ namespace Public.Api.Infrastructure
                     Api =
                     {
                         VersionProvider = apiVersionProvider,
-                        Info = groupName => $"Basisregisters Vlaanderen - Base Registries API {groupName}"
+                        Info = groupName => $"Basisregisters Vlaanderen - Base Registries API {groupName}",
+                        CSharpClientOptions =
+                        {
+                            ClassName = "BaseRegistry",
+                            Namespace = "Be.Vlaanderen.Basisregisters"
+                        },
+                        TypeScriptClientOptions =
+                        {
+                            ClassName = "BaseRegistry"
+                        }
                     },
                     MiddlewareHooks =
                     {
