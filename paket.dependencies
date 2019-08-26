@@ -9,10 +9,10 @@ source https://api.nuget.org/v3/index.json
 // source https://informatievlaanderen.myget.org/F/nuget-mirror/api/v3/index.json username: "%MYGET_FEED_USER%" password: "%MYGET_FEED_PASS%" authtype: "basic"
 
 // DOTNETCORE ISSUES
-nuget Microsoft.NETCore.App 2.2.4
-nuget Microsoft.NETCore.DotNetAppHost 2.2.4
-nuget Microsoft.NETCore.DotNetHostResolver 2.2.4
-nuget Microsoft.NETCore.DotNetHostPolicy 2.2.4
+nuget Microsoft.NETCore.App 2.2.6
+nuget Microsoft.NETCore.DotNetAppHost 2.2.6
+nuget Microsoft.NETCore.DotNetHostResolver 2.2.6
+nuget Microsoft.NETCore.DotNetHostPolicy 2.2.6
 nuget NETStandard.Library 2.0.3
 
 // PRODUCTION STUFF
@@ -45,7 +45,7 @@ nuget Structurizr.AdrTools 0.9.0
 
 // TEST STUFF
 nuget Microsoft.NET.Test.Sdk 16.2.0
-nuget Microsoft.EntityFrameworkCore.InMemory 2.2.4
+nuget Microsoft.EntityFrameworkCore.InMemory 2.2.6
 nuget xunit 2.4.1
 nuget xunit.runner.visualstudio 2.4.1
 nuget xunit.categories 2.0.4
