@@ -1,3 +1,10 @@
+# [2.32.0](https://github.com/informatievlaanderen/public-api/compare/v2.31.0...v2.32.0) (2019-08-26)
+
+
+### Features
+
+* bump to .net 2.2.6 ([aef36d1](https://github.com/informatievlaanderen/public-api/commit/aef36d1))
+
 # [2.31.0](https://github.com/informatievlaanderen/public-api/compare/v2.30.3...v2.31.0) (2019-08-21)
 
 
