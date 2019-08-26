@@ -1,3 +1,10 @@
+## [2.32.1](https://github.com/informatievlaanderen/public-api/compare/v2.32.0...v2.32.1) (2019-08-26)
+
+
+### Bug Fixes
+
+* fix swagger ([a95e032](https://github.com/informatievlaanderen/public-api/commit/a95e032))
+
 # [2.32.0](https://github.com/informatievlaanderen/public-api/compare/v2.31.0...v2.32.0) (2019-08-26)
 
 
