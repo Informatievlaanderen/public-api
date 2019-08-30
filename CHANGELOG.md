@@ -1,3 +1,10 @@
+## [2.32.4](https://github.com/informatievlaanderen/public-api/compare/v2.32.3...v2.32.4) (2019-08-30)
+
+
+### Bug Fixes
+
+* report correct version number ([555f25d](https://github.com/informatievlaanderen/public-api/commit/555f25d))
+
 ## [2.32.3](https://github.com/informatievlaanderen/public-api/compare/v2.32.2...v2.32.3) (2019-08-27)
 
 
