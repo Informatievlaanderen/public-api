@@ -30,9 +30,9 @@ nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          ~> 1.7  
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            ~> 1.11 copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice ~> 1.8  copy_content_to_output_dir: always
 
-nuget Be.Vlaanderen.Basisregisters.Build.Pipeline ~> 1.6
+nuget Be.Vlaanderen.Basisregisters.Build.Pipeline ~> 1.9
 
-nuget Be.Vlaanderen.Basisregisters.Api ~> 7.2
+nuget Be.Vlaanderen.Basisregisters.Api ~> 7.4
 
 nuget Be.Vlaanderen.Basisregisters.GrAr.Common ~> 11.0
 nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy ~> 11.0
@@ -51,9 +51,9 @@ nuget xunit.runner.visualstudio 2.4.1
 nuget xunit.categories 2.0.4
 nuget AutoFixture 4.11.0
 nuget AutoFixture.Xunit2 4.11.0
-nuget FluentAssertions 5.8.0
+nuget FluentAssertions 5.9.0
 
 // BUILD STUFF
-nuget FAKE 4.64.13 // Don't update to v5!
+nuget FAKE 4.64.17 // Don't update to v5!
 nuget SourceLink.Embed.AllSourceFiles 2.8.3 copy_local: true
 nuget SourceLink.Copy.PdbFiles 2.8.3 copy_local: true

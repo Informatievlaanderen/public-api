@@ -5,7 +5,6 @@ namespace Public.Api.Municipality
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Be.Vlaanderen.Basisregisters.DataDog.Tracing;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Common.Infrastructure;
     using Infrastructure;
@@ -176,7 +175,7 @@ namespace Public.Api.Municipality
             string nameGerman,
             string nameEnglish)
         {
-            var filter = new MunicipalityFilter
+            var filter = new MunicipalityListFilter
             {
                 NisCode = nisCode,
                 NameDutch = nameDutch,
