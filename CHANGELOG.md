@@ -1,3 +1,10 @@
+## [2.32.5](https://github.com/informatievlaanderen/public-api/compare/v2.32.4...v2.32.5) (2019-09-03)
+
+
+### Bug Fixes
+
+* update problemdetails for xml response GR-829 ([46cab2f](https://github.com/informatievlaanderen/public-api/commit/46cab2f))
+
 ## [2.32.4](https://github.com/informatievlaanderen/public-api/compare/v2.32.3...v2.32.4) (2019-08-30)
 
 
