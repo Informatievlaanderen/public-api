@@ -1,7 +1,9 @@
 namespace Common.Infrastructure
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
+    using System.Linq;
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
@@ -10,13 +12,17 @@ namespace Common.Infrastructure
     using Microsoft.AspNetCore.Http.Headers;
     using Microsoft.Extensions.Logging;
     using Microsoft.Net.Http.Headers;
+    using Newtonsoft.Json;
     using RestSharp;
     using StackExchange.Redis;
 
     public abstract class ApiController<T> : ApiController
     {
         private const string ValueKey = "value";
+        private const string HeadersKey = "headers";
         private const string LastModifiedKey = "lastModified";
+
+        private const string DownstreamVersionHeaderName = "x-basisregister-version";
 
         private readonly IConnectionMultiplexer _redis;
         private readonly ILogger<T> _logger;
@@ -48,27 +54,32 @@ namespace Common.Infrastructure
                 {
                     var db = _redis.GetDatabase();
 
-                    var cachedValue =
-                        await db.HashGetAsync(
+                    var cachedValues =
+                        await db.HashGetAllAsync(
                             key,
-                            ValueKey,
                             CommandFlags.PreferSlave);
 
-                    var cachedLastModified =
-                        await db.HashGetAsync(
-                            key,
-                            LastModifiedKey,
-                            CommandFlags.PreferSlave);
+                    if (cachedValues.Length > 0)
+                    {
+                        var cachedValue = cachedValues.FirstOrDefault(x => x.Name.Equals(ValueKey));
+                        var cachedHeaders = cachedValues.FirstOrDefault(x => x.Name.Equals(HeadersKey));
+                        var cachedLastModified = cachedValues.FirstOrDefault(x => x.Name.Equals(LastModifiedKey));
 
-                    if (cachedValue.HasValue)
+                        var headers = JsonConvert.DeserializeObject<Dictionary<string, string[]>>(cachedHeaders.Value);
+                        headers.TryGetValue(DownstreamVersionHeaderName, out var downstreamVersion);
+
                         return new BackendResponse(
-                            cachedValue,
+                            cachedValue.Value,
+                            downstreamVersion?.First(),
                             DateTimeOffset.ParseExact(
-                                cachedLastModified,
+                                cachedLastModified.Value,
                                 "O",
                                 CultureInfo.InvariantCulture),
                             acceptType.ToMimeTypeString(),
                             true);
+                    }
+
+                    _logger.LogError("Failed to retrieve record {Record} from Redis, no cached values.", key);
                 }
                 catch (Exception ex)
                 {
@@ -113,7 +124,18 @@ namespace Common.Infrastructure
             var response = await restClient.ExecuteTaskAsync(backendRequest, cancellationToken);
 
             if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
-                return new BackendResponse(response.Content, DateTimeOffset.UtcNow, contentType, false);
+            {
+                var downstreamVersion = response
+                    .Headers
+                    .FirstOrDefault(x => x.Name.Equals(DownstreamVersionHeaderName, StringComparison.InvariantCultureIgnoreCase));
+
+                return new BackendResponse(
+                    response.Content,
+                    downstreamVersion?.Value.ToString(),
+                    DateTimeOffset.UtcNow,
+                    contentType,
+                    false);
+            }
 
             handleNotOkResponseAction(response.StatusCode);
 

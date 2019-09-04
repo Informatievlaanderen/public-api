@@ -7,20 +7,23 @@ namespace Common.Infrastructure
 
     public class BackendResponse
     {
-        public string Content { get; set; }
-        public DateTimeOffset LastModified { get; set; }
-        public string ContentType { get; set; }
-        public bool CameFromCache { get; set; }
+        public string Content { get; private set; }
+        public string DownstreamVersion { get; }
+        public DateTimeOffset LastModified { get; }
+        public string ContentType { get; }
+        public bool CameFromCache { get; }
 
         private bool IsXmlContent => ContentType == AcceptTypes.Xml || ContentType == AcceptTypes.Atom;
 
         public BackendResponse(
             string content,
+            string downstreamVersion,
             DateTimeOffset lastModified,
             string contentType,
             bool cameFromCache)
         {
             Content = content;
+            DownstreamVersion = downstreamVersion;
             LastModified = lastModified;
             ContentType = contentType.ToLowerInvariant();
             CameFromCache = cameFromCache;
