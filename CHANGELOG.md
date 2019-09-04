@@ -1,3 +1,10 @@
+# [2.33.0](https://github.com/informatievlaanderen/public-api/compare/v2.32.5...v2.33.0) (2019-09-04)
+
+
+### Features
+
+* report downstream version ([2ed9c22](https://github.com/informatievlaanderen/public-api/commit/2ed9c22))
+
 ## [2.32.5](https://github.com/informatievlaanderen/public-api/compare/v2.32.4...v2.32.5) (2019-09-03)
 
 
