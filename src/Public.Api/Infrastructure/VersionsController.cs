@@ -25,6 +25,8 @@ namespace Public.Api.Infrastructure
         {
             var versions = new Dictionary<string, string>();
 
+            string FormatVersion(string fourPartVersion) => string.Join(".", fourPartVersion.Split(".").Skip(1));
+
             foreach (var (registry, _) in healthUrls)
             {
                 var healthClient = scope.ResolveNamed<IRestClient>($"Health-{registry}");
@@ -36,7 +38,7 @@ namespace Public.Api.Infrastructure
                     ?.Value
                     ?.ToString();
 
-                versions.Add(registry, string.IsNullOrWhiteSpace(downstreamVersion) ? "Unknown" : downstreamVersion);
+                versions.Add(registry, string.IsNullOrWhiteSpace(downstreamVersion) ? "Unknown" : FormatVersion(downstreamVersion));
             }
             
             return Ok(versions);
