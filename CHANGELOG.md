@@ -1,3 +1,10 @@
+## [2.33.1](https://github.com/informatievlaanderen/public-api/compare/v2.33.0...v2.33.1) (2019-09-05)
+
+
+### Bug Fixes
+
+* initial jira version ([2ed6c4f](https://github.com/informatievlaanderen/public-api/commit/2ed6c4f))
+
 # [2.33.0](https://github.com/informatievlaanderen/public-api/compare/v2.32.5...v2.33.0) (2019-09-04)
 
 
