@@ -1,3 +1,10 @@
+## [2.34.1](https://github.com/informatievlaanderen/public-api/compare/v2.34.0...v2.34.1) (2019-09-05)
+
+
+### Bug Fixes
+
+* get rid of first digit in version ([c87825d](https://github.com/informatievlaanderen/public-api/commit/c87825d))
+
 # [2.34.0](https://github.com/informatievlaanderen/public-api/compare/v2.33.1...v2.34.0) (2019-09-05)
 
 
