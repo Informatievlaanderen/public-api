@@ -1,3 +1,10 @@
+# [2.34.0](https://github.com/informatievlaanderen/public-api/compare/v2.33.1...v2.34.0) (2019-09-05)
+
+
+### Features
+
+* add versions endpoint ([6fc5789](https://github.com/informatievlaanderen/public-api/commit/6fc5789))
+
 ## [2.33.1](https://github.com/informatievlaanderen/public-api/compare/v2.33.0...v2.33.1) (2019-09-05)
 
 
