@@ -1,3 +1,10 @@
+## [2.34.2](https://github.com/informatievlaanderen/public-api/compare/v2.34.1...v2.34.2) (2019-09-05)
+
+
+### Bug Fixes
+
+* use parallel ([c964725](https://github.com/informatievlaanderen/public-api/commit/c964725))
+
 ## [2.34.1](https://github.com/informatievlaanderen/public-api/compare/v2.34.0...v2.34.1) (2019-09-05)
 
 
