@@ -7,15 +7,13 @@ namespace Public.Api.Infrastructure
 
     [ApiVersionNeutral]
     [Route("")]
-    public class EmptyController : ControllerBase
+    public class EmptyController : ApiController
     {
         [HttpGet]
         [ApiExplorerSettings(IgnoreApi = true)]
         public IActionResult Get()
-        {
-            return Request.Headers[HeaderNames.Accept].ToString().Contains("text/html")
+            => Request.Headers[HeaderNames.Accept].ToString().Contains("text/html")
                 ? (IActionResult) new RedirectResult("/docs")
                 : new OkObjectResult($"Welcome to the Basisregisters Vlaanderen Api {Assembly.GetEntryAssembly().GetVersionText()}.");
-        }
     }
 }

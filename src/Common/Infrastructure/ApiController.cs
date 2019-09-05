@@ -9,6 +9,7 @@ namespace Common.Infrastructure
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware;
     using Microsoft.AspNetCore.Http.Headers;
     using Microsoft.Extensions.Logging;
     using Microsoft.Net.Http.Headers;
@@ -21,8 +22,6 @@ namespace Common.Infrastructure
         private const string ValueKey = "value";
         private const string HeadersKey = "headers";
         private const string LastModifiedKey = "lastModified";
-
-        private const string DownstreamVersionHeaderName = "x-basisregister-version";
 
         private readonly IConnectionMultiplexer _redis;
         private readonly ILogger<T> _logger;
@@ -66,7 +65,7 @@ namespace Common.Infrastructure
                         var cachedLastModified = cachedValues.FirstOrDefault(x => x.Name.Equals(LastModifiedKey));
 
                         var headers = JsonConvert.DeserializeObject<Dictionary<string, string[]>>(cachedHeaders.Value);
-                        headers.TryGetValue(DownstreamVersionHeaderName, out var downstreamVersion);
+                        headers.TryGetValue(AddVersionHeaderMiddleware.HeaderName, out var downstreamVersion);
 
                         return new BackendResponse(
                             cachedValue.Value,
@@ -127,7 +126,7 @@ namespace Common.Infrastructure
             {
                 var downstreamVersion = response
                     .Headers
-                    .FirstOrDefault(x => x.Name.Equals(DownstreamVersionHeaderName, StringComparison.InvariantCultureIgnoreCase));
+                    .FirstOrDefault(x => x.Name.Equals(AddVersionHeaderMiddleware.HeaderName, StringComparison.InvariantCultureIgnoreCase));
 
                 return new BackendResponse(
                     response.Content,

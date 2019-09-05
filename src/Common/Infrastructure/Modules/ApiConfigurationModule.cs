@@ -1,6 +1,7 @@
 namespace Common.Infrastructure.Modules
 {
     using System;
+    using System.Collections.Generic;
     using System.Net;
     using Autofac;
     using Configuration;
@@ -28,11 +29,18 @@ namespace Common.Infrastructure.Modules
 
         protected override void Load(ContainerBuilder builder)
         {
+            var healthUrls = new HealthUrls();
+
             foreach (var registry in _apiConfiguration)
             {
                 RegisterRestClient(registry.Key, registry.Value.ApiUrl, _downstreamUser, _downstreamPass, _serviceName, builder);
+                RegisterHealthClient(registry.Key, registry.Value.HealthUrl, _downstreamUser, _downstreamPass, _serviceName, builder);
                 RegisterApiCacheToggle(registry.Key, registry.Value.UseCache, builder);
+
+                healthUrls.Add(registry.Key, registry.Value.HealthUrl);
             }
+
+            builder.RegisterInstance(healthUrls);
         }
 
         private static void RegisterRestClient(
@@ -56,6 +64,27 @@ namespace Common.Infrastructure.Modules
                 .Keyed<IRestClient>(name);
         }
 
+        private static void RegisterHealthClient(
+            string name,
+            string baseUrl,
+            string user,
+            string password,
+            string serviceName,
+            ContainerBuilder builder)
+        {
+            builder
+                .RegisterType<RestClient>()
+                .WithProperty("BaseUrl", new Uri(baseUrl))
+                .WithProperty("CookieContainer", new CookieContainer())
+                .WithProperty("Authenticator", new HttpBasicAuthenticator(user, password))
+                .Keyed<RestClient>($"Health-{name}");
+
+            builder
+                .Register(context => new TraceRestClient(context.ResolveNamed<RestClient>($"Health-{name}"), serviceName))
+                .Keyed<TraceRestClient>($"Health-{name}")
+                .Keyed<IRestClient>($"Health-{name}");
+        }
+
         private static void RegisterApiCacheToggle(string name, bool toggleValue, ContainerBuilder builder)
             => builder
                 .Register(c =>
@@ -65,4 +94,6 @@ namespace Common.Infrastructure.Modules
                 })
                 .Keyed<IFeatureToggle>(name);
     }
+
+    public class HealthUrls : Dictionary<string, string> { }
 }
