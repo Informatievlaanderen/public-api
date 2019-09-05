@@ -1,8 +1,9 @@
 namespace Public.Api.Infrastructure
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.Concurrent;
     using System.Linq;
+    using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
     using Autofac;
@@ -23,25 +24,33 @@ namespace Public.Api.Infrastructure
             [FromServices] ILifetimeScope scope,
             CancellationToken cancellationToken = default)
         {
-            var versions = new Dictionary<string, string>();
+            var versions = new ConcurrentDictionary<string, string>();
 
-            string FormatVersion(string fourPartVersion) => string.Join(".", fourPartVersion.Split(".").Skip(1));
+            versions.TryAdd("publicApi", FormatVersion(Assembly.GetEntryAssembly().GetName().Version.ToString(4)));
 
-            foreach (var (registry, _) in healthUrls)
-            {
-                var healthClient = scope.ResolveNamed<IRestClient>($"Health-{registry}");
-                var healthResponse = await healthClient.ExecuteTaskAsync(new RestRequest(), cancellationToken);
+            await Task.WhenAll(healthUrls.Select(x => GetDownstreamVersionAsync(x.Key, scope, versions, cancellationToken)));
 
-                var downstreamVersion = healthResponse
-                    ?.Headers
-                    ?.FirstOrDefault(x => x.Name.Equals(AddVersionHeaderMiddleware.HeaderName, StringComparison.InvariantCultureIgnoreCase))
-                    ?.Value
-                    ?.ToString();
+            return Ok(versions.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value));
+        }
 
-                versions.Add(registry, string.IsNullOrWhiteSpace(downstreamVersion) ? "Unknown" : FormatVersion(downstreamVersion));
-            }
-            
-            return Ok(versions);
+        private static string FormatVersion(string fourPartVersion) => string.Join(".", fourPartVersion.Split(".").Skip(1));
+
+        private static async Task GetDownstreamVersionAsync(
+            string registry,
+            IComponentContext scope,
+            ConcurrentDictionary<string, string> versions,
+            CancellationToken cancellationToken)
+        {
+            var healthClient = scope.ResolveNamed<IRestClient>($"Health-{registry}");
+            var healthResponse = await healthClient.ExecuteTaskAsync(new RestRequest(), cancellationToken);
+
+            var downstreamVersion = healthResponse
+                ?.Headers
+                ?.FirstOrDefault(x => x.Name.Equals(AddVersionHeaderMiddleware.HeaderName, StringComparison.InvariantCultureIgnoreCase))
+                ?.Value
+                ?.ToString();
+
+            versions.TryAdd(registry, string.IsNullOrWhiteSpace(downstreamVersion) ? "Unknown" : FormatVersion(downstreamVersion));
         }
     }
 }
