@@ -22,13 +22,13 @@ nuget Marvin.Cache.Headers 4.0.0
 nuget StackExchange.Redis 2.0.601
 
 // VBR STUFF
-nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      ~> 2.8  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            ~> 1.9  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        ~> 1.12 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           ~> 1.10 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          ~> 1.7  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            ~> 1.11 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice ~> 1.8  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      ~> 2.13 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            ~> 1.12 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        ~> 1.15 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           ~> 1.14 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          ~> 1.10 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            ~> 1.14 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice ~> 1.11 copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline ~> 1.11
 
