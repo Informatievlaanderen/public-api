@@ -155,7 +155,7 @@ namespace Public.Api.BuildingUnit
                 { "Id", "PersistentLocalId" },
             };
 
-            return new RestRequest("gebouwenheden?taal={taal}")
+            return new RestRequest("gebouweenheden?taal={taal}")
                 .AddParameter("taal", taal, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
                 .AddFiltering(filter)
