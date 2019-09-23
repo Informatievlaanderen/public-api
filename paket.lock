@@ -12,7 +12,7 @@ NUGET
       AutoFixture (>= 4.11)
       xunit.extensibility.core (>= 2.0 < 3.0) - restriction: || (== net472) (&& (== netcoreapp2.2) (>= net452)) (&& (== netstandard2.0) (>= net452))
       xunit.extensibility.core (>= 2.2 < 3.0) - restriction: || (&& (== net472) (< net452)) (== netcoreapp2.2) (== netstandard2.0)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (1.15.3) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (1.15.4) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.AggregateSource (3.2)
       Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (>= 1.1 < 2.0)
       Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (>= 1.1 < 2.0)
@@ -135,7 +135,7 @@ NUGET
       NSwag.CodeGeneration.TypeScript (>= 13.0.6)
       Swashbuckle.AspNetCore (>= 4.0.1)
     Be.Vlaanderen.Basisregisters.Build.Pipeline (1.11.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (1.12) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (1.12.1) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.CommandHandling (3.2)
     Be.Vlaanderen.Basisregisters.Converters.TrimString (1.1)
       Newtonsoft.Json (>= 12.0.2)
