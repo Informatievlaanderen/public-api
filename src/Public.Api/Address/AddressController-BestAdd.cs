@@ -56,11 +56,7 @@ namespace Public.Api.Address
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        private static IRestRequest CreateBackendSearchBestAddRequest(
-            BosaAddressRequest searchBody)
-        {
-            return new RestRequest("adressen/bosa", Method.POST)
-                .AddJsonBody(searchBody);
-        }
+        private static IRestRequest CreateBackendSearchBestAddRequest(BosaAddressRequest searchBody)
+            => new RestRequest("adressen/bosa", Method.POST).AddJsonBodyOrEmpty(searchBody);
     }
 }

@@ -56,11 +56,7 @@ namespace Public.Api.Municipality
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        private static IRestRequest CreateBackendSearchBestAddRequest(
-            BosaMunicipalityRequest searchBody)
-        {
-            return new RestRequest("gemeenten/bosa", Method.POST)
-                .AddJsonBody(searchBody);
-        }
+        private static IRestRequest CreateBackendSearchBestAddRequest(BosaMunicipalityRequest searchBody)
+            => new RestRequest("gemeenten/bosa", Method.POST).AddJsonBodyOrEmpty(searchBody);
     }
 }

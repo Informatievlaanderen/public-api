@@ -56,11 +56,7 @@ namespace Public.Api.StreetName
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        private static IRestRequest CreateBackendSearchBestAddRequest(
-            BosaStreetNameRequest searchBody)
-        {
-            return new RestRequest("straatnamen/bosa", Method.POST)
-                .AddJsonBody(searchBody);
-        }
+        private static IRestRequest CreateBackendSearchBestAddRequest(BosaStreetNameRequest searchBody)
+            => new RestRequest("straatnamen/bosa", Method.POST).AddJsonBodyOrEmpty(searchBody);
     }
 }
