@@ -1,3 +1,10 @@
+## [2.35.4](https://github.com/informatievlaanderen/public-api/compare/v2.35.3...v2.35.4) (2019-09-23)
+
+
+### Bug Fixes
+
+* empty body posts GR-860 ([822b20b](https://github.com/informatievlaanderen/public-api/commit/822b20b))
+
 ## [2.35.3](https://github.com/informatievlaanderen/public-api/compare/v2.35.2...v2.35.3) (2019-09-23)
 
 
