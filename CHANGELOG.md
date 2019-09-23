@@ -1,3 +1,10 @@
+## [2.35.3](https://github.com/informatievlaanderen/public-api/compare/v2.35.2...v2.35.3) (2019-09-23)
+
+
+### Bug Fixes
+
+* allow all characters for Crab parameters GR-889 ([356d553](https://github.com/informatievlaanderen/public-api/commit/356d553))
+
 ## [2.35.2](https://github.com/informatievlaanderen/public-api/compare/v2.35.1...v2.35.2) (2019-09-23)
 
 
