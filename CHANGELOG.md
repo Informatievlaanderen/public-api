@@ -1,3 +1,15 @@
+# [2.35.0](https://github.com/informatievlaanderen/public-api/compare/v2.34.2...v2.35.0) (2019-09-23)
+
+
+### Bug Fixes
+
+* review last pr, format, problemdetails, syndication ([51849cb](https://github.com/informatievlaanderen/public-api/commit/51849cb))
+
+
+### Features
+
+* add building/buildingunit to api ([a98c1ef](https://github.com/informatievlaanderen/public-api/commit/a98c1ef))
+
 ## [2.34.2](https://github.com/informatievlaanderen/public-api/compare/v2.34.1...v2.34.2) (2019-09-05)
 
 
