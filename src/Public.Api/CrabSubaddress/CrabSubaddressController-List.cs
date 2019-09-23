@@ -56,7 +56,7 @@ namespace Public.Api.CrabSubaddress
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] int? objectId,
+            [FromQuery] string objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -107,7 +107,7 @@ namespace Public.Api.CrabSubaddress
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] int? objectId,
+            [FromQuery] string objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -140,7 +140,7 @@ namespace Public.Api.CrabSubaddress
             int? offset,
             int? limit,
             string sort,
-            int? objectId)
+            string objectId)
         {
             var filter = new CrabSubaddressAddressFilter
             {
