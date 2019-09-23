@@ -1,3 +1,10 @@
+## [2.35.1](https://github.com/informatievlaanderen/public-api/compare/v2.35.0...v2.35.1) (2019-09-23)
+
+
+### Bug Fixes
+
+* correct appsettings ([3bd657c](https://github.com/informatievlaanderen/public-api/commit/3bd657c))
+
 # [2.35.0](https://github.com/informatievlaanderen/public-api/compare/v2.34.2...v2.35.0) (2019-09-23)
 
 
