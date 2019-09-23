@@ -1,3 +1,10 @@
+## [2.35.5](https://github.com/informatievlaanderen/public-api/compare/v2.35.4...v2.35.5) (2019-09-23)
+
+
+### Bug Fixes
+
+* correctly talk to buildingunit backend ([83385a4](https://github.com/informatievlaanderen/public-api/commit/83385a4))
+
 ## [2.35.4](https://github.com/informatievlaanderen/public-api/compare/v2.35.3...v2.35.4) (2019-09-23)
 
 
