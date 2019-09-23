@@ -1,3 +1,10 @@
+## [2.35.2](https://github.com/informatievlaanderen/public-api/compare/v2.35.1...v2.35.2) (2019-09-23)
+
+
+### Bug Fixes
+
+* use correct buildingregistry examples ([268518d](https://github.com/informatievlaanderen/public-api/commit/268518d))
+
 ## [2.35.1](https://github.com/informatievlaanderen/public-api/compare/v2.35.0...v2.35.1) (2019-09-23)
 
 
