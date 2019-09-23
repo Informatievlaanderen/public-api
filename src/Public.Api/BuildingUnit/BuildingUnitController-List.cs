@@ -20,6 +20,7 @@ namespace Public.Api.BuildingUnit
     using Newtonsoft.Json.Converters;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class BuildingUnitController
     {
@@ -34,7 +35,7 @@ namespace Public.Api.BuildingUnit
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met gebouweenhden gelukt is.</response>
+        /// <response code="200">Als de opvraging van een lijst met gebouweenheden gelukt is.</response>
         /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
@@ -73,7 +74,7 @@ namespace Public.Api.BuildingUnit
                 cancellationToken);
 
         /// <summary>
-        /// Vraag een lijst met actieve gebouwen op.
+        /// Vraag een lijst met actieve gebouweenheden op.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
@@ -84,12 +85,12 @@ namespace Public.Api.BuildingUnit
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met gebouwen gelukt is.</response>
+        /// <response code="200">Als de opvraging van een lijst met gebouweenheden gelukt is.</response>
         /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gebouwen.format")]
+        [HttpGet("gebouweenheden.{format}")]
         [ProducesResponseType(typeof(List<BuildingUnitListResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]

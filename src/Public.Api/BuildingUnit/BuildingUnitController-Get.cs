@@ -14,6 +14,7 @@ namespace Public.Api.BuildingUnit
     using Newtonsoft.Json.Converters;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class BuildingUnitController
     {
@@ -57,6 +58,7 @@ namespace Public.Api.BuildingUnit
                 actionContextAccessor,
                 ifNoneMatch,
                 cancellationToken);
+
         /// <summary>
         /// Vraag een gebouweenheid op.
         /// </summary>
@@ -102,7 +104,7 @@ namespace Public.Api.BuildingUnit
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(gebouweenheidId);
 
-            var cacheKey = $"legacy/buildingUnit:{gebouweenheidId}";
+            var cacheKey = $"legacy/buildingunit:{gebouweenheidId}";
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)

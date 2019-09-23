@@ -39,9 +39,9 @@ namespace Public.Api.Feeds
         public IActionResult GetParcel(string format, CancellationToken cancellationToken) => new RedirectResult($"/v1/feeds/percelen.{format}");
 
         [HttpGet("building")]
-        public IActionResult GetBuilding(CancellationToken cancellationToken) => new RedirectResult("/v1/feeds/gebouw");
+        public IActionResult GetBuilding(CancellationToken cancellationToken) => new RedirectResult("/v1/feeds/gebouwen");
 
         [HttpGet("building.{format}")]
-        public IActionResult GetBuilding(string format, CancellationToken cancellationToken) => new RedirectResult($"/v1/feeds/gebouw.{format}");
+        public IActionResult GetBuilding(string format, CancellationToken cancellationToken) => new RedirectResult($"/v1/feeds/gebouwen.{format}");
     }
 }
