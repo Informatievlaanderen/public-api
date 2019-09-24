@@ -1,3 +1,10 @@
+# [2.36.0](https://github.com/informatievlaanderen/public-api/compare/v2.35.5...v2.36.0) (2019-09-24)
+
+
+### Features
+
+* modelstate errors are globaly caught ([25b91dc](https://github.com/informatievlaanderen/public-api/commit/25b91dc))
+
 ## [2.35.5](https://github.com/informatievlaanderen/public-api/compare/v2.35.4...v2.35.5) (2019-09-23)
 
 
