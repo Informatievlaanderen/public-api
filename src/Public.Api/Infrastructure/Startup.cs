@@ -21,6 +21,7 @@ namespace Public.Api.Infrastructure
     using Marvin.Cache.Headers.Interfaces;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Configuration;
@@ -102,6 +103,21 @@ namespace Public.Api.Infrastructure
                     MiddlewareHooks =
                     {
                         FluentValidation = fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>(),
+                        AfterMvc = builder => builder.Services.Configure<ApiBehaviorOptions>(options =>
+                        {
+                            options.SuppressInferBindingSourcesForParameters = true;
+
+                            options.InvalidModelStateResponseFactory = actionContext =>
+                            {
+                                var result = new BadRequestObjectResult(
+                                    new ModelStateProblemDetails(actionContext.ModelState));
+
+                                result.ContentTypes.Add("application/problem+json");
+                                result.ContentTypes.Add("application/problem+xml");
+
+                                return result;
+                            };
+                        })
                     }
                 })
 
