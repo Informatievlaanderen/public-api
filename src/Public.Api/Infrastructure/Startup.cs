@@ -13,6 +13,7 @@ namespace Public.Api.Infrastructure
     using Autofac.Features.AttributeFilters;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
+    using Be.Vlaanderen.Basisregisters.AspNetCore.Swagger;
     using Common.Infrastructure;
     using Common.Infrastructure.Modules;
     using Configuration;
@@ -84,6 +85,10 @@ namespace Public.Api.Infrastructure
                                 Name = "European Union Public Licence (EUPL)",
                                 Url = "https://joinup.ec.europa.eu/news/understanding-eupl-v12"
                             },
+                        },
+                        Servers = new []
+                        {
+                            new Server(_configuration["BaseUrl"], _configuration["BaseName"])
                         },
                         XmlCommentPaths = new []
                         {

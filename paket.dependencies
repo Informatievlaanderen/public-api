@@ -32,7 +32,7 @@ nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice ~> 1.11 
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline ~> 1.11
 
-nuget Be.Vlaanderen.Basisregisters.Api ~> 7.5
+nuget Be.Vlaanderen.Basisregisters.Api ~> 7.6
 
 nuget Be.Vlaanderen.Basisregisters.GrAr.Common ~> 12.1
 nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy ~> 12.1
