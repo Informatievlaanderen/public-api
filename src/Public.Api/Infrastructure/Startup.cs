@@ -78,7 +78,12 @@ namespace Public.Api.Infrastructure
                                 Name = "Informatie Vlaanderen",
                                 Email = "informatie.vlaanderen@vlaanderen.be",
                                 Url = "https://legacy.basisregisters.vlaanderen"
-                            }
+                            },
+                            License = new License
+                            {
+                                Name = "European Union Public Licence (EUPL)",
+                                Url = "https://joinup.ec.europa.eu/news/understanding-eupl-v12"
+                            },
                         },
                         XmlCommentPaths = new []
                         {
@@ -200,6 +205,8 @@ namespace Public.Api.Infrastructure
             ApiDataDogToggle datadogToggle,
             ApiDebugDataDogToggle debugDataDogToggle)
         {
+            var version = Assembly.GetEntryAssembly().GetName().Version;
+
             app
                 .UseDataDog<Startup>(new DataDogOptions
                 {
@@ -247,6 +254,9 @@ namespace Public.Api.Infrastructure
                     {
                         VersionProvider = apiVersionProvider,
                         Info = groupName => $"Basisregisters Vlaanderen - Base Registries API {groupName}",
+                        HeaderTitle = groupName => "Basisregisters Vlaanderen",
+                        HeaderLink = groupName => _configuration["SiteUrl"],
+                        FooterVersion = $"{version.Minor}.{version.Build}.{version.Revision}",
                         CSharpClientOptions =
                         {
                             ClassName = "BaseRegistry",
