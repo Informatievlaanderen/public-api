@@ -1,3 +1,11 @@
+# [2.37.0](https://github.com/informatievlaanderen/public-api/compare/v2.36.0...v2.37.0) (2019-10-01)
+
+
+### Features
+
+* add servers option for swagger ([6387143](https://github.com/informatievlaanderen/public-api/commit/6387143))
+* update swagger dependency ([c3c823f](https://github.com/informatievlaanderen/public-api/commit/c3c823f))
+
 # [2.36.0](https://github.com/informatievlaanderen/public-api/compare/v2.35.5...v2.36.0) (2019-09-24)
 
 
