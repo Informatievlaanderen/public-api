@@ -1,3 +1,10 @@
+## [2.37.1](https://github.com/informatievlaanderen/public-api/compare/v2.37.0...v2.37.1) (2019-10-01)
+
+
+### Bug Fixes
+
+* update swagger ([5b382e8](https://github.com/informatievlaanderen/public-api/commit/5b382e8))
+
 # [2.37.0](https://github.com/informatievlaanderen/public-api/compare/v2.36.0...v2.37.0) (2019-10-01)
 
 
