@@ -20,6 +20,7 @@ nuget RestSharp 106.6.10
 nuget FeatureToggle 4.0.2
 nuget Marvin.Cache.Headers 4.0.0
 nuget StackExchange.Redis 2.0.601
+nuget AWSSDK.S3 3.3.104.32
 
 // VBR STUFF
 nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      ~> 2.14 copy_content_to_output_dir: always
