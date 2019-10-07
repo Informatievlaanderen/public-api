@@ -12,6 +12,9 @@ NUGET
       AutoFixture (>= 4.11)
       xunit.extensibility.core (>= 2.0 < 3.0) - restriction: || (== net472) (&& (== netcoreapp2.2) (>= net452)) (&& (== netstandard2.0) (>= net452))
       xunit.extensibility.core (>= 2.2 < 3.0) - restriction: || (&& (== net472) (< net452)) (== netcoreapp2.2) (== netstandard2.0)
+    AWSSDK.Core (3.3.103.45)
+    AWSSDK.S3 (3.3.104.32)
+      AWSSDK.Core (>= 3.3.103.44 < 3.4)
     Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (1.15.5) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.AggregateSource (3.2)
       Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (>= 1.1 < 2.0)
