@@ -17,6 +17,7 @@ namespace Public.Api.Infrastructure
     using Common.Infrastructure;
     using Common.Infrastructure.Modules;
     using Configuration;
+    using Extract;
     using Feeds;
     using Marvin.Cache.Headers;
     using Marvin.Cache.Headers.Interfaces;
@@ -28,6 +29,7 @@ namespace Public.Api.Infrastructure
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+    using Modules;
     using Swashbuckle.AspNetCore.Filters;
     using Swashbuckle.AspNetCore.Swagger;
 
@@ -176,7 +178,8 @@ namespace Public.Api.Infrastructure
             containerBuilder
                 .RegisterModule(new ApiConfigurationModule(_configuration))
                 .RegisterModule(new DataDogModule(_configuration))
-                .RegisterModule(new RedisModule(_configuration));
+                .RegisterModule(new RedisModule(_configuration))
+                .RegisterModule(new ExtractDownloadModule(_configuration));
 
             containerBuilder.Populate(services);
 
@@ -193,6 +196,10 @@ namespace Public.Api.Infrastructure
 
             containerBuilder
                 .RegisterType<FeedController>()
+                .WithAttributeFiltering();
+
+            containerBuilder
+                .RegisterType<ExtractController>()
                 .WithAttributeFiltering();
 
             _applicationContainer = containerBuilder.Build();
