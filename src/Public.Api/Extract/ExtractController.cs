@@ -13,9 +13,7 @@ namespace Public.Api.Extract
     using Newtonsoft.Json.Converters;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
-
-
-
+    
     [ApiVersion("1.0")]
     [AdvertiseApiVersions("1.0")]
     [ApiRoute("")]
@@ -30,9 +28,7 @@ namespace Public.Api.Extract
             ILogger<ExtractController> logger,
             ExtractDownloads extractDownloads)
             : base(redis, logger)
-        {
-            _extractDownloads = extractDownloads;
-        }
+            => _extractDownloads = extractDownloads;
 
         /// <summary> Download de meest recente extracten.</summary>
         /// <param name="cancellationToken"></param>
@@ -87,6 +83,7 @@ namespace Public.Api.Extract
             };
         }
     }
+
     public class ExtractNotFoundResponseExamples : IExamplesProvider 
     {
         public object GetExamples()
