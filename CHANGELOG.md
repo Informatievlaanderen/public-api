@@ -1,3 +1,17 @@
+# [2.38.0](https://github.com/informatievlaanderen/public-api/compare/v2.37.1...v2.38.0) (2019-10-10)
+
+
+### Bug Fixes
+
+* add aws s3 sdk ([8456f95](https://github.com/informatievlaanderen/public-api/commit/8456f95))
+* apply PR suggestions ([095340a](https://github.com/informatievlaanderen/public-api/commit/095340a))
+* use correct example for bad request ([2ba69e1](https://github.com/informatievlaanderen/public-api/commit/2ba69e1))
+
+
+### Features
+
+* add extract download ([850fceb](https://github.com/informatievlaanderen/public-api/commit/850fceb))
+
 ## [2.37.1](https://github.com/informatievlaanderen/public-api/compare/v2.37.0...v2.37.1) (2019-10-01)
 
 
