@@ -18,7 +18,6 @@ namespace Public.Api.Infrastructure.Modules
 
         protected override void Load(ContainerBuilder builder)
         {
-
             var extractConfiguration = _configuration.GetSection("Extract:Download").Get<DownloadConfiguration>();
 
             var s3Config = _configuration.GetSection("Extract:S3").Get<S3Configuration>();
@@ -33,9 +32,9 @@ namespace Public.Api.Infrastructure.Modules
 
         private class S3Configuration
         {
-            public string  ApiKey { get; set; }
-            public string  Secret { get; set; }
-            public string  Region { get; set; }
+            public string ApiKey { get; set; }
+            public string Secret { get; set; }
+            public string Region { get; set; }
         }
     }
 }
