@@ -30,7 +30,7 @@ namespace Public.Api.Extract
             : base(redis, logger)
             => _extractDownloads = extractDownloads;
 
-        /// <summary>Download de meest recente extract.</summary>
+        /// <summary>Download het meest recente extract.</summary>
         /// <param name="cancellationToken"></param>
         /// <response code="302">Als de extract download gevonden is.</response>
         /// <response code="404">Als er geen extract download gevonden kan worden.</response>
@@ -45,7 +45,7 @@ namespace Public.Api.Extract
         public async Task<IActionResult> Extract(CancellationToken cancellationToken = default)
             => await _extractDownloads.RedirectToMostRecent(cancellationToken);
 
-        /// <summary>Download de extract voor de gevraagde datum.</summary>
+        /// <summary>Download het extract voor de gevraagde datum.</summary>
         /// <param name="extractDate">yyyy-MM-dd</param>
         /// <param name="cancellationToken"></param>
         /// <response code="302">Als de extract download gevonden is.</response>

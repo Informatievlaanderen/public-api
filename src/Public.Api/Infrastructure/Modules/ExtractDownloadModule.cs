@@ -9,32 +9,44 @@ namespace Public.Api.Infrastructure.Modules
 
     public class ExtractDownloadModule : Module
     {
-        private readonly IConfiguration _configuration;
+        private readonly IConfigurationSection _extractConfiguration;
 
         public ExtractDownloadModule(IConfiguration configuration)
         {
-            _configuration = configuration;
+            _extractConfiguration = configuration.GetSection("Extract");
         }
 
         protected override void Load(ContainerBuilder builder)
         {
-            var extractConfiguration = _configuration.GetSection("Extract:Download").Get<DownloadConfiguration>();
-
-            var s3Config = _configuration.GetSection("Extract:S3").Get<S3Configuration>();
-            var amazonS3Client = new AmazonS3Client(
-                new BasicAWSCredentials(s3Config.ApiKey, s3Config.Secret),
-                RegionEndpoint.GetBySystemName(s3Config.Region));
+            var extractConfiguration = _extractConfiguration.Get<DownloadConfiguration>();
+            var amazonS3Client = CreateS3Client();
 
             builder
                 .Register(context => new ExtractDownloads(amazonS3Client, extractConfiguration))
                 .AsSelf();
         }
 
-        private class S3Configuration
+        private AmazonS3Client CreateS3Client()
+        {
+            var localCredentials = _extractConfiguration
+                .GetSection("LocalS3Credentials")
+                .Get<LocalS3Credentials>();
+
+            var region = RegionEndpoint.GetBySystemName(_extractConfiguration.GetValue<string>("Region"));
+
+            return localCredentials?.Configured ?? false
+                ? new AmazonS3Client(localCredentials, region)
+                : new AmazonS3Client(region);
+        }
+
+        private class LocalS3Credentials : AWSCredentials
         {
             public string ApiKey { get; set; }
             public string Secret { get; set; }
-            public string Region { get; set; }
+
+            public bool Configured => !string.IsNullOrWhiteSpace(ApiKey) && !string.IsNullOrWhiteSpace(Secret);
+
+            public override ImmutableCredentials GetCredentials() => new ImmutableCredentials(ApiKey, Secret, null);
         }
     }
 }
