@@ -81,8 +81,7 @@ namespace Public.Api.Extract
 
             return new Regex(
                 $"^{prefix}{_config.BundleName}-{date}\\.zip$",
-                RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         }
     }
-
 }
