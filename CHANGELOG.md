@@ -1,3 +1,11 @@
+## [2.38.1](https://github.com/informatievlaanderen/public-api/compare/v2.38.0...v2.38.1) (2019-10-11)
+
+
+### Bug Fixes
+
+* deploy to staging ([b5ee3c3](https://github.com/informatievlaanderen/public-api/commit/b5ee3c3))
+* only use aws credentials for with local config for development ([6054753](https://github.com/informatievlaanderen/public-api/commit/6054753))
+
 # [2.38.0](https://github.com/informatievlaanderen/public-api/compare/v2.37.1...v2.38.0) (2019-10-10)
 
 
