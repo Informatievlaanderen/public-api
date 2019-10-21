@@ -81,12 +81,12 @@ namespace Public.Api.Infrastructure
                             {
                                 Name = "Informatie Vlaanderen",
                                 Email = "informatie.vlaanderen@vlaanderen.be",
-                                Url = "https://legacy.basisregisters.vlaanderen"
+                                Url = "https://basisregisters.vlaanderen.be"
                             },
                             License = new License
                             {
-                                Name = "European Union Public Licence (EUPL)",
-                                Url = "https://joinup.ec.europa.eu/news/understanding-eupl-v12"
+                                Name = "Modellicentie Gratis Hergebruik - v1.0",
+                                Url = "https://overheid.vlaanderen.be/sites/default/files/documenten/ict-egov/licenties/hergebruik/modellicentie_gratis_hergebruik_v1_0.html"
                             },
                         },
                         Servers = new []
