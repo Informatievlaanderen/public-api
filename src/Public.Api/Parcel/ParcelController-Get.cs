@@ -73,6 +73,7 @@ namespace Public.Api.Parcel
         /// <response code="410">Als het perceel verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("percelen/{capaKey}.{format}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(ParcelResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]

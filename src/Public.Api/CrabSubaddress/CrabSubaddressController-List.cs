@@ -90,6 +90,7 @@ namespace Public.Api.CrabSubaddress
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("crabsubadressen.{format}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(List<CrabSubAddressListResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]

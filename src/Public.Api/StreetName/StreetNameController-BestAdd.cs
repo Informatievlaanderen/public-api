@@ -30,6 +30,7 @@ namespace Public.Api.StreetName
                 cancellationToken);
 
         [HttpPost("bosa/straatnamen.{format}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddStreetNameWithFormat(
             [FromRoute] string format,
             [FromServices] IActionContextAccessor actionContextAccessor,

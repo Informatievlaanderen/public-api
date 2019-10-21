@@ -30,6 +30,7 @@ namespace Public.Api.AddressRepresentation
                 cancellationToken);
 
         [HttpPost("bosa/adresvoorstellingen.{format}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddAddressRepresentationWithFormat(
             [FromRoute] string format,
             [FromServices] IActionContextAccessor actionContextAccessor,

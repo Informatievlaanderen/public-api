@@ -30,6 +30,7 @@ namespace Public.Api.Municipality
                 cancellationToken);
 
         [HttpPost("bosa/gemeenten.{format}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddMunicipalityWithFormat(
             [FromRoute] string format,
             [FromServices] IActionContextAccessor actionContextAccessor,

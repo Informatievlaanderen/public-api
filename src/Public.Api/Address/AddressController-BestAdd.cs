@@ -30,6 +30,7 @@ namespace Public.Api.Address
                 cancellationToken);
 
         [HttpPost("bosa/adressen.{format}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddAddressWithFormat(
             [FromRoute] string format,
             [FromServices] IActionContextAccessor actionContextAccessor,
