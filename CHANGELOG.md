@@ -1,3 +1,22 @@
+## [2.38.3](https://github.com/informatievlaanderen/public-api/compare/v2.38.2...v2.38.3) (2019-10-21)
+
+
+### Bug Fixes
+
+* change taal to language in backend ([80fe92c](https://github.com/informatievlaanderen/public-api/commit/80fe92c))
+* clarify parameters for detail address GR-929 ([b3ee28a](https://github.com/informatievlaanderen/public-api/commit/b3ee28a))
+* clarify parameters for detail parcel GR-930 ([8afdb40](https://github.com/informatievlaanderen/public-api/commit/8afdb40))
+* clarify parameters for list buildingunit GR-931 ([e14eb6c](https://github.com/informatievlaanderen/public-api/commit/e14eb6c))
+* remove camelcase for list addresses GR-935 ([fc5170a](https://github.com/informatievlaanderen/public-api/commit/fc5170a))
+* remove camelcase for list postal information GR-936 ([b1de93c](https://github.com/informatievlaanderen/public-api/commit/b1de93c))
+* remove camelcase for list streetname GR-937 ([f7b87ea](https://github.com/informatievlaanderen/public-api/commit/f7b87ea))
+* remove feeds from menu GR-954 ([1f776d0](https://github.com/informatievlaanderen/public-api/commit/1f776d0))
+* remove municipality list filters niscode and name GR-933 ([1a94c05](https://github.com/informatievlaanderen/public-api/commit/1a94c05))
+* rename buildingId to objectId GR-944 ([2dadf6f](https://github.com/informatievlaanderen/public-api/commit/2dadf6f))
+* rename post informatie to postinfo GR-941 ([3a09ec9](https://github.com/informatievlaanderen/public-api/commit/3a09ec9))
+* rename postCode to objectId GR-966 ([fa2f4d2](https://github.com/informatievlaanderen/public-api/commit/fa2f4d2))
+* use different license for data GR-925 ([5863724](https://github.com/informatievlaanderen/public-api/commit/5863724))
+
 ## [2.38.2](https://github.com/informatievlaanderen/public-api/compare/v2.38.1...v2.38.2) (2019-10-21)
 
 
