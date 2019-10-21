@@ -12,7 +12,7 @@ namespace Public.Api.Feeds
     [ApiVersion("1.0")]
     [AdvertiseApiVersions("1.0")]
     [ApiRoute("feeds")]
-    [ApiExplorerSettings(GroupName = "Feeds")]
+    [ApiExplorerSettings(GroupName = "Feeds", IgnoreApi = true)]
     [Produces("application/atom+xml", "text/xml")]
     public partial class FeedController : ApiController<FeedController>
     {
