@@ -56,7 +56,7 @@ namespace Public.Api.CrabSubaddress
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] string crabSubadresId,
+            [FromQuery] int crabSubadresId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -108,7 +108,7 @@ namespace Public.Api.CrabSubaddress
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] string crabSubadresId,
+            [FromQuery] int crabSubadresId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -141,11 +141,11 @@ namespace Public.Api.CrabSubaddress
             int? offset,
             int? limit,
             string sort,
-            string crabSubaddressId)
+            int crabSubaddressId)
         {
             var filter = new CrabSubaddressAddressFilter
             {
-                CrabSubaddressId = crabSubaddressId
+                CrabSubaddressId = crabSubaddressId.ToString()
             };
 
             var sortMapping = new Dictionary<string, string>
