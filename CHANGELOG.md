@@ -1,3 +1,16 @@
+## [2.38.2](https://github.com/informatievlaanderen/public-api/compare/v2.38.1...v2.38.2) (2019-10-21)
+
+
+### Bug Fixes
+
+* change order of addressmatch parameters GR-928 ([f686082](https://github.com/informatievlaanderen/public-api/commit/f686082))
+* correct some spelling mistakes GR-926 ([0ed45ab](https://github.com/informatievlaanderen/public-api/commit/0ed45ab))
+* hide bosa endpoints from documentation GR-927 ([8c788c5](https://github.com/informatievlaanderen/public-api/commit/8c788c5))
+* hide format routes GR-924 ([ec41fe9](https://github.com/informatievlaanderen/public-api/commit/ec41fe9))
+* make sure docs for 406 are valid GR-684 ([bfc9f06](https://github.com/informatievlaanderen/public-api/commit/bfc9f06))
+* properly case language value GR-922 ([e09c349](https://github.com/informatievlaanderen/public-api/commit/e09c349))
+* remove sort parameter everywhere GR-945 GR-969 ([a0e853e](https://github.com/informatievlaanderen/public-api/commit/a0e853e))
+
 ## [2.38.1](https://github.com/informatievlaanderen/public-api/compare/v2.38.0...v2.38.1) (2019-10-11)
 
 
