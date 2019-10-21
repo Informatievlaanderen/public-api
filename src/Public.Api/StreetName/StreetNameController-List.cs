@@ -30,11 +30,7 @@ namespace Public.Api.StreetName
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id, naam-nl, naam-fr, naam-de, naam-en).</param>
-        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de straatnamen (exact).</param>
-        /// <param name="naamNl">Filter op het Nederlandse deel van de straatnaam (bevat).</param>
-        /// <param name="naamFr">Filter op het Franse deel van de straatnaam (bevat).</param>
-        /// <param name="naamDe">Filter op het Duitse deel van de straatnaam (bevat).</param>
-        /// <param name="naamEn">Filter op het Engelse deel van de straatnaam (bevat).</param>
+        /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de straatnamen (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -61,11 +57,7 @@ namespace Public.Api.StreetName
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] string gemeenteNaam,
-            [FromQuery] string naamNl,
-            [FromQuery] string naamFr,
-            [FromQuery] string naamDe,
-            [FromQuery] string naamEn,
+            [FromQuery] string gemeentenaam,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<StreetNameOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -75,11 +67,7 @@ namespace Public.Api.StreetName
                 offset,
                 limit,
                 sort,
-                gemeenteNaam,
-                naamNl,
-                naamFr,
-                naamDe,
-                naamEn,
+                gemeentenaam,
                 actionContextAccessor,
                 responseOptions,
                 ifNoneMatch,
@@ -92,11 +80,7 @@ namespace Public.Api.StreetName
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id, naam-nl, naam-fr, naam-de, naam-en).</param>
-        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de straatnamen (exact).</param>
-        /// <param name="naamNl">Filter op het Nederlandse deel van de straatnaam (bevat).</param>
-        /// <param name="naamFr">Filter op het Franse deel van de straatnaam (bevat).</param>
-        /// <param name="naamDe">Filter op het Duitse deel van de straatnaam (bevat).</param>
-        /// <param name="naamEn">Filter op het Engelse deel van de straatnaam (bevat).</param>
+        /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de straatnamen (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -125,11 +109,7 @@ namespace Public.Api.StreetName
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] string gemeenteNaam,
-            [FromQuery] string naamNl,
-            [FromQuery] string naamFr,
-            [FromQuery] string naamDe,
-            [FromQuery] string naamEn,
+            [FromQuery] string gemeentenaam,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<StreetNameOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -148,11 +128,7 @@ namespace Public.Api.StreetName
                 limit,
                 taal,
                 sort,
-                gemeenteNaam,
-                naamNl,
-                naamFr,
-                naamDe,
-                naamEn);
+                gemeentenaam);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/streetname-list:{taal}");
 
@@ -168,19 +144,11 @@ namespace Public.Api.StreetName
             int? limit,
             Taal taal,
             string sort,
-            string municipalityName,
-            string nameDutch,
-            string nameFrench,
-            string nameGerman,
-            string nameEnglish)
+            string municipalityName)
         {
             var filter = new StreetNameFilter
             {
-                MunicipalityName = municipalityName,
-                NameDutch = nameDutch,
-                NameFrench = nameFrench,
-                NameGerman = nameGerman,
-                NameEnglish = nameEnglish
+                MunicipalityName = municipalityName
             };
 
             // id, naam-nl, naam-fr, naam-de, naam-en
