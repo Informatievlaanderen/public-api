@@ -21,15 +21,15 @@ namespace Public.Api.Address
         /// <summary>
         /// Voer een adres match vraag uit en krijg de adressen die gematcht worden.
         /// </summary>
-        /// <param name="busNummer">Filter op het busnummer van het adres.</param>
-        /// <param name="huisNummer">Filter op het huisnummer van het adres.</param>
-        /// <param name="postCode">Filter op de postcode van het adres.</param>
         /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de adressen.</param>
         /// <param name="nisCode">Filter op de NisCode van de gemeente.</param>
-        /// <param name="straatNaam">Filter op de straatnaam van het adres.</param>
+        /// <param name="postCode">Filter op de postcode van het adres.</param>
         /// <param name="kadStraatcode">Filter op de straatcode van het kadaster.</param>
         /// <param name="rrStraatcode">Filter op de straatcode van het rijksregister.</param>
+        /// <param name="straatNaam">Filter op de straatnaam van het adres.</param>
+        /// <param name="huisNummer">Filter op het huisnummer van het adres.</param>
         /// <param name="index">Filter op het huisnummer gekend in het rijksregister.</param>
+        /// <param name="busNummer">Filter op het busnummer van het adres.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="cancellationToken"></param>
@@ -47,29 +47,29 @@ namespace Public.Api.Address
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         public async Task<IActionResult> AddressMatch(
-            [FromQuery] string busNummer,
-            [FromQuery] string huisNummer,
-            [FromQuery] string postCode,
             [FromQuery] string gemeenteNaam,
             [FromQuery] string nisCode,
-            [FromQuery] string straatNaam,
+            [FromQuery] string postCode,
             [FromQuery] string kadStraatcode,
             [FromQuery] string rrStraatcode,
+            [FromQuery] string straatNaam,
+            [FromQuery] string huisNummer,
             [FromQuery] string index,
+            [FromQuery] string busNummer,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
             CancellationToken cancellationToken = default)
             => await AddressMatchWithFormat(
                 null,
-                busNummer,
-                huisNummer,
-                postCode,
                 gemeenteNaam,
                 nisCode,
-                straatNaam,
+                postCode,
                 kadStraatcode,
                 rrStraatcode,
+                straatNaam,
+                huisNummer,
                 index,
+                busNummer,
                 actionContextAccessor,
                 responseOptions,
                 cancellationToken);
@@ -78,15 +78,15 @@ namespace Public.Api.Address
         /// Voer een adres match vraag uit en krijg de adressen die gematcht worden.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="busNummer">Filter op het busnummer van het adres.</param>
-        /// <param name="huisNummer">Filter op het huisnummer van het adres.</param>
-        /// <param name="postCode">Filter op de postcode van het adres.</param>
         /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de adressen.</param>
         /// <param name="nisCode">Filter op de NisCode van de gemeente.</param>
-        /// <param name="straatNaam">Filter op de straatnaam van het adres.</param>
+        /// <param name="postCode">Filter op de postcode van het adres.</param>
         /// <param name="kadStraatcode">Filter op de straatcode van het kadaster.</param>
         /// <param name="rrStraatcode">Filter op de straatcode van het rijksregister.</param>
+        /// <param name="straatNaam">Filter op de straatnaam van het adres.</param>
+        /// <param name="huisNummer">Filter op het huisnummer van het adres.</param>
         /// <param name="index">Filter op het huisnummer gekend in het rijksregister.</param>
+        /// <param name="busNummer">Filter op het busnummer van het adres.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="cancellationToken"></param>
@@ -106,15 +106,15 @@ namespace Public.Api.Address
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         public async Task<IActionResult> AddressMatchWithFormat(
             [FromRoute] string format,
-            [FromQuery] string busNummer,
-            [FromQuery] string huisNummer,
-            [FromQuery] string postCode,
             [FromQuery] string gemeenteNaam,
             [FromQuery] string nisCode,
-            [FromQuery] string straatNaam,
+            [FromQuery] string postCode,
             [FromQuery] string kadStraatcode,
             [FromQuery] string rrStraatcode,
+            [FromQuery] string straatNaam,
+            [FromQuery] string huisNummer,
             [FromQuery] string index,
+            [FromQuery] string busNummer,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
             CancellationToken cancellationToken = default)
