@@ -295,7 +295,7 @@ $@"# Introductie
 
 Welkom bij de REST API van Basisregisters Vlaanderen!
 
-[REST](http://en.wikipedia.org/wiki/REST_API) is een webserviceprotocol dat zich leent voor snelle ontwikkeling door het gebruik van HTTP- en JSON-technologie.
+[REST](http://en.wikipedia.org/wiki/REST_API) is een webserviceprotocol dat zich leent tot snelle ontwikkeling door het gebruik van HTTP- en JSON-technologie.
 
 Basisregisters Vlaanderen stelt u in staat om alles te weten te komen rond:
 * de Belgische gemeenten;
@@ -307,7 +307,7 @@ Basisregisters Vlaanderen stelt u in staat om alles te weten te komen rond:
 * de Vlaamse organisaties en organen;
 * de Vlaamse dienstverlening;
 
-Basisregisters Vlaanderen is de authentieke bron rond al bovenstaande gegevens met uitzondering van gemeenten, postcodes en percelen, die wij aanbieden als referentie bron.
+Basisregisters Vlaanderen is de authentieke bron rond al bovenstaande gegevens met uitzondering van gemeenten, postcodes en percelen, die wij aanbieden als referentiebron.
 
 ## Contact
 
@@ -315,9 +315,9 @@ U kan ons bereiken via [informatie.vlaanderen@vlaanderen.be](mailto:informatie.v
 
 ## Ontsluitingen
 
-De REST API van Basisregisters Vlaanderen is te bereiken via volgende ontsluitingen.
+De REST API van Basisregisters Vlaanderen is te bereiken via volgende basis-URL.
 
-Doelpubliek | Basis URL voor de REST ontsluitingen                              |
+Doelpubliek | REST basis-URL                                                    |
 ----------- | ----------------------------------------------------------------- |
 Iedereen    | {_configuration["BaseUrl"]}{description.GroupName} |
 
