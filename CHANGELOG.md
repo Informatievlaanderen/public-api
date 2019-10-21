@@ -1,3 +1,18 @@
+## [2.38.4](https://github.com/informatievlaanderen/public-api/compare/v2.38.3...v2.38.4) (2019-10-21)
+
+
+### Bug Fixes
+
+* revert objectId changes ([4a73911](https://github.com/informatievlaanderen/public-api/commit/4a73911))
+* stricter checking on datatype for address GR-1007 ([12590e1](https://github.com/informatievlaanderen/public-api/commit/12590e1))
+* stricter checking on datatype for building GR-1007 ([d25f722](https://github.com/informatievlaanderen/public-api/commit/d25f722))
+* stricter checking on datatype for buildingunit GR-1007 ([58b6dd9](https://github.com/informatievlaanderen/public-api/commit/58b6dd9))
+* stricter checking on datatype for crabhousenumber GR-1007 ([cd29a4f](https://github.com/informatievlaanderen/public-api/commit/cd29a4f))
+* stricter checking on datatype for crabsubaddress GR-1007 ([972258f](https://github.com/informatievlaanderen/public-api/commit/972258f))
+* stricter checking on datatype for municipality GR-1007 ([b44e724](https://github.com/informatievlaanderen/public-api/commit/b44e724))
+* stricter checking on datatype for postal GR-1007 ([3ba8f91](https://github.com/informatievlaanderen/public-api/commit/3ba8f91))
+* stricter checking on datatype for streetname GR-1007 ([8004461](https://github.com/informatievlaanderen/public-api/commit/8004461))
+
 ## [2.38.3](https://github.com/informatievlaanderen/public-api/compare/v2.38.2...v2.38.3) (2019-10-21)
 
 
