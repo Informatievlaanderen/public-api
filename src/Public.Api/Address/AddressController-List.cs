@@ -63,7 +63,7 @@ namespace Public.Api.Address
             [FromQuery] int? limit,
             [FromQuery] string sort,
             [FromQuery] string gemeentenaam,
-            [FromQuery] string postcode,
+            [FromQuery] int? postcode,
             [FromQuery] string straatnaam,
             [FromQuery] string homoniemToevoeging,
             [FromQuery] string huisnummer,
@@ -130,7 +130,7 @@ namespace Public.Api.Address
             [FromQuery] int? limit,
             [FromQuery] string sort,
             [FromQuery] string gemeentenaam,
-            [FromQuery] string postcode,
+            [FromQuery] int? postcode,
             [FromQuery] string straatnaam,
             [FromQuery] string homoniemToevoeging,
             [FromQuery] string huisnummer,
@@ -176,7 +176,7 @@ namespace Public.Api.Address
             string sort,
             string boxNumber,
             string houseNumber,
-            string postalCode,
+            int? postalCode,
             string municipalityName,
             string streetName,
             string homonymAddition)
@@ -185,7 +185,7 @@ namespace Public.Api.Address
             {
                 BoxNumber = boxNumber,
                 HouseNumber = houseNumber,
-                PostalCode = postalCode,
+                PostalCode = postalCode?.ToString(),
                 MunicipalityName = municipalityName,
                 StreetName = streetName,
                 HomonymAddition = homonymAddition

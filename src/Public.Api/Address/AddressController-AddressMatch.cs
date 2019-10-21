@@ -48,8 +48,8 @@ namespace Public.Api.Address
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         public async Task<IActionResult> AddressMatch(
             [FromQuery] string gemeentenaam,
-            [FromQuery] string niscode,
-            [FromQuery] string postcode,
+            [FromQuery] int? niscode,
+            [FromQuery] int? postcode,
             [FromQuery] string kadStraatcode,
             [FromQuery] string rrStraatcode,
             [FromQuery] string straatnaam,
@@ -107,8 +107,8 @@ namespace Public.Api.Address
         public async Task<IActionResult> AddressMatchWithFormat(
             [FromRoute] string format,
             [FromQuery] string gemeentenaam,
-            [FromQuery] string niscode,
-            [FromQuery] string postcode,
+            [FromQuery] int? niscode,
+            [FromQuery] int? postcode,
             [FromQuery] string kadStraatcode,
             [FromQuery] string rrStraatcode,
             [FromQuery] string straatnaam,
@@ -148,9 +148,9 @@ namespace Public.Api.Address
             Taal language,
             string boxNumber,
             string houseNumber,
-            string postalCode,
+            int? postalCode,
             string municipalityName,
-            string nisCode,
+            int? nisCode,
             string streetName,
             string kadStreetCode,
             string rrStreetCode,
