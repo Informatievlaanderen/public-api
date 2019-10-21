@@ -30,6 +30,7 @@ namespace Public.Api.Infrastructure
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Modules;
+    using Swagger;
     using Swashbuckle.AspNetCore.Filters;
     using Swashbuckle.AspNetCore.Swagger;
 
@@ -102,6 +103,10 @@ namespace Public.Api.Infrastructure
                             typeof(BuildingRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(PublicServiceRegistry.Api.Backoffice.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
+                        },
+                        MiddlewareHooks =
+                        {
+                            AfterSwaggerGen = x => { x.OperationFilter<RemoveParameterOperationFilter>("sort"); }
                         }
                     },
                     Localization =
