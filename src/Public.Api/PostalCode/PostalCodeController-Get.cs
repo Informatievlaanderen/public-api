@@ -21,7 +21,7 @@ namespace Public.Api.PostalCode
         /// <summary>
         /// Vraag postinfo voor een postcode op.
         /// </summary>
-        /// <param name="objectId">Identificator van de postinfo.</param>
+        /// <param name="postCode">Identificator van de postinfo.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -30,7 +30,7 @@ namespace Public.Api.PostalCode
         /// <response code="404">Als de postinfo voor een postcode niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("postinfo/{objectId}")]
+        [HttpGet("postinfo/{postCode}")]
         [ProducesResponseType(typeof(PostalInformationResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -45,13 +45,13 @@ namespace Public.Api.PostalCode
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
         public async Task<IActionResult> GetPostalCode(
-            [FromRoute] string objectId,
+            [FromRoute] string postCode,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
             => await GetPostalCodeWithFormat(
                 null,
-                objectId,
+                postCode,
                 actionContextAccessor,
                 ifNoneMatch,
                 cancellationToken);
@@ -60,7 +60,7 @@ namespace Public.Api.PostalCode
         /// Vraag postinfo voor een postcode op.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="objectId">Identificator van de postinfo.</param>
+        /// <param name="postCode">Identificator van de postinfo.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -69,7 +69,7 @@ namespace Public.Api.PostalCode
         /// <response code="404">Als de postinfo voor een postcode niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("postinfo/{objectId}.{format}")]
+        [HttpGet("postinfo/{postCode}.{format}")]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(PostalInformationResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
@@ -86,7 +86,7 @@ namespace Public.Api.PostalCode
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
         public async Task<IActionResult> GetPostalCodeWithFormat(
             [FromRoute] string format,
-            [FromRoute] string objectId,
+            [FromRoute] string postCode,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
@@ -97,9 +97,9 @@ namespace Public.Api.PostalCode
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
+            RestRequest BackendRequest() => CreateBackendDetailRequest(postCode);
 
-            var cacheKey = $"legacy/postalinfo:{objectId}";
+            var cacheKey = $"legacy/postalinfo:{postCode}";
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)
