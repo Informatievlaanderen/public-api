@@ -21,7 +21,7 @@ namespace Public.Api.Address
         /// <summary>
         /// Vraag een adres op.
         /// </summary>
-        /// <param name="objectId">Objectidentificator van het adres.</param>
+        /// <param name="adresId">Objectidentificator van het adres.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -31,7 +31,7 @@ namespace Public.Api.Address
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als het adres verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adressen/{objectId}")]
+        [HttpGet("adressen/{adresId}")]
         [ProducesResponseType(typeof(AddressResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -48,13 +48,13 @@ namespace Public.Api.Address
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
         public async Task<IActionResult> GetAddress(
-            [FromRoute] string objectId,
+            [FromRoute] string adresId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
             => await GetAddressWithFormat(
                 null,
-                objectId,
+                adresId,
                 actionContextAccessor,
                 ifNoneMatch,
                 cancellationToken);
@@ -63,7 +63,7 @@ namespace Public.Api.Address
         /// Vraag een adres op.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="objectId">Objectidentificator van het adres.</param>
+        /// <param name="adresId">Objectidentificator van het adres.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -73,7 +73,7 @@ namespace Public.Api.Address
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als het adres verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adressen/{objectId}.{format}")]
+        [HttpGet("adressen/{adresId}.{format}")]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(AddressResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
@@ -92,7 +92,7 @@ namespace Public.Api.Address
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
         public async Task<IActionResult> GetAddressWithFormat(
             [FromRoute] string format,
-            [FromRoute] string objectId,
+            [FromRoute] string adresId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
@@ -103,9 +103,9 @@ namespace Public.Api.Address
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
+            RestRequest BackendRequest() => CreateBackendDetailRequest(adresId);
 
-            var cacheKey = $"legacy/address:{objectId}";
+            var cacheKey = $"legacy/address:{adresId}";
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)

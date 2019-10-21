@@ -30,7 +30,7 @@ namespace Public.Api.BuildingUnit
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id).</param>
-        /// <param name="adresObjectId">Optionele objectidentificator van het gekoppelde adres.</param>
+        /// <param name="adresId">Optionele objectidentificator van het gekoppelde adres.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -57,7 +57,7 @@ namespace Public.Api.BuildingUnit
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] string adresObjectId,
+            [FromQuery] string adresId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<BuildingOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -67,7 +67,7 @@ namespace Public.Api.BuildingUnit
                 offset,
                 limit,
                 sort,
-                adresObjectId,
+                adresId,
                 actionContextAccessor,
                 responseOptions,
                 ifNoneMatch,
@@ -80,7 +80,7 @@ namespace Public.Api.BuildingUnit
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id).</param>
-        /// <param name="adresObjectId">Optionele objectidentificator van het gekoppelde adres.</param>
+        /// <param name="adresId">Optionele objectidentificator van het gekoppelde adres.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -109,7 +109,7 @@ namespace Public.Api.BuildingUnit
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] string adresObjectId,
+            [FromQuery] string adresId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<BuildingOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -127,7 +127,7 @@ namespace Public.Api.BuildingUnit
                 offset,
                 limit,
                 taal,
-                adresObjectId,
+                adresId,
                 sort);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/buildingunit-list:{taal}");
@@ -143,12 +143,12 @@ namespace Public.Api.BuildingUnit
             int? offset,
             int? limit,
             Taal language,
-            string addressObjectId,
+            string addressId,
             string sort)
         {
             var filter = new BuildingUnitFilter
             {
-                AddressPersistentLocalId = addressObjectId
+                AddressPersistentLocalId = addressId
             };
 
             var sortMapping = new Dictionary<string, string>
