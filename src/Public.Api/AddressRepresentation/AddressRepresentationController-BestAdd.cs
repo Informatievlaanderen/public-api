@@ -15,6 +15,7 @@ namespace Public.Api.AddressRepresentation
     public partial class AddressRepresentationController
     {
         [HttpPost("bosa/adresvoorstellingen")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddAddressRepresentation(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,

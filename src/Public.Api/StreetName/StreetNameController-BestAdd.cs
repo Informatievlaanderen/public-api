@@ -15,6 +15,7 @@ namespace Public.Api.StreetName
     public partial class StreetNameController
     {
         [HttpPost("bosa/straatnamen")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddStreetName(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,

@@ -15,6 +15,7 @@ namespace Public.Api.Address
     public partial class AddressController
     {
         [HttpPost("bosa/adressen")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddAddress(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
