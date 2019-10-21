@@ -30,11 +30,11 @@ namespace Public.Api.Address
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id, postcode, huisnummer, busnummer).</param>
-        /// <param name="busNummer">Filter op het busnummer van het adres (exact).</param>
-        /// <param name="huisNummer">Filter op het huisnummer van het adres (exact).</param>
-        /// <param name="postCode">Filter op de postcode van het adres (exact).</param>
-        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de adressen (exact).</param>
-        /// <param name="straatNaam">Filter op de straatnaam van het adres (exact).</param>
+        /// <param name="busnummer">Filter op het busnummer van het adres (exact).</param>
+        /// <param name="huisnummer">Filter op het huisnummer van het adres (exact).</param>
+        /// <param name="postcode">Filter op de postcode van het adres (exact).</param>
+        /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de adressen (exact).</param>
+        /// <param name="straatnaam">Filter op de straatnaam van het adres (exact).</param>
         /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
@@ -62,11 +62,11 @@ namespace Public.Api.Address
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] string busNummer,
-            [FromQuery] string huisNummer,
-            [FromQuery] string postCode,
-            [FromQuery] string gemeenteNaam,
-            [FromQuery] string straatNaam,
+            [FromQuery] string busnummer,
+            [FromQuery] string huisnummer,
+            [FromQuery] string postcode,
+            [FromQuery] string gemeentenaam,
+            [FromQuery] string straatnaam,
             [FromQuery] string homoniemToevoeging,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
@@ -77,11 +77,11 @@ namespace Public.Api.Address
                 offset,
                 limit,
                 sort,
-                busNummer,
-                huisNummer,
-                postCode,
-                gemeenteNaam,
-                straatNaam,
+                busnummer,
+                huisnummer,
+                postcode,
+                gemeentenaam,
+                straatnaam,
                 homoniemToevoeging,
                 actionContextAccessor,
                 responseOptions,
@@ -95,11 +95,11 @@ namespace Public.Api.Address
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id, postcode, huisnummer, busnummer).</param>
-        /// <param name="busNummer">Filter op het busnummer van het adres (exact).</param>
-        /// <param name="huisNummer">Filter op het huisnummer van het adres (exact).</param>
-        /// <param name="postCode">Filter op de postcode van het adres (exact).</param>
-        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de adressen (exact).</param>
-        /// <param name="straatNaam">Filter op de straatnaam van het adres (exact).</param>
+        /// <param name="busnummer">Filter op het busnummer van het adres (exact).</param>
+        /// <param name="huisnummer">Filter op het huisnummer van het adres (exact).</param>
+        /// <param name="postcode">Filter op de postcode van het adres (exact).</param>
+        /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de adressen (exact).</param>
+        /// <param name="straatnaam">Filter op de straatnaam van het adres (exact).</param>
         /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
@@ -129,11 +129,11 @@ namespace Public.Api.Address
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] string busNummer,
-            [FromQuery] string huisNummer,
-            [FromQuery] string postCode,
-            [FromQuery] string gemeenteNaam,
-            [FromQuery] string straatNaam,
+            [FromQuery] string busnummer,
+            [FromQuery] string huisnummer,
+            [FromQuery] string postcode,
+            [FromQuery] string gemeentenaam,
+            [FromQuery] string straatnaam,
             [FromQuery] string homoniemToevoeging,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
@@ -153,11 +153,11 @@ namespace Public.Api.Address
                 limit,
                 taal,
                 sort,
-                busNummer,
-                huisNummer,
-                postCode,
-                gemeenteNaam,
-                straatNaam,
+                busnummer,
+                huisnummer,
+                postcode,
+                gemeentenaam,
+                straatnaam,
                 homoniemToevoeging);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/address-list:{taal}");
@@ -195,8 +195,8 @@ namespace Public.Api.Address
             var sortMapping = new Dictionary<string, string>
             {
                 { "BusNummer", "BoxNumber" },
-                { "HuisNummer", "HouseNumber" },
-                { "PostCode", "PostalCode" },
+                { "huisnummer", "HouseNumber" },
+                { "postcode", "PostalCode" },
                 { "Id", "PersistentLocalId" },
             };
 
