@@ -128,7 +128,7 @@ namespace Public.Api.PublicService
         private static IRestRequest CreateBackendListRequest(
             int? offset,
             int? limit,
-            Taal taal,
+            Taal language,
             string sort)
         {
             // id, naam, verantwoordelijke-autoriteit
@@ -143,8 +143,8 @@ namespace Public.Api.PublicService
                 { "ExportToOrafin", "ExportToOrafin" },
             };
 
-            return new RestRequest("dienstverleningen?taal={taal}")
-                .AddParameter("taal", taal, ParameterType.UrlSegment)
+            return new RestRequest("dienstverleningen?taal={language}")
+                .AddParameter("language", language, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
                 .AddSorting(sort, sortMapping);
         }

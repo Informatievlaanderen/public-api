@@ -142,7 +142,7 @@ namespace Public.Api.StreetName
         private static IRestRequest CreateBackendListRequest(
             int? offset,
             int? limit,
-            Taal taal,
+            Taal language,
             string sort,
             string municipalityName)
         {
@@ -165,8 +165,8 @@ namespace Public.Api.StreetName
                 { "Naam-De", "NameGerman" },
             };
 
-            return new RestRequest("straatnamen?taal={taal}")
-                .AddParameter("taal", taal, ParameterType.UrlSegment)
+            return new RestRequest("straatnamen?taal={language}")
+                .AddParameter("language", language, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
                 .AddFiltering(filter)
                 .AddSorting(sort, sortMapping);

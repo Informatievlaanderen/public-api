@@ -142,13 +142,13 @@ namespace Public.Api.BuildingUnit
         private static IRestRequest CreateBackendListRequest(
             int? offset,
             int? limit,
-            Taal taal,
-            string adresObjectId,
+            Taal language,
+            string addressObjectId,
             string sort)
         {
             var filter = new BuildingUnitFilter
             {
-                AddressPersistentLocalId = adresObjectId
+                AddressPersistentLocalId = addressObjectId
             };
 
             var sortMapping = new Dictionary<string, string>
@@ -156,8 +156,8 @@ namespace Public.Api.BuildingUnit
                 { "Id", "PersistentLocalId" },
             };
 
-            return new RestRequest("gebouweenheden?taal={taal}")
-                .AddParameter("taal", taal, ParameterType.UrlSegment)
+            return new RestRequest("gebouweenheden?taal={language}")
+                .AddParameter("language", language, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
                 .AddFiltering(filter)
                 .AddSorting(sort, sortMapping);

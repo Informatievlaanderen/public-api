@@ -135,7 +135,7 @@ namespace Public.Api.Parcel
         private static IRestRequest CreateBackendListRequest(
             int? offset,
             int? limit,
-            Taal taal,
+            Taal language,
             string sort)
         {
             var sortMapping = new Dictionary<string, string>
@@ -143,8 +143,8 @@ namespace Public.Api.Parcel
                 { "Id", "PersistentLocalId" },
             };
 
-            return new RestRequest("percelen?taal={taal}")
-                .AddParameter("taal", taal, ParameterType.UrlSegment)
+            return new RestRequest("percelen?taal={language}")
+                .AddParameter("language", language, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
                 .AddSorting(sort, sortMapping);
         }

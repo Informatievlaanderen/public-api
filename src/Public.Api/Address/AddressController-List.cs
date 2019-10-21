@@ -30,12 +30,12 @@ namespace Public.Api.Address
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id, postcode, huisnummer, busnummer).</param>
-        /// <param name="busnummer">Filter op het busnummer van het adres (exact).</param>
-        /// <param name="huisnummer">Filter op het huisnummer van het adres (exact).</param>
-        /// <param name="postcode">Filter op de postcode van het adres (exact).</param>
         /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de adressen (exact).</param>
+        /// <param name="postcode">Filter op de postcode van het adres (exact).</param>
         /// <param name="straatnaam">Filter op de straatnaam van het adres (exact).</param>
         /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres (exact).</param>
+        /// <param name="huisnummer">Filter op het huisnummer van het adres (exact).</param>
+        /// <param name="busnummer">Filter op het busnummer van het adres (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -62,12 +62,12 @@ namespace Public.Api.Address
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] string busnummer,
-            [FromQuery] string huisnummer,
-            [FromQuery] string postcode,
             [FromQuery] string gemeentenaam,
+            [FromQuery] string postcode,
             [FromQuery] string straatnaam,
             [FromQuery] string homoniemToevoeging,
+            [FromQuery] string huisnummer,
+            [FromQuery] string busnummer,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -77,12 +77,12 @@ namespace Public.Api.Address
                 offset,
                 limit,
                 sort,
-                busnummer,
-                huisnummer,
-                postcode,
                 gemeentenaam,
+                postcode,
                 straatnaam,
                 homoniemToevoeging,
+                huisnummer,
+                busnummer,
                 actionContextAccessor,
                 responseOptions,
                 ifNoneMatch,
@@ -95,12 +95,12 @@ namespace Public.Api.Address
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id, postcode, huisnummer, busnummer).</param>
-        /// <param name="busnummer">Filter op het busnummer van het adres (exact).</param>
-        /// <param name="huisnummer">Filter op het huisnummer van het adres (exact).</param>
-        /// <param name="postcode">Filter op de postcode van het adres (exact).</param>
         /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de adressen (exact).</param>
+        /// <param name="postcode">Filter op de postcode van het adres (exact).</param>
         /// <param name="straatnaam">Filter op de straatnaam van het adres (exact).</param>
         /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres (exact).</param>
+        /// <param name="huisnummer">Filter op het huisnummer van het adres (exact).</param>
+        /// <param name="busnummer">Filter op het busnummer van het adres (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -129,12 +129,12 @@ namespace Public.Api.Address
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] string busnummer,
-            [FromQuery] string huisnummer,
-            [FromQuery] string postcode,
             [FromQuery] string gemeentenaam,
+            [FromQuery] string postcode,
             [FromQuery] string straatnaam,
             [FromQuery] string homoniemToevoeging,
+            [FromQuery] string huisnummer,
+            [FromQuery] string busnummer,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -172,7 +172,7 @@ namespace Public.Api.Address
         private static IRestRequest CreateBackendListRequest(
             int? offset,
             int? limit,
-            Taal taal,
+            Taal language,
             string sort,
             string boxNumber,
             string houseNumber,
@@ -200,8 +200,8 @@ namespace Public.Api.Address
                 { "Id", "PersistentLocalId" },
             };
 
-            return new RestRequest("adressen?taal={taal}")
-                .AddParameter("taal", taal, ParameterType.UrlSegment)
+            return new RestRequest("adressen?taal={language}")
+                .AddParameter("language", language, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
                 .AddFiltering(filter)
                 .AddSorting(sort, sortMapping);

@@ -137,7 +137,7 @@ namespace Public.Api.Municipality
         private static IRestRequest CreateBackendListRequest(
             int? offset,
             int? limit,
-            Taal taal,
+            Taal language,
             string sort)
         {
             // niscode, naam, naam-nl, naam-fr, naam-de, naam-en
@@ -155,8 +155,8 @@ namespace Public.Api.Municipality
                 { "Naam-De", "NameGerman" },
             };
 
-            return new RestRequest("gemeenten?taal={taal}")
-                .AddParameter("taal", taal, ParameterType.UrlSegment)
+            return new RestRequest("gemeenten?taal={language}")
+                .AddParameter("language", language, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
                 .AddSorting(sort, sortMapping);
         }

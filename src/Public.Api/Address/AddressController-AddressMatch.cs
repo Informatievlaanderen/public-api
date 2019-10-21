@@ -21,15 +21,15 @@ namespace Public.Api.Address
         /// <summary>
         /// Voer een adres match vraag uit en krijg de adressen die gematcht worden.
         /// </summary>
-        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de adressen.</param>
-        /// <param name="nisCode">Filter op de NisCode van de gemeente.</param>
-        /// <param name="postCode">Filter op de postcode van het adres.</param>
+        /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de adressen.</param>
+        /// <param name="niscode">Filter op de NisCode van de gemeente.</param>
+        /// <param name="postcode">Filter op de postcode van het adres.</param>
         /// <param name="kadStraatcode">Filter op de straatcode van het kadaster.</param>
         /// <param name="rrStraatcode">Filter op de straatcode van het rijksregister.</param>
-        /// <param name="straatNaam">Filter op de straatnaam van het adres.</param>
-        /// <param name="huisNummer">Filter op het huisnummer van het adres.</param>
+        /// <param name="straatnaam">Filter op de straatnaam van het adres.</param>
+        /// <param name="huisnummer">Filter op het huisnummer van het adres.</param>
         /// <param name="index">Filter op het huisnummer gekend in het rijksregister.</param>
-        /// <param name="busNummer">Filter op het busnummer van het adres.</param>
+        /// <param name="busnummer">Filter op het busnummer van het adres.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="cancellationToken"></param>
@@ -47,29 +47,29 @@ namespace Public.Api.Address
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         public async Task<IActionResult> AddressMatch(
-            [FromQuery] string gemeenteNaam,
-            [FromQuery] string nisCode,
-            [FromQuery] string postCode,
+            [FromQuery] string gemeentenaam,
+            [FromQuery] string niscode,
+            [FromQuery] string postcode,
             [FromQuery] string kadStraatcode,
             [FromQuery] string rrStraatcode,
-            [FromQuery] string straatNaam,
-            [FromQuery] string huisNummer,
+            [FromQuery] string straatnaam,
+            [FromQuery] string huisnummer,
             [FromQuery] string index,
-            [FromQuery] string busNummer,
+            [FromQuery] string busnummer,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
             CancellationToken cancellationToken = default)
             => await AddressMatchWithFormat(
                 null,
-                gemeenteNaam,
-                nisCode,
-                postCode,
+                gemeentenaam,
+                niscode,
+                postcode,
                 kadStraatcode,
                 rrStraatcode,
-                straatNaam,
-                huisNummer,
+                straatnaam,
+                huisnummer,
                 index,
-                busNummer,
+                busnummer,
                 actionContextAccessor,
                 responseOptions,
                 cancellationToken);
@@ -78,15 +78,15 @@ namespace Public.Api.Address
         /// Voer een adres match vraag uit en krijg de adressen die gematcht worden.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="gemeenteNaam">De gerelateerde gemeentenaam van de adressen.</param>
-        /// <param name="nisCode">Filter op de NisCode van de gemeente.</param>
-        /// <param name="postCode">Filter op de postcode van het adres.</param>
+        /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de adressen.</param>
+        /// <param name="niscode">Filter op de NisCode van de gemeente.</param>
+        /// <param name="postcode">Filter op de postcode van het adres.</param>
         /// <param name="kadStraatcode">Filter op de straatcode van het kadaster.</param>
         /// <param name="rrStraatcode">Filter op de straatcode van het rijksregister.</param>
-        /// <param name="straatNaam">Filter op de straatnaam van het adres.</param>
-        /// <param name="huisNummer">Filter op het huisnummer van het adres.</param>
+        /// <param name="straatnaam">Filter op de straatnaam van het adres.</param>
+        /// <param name="huisnummer">Filter op het huisnummer van het adres.</param>
         /// <param name="index">Filter op het huisnummer gekend in het rijksregister.</param>
-        /// <param name="busNummer">Filter op het busnummer van het adres.</param>
+        /// <param name="busnummer">Filter op het busnummer van het adres.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="cancellationToken"></param>
@@ -106,15 +106,15 @@ namespace Public.Api.Address
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         public async Task<IActionResult> AddressMatchWithFormat(
             [FromRoute] string format,
-            [FromQuery] string gemeenteNaam,
-            [FromQuery] string nisCode,
-            [FromQuery] string postCode,
+            [FromQuery] string gemeentenaam,
+            [FromQuery] string niscode,
+            [FromQuery] string postcode,
             [FromQuery] string kadStraatcode,
             [FromQuery] string rrStraatcode,
-            [FromQuery] string straatNaam,
-            [FromQuery] string huisNummer,
+            [FromQuery] string straatnaam,
+            [FromQuery] string huisnummer,
             [FromQuery] string index,
-            [FromQuery] string busNummer,
+            [FromQuery] string busnummer,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
             CancellationToken cancellationToken = default)
@@ -129,12 +129,12 @@ namespace Public.Api.Address
 
             IRestRequest BackendRequest() => CreateBackendMatchRequest(
                 taal,
-                busNummer,
-                huisNummer,
-                postCode,
-                gemeenteNaam,
-                nisCode,
-                straatNaam,
+                busnummer,
+                huisnummer,
+                postcode,
+                gemeentenaam,
+                niscode,
+                straatnaam,
                 kadStraatcode,
                 rrStraatcode,
                 index);
@@ -145,7 +145,7 @@ namespace Public.Api.Address
         }
 
         private static IRestRequest CreateBackendMatchRequest(
-            Taal taal,
+            Taal language,
             string boxNumber,
             string houseNumber,
             string postalCode,
@@ -157,25 +157,25 @@ namespace Public.Api.Address
             string index)
             => new RestRequest(
                     "adresmatch?" +
-                    "taal={taal}&" +
-                    "busnummer={busnummer}&" +
-                    "huisnummer={huisnummer}&" +
-                    "postcode={postcode}&" +
-                    "gemeentenaam={gemeentenaam}&" +
-                    "niscode={niscode}&" +
-                    "straatnaam={straatnaam}&" +
-                    "kadstraatcode={kadstraatcode}&" +
-                    "rrstraatcode={rrstraatcode}&" +
+                    "taal={language}&" +
+                    "busnummer={boxNumber}&" +
+                    "huisnummer={houseNumber}&" +
+                    "postcode={postalCode}&" +
+                    "gemeentenaam={municipalityName}&" +
+                    "niscode={nisCode}&" +
+                    "straatnaam={streetName}&" +
+                    "kadstraatcode={kadStreetCode}&" +
+                    "rrstraatcode={rrStreetCode}&" +
                     "index={index}")
-                .AddParameter("taal", taal, ParameterType.UrlSegment)
-                .AddParameter("busnummer", boxNumber, ParameterType.UrlSegment)
-                .AddParameter("huisnummer", houseNumber, ParameterType.UrlSegment)
-                .AddParameter("postcode", postalCode, ParameterType.UrlSegment)
-                .AddParameter("gemeentenaam", municipalityName, ParameterType.UrlSegment)
-                .AddParameter("niscode", nisCode, ParameterType.UrlSegment)
-                .AddParameter("straatnaam", streetName, ParameterType.UrlSegment)
+                .AddParameter("language", language, ParameterType.UrlSegment)
+                .AddParameter("boxNumber", boxNumber, ParameterType.UrlSegment)
+                .AddParameter("houseNumber", houseNumber, ParameterType.UrlSegment)
+                .AddParameter("postalCode", postalCode, ParameterType.UrlSegment)
+                .AddParameter("municipalityName", municipalityName, ParameterType.UrlSegment)
+                .AddParameter("nisCode", nisCode, ParameterType.UrlSegment)
+                .AddParameter("streetName", streetName, ParameterType.UrlSegment)
                 .AddParameter("kadStreetCode", kadStreetCode, ParameterType.UrlSegment)
-                .AddParameter("rrstraatcode", rrStreetCode, ParameterType.UrlSegment)
+                .AddParameter("rrStreetCode", rrStreetCode, ParameterType.UrlSegment)
                 .AddParameter("index", index, ParameterType.UrlSegment);
     }
 }
