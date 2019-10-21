@@ -57,7 +57,7 @@ namespace Public.Api.BuildingUnit
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] string adresId,
+            [FromQuery] int? adresId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<BuildingOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -109,7 +109,7 @@ namespace Public.Api.BuildingUnit
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] string adresId,
+            [FromQuery] int? adresId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<BuildingOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -143,12 +143,12 @@ namespace Public.Api.BuildingUnit
             int? offset,
             int? limit,
             Taal language,
-            string addressId,
+            int? addressId,
             string sort)
         {
             var filter = new BuildingUnitFilter
             {
-                AddressPersistentLocalId = addressId
+                AddressPersistentLocalId = addressId?.ToString()
             };
 
             var sortMapping = new Dictionary<string, string>
