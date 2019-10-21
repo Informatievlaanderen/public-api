@@ -25,7 +25,7 @@ namespace Public.Api.PostalCode
     public partial class PostalCodeController
     {
         /// <summary>
-        /// Vraag een lijst met post informatie over actieve postcodes op.
+        /// Vraag een lijst met postinfo over actieve postcodes op.
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
@@ -35,7 +35,7 @@ namespace Public.Api.PostalCode
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met post informatie over postcodes gelukt is.</response>
+        /// <response code="200">Als de opvraging van een lijst met postinfo over postcodes gelukt is.</response>
         /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
@@ -74,7 +74,7 @@ namespace Public.Api.PostalCode
                 cancellationToken);
 
         /// <summary>
-        /// Vraag een lijst met post informatie over actieve postcodes op.
+        /// Vraag een lijst met postinfo over actieve postcodes op.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
@@ -85,7 +85,7 @@ namespace Public.Api.PostalCode
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met post informatie over postcodes gelukt is.</response>
+        /// <response code="200">Als de opvraging van een lijst met postinfo over postcodes gelukt is.</response>
         /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>

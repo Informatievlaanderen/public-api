@@ -19,15 +19,15 @@ namespace Public.Api.PostalCode
     public partial class PostalCodeController
     {
         /// <summary>
-        /// Vraag post informatie voor een postcode op.
+        /// Vraag postinfo voor een postcode op.
         /// </summary>
-        /// <param name="postCode"> Identificator van de postcode.</param>
+        /// <param name="postCode">Identificator van de postinfo.</param>
         /// <param name="actionContextAccessor"></param>
-        /// <param name="ifNoneMatch"> Optionele If-None-Match header met ETag van een vorig verzoek.</param>
+        /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de post informatie voor een postcode gevonden is.</response>
-        /// <response code="304">Als de post informatie voor een postcode niet gewijzigd is ten opzicht van uw verzoek.</response>
-        /// <response code="404">Als de post informatie voor een postcode niet gevonden kan worden.</response>
+        /// <response code="200">Als de postinfo voor een postcode gevonden is.</response>
+        /// <response code="304">Als de postinfo voor een postcode niet gewijzigd is ten opzicht van uw verzoek.</response>
+        /// <response code="404">Als de postinfo voor een postcode niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("postinfo/{postCode}")]
@@ -57,16 +57,16 @@ namespace Public.Api.PostalCode
                 cancellationToken);
 
         /// <summary>
-        /// Vraag post informatie voor een postcode op.
+        /// Vraag postinfo voor een postcode op.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="postCode"> Identificator van de postcode.</param>
+        /// <param name="postCode">Identificator van de postinfo.</param>
         /// <param name="actionContextAccessor"></param>
-        /// <param name="ifNoneMatch"> Optionele If-None-Match header met ETag van een vorig verzoek.</param>
+        /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de post informatie voor een postcode gevonden is.</response>
-        /// <response code="304">Als de post informatie voor een postcode niet gewijzigd is ten opzicht van uw verzoek.</response>
-        /// <response code="404">Als de post informatie voor een postcode niet gevonden kan worden.</response>
+        /// <response code="200">Als de postinfo voor een postcode gevonden is.</response>
+        /// <response code="304">Als de postinfo voor een postcode niet gewijzigd is ten opzicht van uw verzoek.</response>
+        /// <response code="404">Als de postinfo voor een postcode niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("postinfo/{postCode}.{format}")]

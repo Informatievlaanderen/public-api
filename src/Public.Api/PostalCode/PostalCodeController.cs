@@ -11,7 +11,7 @@ namespace Public.Api.PostalCode
     [ApiVersion("1.0")]
     [AdvertiseApiVersions("1.0")]
     [ApiRoute("")]
-    [ApiExplorerSettings(GroupName = "Post Informatie")]
+    [ApiExplorerSettings(GroupName = "Postinfo")]
     [Produces(AcceptTypes.Json, AcceptTypes.JsonLd, AcceptTypes.Xml)]
     public partial class PostalCodeController : RegistryApiController<PostalCodeController>
     {

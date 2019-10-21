@@ -23,7 +23,7 @@ namespace Public.Api.Feeds
     public partial class FeedController
     {
         /// <summary>
-        /// Vraag een lijst met wijzigingen van post informatie op in het Atom formaat.
+        /// Vraag een lijst met wijzigingen van postinfo op in het Atom formaat.
         /// </summary>
         /// <param name="actionContextAccessor"></param>
         /// <param name="restClients"></param>
@@ -34,7 +34,7 @@ namespace Public.Api.Feeds
         /// <param name="embed">De velden die moeten teruggegeven worden: event en/of object</param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met post informatie gelukt is.</response>
+        /// <response code="200">Als de opvraging van een lijst met postinfo gelukt is.</response>
         /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
@@ -75,7 +75,7 @@ namespace Public.Api.Feeds
                 cancellationToken);
 
         /// <summary>
-        /// Vraag een lijst met wijzigingen van post informatie op in het XML of Atom formaat.
+        /// Vraag een lijst met wijzigingen van postinfo op in het XML of Atom formaat.
         /// </summary>
         /// <param name="format">Gewenste formaat: postinfo.xml of postinfo.atom</param>
         /// <param name="actionContextAccessor"></param>
@@ -87,7 +87,7 @@ namespace Public.Api.Feeds
         /// <param name="embed">De velden die moeten teruggegeven worden: event en/of object</param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met post informatie gelukt is.</response>
+        /// <response code="200">Als de opvraging van een lijst met postinfo gelukt is.</response>
         /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
