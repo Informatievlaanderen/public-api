@@ -50,7 +50,7 @@ namespace Public.Api.Address
             [FromQuery] string gemeentenaam,
             [FromQuery] int? niscode,
             [FromQuery] int? postcode,
-            [FromQuery] string kadStraatcode,
+            [FromQuery] int? kadStraatcode,
             [FromQuery] string rrStraatcode,
             [FromQuery] string straatnaam,
             [FromQuery] string huisnummer,
@@ -109,7 +109,7 @@ namespace Public.Api.Address
             [FromQuery] string gemeentenaam,
             [FromQuery] int? niscode,
             [FromQuery] int? postcode,
-            [FromQuery] string kadStraatcode,
+            [FromQuery] int? kadStraatcode,
             [FromQuery] string rrStraatcode,
             [FromQuery] string straatnaam,
             [FromQuery] string huisnummer,
@@ -152,7 +152,7 @@ namespace Public.Api.Address
             string municipalityName,
             int? nisCode,
             string streetName,
-            string kadStreetCode,
+            int? kadStreetCode,
             string rrStreetCode,
             string index)
             => new RestRequest(
