@@ -1,3 +1,10 @@
+## [2.38.8](https://github.com/informatievlaanderen/public-api/compare/v2.38.7...v2.38.8) (2019-10-22)
+
+
+### Bug Fixes
+
+* kadStreetCode is always int ([8e78b1b](https://github.com/informatievlaanderen/public-api/commit/8e78b1b))
+
 ## [2.38.7](https://github.com/informatievlaanderen/public-api/compare/v2.38.6...v2.38.7) (2019-10-22)
 
 
