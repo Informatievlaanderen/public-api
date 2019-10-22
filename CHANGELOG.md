@@ -1,3 +1,11 @@
+## [2.38.7](https://github.com/informatievlaanderen/public-api/compare/v2.38.6...v2.38.7) (2019-10-22)
+
+
+### Bug Fixes
+
+* change description for officiallyAssigned GR-929 ([9f81232](https://github.com/informatievlaanderen/public-api/commit/9f81232))
+* rename dvrCode to objectId ([3b6a87e](https://github.com/informatievlaanderen/public-api/commit/3b6a87e))
+
 ## [2.38.6](https://github.com/informatievlaanderen/public-api/compare/v2.38.5...v2.38.6) (2019-10-22)
 
 
