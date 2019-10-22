@@ -1,4 +1,4 @@
-namespace Public.Api.Infrastructure
+namespace Public.Api.Infrastructure.Redis
 {
     using Autofac;
     using Common.Infrastructure;

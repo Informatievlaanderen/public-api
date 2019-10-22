@@ -30,6 +30,7 @@ namespace Public.Api.Infrastructure
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Modules;
+    using Redis;
     using Swagger;
     using Swashbuckle.AspNetCore.Filters;
     using Swashbuckle.AspNetCore.Swagger;
