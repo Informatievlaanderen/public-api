@@ -21,7 +21,7 @@ namespace Public.Api.Parcel
         /// <summary>
         /// Vraag een perceel op.
         /// </summary>
-        /// <param name="capaKey">Objectidentificator van het perceel (CaPaKey waarbij forward slash `/` vervangen werd door koppelteken `-`).</param>
+        /// <param name="objectId">Objectidentificator van het perceel (CaPaKey waarbij forward slash `/` vervangen werd door koppelteken `-`).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -31,7 +31,7 @@ namespace Public.Api.Parcel
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als het perceel verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("percelen/{capaKey}")]
+        [HttpGet("percelen/{objectId}")]
         [ProducesResponseType(typeof(ParcelResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -47,13 +47,13 @@ namespace Public.Api.Parcel
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
         public async Task<IActionResult> GetParcel(
-            [FromRoute] string capaKey,
+            [FromRoute] string objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
             => await GetParcelWithFormat(
                 null,
-                capaKey,
+                objectId,
                 actionContextAccessor,
                 ifNoneMatch,
                 cancellationToken);
@@ -62,7 +62,7 @@ namespace Public.Api.Parcel
         /// Vraag een perceel op.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="capaKey">Objectidentificator van het perceel (CaPaKey waarbij forward slash `/` vervangen werd door koppelteken `-`).</param>
+        /// <param name="objectId">Objectidentificator van het perceel (CaPaKey waarbij forward slash `/` vervangen werd door koppelteken `-`).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -72,7 +72,7 @@ namespace Public.Api.Parcel
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als het perceel verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("percelen/{capaKey}.{format}")]
+        [HttpGet("percelen/{objectId}.{format}")]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(ParcelResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
@@ -89,7 +89,7 @@ namespace Public.Api.Parcel
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
         public async Task<IActionResult> GetParcelWithFormat(
             [FromRoute] string format,
-            [FromRoute] string capaKey,
+            [FromRoute] string objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
@@ -100,9 +100,9 @@ namespace Public.Api.Parcel
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            RestRequest BackendRequest() => CreateBackendDetailRequest(capaKey);
+            RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
-            var cacheKey = $"legacy/parcel:{capaKey}";
+            var cacheKey = $"legacy/parcel:{objectId}";
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)
