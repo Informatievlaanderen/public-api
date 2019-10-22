@@ -1,3 +1,20 @@
+## [2.38.5](https://github.com/informatievlaanderen/public-api/compare/v2.38.4...v2.38.5) (2019-10-22)
+
+
+### Bug Fixes
+
+* rename adresId GR-964 GR-1013 ([4086c42](https://github.com/informatievlaanderen/public-api/commit/4086c42))
+* rename adresId to adresObjectId ([6677a43](https://github.com/informatievlaanderen/public-api/commit/6677a43))
+* rename capakey GR-967 GR-1011 ([688addf](https://github.com/informatievlaanderen/public-api/commit/688addf))
+* rename crabHuisnummerId GR-1009 ([053475a](https://github.com/informatievlaanderen/public-api/commit/053475a))
+* rename crabSubAdresId GR-1010 ([7503627](https://github.com/informatievlaanderen/public-api/commit/7503627))
+* rename gebouweenheidId GR-963 GR-1014 ([903b46f](https://github.com/informatievlaanderen/public-api/commit/903b46f))
+* rename gebouwId GR-1015 ([1b7cda2](https://github.com/informatievlaanderen/public-api/commit/1b7cda2))
+* rename niscode GR-962 GR-1012 ([7d88098](https://github.com/informatievlaanderen/public-api/commit/7d88098))
+* rename ontsluitingen to basis url GR-926 ([b53f6e2](https://github.com/informatievlaanderen/public-api/commit/b53f6e2))
+* rename postcode GR-966 GR-1016 ([0e45bad](https://github.com/informatievlaanderen/public-api/commit/0e45bad))
+* rename straatnaamid GR-965 GR-1017 ([a2e96bb](https://github.com/informatievlaanderen/public-api/commit/a2e96bb))
+
 ## [2.38.4](https://github.com/informatievlaanderen/public-api/compare/v2.38.3...v2.38.4) (2019-10-21)
 
 
