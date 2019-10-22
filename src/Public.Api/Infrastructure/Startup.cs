@@ -318,7 +318,7 @@ Basisregisters Vlaanderen is de authentieke bron rond al bovenstaande gegevens m
 
 U kan ons bereiken via [informatie.vlaanderen@vlaanderen.be](mailto:informatie.vlaanderen@vlaanderen.be).
 
-## Ontsluitingen
+## Basis-URL
 
 De REST API van Basisregisters Vlaanderen is te bereiken via volgende basis-URL.
 
