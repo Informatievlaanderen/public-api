@@ -21,8 +21,8 @@ namespace Public.Api.Infrastructure
         // Here to make DataContractSerializer happy
         public ModelStateProblemDetails(ModelStateDictionary modelState) : base(StatusCodes.Status400BadRequest)
         {
-            Title = "Validatie mislukt!";
-            Detail = "Er zijn validatie fouten opgetreden.";
+            Title = "Er heeft zich een fout voorgedaan!";
+            Detail = "Validatie mislukt.";
             ProblemInstanceUri = GetProblemNumber();
             ProblemTypeUri = "urn:base-registries:validation".ToLowerInvariant();
 
