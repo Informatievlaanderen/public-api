@@ -4,6 +4,7 @@ namespace Public.Api.Municipality
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using FeatureToggle;
+    using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
@@ -13,6 +14,7 @@ namespace Public.Api.Municipality
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Gemeenten")]
     [Produces(AcceptTypes.Json, AcceptTypes.JsonLd, AcceptTypes.Xml)]
+    [ApiOrder(Order = ApiOrder.Municipality)]
     public partial class MunicipalityController : RegistryApiController<MunicipalityController>
     {
         private const string Registry = "MunicipalityRegistry";

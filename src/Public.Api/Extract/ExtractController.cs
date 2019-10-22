@@ -7,6 +7,7 @@ namespace Public.Api.Extract
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
+    using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -18,6 +19,7 @@ namespace Public.Api.Extract
     [AdvertiseApiVersions("1.0")]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Extract")]
+    [ApiOrder(Order = ApiOrder.Extract)]
     [Produces(MediaTypeNames.Application.Zip)]
     public class ExtractController : ApiController<ExtractController>
     {

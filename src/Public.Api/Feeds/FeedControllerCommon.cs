@@ -4,6 +4,7 @@ namespace Public.Api.Feeds
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
+    using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -13,6 +14,7 @@ namespace Public.Api.Feeds
     [AdvertiseApiVersions("1.0")]
     [ApiRoute("feeds")]
     [ApiExplorerSettings(GroupName = "Feeds", IgnoreApi = true)]
+    [ApiOrder(Order = ApiOrder.Feeds)]
     [Produces("application/atom+xml", "text/xml")]
     public partial class FeedController : ApiController<FeedController>
     {

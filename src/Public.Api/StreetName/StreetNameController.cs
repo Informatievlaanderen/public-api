@@ -4,6 +4,7 @@ namespace Public.Api.StreetName
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using FeatureToggle;
+    using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
@@ -12,6 +13,7 @@ namespace Public.Api.StreetName
     [AdvertiseApiVersions("1.0")]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Straatnamen")]
+    [ApiOrder(Order = ApiOrder.StreetName)]
     [Produces(AcceptTypes.Json, AcceptTypes.JsonLd, AcceptTypes.Xml)]
     public partial class StreetNameController : RegistryApiController<StreetNameController>
     {

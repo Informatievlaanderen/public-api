@@ -90,10 +90,14 @@ namespace Public.Api.Infrastructure
                                 Url = "https://overheid.vlaanderen.be/sites/default/files/documenten/ict-egov/licenties/hergebruik/modellicentie_gratis_hergebruik_v1_0.html"
                             },
                         },
+
+                        CustomSortFunc = SortByApiOrder.Sort,
+
                         Servers = new []
                         {
                             new Server(_configuration["BaseUrl"], _configuration["BaseName"])
                         },
+
                         XmlCommentPaths = new []
                         {
                             typeof(Startup).GetTypeInfo().Assembly.GetName().Name,
@@ -105,6 +109,7 @@ namespace Public.Api.Infrastructure
                             typeof(ParcelRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(PublicServiceRegistry.Api.Backoffice.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                         },
+
                         MiddlewareHooks =
                         {
                             AfterSwaggerGen = x => { x.OperationFilter<RemoveParameterOperationFilter>("sort"); }
@@ -121,6 +126,7 @@ namespace Public.Api.Infrastructure
                     MiddlewareHooks =
                     {
                         FluentValidation = fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>(),
+
                         AfterMvc = builder => builder.Services.Configure<ApiBehaviorOptions>(options =>
                         {
                             options.SuppressInferBindingSourcesForParameters = true;
@@ -271,7 +277,9 @@ namespace Public.Api.Infrastructure
                     Api =
                     {
                         VersionProvider = apiVersionProvider,
-                        Info = groupName => $"Basisregisters Vlaanderen - Base Registries API {groupName}",
+                        Info = groupName => $"Basisregisters Vlaanderen - API {groupName}",
+                        Description = _ => "Een stelsel van authentieke gegevensbronnen van de Vlaamse Overheid.",
+                        ApplicationName = _ => "Basisregisters Vlaanderen",
                         HeaderTitle = groupName => "Basisregisters Vlaanderen",
                         HeaderLink = groupName => _configuration["SiteUrl"],
                         FooterVersion = $"{version.Minor}.{version.Build}.{version.Revision}",
