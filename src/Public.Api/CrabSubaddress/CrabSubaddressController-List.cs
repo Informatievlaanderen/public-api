@@ -29,7 +29,7 @@ namespace Public.Api.CrabSubaddress
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id, postcode, huisnummer, busnummer).</param>
-        /// <param name="crabSubadresId">Filter op het crab subadres id van het adres (exact).</param>
+        /// <param name="objectId">Filter op het crab subadres id van het adres (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -56,7 +56,7 @@ namespace Public.Api.CrabSubaddress
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] int crabSubadresId,
+            [FromQuery] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -66,7 +66,7 @@ namespace Public.Api.CrabSubaddress
                 offset,
                 limit,
                 sort,
-                crabSubadresId,
+                objectId,
                 actionContextAccessor,
                 responseOptions,
                 ifNoneMatch,
@@ -79,7 +79,7 @@ namespace Public.Api.CrabSubaddress
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id).</param>
-        /// <param name="crabSubadresId">Filter op het crab subadres id van het adres (exact).</param>
+        /// <param name="objectId">Filter op het crab subadres id van het adres (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -108,7 +108,7 @@ namespace Public.Api.CrabSubaddress
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] int crabSubadresId,
+            [FromQuery] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -126,7 +126,7 @@ namespace Public.Api.CrabSubaddress
                 offset,
                 limit,
                 sort,
-                crabSubadresId);
+                objectId);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/crabsubaddresses-list:{taal}");
 
