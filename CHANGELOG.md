@@ -1,3 +1,10 @@
+## [2.38.6](https://github.com/informatievlaanderen/public-api/compare/v2.38.5...v2.38.6) (2019-10-22)
+
+
+### Bug Fixes
+
+* change validation error message GR-971 ([8b439e5](https://github.com/informatievlaanderen/public-api/commit/8b439e5))
+
 ## [2.38.5](https://github.com/informatievlaanderen/public-api/compare/v2.38.4...v2.38.5) (2019-10-22)
 
 
