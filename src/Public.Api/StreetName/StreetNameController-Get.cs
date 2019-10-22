@@ -21,7 +21,7 @@ namespace Public.Api.StreetName
         /// <summary>
         /// Vraag een straatnaam op.
         /// </summary>
-        /// <param name="straatnaamId">Identificator van de straatnaam.</param>
+        /// <param name="objectId">Identificator van de straatnaam.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -32,7 +32,7 @@ namespace Public.Api.StreetName
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als de straatnaam verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("straatnamen/{straatnaamId}")]
+        [HttpGet("straatnamen/{objectId}")]
         [ProducesResponseType(typeof(StreetNameResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -50,13 +50,13 @@ namespace Public.Api.StreetName
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
         public async Task<IActionResult> GetStreetName(
-            [FromRoute] int straatnaamId,
+            [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
             => await GetStreetNameWithFormat(
                 null,
-                straatnaamId,
+                objectId,
                 actionContextAccessor,
                 ifNoneMatch,
                 cancellationToken);
@@ -65,7 +65,7 @@ namespace Public.Api.StreetName
         /// Vraag een straatnaam op.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="straatnaamId">Identificator van de straatnaam.</param>
+        /// <param name="objectId">Identificator van de straatnaam.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -76,7 +76,7 @@ namespace Public.Api.StreetName
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als de straatnaam verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("straatnamen/{straatnaamId}.{format}")]
+        [HttpGet("straatnamen/{objectId}.{format}")]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(StreetNameResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
@@ -96,7 +96,7 @@ namespace Public.Api.StreetName
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
         public async Task<IActionResult> GetStreetNameWithFormat(
             [FromRoute] string format,
-            [FromRoute] int straatnaamId,
+            [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
@@ -107,9 +107,9 @@ namespace Public.Api.StreetName
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            RestRequest BackendRequest() => CreateBackendDetailRequest(straatnaamId);
+            RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
-            var cacheKey = $"legacy/streetname:{straatnaamId}";
+            var cacheKey = $"legacy/streetname:{objectId}";
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)
