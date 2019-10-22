@@ -1,3 +1,10 @@
+## [2.38.9](https://github.com/informatievlaanderen/public-api/compare/v2.38.8...v2.38.9) (2019-10-22)
+
+
+### Bug Fixes
+
+* prepare sorting of menu GR-923 ([37f2929](https://github.com/informatievlaanderen/public-api/commit/37f2929))
+
 ## [2.38.8](https://github.com/informatievlaanderen/public-api/compare/v2.38.7...v2.38.8) (2019-10-22)
 
 
