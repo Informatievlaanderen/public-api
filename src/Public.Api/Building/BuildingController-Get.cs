@@ -21,7 +21,7 @@ namespace Public.Api.Building
         /// <summary>
         /// Vraag een gebouw op.
         /// </summary>
-        /// <param name="gebouwId">Identificator van het gebouw.</param>
+        /// <param name="objectId">Identificator van het gebouw.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -32,7 +32,7 @@ namespace Public.Api.Building
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als het gebouw verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gebouwen/{gebouwId}")]
+        [HttpGet("gebouwen/{objectId}")]
         [ProducesResponseType(typeof(BuildingResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -51,13 +51,13 @@ namespace Public.Api.Building
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
         public async Task<IActionResult> GetBuilding(
-            [FromRoute] int gebouwId,
+            [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
             => await GetBuildingWithFormat(
                 null,
-                gebouwId,
+                objectId,
                 actionContextAccessor,
                 ifNoneMatch,
                 cancellationToken);
@@ -66,7 +66,7 @@ namespace Public.Api.Building
         /// Vraag een gebouw op.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="gebouwId">Identificator van het gebouw.</param>
+        /// <param name="objectId">Identificator van het gebouw.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
@@ -77,7 +77,7 @@ namespace Public.Api.Building
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als het gebouw verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gebouwen/{gebouwId}.{format}")]
+        [HttpGet("gebouwen/{objectId}.{format}")]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(BuildingResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
@@ -98,7 +98,7 @@ namespace Public.Api.Building
         [HttpCacheExpiration(MaxAge = 30 * 24 * 60 * 60)] // Days, Hours, Minutes, Second
         public async Task<IActionResult> GetBuildingWithFormat(
             [FromRoute] string format,
-            [FromRoute] int gebouwId,
+            [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
@@ -109,9 +109,9 @@ namespace Public.Api.Building
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            RestRequest BackendRequest() => CreateBackendDetailRequest(gebouwId);
+            RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
-            var cacheKey = $"legacy/building:{gebouwId}";
+            var cacheKey = $"legacy/building:{objectId}";
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)
