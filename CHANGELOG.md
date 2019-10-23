@@ -1,3 +1,10 @@
+## [2.38.10](https://github.com/informatievlaanderen/public-api/compare/v2.38.9...v2.38.10) (2019-10-23)
+
+
+### Bug Fixes
+
+* correct publicservive description ([90ae652](https://github.com/informatievlaanderen/public-api/commit/90ae652))
+
 ## [2.38.9](https://github.com/informatievlaanderen/public-api/compare/v2.38.8...v2.38.9) (2019-10-22)
 
 
