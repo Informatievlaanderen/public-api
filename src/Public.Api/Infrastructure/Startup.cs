@@ -319,7 +319,7 @@ Basisregisters Vlaanderen stelt u in staat om alles te weten te komen rond:
 * de Vlaamse gebouwen en gebouweenheden;
 * de Vlaamse percelen;
 * de Vlaamse organisaties en organen;
-* de Vlaamse dienstverlening;
+* de publieke dienstverleningen in Vlaanderen;
 
 Basisregisters Vlaanderen is de authentieke bron rond al bovenstaande gegevens met uitzondering van gemeenten, postcodes en percelen, die wij aanbieden als referentiebron.
 
