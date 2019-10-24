@@ -1,3 +1,10 @@
+## [2.38.11](https://github.com/informatievlaanderen/public-api/compare/v2.38.10...v2.38.11) (2019-10-24)
+
+
+### Bug Fixes
+
+* reorder menu items GR-923 ([3b83438](https://github.com/informatievlaanderen/public-api/commit/3b83438))
+
 ## [2.38.10](https://github.com/informatievlaanderen/public-api/compare/v2.38.9...v2.38.10) (2019-10-23)
 
 
