@@ -108,6 +108,9 @@ namespace Public.Api.Infrastructure
                             typeof(BuildingRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(PublicServiceRegistry.Api.Backoffice.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(Be.Vlaanderen.Basisregisters.GrAr.Common.NodaHelpers).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(Be.Vlaanderen.Basisregisters.GrAr.Legacy.Identificator).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(Be.Vlaanderen.Basisregisters.GrAr.Provenance.Provenance).GetTypeInfo().Assembly.GetName().Name,
                         },
 
                         MiddlewareHooks =
@@ -283,6 +286,23 @@ namespace Public.Api.Infrastructure
                         HeaderTitle = groupName => "Basisregisters Vlaanderen",
                         HeaderLink = groupName => _configuration["SiteUrl"],
                         FooterVersion = $"{version.Minor}.{version.Build}.{version.Revision}",
+                        HeadContent = _ => @"
+                            <style>
+                                input.search-input {
+                                    border-bottom: 0px
+                                }
+
+                                ul[role=""navigation""] + div {
+                                    display: none;
+                                }
+
+                                li[data-item-id=""section/Introductie""],
+                                li[data-item-id=""tag/Gemeenten""],
+                                li[data-item-id=""tag/Extract""]
+                                {
+                                    border-top: 1px solid rgb(225, 225, 225);
+                                }
+                            </style>",
                         CSharpClientOptions =
                         {
                             ClassName = "BaseRegistry",
