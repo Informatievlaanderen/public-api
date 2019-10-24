@@ -1,3 +1,11 @@
+## [2.38.12](https://github.com/informatievlaanderen/public-api/compare/v2.38.11...v2.38.12) (2019-10-24)
+
+
+### Bug Fixes
+
+* add borders to separate sections ([cad7f17](https://github.com/informatievlaanderen/public-api/commit/cad7f17))
+* add xml comments for types ([f49267e](https://github.com/informatievlaanderen/public-api/commit/f49267e))
+
 ## [2.38.11](https://github.com/informatievlaanderen/public-api/compare/v2.38.10...v2.38.11) (2019-10-24)
 
 
