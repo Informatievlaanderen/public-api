@@ -1,3 +1,11 @@
+## [2.38.13](https://github.com/informatievlaanderen/public-api/compare/v2.38.12...v2.38.13) (2019-10-24)
+
+
+### Bug Fixes
+
+* correct a lot of documentation ([56f29c0](https://github.com/informatievlaanderen/public-api/commit/56f29c0))
+* tweak some styling ([8310124](https://github.com/informatievlaanderen/public-api/commit/8310124))
+
 ## [2.38.12](https://github.com/informatievlaanderen/public-api/compare/v2.38.11...v2.38.12) (2019-10-24)
 
 
