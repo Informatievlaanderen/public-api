@@ -35,9 +35,9 @@ nuget Be.Vlaanderen.Basisregisters.Build.Pipeline ~> 1.11
 
 nuget Be.Vlaanderen.Basisregisters.Api ~> 7.8
 
-nuget Be.Vlaanderen.Basisregisters.GrAr.Common ~> 12.1
-nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy ~> 12.1
-nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance ~> 12.1
+nuget Be.Vlaanderen.Basisregisters.GrAr.Common ~> 13.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy ~> 13.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance ~> 13.0
 
 // DOCS STUFF
 nuget Structurizr.Core 0.9.0
