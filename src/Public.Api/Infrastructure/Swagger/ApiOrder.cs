@@ -8,19 +8,22 @@ namespace Public.Api.Infrastructure.Swagger
 
     public static class ApiOrder
     {
-        public const int Address = 10;
-        public const int AddressRepresentation = 10;
-        public const int Building = 10;
-        public const int BuildingUnit = 10;
-        public const int CrabHouseNumber = 10;
-        public const int CrabSubaddress = 10;
-        public const int Extract = 10;
-        public const int Feeds = 10;
-        public const int Municipality = 10;
-        public const int Parcel = 10;
-        public const int PostalCode = 10;
-        public const int PublicService = 10;
-        public const int StreetName = 10;
+        public const int Municipality = 100;
+        public const int PostalCode = 105;
+        public const int StreetName = 110;
+        public const int Address = 115;
+        public const int Building = 120;
+        public const int BuildingUnit = 125;
+        public const int Parcel = 130;
+        public const int PublicService = 135;
+
+        public const int Extract = 140;
+        public const int Feeds = 145;
+
+        public const int CrabHouseNumber = 150;
+        public const int CrabSubaddress = 155;
+
+        public const int AddressRepresentation = 500;
     }
 
     [AttributeUsage(AttributeTargets.Class)]
