@@ -111,6 +111,8 @@ namespace Public.Api.Infrastructure
                             typeof(Be.Vlaanderen.Basisregisters.GrAr.Common.NodaHelpers).GetTypeInfo().Assembly.GetName().Name,
                             typeof(Be.Vlaanderen.Basisregisters.GrAr.Legacy.Identificator).GetTypeInfo().Assembly.GetName().Name,
                             typeof(Be.Vlaanderen.Basisregisters.GrAr.Provenance.Provenance).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(Be.Vlaanderen.Basisregisters.Utilities.Rfc3339SerializableDateTimeOffset).GetTypeInfo().Assembly.GetName().Name,
                         },
 
                         MiddlewareHooks =
@@ -347,6 +349,8 @@ Basisregisters Vlaanderen is de authentieke bron rond al bovenstaande gegevens m
 
 U kan ons bereiken via [informatie.vlaanderen@vlaanderen.be](mailto:informatie.vlaanderen@vlaanderen.be).
 
+# Technische Info
+
 ## Basis-URL
 
 De REST API van Basisregisters Vlaanderen is te bereiken via volgende basis-URL.
@@ -361,9 +365,11 @@ U kan anoniem gebruik maken van de API, echter is deze beperkt in het aantal ver
 
 Wenst u volwaardige toegang tot de api, dan kan u zich [hier aanmelden als ontwikkelaar](https://portal.basisregisters.vlaanderen).
 
-# Authenticatie
+## Authenticatie
 
-# Verzoeken en Responsen
+## Paginering
+
+## Versionering
 
 ## Foutmeldingen
 
@@ -378,10 +384,6 @@ De Basisregisters Vlaanderen API gebruikt [Problem Details for HTTP APIs (RFC780
   ""instance"": ""string""
 }}
 ```
-
-# Paginering
-
-# Versionering
 
 Momenteel leest u de documentatie voor versie {description.ApiVersion} van de Basisregisters Vlaanderen API{String.Format(description.IsDeprecated ? ", **deze API versie is niet meer ondersteund**." : ".")}");
 

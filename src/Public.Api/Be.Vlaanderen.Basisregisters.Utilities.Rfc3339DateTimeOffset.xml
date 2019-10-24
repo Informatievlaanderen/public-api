@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Be.Vlaanderen.Basisregisters.Utilities.Rfc3339DateTimeOffset</name>
+    </assembly>
+    <members>
+        <member name="T:Be.Vlaanderen.Basisregisters.Utilities.Rfc3339SerializableDateTimeOffset">
+            <summary>De versie-identificator volgens RFC3339.</summary>
+        </member>
+    </members>
+</doc>
