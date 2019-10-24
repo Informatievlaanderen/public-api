@@ -298,6 +298,10 @@ namespace Public.Api.Infrastructure
                                     display: none;
                                 }
 
+                                div[data-section-id] {
+                                    padding: 15px 0px;
+                                }
+
                                 li[data-item-id=""section/Introductie""],
                                 li[data-item-id=""tag/Gemeenten""],
                                 li[data-item-id=""tag/Extract""]
@@ -330,6 +334,8 @@ namespace Public.Api.Infrastructure
 $@"# Introductie
 
 Welkom bij de REST API van Basisregisters Vlaanderen!
+
+Momenteel leest u de documentatie voor versie {description.ApiVersion} van de Basisregisters Vlaanderen API{string.Format(description.IsDeprecated ? ", **deze API versie is niet meer ondersteund**." : ".")}
 
 [REST](http://en.wikipedia.org/wiki/REST_API) is een webserviceprotocol dat zich leent tot snelle ontwikkeling door het gebruik van HTTP- en JSON-technologie.
 
@@ -383,9 +389,7 @@ De Basisregisters Vlaanderen API gebruikt [Problem Details for HTTP APIs (RFC780
   ""status"": number,
   ""instance"": ""string""
 }}
-```
-
-Momenteel leest u de documentatie voor versie {description.ApiVersion} van de Basisregisters Vlaanderen API{String.Format(description.IsDeprecated ? ", **deze API versie is niet meer ondersteund**." : ".")}");
+```");
 
             return text.ToString();
         }
