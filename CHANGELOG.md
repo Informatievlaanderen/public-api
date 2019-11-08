@@ -1,3 +1,10 @@
+## [2.38.14](https://github.com/informatievlaanderen/public-api/compare/v2.38.13...v2.38.14) (2019-10-25)
+
+
+### Bug Fixes
+
+* update grar common and buildingregistry ([15fe965](https://github.com/informatievlaanderen/public-api/commit/15fe965))
+
 ## [2.38.13](https://github.com/informatievlaanderen/public-api/compare/v2.38.12...v2.38.13) (2019-10-24)
 
 
