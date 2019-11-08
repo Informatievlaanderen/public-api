@@ -1,3 +1,10 @@
+## [2.38.15](https://github.com/informatievlaanderen/public-api/compare/v2.38.14...v2.38.15) (2019-11-08)
+
+
+### Bug Fixes
+
+* update buildingregistry docs ([b7433bf](https://github.com/informatievlaanderen/public-api/commit/b7433bf))
+
 ## [2.38.14](https://github.com/informatievlaanderen/public-api/compare/v2.38.13...v2.38.14) (2019-10-25)
 
 
