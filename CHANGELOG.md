@@ -1,3 +1,10 @@
+## [2.38.17](https://github.com/informatievlaanderen/public-api/compare/v2.38.16...v2.38.17) (2019-11-21)
+
+
+### Bug Fixes
+
+* correct the quality order of accept headers ([6997d17](https://github.com/informatievlaanderen/public-api/commit/6997d17))
+
 ## [2.38.16](https://github.com/informatievlaanderen/public-api/compare/v2.38.15...v2.38.16) (2019-11-08)
 
 ## [2.38.15](https://github.com/informatievlaanderen/public-api/compare/v2.38.14...v2.38.15) (2019-11-08)
