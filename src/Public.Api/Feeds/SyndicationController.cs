@@ -6,7 +6,7 @@ namespace Public.Api.Feeds
     [ApiVersionNeutral]
     [Route("syndication/feed/")]
     [ApiExplorerSettings(IgnoreApi = true)]
-    public class SyndiciationController : ControllerBase
+    public class SyndicationController : ControllerBase
     {
         [HttpGet("municipality")]
         public IActionResult GetMunicipality(CancellationToken cancellationToken) => new RedirectResult("/v1/feeds/gemeenten");
