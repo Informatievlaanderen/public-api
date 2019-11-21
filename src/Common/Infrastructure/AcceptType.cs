@@ -61,7 +61,7 @@ namespace Common.Infrastructure
                 return AcceptType.Json;
 
             var headersByQuality = acceptHeaders
-                .OrderBy(header => header.Quality)
+                .OrderByDescending(header => header, MediaTypeHeaderValueComparer.QualityComparer)
                 .Where(header => header.MediaType.HasValue);
 
             foreach (var headerValue in headersByQuality)
