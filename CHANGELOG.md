@@ -1,3 +1,10 @@
+# [2.39.0](https://github.com/informatievlaanderen/public-api/compare/v2.38.17...v2.39.0) (2019-11-26)
+
+
+### Features
+
+* make address accessible ([220d903](https://github.com/informatievlaanderen/public-api/commit/220d903))
+
 ## [2.38.17](https://github.com/informatievlaanderen/public-api/compare/v2.38.16...v2.38.17) (2019-11-21)
 
 
