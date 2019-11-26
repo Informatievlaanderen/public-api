@@ -1,3 +1,11 @@
+# [2.40.0](https://github.com/informatievlaanderen/public-api/compare/v2.39.1...v2.40.0) (2019-11-26)
+
+
+### Features
+
+* add crab house numbers ([cf6bb9a](https://github.com/informatievlaanderen/public-api/commit/cf6bb9a))
+* add crab subaddress ([49f9f53](https://github.com/informatievlaanderen/public-api/commit/49f9f53))
+
 ## [2.39.1](https://github.com/informatievlaanderen/public-api/compare/v2.39.0...v2.39.1) (2019-11-26)
 
 
