@@ -105,7 +105,7 @@ namespace Public.Api.PostalCode
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
-            var cacheKey = $"legacy/postalinfo:{objectId}";
+            var cacheKey = $"legacy/postalinfo:{objectId:0000}";
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)
