@@ -1,3 +1,10 @@
+## [2.39.1](https://github.com/informatievlaanderen/public-api/compare/v2.39.0...v2.39.1) (2019-11-26)
+
+
+### Bug Fixes
+
+* get postal codes from cache GR-1098 ([abd693e](https://github.com/informatievlaanderen/public-api/commit/abd693e))
+
 # [2.39.0](https://github.com/informatievlaanderen/public-api/compare/v2.38.17...v2.39.0) (2019-11-26)
 
 
