@@ -23,6 +23,8 @@ namespace Common.Infrastructure
         protected abstract string GoneExceptionMessage { get; }
         protected abstract string NotFoundExceptionMessage { get; }
 
+        protected const int DefaultDetailCaching = 24 * 60 * 60; // Hours, Minutes, Second
+
         protected RegistryApiController(
             IRestClient restClient,
             IFeatureToggle cacheToggle,
