@@ -1,3 +1,10 @@
+## [2.40.1](https://github.com/informatievlaanderen/public-api/compare/v2.40.0...v2.40.1) (2019-11-27)
+
+
+### Bug Fixes
+
+* set caching to 24hours ([bedb4dc](https://github.com/informatievlaanderen/public-api/commit/bedb4dc))
+
 # [2.40.0](https://github.com/informatievlaanderen/public-api/compare/v2.39.1...v2.40.0) (2019-11-26)
 
 
