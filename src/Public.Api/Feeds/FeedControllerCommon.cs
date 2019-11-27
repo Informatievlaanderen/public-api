@@ -18,6 +18,8 @@ namespace Public.Api.Feeds
     [Produces("application/atom+xml", "text/xml")]
     public partial class FeedController : ApiController<FeedController>
     {
+        protected const int DefaultFeedCaching = 0;
+
         public FeedController(
             ConnectionMultiplexerProvider redis,
             ILogger<FeedController> logger)

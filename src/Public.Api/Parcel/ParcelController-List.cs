@@ -50,7 +50,8 @@ namespace Public.Api.Parcel
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [HttpCacheExpiration(MaxAge = 12 * 60 * 60)] // Hours, Minutes, Second
+        [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
+        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ListParcels(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
@@ -98,7 +99,8 @@ namespace Public.Api.Parcel
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [HttpCacheExpiration(MaxAge = 12 * 60 * 60)] // Hours, Minutes, Second
+        [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
+        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ListParcelsWithFormat(
             [FromRoute] string format,
             [FromQuery] int? offset,

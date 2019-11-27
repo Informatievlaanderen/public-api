@@ -24,6 +24,7 @@ namespace Common.Infrastructure
         protected abstract string NotFoundExceptionMessage { get; }
 
         protected const int DefaultDetailCaching = 24 * 60 * 60; // Hours, Minutes, Second
+        protected const int DefaultListCaching = 0;
 
         protected RegistryApiController(
             IRestClient restClient,
