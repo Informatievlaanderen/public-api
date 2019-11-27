@@ -1,3 +1,10 @@
+## [2.40.2](https://github.com/informatievlaanderen/public-api/compare/v2.40.1...v2.40.2) (2019-11-27)
+
+
+### Bug Fixes
+
+* dont cache lists and feeds ([6f81492](https://github.com/informatievlaanderen/public-api/commit/6f81492))
+
 ## [2.40.1](https://github.com/informatievlaanderen/public-api/compare/v2.40.0...v2.40.1) (2019-11-27)
 
 
