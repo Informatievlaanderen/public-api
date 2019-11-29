@@ -1,3 +1,10 @@
+## [2.40.3](https://github.com/informatievlaanderen/public-api/compare/v2.40.2...v2.40.3) (2019-11-29)
+
+
+### Bug Fixes
+
+* crab endpoints to have be able to have no filter ([3e0c994](https://github.com/informatievlaanderen/public-api/commit/3e0c994))
+
 ## [2.40.2](https://github.com/informatievlaanderen/public-api/compare/v2.40.1...v2.40.2) (2019-11-27)
 
 
