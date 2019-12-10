@@ -1,3 +1,10 @@
+# [2.41.0](https://github.com/informatievlaanderen/public-api/compare/v2.40.3...v2.41.0) (2019-12-10)
+
+
+### Features
+
+* make building/buildingunit/parcel visible ([e511406](https://github.com/informatievlaanderen/public-api/commit/e511406))
+
 ## [2.40.3](https://github.com/informatievlaanderen/public-api/compare/v2.40.2...v2.40.3) (2019-11-29)
 
 
