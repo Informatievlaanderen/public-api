@@ -9,6 +9,7 @@ namespace Public.Api.Building
     using Microsoft.Extensions.Logging;
     using RestSharp;
 
+    [ApiVisible]
     [ApiVersion("1.0")]
     [AdvertiseApiVersions("1.0")]
     [ApiRoute("")]
