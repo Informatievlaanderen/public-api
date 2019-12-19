@@ -1,3 +1,10 @@
+## [2.41.1](https://github.com/informatievlaanderen/public-api/compare/v2.41.0...v2.41.1) (2019-12-19)
+
+
+### Bug Fixes
+
+* add parameters to addressmatch url if not null ([ae970ee](https://github.com/informatievlaanderen/public-api/commit/ae970ee))
+
 # [2.41.0](https://github.com/informatievlaanderen/public-api/compare/v2.40.3...v2.41.0) (2019-12-10)
 
 
