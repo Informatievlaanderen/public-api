@@ -155,27 +155,38 @@ namespace Public.Api.Address
             int? kadStreetCode,
             string rrStreetCode,
             string index)
-            => new RestRequest(
-                    "adresmatch?" +
-                    "taal={language}&" +
-                    "busnummer={boxNumber}&" +
-                    "huisnummer={houseNumber}&" +
-                    "postcode={postalCode}&" +
-                    "gemeentenaam={municipalityName}&" +
-                    "niscode={nisCode}&" +
-                    "straatnaam={streetName}&" +
-                    "kadstraatcode={kadStreetCode}&" +
-                    "rrstraatcode={rrStreetCode}&" +
-                    "index={index}")
-                .AddParameter("language", language, ParameterType.UrlSegment)
-                .AddParameter("boxNumber", boxNumber, ParameterType.UrlSegment)
-                .AddParameter("houseNumber", houseNumber, ParameterType.UrlSegment)
-                .AddParameter("postalCode", postalCode, ParameterType.UrlSegment)
-                .AddParameter("municipalityName", municipalityName, ParameterType.UrlSegment)
-                .AddParameter("nisCode", nisCode, ParameterType.UrlSegment)
-                .AddParameter("streetName", streetName, ParameterType.UrlSegment)
-                .AddParameter("kadStreetCode", kadStreetCode, ParameterType.UrlSegment)
-                .AddParameter("rrStreetCode", rrStreetCode, ParameterType.UrlSegment)
-                .AddParameter("index", index, ParameterType.UrlSegment);
+        {
+            var request = new RestRequest("adresmatch")
+                .AddParameter("taal", language, ParameterType.QueryString);
+
+            if (!string.IsNullOrEmpty(boxNumber))
+                request.AddParameter("busnummer", boxNumber, ParameterType.QueryString);
+
+            if (!string.IsNullOrEmpty(houseNumber))
+                request.AddParameter("huisnummer", houseNumber, ParameterType.QueryString);
+
+            if (postalCode.HasValue)
+                request.AddParameter("postcode", postalCode, ParameterType.QueryString);
+
+            if (!string.IsNullOrEmpty(municipalityName))
+                request.AddParameter("gemeentenaam", municipalityName, ParameterType.QueryString);
+
+            if (nisCode.HasValue)
+                request.AddParameter("niscode", nisCode, ParameterType.QueryString);
+
+            if (!string.IsNullOrEmpty(streetName))
+                request.AddParameter("straatnaam", streetName, ParameterType.QueryString);
+
+            if (kadStreetCode.HasValue)
+                request.AddParameter("kadstraatcode", kadStreetCode, ParameterType.QueryString);
+
+            if (!string.IsNullOrEmpty(rrStreetCode))
+                request.AddParameter("rrstraatcode", rrStreetCode, ParameterType.QueryString);
+
+            if (!string.IsNullOrEmpty(index))
+                request.AddParameter("index", index, ParameterType.QueryString);
+
+            return request;
+        }
     }
 }
