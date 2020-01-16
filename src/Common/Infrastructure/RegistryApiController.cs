@@ -66,6 +66,19 @@ namespace Common.Infrastructure
                 handleNotOkResponseAction,
                 cancellationToken);
 
+        protected async Task<BackendResponse> GetFromBackendWithBadRequestAsync(
+            string format,
+            Func<IRestRequest> createBackendRequestFunc,
+            RequestHeaders requestHeaders,
+            Action<HttpStatusCode> handleNotOkResponseAction,
+            CancellationToken cancellationToken)
+            => await GetFromBackendWithBadRequestAsync(
+                _restClient,
+                createBackendRequestFunc,
+                requestHeaders.DetermineAcceptType(format),
+                handleNotOkResponseAction,
+                cancellationToken);
+
         protected string CreateCacheKeyForRequestQuery(string keyBaseValue)
         {
             if (string.IsNullOrWhiteSpace(keyBaseValue))

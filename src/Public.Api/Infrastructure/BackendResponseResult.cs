@@ -3,7 +3,6 @@ namespace Public.Api.Infrastructure
     using System.Globalization;
     using System.Threading.Tasks;
     using Common.Infrastructure;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
     public class BackendResponseResult : ContentResult
@@ -15,7 +14,7 @@ namespace Public.Api.Infrastructure
             _response = response;
             Content = response.Content;
             ContentType = response.ContentType;
-            StatusCode = StatusCodes.Status200OK;
+            StatusCode = (int)response.StatusCode;
         }
 
         public override Task ExecuteResultAsync(ActionContext context)
