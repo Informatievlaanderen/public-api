@@ -1,3 +1,10 @@
+# [2.42.0](https://github.com/informatievlaanderen/public-api/compare/v2.41.1...v2.42.0) (2020-01-16)
+
+
+### Features
+
+* return badrequest response from backend to client for addressmatch ([4cc6649](https://github.com/informatievlaanderen/public-api/commit/4cc6649))
+
 ## [2.41.1](https://github.com/informatievlaanderen/public-api/compare/v2.41.0...v2.41.1) (2019-12-19)
 
 
