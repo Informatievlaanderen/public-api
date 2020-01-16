@@ -2,6 +2,7 @@ namespace Common.Infrastructure
 {
     using System;
     using System.Linq;
+    using System.Net;
     using System.Text.RegularExpressions;
     using System.Xml.Linq;
 
@@ -12,6 +13,7 @@ namespace Common.Infrastructure
         public DateTimeOffset LastModified { get; }
         public string ContentType { get; }
         public bool CameFromCache { get; }
+        public HttpStatusCode StatusCode { get; }
 
         private bool IsXmlContent => ContentType == AcceptTypes.Xml || ContentType == AcceptTypes.Atom;
 
@@ -20,13 +22,15 @@ namespace Common.Infrastructure
             string downstreamVersion,
             DateTimeOffset lastModified,
             string contentType,
-            bool cameFromCache)
+            bool cameFromCache,
+            HttpStatusCode statusCode = HttpStatusCode.OK)
         {
             Content = content;
             DownstreamVersion = downstreamVersion;
             LastModified = lastModified;
             ContentType = contentType.ToLowerInvariant();
             CameFromCache = cameFromCache;
+            StatusCode = statusCode;
         }
 
         public void UpdateNextPageUrlWithQueryParameters(NonPagedQueryCollection requestQuery, string nextPageUrlOption)

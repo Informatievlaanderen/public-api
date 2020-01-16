@@ -110,6 +110,41 @@ namespace Common.Infrastructure
                 handleNotOkResponseAction,
                 cancellationToken);
 
+        protected static async Task<BackendResponse> GetFromBackendWithBadRequestAsync(
+            IRestClient restClient,
+            Func<IRestRequest> createBackendRequestFunc,
+            AcceptType acceptType,
+            Action<HttpStatusCode> handleNotOkResponseAction,
+            CancellationToken cancellationToken)
+        {
+            var contentType = acceptType.ToMimeTypeString();
+
+            var backendRequest = createBackendRequestFunc();
+            backendRequest.AddHeader(HeaderNames.Accept, contentType);
+            backendRequest.AddHeader(HeaderNames.Accept, AcceptTypes.Json); //400's returned in json
+
+            var response = await restClient.ExecuteTaskAsync(backendRequest, cancellationToken);
+
+            if ((response.IsSuccessful && response.StatusCode == HttpStatusCode.OK) || response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                var downstreamVersion = response
+                    .Headers
+                    .FirstOrDefault(x => x.Name.Equals(AddVersionHeaderMiddleware.HeaderName, StringComparison.InvariantCultureIgnoreCase));
+
+                return new BackendResponse(
+                    response.Content,
+                    downstreamVersion?.Value.ToString(),
+                    DateTimeOffset.UtcNow,
+                    contentType,
+                    false,
+                    response.StatusCode);
+            }
+
+            handleNotOkResponseAction(response.StatusCode);
+
+            throw new ApiException("Fout bij de bron.", (int)response.StatusCode, response.ErrorException);
+        }
+
         private static async Task<BackendResponse> GetFromBackendAsync(
             IRestClient restClient,
             Func<IRestRequest> createBackendRequestFunc,
