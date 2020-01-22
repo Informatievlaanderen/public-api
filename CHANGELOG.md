@@ -1,3 +1,10 @@
+## [2.42.1](https://github.com/informatievlaanderen/public-api/compare/v2.42.0...v2.42.1) (2020-01-22)
+
+
+### Bug Fixes
+
+* correct addressmatch parameter types GR-1160 ([d50f3de](https://github.com/informatievlaanderen/public-api/commit/d50f3de))
+
 # [2.42.0](https://github.com/informatievlaanderen/public-api/compare/v2.41.1...v2.42.0) (2020-01-16)
 
 
