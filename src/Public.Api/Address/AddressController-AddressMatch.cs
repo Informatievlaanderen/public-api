@@ -48,9 +48,9 @@ namespace Public.Api.Address
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         public async Task<IActionResult> AddressMatch(
             [FromQuery] string gemeentenaam,
-            [FromQuery] int? niscode,
-            [FromQuery] int? postcode,
-            [FromQuery] int? kadStraatcode,
+            [FromQuery] string niscode,
+            [FromQuery] string postcode,
+            [FromQuery] string kadStraatcode,
             [FromQuery] string rrStraatcode,
             [FromQuery] string straatnaam,
             [FromQuery] string huisnummer,
@@ -107,9 +107,9 @@ namespace Public.Api.Address
         public async Task<IActionResult> AddressMatchWithFormat(
             [FromRoute] string format,
             [FromQuery] string gemeentenaam,
-            [FromQuery] int? niscode,
-            [FromQuery] int? postcode,
-            [FromQuery] int? kadStraatcode,
+            [FromQuery] string niscode,
+            [FromQuery] string postcode,
+            [FromQuery] string kadStraatcode,
             [FromQuery] string rrStraatcode,
             [FromQuery] string straatnaam,
             [FromQuery] string huisnummer,
@@ -148,11 +148,11 @@ namespace Public.Api.Address
             Taal language,
             string boxNumber,
             string houseNumber,
-            int? postalCode,
+            string postalCode,
             string municipalityName,
-            int? nisCode,
+            string nisCode,
             string streetName,
-            int? kadStreetCode,
+            string kadStreetCode,
             string rrStreetCode,
             string index)
         {
@@ -165,19 +165,19 @@ namespace Public.Api.Address
             if (!string.IsNullOrEmpty(houseNumber))
                 request.AddParameter("huisnummer", houseNumber, ParameterType.QueryString);
 
-            if (postalCode.HasValue)
+            if (!string.IsNullOrEmpty(postalCode))
                 request.AddParameter("postcode", postalCode, ParameterType.QueryString);
 
             if (!string.IsNullOrEmpty(municipalityName))
                 request.AddParameter("gemeentenaam", municipalityName, ParameterType.QueryString);
 
-            if (nisCode.HasValue)
+            if (!string.IsNullOrEmpty(nisCode))
                 request.AddParameter("niscode", nisCode, ParameterType.QueryString);
 
             if (!string.IsNullOrEmpty(streetName))
                 request.AddParameter("straatnaam", streetName, ParameterType.QueryString);
 
-            if (kadStreetCode.HasValue)
+            if (!string.IsNullOrEmpty(kadStreetCode))
                 request.AddParameter("kadstraatcode", kadStreetCode, ParameterType.QueryString);
 
             if (!string.IsNullOrEmpty(rrStreetCode))
