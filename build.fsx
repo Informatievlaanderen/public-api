@@ -1,6 +1,14 @@
+#r "paket:
+version 5.241.2
+framework: netstandard20
+source https://api.nuget.org/v3/index.json
+nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 3.2.0 //"
+
 #load "packages/Be.Vlaanderen.Basisregisters.Build.Pipeline/Content/build-generic.fsx"
 
-open Fake
+open Fake.Core
+open Fake.Core.TargetOperators
+open Fake.IO.FileSystemOperators
 open ``Build-generic``
 
 // The buildserver passes in `BITBUCKET_BUILD_NUMBER` as an integer to version the results
@@ -63,51 +71,56 @@ let containerize = containerize dockerRepository
 
 // Public API -----------------------------------------------------------------------
 
-Target "Restore_Solution" (fun _ -> restore "Public")
+Target.create "Restore_Solution" (fun _ -> restore "Public")
 
-Target "Build_Solution" (fun _ ->
+Target.create "Build_Solution" (fun _ ->
   setVersions "SolutionInfo.cs"
   build "Public")
 
-Target "Test_Solution" (fun _ -> test "Public")
+Target.create "Test_Solution" (fun _ -> test "Public")
 
-Target "Publish_Solution" (fun _ ->
+Target.create "Publish_Solution" (fun _ ->
   [
     "Public.Api"
   ] |> List.iter publish)
 
-Target "Containerize_ApiPublic" (fun _ -> containerize "Public.Api" "api-legacy")
-Target "PushContainer_ApiPublic" (fun _ -> push "api-legacy")
+Target.create "Containerize_ApiPublic" (fun _ -> containerize "Public.Api" "api-legacy")
+Target.create "PushContainer_ApiPublic" (fun _ -> push "api-legacy")
 
 // --------------------------------------------------------------------------------
 
-Target "Build" DoNothing
-Target "Test" DoNothing
-Target "Publish" DoNothing
-Target "Pack" DoNothing
-Target "Containerize" DoNothing
-Target "Push" DoNothing
+Target.create "Build" ignore
+Target.create "Test" ignore
+Target.create "Publish" ignore
+Target.create "Pack" ignore
+Target.create "Containerize" ignore
+Target.create "Push" ignore
 
-"NpmInstall"         ==> "Build"
-"DotNetCli"          ==> "Build"
-"Clean"              ==> "Build"
-"Restore_Solution"   ==> "Build"
-"Build_Solution"     ==> "Build"
+"NpmInstall"
+  // ==> "DotNetCli"
+  ==> "Clean"
+  ==> "Restore_Solution"
+  ==> "Build_Solution"
+  ==> "Build"
 
-"Build"              ==> "Test"
-"Test_Solution"      ==> "Test"
+"Build"
+  ==> "Test_Solution"
+  ==> "Test"
 
-"Test"               ==> "Publish"
-"Publish_Solution"   ==> "Publish"
+"Test"
+  ==> "Publish_Solution"
+  ==> "Publish"
 
-"Publish"                           ==> "Containerize"
-"Containerize_ApiPublic"            ==> "Containerize"
+"Publish"
+  ==> "Containerize_ApiPublic"
+  ==> "Containerize"
 // Possibly add more projects to containerize here
 
-"Containerize"                      ==> "Push"
-"DockerLogin"                       ==> "Push"
-"PushContainer_ApiPublic"           ==> "Push"
+"Containerize"
+  ==> "DockerLogin"
+  ==> "PushContainer_ApiPublic"
+  ==> "Push"
 // Possibly add more projects to push here
 
 // By default we build & test
-RunTargetOrDefault "Test"
+Target.runOrDefault "Test"

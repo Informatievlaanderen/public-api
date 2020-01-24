@@ -2,8 +2,8 @@ namespace Public.Api.Infrastructure
 {
     using System.Reflection;
     using Be.Vlaanderen.Basisregisters.Api;
+    using Common.Infrastructure;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Net.Http.Headers;
 
     [ApiVersionNeutral]
     [Route("")]

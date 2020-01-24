@@ -3,13 +3,13 @@ namespace Public.Api.AddressRepresentation
     using System.Threading;
     using System.Threading.Tasks;
     using AddressRegistry.Api.Legacy.Address.Requests;
+    using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
-    using Microsoft.Net.Http.Headers;
     using RestSharp;
 
     public partial class AddressRepresentationController

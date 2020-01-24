@@ -12,7 +12,6 @@ namespace Public.Api.PublicService
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using Microsoft.Net.Http.Headers;
     using Newtonsoft.Json.Converters;
     using PublicServiceRegistry.Api.Backoffice.PublicService.Responses;
     using RestSharp;

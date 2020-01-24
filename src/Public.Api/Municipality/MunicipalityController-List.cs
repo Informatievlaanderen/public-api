@@ -14,7 +14,6 @@ namespace Public.Api.Municipality
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
-    using Microsoft.Net.Http.Headers;
     using MunicipalityRegistry.Api.Legacy.Municipality.Responses;
     using Newtonsoft.Json.Converters;
     using RestSharp;

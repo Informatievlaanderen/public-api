@@ -67,14 +67,14 @@ namespace Public.Api.Extract
             => await _extractDownloads.RedirectTo(extractDate, cancellationToken);
     }
 
-    public class ExtractRedirectResponseExamples : IExamplesProvider
+    public class ExtractRedirectResponseExamples : IExamplesProvider<object>
     {
         public object GetExamples() => new object();
     }
 
-    public class ExtractBadRequestResponseExamples : IExamplesProvider
+    public class ExtractBadRequestResponseExamples : IExamplesProvider<ProblemDetails>
     {
-        public object GetExamples()
+        public ProblemDetails GetExamples()
             => new ProblemDetails
             {
                 HttpStatus = StatusCodes.Status400BadRequest,
@@ -84,9 +84,9 @@ namespace Public.Api.Extract
             };
     }
 
-    public class ExtractNotFoundResponseExamples : IExamplesProvider
+    public class ExtractNotFoundResponseExamples : IExamplesProvider<ProblemDetails>
     {
-        public object GetExamples()
+        public ProblemDetails GetExamples()
             => new ProblemDetails
             {
                 HttpStatus = StatusCodes.Status404NotFound,

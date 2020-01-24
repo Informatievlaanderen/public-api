@@ -3,7 +3,7 @@ namespace Common.Infrastructure
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Microsoft.AspNetCore.Http.Internal;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Primitives;
 
     public class NonPagedQueryCollection : QueryCollection

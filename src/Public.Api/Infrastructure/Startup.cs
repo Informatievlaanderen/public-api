@@ -31,6 +31,8 @@ namespace Public.Api.Infrastructure
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.DependencyInjection.Extensions;
     using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.OpenApi.Models;
     using Modules;
     using Redis;
     using Swagger;
@@ -75,21 +77,21 @@ namespace Public.Api.Infrastructure
                     },
                     Swagger =
                     {
-                        ApiInfo = (provider, description) => new Info
+                        ApiInfo = (provider, description) => new OpenApiInfo
                         {
                             Version = description.ApiVersion.ToString(),
                             Title = "Basisregisters Vlaanderen API",
                             Description = GetApiLeadingText(description),
-                            Contact = new Contact
+                            Contact = new OpenApiContact
                             {
                                 Name = "Informatie Vlaanderen",
                                 Email = "informatie.vlaanderen@vlaanderen.be",
-                                Url = "https://basisregisters.vlaanderen.be"
+                                Url = new Uri("https://basisregisters.vlaanderen.be")
                             },
-                            License = new License
+                            License = new OpenApiLicense
                             {
                                 Name = "Modellicentie Gratis Hergebruik - v1.0",
-                                Url = "https://overheid.vlaanderen.be/sites/default/files/documenten/ict-egov/licenties/hergebruik/modellicentie_gratis_hergebruik_v1_0.html"
+                                Url = new Uri("https://overheid.vlaanderen.be/sites/default/files/documenten/ict-egov/licenties/hergebruik/modellicentie_gratis_hergebruik_v1_0.html")
                             },
                         },
 
@@ -209,7 +211,7 @@ namespace Public.Api.Infrastructure
 
             containerBuilder
                 .RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("Registry.Api")).ToArray())
-                .AssignableTo<IExamplesProvider>()
+                .AssignableTo(typeof(IExamplesProvider<>))
                 .AsImplementedInterfaces()
                 .AsSelf();
 
@@ -234,8 +236,8 @@ namespace Public.Api.Infrastructure
         public void Configure(
             IServiceProvider serviceProvider,
             IApplicationBuilder app,
-            IHostingEnvironment env,
-            IApplicationLifetime appLifetime,
+            IWebHostEnvironment env,
+            IHostApplicationLifetime appLifetime,
             ILoggerFactory loggerFactory,
             IApiVersionDescriptionProvider apiVersionProvider,
             ApiDataDogToggle datadogToggle,

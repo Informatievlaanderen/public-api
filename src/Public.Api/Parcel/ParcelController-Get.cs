@@ -4,12 +4,12 @@ namespace Public.Api.Parcel
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.Infrastructure;
     using Infrastructure;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using Microsoft.Net.Http.Headers;
     using Newtonsoft.Json.Converters;
     using ParcelRegistry.Api.Legacy.Parcel.Responses;
     using RestSharp;

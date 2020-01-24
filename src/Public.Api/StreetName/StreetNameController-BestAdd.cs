@@ -2,13 +2,13 @@ namespace Public.Api.StreetName
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
-    using Microsoft.Net.Http.Headers;
     using RestSharp;
     using StreetNameRegistry.Api.Legacy.StreetName.Requests;
 

@@ -14,7 +14,6 @@ namespace Public.Api.StreetName
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
-    using Microsoft.Net.Http.Headers;
     using Newtonsoft.Json.Converters;
     using RestSharp;
     using StreetNameRegistry.Api.Legacy.StreetName.Query;

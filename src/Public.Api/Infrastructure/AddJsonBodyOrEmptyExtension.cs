@@ -1,7 +1,7 @@
 namespace Public.Api.Infrastructure
 {
     using System.Net.Mime;
-    using Microsoft.Net.Http.Headers;
+    using Common.Infrastructure;
     using RestSharp;
 
     public static class AddJsonBodyOrEmptyExtension

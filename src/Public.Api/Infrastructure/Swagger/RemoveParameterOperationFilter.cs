@@ -1,7 +1,7 @@
 namespace Public.Api.Infrastructure.Swagger
 {
     using System.Linq;
-    using Swashbuckle.AspNetCore.Swagger;
+    using Microsoft.OpenApi.Models;
     using Swashbuckle.AspNetCore.SwaggerGen;
 
     public class RemoveParameterOperationFilter : IOperationFilter
@@ -13,7 +13,7 @@ namespace Public.Api.Infrastructure.Swagger
             _parameterName = parameterName.ToLowerInvariant();
         }
 
-        public void Apply(Operation operation, OperationFilterContext context)
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
             if (operation.Parameters == null)
                 return;

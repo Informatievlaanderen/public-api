@@ -13,7 +13,6 @@ namespace Common.Infrastructure
     using Microsoft.AspNetCore.Http.Headers;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using Microsoft.Net.Http.Headers;
     using Newtonsoft.Json;
     using RestSharp;
     using StackExchange.Redis;

@@ -6,6 +6,7 @@ namespace Public.Api.Feeds
     using Autofac.Features.Indexed;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
     using Marvin.Cache.Headers;
@@ -13,7 +14,6 @@ namespace Public.Api.Feeds
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
-    using Microsoft.Net.Http.Headers;
     using MunicipalityRegistry.Api.Legacy.Municipality.Responses;
     using Newtonsoft.Json.Converters;
     using RestSharp;
