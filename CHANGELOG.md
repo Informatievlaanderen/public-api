@@ -1,3 +1,20 @@
+# [3.0.0](https://github.com/informatievlaanderen/public-api/compare/v2.42.1...v3.0.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* upgrade registries ([5e34da1](https://github.com/informatievlaanderen/public-api/commit/5e34da1))
+
+
+### Features
+
+* upgrade to netcoreapp3.1 ([102b5e0](https://github.com/informatievlaanderen/public-api/commit/102b5e0))
+
+
+### BREAKING CHANGES
+
+* Upgrade to .NET Core 3.1
+
 ## [2.42.1](https://github.com/informatievlaanderen/public-api/compare/v2.42.0...v2.42.1) (2020-01-22)
 
 
