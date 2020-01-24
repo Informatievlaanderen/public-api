@@ -17,7 +17,7 @@ NUGET
       AWSSDK.Core (>= 3.3.104.20 < 3.4)
     AWSSDK.S3 (3.3.110.18)
       AWSSDK.Core (>= 3.3.104.20 < 3.4)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (2.4) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (2.4.1) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.AggregateSource (4.1) - restriction: || (&& (== net472) (>= netcoreapp3.1)) (== netcoreapp3.1)
       Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (>= 2.1) - restriction: || (&& (== net472) (>= netcoreapp3.1)) (== netcoreapp3.1)
       Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (>= 2.1) - restriction: || (&& (== net472) (>= netcoreapp3.1)) (== netcoreapp3.1)
@@ -178,13 +178,13 @@ NUGET
       Microsoft.CSharp (>= 4.7) - restriction: || (&& (== net472) (>= netcoreapp3.1)) (== netcoreapp3.1)
     Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (3.1.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 14.1) - restriction: || (&& (== net472) (>= netcoreapp3.1)) (== netcoreapp3.1)
-    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (3.3.1) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (3.3.2) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 14.1) - restriction: || (&& (== net472) (>= netcoreapp3.1)) (== netcoreapp3.1)
-    Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (2.3.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (2.3.3) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.ProblemDetails (4.1.1) - restriction: || (&& (== net472) (>= netcoreapp3.1)) (== netcoreapp3.1)
       System.Reflection.Metadata (>= 1.8) - restriction: || (&& (== net472) (>= netcoreapp3.1)) (== netcoreapp3.1)
     Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice (1.12.2) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (2.3.1) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (2.3.2) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 14.1) - restriction: || (&& (== net472) (>= netcoreapp3.1)) (== netcoreapp3.1)
     Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (2.1) - restriction: || (&& (== net472) (>= netcoreapp3.1)) (== netcoreapp3.1)
     Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (2.1) - restriction: || (&& (== net472) (>= netcoreapp3.1)) (== netcoreapp3.1)
