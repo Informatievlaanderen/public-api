@@ -20,3 +20,9 @@ AWSSDK.S3
 
 SourceLink.Embed.AllSourceFiles
 SourceLink.Copy.PdbFiles
+
+Microsoft.IdentityModel.Tokens
+IdentityModel
+Be.Vlaanderen.Basisregisters.ProjectionHandling.Runner
+Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore
+Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting
