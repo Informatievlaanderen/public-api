@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/informatievlaanderen/public-api/compare/v3.0.1...v3.0.2) (2020-01-28)
+
+
+### Bug Fixes
+
+* dotnet cli required ([74be747](https://github.com/informatievlaanderen/public-api/commit/74be747))
+
 ## [3.0.1](https://github.com/informatievlaanderen/public-api/compare/v3.0.0...v3.0.1) (2020-01-28)
 
 
