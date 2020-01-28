@@ -97,7 +97,7 @@ Target.create "Containerize" ignore
 Target.create "Push" ignore
 
 "NpmInstall"
-  // ==> "DotNetCli"
+  ==> "DotNetCli"
   ==> "Clean"
   ==> "Restore_Solution"
   ==> "Build_Solution"
