@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/informatievlaanderen/public-api/compare/v3.0.0...v3.0.1) (2020-01-28)
+
+
+### Bug Fixes
+
+* use dvr netcoreapp31 references ([bab7e53](https://github.com/informatievlaanderen/public-api/commit/bab7e53))
+
 # [3.0.0](https://github.com/informatievlaanderen/public-api/compare/v2.42.1...v3.0.0) (2020-01-24)
 
 
