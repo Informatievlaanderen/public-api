@@ -2,7 +2,6 @@ Autofac.Extensions.DependencyInjection
 
 RestSharp
 
-FeatureToggle
 Marvin.Cache.Headers
 StackExchange.Redis
 

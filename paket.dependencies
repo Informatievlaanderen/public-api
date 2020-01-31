@@ -10,8 +10,6 @@ source https://api.nuget.org/v3/index.json
 
 // PRODUCTION STUFF
 nuget RestSharp 106.10.1
-// nuget FeatureToggle 4.0.2
-nuget FeatureToggle.Core 3.5.1
 nuget Marvin.Cache.Headers 4.1.0
 nuget StackExchange.Redis 2.0.601
 nuget AWSSDK.S3 3.3.110.18
@@ -34,7 +32,7 @@ nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice ~> 2.0 c
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 3.2.0
 
-nuget Be.Vlaanderen.Basisregisters.Api 10.2.0
+nuget Be.Vlaanderen.Basisregisters.Api 10.5.0
 
 nuget Be.Vlaanderen.Basisregisters.GrAr.Common 14.1.0
 nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 14.1.0

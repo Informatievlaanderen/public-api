@@ -13,7 +13,6 @@ Be.Vlaanderen.Basisregisters.GrAr.Common
 Be.Vlaanderen.Basisregisters.GrAr.Legacy
 Be.Vlaanderen.Basisregisters.GrAr.Provenance
 
-FeatureToggle
 Marvin.Cache.Headers
 StackExchange.Redis
 AWSSDK.S3
