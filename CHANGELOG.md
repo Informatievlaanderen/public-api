@@ -1,3 +1,10 @@
+## [3.0.3](https://github.com/informatievlaanderen/public-api/compare/v3.0.2...v3.0.3) (2020-01-31)
+
+
+### Bug Fixes
+
+* resolve problems with netcoreapp 2.2.8 ([12c3829](https://github.com/informatievlaanderen/public-api/commit/12c3829))
+
 ## [3.0.2](https://github.com/informatievlaanderen/public-api/compare/v3.0.1...v3.0.2) (2020-01-28)
 
 
