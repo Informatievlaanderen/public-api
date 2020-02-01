@@ -1,6 +1,6 @@
 // Only the target frameworks that are used in projects.
 // If you change the target framework of the projects then you need to run paket install again.
-framework: netcoreapp31, net472
+framework: netcoreapp31
 
 // When doing development as a non-employee, uncomment this to use the public NuGet feed
 source https://api.nuget.org/v3/index.json
@@ -12,31 +12,31 @@ source https://api.nuget.org/v3/index.json
 nuget RestSharp 106.10.1
 nuget Marvin.Cache.Headers 4.1.0
 nuget StackExchange.Redis 2.0.601
-nuget AWSSDK.S3 3.3.110.18
+nuget AWSSDK.S3 3.3.110.19
 
 // MISSING ASSEMBLY REFERENCES
 nuget Microsoft.IdentityModel.Tokens 5.6.0
 nuget IdentityModel 3.10.10
-nuget Be.Vlaanderen.Basisregisters.ProjectionHandling.Runner 5.1.2
-nuget Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore 4.1.0
-nuget Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting 4.1.0
+nuget Be.Vlaanderen.Basisregisters.ProjectionHandling.Runner 5.2.0
+nuget Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore 4.2.0
+nuget Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting 4.2.0
 
 // VBR STUFF
-nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      ~> 3.1 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            ~> 2.3 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        ~> 2.3 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           ~> 2.4 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          ~> 2.3 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            ~> 3.3 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice ~> 2.0 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      ~> 3.2 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            ~> 2.4 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        ~> 2.4 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           ~> 2.6 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          ~> 2.4 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            ~> 3.4 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice ~> 2.1 copy_content_to_output_dir: always
 
-nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 3.2.0
+nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 3.3.1
 
-nuget Be.Vlaanderen.Basisregisters.Api 10.5.0
+nuget Be.Vlaanderen.Basisregisters.Api 10.6.0
 
-nuget Be.Vlaanderen.Basisregisters.GrAr.Common 14.1.0
-nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 14.1.0
-nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 14.1.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Common 14.3.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 14.3.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 14.3.0
 
 // TEST STUFF
 nuget Microsoft.NET.Test.Sdk 16.4.0
