@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/informatievlaanderen/public-api/compare/v3.0.3...v3.1.0) (2020-02-01)
+
+
+### Features
+
+* upgrade netcoreapp31 and dependencies ([ea9d156](https://github.com/informatievlaanderen/public-api/commit/ea9d156))
+
 ## [3.0.3](https://github.com/informatievlaanderen/public-api/compare/v3.0.2...v3.0.3) (2020-01-31)
 
 
