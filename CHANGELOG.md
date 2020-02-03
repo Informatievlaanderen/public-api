@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/informatievlaanderen/public-api/compare/v3.1.0...v3.1.1) (2020-02-03)
+
+
+### Bug Fixes
+
+* correct swagger path ([53cd3f8](https://github.com/informatievlaanderen/public-api/commit/53cd3f8))
+
 # [3.1.0](https://github.com/informatievlaanderen/public-api/compare/v3.0.3...v3.1.0) (2020-02-01)
 
 
