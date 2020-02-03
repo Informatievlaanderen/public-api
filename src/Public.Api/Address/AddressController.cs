@@ -15,7 +15,7 @@ namespace Public.Api.Address
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Adressen")]
     [ApiOrder(Order = ApiOrder.Address)]
-    [Produces(AcceptTypes.Json, AcceptTypes.JsonLd, AcceptTypes.Xml)]
+    [Produces(AcceptTypes.Json/*, AcceptTypes.JsonLd, AcceptTypes.Xml*/)]
     public partial class AddressController : RegistryApiController<AddressController>
     {
         private const string Registry = "AddressRegistry";

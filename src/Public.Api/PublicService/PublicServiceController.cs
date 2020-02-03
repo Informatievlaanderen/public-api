@@ -14,7 +14,7 @@ namespace Public.Api.PublicService
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Dienstverleningen")]
     [ApiOrder(Order = ApiOrder.PublicService)]
-    [Produces(AcceptTypes.Json, AcceptTypes.JsonLd, AcceptTypes.Xml)]
+    [Produces(AcceptTypes.Json/*, AcceptTypes.JsonLd, AcceptTypes.Xml*/)]
     public partial class PublicServiceController : RegistryApiController<PublicServiceController>
     {
         private const string Registry = "PublicServiceRegistry";

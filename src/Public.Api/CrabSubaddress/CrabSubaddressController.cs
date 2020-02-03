@@ -15,7 +15,7 @@ namespace Public.Api.CrabSubaddress
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "CRAB Subadressen")]
     [ApiOrder(Order = ApiOrder.CrabSubaddress)]
-    [Produces(AcceptTypes.Json, AcceptTypes.JsonLd, AcceptTypes.Xml)]
+    [Produces(AcceptTypes.Json/*, AcceptTypes.JsonLd, AcceptTypes.Xml*/)]
     public partial class CrabSubaddressController : RegistryApiController<CrabSubaddressController>
     {
         private const string Registry = "AddressRegistry";

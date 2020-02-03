@@ -15,7 +15,7 @@ namespace Public.Api.Building
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Gebouwen")]
     [ApiOrder(Order = ApiOrder.Building)]
-    [Produces(AcceptTypes.Json, AcceptTypes.JsonLd, AcceptTypes.Xml)]
+    [Produces(AcceptTypes.Json/*, AcceptTypes.JsonLd, AcceptTypes.Xml*/)]
     public partial class BuildingController : RegistryApiController<BuildingController>
     {
         private const string Registry = "BuildingRegistry";

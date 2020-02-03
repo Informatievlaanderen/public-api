@@ -211,7 +211,8 @@ namespace Public.Api.Infrastructure
 
             containerBuilder
                 .RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("Registry.Api")).ToArray())
-                .AssignableTo(typeof(IExamplesProvider<>))
+                //.AssignableTo(typeof(IExamplesProvider<>))
+                .AsClosedTypesOf(typeof(IExamplesProvider<>))
                 .AsImplementedInterfaces()
                 .AsSelf();
 

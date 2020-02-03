@@ -15,7 +15,7 @@ namespace Public.Api.Parcel
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Percelen")]
     [ApiOrder(Order = ApiOrder.Parcel)]
-    [Produces(AcceptTypes.Json, AcceptTypes.JsonLd, AcceptTypes.Xml)]
+    [Produces(AcceptTypes.Json/*, AcceptTypes.JsonLd, AcceptTypes.Xml*/)]
     public partial class ParcelController : RegistryApiController<ParcelController>
     {
         private const string Registry = "ParcelRegistry";

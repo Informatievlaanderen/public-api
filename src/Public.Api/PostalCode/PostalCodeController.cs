@@ -15,7 +15,7 @@ namespace Public.Api.PostalCode
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Postinfo")]
     [ApiOrder(Order = ApiOrder.PostalCode)]
-    [Produces(AcceptTypes.Json, AcceptTypes.JsonLd, AcceptTypes.Xml)]
+    [Produces(AcceptTypes.Json/*, AcceptTypes.JsonLd, AcceptTypes.Xml*/)]
     public partial class PostalCodeController : RegistryApiController<PostalCodeController>
     {
         private const string Registry = "PostalRegistry";

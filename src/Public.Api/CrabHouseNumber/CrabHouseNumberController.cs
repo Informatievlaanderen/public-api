@@ -15,7 +15,7 @@ namespace Public.Api.CrabHouseNumber
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "CRAB Huisnummers")]
     [ApiOrder(Order = ApiOrder.CrabHouseNumber)]
-    [Produces(AcceptTypes.Json, AcceptTypes.JsonLd, AcceptTypes.Xml)]
+    [Produces(AcceptTypes.Json/*, AcceptTypes.JsonLd, AcceptTypes.Xml*/)]
     public partial class CrabHouseNumberController : RegistryApiController<CrabHouseNumberController>
     {
         private const string Registry = "AddressRegistry";
