@@ -1,3 +1,10 @@
+## [3.1.2](https://github.com/informatievlaanderen/public-api/compare/v3.1.1...v3.1.2) (2020-02-03)
+
+
+### Bug Fixes
+
+* dont reply with xml for now ([c0e6bf2](https://github.com/informatievlaanderen/public-api/commit/c0e6bf2))
+
 ## [3.1.1](https://github.com/informatievlaanderen/public-api/compare/v3.1.0...v3.1.1) (2020-02-03)
 
 
