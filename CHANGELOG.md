@@ -1,3 +1,10 @@
+## [3.1.3](https://github.com/informatievlaanderen/public-api/compare/v3.1.2...v3.1.3) (2020-02-03)
+
+
+### Bug Fixes
+
+* objectid of postalinfo is now string GR-1179 ([698983b](https://github.com/informatievlaanderen/public-api/commit/698983b))
+
 ## [3.1.2](https://github.com/informatievlaanderen/public-api/compare/v3.1.1...v3.1.2) (2020-02-03)
 
 
