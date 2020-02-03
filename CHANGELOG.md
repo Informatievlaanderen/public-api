@@ -1,3 +1,10 @@
+## [3.1.5](https://github.com/informatievlaanderen/public-api/compare/v3.1.4...v3.1.5) (2020-02-03)
+
+
+### Bug Fixes
+
+* update swagger to display enums properly ([4e7b116](https://github.com/informatievlaanderen/public-api/commit/4e7b116))
+
 ## [3.1.4](https://github.com/informatievlaanderen/public-api/compare/v3.1.3...v3.1.4) (2020-02-03)
 
 
