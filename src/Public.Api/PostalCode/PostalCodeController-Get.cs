@@ -48,7 +48,7 @@ namespace Public.Api.PostalCode
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [HttpCacheExpiration(MaxAge = DefaultDetailCaching)]
         public async Task<IActionResult> GetPostalCode(
-            [FromRoute] int objectId,
+            [FromRoute] string objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
@@ -92,7 +92,7 @@ namespace Public.Api.PostalCode
         [HttpCacheExpiration(MaxAge = DefaultDetailCaching)]
         public async Task<IActionResult> GetPostalCodeWithFormat(
             [FromRoute] string format,
-            [FromRoute] int objectId,
+            [FromRoute] string objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
@@ -105,7 +105,7 @@ namespace Public.Api.PostalCode
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
-            var cacheKey = $"legacy/postalinfo:{objectId:0000}";
+            var cacheKey = $"legacy/postalinfo:{objectId}";
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)
@@ -114,7 +114,7 @@ namespace Public.Api.PostalCode
             return new BackendResponseResult(value);
         }
 
-        private static RestRequest CreateBackendDetailRequest(int postalCode)
+        private static RestRequest CreateBackendDetailRequest(string postalCode)
         {
             var request = new RestRequest("postcodes/{postalCode}");
             request.AddParameter("postalCode", postalCode, ParameterType.UrlSegment);
