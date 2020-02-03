@@ -24,7 +24,7 @@ namespace Public.Api.StreetName
     public partial class StreetNameController
     {
         /// <summary>
-        /// Vraag een lijst met actieve straatnamen op.
+        /// Vraag een lijst met straatnamen op.
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
@@ -74,7 +74,7 @@ namespace Public.Api.StreetName
                 cancellationToken);
 
         /// <summary>
-        /// Vraag een lijst met actieve straatnamen op.
+        /// Vraag een lijst met straatnamen op.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>

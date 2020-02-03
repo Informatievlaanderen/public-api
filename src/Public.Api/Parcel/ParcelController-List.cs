@@ -23,7 +23,7 @@ namespace Public.Api.Parcel
     public partial class ParcelController
     {
         /// <summary>
-        /// Vraag een lijst met actieve percelen op.
+        /// Vraag een lijst met percelen op.
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
@@ -70,7 +70,7 @@ namespace Public.Api.Parcel
                 cancellationToken);
 
         /// <summary>
-        /// Vraag een lijst met actieve percelen op.
+        /// Vraag een lijst met percelen op.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>

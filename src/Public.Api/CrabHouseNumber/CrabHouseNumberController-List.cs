@@ -23,7 +23,7 @@ namespace Public.Api.CrabHouseNumber
     public partial class CrabHouseNumberController
     {
         /// <summary>
-        /// Vraag een lijst met actieve adressen op.
+        /// Vraag een lijst met adressen op.
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
@@ -73,7 +73,7 @@ namespace Public.Api.CrabHouseNumber
                 cancellationToken);
 
         /// <summary>
-        /// Vraag een lijst met actieve adressen op.
+        /// Vraag een lijst met adressen op.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>

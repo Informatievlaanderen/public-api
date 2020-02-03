@@ -24,7 +24,7 @@ namespace Public.Api.PostalCode
     public partial class PostalCodeController
     {
         /// <summary>
-        /// Vraag een lijst met postinfo over actieve postcodes op.
+        /// Vraag een lijst met postinfo over postcodes op.
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
@@ -74,7 +74,7 @@ namespace Public.Api.PostalCode
                 cancellationToken);
 
         /// <summary>
-        /// Vraag een lijst met postinfo over actieve postcodes op.
+        /// Vraag een lijst met postinfo over postcodes op.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>

@@ -24,7 +24,7 @@ namespace Public.Api.BuildingUnit
     public partial class BuildingUnitController
     {
         /// <summary>
-        /// Vraag een lijst met actieve gebouweenheden op.
+        /// Vraag een lijst met gebouweenheden op.
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
@@ -74,7 +74,7 @@ namespace Public.Api.BuildingUnit
                 cancellationToken);
 
         /// <summary>
-        /// Vraag een lijst met actieve gebouweenheden op.
+        /// Vraag een lijst met gebouweenheden op.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
