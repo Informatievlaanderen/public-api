@@ -26,6 +26,7 @@ namespace Public.Api.Infrastructure
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.AspNetCore.Mvc.ApplicationModels;
+    using Microsoft.AspNetCore.Mvc.ApplicationParts;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -37,7 +38,6 @@ namespace Public.Api.Infrastructure
     using Redis;
     using Swagger;
     using Swashbuckle.AspNetCore.Filters;
-    using Swashbuckle.AspNetCore.Swagger;
 
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup
@@ -136,6 +136,18 @@ namespace Public.Api.Infrastructure
                     {
                         FluentValidation = fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>(),
 
+                        AfterMvcCore = builder =>
+                        {
+                            builder.ConfigureApplicationPartManager(apm =>
+                            {
+                                var parts = apm.ApplicationParts;
+                                var unneededParts = parts.Where(part => part.Name.Contains("Registry.Api")).ToArray();
+
+                                foreach (var unneededPart in unneededParts)
+                                    parts.Remove(unneededPart);
+                            });
+                        },
+
                         AfterMvc = builder => builder.Services.Configure<ApiBehaviorOptions>(options =>
                         {
                             options.SuppressInferBindingSourcesForParameters = true;
@@ -194,7 +206,6 @@ namespace Public.Api.Infrastructure
                 .ConfigureRegistryOptions<BuildingOptions>(_configuration.GetSection("ApiConfiguration:BuildingRegistry"))
                 .ConfigureRegistryOptions<ParcelOptions>(_configuration.GetSection("ApiConfiguration:ParcelRegistry"));
 
-
             services
                 .RemoveAll<IApiControllerSpecification>()
                 .TryAddEnumerable(ServiceDescriptor.Transient<IApiControllerSpecification, ToggledApiControllerSpec>());
@@ -211,7 +222,6 @@ namespace Public.Api.Infrastructure
 
             containerBuilder
                 .RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("Registry.Api")).ToArray())
-                //.AssignableTo(typeof(IExamplesProvider<>))
                 .AsClosedTypesOf(typeof(IExamplesProvider<>))
                 .AsImplementedInterfaces()
                 .AsSelf();
