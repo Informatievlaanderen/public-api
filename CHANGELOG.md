@@ -1,3 +1,10 @@
+## [3.1.4](https://github.com/informatievlaanderen/public-api/compare/v3.1.3...v3.1.4) (2020-02-03)
+
+
+### Bug Fixes
+
+* dont register other assemblies ([4020793](https://github.com/informatievlaanderen/public-api/commit/4020793))
+
 ## [3.1.3](https://github.com/informatievlaanderen/public-api/compare/v3.1.2...v3.1.3) (2020-02-03)
 
 
