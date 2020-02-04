@@ -1,3 +1,11 @@
+## [3.1.12](https://github.com/informatievlaanderen/public-api/compare/v3.1.11...v3.1.12) (2020-02-04)
+
+
+### Bug Fixes
+
+* return problemdetails xml when format xml requested ([cd494cd](https://github.com/informatievlaanderen/public-api/commit/cd494cd))
+* show error details ([91bfcd0](https://github.com/informatievlaanderen/public-api/commit/91bfcd0))
+
 ## [3.1.11](https://github.com/informatievlaanderen/public-api/compare/v3.1.10...v3.1.11) (2020-02-04)
 
 
