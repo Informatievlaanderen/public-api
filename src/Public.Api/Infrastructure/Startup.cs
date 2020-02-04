@@ -26,7 +26,6 @@ namespace Public.Api.Infrastructure
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.AspNetCore.Mvc.ApplicationModels;
-    using Microsoft.AspNetCore.Mvc.ApplicationParts;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -222,6 +221,12 @@ namespace Public.Api.Infrastructure
 
             containerBuilder
                 .RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("Registry.Api")).ToArray())
+                .AsClosedTypesOf(typeof(IExamplesProvider<>))
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("Be.Vlaanderen.Basisregisters.Api")).ToArray())
                 .AsClosedTypesOf(typeof(IExamplesProvider<>))
                 .AsImplementedInterfaces()
                 .AsSelf();
