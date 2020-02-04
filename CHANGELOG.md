@@ -1,3 +1,10 @@
+## [3.1.10](https://github.com/informatievlaanderen/public-api/compare/v3.1.9...v3.1.10) (2020-02-04)
+
+
+### Bug Fixes
+
+* addressmatch can now return xml response ([d14e43e](https://github.com/informatievlaanderen/public-api/commit/d14e43e))
+
 ## [3.1.9](https://github.com/informatievlaanderen/public-api/compare/v3.1.8...v3.1.9) (2020-02-04)
 
 
