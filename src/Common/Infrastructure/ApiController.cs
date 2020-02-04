@@ -120,7 +120,6 @@ namespace Common.Infrastructure
 
             var backendRequest = createBackendRequestFunc();
             backendRequest.AddHeader(HeaderNames.Accept, contentType);
-            backendRequest.AddHeader(HeaderNames.Accept, AcceptTypes.Json); //400's returned in json
 
             var response = await restClient.ExecuteTaskAsync(backendRequest, cancellationToken);
 
