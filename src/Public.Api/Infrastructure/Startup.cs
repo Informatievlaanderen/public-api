@@ -324,7 +324,7 @@ namespace Public.Api.Infrastructure
 
                                 li[data-item-id=""section/Introductie""],
                                 li[data-item-id=""tag/Gemeenten""],
-                                li[data-item-id=""tag/Extract""]
+                                li[data-item-id=""tag/CRAB-Huisnummers""]
                                 {
                                     border-top: 1px solid rgb(225, 225, 225);
                                 }
@@ -389,13 +389,7 @@ Iedereen    | {_configuration["BaseUrl"]}{description.GroupName} |
 
 U kan anoniem gebruik maken van de API, echter is deze beperkt in het aantal verzoeken dat u tegelijk kan sturen.
 
-Wenst u volwaardige toegang tot de api, dan kan u zich [hier aanmelden als ontwikkelaar](https://portal.basisregisters.vlaanderen).
-
-## Authenticatie
-
-## Paginering
-
-## Versionering
+Wenst u volwaardige toegang tot de api, dan kan u zich [hier aanmelden als ontwikkelaar](mailto:informatie.vlaanderen@vlaanderen.be).
 
 ## Foutmeldingen
 

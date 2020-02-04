@@ -29,7 +29,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.AggregateSource (4.2)
       Be.Vlaanderen.Basisregisters.EventHandling (>= 2.2)
       SqlStreamStore (>= 1.1.3)
-    Be.Vlaanderen.Basisregisters.Api (10.7.3)
+    Be.Vlaanderen.Basisregisters.Api (10.7.4)
       Autofac (>= 5.0)
       Autofac.Extensions.DependencyInjection (>= 6.0)
       Be.Vlaanderen.Basisregisters.AggregateSource (>= 4.2)
@@ -182,7 +182,7 @@ NUGET
       Microsoft.CSharp (>= 4.7)
     Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (3.2.4) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 14.3.1)
-    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (3.4.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (3.4.3) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 14.3.1)
     Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (2.4.3) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.ProblemDetails (4.2.1)
