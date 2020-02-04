@@ -1,3 +1,10 @@
+## [3.1.7](https://github.com/informatievlaanderen/public-api/compare/v3.1.6...v3.1.7) (2020-02-04)
+
+
+### Bug Fixes
+
+* change prefix for problem details instance GR-940 ([66d8516](https://github.com/informatievlaanderen/public-api/commit/66d8516))
+
 ## [3.1.6](https://github.com/informatievlaanderen/public-api/compare/v3.1.5...v3.1.6) (2020-02-03)
 
 
