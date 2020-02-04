@@ -1,3 +1,10 @@
+## [3.1.13](https://github.com/informatievlaanderen/public-api/compare/v3.1.12...v3.1.13) (2020-02-04)
+
+
+### Bug Fixes
+
+* correct error samples registries ([b8842d7](https://github.com/informatievlaanderen/public-api/commit/b8842d7))
+
 ## [3.1.12](https://github.com/informatievlaanderen/public-api/compare/v3.1.11...v3.1.12) (2020-02-04)
 
 
