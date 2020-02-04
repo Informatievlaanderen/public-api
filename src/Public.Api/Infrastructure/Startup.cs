@@ -45,7 +45,7 @@ namespace Public.Api.Infrastructure
         private static readonly SHA1 Sha1 = SHA1.Create();
 
         private const string DefaultCulture = "en-GB";
-        private const string SupportedCultures = "en-GB;en-US;en;nl-BE;nl";
+        private const string SupportedCultures = "en-GB;en-US;en"; //"en-GB;en-US;en;nl-BE;nl";
 
         private IContainer _applicationContainer;
 
