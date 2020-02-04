@@ -1,3 +1,10 @@
+## [3.1.14](https://github.com/informatievlaanderen/public-api/compare/v3.1.13...v3.1.14) (2020-02-04)
+
+
+### Bug Fixes
+
+* update api for generic error examples instance uri fix ([8c911c4](https://github.com/informatievlaanderen/public-api/commit/8c911c4))
+
 ## [3.1.13](https://github.com/informatievlaanderen/public-api/compare/v3.1.12...v3.1.13) (2020-02-04)
 
 
