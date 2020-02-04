@@ -1,3 +1,10 @@
+## [3.1.11](https://github.com/informatievlaanderen/public-api/compare/v3.1.10...v3.1.11) (2020-02-04)
+
+
+### Bug Fixes
+
+* only support EN culture for now ([8071386](https://github.com/informatievlaanderen/public-api/commit/8071386))
+
 ## [3.1.10](https://github.com/informatievlaanderen/public-api/compare/v3.1.9...v3.1.10) (2020-02-04)
 
 
