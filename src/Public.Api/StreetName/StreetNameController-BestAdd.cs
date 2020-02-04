@@ -40,11 +40,7 @@ namespace Public.Api.StreetName
             [FromBody] BosaStreetNameRequest searchBody,
             CancellationToken cancellationToken = default)
         {
-            format = !string.IsNullOrWhiteSpace(format)
-                ? format
-                : actionContextAccessor.ActionContext.GetValueFromHeader("format")
-                  ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
-                  ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
+            format = DetermineAndSetFormat(format, actionContextAccessor, Request);
 
             IRestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
 

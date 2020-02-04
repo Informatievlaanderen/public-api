@@ -7,11 +7,14 @@ namespace Common.Infrastructure
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
+    using Api.Infrastructure;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Http.Headers;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
     using RestSharp;
@@ -33,6 +36,25 @@ namespace Common.Infrastructure
         {
             _redis = redis.GetConnectionMultiplexer();
             _logger = logger;
+        }
+
+        protected static string DetermineAndSetFormat(
+            string format,
+            IActionContextAccessor actionContextAccessor,
+            HttpRequest request)
+        {
+            format = !string.IsNullOrWhiteSpace(format)
+                ? format
+                : actionContextAccessor.ActionContext.GetValueFromHeader("format")
+                  ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
+                  ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
+
+            var acceptType = request.GetTypedHeaders().DetermineAcceptType(format);
+            var contentType = acceptType.ToMimeTypeString();
+
+            request.Headers[HeaderNames.Accept] = contentType;
+
+            return format;
         }
 
         protected async Task<BackendResponse> GetFromCacheThenFromBackendAsync(

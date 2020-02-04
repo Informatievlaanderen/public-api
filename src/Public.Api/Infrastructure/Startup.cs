@@ -220,13 +220,12 @@ namespace Public.Api.Infrastructure
             containerBuilder.Populate(services);
 
             containerBuilder
-                .RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("Registry.Api")).ToArray())
-                .AsClosedTypesOf(typeof(IExamplesProvider<>))
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("Be.Vlaanderen.Basisregisters.Api")).ToArray())
+                .RegisterAssemblyTypes(
+                    AppDomain
+                        .CurrentDomain
+                        .GetAssemblies()
+                        .Where(x => x.FullName.Contains("Registry.Api") || x.FullName.Contains("Be.Vlaanderen.Basisregisters.Api"))
+                        .ToArray())
                 .AsClosedTypesOf(typeof(IExamplesProvider<>))
                 .AsImplementedInterfaces()
                 .AsSelf();

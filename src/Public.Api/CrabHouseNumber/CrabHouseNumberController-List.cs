@@ -115,11 +115,7 @@ namespace Public.Api.CrabHouseNumber
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            format = !string.IsNullOrWhiteSpace(format)
-                ? format
-                : actionContextAccessor.ActionContext.GetValueFromHeader("format")
-                  ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
-                  ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
+            format = DetermineAndSetFormat(format, actionContextAccessor, Request);
 
             const Taal taal = Taal.NL;
 

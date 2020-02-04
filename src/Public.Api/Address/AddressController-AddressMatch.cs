@@ -119,11 +119,7 @@ namespace Public.Api.Address
             [FromServices] IOptions<AddressOptions> responseOptions,
             CancellationToken cancellationToken = default)
         {
-            format = !string.IsNullOrWhiteSpace(format)
-                ? format
-                : actionContextAccessor.ActionContext.GetValueFromHeader("format")
-                  ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
-                  ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
+            format = DetermineAndSetFormat(format, actionContextAccessor, Request);
 
             var taal = Taal.NL;
 
