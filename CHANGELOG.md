@@ -1,3 +1,10 @@
+## [3.1.15](https://github.com/informatievlaanderen/public-api/compare/v3.1.14...v3.1.15) (2020-02-05)
+
+
+### Bug Fixes
+
+* fields with no errors wont show in bad request + update examples ([1ee2930](https://github.com/informatievlaanderen/public-api/commit/1ee2930))
+
 ## [3.1.14](https://github.com/informatievlaanderen/public-api/compare/v3.1.13...v3.1.14) (2020-02-04)
 
 
