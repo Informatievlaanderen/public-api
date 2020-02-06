@@ -1,3 +1,10 @@
+## [3.1.16](https://github.com/informatievlaanderen/public-api/compare/v3.1.15...v3.1.16) (2020-02-06)
+
+
+### Bug Fixes
+
+* update examples ([2a31943](https://github.com/informatievlaanderen/public-api/commit/2a31943))
+
 ## [3.1.15](https://github.com/informatievlaanderen/public-api/compare/v3.1.14...v3.1.15) (2020-02-05)
 
 
