@@ -1,3 +1,10 @@
+## [3.1.17](https://github.com/informatievlaanderen/public-api/compare/v3.1.16...v3.1.17) (2020-02-10)
+
+
+### Bug Fixes
+
+* update packages nullability ([0c80e2d](https://github.com/informatievlaanderen/public-api/commit/0c80e2d))
+
 ## [3.1.16](https://github.com/informatievlaanderen/public-api/compare/v3.1.15...v3.1.16) (2020-02-06)
 
 
