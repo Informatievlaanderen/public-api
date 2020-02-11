@@ -1,3 +1,13 @@
+## [3.1.18](https://github.com/informatievlaanderen/public-api/compare/v3.1.17...v3.1.18) (2020-02-11)
+
+
+### Bug Fixes
+
+* make sure to ignore the xml proxy for json ([f45bfca](https://github.com/informatievlaanderen/public-api/commit/f45bfca))
+* return xml problemdetails ([627be8b](https://github.com/informatievlaanderen/public-api/commit/627be8b))
+* update grar common + building packages ([2010862](https://github.com/informatievlaanderen/public-api/commit/2010862))
+* update problemdetails ([6091a7f](https://github.com/informatievlaanderen/public-api/commit/6091a7f))
+
 ## [3.1.17](https://github.com/informatievlaanderen/public-api/compare/v3.1.16...v3.1.17) (2020-02-10)
 
 
