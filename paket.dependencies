@@ -12,7 +12,7 @@ source https://api.nuget.org/v3/index.json
 nuget RestSharp 106.10.1
 nuget Marvin.Cache.Headers 4.1.0
 nuget StackExchange.Redis 2.0.601
-nuget AWSSDK.S3 3.3.110.19
+nuget AWSSDK.S3 3.3.110.22
 
 // MISSING ASSEMBLY REFERENCES
 nuget Microsoft.IdentityModel.Tokens 5.6.0
@@ -32,20 +32,21 @@ nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice ~> 2.1 c
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 3.3.1
 
-nuget Be.Vlaanderen.Basisregisters.Api 10.7.9
+nuget Be.Vlaanderen.Basisregisters.Api 10.7.10
+
 nuget Be.Vlaanderen.Basisregisters.GrAr.Common 14.3.3
 nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 14.3.3
 nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 14.3.3
 
 // TEST STUFF
-nuget Microsoft.NET.Test.Sdk 16.4.0
+nuget Microsoft.NET.Test.Sdk 16.5.0
 nuget Microsoft.EntityFrameworkCore.InMemory 3.1.1
 nuget xunit 2.4.1
 nuget xunit.runner.visualstudio 2.4.1
 nuget xunit.categories 2.0.4
 nuget AutoFixture 4.11.0
 nuget AutoFixture.Xunit2 4.11.0
-nuget FluentAssertions 5.10.0
+nuget FluentAssertions 5.10.2
 
 // BUILD STUFF
 nuget SourceLink.Embed.AllSourceFiles 2.8.3 copy_local: true
