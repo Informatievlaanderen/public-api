@@ -4,6 +4,7 @@ namespace Public.Api.CrabHouseNumber
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using FeatureToggle;
+    using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -15,7 +16,7 @@ namespace Public.Api.CrabHouseNumber
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "CRAB Huisnummers")]
     [ApiOrder(Order = ApiOrder.CrabHouseNumber)]
-    [Produces(AcceptTypes.Json/*, AcceptTypes.JsonLd, AcceptTypes.Xml*/)]
+    [ApiProduces]
     public partial class CrabHouseNumberController : RegistryApiController<CrabHouseNumberController>
     {
         private const string Registry = "AddressRegistry";

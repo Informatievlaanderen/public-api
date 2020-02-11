@@ -14,6 +14,7 @@ namespace Public.Api.Infrastructure
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Swagger;
+    using Common.Api.Infrastructure;
     using Common.Infrastructure;
     using Common.Infrastructure.Modules;
     using Configuration;
@@ -23,9 +24,11 @@ namespace Public.Api.Infrastructure
     using Marvin.Cache.Headers.Interfaces;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.AspNetCore.Mvc.ApplicationModels;
+    using Microsoft.AspNetCore.Mvc.Formatters;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -153,13 +156,24 @@ namespace Public.Api.Infrastructure
 
                             options.InvalidModelStateResponseFactory = actionContext =>
                             {
-                                var result = new BadRequestObjectResult(
-                                    new ModelStateProblemDetails(actionContext.ModelState));
+                                var format =
+                                    actionContext.GetValueFromHeader("format")
+                                    ?? actionContext.GetValueFromRouteData("format")
+                                    ?? actionContext.GetValueFromQueryString("format");
 
-                                result.ContentTypes.Add("application/problem+json");
-                                result.ContentTypes.Add("application/problem+xml");
+                                var acceptType = actionContext.HttpContext.Request.GetTypedHeaders().DetermineAcceptType(format);
+                                var contentType = acceptType.ToMimeTypeString();
 
-                                return result;
+                                actionContext.HttpContext.Request.Headers[HeaderNames.Accept] = contentType;
+
+                                return new BadRequestObjectResult(new ModelStateProblemDetails(actionContext.ModelState))
+                                {
+                                    ContentTypes =
+                                    {
+                                        "application/problem+json",
+                                        "application/problem+xml"
+                                    }
+                                };
                             };
                         })
                     }

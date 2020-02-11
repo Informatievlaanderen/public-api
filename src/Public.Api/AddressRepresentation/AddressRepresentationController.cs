@@ -4,6 +4,7 @@ namespace Public.Api.AddressRepresentation
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using FeatureToggle;
+    using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -14,7 +15,7 @@ namespace Public.Api.AddressRepresentation
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Adresvoorstellingen")]
     [ApiOrder(Order = ApiOrder.AddressRepresentation)]
-    [Produces(AcceptTypes.Json/*, AcceptTypes.JsonLd, AcceptTypes.Xml*/)]
+    [ApiProduces]
     public partial class AddressRepresentationController : RegistryApiController<AddressRepresentationController>
     {
         private const string Registry = "AddressRegistry";

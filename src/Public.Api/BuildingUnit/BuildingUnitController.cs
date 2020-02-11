@@ -4,6 +4,7 @@ namespace Public.Api.BuildingUnit
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using FeatureToggle;
+    using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -15,7 +16,7 @@ namespace Public.Api.BuildingUnit
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Gebouweenheden")]
     [ApiOrder(Order = ApiOrder.BuildingUnit)]
-    [Produces(AcceptTypes.Json/*, AcceptTypes.JsonLd, AcceptTypes.Xml*/)]
+    [ApiProduces]
     public partial class BuildingUnitController : RegistryApiController<BuildingUnitController>
     {
         private const string Registry = "BuildingRegistry";

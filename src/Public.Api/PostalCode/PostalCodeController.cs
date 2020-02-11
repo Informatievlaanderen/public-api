@@ -4,6 +4,7 @@ namespace Public.Api.PostalCode
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using FeatureToggle;
+    using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -15,7 +16,7 @@ namespace Public.Api.PostalCode
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Postinfo")]
     [ApiOrder(Order = ApiOrder.PostalCode)]
-    [Produces(AcceptTypes.Json/*, AcceptTypes.JsonLd, AcceptTypes.Xml*/)]
+    [ApiProduces]
     public partial class PostalCodeController : RegistryApiController<PostalCodeController>
     {
         private const string Registry = "PostalRegistry";

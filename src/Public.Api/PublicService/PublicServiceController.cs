@@ -4,6 +4,7 @@ namespace Public.Api.PublicService
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using FeatureToggle;
+    using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -14,7 +15,7 @@ namespace Public.Api.PublicService
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Dienstverleningen")]
     [ApiOrder(Order = ApiOrder.PublicService)]
-    [Produces(AcceptTypes.Json/*, AcceptTypes.JsonLd, AcceptTypes.Xml*/)]
+    [ApiProduces]
     public partial class PublicServiceController : RegistryApiController<PublicServiceController>
     {
         private const string Registry = "PublicServiceRegistry";

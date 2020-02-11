@@ -4,6 +4,7 @@ namespace Public.Api.Parcel
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using FeatureToggle;
+    using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -15,7 +16,7 @@ namespace Public.Api.Parcel
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Percelen")]
     [ApiOrder(Order = ApiOrder.Parcel)]
-    [Produces(AcceptTypes.Json/*, AcceptTypes.JsonLd, AcceptTypes.Xml*/)]
+    [ApiProduces]
     public partial class ParcelController : RegistryApiController<ParcelController>
     {
         private const string Registry = "ParcelRegistry";
