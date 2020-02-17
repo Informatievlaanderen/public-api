@@ -1,3 +1,10 @@
+## [3.1.19](https://github.com/informatievlaanderen/public-api/compare/v3.1.18...v3.1.19) (2020-02-17)
+
+
+### Bug Fixes
+
+* upgrade packages to fix json order ([1a0ffb6](https://github.com/informatievlaanderen/public-api/commit/1a0ffb6))
+
 ## [3.1.18](https://github.com/informatievlaanderen/public-api/compare/v3.1.17...v3.1.18) (2020-02-11)
 
 
