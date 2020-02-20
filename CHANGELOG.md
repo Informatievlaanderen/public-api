@@ -1,3 +1,10 @@
+## [3.1.20](https://github.com/informatievlaanderen/public-api/compare/v3.1.19...v3.1.20) (2020-02-20)
+
+
+### Bug Fixes
+
+* update grar common ([24ebfa9](https://github.com/informatievlaanderen/public-api/commit/24ebfa9))
+
 ## [3.1.19](https://github.com/informatievlaanderen/public-api/compare/v3.1.18...v3.1.19) (2020-02-17)
 
 
