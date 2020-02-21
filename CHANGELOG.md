@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/informatievlaanderen/public-api/compare/v3.1.20...v3.2.0) (2020-02-21)
+
+
+### Features
+
+* update api package ([50c517a](https://github.com/informatievlaanderen/public-api/commit/50c517a))
+
 ## [3.1.20](https://github.com/informatievlaanderen/public-api/compare/v3.1.19...v3.1.20) (2020-02-20)
 
 
