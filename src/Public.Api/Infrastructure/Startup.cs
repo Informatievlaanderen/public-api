@@ -88,7 +88,7 @@ namespace Public.Api.Infrastructure
                             {
                                 Name = "Informatie Vlaanderen",
                                 Email = "informatie.vlaanderen@vlaanderen.be",
-                                Url = new Uri("https://basisregisters.vlaanderen.be")
+                                Url = new Uri(_configuration["SiteUrl"])
                             },
                             License = new OpenApiLicense
                             {
