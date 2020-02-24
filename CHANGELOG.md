@@ -1,3 +1,10 @@
+## [3.2.2](https://github.com/informatievlaanderen/public-api/compare/v3.2.1...v3.2.2) (2020-02-24)
+
+
+### Bug Fixes
+
+* inject site url in open api contact info ([3559c32](https://github.com/informatievlaanderen/public-api/commit/3559c32))
+
 ## [3.2.1](https://github.com/informatievlaanderen/public-api/compare/v3.2.0...v3.2.1) (2020-02-21)
 
 
