@@ -1,3 +1,11 @@
+## [3.2.3](https://github.com/informatievlaanderen/public-api/compare/v3.2.2...v3.2.3) (2020-02-27)
+
+
+### Bug Fixes
+
+* update json serialization dependencies ([5b3235c](https://github.com/informatievlaanderen/public-api/commit/5b3235c))
+* updated registry dependencies ([577da25](https://github.com/informatievlaanderen/public-api/commit/577da25))
+
 ## [3.2.2](https://github.com/informatievlaanderen/public-api/compare/v3.2.1...v3.2.2) (2020-02-24)
 
 
