@@ -32,11 +32,11 @@ nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice ~> 2.1 c
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 3.3.1
 
-nuget Be.Vlaanderen.Basisregisters.Api 11.0.0
+nuget Be.Vlaanderen.Basisregisters.Api 11.1.2
 
-nuget Be.Vlaanderen.Basisregisters.GrAr.Common 15.0.2
-nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 15.0.2
-nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 15.0.2
+nuget Be.Vlaanderen.Basisregisters.GrAr.Common 15.0.3
+nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 15.0.3
+nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 15.0.3
 
 // TEST STUFF
 nuget Microsoft.NET.Test.Sdk 16.5.0
