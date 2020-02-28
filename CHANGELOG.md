@@ -1,3 +1,10 @@
+## [3.2.4](https://github.com/informatievlaanderen/public-api/compare/v3.2.3...v3.2.4) (2020-02-28)
+
+
+### Bug Fixes
+
+* enable xml examples again ([8abbf61](https://github.com/informatievlaanderen/public-api/commit/8abbf61))
+
 ## [3.2.3](https://github.com/informatievlaanderen/public-api/compare/v3.2.2...v3.2.3) (2020-02-27)
 
 
