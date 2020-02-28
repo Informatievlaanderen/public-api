@@ -8,10 +8,10 @@ namespace Public.Api.Infrastructure
         public ApiProducesAttribute()
             : base(
                 "application/problem+json",
-                //"application/problem+xml",
-                AcceptTypes.Json//,
+                "application/problem+xml",
+                AcceptTypes.Json,
                 //AcceptTypes.JsonLd,
-                //AcceptTypes.Xml
+                AcceptTypes.Xml
                 )
         {
         }
