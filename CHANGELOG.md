@@ -1,3 +1,12 @@
+## [3.2.5](https://github.com/informatievlaanderen/public-api/compare/v3.2.4...v3.2.5) (2020-03-03)
+
+
+### Bug Fixes
+
+* bump netcore 3.1.2 ([cf1e6d9](https://github.com/informatievlaanderen/public-api/commit/cf1e6d9))
+* update contact email ([35cd6e4](https://github.com/informatievlaanderen/public-api/commit/35cd6e4))
+* update dockerid detection ([968d848](https://github.com/informatievlaanderen/public-api/commit/968d848))
+
 ## [3.2.4](https://github.com/informatievlaanderen/public-api/compare/v3.2.3...v3.2.4) (2020-02-28)
 
 
