@@ -28,7 +28,6 @@ namespace Public.Api.Infrastructure
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.AspNetCore.Mvc.ApplicationModels;
-    using Microsoft.AspNetCore.Mvc.Formatters;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -53,6 +52,7 @@ namespace Public.Api.Infrastructure
 
         private readonly IConfiguration _configuration;
         private readonly ILoggerFactory _loggerFactory;
+        private readonly OpenApiContact _contact;
 
         public Startup(
             IConfiguration configuration,
@@ -60,6 +60,13 @@ namespace Public.Api.Infrastructure
         {
             _configuration = configuration;
             _loggerFactory = loggerFactory;
+
+            _contact = new OpenApiContact
+            {
+                Name = _configuration["Contact:Name"],
+                Email = _configuration["Contact:Email"],
+                Url = new Uri(_configuration["SiteUrl"])
+            };
         }
 
         /// <summary>Configures services for the application.</summary>
@@ -84,12 +91,7 @@ namespace Public.Api.Infrastructure
                             Version = description.ApiVersion.ToString(),
                             Title = "Basisregisters Vlaanderen API",
                             Description = GetApiLeadingText(description),
-                            Contact = new OpenApiContact
-                            {
-                                Name = "Informatie Vlaanderen",
-                                Email = "informatie.vlaanderen@vlaanderen.be",
-                                Url = new Uri(_configuration["SiteUrl"])
-                            },
+                            Contact = _contact,
                             License = new OpenApiLicense
                             {
                                 Name = "Modellicentie Gratis Hergebruik - v1.0",
@@ -391,7 +393,7 @@ Basisregisters Vlaanderen is de authentieke bron rond al bovenstaande gegevens m
 
 ## Contact
 
-U kan ons bereiken via [informatie.vlaanderen@vlaanderen.be](mailto:informatie.vlaanderen@vlaanderen.be).
+U kan ons bereiken via [{_contact.Email}](mailto:{_contact.Email}).
 
 # Technische Info
 
@@ -407,7 +409,7 @@ Iedereen    | {_configuration["BaseUrl"]}{description.GroupName} |
 
 U kan anoniem gebruik maken van de API, echter is deze beperkt in het aantal verzoeken dat u tegelijk kan sturen.
 
-Wenst u volwaardige toegang tot de api, dan kan u zich [hier aanmelden als ontwikkelaar](mailto:informatie.vlaanderen@vlaanderen.be).
+Wenst u volwaardige toegang tot de api, dan kan u zich [hier aanmelden als ontwikkelaar](mailto:{_contact.Email}).
 
 ## Foutmeldingen
 
