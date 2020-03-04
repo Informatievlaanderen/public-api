@@ -1,3 +1,10 @@
+## [3.2.6](https://github.com/informatievlaanderen/public-api/compare/v3.2.5...v3.2.6) (2020-03-04)
+
+
+### Bug Fixes
+
+* bump netcore dockefile ([d9dbae0](https://github.com/informatievlaanderen/public-api/commit/d9dbae0))
+
 ## [3.2.5](https://github.com/informatievlaanderen/public-api/compare/v3.2.4...v3.2.5) (2020-03-03)
 
 
