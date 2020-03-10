@@ -1,3 +1,27 @@
+# [3.3.0](https://github.com/informatievlaanderen/public-api/compare/v3.2.6...v3.3.0) (2020-03-10)
+
+
+### Bug Fixes
+
+* ignore building count in docs ([5daf577](https://github.com/informatievlaanderen/public-api/commit/5daf577))
+* ignore building unit count in docs ([0f72476](https://github.com/informatievlaanderen/public-api/commit/0f72476))
+* ignore count address in docs ([54176b3](https://github.com/informatievlaanderen/public-api/commit/54176b3))
+* ignore muni count in docs ([11d3a01](https://github.com/informatievlaanderen/public-api/commit/11d3a01))
+* ignore parcel count in docs ([908d79a](https://github.com/informatievlaanderen/public-api/commit/908d79a))
+* ignore postal count in docs ([c637508](https://github.com/informatievlaanderen/public-api/commit/c637508))
+* ignore streetname in docs ([120493f](https://github.com/informatievlaanderen/public-api/commit/120493f))
+
+
+### Features
+
+* add address totaal aantal ([55cffc4](https://github.com/informatievlaanderen/public-api/commit/55cffc4))
+* add building totaal aantal ([ae08c9f](https://github.com/informatievlaanderen/public-api/commit/ae08c9f))
+* add building unit totaal aantal ([7a3b6d5](https://github.com/informatievlaanderen/public-api/commit/7a3b6d5))
+* add municipality totaal aantal ([2daa290](https://github.com/informatievlaanderen/public-api/commit/2daa290))
+* add parcel totaal aantal ([18233b3](https://github.com/informatievlaanderen/public-api/commit/18233b3))
+* add postalinfo totaal aantal ([c087941](https://github.com/informatievlaanderen/public-api/commit/c087941))
+* add streetname totaal aantal ([e6cb773](https://github.com/informatievlaanderen/public-api/commit/e6cb773))
+
 ## [3.2.6](https://github.com/informatievlaanderen/public-api/compare/v3.2.5...v3.2.6) (2020-03-04)
 
 
