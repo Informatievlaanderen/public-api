@@ -25,6 +25,7 @@ namespace Common.Infrastructure
 
         protected const int DefaultDetailCaching = 24 * 60 * 60; // Hours, Minutes, Second
         protected const int DefaultListCaching = 0;
+        protected const int DefaultCountCaching = 0;
 
         protected RegistryApiController(
             IRestClient restClient,
