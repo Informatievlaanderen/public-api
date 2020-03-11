@@ -1,3 +1,10 @@
+## [3.3.1](https://github.com/informatievlaanderen/public-api/compare/v3.3.0...v3.3.1) (2020-03-11)
+
+
+### Bug Fixes
+
+* change ModelStateProblemDetails to ProblemDetails ([e95a3eb](https://github.com/informatievlaanderen/public-api/commit/e95a3eb))
+
 # [3.3.0](https://github.com/informatievlaanderen/public-api/compare/v3.2.6...v3.3.0) (2020-03-10)
 
 
