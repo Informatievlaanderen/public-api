@@ -8,6 +8,7 @@ namespace Common.Infrastructure
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
 
     public static class RestRequestHelpers
     {
@@ -52,6 +53,30 @@ namespace Common.Infrastructure
         {
             if (filter != null)
             {
+                var myType = filter.GetType();
+                var props = new List<PropertyInfo>(myType.GetProperties());
+                bool hasValue = false;
+
+                foreach (var prop in props)
+                {
+                    object propValue = prop.GetValue(filter, null);
+                    if(propValue == null)
+                        continue;
+
+                    if (propValue is string propString)
+                    {
+                        if (!string.IsNullOrEmpty(propString))
+                            hasValue = true;
+                    }
+                    else
+                    {
+                        hasValue = true;
+                    }
+                }
+
+                if (!hasValue)
+                    return request;
+
                 var escapedFilterHeaderValue = Uri.EscapeDataString(JsonConvert.SerializeObject(filter));
                 request.AddHeader(ExtractFilteringRequestExtension.HeaderName, escapedFilterHeaderValue);
             }
