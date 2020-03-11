@@ -8,7 +8,7 @@ namespace Public.Api.Infrastructure
     /// <summary>
     /// Implementation of Problem Details for HTTP APIs https://tools.ietf.org/html/rfc7807 with additional Validation Errors
     /// </summary>
-    [DataContract(Name = "ModelStateProblemDetails", Namespace = "")]
+    [DataContract(Name = "ProblemDetails", Namespace = "")]
     public class ModelStateProblemDetails : ValidationProblemDetails
     {
         // Here to make DataContractSerializer happy
