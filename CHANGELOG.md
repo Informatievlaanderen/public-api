@@ -1,3 +1,10 @@
+## [3.3.2](https://github.com/informatievlaanderen/public-api/compare/v3.3.1...v3.3.2) (2020-03-12)
+
+
+### Bug Fixes
+
+* update address package and api to fix problemdetails contract ([68da16d](https://github.com/informatievlaanderen/public-api/commit/68da16d))
+
 ## [3.3.1](https://github.com/informatievlaanderen/public-api/compare/v3.3.0...v3.3.1) (2020-03-11)
 
 
