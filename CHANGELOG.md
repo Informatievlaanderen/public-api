@@ -1,3 +1,10 @@
+## [3.3.4](https://github.com/informatievlaanderen/public-api/compare/v3.3.3...v3.3.4) (2020-03-13)
+
+
+### Bug Fixes
+
+* escape query parameters ([78de1a8](https://github.com/informatievlaanderen/public-api/commit/78de1a8))
+
 ## [3.3.3](https://github.com/informatievlaanderen/public-api/compare/v3.3.2...v3.3.3) (2020-03-13)
 
 
