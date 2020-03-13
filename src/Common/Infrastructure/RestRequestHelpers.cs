@@ -60,7 +60,7 @@ namespace Common.Infrastructure
                 foreach (var prop in props)
                 {
                     object propValue = prop.GetValue(filter, null);
-                    if(propValue == null)
+                    if (propValue == null)
                         continue;
 
                     if (propValue is string propString)
