@@ -39,7 +39,7 @@ namespace Common.Infrastructure
                 return;
 
             var parameters = requestQuery
-                .Aggregate(string.Empty, (result, filterQueryParameter) => $"{result}&{filterQueryParameter.Key}={filterQueryParameter.Value}");
+                .Aggregate(string.Empty, (result, filterQueryParameter) => $"{result}&{filterQueryParameter.Key}={Uri.EscapeUriString(filterQueryParameter.Value)}");
 
             Content = Regex.Replace(
                 Content,
