@@ -1,3 +1,10 @@
+## [3.3.3](https://github.com/informatievlaanderen/public-api/compare/v3.3.2...v3.3.3) (2020-03-13)
+
+
+### Bug Fixes
+
+* dont send filter object when all values are null or empty ([8b285a2](https://github.com/informatievlaanderen/public-api/commit/8b285a2))
+
 ## [3.3.2](https://github.com/informatievlaanderen/public-api/compare/v3.3.1...v3.3.2) (2020-03-12)
 
 
