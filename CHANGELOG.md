@@ -1,3 +1,10 @@
+## [3.3.6](https://github.com/informatievlaanderen/public-api/compare/v3.3.5...v3.3.6) (2020-03-23)
+
+
+### Bug Fixes
+
+* use correct build user ([1a758ca](https://github.com/informatievlaanderen/public-api/commit/1a758ca))
+
 ## [3.3.5](https://github.com/informatievlaanderen/public-api/compare/v3.3.4...v3.3.5) (2020-03-23)
 
 
