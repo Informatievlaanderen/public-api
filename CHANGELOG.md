@@ -1,3 +1,10 @@
+## [3.3.5](https://github.com/informatievlaanderen/public-api/compare/v3.3.4...v3.3.5) (2020-03-23)
+
+
+### Bug Fixes
+
+* update registries and grar packages ([124347a](https://github.com/informatievlaanderen/public-api/commit/124347a))
+
 ## [3.3.4](https://github.com/informatievlaanderen/public-api/compare/v3.3.3...v3.3.4) (2020-03-13)
 
 
