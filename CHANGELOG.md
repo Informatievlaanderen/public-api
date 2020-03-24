@@ -1,3 +1,10 @@
+## [3.3.8](https://github.com/informatievlaanderen/public-api/compare/v3.3.7...v3.3.8) (2020-03-24)
+
+
+### Bug Fixes
+
+* return problem content type for bad request ([e1d245c](https://github.com/informatievlaanderen/public-api/commit/e1d245c))
+
 ## [3.3.7](https://github.com/informatievlaanderen/public-api/compare/v3.3.6...v3.3.7) (2020-03-24)
 
 
