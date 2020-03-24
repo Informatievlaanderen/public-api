@@ -151,11 +151,15 @@ namespace Common.Infrastructure
                     .Headers
                     .FirstOrDefault(x => x.Name.Equals(AddVersionHeaderMiddleware.HeaderName, StringComparison.InvariantCultureIgnoreCase));
 
+                var responseContentType = response.StatusCode == HttpStatusCode.OK
+                    ? contentType
+                    : acceptType.ToProblemResponseMimeTypeString();
+
                 return new BackendResponse(
                     response.Content,
                     downstreamVersion?.Value.ToString(),
                     DateTimeOffset.UtcNow,
-                    contentType,
+                    responseContentType,
                     false,
                     response.StatusCode);
             }
