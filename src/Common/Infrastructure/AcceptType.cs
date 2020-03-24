@@ -21,31 +21,36 @@ namespace Common.Infrastructure
         public const string Any = "*/*";
         public const string Json = MediaTypeNames.Application.Json;
         public const string JsonLd = "application/ld+json";
+        public const string JsonProblem = "application/problem+json";
         public const string Xml = MediaTypeNames.Application.Xml;
         public const string Atom = "application/atom+xml";
+        public const string XmlProblem = "application/problem+xml";
     }
 
     public static class AcceptTypeExtensions
     {
         public static string ToMimeTypeString(this AcceptType acceptType)
         {
-            switch (acceptType)
+            return acceptType switch
             {
-                case AcceptType.Json:
-                    return AcceptTypes.Json;
+                AcceptType.Json => AcceptTypes.Json,
+                AcceptType.JsonLd => AcceptTypes.JsonLd,
+                AcceptType.Xml => AcceptTypes.Xml,
+                AcceptType.Atom => AcceptTypes.Atom,
+                _ => throw new ArgumentOutOfRangeException(nameof(acceptType), acceptType, null)
+            };
+        }
 
-                case AcceptType.JsonLd:
-                    return AcceptTypes.JsonLd;
-
-                case AcceptType.Xml:
-                    return AcceptTypes.Xml;
-
-                case AcceptType.Atom:
-                    return AcceptTypes.Atom;
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(acceptType), acceptType, null);
-            }
+        public static string ToProblemResponseMimeTypeString(this AcceptType acceptType)
+        {
+            return acceptType switch
+            {
+                AcceptType.Json => AcceptTypes.JsonProblem,
+                AcceptType.JsonLd => AcceptTypes.JsonProblem,
+                AcceptType.Xml => AcceptTypes.XmlProblem,
+                AcceptType.Atom => AcceptTypes.XmlProblem,
+                _ => throw new ArgumentOutOfRangeException(nameof(acceptType), acceptType, null)
+            };
         }
 
         public static AcceptType DetermineAcceptType(this RequestHeaders requestHeaders, string format)

@@ -7,8 +7,8 @@ namespace Public.Api.Infrastructure
     {
         public ApiProducesAttribute()
             : base(
-                "application/problem+json",
-                "application/problem+xml",
+                AcceptTypes.JsonProblem,
+                AcceptTypes.XmlProblem,
                 AcceptTypes.Json,
                 //AcceptTypes.JsonLd,
                 AcceptTypes.Xml
