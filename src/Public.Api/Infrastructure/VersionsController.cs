@@ -17,6 +17,8 @@ namespace Public.Api.Infrastructure
     [Route("versions")]
     public class VersionsController : ApiController
     {
+        private const string OldVersionHeaderName = "x-basisregister-version";
+
         [HttpGet]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> Get(
@@ -46,7 +48,7 @@ namespace Public.Api.Infrastructure
 
             var downstreamVersion = healthResponse
                 ?.Headers
-                ?.FirstOrDefault(x => x.Name.Equals(AddVersionHeaderMiddleware.HeaderName, StringComparison.InvariantCultureIgnoreCase))
+                ?.FirstOrDefault(x => x.Name.Equals(AddVersionHeaderMiddleware.HeaderName, StringComparison.InvariantCultureIgnoreCase) || x.Name.Equals(OldVersionHeaderName, StringComparison.InvariantCultureIgnoreCase))
                 ?.Value
                 ?.ToString();
 
