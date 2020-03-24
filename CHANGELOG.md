@@ -1,3 +1,10 @@
+## [3.3.7](https://github.com/informatievlaanderen/public-api/compare/v3.3.6...v3.3.7) (2020-03-24)
+
+
+### Bug Fixes
+
+* get version of organisation and public service ([5fe95dd](https://github.com/informatievlaanderen/public-api/commit/5fe95dd))
+
 ## [3.3.6](https://github.com/informatievlaanderen/public-api/compare/v3.3.5...v3.3.6) (2020-03-23)
 
 
