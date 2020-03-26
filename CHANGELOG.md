@@ -1,3 +1,10 @@
+## [3.3.9](https://github.com/informatievlaanderen/public-api/compare/v3.3.8...v3.3.9) (2020-03-26)
+
+
+### Bug Fixes
+
+* set swagger docs to include correct content type ([5b2c58f](https://github.com/informatievlaanderen/public-api/commit/5b2c58f))
+
 ## [3.3.8](https://github.com/informatievlaanderen/public-api/compare/v3.3.7...v3.3.8) (2020-03-24)
 
 
