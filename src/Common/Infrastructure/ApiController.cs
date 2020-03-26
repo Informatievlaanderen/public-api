@@ -153,7 +153,7 @@ namespace Common.Infrastructure
 
                 var responseContentType = response.StatusCode == HttpStatusCode.OK
                     ? contentType
-                    : acceptType.ToProblemResponseMimeTypeString();
+                    : response.ContentType;
 
                 return new BackendResponse(
                     response.Content,
