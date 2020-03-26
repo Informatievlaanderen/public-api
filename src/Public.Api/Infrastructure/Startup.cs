@@ -125,7 +125,11 @@ namespace Public.Api.Infrastructure
 
                         MiddlewareHooks =
                         {
-                            AfterSwaggerGen = x => { x.OperationFilter<RemoveParameterOperationFilter>("sort"); }
+                            AfterSwaggerGen = x =>
+                            {
+                                x.OperationFilter<RemoveParameterOperationFilter>("sort");
+                                x.OperationFilter<ProblemDetailsOperationFilter>();
+                            }
                         }
                     },
                     Localization =
