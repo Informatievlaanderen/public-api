@@ -1,3 +1,10 @@
+## [3.3.10](https://github.com/informatievlaanderen/public-api/compare/v3.3.9...v3.3.10) (2020-03-26)
+
+
+### Bug Fixes
+
+* return backend content type when 400 is returned from backend ([08c5c84](https://github.com/informatievlaanderen/public-api/commit/08c5c84))
+
 ## [3.3.9](https://github.com/informatievlaanderen/public-api/compare/v3.3.8...v3.3.9) (2020-03-26)
 
 
