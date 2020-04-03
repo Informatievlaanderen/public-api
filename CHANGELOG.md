@@ -1,3 +1,10 @@
+## [3.3.11](https://github.com/informatievlaanderen/public-api/compare/v3.3.10...v3.3.11) (2020-04-03)
+
+
+### Bug Fixes
+
+* update basisregisters.api GR-1214 ([1f89ea5](https://github.com/informatievlaanderen/public-api/commit/1f89ea5))
+
 ## [3.3.10](https://github.com/informatievlaanderen/public-api/compare/v3.3.9...v3.3.10) (2020-03-26)
 
 
