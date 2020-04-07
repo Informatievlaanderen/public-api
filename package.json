@@ -148,7 +148,7 @@
       },
       {
         "path": "@semantic-release/exec",
-        "cmd": "JIRA_VERSION=${nextRelease.version} JIRA_PREFIX=PublicApi JIRA_PROJECT=BRV ./packages/Be.Vlaanderen.Basisregisters.Build.Pipeline/Content/ci-jira.sh"
+        "cmd": "JIRA_VERSION=${nextRelease.version} JIRA_PREFIX=PublicApi JIRA_PROJECT=VBR ./packages/Be.Vlaanderen.Basisregisters.Build.Pipeline/Content/ci-jira.sh"
       }
     ],
     "success": [
