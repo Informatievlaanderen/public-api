@@ -1,3 +1,10 @@
+## [3.3.12](https://github.com/informatievlaanderen/public-api/compare/v3.3.11...v3.3.12) (2020-04-15)
+
+
+### Bug Fixes
+
+* update swashbuckle GRAR-1209 ([4aeaf08](https://github.com/informatievlaanderen/public-api/commit/4aeaf08))
+
 ## [3.3.11](https://github.com/informatievlaanderen/public-api/compare/v3.3.10...v3.3.11) (2020-04-03)
 
 
