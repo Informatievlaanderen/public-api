@@ -120,11 +120,14 @@ namespace Public.Api.Building
                 taal,
                 sort);
 
-            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/building-list:{taal}");
+            // As long as we do not control WFS, buildings cannot be cached
+            //var cacheKey = CreateCacheKeyForRequestQuery($"legacy/building-list:{taal}");
 
-            var value = await (CacheToggle.FeatureEnabled
-                ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)
-                : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken));
+            //var value = await (CacheToggle.FeatureEnabled
+            //    ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)
+            //    : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken));
+
+            var value = await GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken);
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.GebouwVolgendeUrl);
         }

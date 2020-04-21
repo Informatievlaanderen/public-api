@@ -70,7 +70,7 @@ namespace Common.Infrastructure
 
             if (_redis != null)
             {
-                var key = $"{cacheKey}.{acceptType.ToString()}".ToLowerInvariant();
+                var key = $"{cacheKey}.{acceptType}".ToLowerInvariant();
 
                 try
                 {
