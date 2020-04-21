@@ -1,3 +1,15 @@
+# [3.4.0](https://github.com/informatievlaanderen/public-api/compare/v3.3.12...v3.4.0) (2020-04-21)
+
+
+### Bug Fixes
+
+* dont cache buildings ([723cd6f](https://github.com/informatievlaanderen/public-api/commit/723cd6f))
+
+
+### Features
+
+* add buildingunit cache ([65c3b20](https://github.com/informatievlaanderen/public-api/commit/65c3b20))
+
 ## [3.3.12](https://github.com/informatievlaanderen/public-api/compare/v3.3.11...v3.3.12) (2020-04-15)
 
 
