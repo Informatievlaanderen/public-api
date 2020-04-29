@@ -1,3 +1,11 @@
+## [3.4.1](https://github.com/informatievlaanderen/public-api/compare/v3.4.0...v3.4.1) (2020-04-29)
+
+
+### Bug Fixes
+
+* update grar dependencies GRAR-412 ([013d67d](https://github.com/informatievlaanderen/public-api/commit/013d67d))
+* update register dependencies GRAR-412 ([4c54eb5](https://github.com/informatievlaanderen/public-api/commit/4c54eb5))
+
 # [3.4.0](https://github.com/informatievlaanderen/public-api/compare/v3.3.12...v3.4.0) (2020-04-21)
 
 
