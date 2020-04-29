@@ -34,9 +34,9 @@ nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 3.3.2
 
 nuget Be.Vlaanderen.Basisregisters.Api 11.1.7
 
-nuget Be.Vlaanderen.Basisregisters.GrAr.Common 15.4.0
-nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 15.4.0
-nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 15.4.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Common 15.5.2
+nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 15.5.2
+nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 15.5.2
 
 // TEST STUFF
 nuget Microsoft.NET.Test.Sdk 16.5.0
