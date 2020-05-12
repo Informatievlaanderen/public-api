@@ -1,3 +1,10 @@
+# [3.5.0](https://github.com/informatievlaanderen/public-api/compare/v3.4.1...v3.5.0) (2020-05-12)
+
+
+### Features
+
+* allow all origins cors ([35e683b](https://github.com/informatievlaanderen/public-api/commit/35e683b))
+
 ## [3.4.1](https://github.com/informatievlaanderen/public-api/compare/v3.4.0...v3.4.1) (2020-04-29)
 
 
