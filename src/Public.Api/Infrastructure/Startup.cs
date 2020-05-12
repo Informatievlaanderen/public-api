@@ -325,6 +325,7 @@ namespace Public.Api.Infrastructure
                     },
                     Api =
                     {
+                        DefaultCorsPolicy = StartupHelpers.AllowAnyOrigin,
                         VersionProvider = apiVersionProvider,
                         Info = groupName => $"Basisregisters Vlaanderen - API {groupName}",
                         Description = _ => "Een stelsel van authentieke gegevensbronnen van de Vlaamse Overheid.",
