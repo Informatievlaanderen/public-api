@@ -1,3 +1,10 @@
+## [3.5.1](https://github.com/informatievlaanderen/public-api/compare/v3.5.0...v3.5.1) (2020-05-13)
+
+
+### Bug Fixes
+
+* different log message if redis not set by registry ([7ae854f](https://github.com/informatievlaanderen/public-api/commit/7ae854f))
+
 # [3.5.0](https://github.com/informatievlaanderen/public-api/compare/v3.4.1...v3.5.0) (2020-05-12)
 
 
