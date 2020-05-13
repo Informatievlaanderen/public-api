@@ -26,6 +26,7 @@ namespace Common.Infrastructure
         private const string ValueKey = "value";
         private const string HeadersKey = "headers";
         private const string LastModifiedKey = "lastModified";
+        private const string SetByRegistryKey = "setByRegistry";
 
         private readonly IConnectionMultiplexer _redis;
         private readonly ILogger<T> _logger;
@@ -83,25 +84,34 @@ namespace Common.Infrastructure
 
                     if (cachedValues.Length > 0)
                     {
-                        var cachedValue = cachedValues.FirstOrDefault(x => x.Name.Equals(ValueKey));
-                        var cachedHeaders = cachedValues.FirstOrDefault(x => x.Name.Equals(HeadersKey));
-                        var cachedLastModified = cachedValues.FirstOrDefault(x => x.Name.Equals(LastModifiedKey));
+                        var cachedSetByRegistry = cachedValues.First(x => x.Name.Equals(SetByRegistryKey));
 
-                        var headers = JsonConvert.DeserializeObject<Dictionary<string, string[]>>(cachedHeaders.Value);
-                        headers.TryGetValue(AddVersionHeaderMiddleware.HeaderName, out var downstreamVersion);
+                        if (cachedSetByRegistry.Value == true.ToString(CultureInfo.InvariantCulture))
+                        {
+                            var cachedValue = cachedValues.FirstOrDefault(x => x.Name.Equals(ValueKey));
+                            var cachedHeaders = cachedValues.FirstOrDefault(x => x.Name.Equals(HeadersKey));
+                            var cachedLastModified = cachedValues.FirstOrDefault(x => x.Name.Equals(LastModifiedKey));
 
-                        return new BackendResponse(
-                            cachedValue.Value,
-                            downstreamVersion?.First(),
-                            DateTimeOffset.ParseExact(
-                                cachedLastModified.Value,
-                                "O",
-                                CultureInfo.InvariantCulture),
-                            acceptType.ToMimeTypeString(),
-                            true);
+                            var headers = JsonConvert.DeserializeObject<Dictionary<string, string[]>>(cachedHeaders.Value);
+                            headers.TryGetValue(AddVersionHeaderMiddleware.HeaderName, out var downstreamVersion);
+
+                            return new BackendResponse(
+                                cachedValue.Value,
+                                downstreamVersion?.First(),
+                                DateTimeOffset.ParseExact(
+                                    cachedLastModified.Value,
+                                    "O",
+                                    CultureInfo.InvariantCulture),
+                                acceptType.ToMimeTypeString(),
+                                true);
+                        }
+
+                        _logger.LogError("Failed to retrieve record {Record} from Redis, cached values not set by registry.", key);
                     }
-
-                    _logger.LogError("Failed to retrieve record {Record} from Redis, no cached values.", key);
+                    else
+                    {
+                        _logger.LogError("Failed to retrieve record {Record} from Redis, no cached values.", key);
+                    }
                 }
                 catch (Exception ex)
                 {
