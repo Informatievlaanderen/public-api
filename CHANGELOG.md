@@ -1,3 +1,10 @@
+## [3.5.2](https://github.com/informatievlaanderen/public-api/compare/v3.5.1...v3.5.2) (2020-05-20)
+
+
+### Bug Fixes
+
+* move to 3.1.4 and gh actions ([57df291](https://github.com/informatievlaanderen/public-api/commit/57df2912d50339481fe85e3e8b0ec50340c9b7ef))
+
 ## [3.5.1](https://github.com/informatievlaanderen/public-api/compare/v3.5.0...v3.5.1) (2020-05-13)
 
 
