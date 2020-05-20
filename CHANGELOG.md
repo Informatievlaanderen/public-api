@@ -1,3 +1,10 @@
+## [3.5.3](https://github.com/informatievlaanderen/public-api/compare/v3.5.2...v3.5.3) (2020-05-20)
+
+
+### Bug Fixes
+
+* force build ([09234bf](https://github.com/informatievlaanderen/public-api/commit/09234bf6ab806fd0a7bbdf0b4474f70cede8fc65))
+
 ## [3.5.2](https://github.com/informatievlaanderen/public-api/compare/v3.5.1...v3.5.2) (2020-05-20)
 
 
