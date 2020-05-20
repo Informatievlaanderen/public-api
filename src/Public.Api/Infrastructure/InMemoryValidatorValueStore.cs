@@ -1,6 +1,7 @@
 namespace Public.Api.Infrastructure
 {
     using System.Collections.Concurrent;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Marvin.Cache.Headers;
@@ -39,5 +40,17 @@ namespace Public.Api.Infrastructure
                 : null;
 
         private void Set(string key, ValidatorValue eTag) => _store[key] = eTag;
+
+        public Task<bool> RemoveAsync(StoreKey key)
+        {
+            // We dont invalidate anything in public api
+            return Task.FromResult(true);
+        }
+
+        public Task<IEnumerable<StoreKey>> FindStoreKeysByKeyPartAsync(string valueToMatch)
+        {
+            // We dont use this in public api
+            return Task.FromResult(new List<StoreKey>().AsEnumerable());
+        }
     }
 }

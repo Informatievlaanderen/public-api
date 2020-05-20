@@ -44,7 +44,7 @@ namespace Public.Api.Infrastructure
             CancellationToken cancellationToken)
         {
             var healthClient = scope.ResolveNamed<IRestClient>($"Health-{registry}");
-            var healthResponse = await healthClient.ExecuteTaskAsync(new RestRequest(), cancellationToken);
+            var healthResponse = await healthClient.ExecuteAsync(new RestRequest(), cancellationToken);
 
             var downstreamVersion = healthResponse
                 ?.Headers

@@ -195,29 +195,6 @@ namespace Common.Infrastructure
             return _restClient.ExecutePostAsync(request, cancellationToken);
         }
 
-        [Obsolete("Use the overload that accepts the delegate factory")]
-        public IRestClient UseSerializer(IRestSerializer serializer) => _restClient.UseSerializer(serializer);
-
-        public RestRequestAsyncHandle ExecuteAsync(IRestRequest request, Action<IRestResponse, RestRequestAsyncHandle> callback)
-        {
-            return _restClient.ExecuteAsync(request, callback);
-        }
-
-        public RestRequestAsyncHandle ExecuteAsync<T>(IRestRequest request, Action<IRestResponse<T>, RestRequestAsyncHandle> callback)
-        {
-            return _restClient.ExecuteAsync(request, callback);
-        }
-
-        public RestRequestAsyncHandle ExecuteAsync(IRestRequest request, Action<IRestResponse, RestRequestAsyncHandle> callback, Method httpMethod)
-        {
-            return _restClient.ExecuteAsync(request, callback, httpMethod);
-        }
-
-        public RestRequestAsyncHandle ExecuteAsync<T>(IRestRequest request, Action<IRestResponse<T>, RestRequestAsyncHandle> callback, Method httpMethod)
-        {
-            return _restClient.ExecuteAsync(request, callback, httpMethod);
-        }
-
         public IRestClient UseSerializer(Func<IRestSerializer> serializerFactory)
         {
             return _restClient.UseSerializer(serializerFactory);
@@ -268,11 +245,6 @@ namespace Common.Infrastructure
             return _restClient.DownloadData(request);
         }
 
-        public byte[] DownloadData(IRestRequest request, bool throwOnError)
-        {
-            return _restClient.DownloadData(request, throwOnError);
-        }
-
         public Uri BuildUri(IRestRequest request)
         {
             return _restClient.BuildUri(request);
@@ -283,35 +255,9 @@ namespace Common.Infrastructure
             return _restClient.BuildUriWithoutQueryParameters(request);
         }
 
-        public RestRequestAsyncHandle ExecuteAsyncGet(IRestRequest request, Action<IRestResponse, RestRequestAsyncHandle> callback, string httpMethod)
-        {
-            return _restClient.ExecuteAsyncGet(request, callback, httpMethod);
-        }
-
-        public RestRequestAsyncHandle ExecuteAsyncPost(IRestRequest request, Action<IRestResponse, RestRequestAsyncHandle> callback, string httpMethod)
-        {
-            return _restClient.ExecuteAsyncPost(request, callback, httpMethod);
-        }
-
-        public RestRequestAsyncHandle ExecuteAsyncGet<T>(IRestRequest request, Action<IRestResponse<T>, RestRequestAsyncHandle> callback, string httpMethod)
-        {
-            return _restClient.ExecuteAsyncGet(request, callback, httpMethod);
-        }
-
-        public RestRequestAsyncHandle ExecuteAsyncPost<T>(IRestRequest request, Action<IRestResponse<T>, RestRequestAsyncHandle> callback, string httpMethod)
-        {
-            return _restClient.ExecuteAsyncPost(request, callback, httpMethod);
-        }
-
         public void ConfigureWebRequest(Action<HttpWebRequest> configurator)
         {
             _restClient.ConfigureWebRequest(configurator);
-        }
-
-        [Obsolete("Use the overload that accepts a factory delegate")]
-        public void AddHandler(string contentType, IDeserializer deserializer)
-        {
-            _restClient.AddHandler(contentType, deserializer);
         }
 
         public void AddHandler(string contentType, Func<IDeserializer> deserializerFactory)
@@ -352,7 +298,6 @@ namespace Common.Infrastructure
         public Task<IRestResponse> ExecuteAsync(IRestRequest request, Method httpMethod, CancellationToken cancellationToken = new CancellationToken())
         {
             return _restClient.ExecuteAsync(request, httpMethod, cancellationToken);
-
         }
 
         public Task<IRestResponse<T>> ExecuteGetAsync<T>(IRestRequest request, CancellationToken cancellationToken = new CancellationToken())
@@ -380,6 +325,174 @@ namespace Common.Infrastructure
             return _restClient.ExecuteAsPost<T>(request, httpMethod);
         }
 
+        public async Task<IRestResponse> ExecuteAsync(IRestRequest request, CancellationToken token)
+        {
+            const string name = "rest." + nameof(ExecuteTaskAsync);
+            var span = _spanSource.Begin(name, ServiceName, BuildResource(request), TypeName);
+            try
+            {
+                span?.SetMeta("http.method", request.Method.ToString());
+                span?.SetMeta("http.path", request.Resource);
+
+                if (span != null)
+                {
+                    request.AddHeader(DataDogOptions.DefaultTraceIdHeaderName, span.TraceId.ToString());
+                    request.AddHeader(DataDogOptions.DefaultParentSpanIdHeaderName, span.SpanId.ToString());
+                }
+
+                var response = await _restClient.ExecuteAsync(request, token);
+
+                span?.SetMeta("http.status_code", response.StatusCode.ToString());
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                span?.SetError(ex);
+                throw;
+            }
+            finally
+            {
+                span?.Dispose();
+            }
+        }
+
+        [Obsolete("Use the overload that accepts the delegate factory")]
+        public IRestClient UseSerializer(IRestSerializer serializer) => _restClient.UseSerializer(serializer);
+
+        [Obsolete]
+        public RestRequestAsyncHandle ExecuteAsync(IRestRequest request, Action<IRestResponse, RestRequestAsyncHandle> callback)
+        {
+            return _restClient.ExecuteAsync(request, callback);
+        }
+
+        [Obsolete]
+        public RestRequestAsyncHandle ExecuteAsync<T>(IRestRequest request, Action<IRestResponse<T>, RestRequestAsyncHandle> callback)
+        {
+            return _restClient.ExecuteAsync(request, callback);
+        }
+
+        [Obsolete]
+        public RestRequestAsyncHandle ExecuteAsync(IRestRequest request, Action<IRestResponse, RestRequestAsyncHandle> callback, Method httpMethod)
+        {
+            return _restClient.ExecuteAsync(request, callback, httpMethod);
+        }
+
+        [Obsolete]
+        public RestRequestAsyncHandle ExecuteAsync<T>(IRestRequest request, Action<IRestResponse<T>, RestRequestAsyncHandle> callback, Method httpMethod)
+        {
+            return _restClient.ExecuteAsync(request, callback, httpMethod);
+        }
+
+        [Obsolete]
+        public byte[] DownloadData(IRestRequest request, bool throwOnError)
+        {
+            return _restClient.DownloadData(request, throwOnError);
+        }
+
+        [Obsolete("Use the overload that accepts a factory delegate")]
+        public void AddHandler(string contentType, IDeserializer deserializer)
+        {
+            _restClient.AddHandler(contentType, deserializer);
+        }
+
+        [Obsolete]
+        public RestRequestAsyncHandle ExecuteAsyncGet(IRestRequest request, Action<IRestResponse, RestRequestAsyncHandle> callback, string httpMethod)
+        {
+            return _restClient.ExecuteAsyncGet(request, callback, httpMethod);
+        }
+
+        [Obsolete]
+        public RestRequestAsyncHandle ExecuteAsyncPost(IRestRequest request, Action<IRestResponse, RestRequestAsyncHandle> callback, string httpMethod)
+        {
+            return _restClient.ExecuteAsyncPost(request, callback, httpMethod);
+        }
+
+        [Obsolete]
+        public RestRequestAsyncHandle ExecuteAsyncGet<T>(IRestRequest request, Action<IRestResponse<T>, RestRequestAsyncHandle> callback, string httpMethod)
+        {
+            return _restClient.ExecuteAsyncGet(request, callback, httpMethod);
+        }
+
+        [Obsolete]
+        public RestRequestAsyncHandle ExecuteAsyncPost<T>(IRestRequest request, Action<IRestResponse<T>, RestRequestAsyncHandle> callback, string httpMethod)
+        {
+            return _restClient.ExecuteAsyncPost(request, callback, httpMethod);
+        }
+
+        [Obsolete]
+        public Task<IRestResponse<T>> ExecuteTaskAsync<T>(IRestRequest request, Method httpMethod)
+        {
+            return _restClient.ExecuteTaskAsync<T>(request, httpMethod);
+        }
+
+        [Obsolete]
+        public Task<IRestResponse<T>> ExecuteTaskAsync<T>(IRestRequest request)
+        {
+            return _restClient.ExecuteTaskAsync<T>(request);
+        }
+
+        [Obsolete]
+        public Task<IRestResponse<T>> ExecuteGetTaskAsync<T>(IRestRequest request)
+        {
+            return _restClient.ExecuteGetTaskAsync<T>(request);
+        }
+
+        [Obsolete]
+        public Task<IRestResponse<T>> ExecuteGetTaskAsync<T>(IRestRequest request, CancellationToken token)
+        {
+            return _restClient.ExecuteGetTaskAsync<T>(request, token);
+        }
+
+        [Obsolete]
+        public Task<IRestResponse<T>> ExecutePostTaskAsync<T>(IRestRequest request)
+        {
+            return _restClient.ExecutePostTaskAsync<T>(request);
+        }
+
+        [Obsolete]
+        public Task<IRestResponse<T>> ExecutePostTaskAsync<T>(IRestRequest request, CancellationToken token)
+        {
+            return _restClient.ExecutePostTaskAsync<T>(request, token);
+        }
+
+        [Obsolete]
+        public Task<IRestResponse> ExecuteTaskAsync(IRestRequest request, CancellationToken token, Method httpMethod)
+        {
+            return _restClient.ExecuteTaskAsync(request, token, httpMethod);
+        }
+
+        [Obsolete]
+        public Task<IRestResponse> ExecuteTaskAsync(IRestRequest request)
+        {
+            return _restClient.ExecuteTaskAsync(request);
+        }
+
+        [Obsolete]
+        public Task<IRestResponse> ExecuteGetTaskAsync(IRestRequest request)
+        {
+            return _restClient.ExecuteGetTaskAsync(request);
+        }
+
+        [Obsolete]
+        public Task<IRestResponse> ExecuteGetTaskAsync(IRestRequest request, CancellationToken token)
+        {
+            return _restClient.ExecuteGetTaskAsync(request, token);
+        }
+
+        [Obsolete]
+        public Task<IRestResponse> ExecutePostTaskAsync(IRestRequest request)
+        {
+            return _restClient.ExecutePostTaskAsync(request);
+        }
+
+        [Obsolete]
+        public Task<IRestResponse> ExecutePostTaskAsync(IRestRequest request, CancellationToken token)
+        {
+            return _restClient.ExecutePostTaskAsync(request, token);
+        }
+
+        [Obsolete]
         public async Task<IRestResponse<T>> ExecuteTaskAsync<T>(IRestRequest request, CancellationToken token)
         {
             const string name = "rest." + nameof(ExecuteTaskAsync);
@@ -412,36 +525,7 @@ namespace Common.Infrastructure
             }
         }
 
-        public Task<IRestResponse<T>> ExecuteTaskAsync<T>(IRestRequest request, Method httpMethod)
-        {
-            return _restClient.ExecuteTaskAsync<T>(request, httpMethod);
-        }
-
-        public Task<IRestResponse<T>> ExecuteTaskAsync<T>(IRestRequest request)
-        {
-            return _restClient.ExecuteTaskAsync<T>(request);
-        }
-
-        public Task<IRestResponse<T>> ExecuteGetTaskAsync<T>(IRestRequest request)
-        {
-            return _restClient.ExecuteGetTaskAsync<T>(request);
-        }
-
-        public Task<IRestResponse<T>> ExecuteGetTaskAsync<T>(IRestRequest request, CancellationToken token)
-        {
-            return _restClient.ExecuteGetTaskAsync<T>(request, token);
-        }
-
-        public Task<IRestResponse<T>> ExecutePostTaskAsync<T>(IRestRequest request)
-        {
-            return _restClient.ExecutePostTaskAsync<T>(request);
-        }
-
-        public Task<IRestResponse<T>> ExecutePostTaskAsync<T>(IRestRequest request, CancellationToken token)
-        {
-            return _restClient.ExecutePostTaskAsync<T>(request, token);
-        }
-
+        [Obsolete]
         public async Task<IRestResponse> ExecuteTaskAsync(IRestRequest request, CancellationToken token)
         {
             const string name = "rest." + nameof(ExecuteTaskAsync);
@@ -472,36 +556,6 @@ namespace Common.Infrastructure
             {
                 span?.Dispose();
             }
-        }
-
-        public Task<IRestResponse> ExecuteTaskAsync(IRestRequest request, CancellationToken token, Method httpMethod)
-        {
-            return _restClient.ExecuteTaskAsync(request, token, httpMethod);
-        }
-
-        public Task<IRestResponse> ExecuteTaskAsync(IRestRequest request)
-        {
-            return _restClient.ExecuteTaskAsync(request);
-        }
-
-        public Task<IRestResponse> ExecuteGetTaskAsync(IRestRequest request)
-        {
-            return _restClient.ExecuteGetTaskAsync(request);
-        }
-
-        public Task<IRestResponse> ExecuteGetTaskAsync(IRestRequest request, CancellationToken token)
-        {
-            return _restClient.ExecuteGetTaskAsync(request, token);
-        }
-
-        public Task<IRestResponse> ExecutePostTaskAsync(IRestRequest request)
-        {
-            return _restClient.ExecutePostTaskAsync(request);
-        }
-
-        public Task<IRestResponse> ExecutePostTaskAsync(IRestRequest request, CancellationToken token)
-        {
-            return _restClient.ExecutePostTaskAsync(request, token);
         }
 
         private string BuildResource(IRestRequest restRequest) => string.Concat(BaseUrl, "/", restRequest.Resource);

@@ -212,9 +212,23 @@ namespace Common.Infrastructure
             }
         }
 
-        public Task<HashEntry[]> HashGetAllAsync(RedisKey key, CommandFlags flags = CommandFlags.None)
+        public async Task<HashEntry[]> HashGetAllAsync(RedisKey key, CommandFlags flags = CommandFlags.None)
         {
-            return _database.HashGetAllAsync(key, flags);
+            const string name = "redis." + nameof(HashGetAllAsync);
+            var span = _spanSource.Begin(name, ServiceName, key, TypeName);
+            try
+            {
+                return await _database.HashGetAllAsync(key, flags);
+            }
+            catch (Exception ex)
+            {
+                span?.SetError(ex);
+                throw;
+            }
+            finally
+            {
+                span?.Dispose();
+            }
         }
 
         public Task<long> HashIncrementAsync(RedisKey key, RedisValue hashField, long value = 1, CommandFlags flags = CommandFlags.None)
@@ -1865,6 +1879,81 @@ namespace Common.Infrastructure
         public RedisValue StringSetRange(RedisKey key, long offset, RedisValue value, CommandFlags flags = CommandFlags.None)
         {
             return _database.StringSetRange(key, offset, value, flags);
+        }
+
+        public long HashStringLength(RedisKey key, RedisValue hashField, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.HashStringLength(key, hashField, flags);
+        }
+
+        public bool StreamCreateConsumerGroup(RedisKey key, RedisValue groupName, RedisValue? position = null, bool createStream = true, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.StreamCreateConsumerGroup(key, groupName, position, createStream, flags);
+        }
+
+        public StreamEntry[] StreamReadGroup(RedisKey key, RedisValue groupName, RedisValue consumerName, RedisValue? position = null, int? count = null, bool noAck = false, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.StreamReadGroup(key, groupName, consumerName, position, count, noAck, flags);
+        }
+
+        public RedisStream[] StreamReadGroup(StreamPosition[] streamPositions, RedisValue groupName, RedisValue consumerName, int? countPerStream = null, bool noAck = false, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.StreamReadGroup(streamPositions, groupName, consumerName, countPerStream, noAck, flags);
+        }
+
+        public bool KeyTouch(RedisKey key, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.KeyTouch(key, flags);
+        }
+
+        public long KeyTouch(RedisKey[] keys, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.KeyTouch(keys, flags);
+        }
+
+        public IAsyncEnumerable<HashEntry> HashScanAsync(RedisKey key, RedisValue pattern = default, int pageSize = 250, long cursor = 0, int pageOffset = 0, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.HashScanAsync(key, pattern, pageSize, cursor, pageOffset, flags);
+        }
+
+        public Task<long> HashStringLengthAsync(RedisKey key, RedisValue hashField, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.HashStringLengthAsync(key, hashField, flags);
+        }
+
+        public IAsyncEnumerable<RedisValue> SetScanAsync(RedisKey key, RedisValue pattern = default, int pageSize = 250, long cursor = 0, int pageOffset = 0, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.SetScanAsync(key, pattern, pageSize, cursor, pageOffset, flags);
+        }
+
+        public IAsyncEnumerable<SortedSetEntry> SortedSetScanAsync(RedisKey key, RedisValue pattern = default, int pageSize = 250, long cursor = 0, int pageOffset = 0, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.SortedSetScanAsync(key, pattern, pageSize, cursor, pageOffset, flags);
+        }
+
+        public Task<bool> StreamCreateConsumerGroupAsync(RedisKey key, RedisValue groupName, RedisValue? position = null, bool createStream = true, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.StreamCreateConsumerGroupAsync(key, groupName, position, createStream, flags);
+        }
+
+        public Task<StreamEntry[]> StreamReadGroupAsync(RedisKey key, RedisValue groupName, RedisValue consumerName, RedisValue? position = null, int? count = null, bool noAck = false, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.StreamReadGroupAsync(key, groupName, consumerName, position, count, noAck, flags);
+        }
+
+        public Task<RedisStream[]> StreamReadGroupAsync(StreamPosition[] streamPositions, RedisValue groupName, RedisValue consumerName, int? countPerStream = null, bool noAck = false, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.StreamReadGroupAsync(streamPositions, groupName, consumerName, countPerStream, noAck, flags);
+        }
+
+        public Task<bool> KeyTouchAsync(RedisKey key, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.KeyTouchAsync(key, flags);
+        }
+
+        public Task<long> KeyTouchAsync(RedisKey[] keys, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.KeyTouchAsync(keys, flags);
         }
     }
 }

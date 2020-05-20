@@ -153,7 +153,7 @@ namespace Common.Infrastructure
             var backendRequest = createBackendRequestFunc();
             backendRequest.AddHeader(HeaderNames.Accept, contentType);
 
-            var response = await restClient.ExecuteTaskAsync(backendRequest, cancellationToken);
+            var response = await restClient.ExecuteAsync(backendRequest, cancellationToken);
 
             if ((response.IsSuccessful && response.StatusCode == HttpStatusCode.OK) || response.StatusCode == HttpStatusCode.BadRequest)
             {
@@ -191,7 +191,7 @@ namespace Common.Infrastructure
             var backendRequest = createBackendRequestFunc();
             backendRequest.AddHeader(HeaderNames.Accept, contentType);
 
-            var response = await restClient.ExecuteTaskAsync(backendRequest, cancellationToken);
+            var response = await restClient.ExecuteAsync(backendRequest, cancellationToken);
 
             if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
             {

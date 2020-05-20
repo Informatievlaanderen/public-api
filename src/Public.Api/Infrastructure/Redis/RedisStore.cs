@@ -1,6 +1,7 @@
 namespace Public.Api.Infrastructure.Redis
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
@@ -95,6 +96,18 @@ end
             path = path.ToLowerInvariant();
 
             return RedisStoreKeyGenerator.CachePrefixes.Any(prefix => path.Contains(prefix));
+        }
+
+        public Task<bool> RemoveAsync(StoreKey key)
+        {
+            // We dont invalidate anything in public api
+            return Task.FromResult(true);
+        }
+
+        public Task<IEnumerable<StoreKey>> FindStoreKeysByKeyPartAsync(string valueToMatch)
+        {
+            // We dont use this in public api
+            return Task.FromResult(new List<StoreKey>().AsEnumerable());
         }
     }
 }
