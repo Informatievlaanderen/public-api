@@ -1,4 +1,4 @@
-# Public Registry Api
+# Public Api [![Build Status](https://github.com/Informatievlaanderen/public-api/workflows/CI/badge.svg)](https://github.com/Informatievlaanderen/public-api/actions)
 
 ## Goal
 
