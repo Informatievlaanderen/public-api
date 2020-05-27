@@ -21,6 +21,7 @@ namespace Common.Infrastructure
     using StackExchange.Redis;
 
     [ApiController]
+    [RejectInvalidQueryParametersFilter]
     public abstract class ApiController<T> : ApiController
     {
         private const string ValueKey = "value";
