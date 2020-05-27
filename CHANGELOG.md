@@ -1,3 +1,10 @@
+## [3.6.1](https://github.com/informatievlaanderen/public-api/compare/v3.6.0...v3.6.1) (2020-05-27)
+
+
+### Bug Fixes
+
+* use correct marketing version ([f8c6d21](https://github.com/informatievlaanderen/public-api/commit/f8c6d21257421c73046522e585ad0bce82b92d9b))
+
 # [3.6.0](https://github.com/informatievlaanderen/public-api/compare/v3.5.3...v3.6.0) (2020-05-27)
 
 
