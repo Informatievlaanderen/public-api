@@ -1,3 +1,15 @@
+# [3.6.0](https://github.com/informatievlaanderen/public-api/compare/v3.5.3...v3.6.0) (2020-05-27)
+
+
+### Bug Fixes
+
+* point to docs url for valid parameters ([bbcf1e8](https://github.com/informatievlaanderen/public-api/commit/bbcf1e8c2f31136554aba52d11a159bc2d8b0e47))
+
+
+### Features
+
+* refuse prefix query string parameters ([9cc5e31](https://github.com/informatievlaanderen/public-api/commit/9cc5e31cdf1c1ea15503106a70f83c7c5672adab))
+
 ## [3.5.3](https://github.com/informatievlaanderen/public-api/compare/v3.5.2...v3.5.3) (2020-05-20)
 
 
