@@ -88,7 +88,7 @@ namespace Public.Api.Infrastructure
                     {
                         ApiInfo = (provider, description) => new OpenApiInfo
                         {
-                            Version = description.ApiVersion.ToString(),
+                            Version = _configuration["ApiMarketingVersion"], //description.ApiVersion.ToString(),
                             Title = "Basisregisters Vlaanderen API",
                             Description = GetApiLeadingText(description),
                             Contact = _contact,
@@ -327,7 +327,7 @@ namespace Public.Api.Infrastructure
                     {
                         DefaultCorsPolicy = StartupHelpers.AllowAnyOrigin,
                         VersionProvider = apiVersionProvider,
-                        Info = groupName => $"Basisregisters Vlaanderen - API {groupName}",
+                        Info = groupName => $"Basisregisters Vlaanderen - API {_configuration["ApiMarketingVersion"]}",
                         Description = _ => "Een stelsel van authentieke gegevensbronnen van de Vlaamse Overheid.",
                         ApplicationName = _ => "Basisregisters Vlaanderen",
                         HeaderTitle = groupName => "Basisregisters Vlaanderen",
@@ -380,7 +380,7 @@ $@"# Introductie
 
 Welkom bij de REST API van Basisregisters Vlaanderen!
 
-Momenteel leest u de documentatie voor versie {description.ApiVersion} van de Basisregisters Vlaanderen API{string.Format(description.IsDeprecated ? ", **deze API versie is niet meer ondersteund**." : ".")}
+Momenteel leest u de documentatie voor versie {_configuration["ApiMarketingVersion"]} van de Basisregisters Vlaanderen API{string.Format(description.IsDeprecated ? ", **deze API versie is niet meer ondersteund**." : ".")}
 
 [REST](http://en.wikipedia.org/wiki/REST_API) is een webserviceprotocol dat zich leent tot snelle ontwikkeling door het gebruik van HTTP- en JSON-technologie.
 
