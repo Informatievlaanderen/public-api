@@ -22,6 +22,5 @@ namespace Common.Infrastructure
         }
 
         public void OnResourceExecuted(ResourceExecutedContext context) { }
-
     }
 }
