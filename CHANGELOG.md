@@ -1,3 +1,10 @@
+## [3.6.3](https://github.com/informatievlaanderen/public-api/compare/v3.6.2...v3.6.3) (2020-05-30)
+
+
+### Bug Fixes
+
+* update dependencies GRAR-752 ([c01f53b](https://github.com/informatievlaanderen/public-api/commit/c01f53b9fc473c31ec99eb610159822087b8ce12))
+
 ## [3.6.2](https://github.com/informatievlaanderen/public-api/compare/v3.6.1...v3.6.2) (2020-05-29)
 
 
