@@ -1,4 +1,4 @@
-namespace Public.Api.Infrastructure
+namespace Public.Api.Infrastructure.Version
 {
     using System;
     using System.Collections.Concurrent;
@@ -17,6 +17,10 @@ namespace Public.Api.Infrastructure
     [Route("versions")]
     public class VersionsController : ApiController
     {
+        private readonly MarketingVersion _version;
+
+        public VersionsController(MarketingVersion version) => _version = version;
+
         private const string OldVersionHeaderName = "x-basisregister-version";
 
         [HttpGet]
@@ -26,13 +30,13 @@ namespace Public.Api.Infrastructure
             [FromServices] ILifetimeScope scope,
             CancellationToken cancellationToken = default)
         {
-            var versions = new ConcurrentDictionary<string, string>();
+            var components = new ConcurrentDictionary<string, string>();
 
-            versions.TryAdd("publicApi", FormatVersion(Assembly.GetEntryAssembly().GetName().Version.ToString(4)));
+            components.TryAdd("publicApi", FormatVersion(Assembly.GetEntryAssembly().GetName().Version.ToString(4)));
 
-            await Task.WhenAll(healthUrls.Select(x => GetDownstreamVersionAsync(x.Key, scope, versions, cancellationToken)));
+            await Task.WhenAll(healthUrls.Select(url => GetDownstreamVersionAsync(url.Key, scope, components, cancellationToken)));
 
-            return Ok(versions.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value));
+            return Ok(new ApiVersionResponse(_version, components));
         }
 
         private static string FormatVersion(string fourPartVersion) => string.Join(".", fourPartVersion.Split(".").Skip(1));
@@ -48,7 +52,9 @@ namespace Public.Api.Infrastructure
 
             var downstreamVersion = healthResponse
                 ?.Headers
-                ?.FirstOrDefault(x => x.Name.Equals(AddVersionHeaderMiddleware.HeaderName, StringComparison.InvariantCultureIgnoreCase) || x.Name.Equals(OldVersionHeaderName, StringComparison.InvariantCultureIgnoreCase))
+                ?.FirstOrDefault(header =>
+                    header.Name.Equals(AddVersionHeaderMiddleware.HeaderName, StringComparison.InvariantCultureIgnoreCase) ||
+                    header.Name.Equals(OldVersionHeaderName, StringComparison.InvariantCultureIgnoreCase))
                 ?.Value
                 ?.ToString();
 

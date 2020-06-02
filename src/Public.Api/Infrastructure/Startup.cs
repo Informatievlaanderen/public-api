@@ -39,6 +39,7 @@ namespace Public.Api.Infrastructure
     using Redis;
     using Swagger;
     using Swashbuckle.AspNetCore.Filters;
+    using Version;
 
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup
@@ -263,6 +264,9 @@ namespace Public.Api.Infrastructure
                 .RegisterType<ExtractController>()
                 .WithAttributeFiltering();
 
+            containerBuilder
+                .RegisterInstance(new MarketingVersion(_configuration));
+
             _applicationContainer = containerBuilder.Build();
 
             return new AutofacServiceProvider(_applicationContainer);
@@ -327,7 +331,7 @@ namespace Public.Api.Infrastructure
                     {
                         DefaultCorsPolicy = StartupHelpers.AllowAnyOrigin,
                         VersionProvider = apiVersionProvider,
-                        Info = groupName => $"Basisregisters Vlaanderen - API {_configuration["ApiMarketingVersion"]}",
+                        Info = groupName => $"Basisregisters Vlaanderen - API {serviceProvider.GetService<MarketingVersion>()}",
                         Description = _ => "Een stelsel van authentieke gegevensbronnen van de Vlaamse Overheid.",
                         ApplicationName = _ => "Basisregisters Vlaanderen",
                         HeaderTitle = groupName => "Basisregisters Vlaanderen",
