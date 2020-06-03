@@ -1,3 +1,16 @@
+# [3.7.0](https://github.com/informatievlaanderen/public-api/compare/v3.6.3...v3.7.0) (2020-06-03)
+
+
+### Bug Fixes
+
+* get marketing version from serives GRAR-1329 ([80deb07](https://github.com/informatievlaanderen/public-api/commit/80deb07cddd59f2238ccccadcd2319803127f5b8))
+* replace all configuration marketing versions GRAR-1329 ([64f0b9c](https://github.com/informatievlaanderen/public-api/commit/64f0b9c7c56f27431735fc25c5c75d4f22643d74))
+
+
+### Features
+
+* add marketing version to version controller GRAR-1329 ([c760dec](https://github.com/informatievlaanderen/public-api/commit/c760decb40e803004dad21505b183e1b82757578))
+
 ## [3.6.3](https://github.com/informatievlaanderen/public-api/compare/v3.6.2...v3.6.3) (2020-05-30)
 
 
