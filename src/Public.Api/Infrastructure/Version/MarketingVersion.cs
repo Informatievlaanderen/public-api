@@ -11,10 +11,7 @@ namespace Public.Api.Infrastructure.Version
             _version = configuration["ApiMarketingVersion"];
         }
 
-        public override string ToString()
-        {
-            return _version;
-        }
+        public override string ToString() => _version;
 
         public static implicit operator string(MarketingVersion version) => version.ToString();
     }
