@@ -15,5 +15,7 @@ namespace Public.Api.Infrastructure.Version
         {
             return _version;
         }
+
+        public static implicit operator string(MarketingVersion version) => version.ToString();
     }
 }

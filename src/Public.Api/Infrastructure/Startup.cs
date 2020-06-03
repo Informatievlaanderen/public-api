@@ -54,6 +54,7 @@ namespace Public.Api.Infrastructure
         private readonly IConfiguration _configuration;
         private readonly ILoggerFactory _loggerFactory;
         private readonly OpenApiContact _contact;
+        private readonly MarketingVersion _marketingVersion;
 
         public Startup(
             IConfiguration configuration,
@@ -61,6 +62,8 @@ namespace Public.Api.Infrastructure
         {
             _configuration = configuration;
             _loggerFactory = loggerFactory;
+            _marketingVersion = new MarketingVersion(_configuration);
+
 
             _contact = new OpenApiContact
             {
@@ -89,7 +92,7 @@ namespace Public.Api.Infrastructure
                     {
                         ApiInfo = (provider, description) => new OpenApiInfo
                         {
-                            Version = _configuration["ApiMarketingVersion"], //description.ApiVersion.ToString(),
+                            Version = _marketingVersion,
                             Title = "Basisregisters Vlaanderen API",
                             Description = GetApiLeadingText(description),
                             Contact = _contact,
@@ -265,7 +268,7 @@ namespace Public.Api.Infrastructure
                 .WithAttributeFiltering();
 
             containerBuilder
-                .RegisterInstance(new MarketingVersion(_configuration));
+                .RegisterInstance(_marketingVersion);
 
             _applicationContainer = containerBuilder.Build();
 
@@ -384,7 +387,7 @@ $@"# Introductie
 
 Welkom bij de REST API van Basisregisters Vlaanderen!
 
-Momenteel leest u de documentatie voor versie {_configuration["ApiMarketingVersion"]} van de Basisregisters Vlaanderen API{string.Format(description.IsDeprecated ? ", **deze API versie is niet meer ondersteund**." : ".")}
+Momenteel leest u de documentatie voor versie {_marketingVersion} van de Basisregisters Vlaanderen API{string.Format(description.IsDeprecated ? ", **deze API versie is niet meer ondersteund**." : ".")}
 
 [REST](http://en.wikipedia.org/wiki/REST_API) is een webserviceprotocol dat zich leent tot snelle ontwikkeling door het gebruik van HTTP- en JSON-technologie.
 
