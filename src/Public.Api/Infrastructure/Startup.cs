@@ -64,7 +64,6 @@ namespace Public.Api.Infrastructure
             _loggerFactory = loggerFactory;
             _marketingVersion = new MarketingVersion(_configuration);
 
-
             _contact = new OpenApiContact
             {
                 Name = _configuration["Contact:Name"],
