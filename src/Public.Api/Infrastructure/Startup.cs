@@ -333,7 +333,7 @@ namespace Public.Api.Infrastructure
                     {
                         DefaultCorsPolicy = StartupHelpers.AllowAnyOrigin,
                         VersionProvider = apiVersionProvider,
-                        Info = groupName => $"Basisregisters Vlaanderen - API {serviceProvider.GetService<MarketingVersion>()}",
+                        Info = groupName => $"Basisregisters Vlaanderen - API {_marketingVersion}",
                         Description = _ => "Een stelsel van authentieke gegevensbronnen van de Vlaamse Overheid.",
                         ApplicationName = _ => "Basisregisters Vlaanderen",
                         HeaderTitle = groupName => "Basisregisters Vlaanderen",
