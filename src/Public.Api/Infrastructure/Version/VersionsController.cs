@@ -17,16 +17,13 @@ namespace Public.Api.Infrastructure.Version
     [Route("versions")]
     public class VersionsController : ApiController
     {
-        private readonly MarketingVersion _version;
-
-        public VersionsController(MarketingVersion version) => _version = version;
-
         private const string OldVersionHeaderName = "x-basisregister-version";
 
         [HttpGet]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> Get(
             [FromServices] HealthUrls healthUrls,
+            [FromServices] MarketingVersion version,
             [FromServices] ILifetimeScope scope,
             CancellationToken cancellationToken = default)
         {
@@ -36,7 +33,7 @@ namespace Public.Api.Infrastructure.Version
 
             await Task.WhenAll(healthUrls.Select(url => GetDownstreamVersionAsync(url.Key, scope, components, cancellationToken)));
 
-            return Ok(new ApiVersionResponse(_version, components));
+            return Ok(new ApiVersionResponse(version, components));
         }
 
         private static string FormatVersion(string fourPartVersion) => string.Join(".", fourPartVersion.Split(".").Skip(1));
