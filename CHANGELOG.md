@@ -1,3 +1,10 @@
+## [3.7.2](https://github.com/informatievlaanderen/public-api/compare/v3.7.1...v3.7.2) (2020-06-08)
+
+
+### Bug Fixes
+
+* allow debugging on windows again ([d879c1c](https://github.com/informatievlaanderen/public-api/commit/d879c1c5804b4e6c91784df8986affd256791b37))
+
 ## [3.7.1](https://github.com/informatievlaanderen/public-api/compare/v3.7.0...v3.7.1) (2020-06-08)
 
 
