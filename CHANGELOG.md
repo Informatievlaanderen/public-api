@@ -1,3 +1,10 @@
+## [3.7.3](https://github.com/informatievlaanderen/public-api/compare/v3.7.2...v3.7.3) (2020-06-08)
+
+
+### Bug Fixes
+
+* return xml format when people use .xml GRAR-1351 ([5225a68](https://github.com/informatievlaanderen/public-api/commit/5225a680b119072388810ad55864808484c6d47f))
+
 ## [3.7.2](https://github.com/informatievlaanderen/public-api/compare/v3.7.1...v3.7.2) (2020-06-08)
 
 
