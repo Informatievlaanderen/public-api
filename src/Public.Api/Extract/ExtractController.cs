@@ -1,6 +1,7 @@
 namespace Public.Api.Extract
 {
     using System;
+    using System.Globalization;
     using System.Net.Mime;
     using System.Threading;
     using System.Threading.Tasks;
@@ -63,8 +64,10 @@ namespace Public.Api.Extract
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(ExtractBadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(ExtractNotFoundResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        public async Task<IActionResult> Extract(DateTime? extractDate, CancellationToken cancellationToken = default)
-            => await _extractDownloads.RedirectTo(extractDate, cancellationToken);
+        public async Task<IActionResult> Extract(string extractDate, CancellationToken cancellationToken = default)
+            => DateTime.TryParseExact(extractDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var date)
+                ? await _extractDownloads.RedirectTo(date, cancellationToken)
+                : throw new ApiException("Ongeldige datum.", StatusCodes.Status400BadRequest);
     }
 
     public class ExtractRedirectResponseExamples : IExamplesProvider<object>

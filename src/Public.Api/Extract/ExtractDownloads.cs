@@ -1,71 +1,66 @@
 namespace Public.Api.Extract
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading;
     using System.Threading.Tasks;
     using Amazon.S3;
     using Amazon.S3.Model;
+    using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Infrastructure.Version;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
     public class ExtractDownloads
     {
         private readonly IAmazonS3 _client;
         private readonly DownloadConfiguration _config;
+        private readonly MarketingVersion _version;
 
-        public ExtractDownloads(IAmazonS3 s3Client, DownloadConfiguration config)
+        public ExtractDownloads(IAmazonS3 s3Client, DownloadConfiguration config, MarketingVersion version)
         {
             _client = s3Client;
             _config = config;
+            _version = version;
         }
 
         public async Task<IActionResult> RedirectToMostRecent(CancellationToken cancellationToken)
+            => await RedirectTo(null, cancellationToken);
+
+        public async Task<IActionResult> RedirectTo(DateTime extractDate, CancellationToken cancellationToken)
+            => await RedirectTo((DateTime?) extractDate, cancellationToken);
+
+        private async Task<IActionResult> RedirectTo(DateTime? extractDate, CancellationToken cancellationToken)
         {
-            S3Object FindMostRecent(IEnumerable<S3Object> extracts) =>
-                extracts
+            try
+            {
+                var extractObjectRegex = CreateFileRegexForDate(extractDate);
+                var response = await _client.ListObjectsAsync(_config.Bucket, cancellationToken);
+                var extract = response
+                    ?.S3Objects
+                    ?.Where(item => extractObjectRegex.IsMatch(item.Key))
                     .OrderByDescending(item => item.LastModified)
                     .FirstOrDefault();
 
-            return await RedirectTo(FindMostRecent, cancellationToken);
-        }
+                if (extract == null)
+                    throw new ApiException("Onbestaand testbestand.", StatusCodes.Status404NotFound);
 
-        public async Task<IActionResult> RedirectTo(DateTime? extractDate, CancellationToken cancellationToken)
-        {
-            if (!extractDate.HasValue)
-                return new BadRequestResult();
+                var signedUrl = _client.GetPreSignedURL(
+                    new GetPreSignedUrlRequest
+                    {
+                        BucketName = extract.BucketName,
+                        Key = extract.Key,
+                        Expires = DateTime.Now.AddSeconds(_config.ExpiresInSeconds)
+                    });
 
-            S3Object FindByExtractDate(IEnumerable<S3Object> extracts)
-            {
-                var extractDownloadRegex = CreateFileRegexForDate(extractDate);
-                return extracts.FirstOrDefault(item => extractDownloadRegex.IsMatch(item.Key));
+                return new RedirectResult(signedUrl, false);
             }
-
-            return await RedirectTo(FindByExtractDate, cancellationToken);
-        }
-
-        private async Task<IActionResult> RedirectTo(Func<IEnumerable<S3Object>, S3Object> selectDownload, CancellationToken cancellationToken)
-        {
-            var extractObjectRegex = CreateFileRegexForDate(null);
-            var response = await _client.ListObjectsAsync(_config.Bucket, cancellationToken);
-            var extracts = response
-                               ?.S3Objects
-                               ?.Where(item => extractObjectRegex.IsMatch(item.Key));
-            var extract = selectDownload(extracts ?? new S3Object[0]);
-
-            if (extract == null)
-                return new NotFoundResult();
-
-            var signedUrl = _client.GetPreSignedURL(
-                new GetPreSignedUrlRequest
-                {
-                    BucketName = extract.BucketName,
-                    Key = extract.Key,
-                    Expires = DateTime.Now.AddSeconds(_config.ExpiresInSeconds)
-                });
-
-            return new RedirectResult(signedUrl, false);
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         private Regex CreateFileRegexForDate(DateTime? matchDate)
@@ -74,13 +69,17 @@ namespace Public.Api.Extract
             if (!string.IsNullOrWhiteSpace(prefix))
                 prefix = (prefix + "/").Replace("//", "/");
 
-            const string extractDateFormat = "yyyy-MM-dd";
+            const string extractDateFormat = "yyyyMMdd";
             var date = matchDate.HasValue
                     ? matchDate.Value.ToString(extractDateFormat)
-                    : new Regex("[^-]").Replace(extractDateFormat, "\\d");
+                    : new Regex(@"[^-]").Replace(extractDateFormat, @"\d");
 
+            var bundleName = _config.BundleName
+                .Replace("[VERSION]", Regex.Escape(_version))
+                .Replace("[DATE]", date);
+            
             return new Regex(
-                $"^{prefix}{_config.BundleName}-{date}\\.zip$",
+                $@"^{prefix}{bundleName}\.zip$",
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         }
     }

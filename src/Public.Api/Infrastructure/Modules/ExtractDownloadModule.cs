@@ -6,13 +6,16 @@ namespace Public.Api.Infrastructure.Modules
     using Autofac;
     using Extract;
     using Microsoft.Extensions.Configuration;
+    using Version;
 
     public class ExtractDownloadModule : Module
     {
+        private readonly MarketingVersion _marketingVersion;
         private readonly IConfigurationSection _extractConfiguration;
 
-        public ExtractDownloadModule(IConfiguration configuration)
+        public ExtractDownloadModule(IConfiguration configuration, MarketingVersion marketingVersion)
         {
+            _marketingVersion = marketingVersion;
             _extractConfiguration = configuration.GetSection("Extract");
         }
 
@@ -22,7 +25,7 @@ namespace Public.Api.Infrastructure.Modules
             var amazonS3Client = CreateS3Client();
 
             builder
-                .Register(context => new ExtractDownloads(amazonS3Client, extractConfiguration))
+                .Register(context => new ExtractDownloads(amazonS3Client, extractConfiguration, _marketingVersion))
                 .AsSelf();
         }
 
