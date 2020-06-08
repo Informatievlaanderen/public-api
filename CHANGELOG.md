@@ -1,3 +1,10 @@
+## [3.7.1](https://github.com/informatievlaanderen/public-api/compare/v3.7.0...v3.7.1) (2020-06-08)
+
+
+### Bug Fixes
+
+* return 404 problem detail when extract not found GRAR-1324 ([801314a](https://github.com/informatievlaanderen/public-api/commit/801314a491d0f2bdad7b3051e7007e3a81c27169))
+
 # [3.7.0](https://github.com/informatievlaanderen/public-api/compare/v3.6.3...v3.7.0) (2020-06-03)
 
 
