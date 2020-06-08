@@ -1,5 +1,5 @@
 #r "paket:
-version 5.241.6
+version 5.245.2
 framework: netstandard20
 source https://api.nuget.org/v3/index.json
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 4.1.0 //"

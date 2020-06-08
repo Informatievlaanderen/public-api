@@ -15,12 +15,12 @@ nuget Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore 5.0.5
 nuget Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting 5.0.5
 
 // VBR STUFF
-nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      3.6.22  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            2.7.6   copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        2.8.10  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           2.14.2  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.12.3  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            3.10.9  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      3.6.23  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            2.7.7   copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        2.8.11  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           2.14.3  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.14.1  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            3.10.10 copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice 2.1.1   copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 4.1.0
