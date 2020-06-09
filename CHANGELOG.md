@@ -1,3 +1,10 @@
+## [3.7.5](https://github.com/informatievlaanderen/public-api/compare/v3.7.4...v3.7.5) (2020-06-09)
+
+
+### Bug Fixes
+
+* throw validation error for invalid extract date ([98ea8af](https://github.com/informatievlaanderen/public-api/commit/98ea8af22f382efd0ceb1fce4a7acf2d3dcefa96))
+
 ## [3.7.4](https://github.com/informatievlaanderen/public-api/compare/v3.7.3...v3.7.4) (2020-06-09)
 
 
