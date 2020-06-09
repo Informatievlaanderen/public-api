@@ -1,3 +1,10 @@
+## [3.7.4](https://github.com/informatievlaanderen/public-api/compare/v3.7.3...v3.7.4) (2020-06-09)
+
+
+### Bug Fixes
+
+* use correct examples for extract ([5968656](https://github.com/informatievlaanderen/public-api/commit/5968656d75f67f1700b63a8b3fed8f20b20f57e4))
+
 ## [3.7.3](https://github.com/informatievlaanderen/public-api/compare/v3.7.2...v3.7.3) (2020-06-08)
 
 
