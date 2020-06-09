@@ -1,6 +1,7 @@
 namespace Public.Api.Extract
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
     using System.Net.Mime;
     using System.Threading;
@@ -8,6 +9,8 @@ namespace Public.Api.Extract
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
+    using FluentValidation;
+    using FluentValidation.Results;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -15,6 +18,7 @@ namespace Public.Api.Extract
     using Newtonsoft.Json.Converters;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
+    using ValidationProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails;
 
     [ApiVersion("1.0")]
     [AdvertiseApiVersions("1.0")]
@@ -58,7 +62,7 @@ namespace Public.Api.Extract
         [HttpGet("extract/{extractDate}")]
         [ProducesResponseType(typeof(void), StatusCodes.Status302Found)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseExample(StatusCodes.Status302Found, typeof(ExtractRedirectResponseExamples), jsonConverter: typeof(StringEnumConverter))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(ExtractBadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
@@ -67,7 +71,10 @@ namespace Public.Api.Extract
         public async Task<IActionResult> Extract(string extractDate, CancellationToken cancellationToken = default)
             => DateTime.TryParseExact(extractDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var date)
                 ? await _extractDownloads.RedirectTo(date, cancellationToken)
-                : throw new ApiException("Ongeldige datum.", StatusCodes.Status400BadRequest);
+                : throw new ValidationException(new List<ValidationFailure>
+                {
+                    new ValidationFailure("extractDate", "Ongeldige datum.")
+                });
     }
 
     public class ExtractRedirectResponseExamples : IExamplesProvider<object>
@@ -75,15 +82,16 @@ namespace Public.Api.Extract
         public object GetExamples() => new object();
     }
 
-    public class ExtractBadRequestResponseExamples : IExamplesProvider<ProblemDetails>
+    public class ExtractBadRequestResponseExamples : IExamplesProvider<ValidationProblemDetails>
     {
-        public ProblemDetails GetExamples()
-            => new ProblemDetails
+        public ValidationProblemDetails GetExamples() =>
+            new ValidationProblemDetails
             {
-                HttpStatus = StatusCodes.Status400BadRequest,
                 Title = ProblemDetails.DefaultTitle,
-                Detail = "Ongeldige datum.",
-                ProblemInstanceUri = ProblemDetails.GetProblemNumber()
+                ValidationErrors = new Dictionary<string, string[]>
+                {
+                    { "extractDate", new[] { "Ongeldige datum." }}
+                }
             };
     }
 
