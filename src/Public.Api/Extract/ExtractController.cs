@@ -82,7 +82,7 @@ namespace Public.Api.Extract
             {
                 HttpStatus = StatusCodes.Status400BadRequest,
                 Title = ProblemDetails.DefaultTitle,
-                Detail = "Ongeldig datum formaat.",
+                Detail = "Ongeldige datum.",
                 ProblemInstanceUri = ProblemDetails.GetProblemNumber()
             };
     }
@@ -94,7 +94,7 @@ namespace Public.Api.Extract
             {
                 HttpStatus = StatusCodes.Status404NotFound,
                 Title = ProblemDetails.DefaultTitle,
-                Detail = "Onbestaande extract datum.",
+                Detail = "Onbestaand testbestand.",
                 ProblemInstanceUri = ProblemDetails.GetProblemNumber()
             };
     }
