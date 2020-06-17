@@ -1,3 +1,10 @@
+# [3.8.0](https://github.com/informatievlaanderen/public-api/compare/v3.7.5...v3.8.0) (2020-06-17)
+
+
+### Features
+
+* add building references endpoint ([8275fb1](https://github.com/informatievlaanderen/public-api/commit/8275fb1677167faa4493261cd47dce9c4a20c90f))
+
 ## [3.7.5](https://github.com/informatievlaanderen/public-api/compare/v3.7.4...v3.7.5) (2020-06-09)
 
 
