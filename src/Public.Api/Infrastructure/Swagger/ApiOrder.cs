@@ -22,6 +22,7 @@ namespace Public.Api.Infrastructure.Swagger
 
         public const int CrabHouseNumber = 150;
         public const int CrabSubaddress = 155;
+        public const int CrabBuildings = 159;
 
         public const int AddressRepresentation = 500;
     }
