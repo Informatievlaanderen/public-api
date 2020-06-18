@@ -1,3 +1,10 @@
+# [3.9.0](https://github.com/informatievlaanderen/public-api/compare/v3.8.0...v3.9.0) (2020-06-18)
+
+
+### Features
+
+* add crab gebouwen endpoint ([23e4401](https://github.com/informatievlaanderen/public-api/commit/23e4401beb66f2e240c4633b6201c6becddcd408))
+
 # [3.8.0](https://github.com/informatievlaanderen/public-api/compare/v3.7.5...v3.8.0) (2020-06-17)
 
 
