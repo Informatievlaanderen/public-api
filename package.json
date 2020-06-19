@@ -48,7 +48,7 @@
     ]
   },
   "release": {
-    "branch": "master",
+    "branches": [ "master", "main" ],
     "verifyConditions": [
       "@semantic-release/changelog",
       "@semantic-release/git",
