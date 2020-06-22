@@ -132,7 +132,7 @@ namespace Public.Api.CrabBuilding
                 IdentifierTerrainObject = identificatorTerrainObject
             };
 
-            return new RestRequest("crabgebouwen")
+            return new RestRequest("gebouwen/crabgebouwen")
                 .AddFiltering(filter);
         }
     }
