@@ -1,3 +1,12 @@
+## [3.9.2](https://github.com/informatievlaanderen/public-api/compare/v3.9.1...v3.9.2) (2020-06-22)
+
+
+### Bug Fixes
+
+* correct endpoint crabbuilding to backend ([5583d0f](https://github.com/informatievlaanderen/public-api/commit/5583d0f93faa2718eed133dfcc8539d7e8d1e04e))
+* make sure docs work again GRAR-1375 ([7221a0d](https://github.com/informatievlaanderen/public-api/commit/7221a0dc5d0c238e42fcebb3cfb73151f6f4676e))
+* make sure docs work again GRAR-1375 ([8906918](https://github.com/informatievlaanderen/public-api/commit/8906918b2c041ccb517382203388a454a4fb84c6))
+
 ## [3.9.1](https://github.com/informatievlaanderen/public-api/compare/v3.9.0...v3.9.1) (2020-06-22)
 
 
