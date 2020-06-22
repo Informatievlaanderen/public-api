@@ -1,3 +1,11 @@
+## [3.9.1](https://github.com/informatievlaanderen/public-api/compare/v3.9.0...v3.9.1) (2020-06-22)
+
+
+### Bug Fixes
+
+* move to 3.1.5 ([8fabb57](https://github.com/informatievlaanderen/public-api/commit/8fabb574cdc3bc135b17561489aac080898b1a59))
+* use correct build owner ([e00fe5d](https://github.com/informatievlaanderen/public-api/commit/e00fe5dc166913e97e42dff43503417c3a01f780))
+
 # [3.9.0](https://github.com/informatievlaanderen/public-api/compare/v3.8.0...v3.9.0) (2020-06-18)
 
 
