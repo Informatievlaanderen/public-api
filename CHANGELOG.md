@@ -1,3 +1,10 @@
+## [3.10.1](https://github.com/informatievlaanderen/public-api/compare/v3.10.0...v3.10.1) (2020-06-22)
+
+
+### Bug Fixes
+
+* configure baseurls for all problemdetails GRAR-1358 GRAR-1357 ([6f58d6d](https://github.com/informatievlaanderen/public-api/commit/6f58d6d5f887f3a5984dbbcd96c158a58b383456))
+
 # [3.10.0](https://github.com/informatievlaanderen/public-api/compare/v3.9.2...v3.10.0) (2020-06-22)
 
 
