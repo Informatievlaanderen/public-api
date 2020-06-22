@@ -84,6 +84,11 @@ namespace Public.Api.Extract
 
     public class ExtractBadRequestResponseExamples : IExamplesProvider<ValidationProblemDetails>
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public ExtractBadRequestResponseExamples(IHttpContextAccessor httpContextAccessor)
+            => _httpContextAccessor = httpContextAccessor;
+
         public ValidationProblemDetails GetExamples() =>
             new ValidationProblemDetails
             {
@@ -91,19 +96,25 @@ namespace Public.Api.Extract
                 ValidationErrors = new Dictionary<string, string[]>
                 {
                     { "extractDate", new[] { "Ongeldige datum." }}
-                }
+                },
+                ProblemInstanceUri = _httpContextAccessor.HttpContext.GetProblemInstanceUri()
             };
     }
 
     public class ExtractNotFoundResponseExamples : IExamplesProvider<ProblemDetails>
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public ExtractNotFoundResponseExamples(IHttpContextAccessor httpContextAccessor)
+            => _httpContextAccessor = httpContextAccessor;
+
         public ProblemDetails GetExamples()
             => new ProblemDetails
             {
                 HttpStatus = StatusCodes.Status404NotFound,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = "Onbestaand testbestand.",
-                ProblemInstanceUri = ProblemDetails.GetProblemNumber()
+                ProblemInstanceUri = _httpContextAccessor.HttpContext.GetProblemInstanceUri()
             };
     }
 }
