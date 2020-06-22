@@ -17,6 +17,8 @@ Marvin.Cache.Headers
 StackExchange.Redis
 AWSSDK.S3
 
+Microsoft.OpenApi
+
 SourceLink.Embed.AllSourceFiles
 SourceLink.Copy.PdbFiles
 
