@@ -7,8 +7,6 @@ nuget Marvin.Cache.Headers 5.0.1
 nuget StackExchange.Redis 2.1.58
 nuget AWSSDK.S3 3.3.111.14
 
-nuget Microsoft.OpenApi 1.1.4
-
 // MISSING ASSEMBLY REFERENCES
 nuget Microsoft.IdentityModel.Tokens 6.6.0
 nuget IdentityModel 4.3.0
@@ -21,13 +19,13 @@ nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      3.6.24  
 nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            2.7.8   copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        2.8.12  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           2.15.4  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.16.2  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.16.3  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            3.10.11 copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice 2.1.1   copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 4.2.1
 
-nuget Be.Vlaanderen.Basisregisters.Api 11.2.5
+nuget Be.Vlaanderen.Basisregisters.Api 11.2.6
 
 nuget Be.Vlaanderen.Basisregisters.GrAr.Common 15.6.2
 nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 15.6.2
