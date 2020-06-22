@@ -16,7 +16,7 @@ NUGET
       AWSSDK.Core (>= 3.3.107.13 < 3.4)
     AWSSDK.S3 (3.3.111.14)
       AWSSDK.Core (>= 3.3.107.13 < 3.4)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (2.15.4) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (2.15.5) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.AggregateSource (5.0.6)
       Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (>= 2.2.4)
       Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (>= 2.2.4)
@@ -29,7 +29,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.AggregateSource (5.0.6)
       Be.Vlaanderen.Basisregisters.EventHandling (>= 2.2.4)
       SqlStreamStore (>= 1.2.0-beta.8)
-    Be.Vlaanderen.Basisregisters.Api (11.4)
+    Be.Vlaanderen.Basisregisters.Api (11.4.1)
       Autofac (>= 5.2)
       Autofac.Extensions.DependencyInjection (>= 6.0)
       Be.Vlaanderen.Basisregisters.AggregateSource (>= 5.0.6)
@@ -138,7 +138,7 @@ NUGET
       Fake.IO.FileSystem (>= 5.20.1)
       Fake.JavaScript.Npm (>= 5.20.1)
       Newtonsoft.Json (>= 12.0.3)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (2.16.3) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (2.16.5) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.CommandHandling (5.0.6)
     Be.Vlaanderen.Basisregisters.Converters.TrimString (2.2.4)
       Newtonsoft.Json (>= 12.0.3)
@@ -188,11 +188,11 @@ NUGET
       Be.Vlaanderen.Basisregisters.Crab (>= 2.1.4)
       Be.Vlaanderen.Basisregisters.GrAr.Common (15.6.2)
       Microsoft.CSharp (>= 4.7)
-    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (3.6.24) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (3.6.25) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 15.6.2)
-    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (3.10.11) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (3.10.12) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 15.6.2)
-    Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (2.7.8) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (2.7.9) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.ProblemDetails (5.0.8)
       System.Reflection.Metadata (>= 1.8.1)
     Be.Vlaanderen.Basisregisters.ProjectionHandling.Connector (6.0.5)
@@ -214,7 +214,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.EventHandling (>= 2.2.4)
       SqlStreamStore (>= 1.2.0-beta.8)
     Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice (2.1.1) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (2.8.12) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (2.8.13) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 15.6.2)
     Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (2.2.4)
     Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (2.2.4)
