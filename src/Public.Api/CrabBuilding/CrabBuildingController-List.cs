@@ -70,6 +70,7 @@ namespace Public.Api.CrabBuilding
         /// <summary>
         /// Vraag een lijst met crabgebouwen op die voldoen aan de filter parameters.
         /// </summary>
+        /// <param name="format">Gewenste formaat: json of xml.</param>
         /// <param name="terreinObjectId">Filter op de crab terrein object id van het gebouw (exact).</param>
         /// <param name="identificatorTerreinObject">Filter op het crab identificator terreinobject van het gebouw (exact).</param>
         /// <param name="actionContextAccessor"></param>
@@ -106,7 +107,7 @@ namespace Public.Api.CrabBuilding
             CancellationToken cancellationToken = default)
         {
             if (!terreinObjectId.HasValue && string.IsNullOrEmpty(identificatorTerreinObject))
-                return BadRequest("Gelieve een filter parameter op te geven");
+                throw new ApiException("Gelieve een filter parameter op te geven.", StatusCodes.Status400BadRequest);
 
             format = DetermineAndSetFormat(format, actionContextAccessor, Request);
 

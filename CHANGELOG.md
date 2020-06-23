@@ -1,3 +1,26 @@
+## [3.10.1](https://github.com/informatievlaanderen/public-api/compare/v3.10.0...v3.10.1) (2020-06-22)
+
+
+### Bug Fixes
+
+* configure baseurls for all problemdetails GRAR-1358 GRAR-1357 ([6f58d6d](https://github.com/informatievlaanderen/public-api/commit/6f58d6d5f887f3a5984dbbcd96c158a58b383456))
+
+# [3.10.0](https://github.com/informatievlaanderen/public-api/compare/v3.9.2...v3.10.0) (2020-06-22)
+
+
+### Features
+
+* allow baseurl configuration in problemdetails GRAR-1358 GRAR-1357 ([5bd9554](https://github.com/informatievlaanderen/public-api/commit/5bd9554f129933213bc8e6188ce803daa5831d7b))
+
+## [3.9.2](https://github.com/informatievlaanderen/public-api/compare/v3.9.1...v3.9.2) (2020-06-22)
+
+
+### Bug Fixes
+
+* correct endpoint crabbuilding to backend ([5583d0f](https://github.com/informatievlaanderen/public-api/commit/5583d0f93faa2718eed133dfcc8539d7e8d1e04e))
+* make sure docs work again GRAR-1375 ([7221a0d](https://github.com/informatievlaanderen/public-api/commit/7221a0dc5d0c238e42fcebb3cfb73151f6f4676e))
+* make sure docs work again GRAR-1375 ([8906918](https://github.com/informatievlaanderen/public-api/commit/8906918b2c041ccb517382203388a454a4fb84c6))
+
 ## [3.9.1](https://github.com/informatievlaanderen/public-api/compare/v3.9.0...v3.9.1) (2020-06-22)
 
 

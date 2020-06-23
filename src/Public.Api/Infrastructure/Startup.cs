@@ -12,6 +12,7 @@ namespace Public.Api.Infrastructure
     using Autofac.Extensions.DependencyInjection;
     using Autofac.Features.AttributeFilters;
     using Be.Vlaanderen.Basisregisters.Api;
+    using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Swagger;
     using Common.Api.Infrastructure;
@@ -76,6 +77,11 @@ namespace Public.Api.Infrastructure
         /// <param name="services">The collection of services to configure the application with.</param>
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            var baseUrl = _configuration["BaseUrl"];
+            var baseUrlForExceptions = baseUrl.EndsWith("/")
+                ? baseUrl.Substring(0, baseUrl.Length - 1)
+                : baseUrl;
+
             services
                 .ConfigureDefaultForApi<Startup>(new StartupConfigureOptions
                 {
@@ -86,6 +92,10 @@ namespace Public.Api.Infrastructure
                             .GetChildren()
                             .Select(c => c.Value)
                             .ToArray()
+                    },
+                    Server =
+                    {
+                        BaseUrl = baseUrlForExceptions
                     },
                     Swagger =
                     {
@@ -106,7 +116,7 @@ namespace Public.Api.Infrastructure
 
                         Servers = new []
                         {
-                            new Server(_configuration["BaseUrl"], _configuration["BaseName"])
+                            new Server(baseUrl, _configuration.GetValue<string>("BaseName"))
                         },
 
                         XmlCommentPaths = new []
@@ -175,7 +185,12 @@ namespace Public.Api.Infrastructure
 
                                 actionContext.HttpContext.Request.Headers[HeaderNames.Accept] = contentType;
 
-                                return new BadRequestObjectResult(new ModelStateProblemDetails(actionContext.ModelState))
+                                var modelStateProblemDetails = new ModelStateProblemDetails(actionContext.ModelState)
+                                {
+                                    ProblemInstanceUri = actionContext.HttpContext.GetProblemInstanceUri()
+                                };
+
+                                return new BadRequestObjectResult(modelStateProblemDetails)
                                 {
                                     ContentTypes =
                                     {
