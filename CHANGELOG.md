@@ -1,3 +1,10 @@
+## [3.10.2](https://github.com/informatievlaanderen/public-api/compare/v3.10.1...v3.10.2) (2020-06-23)
+
+
+### Bug Fixes
+
+* return 400 when there are no filter parameters for crabgebouwen ([a782e00](https://github.com/informatievlaanderen/public-api/commit/a782e00c1aea6cd0c88c2160661a24f674786859))
+
 ## [3.10.1](https://github.com/informatievlaanderen/public-api/compare/v3.10.0...v3.10.1) (2020-06-22)
 
 
