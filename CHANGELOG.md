@@ -1,3 +1,10 @@
+## [3.10.3](https://github.com/informatievlaanderen/public-api/compare/v3.10.2...v3.10.3) (2020-06-23)
+
+
+### Bug Fixes
+
+* update documentation for registries ([ded26db](https://github.com/informatievlaanderen/public-api/commit/ded26db5d6e176893ac38b2739deba34ee9f198e))
+
 ## [3.10.2](https://github.com/informatievlaanderen/public-api/compare/v3.10.1...v3.10.2) (2020-06-23)
 
 
