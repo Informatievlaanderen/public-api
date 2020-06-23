@@ -105,6 +105,9 @@ namespace Public.Api.CrabBuilding
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
+            if (!terreinObjectId.HasValue && string.IsNullOrEmpty(identificatorTerreinObject))
+                return BadRequest("Gelieve een filter parameter op te geven");
+
             format = DetermineAndSetFormat(format, actionContextAccessor, Request);
 
             const Taal taal = Taal.NL;
@@ -132,7 +135,7 @@ namespace Public.Api.CrabBuilding
                 IdentifierTerrainObject = identificatorTerrainObject
             };
 
-            return new RestRequest("crabgebouwen")
+            return new RestRequest("gebouwen/crabgebouwen")
                 .AddFiltering(filter);
         }
     }
