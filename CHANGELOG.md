@@ -1,3 +1,10 @@
+## [3.10.4](https://github.com/informatievlaanderen/public-api/compare/v3.10.3...v3.10.4) (2020-06-24)
+
+
+### Bug Fixes
+
+* set format before throwing errors GRAR-1382 ([ccf51fa](https://github.com/informatievlaanderen/public-api/commit/ccf51fa865129ca976d6d7aa62a6c9972066e5af))
+
 ## [3.10.3](https://github.com/informatievlaanderen/public-api/compare/v3.10.2...v3.10.3) (2020-06-23)
 
 
