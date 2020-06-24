@@ -1,3 +1,10 @@
+## [3.10.6](https://github.com/informatievlaanderen/public-api/compare/v3.10.5...v3.10.6) (2020-06-24)
+
+
+### Bug Fixes
+
+* update docs GRAR-1383 ([0e58bcf](https://github.com/informatievlaanderen/public-api/commit/0e58bcf3c2994292b5b25988dfa1ee4a64880175))
+
 ## [3.10.5](https://github.com/informatievlaanderen/public-api/compare/v3.10.4...v3.10.5) (2020-06-24)
 
 
