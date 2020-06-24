@@ -27,7 +27,10 @@ namespace Public.Api.CrabBuilding
         /// Vraag een lijst met crabgebouwen op die voldoen aan de filter parameters.
         /// </summary>
         /// <param name="terreinObjectId">Filter op de crab terrein object id van het gebouw (exact).</param>
-        /// <param name="identificatorTerreinObject">Filter op het crab identificator terreinobject van het gebouw (exact).</param>
+        /// <param name="identificatorTerreinObject"> Filter op de crab identificator terreinobject van het gebouw (exact). <br/>
+        /// (= OIDN van de corresponderende GRB-gebouwgeometrie) <br/>
+        /// (= enige identificator waarmee in Lara op gebouw kan gezocht worden)
+        /// </param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -107,7 +110,7 @@ namespace Public.Api.CrabBuilding
             CancellationToken cancellationToken = default)
         {
             format = DetermineAndSetFormat(format, actionContextAccessor, Request);
-            
+
             if (!terreinObjectId.HasValue && string.IsNullOrEmpty(identificatorTerreinObject))
                 throw new ApiException("Er dient minstens één identificator als input te worden meegegeven.", StatusCodes.Status400BadRequest);
 
