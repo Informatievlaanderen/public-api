@@ -106,10 +106,10 @@ namespace Public.Api.CrabBuilding
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
+            format = DetermineAndSetFormat(format, actionContextAccessor, Request);
+            
             if (!terreinObjectId.HasValue && string.IsNullOrEmpty(identificatorTerreinObject))
                 throw new ApiException("Gelieve een filter parameter op te geven.", StatusCodes.Status400BadRequest);
-
-            format = DetermineAndSetFormat(format, actionContextAccessor, Request);
 
             const Taal taal = Taal.NL;
 
