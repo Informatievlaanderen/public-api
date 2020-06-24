@@ -138,7 +138,7 @@ NUGET
       Fake.IO.FileSystem (>= 5.20.1)
       Fake.JavaScript.Npm (>= 5.20.1)
       Newtonsoft.Json (>= 12.0.3)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (2.16.7) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (2.16.9) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.CommandHandling (5.0.6)
     Be.Vlaanderen.Basisregisters.Converters.TrimString (2.2.4)
       Newtonsoft.Json (>= 12.0.3)
