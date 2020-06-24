@@ -1,3 +1,10 @@
+## [3.10.5](https://github.com/informatievlaanderen/public-api/compare/v3.10.4...v3.10.5) (2020-06-24)
+
+
+### Bug Fixes
+
+* change crabgebouwen error message GRAR-1384 ([f429064](https://github.com/informatievlaanderen/public-api/commit/f429064139ca5b8d043fed650176f0cd67f6b844))
+
 ## [3.10.4](https://github.com/informatievlaanderen/public-api/compare/v3.10.3...v3.10.4) (2020-06-24)
 
 
