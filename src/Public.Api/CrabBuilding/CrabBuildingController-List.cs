@@ -109,7 +109,7 @@ namespace Public.Api.CrabBuilding
             format = DetermineAndSetFormat(format, actionContextAccessor, Request);
             
             if (!terreinObjectId.HasValue && string.IsNullOrEmpty(identificatorTerreinObject))
-                throw new ApiException("Gelieve een filter parameter op te geven.", StatusCodes.Status400BadRequest);
+                throw new ApiException("Er dient minstens één identificator als input te worden meegegeven.", StatusCodes.Status400BadRequest);
 
             const Taal taal = Taal.NL;
 
