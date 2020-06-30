@@ -24,11 +24,11 @@ namespace Public.Api.CrabBuilding
     public partial class CrabBuildingController
     {
         /// <summary>
-        /// Vraag een lijst met crabgebouwen op die voldoen aan de filter parameters.
+        /// Vraag een lijst met CRAB-gebouwen op die voldoen aan de filterparameters.
         /// </summary>
-        /// <param name="terreinObjectId">Filter op de crab terrein object id van het gebouw (exact).</param>
+        /// <param name="terreinObjectId">Filter op de CRAB-TerreinObjectId van het gebouw (exact).</param>
         /// <param name="identificatorTerreinObject">
-        /// Filter op de crab identificator terreinobject van het gebouw (exact).<br/>
+        /// Filter op het CRAB-IdentificatorTerreinObject van het gebouw (exact).<br/>
         /// (= OIDN van de corresponderende GRB-gebouwgeometrie)<br/>
         /// (= enige identificator waarmee in Lara op gebouw kan gezocht worden)
         /// </param>
@@ -36,7 +36,7 @@ namespace Public.Api.CrabBuilding
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met crab gebouwen gelukt is.</response>
+        /// <response code="200">Als de opvraging van een lijst met CRAB-gebouwen gelukt is.</response>
         /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
@@ -72,12 +72,12 @@ namespace Public.Api.CrabBuilding
                 cancellationToken);
 
         /// <summary>
-        /// Vraag een lijst met crabgebouwen op die voldoen aan de filter parameters.
+        /// Vraag een lijst met CRAB-gebouwen op die voldoen aan de filterparameters.
         /// </summary>
         /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="terreinObjectId">Filter op de crab terrein object id van het gebouw (exact).</param>
+        /// <param name="terreinObjectId">Filter op de CRAB-TerreinObjectId van het gebouw (exact).</param>
         /// <param name="identificatorTerreinObject">
-        /// Filter op de crab identificator terreinobject van het gebouw (exact).<br/>
+        /// Filter op het CRAB-IdentificatorTerreinObject van het gebouw (exact).<br/>
         /// (= OIDN van de corresponderende GRB-gebouwgeometrie)<br/>
         /// (= enige identificator waarmee in Lara op gebouw kan gezocht worden)
         /// </param>
@@ -85,7 +85,7 @@ namespace Public.Api.CrabBuilding
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met crab gebouwen gelukt is.</response>
+        /// <response code="200">Als de opvraging van een lijst met CRAB-gebouwen gelukt is.</response>
         /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
