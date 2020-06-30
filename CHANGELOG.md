@@ -1,3 +1,10 @@
+## [3.10.7](https://github.com/informatievlaanderen/public-api/compare/v3.10.6...v3.10.7) (2020-06-30)
+
+
+### Bug Fixes
+
+* remove offset from feeds endpoints GRAR-1418 ([ec386a9](https://github.com/informatievlaanderen/public-api/commit/ec386a91f068b670518b9d9a72a23fa9f98570ea))
+
 ## [3.10.6](https://github.com/informatievlaanderen/public-api/compare/v3.10.5...v3.10.6) (2020-06-24)
 
 
