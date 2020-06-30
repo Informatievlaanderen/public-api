@@ -1,3 +1,11 @@
+## [3.10.8](https://github.com/informatievlaanderen/public-api/compare/v3.10.7...v3.10.8) (2020-06-30)
+
+
+### Bug Fixes
+
+* make CRAB names consistent GRAR-1386 ([80954f7](https://github.com/informatievlaanderen/public-api/commit/80954f77c1fa8819b593cce05d0b2667d19916ff))
+* update registry packages GRAR-1386 ([71fcee4](https://github.com/informatievlaanderen/public-api/commit/71fcee4438c6eef11b6d0b1dcfb98eeca0847dd8))
+
 ## [3.10.7](https://github.com/informatievlaanderen/public-api/compare/v3.10.6...v3.10.7) (2020-06-30)
 
 
