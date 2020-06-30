@@ -28,11 +28,10 @@ namespace Public.Api.Feeds
         private static IRestRequest CreateBackendSyndicationRequest(
             string resourcename,
             long? from,
-            int? offset,
             int? limit,
             string embed)
             => new RestRequest($"{resourcename}/sync")
-                    .AddPagination(offset, limit)
+                    .AddPagination(0, limit)
                     .AddFiltering(new
                     {
                         position = from ?? 0,

@@ -29,7 +29,6 @@ namespace Public.Api.Feeds
         /// <param name="restClients"></param>
         /// <param name="responseOptions"></param>
         /// <param name="from">Optionele start id om van te beginnen.</param>
-        /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="embed">De velden die moeten teruggegeven worden: event en/of object</param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -58,7 +57,6 @@ namespace Public.Api.Feeds
             [FromServices] IIndex<string, Lazy<IRestClient>> restClients,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromQuery] long? from,
-            [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string embed,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -69,7 +67,6 @@ namespace Public.Api.Feeds
                 restClients,
                 responseOptions,
                 from,
-                offset,
                 limit,
                 embed,
                 ifNoneMatch,
@@ -83,7 +80,6 @@ namespace Public.Api.Feeds
         /// <param name="restClients"></param>
         /// <param name="responseOptions"></param>
         /// <param name="from">Optionele start id om van te beginnen.</param>
-        /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="embed">De velden die moeten teruggegeven worden: event en/of object</param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -114,7 +110,6 @@ namespace Public.Api.Feeds
             [FromServices] IIndex<string, Lazy<IRestClient>> restClients,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromQuery] long? from,
-            [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string embed,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -125,7 +120,6 @@ namespace Public.Api.Feeds
             IRestRequest BackendRequest() => CreateBackendSyndicationRequest(
                 "gemeenten",
                 from,
-                offset,
                 limit,
                 embed);
 
