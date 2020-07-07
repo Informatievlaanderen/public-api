@@ -1,3 +1,10 @@
+# [3.11.0](https://github.com/informatievlaanderen/public-api/compare/v3.10.8...v3.11.0) (2020-07-07)
+
+
+### Features
+
+* require api keys for sync ([c29ab36](https://github.com/informatievlaanderen/public-api/commit/c29ab363da1c388380f517db8f184c01e1be540b))
+
 ## [3.10.8](https://github.com/informatievlaanderen/public-api/compare/v3.10.7...v3.10.8) (2020-06-30)
 
 
