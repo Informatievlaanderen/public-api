@@ -16,6 +16,7 @@ namespace Public.Api.Feeds
     [ApiExplorerSettings(GroupName = "Feeds", IgnoreApi = true)]
     [ApiOrder(Order = ApiOrder.Feeds)]
     [Produces("application/atom+xml", "text/xml")]
+    [ApiKeyAuth("Sync")]
     public partial class FeedController : ApiController<FeedController>
     {
         protected const int DefaultFeedCaching = 0;
