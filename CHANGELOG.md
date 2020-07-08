@@ -1,3 +1,11 @@
+## [3.11.1](https://github.com/informatievlaanderen/public-api/compare/v3.11.0...v3.11.1) (2020-07-08)
+
+
+### Bug Fixes
+
+* return problemdetails for atom too GRAR-1485 ([f9af4e7](https://github.com/informatievlaanderen/public-api/commit/f9af4e72860fe7fc9205afc283f48ccfcc11d9b1))
+* return xml format when people use .xml GRAR-1484 ([30a88e4](https://github.com/informatievlaanderen/public-api/commit/30a88e47f61321312397efd7cd42a704f81302a4))
+
 # [3.11.0](https://github.com/informatievlaanderen/public-api/compare/v3.10.8...v3.11.0) (2020-07-07)
 
 
