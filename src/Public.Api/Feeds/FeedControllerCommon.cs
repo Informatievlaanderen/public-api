@@ -20,6 +20,7 @@ namespace Public.Api.Feeds
     public partial class FeedController : ApiController<FeedController>
     {
         protected const int DefaultFeedCaching = 0;
+        private const int NoPaging = 0;
 
         public FeedController(
             ConnectionMultiplexerProvider redis,
@@ -32,7 +33,7 @@ namespace Public.Api.Feeds
             int? limit,
             string embed)
             => new RestRequest($"{resourcename}/sync")
-                    .AddPagination(0, limit)
+                    .AddPagination(NoPaging, limit)
                     .AddFiltering(new
                     {
                         position = from ?? 0,
