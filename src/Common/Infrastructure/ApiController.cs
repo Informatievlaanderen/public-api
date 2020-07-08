@@ -20,27 +20,9 @@ namespace Common.Infrastructure
     using RestSharp;
     using StackExchange.Redis;
 
-    [ApiController]
-    [RejectInvalidQueryParametersFilter]
-    public abstract class ApiController<T> : ApiController
+    public abstract class PublicApiController : ApiController
     {
-        private const string ValueKey = "value";
-        private const string HeadersKey = "headers";
-        private const string LastModifiedKey = "lastModified";
-        private const string SetByRegistryKey = "setByRegistry";
-
-        private readonly IConnectionMultiplexer _redis;
-        private readonly ILogger<T> _logger;
-
-        protected ApiController(
-            ConnectionMultiplexerProvider redis,
-            ILogger<T> logger)
-        {
-            _redis = redis.GetConnectionMultiplexer();
-            _logger = logger;
-        }
-
-        protected static string DetermineAndSetFormat(
+        public static string DetermineAndSetFormat(
             string format,
             IActionContextAccessor actionContextAccessor,
             HttpRequest request)
@@ -58,7 +40,28 @@ namespace Common.Infrastructure
 
             return format;
         }
+    }
 
+    [ApiController]
+    [RejectInvalidQueryParametersFilter]
+    public abstract class ApiController<T> : PublicApiController
+    {
+        private const string ValueKey = "value";
+        private const string HeadersKey = "headers";
+        private const string LastModifiedKey = "lastModified";
+        private const string SetByRegistryKey = "setByRegistry";
+
+        private readonly IConnectionMultiplexer _redis;
+        private readonly ILogger<T> _logger;
+
+        protected ApiController(
+            ConnectionMultiplexerProvider redis,
+            ILogger<T> logger)
+        {
+            _redis = redis.GetConnectionMultiplexer();
+            _logger = logger;
+        }
+        
         protected async Task<BackendResponse> GetFromCacheThenFromBackendAsync(
             string format,
             IRestClient restClient,
@@ -81,7 +84,7 @@ namespace Common.Infrastructure
                     var cachedValues =
                         await db.HashGetAllAsync(
                             key,
-                            CommandFlags.PreferSlave);
+                            CommandFlags.PreferReplica);
 
                     if (cachedValues.Length > 0)
                     {

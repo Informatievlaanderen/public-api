@@ -6,6 +6,7 @@ namespace Common.Infrastructure
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.Filters;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -21,6 +22,14 @@ namespace Common.Infrastructure
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
+            if (context.Controller is PublicApiController)
+            {
+                PublicApiController.DetermineAndSetFormat(
+                    string.Empty,
+                    context.HttpContext.RequestServices.GetRequiredService<IActionContextAccessor>(),
+                    context.HttpContext.Request);
+            }
+
             if (!context.HttpContext.Request.Headers.TryGetValue(ApiKeyHeaderName, out var potentialApiKey))
                 throw new ApiException("API key verplicht.", StatusCodes.Status401Unauthorized);
 
