@@ -92,7 +92,14 @@ namespace Public.Api.Parcel
 
             IRestRequest BackendRequest() => CreateBackendCountRequest();
 
-            return new BackendResponseResult(await GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken));
+            return new BackendResponseResult(
+                await GetFromBackendAsync(
+                    format,
+                    BackendRequest,
+                    Request.GetTypedHeaders(),
+                    CreateDefaultHandleBadRequest(),
+                    actionContextAccessor.ActionContext.ActionDescriptor,
+                    cancellationToken));
         }
 
         private static IRestRequest CreateBackendCountRequest() => new RestRequest("percelen/totaal-aantal");

@@ -92,7 +92,14 @@ namespace Public.Api.Building
 
             IRestRequest BackendRequest() => CreateBackendCountRequest();
 
-            return new BackendResponseResult(await GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken));
+            return new BackendResponseResult(
+                await GetFromBackendAsync(
+                    format,
+                    BackendRequest,
+                    Request.GetTypedHeaders(),
+                    CreateDefaultHandleBadRequest(),
+                    actionContextAccessor.ActionContext.ActionDescriptor,
+                    cancellationToken));
         }
 
         private static IRestRequest CreateBackendCountRequest() => new RestRequest("gebouwen/totaal-aantal");

@@ -7,6 +7,8 @@ namespace Common.Infrastructure
     using System.Net.Mime;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc.Abstractions;
+    using Microsoft.AspNetCore.Mvc.Controllers;
 
     public enum AcceptType
     {
@@ -53,12 +55,17 @@ namespace Common.Infrastructure
             };
         }
 
-        public static AcceptType DetermineAcceptType(this RequestHeaders requestHeaders, string format)
+        public static AcceptType DetermineAcceptType(
+            this RequestHeaders requestHeaders,
+            string format,
+            ActionDescriptor? actionDescriptor)
             => Enum.TryParse(format, ignoreCase: true, out AcceptType acceptType)
                 ? acceptType
-                : requestHeaders.DetermineAcceptType();
+                : requestHeaders.DetermineAcceptType(actionDescriptor);
 
-        public static AcceptType DetermineAcceptType(this RequestHeaders requestHeaders)
+        public static AcceptType DetermineAcceptType(
+            this RequestHeaders requestHeaders,
+            ActionDescriptor? actionDescriptor)
         {
             var acceptHeaders = requestHeaders.Accept;
 
@@ -84,7 +91,41 @@ namespace Common.Infrastructure
                     return AcceptType.Json;
 
                 if (headerValue.Contains(AcceptTypes.Any))
+                {
+                    // We like to default to json,
+                    // but we need to pick something the controller actually produces
+                    if (!(actionDescriptor is ControllerActionDescriptor controllerActionDescriptor))
+                        return AcceptType.Json;
+
+                    var producesAttribute = controllerActionDescriptor
+                        .ControllerTypeInfo
+                        .GetCustomAttributes(inherit: true)
+                        .OfType<ApiProducesAttribute>()
+                        .SingleOrDefault();
+
+                    if (producesAttribute == null)
+                        return AcceptType.Json;
+
+                    foreach (var possibleContentType in producesAttribute.ContentTypes)
+                    {
+                        switch (possibleContentType)
+                        {
+                            case AcceptTypes.Atom:
+                                return AcceptType.Atom;
+
+                            case AcceptTypes.Xml:
+                                return AcceptType.Xml;
+
+                            case AcceptTypes.JsonLd:
+                                return AcceptType.JsonLd;
+
+                            case AcceptTypes.Json:
+                                return AcceptType.Json;
+                        }
+                    }
+
                     return AcceptType.Json;
+                }
             }
 
             throw new ApiException("Ongeldig formaat.", StatusCodes.Status406NotAcceptable);

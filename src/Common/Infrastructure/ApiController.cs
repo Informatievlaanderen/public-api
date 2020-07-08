@@ -14,6 +14,7 @@ namespace Common.Infrastructure
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Http.Headers;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Abstractions;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
@@ -33,7 +34,7 @@ namespace Common.Infrastructure
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            var acceptType = request.GetTypedHeaders().DetermineAcceptType(format);
+            var acceptType = request.GetTypedHeaders().DetermineAcceptType(format, actionContextAccessor.ActionContext.ActionDescriptor);
             var contentType = acceptType.ToMimeTypeString();
 
             request.Headers[HeaderNames.Accept] = contentType;
@@ -52,7 +53,7 @@ namespace Common.Infrastructure
                   ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
                   ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
 
-            var acceptType = request.GetTypedHeaders().DetermineAcceptType(format);
+            var acceptType = request.GetTypedHeaders().DetermineAcceptType(format, actionContextAccessor.ActionContext.ActionDescriptor);
             var contentType = acceptType.ToProblemResponseMimeTypeString();
 
             request.Headers[HeaderNames.Accept] = contentType;
@@ -88,9 +89,10 @@ namespace Common.Infrastructure
             string cacheKey,
             RequestHeaders requestHeaders,
             Action<HttpStatusCode> handleNotOkResponseAction,
+            ActionDescriptor actionDescriptor,
             CancellationToken cancellationToken)
         {
-            var acceptType = requestHeaders.DetermineAcceptType(format);
+            var acceptType = requestHeaders.DetermineAcceptType(format, actionDescriptor);
 
             if (_redis != null)
             {
@@ -156,11 +158,12 @@ namespace Common.Infrastructure
             Func<IRestRequest> createBackendRequestFunc,
             RequestHeaders requestHeaders,
             Action<HttpStatusCode> handleNotOkResponseAction,
+            ActionDescriptor actionDescriptor,
             CancellationToken cancellationToken)
             => await GetFromBackendAsync(
                 restClient,
                 createBackendRequestFunc,
-                requestHeaders.DetermineAcceptType(format),
+                requestHeaders.DetermineAcceptType(format, actionDescriptor),
                 handleNotOkResponseAction,
                 cancellationToken);
 

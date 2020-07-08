@@ -10,6 +10,7 @@ namespace Common.Infrastructure
     using FeatureToggle;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Http.Headers;
+    using Microsoft.AspNetCore.Mvc.Abstractions;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Primitives;
     using RestSharp;
@@ -43,6 +44,7 @@ namespace Common.Infrastructure
             string cacheKey,
             RequestHeaders requestHeaders,
             Action<HttpStatusCode> handleNotOkResponseAction,
+            ActionDescriptor actionDescriptor,
             CancellationToken cancellationToken)
             => await GetFromCacheThenFromBackendAsync(
                 format,
@@ -51,6 +53,7 @@ namespace Common.Infrastructure
                 cacheKey,
                 requestHeaders,
                 handleNotOkResponseAction,
+                actionDescriptor,
                 cancellationToken);
 
         protected async Task<BackendResponse> GetFromBackendAsync(
@@ -58,6 +61,7 @@ namespace Common.Infrastructure
             Func<IRestRequest> createBackendRequestFunc,
             RequestHeaders requestHeaders,
             Action<HttpStatusCode> handleNotOkResponseAction,
+            ActionDescriptor actionDescriptor,
             CancellationToken cancellationToken)
             => await GetFromBackendAsync(
                 format,
@@ -65,6 +69,7 @@ namespace Common.Infrastructure
                 createBackendRequestFunc,
                 requestHeaders,
                 handleNotOkResponseAction,
+                actionDescriptor,
                 cancellationToken);
 
         protected async Task<BackendResponse> GetFromBackendWithBadRequestAsync(
@@ -72,11 +77,12 @@ namespace Common.Infrastructure
             Func<IRestRequest> createBackendRequestFunc,
             RequestHeaders requestHeaders,
             Action<HttpStatusCode> handleNotOkResponseAction,
+            ActionDescriptor actionDescriptor,
             CancellationToken cancellationToken)
             => await GetFromBackendWithBadRequestAsync(
                 _restClient,
                 createBackendRequestFunc,
-                requestHeaders.DetermineAcceptType(format),
+                requestHeaders.DetermineAcceptType(format, actionDescriptor),
                 handleNotOkResponseAction,
                 cancellationToken);
 

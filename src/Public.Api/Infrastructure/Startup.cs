@@ -180,7 +180,7 @@ namespace Public.Api.Infrastructure
                                     ?? actionContext.GetValueFromRouteData("format")
                                     ?? actionContext.GetValueFromQueryString("format");
 
-                                var acceptType = actionContext.HttpContext.Request.GetTypedHeaders().DetermineAcceptType(format);
+                                var acceptType = actionContext.HttpContext.Request.GetTypedHeaders().DetermineAcceptType(format, actionContext.ActionDescriptor);
                                 var contentType = acceptType.ToMimeTypeString();
 
                                 actionContext.HttpContext.Request.Headers[HeaderNames.Accept] = contentType;

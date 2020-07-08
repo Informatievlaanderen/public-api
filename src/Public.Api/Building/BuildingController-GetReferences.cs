@@ -107,7 +107,13 @@ namespace Public.Api.Building
 
             RestRequest BackendRequest() => CreateBackendReferencesRequest(objectId);
 
-            var value = await GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken);
+            var value = await GetFromBackendAsync(
+                format,
+                BackendRequest,
+                Request.GetTypedHeaders(),
+                CreateDefaultHandleBadRequest(),
+                actionContextAccessor.ActionContext.ActionDescriptor,
+                cancellationToken);
 
             return new BackendResponseResult(value);
         }

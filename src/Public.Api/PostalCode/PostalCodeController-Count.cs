@@ -98,7 +98,14 @@ namespace Public.Api.PostalCode
 
             IRestRequest BackendRequest() => CreateBackendCountRequest(gemeentenaam);
 
-            return new BackendResponseResult(await GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken));
+            return new BackendResponseResult(
+                await GetFromBackendAsync(
+                    format,
+                    BackendRequest,
+                    Request.GetTypedHeaders(),
+                    CreateDefaultHandleBadRequest(),
+                    actionContextAccessor.ActionContext.ActionDescriptor,
+                    cancellationToken));
         }
 
         private static IRestRequest CreateBackendCountRequest(string municipalityName)

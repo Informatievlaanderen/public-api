@@ -25,7 +25,7 @@ namespace Common.Infrastructure
                 ?? context.GetValueFromRouteData("format")
                 ?? context.GetValueFromQueryString("format");
 
-            var acceptType = request.GetTypedHeaders().DetermineAcceptType(format);
+            var acceptType = request.GetTypedHeaders().DetermineAcceptType(format, context.ActionDescriptor);
             var contentType = acceptType.ToMimeTypeString();
 
             request.Headers[HeaderNames.Accept] = contentType;

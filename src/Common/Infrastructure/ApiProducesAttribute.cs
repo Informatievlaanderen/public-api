@@ -1,6 +1,5 @@
-namespace Public.Api.Infrastructure
+namespace Common.Infrastructure
 {
-    using Common.Infrastructure;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Formatters;
 
@@ -30,9 +29,7 @@ namespace Public.Api.Infrastructure
                     break;
 
                 case EndpointType.Sync:
-                    contentTypes.Add(AcceptTypes.JsonProblem);
                     contentTypes.Add(AcceptTypes.XmlProblem);
-                    contentTypes.Add(AcceptTypes.Json);
                     contentTypes.Add(AcceptTypes.Atom);
                     contentTypes.Add(AcceptTypes.Xml);
                     break;

@@ -125,8 +125,21 @@ namespace Public.Api.Municipality
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/municipality-list:{taal}");
 
             var value = await (CacheToggle.FeatureEnabled
-                ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)
-                : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken));
+                ? GetFromCacheThenFromBackendAsync(
+                    format,
+                    BackendRequest,
+                    cacheKey,
+                    Request.GetTypedHeaders(),
+                    CreateDefaultHandleBadRequest(),
+                    actionContextAccessor.ActionContext.ActionDescriptor,
+                    cancellationToken)
+                : GetFromBackendAsync(
+                    format,
+                    BackendRequest,
+                    Request.GetTypedHeaders(),
+                    CreateDefaultHandleBadRequest(),
+                    actionContextAccessor.ActionContext.ActionDescriptor,
+                    cancellationToken));
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }

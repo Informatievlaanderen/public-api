@@ -98,7 +98,14 @@ namespace Public.Api.BuildingUnit
 
             IRestRequest BackendRequest() => CreateBackendCountRequest(adresObjectId);
 
-            return new BackendResponseResult(await GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken));
+            return new BackendResponseResult(
+                await GetFromBackendAsync(
+                    format,
+                    BackendRequest,
+                    Request.GetTypedHeaders(),
+                    CreateDefaultHandleBadRequest(),
+                    actionContextAccessor.ActionContext.ActionDescriptor,
+                    cancellationToken));
         }
 
         private static IRestRequest CreateBackendCountRequest(int? addressId)

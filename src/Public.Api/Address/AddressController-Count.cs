@@ -132,7 +132,14 @@ namespace Public.Api.Address
                 straatnaam,
                 homoniemToevoeging);
 
-            return new BackendResponseResult(await GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken));
+            return new BackendResponseResult(
+                await GetFromBackendAsync(
+                    format,
+                    BackendRequest,
+                    Request.GetTypedHeaders(),
+                    CreateDefaultHandleBadRequest(),
+                    actionContextAccessor.ActionContext.ActionDescriptor,
+                    cancellationToken));
         }
 
         private static IRestRequest CreateBackendCountRequest(

@@ -123,8 +123,8 @@ namespace Public.Api.Infrastructure.Redis
             var requestHeaders = context.HttpRequest.GetTypedHeaders();
             var format = regexResult.Groups["format"];
             var acceptType = format.Success
-                ? requestHeaders.DetermineAcceptType(format.Value.Substring(1))
-                : requestHeaders.DetermineAcceptType();
+                ? requestHeaders.DetermineAcceptType(format.Value.Substring(1), null)
+                : requestHeaders.DetermineAcceptType(null);
 
             var cacheKey = string.Format(
                 cacheKeyFormat,
