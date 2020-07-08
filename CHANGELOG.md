@@ -1,3 +1,10 @@
+## [3.11.3](https://github.com/informatievlaanderen/public-api/compare/v3.11.2...v3.11.3) (2020-07-08)
+
+
+### Bug Fixes
+
+* pick a default content type from the produces attribute GRAR-1486 ([cb413e0](https://github.com/informatievlaanderen/public-api/commit/cb413e0b1bd3fc38395b05066ee00bea0086c76c))
+
 ## [3.11.2](https://github.com/informatievlaanderen/public-api/compare/v3.11.1...v3.11.2) (2020-07-08)
 
 
