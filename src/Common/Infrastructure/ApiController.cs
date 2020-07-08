@@ -7,10 +7,10 @@ namespace Common.Infrastructure
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
-    using Api.Infrastructure;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware;
+    using Extensions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Http.Headers;
     using Microsoft.AspNetCore.Mvc;
@@ -28,11 +28,7 @@ namespace Common.Infrastructure
             IActionContextAccessor actionContextAccessor,
             HttpRequest request)
         {
-            format = !string.IsNullOrWhiteSpace(format)
-                ? format
-                : actionContextAccessor.ActionContext.GetValueFromHeader("format")
-                  ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
-                  ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
+            format = actionContextAccessor.ActionContext.DetermineFormatParameter(format);
 
             var acceptType = request.GetTypedHeaders().DetermineAcceptType(format, actionContextAccessor.ActionContext.ActionDescriptor);
             var contentType = acceptType.ToMimeTypeString();
@@ -47,11 +43,7 @@ namespace Common.Infrastructure
             IActionContextAccessor actionContextAccessor,
             HttpRequest request)
         {
-            format = !string.IsNullOrWhiteSpace(format)
-                ? format
-                : actionContextAccessor.ActionContext.GetValueFromHeader("format")
-                  ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
-                  ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
+            format = actionContextAccessor.ActionContext.DetermineFormatParameter(format);
 
             var acceptType = request.GetTypedHeaders().DetermineAcceptType(format, actionContextAccessor.ActionContext.ActionDescriptor);
             var contentType = acceptType.ToProblemResponseMimeTypeString();
@@ -152,21 +144,6 @@ namespace Common.Infrastructure
                 cancellationToken);
         }
 
-        protected async Task<BackendResponse> GetFromBackendAsync(
-            string format,
-            IRestClient restClient,
-            Func<IRestRequest> createBackendRequestFunc,
-            RequestHeaders requestHeaders,
-            Action<HttpStatusCode> handleNotOkResponseAction,
-            ActionDescriptor actionDescriptor,
-            CancellationToken cancellationToken)
-            => await GetFromBackendAsync(
-                restClient,
-                createBackendRequestFunc,
-                requestHeaders.DetermineAcceptType(format, actionDescriptor),
-                handleNotOkResponseAction,
-                cancellationToken);
-
         protected static async Task<BackendResponse> GetFromBackendWithBadRequestAsync(
             IRestClient restClient,
             Func<IRestRequest> createBackendRequestFunc,
@@ -205,7 +182,7 @@ namespace Common.Infrastructure
             throw new ApiException("Fout bij de bron.", (int)response.StatusCode, response.ErrorException);
         }
 
-        private static async Task<BackendResponse> GetFromBackendAsync(
+        protected static async Task<BackendResponse> GetFromBackendAsync(
             IRestClient restClient,
             Func<IRestRequest> createBackendRequestFunc,
             AcceptType acceptType,

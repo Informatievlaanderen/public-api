@@ -3,6 +3,7 @@ namespace Public.Api.Infrastructure.Redis
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using Common.Infrastructure;
+    using Common.Infrastructure.Extensions;
     using Marvin.Cache.Headers;
     using Marvin.Cache.Headers.Domain;
     using Marvin.Cache.Headers.Interfaces;

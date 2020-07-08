@@ -2,8 +2,8 @@ namespace Common.Infrastructure
 {
     using System;
     using System.Linq;
-    using Api.Infrastructure;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Extensions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.Filters;
     using Microsoft.Extensions.Configuration;
@@ -20,10 +20,7 @@ namespace Common.Infrastructure
 
             var configuration = context.HttpContext.RequestServices.GetService<IConfiguration>();
 
-            var format =
-                context.GetValueFromHeader("format")
-                ?? context.GetValueFromRouteData("format")
-                ?? context.GetValueFromQueryString("format");
+            var format = context.DetermineFormatParameter();
 
             var acceptType = request.GetTypedHeaders().DetermineAcceptType(format, context.ActionDescriptor);
             var contentType = acceptType.ToMimeTypeString();

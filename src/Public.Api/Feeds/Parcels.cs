@@ -115,7 +115,7 @@ namespace Public.Api.Feeds
                  [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
                  CancellationToken cancellationToken = default)
         {
-            format = DetermineAndSetContentFormat(format, actionContextAccessor, Request);
+            var contentFormat = ContentFormat.For(format, actionContextAccessor, Request);
 
             IRestRequest BackendRequest() => CreateBackendSyndicationRequest(
                 "percelen",
@@ -124,12 +124,10 @@ namespace Public.Api.Feeds
                 embed);
 
             var value = await GetFromBackendAsync(
-                format,
                 restClients["ParcelRegistry"].Value,
                 BackendRequest,
-                Request.GetTypedHeaders(),
+                contentFormat.ContentType,
                 HandleBadRequest,
-                actionContextAccessor.ActionContext.ActionDescriptor,
                 cancellationToken);
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.Syndication.NextUri);
