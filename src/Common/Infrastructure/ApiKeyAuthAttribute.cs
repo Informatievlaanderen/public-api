@@ -14,6 +14,7 @@ namespace Common.Infrastructure
     public class ApiKeyAuthAttribute : Attribute, IAsyncActionFilter
     {
         private const string ApiKeyHeaderName = "x-api-key";
+        private const string ApiKeyQueryName = "apikey";
 
         private readonly string _validApiKeySet;
 
@@ -22,7 +23,7 @@ namespace Common.Infrastructure
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            void SetExceptionFormat(HttpContext httpContext)
+            void RefuseAccess(HttpContext httpContext, string message)
             {
                 if (!(context.Controller is PublicApiController))
                     return;
@@ -31,13 +32,24 @@ namespace Common.Infrastructure
                     string.Empty,
                     httpContext.RequestServices.GetRequiredService<IActionContextAccessor>(),
                     httpContext.Request);
+
+                throw new ApiException(message, StatusCodes.Status401Unauthorized);
             }
 
-            if (!context.HttpContext.Request.Headers.TryGetValue(ApiKeyHeaderName, out var potentialApiKey))
-            {
-                SetExceptionFormat(context.HttpContext);
-                throw new ApiException("API key verplicht.", StatusCodes.Status401Unauthorized);
-            }
+            if (!context.HttpContext.Request.Headers.TryGetValue(ApiKeyHeaderName, out var potentialHeaderApiKey) &&
+                !context.HttpContext.Request.Query.TryGetValue(ApiKeyQueryName, out var potentialQueryApiKey))
+                RefuseAccess(context.HttpContext, "API key verplicht.");
+
+            var potentialApiKey = string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(potentialQueryApiKey))
+                potentialApiKey = potentialQueryApiKey;
+
+            if (!string.IsNullOrWhiteSpace(potentialHeaderApiKey))
+                potentialApiKey = potentialHeaderApiKey;
+
+            if (string.IsNullOrWhiteSpace(potentialApiKey))
+                RefuseAccess(context.HttpContext, "API key verplicht.");
 
             var valiApiKeys = context
                 .HttpContext
@@ -48,11 +60,8 @@ namespace Common.Infrastructure
                 .Select(c => c.Value)
                 .ToArray();
 
-            if (!valiApiKeys.Contains(potentialApiKey.First()))
-            {
-                SetExceptionFormat(context.HttpContext);
-                throw new ApiException("Ongeldige API key.", StatusCodes.Status401Unauthorized);
-            }
+            if (!valiApiKeys.Contains(potentialApiKey))
+                RefuseAccess(context.HttpContext, "Ongeldige API key.");
 
             await next();
         }
