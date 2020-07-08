@@ -1,3 +1,10 @@
+## [3.11.2](https://github.com/informatievlaanderen/public-api/compare/v3.11.1...v3.11.2) (2020-07-08)
+
+
+### Bug Fixes
+
+* support apikey in querystring GRAR-1486 ([83328dc](https://github.com/informatievlaanderen/public-api/commit/83328dcb781b156e6c7452fbeac8af0b9fb8a1aa))
+
 ## [3.11.1](https://github.com/informatievlaanderen/public-api/compare/v3.11.0...v3.11.1) (2020-07-08)
 
 
