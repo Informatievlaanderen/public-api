@@ -94,7 +94,7 @@ namespace Public.Api.PostalCode
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            format = DetermineAndSetFormat(format, actionContextAccessor, Request);
+            format = DetermineAndSetContentFormat(format, actionContextAccessor, Request);
 
             IRestRequest BackendRequest() => CreateBackendCountRequest(gemeentenaam);
 

@@ -103,7 +103,7 @@ namespace Public.Api.PublicService
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            format = DetermineAndSetFormat(format, actionContextAccessor, Request);
+            format = DetermineAndSetContentFormat(format, actionContextAccessor, Request);
 
             var taal = Taal.NL;
 

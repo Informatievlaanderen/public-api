@@ -40,7 +40,7 @@ namespace Public.Api.Address
             [FromBody] BosaAddressRequest searchBody,
             CancellationToken cancellationToken = default)
         {
-            format = DetermineAndSetFormat(format, actionContextAccessor, Request);
+            format = DetermineAndSetContentFormat(format, actionContextAccessor, Request);
 
             IRestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
 

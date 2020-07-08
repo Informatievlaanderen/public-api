@@ -22,7 +22,7 @@ namespace Common.Infrastructure
 
     public abstract class PublicApiController : ApiController
     {
-        public static string DetermineAndSetFormat(
+        public static string DetermineAndSetContentFormat(
             string format,
             IActionContextAccessor actionContextAccessor,
             HttpRequest request)
@@ -35,6 +35,25 @@ namespace Common.Infrastructure
 
             var acceptType = request.GetTypedHeaders().DetermineAcceptType(format);
             var contentType = acceptType.ToMimeTypeString();
+
+            request.Headers[HeaderNames.Accept] = contentType;
+
+            return format;
+        }
+
+        public static string DetermineAndSetProblemDetailsFormat(
+            string format,
+            IActionContextAccessor actionContextAccessor,
+            HttpRequest request)
+        {
+            format = !string.IsNullOrWhiteSpace(format)
+                ? format
+                : actionContextAccessor.ActionContext.GetValueFromHeader("format")
+                  ?? actionContextAccessor.ActionContext.GetValueFromRouteData("format")
+                  ?? actionContextAccessor.ActionContext.GetValueFromQueryString("format");
+
+            var acceptType = request.GetTypedHeaders().DetermineAcceptType(format);
+            var contentType = acceptType.ToProblemResponseMimeTypeString();
 
             request.Headers[HeaderNames.Accept] = contentType;
 

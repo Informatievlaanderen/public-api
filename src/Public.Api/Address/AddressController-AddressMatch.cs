@@ -119,7 +119,7 @@ namespace Public.Api.Address
             [FromServices] IOptions<AddressOptions> responseOptions,
             CancellationToken cancellationToken = default)
         {
-            format = DetermineAndSetFormat(format, actionContextAccessor, Request);
+            format = DetermineAndSetContentFormat(format, actionContextAccessor, Request);
 
             var taal = Taal.NL;
 

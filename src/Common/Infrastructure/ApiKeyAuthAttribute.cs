@@ -22,16 +22,22 @@ namespace Common.Infrastructure
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            if (context.Controller is PublicApiController)
+            void SetExceptionFormat(HttpContext httpContext)
             {
-                PublicApiController.DetermineAndSetFormat(
+                if (!(context.Controller is PublicApiController))
+                    return;
+
+                PublicApiController.DetermineAndSetProblemDetailsFormat(
                     string.Empty,
-                    context.HttpContext.RequestServices.GetRequiredService<IActionContextAccessor>(),
-                    context.HttpContext.Request);
+                    httpContext.RequestServices.GetRequiredService<IActionContextAccessor>(),
+                    httpContext.Request);
             }
 
             if (!context.HttpContext.Request.Headers.TryGetValue(ApiKeyHeaderName, out var potentialApiKey))
+            {
+                SetExceptionFormat(context.HttpContext);
                 throw new ApiException("API key verplicht.", StatusCodes.Status401Unauthorized);
+            }
 
             var valiApiKeys = context
                 .HttpContext
@@ -43,7 +49,10 @@ namespace Common.Infrastructure
                 .ToArray();
 
             if (!valiApiKeys.Contains(potentialApiKey.First()))
+            {
+                SetExceptionFormat(context.HttpContext);
                 throw new ApiException("Ongeldige API key.", StatusCodes.Status401Unauthorized);
+            }
 
             await next();
         }
