@@ -15,8 +15,8 @@ namespace Public.Api.Infrastructure
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Swagger;
-    using Common.Api.Infrastructure;
     using Common.Infrastructure;
+    using Common.Infrastructure.Extensions;
     using Common.Infrastructure.Modules;
     using Configuration;
     using Extract;
@@ -175,11 +175,7 @@ namespace Public.Api.Infrastructure
 
                             options.InvalidModelStateResponseFactory = actionContext =>
                             {
-                                var format =
-                                    actionContext.GetValueFromHeader("format")
-                                    ?? actionContext.GetValueFromRouteData("format")
-                                    ?? actionContext.GetValueFromQueryString("format");
-
+                                var format = actionContext.DetermineFormatParameter();
                                 var acceptType = actionContext.HttpContext.Request.GetTypedHeaders().DetermineAcceptType(format, actionContext.ActionDescriptor);
                                 var contentType = acceptType.ToMimeTypeString();
 

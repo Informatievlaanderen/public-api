@@ -7,6 +7,7 @@ namespace Common.Infrastructure
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Extensions;
     using FeatureToggle;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Http.Headers;
@@ -64,12 +65,10 @@ namespace Common.Infrastructure
             ActionDescriptor actionDescriptor,
             CancellationToken cancellationToken)
             => await GetFromBackendAsync(
-                format,
                 _restClient,
                 createBackendRequestFunc,
-                requestHeaders,
+                requestHeaders.DetermineAcceptType(format, actionDescriptor),
                 handleNotOkResponseAction,
-                actionDescriptor,
                 cancellationToken);
 
         protected async Task<BackendResponse> GetFromBackendWithBadRequestAsync(

@@ -1,4 +1,4 @@
-namespace Common.Api.Infrastructure
+namespace Common.Infrastructure.Extensions
 {
     using Microsoft.AspNetCore.Mvc;
 

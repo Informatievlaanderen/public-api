@@ -115,7 +115,7 @@ namespace Public.Api.Feeds
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            format = DetermineAndSetContentFormat(format, actionContextAccessor, Request);
+            var contentFormat = ContentFormat.For(format, actionContextAccessor, Request);
 
             IRestRequest BackendRequest() => CreateBackendSyndicationRequest(
                 "postcodes",
@@ -123,14 +123,12 @@ namespace Public.Api.Feeds
                 limit,
                 embed);
 
-           var value = await GetFromBackendAsync(
-               format,
-               restClients["PostalRegistry"].Value,
-               BackendRequest,
-               Request.GetTypedHeaders(),
-               HandleBadRequest,
-               actionContextAccessor.ActionContext.ActionDescriptor,
-               cancellationToken);
+            var value = await GetFromBackendAsync(
+                restClients["PostalRegistry"].Value,
+                BackendRequest,
+                contentFormat.ContentType,
+                HandleBadRequest,
+                cancellationToken);
 
            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.Syndication.NextUri);
        }
