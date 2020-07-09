@@ -114,7 +114,7 @@ namespace Public.Api.CrabBuilding
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = ContentFormat.For(format, actionContextAccessor, Request);
+            var contentFormat = ContentFormat.For(format, actionContextAccessor.ActionContext);
 
             if (!terreinObjectId.HasValue && string.IsNullOrEmpty(identificatorTerreinObject))
                 throw new ApiException("Er dient minstens één identificator als input te worden meegegeven.", StatusCodes.Status400BadRequest);

@@ -18,20 +18,21 @@ namespace Common.Infrastructure
 
         public static ContentFormat For(
             string urlFormat,
-            IActionContextAccessor actionContextAccessor,
-            HttpRequest request)
+            ActionContext context)
         {
-            var acceptType = DetermineAcceptType(request, actionContextAccessor.ActionContext, urlFormat);
+            var acceptType = DetermineAcceptType(context, urlFormat);
 
             return new ContentFormat(urlFormat, acceptType);
         }
 
-        public static AcceptType DetermineAcceptType(HttpRequest request, ActionContext context)
-            => DetermineAcceptType(request, context, string.Empty);
+        public static AcceptType DetermineAcceptType(ActionContext context)
+            => DetermineAcceptType(context, string.Empty);
 
-        public static AcceptType DetermineAcceptType(HttpRequest request, ActionContext context, string urlFormat)
+        public static AcceptType DetermineAcceptType(ActionContext context, string urlFormat)
         {
-            return request
+            return context
+                .HttpContext
+                .Request
                 .GetTypedHeaders()
                 .DetermineAcceptType(
                     context.DetermineFormatParameter(urlFormat),

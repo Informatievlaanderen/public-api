@@ -88,7 +88,7 @@ namespace Public.Api.Parcel
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = ContentFormat.For(format, actionContextAccessor, Request);
+            var contentFormat = ContentFormat.For(format, actionContextAccessor.ActionContext);
 
             IRestRequest BackendRequest() => CreateBackendCountRequest();
 

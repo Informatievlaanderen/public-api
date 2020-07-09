@@ -34,7 +34,7 @@ namespace Common.Infrastructure
                     .GetRequiredService<IActionContextAccessor>()
                     .ActionContext;
 
-                var acceptType = ContentFormat.DetermineAcceptType(httpContext.Request, actionContext);
+                var acceptType = ContentFormat.DetermineAcceptType(actionContext);
 
                 httpContext.Request.Headers[HeaderNames.Accept] = acceptType.ToProblemResponseMimeTypeString();
 

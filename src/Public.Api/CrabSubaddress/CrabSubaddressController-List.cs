@@ -115,7 +115,7 @@ namespace Public.Api.CrabSubaddress
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = ContentFormat.For(format, actionContextAccessor, Request);
+            var contentFormat = ContentFormat.For(format, actionContextAccessor.ActionContext);
 
             IRestRequest BackendRequest() => CreateBackendListRequest(
                 offset,
