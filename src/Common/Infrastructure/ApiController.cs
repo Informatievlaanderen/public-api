@@ -11,48 +11,13 @@ namespace Common.Infrastructure
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware;
     using Extensions;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Http.Headers;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Abstractions;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
     using RestSharp;
     using StackExchange.Redis;
 
-    public abstract class PublicApiController : ApiController
-    {
-        public static string DetermineAndSetContentFormat(
-            string format,
-            IActionContextAccessor actionContextAccessor,
-            HttpRequest request)
-        {
-            format = actionContextAccessor.ActionContext.DetermineFormatParameter(format);
-
-            var acceptType = request.GetTypedHeaders().DetermineAcceptType(format, actionContextAccessor.ActionContext.ActionDescriptor);
-            var contentType = acceptType.ToMimeTypeString();
-
-            request.Headers[HeaderNames.Accept] = contentType;
-
-            return format;
-        }
-
-        public static string DetermineAndSetProblemDetailsFormat(
-            string format,
-            IActionContextAccessor actionContextAccessor,
-            HttpRequest request)
-        {
-            format = actionContextAccessor.ActionContext.DetermineFormatParameter(format);
-
-            var acceptType = request.GetTypedHeaders().DetermineAcceptType(format, actionContextAccessor.ActionContext.ActionDescriptor);
-            var contentType = acceptType.ToProblemResponseMimeTypeString();
-
-            request.Headers[HeaderNames.Accept] = contentType;
-
-            return format;
-        }
-    }
+    public abstract class PublicApiController : ApiController { }
 
     [ApiController]
     [RejectInvalidQueryParametersFilter]
@@ -75,17 +40,13 @@ namespace Common.Infrastructure
         }
         
         protected async Task<BackendResponse> GetFromCacheThenFromBackendAsync(
-            string format,
+            AcceptType acceptType,
             IRestClient restClient,
             Func<IRestRequest> createBackendRequestFunc,
             string cacheKey,
-            RequestHeaders requestHeaders,
             Action<HttpStatusCode> handleNotOkResponseAction,
-            ActionDescriptor actionDescriptor,
             CancellationToken cancellationToken)
         {
-            var acceptType = requestHeaders.DetermineAcceptType(format, actionDescriptor);
-
             if (_redis != null)
             {
                 var key = $"{cacheKey}.{acceptType}".ToLowerInvariant();

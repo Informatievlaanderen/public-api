@@ -40,48 +40,40 @@ namespace Common.Infrastructure
         }
 
         protected async Task<BackendResponse> GetFromCacheThenFromBackendAsync(
-            string format,
+            AcceptType acceptType,
             Func<IRestRequest> createBackendRequestFunc,
             string cacheKey,
-            RequestHeaders requestHeaders,
             Action<HttpStatusCode> handleNotOkResponseAction,
-            ActionDescriptor actionDescriptor,
             CancellationToken cancellationToken)
             => await GetFromCacheThenFromBackendAsync(
-                format,
+                acceptType,
                 _restClient,
                 createBackendRequestFunc,
                 cacheKey,
-                requestHeaders,
                 handleNotOkResponseAction,
-                actionDescriptor,
                 cancellationToken);
 
         protected async Task<BackendResponse> GetFromBackendAsync(
-            string format,
+            AcceptType acceptType,
             Func<IRestRequest> createBackendRequestFunc,
-            RequestHeaders requestHeaders,
             Action<HttpStatusCode> handleNotOkResponseAction,
-            ActionDescriptor actionDescriptor,
             CancellationToken cancellationToken)
             => await GetFromBackendAsync(
                 _restClient,
                 createBackendRequestFunc,
-                requestHeaders.DetermineAcceptType(format, actionDescriptor),
+                acceptType,
                 handleNotOkResponseAction,
                 cancellationToken);
 
         protected async Task<BackendResponse> GetFromBackendWithBadRequestAsync(
-            string format,
+            AcceptType acceptType,
             Func<IRestRequest> createBackendRequestFunc,
-            RequestHeaders requestHeaders,
             Action<HttpStatusCode> handleNotOkResponseAction,
-            ActionDescriptor actionDescriptor,
             CancellationToken cancellationToken)
             => await GetFromBackendWithBadRequestAsync(
                 _restClient,
                 createBackendRequestFunc,
-                requestHeaders.DetermineAcceptType(format, actionDescriptor),
+                acceptType,
                 handleNotOkResponseAction,
                 cancellationToken);
 

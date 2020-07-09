@@ -40,16 +40,14 @@ namespace Public.Api.StreetName
             [FromBody] BosaStreetNameRequest searchBody,
             CancellationToken cancellationToken = default)
         {
-            format = DetermineAndSetContentFormat(format, actionContextAccessor, Request);
+            var contentFormat = ContentFormat.For(format, actionContextAccessor, Request);
 
             IRestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
 
             var value = await GetFromBackendAsync(
-                format,
+                contentFormat.ContentType,
                 BackendRequest,
-                Request.GetTypedHeaders(),
                 CreateDefaultHandleBadRequest(),
-                actionContextAccessor.ActionContext.ActionDescriptor,
                 cancellationToken);
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);

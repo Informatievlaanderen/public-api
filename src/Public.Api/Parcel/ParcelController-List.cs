@@ -110,9 +110,8 @@ namespace Public.Api.Parcel
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            format = DetermineAndSetContentFormat(format, actionContextAccessor, Request);
-
-            var taal = Taal.NL;
+            var contentFormat = ContentFormat.For(format, actionContextAccessor, Request);
+            const Taal taal = Taal.NL;
 
             IRestRequest BackendRequest() => CreateBackendListRequest(
                 offset,
@@ -124,19 +123,15 @@ namespace Public.Api.Parcel
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(
-                    format,
+                    contentFormat.ContentType,
                     BackendRequest,
                     cacheKey,
-                    Request.GetTypedHeaders(),
                     CreateDefaultHandleBadRequest(),
-                    actionContextAccessor.ActionContext.ActionDescriptor,
                     cancellationToken)
                 : GetFromBackendAsync(
-                    format,
+                    contentFormat.ContentType,
                     BackendRequest,
-                    Request.GetTypedHeaders(),
                     CreateDefaultHandleBadRequest(),
-                    actionContextAccessor.ActionContext.ActionDescriptor,
                     cancellationToken));
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);

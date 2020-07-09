@@ -115,9 +115,7 @@ namespace Public.Api.CrabHouseNumber
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            format = DetermineAndSetContentFormat(format, actionContextAccessor, Request);
-
-            const Taal taal = Taal.NL;
+            var contentFormat = ContentFormat.For(format, actionContextAccessor, Request);
 
             IRestRequest BackendRequest() => CreateBackendListRequest(
                 offset,
@@ -125,23 +123,19 @@ namespace Public.Api.CrabHouseNumber
                 sort,
                 objectId);
 
-            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/crabhousenumbers-list:{taal}");
+            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/crabhousenumbers-list:{Taal.NL}");
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(
-                    format,
+                    contentFormat.ContentType,
                     BackendRequest,
                     cacheKey,
-                    Request.GetTypedHeaders(),
                     CreateDefaultHandleBadRequest(),
-                    actionContextAccessor.ActionContext.ActionDescriptor,
                     cancellationToken)
                 : GetFromBackendAsync(
-                    format,
+                    contentFormat.ContentType,
                     BackendRequest,
-                    Request.GetTypedHeaders(),
                     CreateDefaultHandleBadRequest(),
-                    actionContextAccessor.ActionContext.ActionDescriptor,
                     cancellationToken));
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.CrabHuisnummersVolgendeUrl);

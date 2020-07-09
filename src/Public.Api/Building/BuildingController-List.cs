@@ -110,8 +110,7 @@ namespace Public.Api.Building
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            format = DetermineAndSetContentFormat(format, actionContextAccessor, Request);
-
+            var contentFormat = ContentFormat.For(format, actionContextAccessor, Request);
             const Taal taal = Taal.NL;
 
             IRestRequest BackendRequest() => CreateBackendListRequest(
@@ -128,11 +127,9 @@ namespace Public.Api.Building
             //    : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken));
 
             var value = await GetFromBackendAsync(
-                format,
+                contentFormat.ContentType,
                 BackendRequest,
-                Request.GetTypedHeaders(),
                 CreateDefaultHandleBadRequest(),
-                actionContextAccessor.ActionContext.ActionDescriptor,
                 cancellationToken);
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.GebouwVolgendeUrl);
