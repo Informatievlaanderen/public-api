@@ -103,7 +103,7 @@ namespace Public.Api.BuildingUnit
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = ContentFormat.For(format, actionContextAccessor, Request);
+            var contentFormat = ContentFormat.For(format, actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 

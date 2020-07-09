@@ -175,7 +175,7 @@ namespace Public.Api.Infrastructure
 
                             options.InvalidModelStateResponseFactory = actionContext =>
                             {
-                                var acceptType = ContentFormat.DetermineAcceptType(actionContext.HttpContext.Request, actionContext);
+                                var acceptType = ContentFormat.DetermineAcceptType(actionContext);
 
                                 actionContext.HttpContext.Request.Headers[HeaderNames.Accept] = acceptType.ToMimeTypeString();
 

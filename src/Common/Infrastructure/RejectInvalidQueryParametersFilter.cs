@@ -20,7 +20,7 @@ namespace Common.Infrastructure
 
             var configuration = context.HttpContext.RequestServices.GetService<IConfiguration>();
 
-            var acceptType = ContentFormat.DetermineAcceptType(request, context);
+            var acceptType = ContentFormat.DetermineAcceptType(context);
 
             request.Headers[HeaderNames.Accept] = acceptType.ToMimeTypeString();
 

@@ -103,7 +103,7 @@ namespace Public.Api.PublicService
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = ContentFormat.For(format, actionContextAccessor, Request);
+            var contentFormat = ContentFormat.For(format, actionContextAccessor.ActionContext);
             const Taal taal = Taal.NL;
 
             IRestRequest BackendRequest() => CreateBackendListRequest(
