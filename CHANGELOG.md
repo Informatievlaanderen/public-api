@@ -1,3 +1,31 @@
+# [4.0.0](https://github.com/informatievlaanderen/public-api/compare/v3.11.3...v4.0.0) (2020-07-09)
+
+
+### Bug Fixes
+
+* dont add 'from' parameter for atom content GRAR-1470 ([a4c8cb1](https://github.com/informatievlaanderen/public-api/commit/a4c8cb172995a624181b61193a7e8f369d0b71f2))
+* extract determing the format GRAR-1470 ([41cb98f](https://github.com/informatievlaanderen/public-api/commit/41cb98ff9bd8b19239b334f14f93cf6cc57f04af))
+* remove httprequest modification GRAR-1470 ([e39d00b](https://github.com/informatievlaanderen/public-api/commit/e39d00b021f865e64bc79e85f0d1e5ce2a05527f))
+* set accepttype for url extension GRAR-1470 ([2f15cd3](https://github.com/informatievlaanderen/public-api/commit/2f15cd3125d480384408fa87e8de44820637f40f))
+* update dependencies ([86de339](https://github.com/informatievlaanderen/public-api/commit/86de339e43f6c705ab2603423115691ba39ec338))
+
+
+### Features
+
+* add format extension to next url GRAR-1470 ([8195316](https://github.com/informatievlaanderen/public-api/commit/8195316933ed8e623532138511a36e57d82b9c73))
+
+
+### BREAKING CHANGES
+
+* remove protected functions
+
+HttpRequest and format parameter were modified just to use it to detemine AcceptType a few
+lines later.
+Moved to pure function and simplyfied some of the controller function
+* CHANGE
+
+determine format for sync-feed without modifying the Request
+
 ## [3.11.3](https://github.com/informatievlaanderen/public-api/compare/v3.11.2...v3.11.3) (2020-07-08)
 
 
