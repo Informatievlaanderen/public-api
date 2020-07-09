@@ -175,9 +175,7 @@ namespace Public.Api.Infrastructure
 
                             options.InvalidModelStateResponseFactory = actionContext =>
                             {
-                                var acceptType = ContentFormat.DetermineAcceptType(actionContext);
-
-                                actionContext.HttpContext.Request.Headers[HeaderNames.Accept] = acceptType.ToMimeTypeString();
+                                actionContext.SetContentFormatAcceptType();
 
                                 var modelStateProblemDetails = new ModelStateProblemDetails(actionContext.ModelState)
                                 {
@@ -193,7 +191,16 @@ namespace Public.Api.Infrastructure
                                     }
                                 };
                             };
-                        })
+                        }),
+                        ConfigureProblemDetails = cfg => cfg.OnBeforeWriteDetails = (ctx, _) =>
+                        {
+                            var acceptType = ctx
+                                .Request
+                                .GetTypedHeaders()
+                                .DetermineAcceptType(null);
+
+                            ctx.Request.Headers[HeaderNames.Accept] = acceptType.ToProblemResponseMimeTypeString();
+                        }
                     }
                 })
 

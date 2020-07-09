@@ -14,6 +14,7 @@ namespace Common.Infrastructure
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
+    using Public.Api.Infrastructure;
     using RestSharp;
     using StackExchange.Redis;
 
@@ -21,6 +22,7 @@ namespace Common.Infrastructure
 
     [ApiController]
     [RejectInvalidQueryParametersFilter]
+    [SupportUrlFormat]
     public abstract class ApiController<T> : PublicApiController
     {
         private const string ValueKey = "value";
