@@ -141,7 +141,7 @@ namespace Public.Api.BuildingUnit
                     CreateDefaultHandleBadRequest(),
                     cancellationToken));
 
-            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.GebouweenheidVolgendeUrl);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.GebouweenheidVolgendeUrl, contentFormat.UrlExtension);
         }
 
         private static IRestRequest CreateBackendListRequest(

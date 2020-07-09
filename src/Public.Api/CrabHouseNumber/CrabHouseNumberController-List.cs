@@ -138,7 +138,7 @@ namespace Public.Api.CrabHouseNumber
                     CreateDefaultHandleBadRequest(),
                     cancellationToken));
 
-            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.CrabHuisnummersVolgendeUrl);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.CrabHuisnummersVolgendeUrl, contentFormat.UrlExtension);
         }
 
         private static IRestRequest CreateBackendListRequest(

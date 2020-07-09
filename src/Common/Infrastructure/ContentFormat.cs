@@ -1,6 +1,5 @@
 namespace Common.Infrastructure
 {
-    using Be.Vlaanderen.Basisregisters.Api.Search.Helpers;
     using Extensions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -8,11 +7,11 @@ namespace Common.Infrastructure
     public class ContentFormat
     {
         public AcceptType ContentType { get; }
-        public string UrlExtension { get; }
+        public UrlExtension UrlExtension { get; }
 
         private ContentFormat(string urlFormat, AcceptType contentType)
         {
-            UrlExtension = urlFormat.IsNullOrWhiteSpace() ? "" : $".{urlFormat}";
+            UrlExtension = new UrlExtension(urlFormat);
             ContentType = contentType;
         }
 

@@ -138,7 +138,7 @@ namespace Public.Api.CrabSubaddress
                     CreateDefaultHandleBadRequest(),
                     cancellationToken));
 
-            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.CrabSubadressenVolgendeUrl);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.CrabSubadressenVolgendeUrl, contentFormat.UrlExtension);
         }
 
         private static IRestRequest CreateBackendListRequest(

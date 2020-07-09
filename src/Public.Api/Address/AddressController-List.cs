@@ -171,7 +171,7 @@ namespace Public.Api.Address
                     CreateDefaultHandleBadRequest(),
                     cancellationToken));
 
-            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl, contentFormat.UrlExtension);
         }
 
         private static IRestRequest CreateBackendListRequest(

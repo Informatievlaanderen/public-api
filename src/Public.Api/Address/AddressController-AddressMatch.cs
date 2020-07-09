@@ -140,7 +140,7 @@ namespace Public.Api.Address
                 CreateDefaultHandleBadRequest(),
                 cancellationToken);
 
-            return BackendListResponseResult.Create(response, Request.Query, string.Empty);
+            return BackendListResponseResult.Create(response, Request.Query, string.Empty, contentFormat.UrlExtension);
         }
 
         private static IRestRequest CreateBackendMatchRequest(

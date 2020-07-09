@@ -132,7 +132,7 @@ namespace Public.Api.Building
                 CreateDefaultHandleBadRequest(),
                 cancellationToken);
 
-            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.GebouwVolgendeUrl);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.GebouwVolgendeUrl, contentFormat.UrlExtension);
         }
 
         private static IRestRequest CreateBackendListRequest(
