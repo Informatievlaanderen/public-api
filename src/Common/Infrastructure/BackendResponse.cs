@@ -57,6 +57,8 @@ namespace Common.Infrastructure
 
         private bool ParameterIsAllowed(KeyValuePair<string, StringValues> parameter)
         {
+            // The atom-feed uses 'from' instead 'offset' to get the next set.
+            // The new 'from' value is already set in the next-uri and the (previous) 'from' should not be added again.
             if (IsAtomContent)
                 return !string.Equals(parameter.Key, "from", StringComparison.OrdinalIgnoreCase);
 
