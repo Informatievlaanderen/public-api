@@ -29,14 +29,7 @@ namespace Common.Infrastructure
                 if (!(context.Controller is PublicApiController))
                     return;
 
-                var actionContext = httpContext
-                    .RequestServices
-                    .GetRequiredService<IActionContextAccessor>()
-                    .ActionContext;
-
-                var acceptType = ContentFormat.DetermineAcceptType(actionContext);
-
-                httpContext.Request.Headers[HeaderNames.Accept] = acceptType.ToProblemResponseMimeTypeString();
+                context.SetContentFormatAcceptType();
 
                 throw new ApiException(message, StatusCodes.Status401Unauthorized);
             }

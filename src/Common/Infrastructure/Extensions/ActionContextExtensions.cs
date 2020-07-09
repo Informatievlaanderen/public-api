@@ -1,5 +1,6 @@
 namespace Common.Infrastructure.Extensions
 {
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
     public static class ActionContextExtensions
@@ -13,5 +14,11 @@ namespace Common.Infrastructure.Extensions
             => actionContext.GetValueFromHeader("format")
                ?? actionContext.GetValueFromRouteData("format")
                ?? actionContext.GetValueFromQueryString("format");
+
+        public static void SetContentFormatAcceptType(this ActionContext context)
+            => context
+                .HttpContext
+                .Request
+                .Headers[HeaderNames.Accept] = ContentFormat.DetermineAcceptType(context).ToMimeTypeString();
     }
 }
