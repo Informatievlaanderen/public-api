@@ -4,6 +4,7 @@ namespace Common.Infrastructure
     using System.Linq;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Extensions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.Filters;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -28,10 +29,19 @@ namespace Common.Infrastructure
                 if (!(context.Controller is PublicApiController))
                     return;
 
-                PublicApiController.DetermineAndSetProblemDetailsFormat(
-                    string.Empty,
-                    httpContext.RequestServices.GetRequiredService<IActionContextAccessor>(),
-                    httpContext.Request);
+                var actionContext = httpContext
+                    .RequestServices
+                    .GetRequiredService<IActionContextAccessor>()
+                    .ActionContext;
+
+                var acceptType = httpContext
+                    .Request
+                    .GetTypedHeaders()
+                    .DetermineAcceptType(
+                        actionContext.DetermineFormatParameter(),
+                        actionContext.ActionDescriptor);
+
+                httpContext.Request.Headers[HeaderNames.Accept] = acceptType.ToProblemResponseMimeTypeString();
 
                 throw new ApiException(message, StatusCodes.Status401Unauthorized);
             }

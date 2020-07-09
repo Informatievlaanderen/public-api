@@ -115,9 +115,7 @@ namespace Public.Api.CrabSubaddress
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            format = DetermineAndSetContentFormat(format, actionContextAccessor, Request);
-
-            const Taal taal = Taal.NL;
+            var contentFormat = ContentFormat.For(format, actionContextAccessor, Request);
 
             IRestRequest BackendRequest() => CreateBackendListRequest(
                 offset,
@@ -125,23 +123,19 @@ namespace Public.Api.CrabSubaddress
                 sort,
                 objectId);
 
-            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/crabsubaddresses-list:{taal}");
+            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/crabsubaddresses-list:{Taal.NL}");
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(
-                    format,
+                    contentFormat.ContentType,
                     BackendRequest,
                     cacheKey,
-                    Request.GetTypedHeaders(),
                     CreateDefaultHandleBadRequest(),
-                    actionContextAccessor.ActionContext.ActionDescriptor,
                     cancellationToken)
                 : GetFromBackendAsync(
-                    format,
+                    contentFormat.ContentType,
                     BackendRequest,
-                    Request.GetTypedHeaders(),
                     CreateDefaultHandleBadRequest(),
-                    actionContextAccessor.ActionContext.ActionDescriptor,
                     cancellationToken));
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.CrabSubadressenVolgendeUrl);

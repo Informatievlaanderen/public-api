@@ -103,7 +103,7 @@ namespace Public.Api.Building
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            format = DetermineAndSetContentFormat(format, actionContextAccessor, Request);
+            var contentFormat = ContentFormat.For(format, actionContextAccessor, Request);
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
@@ -115,11 +115,9 @@ namespace Public.Api.Building
             //    : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken));
 
             var value = await GetFromBackendAsync(
-                format,
+                contentFormat.ContentType,
                 BackendRequest,
-                Request.GetTypedHeaders(),
                 CreateDefaultHandleBadRequest(),
-                actionContextAccessor.ActionContext.ActionDescriptor,
                 cancellationToken);
 
             return new BackendResponseResult(value);

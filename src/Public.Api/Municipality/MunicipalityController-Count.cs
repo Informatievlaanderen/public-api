@@ -91,18 +91,16 @@ namespace Public.Api.Municipality
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            format = DetermineAndSetContentFormat(format, actionContextAccessor, Request);
+            var contentFormat = ContentFormat.For(format, actionContextAccessor, Request);
 
             IRestRequest BackendRequest() => CreateBackendCountRequest();
 
             return new BackendResponseResult(
                 await GetFromBackendAsync(
-                    format,
-                BackendRequest,
-                Request.GetTypedHeaders(),
-                CreateDefaultHandleBadRequest(),
-                    actionContextAccessor.ActionContext.ActionDescriptor,
-                cancellationToken));
+                    contentFormat.ContentType,
+                    BackendRequest,
+                    CreateDefaultHandleBadRequest(),
+                    cancellationToken));
         }
 
         private static IRestRequest CreateBackendCountRequest() => new RestRequest("gemeenten/totaal-aantal");

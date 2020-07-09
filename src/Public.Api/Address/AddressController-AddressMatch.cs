@@ -14,6 +14,7 @@ namespace Public.Api.Address
     using Swashbuckle.AspNetCore.Filters;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.Infrastructure;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class AddressController
@@ -119,12 +120,10 @@ namespace Public.Api.Address
             [FromServices] IOptions<AddressOptions> responseOptions,
             CancellationToken cancellationToken = default)
         {
-            format = DetermineAndSetContentFormat(format, actionContextAccessor, Request);
-
-            var taal = Taal.NL;
+            var contentFormat = ContentFormat.For(format, actionContextAccessor, Request);
 
             IRestRequest BackendRequest() => CreateBackendMatchRequest(
-                taal,
+                Taal.NL,
                 busnummer,
                 huisnummer,
                 postcode,
@@ -136,11 +135,9 @@ namespace Public.Api.Address
                 index);
 
             var response = await GetFromBackendWithBadRequestAsync(
-                format,
+                contentFormat.ContentType,
                 BackendRequest,
-                Request.GetTypedHeaders(),
                 CreateDefaultHandleBadRequest(),
-                actionContextAccessor.ActionContext.ActionDescriptor,
                 cancellationToken);
 
             return BackendListResponseResult.Create(response, Request.Query, string.Empty);

@@ -119,12 +119,10 @@ namespace Public.Api.Address
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            format = DetermineAndSetContentFormat(format, actionContextAccessor, Request);
-
-            const Taal taal = Taal.NL;
+            var contentFormat = ContentFormat.For(format, actionContextAccessor, Request);
 
             IRestRequest BackendRequest() => CreateBackendCountRequest(
-                taal,
+                Taal.NL,
                 busnummer,
                 huisnummer,
                 postcode,
@@ -134,11 +132,9 @@ namespace Public.Api.Address
 
             return new BackendResponseResult(
                 await GetFromBackendAsync(
-                    format,
+                    contentFormat.ContentType,
                     BackendRequest,
-                    Request.GetTypedHeaders(),
                     CreateDefaultHandleBadRequest(),
-                    actionContextAccessor.ActionContext.ActionDescriptor,
                     cancellationToken));
         }
 

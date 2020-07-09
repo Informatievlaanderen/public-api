@@ -94,17 +94,15 @@ namespace Public.Api.BuildingUnit
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            format = DetermineAndSetContentFormat(format, actionContextAccessor, Request);
+            var contentFormat = ContentFormat.For(format, actionContextAccessor, Request);
 
             IRestRequest BackendRequest() => CreateBackendCountRequest(adresObjectId);
 
             return new BackendResponseResult(
                 await GetFromBackendAsync(
-                    format,
+                    contentFormat.ContentType,
                     BackendRequest,
-                    Request.GetTypedHeaders(),
                     CreateDefaultHandleBadRequest(),
-                    actionContextAccessor.ActionContext.ActionDescriptor,
                     cancellationToken));
         }
 
