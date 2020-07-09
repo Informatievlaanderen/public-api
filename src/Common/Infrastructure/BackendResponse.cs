@@ -6,6 +6,8 @@ namespace Common.Infrastructure
     using System.Net;
     using System.Text.RegularExpressions;
     using System.Xml.Linq;
+    using Be.Vlaanderen.Basisregisters.Api.Search.Helpers;
+    using Extensions;
     using Microsoft.Extensions.Primitives;
 
     public class BackendResponse
@@ -37,9 +39,9 @@ namespace Common.Infrastructure
             StatusCode = statusCode;
         }
 
-        public void UpdateNextPageUrlWithQueryParameters(NonPagedQueryCollection requestQuery, string nextPageUrlOption)
+        public void UpdateNextPageUrlWithQueryParameters(NonPagedQueryCollection requestQuery, string nextPageUrlTemplate, UrlExtension urlExtension)
         {
-            if (string.IsNullOrWhiteSpace(nextPageUrlOption) || requestQuery.IsEmpty || IsProblemDetail)
+            if (string.IsNullOrWhiteSpace(nextPageUrlTemplate) || requestQuery.IsEmpty || IsProblemDetail)
                 return;
 
             var parameters = requestQuery
@@ -48,8 +50,8 @@ namespace Common.Infrastructure
 
             Content = Regex.Replace(
                 Content,
-                GetNextPagePattern(nextPageUrlOption),
-                $"$1{EscapeForContentType(parameters)}$2",
+                GetNextPagePattern(nextPageUrlTemplate),
+                $"$1{urlExtension}$2{EscapeForContentType(parameters)}$3",
                 RegexOptions.IgnoreCase);
         }
 
@@ -61,25 +63,52 @@ namespace Common.Infrastructure
             return true;
         }
 
-        private string GetNextPagePattern(string nextPageUrlOption)
+        private string GetNextPagePattern(string nextPageUrlTemplate)
         {
-            const string numberPatternPlaceholder = "__NUMBER_PATTERN_PLACEHOLDER_THAT_WONT_BE_REGEX_ESCAPED__";
-            var nextPageUrlOptionWithPlaceholders = string.Format(nextPageUrlOption, numberPatternPlaceholder, numberPatternPlaceholder);
-            var nextPageUrlValePattern = Regex
-                .Escape(nextPageUrlOptionWithPlaceholders)
-                .Replace(numberPatternPlaceholder, "\\d+");
+            var templateParts = nextPageUrlTemplate
+                    .Format(Pattern.NumberPatternPlaceholder, Pattern.NumberPatternPlaceholder)
+                    .Split('?');
 
-            var escapedValuePattern = EscapeForContentType(nextPageUrlValePattern);
+            if (templateParts.Length > 2)
+                throw new ArgumentException($"Argument '{nameof(nextPageUrlTemplate)}' has an invalid format. Multiple '?' where found in '{nextPageUrlTemplate}'");
+
+            var url = new Pattern(templateParts[0], EscapeForContentType);
+            var query = new Pattern(templateParts.Length > 1 ? "?" + templateParts[1] : string.Empty, EscapeForContentType);
 
             if (IsAtomContent)
-                return $"(<link href=\"{escapedValuePattern})(\" rel=\"next\" />)";
+                return $"(<link href=\"{url})({query})(\" rel=\"next\" />)";
 
             if (IsXmlContent)
-                return $"(<volgende>{escapedValuePattern})(</volgende>)";
+                return $"(<volgende>{url})({query})(</volgende>)";
 
-            return $"(\"volgende\"\\s*:\\s*\"{escapedValuePattern})(\")";
+            return $"(\"volgende\"\\s*:\\s*\"{url})({query})(\")";
         }
 
         private string EscapeForContentType(string value) => IsXmlContent ? new XText(value).ToString() : value;
+
+        private class Pattern
+        {
+            public const string NumberPatternPlaceholder = "__NUMBER_PATTERN_PLACEHOLDER_THAT_WONT_BE_REGEX_ESCAPED__";
+
+            private readonly Func<string, string> _escapeForContentType;
+            private readonly string _escapedPattern;
+
+            public Pattern(string patternValue, Func<string, string> escapeForContentType)
+            {
+                _escapeForContentType = escapeForContentType ?? throw new ArgumentNullException(nameof(escapeForContentType));
+                _escapedPattern = BuildPattern(patternValue);
+            }
+
+            private static string BuildPattern(string patternValue)
+            {
+                return patternValue.IsNullOrWhiteSpace()
+                    ? string.Empty
+                    : Regex
+                        .Escape(patternValue)
+                        .Replace(NumberPatternPlaceholder, @"\d+");
+            }
+
+            public override string ToString() => _escapeForContentType(_escapedPattern);
+        }
     }
 }

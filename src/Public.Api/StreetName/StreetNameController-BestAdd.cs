@@ -50,7 +50,7 @@ namespace Public.Api.StreetName
                 CreateDefaultHandleBadRequest(),
                 cancellationToken);
 
-            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl, contentFormat.UrlExtension);
         }
 
         private static IRestRequest CreateBackendSearchBestAddRequest(BosaStreetNameRequest searchBody)

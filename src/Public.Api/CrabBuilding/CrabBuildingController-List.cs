@@ -138,7 +138,7 @@ namespace Public.Api.CrabBuilding
                     CreateDefaultHandleBadRequest(),
                     cancellationToken));
 
-            return BackendListResponseResult.Create(value, Request.Query, string.Empty);
+            return BackendListResponseResult.Create(value, Request.Query, string.Empty, contentFormat.UrlExtension);
         }
 
         private static IRestRequest CreateBackendListRequest(
