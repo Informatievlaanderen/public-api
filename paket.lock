@@ -11,12 +11,12 @@ NUGET
     AutoFixture.Xunit2 (4.12)
       AutoFixture (>= 4.12)
       xunit.extensibility.core (>= 2.2 < 3.0)
-    AWSSDK.Core (3.3.107.20)
+    AWSSDK.Core (3.3.107.22)
     AWSSDK.DynamoDBv2 (3.3.106.28)
       AWSSDK.Core (>= 3.3.107.20 < 3.4)
-    AWSSDK.S3 (3.3.111.21)
-      AWSSDK.Core (>= 3.3.107.20 < 3.4)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (2.16.8) - copy_content_to_output_dir: always
+    AWSSDK.S3 (3.3.111.23)
+      AWSSDK.Core (>= 3.3.107.22 < 3.4)
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (2.16.11) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.AggregateSource (5.0.7)
       Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (>= 2.2.4)
       Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (>= 2.2.4)
@@ -29,7 +29,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.AggregateSource (5.0.7)
       Be.Vlaanderen.Basisregisters.EventHandling (>= 2.2.4)
       SqlStreamStore (>= 1.2)
-    Be.Vlaanderen.Basisregisters.Api (11.5.1)
+    Be.Vlaanderen.Basisregisters.Api (11.6)
       Autofac (>= 5.2)
       Autofac.Extensions.DependencyInjection (>= 6.0)
       Be.Vlaanderen.Basisregisters.AggregateSource (>= 5.0.7)
@@ -138,7 +138,7 @@ NUGET
       Fake.IO.FileSystem (>= 5.20.1)
       Fake.JavaScript.Npm (>= 5.20.1)
       Newtonsoft.Json (>= 12.0.3)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (2.16.12) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (2.17) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.CommandHandling (5.0.7)
     Be.Vlaanderen.Basisregisters.Converters.TrimString (2.2.4)
       Newtonsoft.Json (>= 12.0.3)
