@@ -20,12 +20,9 @@ namespace Common.Infrastructure
 
             var configuration = context.HttpContext.RequestServices.GetService<IConfiguration>();
 
-            var format = context.DetermineFormatParameter();
+            var acceptType = ContentFormat.DetermineAcceptType(request, context);
 
-            var acceptType = request.GetTypedHeaders().DetermineAcceptType(format, context.ActionDescriptor);
-            var contentType = acceptType.ToMimeTypeString();
-
-            request.Headers[HeaderNames.Accept] = contentType;
+            request.Headers[HeaderNames.Accept] = acceptType.ToMimeTypeString();
 
             throw new ApiException(
                 $"Ongeldige parameters. Het gebruik van een prefix bij een parameter is niet geldig. Bekijk {configuration["DocsUrl"]} voor een overzicht van geldige parameters.",
