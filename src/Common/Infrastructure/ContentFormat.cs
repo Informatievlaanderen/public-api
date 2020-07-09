@@ -2,6 +2,7 @@ namespace Common.Infrastructure
 {
     using Extensions;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
 
     public class ContentFormat
@@ -20,14 +21,21 @@ namespace Common.Infrastructure
             IActionContextAccessor actionContextAccessor,
             HttpRequest request)
         {
-            var actionContext = actionContextAccessor.ActionContext;
-            var format = actionContext.DetermineFormatParameter(urlFormat);
-
-            var acceptType = request
-                .GetTypedHeaders()
-                .DetermineAcceptType(format, actionContext.ActionDescriptor);
+            var acceptType = DetermineAcceptType(request, actionContextAccessor.ActionContext, urlFormat);
 
             return new ContentFormat(urlFormat, acceptType);
+        }
+
+        public static AcceptType DetermineAcceptType(HttpRequest request, ActionContext context)
+            => DetermineAcceptType(request, context, string.Empty);
+
+        public static AcceptType DetermineAcceptType(HttpRequest request, ActionContext context, string urlFormat)
+        {
+            return request
+                .GetTypedHeaders()
+                .DetermineAcceptType(
+                    context.DetermineFormatParameter(urlFormat),
+                    context.ActionDescriptor);
         }
     }
 }
