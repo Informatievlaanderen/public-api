@@ -1,10 +1,12 @@
 namespace Common.Infrastructure
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Text.RegularExpressions;
     using System.Xml.Linq;
+    using Microsoft.Extensions.Primitives;
 
     public class BackendResponse
     {
@@ -15,7 +17,9 @@ namespace Common.Infrastructure
         public bool CameFromCache { get; }
         public HttpStatusCode StatusCode { get; }
 
-        private bool IsXmlContent => ContentType == AcceptTypes.Xml || ContentType == AcceptTypes.Atom;
+        private bool IsXmlContent => ContentType.Contains("xml", StringComparison.OrdinalIgnoreCase);
+        private bool IsAtomContent => Content.Contains("<feed xmlns=\"http://www.w3.org/2005/Atom\">", StringComparison.OrdinalIgnoreCase);
+        private bool IsProblemDetail => ContentType.Contains("problem", StringComparison.OrdinalIgnoreCase);
 
         public BackendResponse(
             string content,
@@ -35,10 +39,11 @@ namespace Common.Infrastructure
 
         public void UpdateNextPageUrlWithQueryParameters(NonPagedQueryCollection requestQuery, string nextPageUrlOption)
         {
-            if (string.IsNullOrWhiteSpace(nextPageUrlOption) || requestQuery.IsEmpty)
+            if (string.IsNullOrWhiteSpace(nextPageUrlOption) || requestQuery.IsEmpty || IsProblemDetail)
                 return;
 
             var parameters = requestQuery
+                .Where(ParameterIsAllowed)
                 .Aggregate(string.Empty, (result, filterQueryParameter) => $"{result}&{filterQueryParameter.Key}={Uri.EscapeUriString(filterQueryParameter.Value)}");
 
             Content = Regex.Replace(
@@ -46,6 +51,14 @@ namespace Common.Infrastructure
                 GetNextPagePattern(nextPageUrlOption),
                 $"$1{EscapeForContentType(parameters)}$2",
                 RegexOptions.IgnoreCase);
+        }
+
+        private bool ParameterIsAllowed(KeyValuePair<string, StringValues> parameter)
+        {
+            if (IsAtomContent)
+                return !string.Equals(parameter.Key, "from", StringComparison.OrdinalIgnoreCase);
+
+            return true;
         }
 
         private string GetNextPagePattern(string nextPageUrlOption)
@@ -58,10 +71,11 @@ namespace Common.Infrastructure
 
             var escapedValuePattern = EscapeForContentType(nextPageUrlValePattern);
 
+            if (IsAtomContent)
+                return $"(<link href=\"{escapedValuePattern})(\" rel=\"next\" />)";
+
             if (IsXmlContent)
-                return Content.Contains("<feed xmlns=\"http://www.w3.org/2005/Atom\">")
-                    ? $"(<link href=\"{escapedValuePattern})(\" rel=\"next\" />)"
-                    : $"(<volgende>{escapedValuePattern})(</volgende>)";
+                return $"(<volgende>{escapedValuePattern})(</volgende>)";
 
             return $"(\"volgende\"\\s*:\\s*\"{escapedValuePattern})(\")";
         }
