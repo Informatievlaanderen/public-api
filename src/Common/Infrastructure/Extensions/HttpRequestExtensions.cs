@@ -1,5 +1,6 @@
 namespace Common.Infrastructure.Extensions
 {
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
     public static class HttpRequestExtensions
@@ -19,5 +20,35 @@ namespace Common.Infrastructure.Extensions
 
         public static string GetValueFromHeader(this ActionContext context, string key)
             => context.HttpContext.Request.Headers.TryGetValue(key, out var headerValue) ? headerValue.ToString().ToLowerInvariant() : null;
+
+        public static void SetAcceptType(this HttpRequest request, AcceptType acceptType)
+            => request.Headers[HeaderNames.Accept] = acceptType.ToMimeTypeString();
+
+        public static void SetContentFormatAcceptType(this ActionContext context)
+            => context
+                .HttpContext
+                .Request
+                .SetAcceptType(ContentFormat.DetermineAcceptType(context));
+
+        public static void RewriteAcceptTypeForProblemDetail(this HttpRequest request)
+        {
+            var acceptType = request
+                .GetTypedHeaders()
+                .DetermineAcceptType(null);
+
+            // convert Atom to Xml to support problem-details
+            if (acceptType == AcceptType.Atom)
+                request.SetAcceptType(AcceptType.Xml);
+        }
+
+        public static string DetermineFormatParameter(this ActionContext actionContext, string format)
+            => !string.IsNullOrWhiteSpace(format)
+                ? format
+                : actionContext.DetermineFormatParameter();
+
+        public static string DetermineFormatParameter(this ActionContext actionContext)
+            => actionContext.GetValueFromHeader("format")
+               ?? actionContext.GetValueFromRouteData("format")
+               ?? actionContext.GetValueFromQueryString("format");
     }
 }
