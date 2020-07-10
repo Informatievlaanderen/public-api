@@ -1,3 +1,11 @@
+## [4.0.2](https://github.com/informatievlaanderen/public-api/compare/v4.0.1...v4.0.2) (2020-07-10)
+
+
+### Bug Fixes
+
+* add collection debug helpers ([33a1e12](https://github.com/informatievlaanderen/public-api/commit/33a1e125e46949c360c852b728d72aaf1401541b))
+* clean query parameters GRAR-1497 ([005f4d1](https://github.com/informatievlaanderen/public-api/commit/005f4d1a4a0203be5ccccd6fa6271794116b5a34))
+
 ## [4.0.1](https://github.com/informatievlaanderen/public-api/compare/v4.0.0...v4.0.1) (2020-07-10)
 
 
