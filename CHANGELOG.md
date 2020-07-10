@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/informatievlaanderen/public-api/compare/v4.0.0...v4.0.1) (2020-07-10)
+
+
+### Bug Fixes
+
+* set correct accepttype on error GRAR-1462 ([76d45f6](https://github.com/informatievlaanderen/public-api/commit/76d45f65662576a8ae1d4c64952ea081f683252a))
+
 # [4.0.0](https://github.com/informatievlaanderen/public-api/compare/v3.11.3...v4.0.0) (2020-07-09)
 
 
