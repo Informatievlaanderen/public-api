@@ -31,13 +31,13 @@ namespace Public.Api.Feeds
             string resourcename,
             long? from,
             int? limit,
-            string embed)
+            EmbedValue embed)
             => new RestRequest($"{resourcename}/sync")
                     .AddPagination(NoPaging, limit)
                     .AddFiltering(new
                     {
                         position = from ?? 0,
-                        embed = embed ?? string.Empty
+                        embed = embed.ToString()
                     });
 
         protected void HandleBadRequest(HttpStatusCode statusCode)
