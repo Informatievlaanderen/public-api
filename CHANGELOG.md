@@ -1,3 +1,12 @@
+## [4.0.3](https://github.com/informatievlaanderen/public-api/compare/v4.0.2...v4.0.3) (2020-07-13)
+
+
+### Bug Fixes
+
+* add missing using GRAR-1465 ([69dbb54](https://github.com/informatievlaanderen/public-api/commit/69dbb54e6041890813cf5754ba1a1eb8ec14ed95))
+* update dependencies ([1ffc705](https://github.com/informatievlaanderen/public-api/commit/1ffc7059b5c6f89ba09620cc01acadf3fad0ea94))
+* used typed embed parameter GRAR-1465 ([7b7c289](https://github.com/informatievlaanderen/public-api/commit/7b7c289bc5fbd00859b1df09d519c38aef15d1ba))
+
 ## [4.0.2](https://github.com/informatievlaanderen/public-api/compare/v4.0.1...v4.0.2) (2020-07-10)
 
 
