@@ -3,6 +3,7 @@ namespace Public.Api.Feeds
     using System.Net;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Api.Search.Filtering;
     using Common.Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
