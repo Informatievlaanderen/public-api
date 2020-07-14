@@ -131,10 +131,10 @@ namespace Common.Infrastructure.Extensions
 
         private static bool Contains(
             this MediaTypeHeaderValue headerValue,
-            string mineType)
+            string mimeType)
             => headerValue
                 .MediaType
                 .Value
-                .Contains(mineType, StringComparison.InvariantCultureIgnoreCase);
+                .Contains(mimeType, StringComparison.InvariantCultureIgnoreCase);
     }
 }
