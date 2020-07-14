@@ -2,7 +2,6 @@ namespace Common.Infrastructure.Extensions
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Linq;
 
     public static class CollectionExtensions

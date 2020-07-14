@@ -7,11 +7,8 @@ namespace Common.Infrastructure
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Extensions;
     using FeatureToggle;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Http.Headers;
-    using Microsoft.AspNetCore.Mvc.Abstractions;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Primitives;
     using RestSharp;
