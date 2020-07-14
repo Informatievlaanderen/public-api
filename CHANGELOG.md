@@ -1,3 +1,11 @@
+## [4.0.4](https://github.com/informatievlaanderen/public-api/compare/v4.0.3...v4.0.4) (2020-07-14)
+
+
+### Bug Fixes
+
+* return 406 no longer crashes GRAR-1460 ([d143203](https://github.com/informatievlaanderen/public-api/commit/d14320328aad9083cd05de215b2585372b2acd25))
+* validate accept type based on endpoint type GRAR-1460 ([6da659b](https://github.com/informatievlaanderen/public-api/commit/6da659b41cb48e617eb8cec4c2f1798274115dc8))
+
 ## [4.0.3](https://github.com/informatievlaanderen/public-api/compare/v4.0.2...v4.0.3) (2020-07-13)
 
 
