@@ -1,3 +1,10 @@
+## [4.0.5](https://github.com/informatievlaanderen/public-api/compare/v4.0.4...v4.0.5) (2020-07-14)
+
+
+### Bug Fixes
+
+* update dependencies ([27b7aba](https://github.com/informatievlaanderen/public-api/commit/27b7aba01cad061df9c34d36ad4473d3d1a033da))
+
 ## [4.0.4](https://github.com/informatievlaanderen/public-api/compare/v4.0.3...v4.0.4) (2020-07-14)
 
 
