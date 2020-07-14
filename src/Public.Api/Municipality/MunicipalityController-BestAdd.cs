@@ -40,7 +40,7 @@ namespace Public.Api.Municipality
             [FromBody] BosaMunicipalityRequest searchBody,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = ContentFormat.For(format, actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(format, actionContextAccessor.ActionContext);
 
             IRestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
 

@@ -29,5 +29,8 @@ namespace Public.Api.Municipality
             ConnectionMultiplexerProvider redis,
             ILogger<MunicipalityController> logger)
             : base(restClient, cacheToggle, redis, logger) { }
+
+        private static ContentFormat DetermineFormat(string urlFormat, ActionContext context)
+            => ContentFormat.For(EndpointType.Legacy, urlFormat, context);
     }
 }

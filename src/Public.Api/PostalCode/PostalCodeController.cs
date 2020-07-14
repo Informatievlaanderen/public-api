@@ -29,5 +29,8 @@ namespace Public.Api.PostalCode
             ConnectionMultiplexerProvider redis,
             ILogger<PostalCodeController> logger)
             : base(restClient, cacheToggle, redis, logger) { }
+
+        private static ContentFormat DetermineFormat(string urlFormat, ActionContext context)
+            => ContentFormat.For(EndpointType.Legacy, urlFormat, context);
     }
 }

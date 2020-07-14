@@ -97,7 +97,7 @@ namespace Public.Api.Parcel
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = ContentFormat.For(format, actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(format, actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 

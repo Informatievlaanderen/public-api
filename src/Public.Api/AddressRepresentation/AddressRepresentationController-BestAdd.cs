@@ -40,7 +40,7 @@ namespace Public.Api.AddressRepresentation
             [FromBody] BosaAddressRepresentationRequest searchBody,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = ContentFormat.For(format, actionContextAccessor.ActionContext); ;
+            var contentFormat = DetermineFormat(format, actionContextAccessor.ActionContext); ;
 
             IRestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
 
