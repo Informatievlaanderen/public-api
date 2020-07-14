@@ -17,17 +17,17 @@ nuget Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting 5.0.7
 // VBR STUFF
 nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      3.8.0   copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            2.9.0   copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        2.10.0   copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        2.10.0  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           2.17.0  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.18.0 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            3.11.0 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.18.0  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            3.11.0  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice 2.1.1   copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 4.2.1
 
 nuget Be.Vlaanderen.Basisregisters.Api 11.7.4
 
-nuget Be.Vlaanderen.Basisregisters.GrAr.Common 16.0.0.
+nuget Be.Vlaanderen.Basisregisters.GrAr.Common 16.0.0
 nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 16.0.0
 nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 16.0.0
 
