@@ -91,7 +91,7 @@ namespace Public.Api.Municipality
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = ContentFormat.For(format, actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(format, actionContextAccessor.ActionContext);
 
             IRestRequest BackendRequest() => CreateBackendCountRequest();
 

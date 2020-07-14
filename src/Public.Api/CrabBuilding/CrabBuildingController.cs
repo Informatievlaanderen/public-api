@@ -29,5 +29,8 @@ namespace Public.Api.CrabBuilding
             ConnectionMultiplexerProvider redis,
             ILogger<CrabBuildingController> logger)
             : base(restClient, cacheToggle, redis, logger) { }
+
+        private static ContentFormat DetermineFormat(string urlFormat, ActionContext context)
+            => ContentFormat.For(EndpointType.Legacy, urlFormat, context);
     }
 }

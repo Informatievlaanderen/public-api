@@ -28,5 +28,8 @@ namespace Public.Api.AddressRepresentation
             ConnectionMultiplexerProvider redis,
             ILogger<AddressRepresentationController> logger)
             : base(restClient, cacheToggle, redis, logger) { }
+
+        private static ContentFormat DetermineFormat(string urlFormat, ActionContext context)
+            => ContentFormat.For(EndpointType.Legacy, urlFormat, context);
     }
 }

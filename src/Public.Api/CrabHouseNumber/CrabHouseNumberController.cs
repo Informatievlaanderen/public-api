@@ -29,5 +29,8 @@ namespace Public.Api.CrabHouseNumber
             ConnectionMultiplexerProvider redis,
             ILogger<CrabHouseNumberController> logger)
             : base(restClient, cacheToggle, redis, logger) { }
+
+        private static ContentFormat DetermineFormat(string urlFormat, ActionContext context)
+            => ContentFormat.For(EndpointType.Legacy, urlFormat, context);
     }
 }

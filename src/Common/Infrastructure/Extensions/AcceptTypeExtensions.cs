@@ -11,6 +11,8 @@ namespace Common.Infrastructure.Extensions
 
     public static class AcceptTypeExtensions
     {
+        private static ApiException InvalidAcceptType => new ApiException("Ongeldig formaat.", StatusCodes.Status406NotAcceptable);
+
         public static string ToMimeTypeString(this AcceptType acceptType)
         {
             return acceptType switch
@@ -108,8 +110,17 @@ namespace Common.Infrastructure.Extensions
                 }
             }
 
-            throw new ApiException("Ongeldig formaat.", StatusCodes.Status406NotAcceptable);
+            throw InvalidAcceptType;
         }
+
+        public static AcceptType ValidateFor(
+            this AcceptType acceptType,
+            EndpointType endpointType)
+            => endpointType
+                .GetAcceptedTypes()
+                .Contains(acceptType)
+                ? acceptType
+                : throw InvalidAcceptType;
 
         public static bool Contains(
             this RequestHeaders requestHeaders,

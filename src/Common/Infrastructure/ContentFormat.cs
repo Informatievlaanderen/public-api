@@ -3,7 +3,6 @@ namespace Common.Infrastructure
     using Extensions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
 
     public class ContentFormat
     {
@@ -17,10 +16,12 @@ namespace Common.Infrastructure
         }
 
         public static ContentFormat For(
+            EndpointType endpointType,
             string urlFormat,
             ActionContext context)
         {
-            var acceptType = DetermineAcceptType(context, urlFormat);
+            var acceptType = DetermineAcceptType(context, urlFormat)
+                .ValidateFor(endpointType);
 
             return new ContentFormat(urlFormat, acceptType);
         }

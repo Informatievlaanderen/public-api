@@ -29,5 +29,8 @@ namespace Public.Api.BuildingUnit
             ConnectionMultiplexerProvider redis,
             ILogger<BuildingUnitController> logger)
             : base(restClient, cacheToggle, redis, logger) { }
+
+        private static ContentFormat DetermineFormat(string urlFormat, ActionContext context)
+            => ContentFormat.For(EndpointType.Legacy, urlFormat, context);
     }
 }
