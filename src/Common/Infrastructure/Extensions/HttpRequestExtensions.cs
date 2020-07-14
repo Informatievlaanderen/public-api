@@ -32,12 +32,8 @@ namespace Common.Infrastructure.Extensions
 
         public static void RewriteAcceptTypeForProblemDetail(this HttpRequest request)
         {
-            var acceptType = request
-                .GetTypedHeaders()
-                .DetermineAcceptType(null);
-
             // convert Atom to Xml to support problem-details
-            if (acceptType == AcceptType.Atom)
+            if (request.GetTypedHeaders().Contains(AcceptType.Atom))
                 request.SetAcceptType(AcceptType.Xml);
         }
 

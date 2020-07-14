@@ -111,7 +111,19 @@ namespace Common.Infrastructure.Extensions
             throw new ApiException("Ongeldig formaat.", StatusCodes.Status406NotAcceptable);
         }
 
-        private static bool Contains(this MediaTypeHeaderValue headerValue, string mineType)
-            => headerValue.MediaType.Value.Contains(mineType, StringComparison.InvariantCultureIgnoreCase);
+        public static bool Contains(
+            this RequestHeaders requestHeaders,
+            AcceptType acceptType)
+            => requestHeaders
+                .Accept
+                .Any(headerValue => headerValue.Contains(acceptType.ToMimeTypeString()));
+
+        private static bool Contains(
+            this MediaTypeHeaderValue headerValue,
+            string mineType)
+            => headerValue
+                .MediaType
+                .Value
+                .Contains(mineType, StringComparison.InvariantCultureIgnoreCase);
     }
 }
