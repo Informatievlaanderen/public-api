@@ -1,3 +1,10 @@
+## [4.0.6](https://github.com/informatievlaanderen/public-api/compare/v4.0.5...v4.0.6) (2020-07-15)
+
+
+### Bug Fixes
+
+* check url parameters AND url extension GRAR-1497 ([95450c9](https://github.com/informatievlaanderen/public-api/commit/95450c912c30de42cd0ef12b7df4bcb30d5789ca))
+
 ## [4.0.5](https://github.com/informatievlaanderen/public-api/compare/v4.0.4...v4.0.5) (2020-07-14)
 
 
