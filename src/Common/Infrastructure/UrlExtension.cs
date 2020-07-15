@@ -11,6 +11,8 @@ namespace Common.Infrastructure
                 ? string.Empty
                 : $".{extension.TrimStart('.')}";
 
+        public bool IsEmpty => string.IsNullOrWhiteSpace(_extension);
+
         public override string ToString() => _extension;
     }
 }
