@@ -41,17 +41,22 @@ namespace Common.Infrastructure
 
         public void UpdateNextPageUrlWithQueryParameters(NonPagedQueryCollection requestQuery, string nextPageUrlTemplate, UrlExtension urlExtension)
         {
-            if (string.IsNullOrWhiteSpace(nextPageUrlTemplate) || requestQuery.IsEmpty || IsProblemDetail)
+            if (string.IsNullOrWhiteSpace(nextPageUrlTemplate) || IsProblemDetail)
                 return;
 
             var parameters = requestQuery
                 .Where(ParameterIsAllowed)
-                .Aggregate(string.Empty, (result, filterQueryParameter) => $"{result}&{filterQueryParameter.Key}={Uri.EscapeUriString(filterQueryParameter.Value)}");
+                .Select(FormatAsUriParameter)
+                .Select(EscapeForContentType)
+                .Aggregate(string.Empty, (result, parameter) => $"{result}{parameter}");
+
+            if (string.IsNullOrWhiteSpace(parameters) && urlExtension.IsEmpty)
+                return;
 
             Content = Regex.Replace(
                 Content,
                 GetNextPagePattern(nextPageUrlTemplate),
-                $"$1{urlExtension}$2{EscapeForContentType(parameters)}$3",
+                $"$1{urlExtension}$2{parameters}$3",
                 RegexOptions.IgnoreCase);
         }
 
@@ -64,6 +69,9 @@ namespace Common.Infrastructure
 
             return true;
         }
+
+        private static string FormatAsUriParameter(KeyValuePair<string, StringValues> parameter)
+            => $"&{parameter.Key}={Uri.EscapeUriString(parameter.Value)}";
 
         private string GetNextPagePattern(string nextPageUrlTemplate)
         {
