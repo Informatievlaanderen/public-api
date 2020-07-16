@@ -5,6 +5,8 @@ namespace Public.Api.Feeds
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.Api.Search.Filtering;
     using Common.Infrastructure;
+    using Common.Infrastructure.Controllers;
+    using Common.Infrastructure.Controllers.Attributes;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;

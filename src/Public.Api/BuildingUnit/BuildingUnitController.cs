@@ -3,6 +3,8 @@ namespace Public.Api.BuildingUnit
     using Autofac.Features.AttributeFilters;
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
+    using Common.Infrastructure.Controllers;
+    using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Mvc;

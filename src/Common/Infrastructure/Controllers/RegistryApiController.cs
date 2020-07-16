@@ -1,4 +1,4 @@
-namespace Common.Infrastructure
+namespace Common.Infrastructure.Controllers
 {
     using System;
     using System.Collections.Generic;

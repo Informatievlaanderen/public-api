@@ -1,4 +1,4 @@
-namespace Common.Infrastructure
+namespace Common.Infrastructure.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -7,6 +7,7 @@ namespace Common.Infrastructure
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
+    using Attributes;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware;
@@ -14,7 +15,6 @@ namespace Common.Infrastructure
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
-    using Public.Api.Infrastructure;
     using RestSharp;
     using StackExchange.Redis;
 
