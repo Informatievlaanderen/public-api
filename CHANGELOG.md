@@ -1,3 +1,10 @@
+## [4.0.7](https://github.com/informatievlaanderen/public-api/compare/v4.0.6...v4.0.7) (2020-07-16)
+
+
+### Bug Fixes
+
+* clean xlm escpapes from querystring GRAR-1497 ([0033fed](https://github.com/informatievlaanderen/public-api/commit/0033fedaf754c9b6cf3a2ad3427d6d2d37c810b8))
+
 ## [4.0.6](https://github.com/informatievlaanderen/public-api/compare/v4.0.5...v4.0.6) (2020-07-15)
 
 
