@@ -9,6 +9,7 @@ namespace Public.Api.Extract
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
+    using Common.Infrastructure.Controllers;
     using FluentValidation;
     using FluentValidation.Results;
     using Infrastructure.Swagger;

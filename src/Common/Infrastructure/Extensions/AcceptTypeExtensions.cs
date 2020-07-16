@@ -3,6 +3,7 @@ namespace Common.Infrastructure.Extensions
     using System;
     using System.Linq;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Controllers.Attributes;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Http.Headers;
     using Microsoft.AspNetCore.Mvc.Abstractions;

@@ -16,6 +16,7 @@ namespace Public.Api.Infrastructure
     using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Swagger;
     using Common.Infrastructure;
+    using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Extensions;
     using Common.Infrastructure.Modules;
     using Configuration;

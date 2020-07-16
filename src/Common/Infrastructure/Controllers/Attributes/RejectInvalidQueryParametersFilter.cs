@@ -1,4 +1,4 @@
-namespace Common.Infrastructure
+namespace Common.Infrastructure.Controllers.Attributes
 {
     using System;
     using System.Linq;

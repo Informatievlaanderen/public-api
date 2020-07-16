@@ -1,9 +1,8 @@
-namespace Public.Api.Infrastructure
+namespace Common.Infrastructure.Controllers.Attributes
 {
     using System;
     using System.Threading.Tasks;
-    using Common.Infrastructure;
-    using Common.Infrastructure.Extensions;
+    using Extensions;
     using Microsoft.AspNetCore.Mvc.Filters;
 
     [AttributeUsage(AttributeTargets.Class, Inherited = true)]
