@@ -1,3 +1,11 @@
+## [4.0.8](https://github.com/informatievlaanderen/public-api/compare/v4.0.7...v4.0.8) (2020-07-19)
+
+
+### Bug Fixes
+
+* move to 3.1.6 ([3aef30e](https://github.com/informatievlaanderen/public-api/commit/3aef30ebb97788598f94ee198104a17d306ad1fa))
+* remove empty parameters from next url GRAR-1497 ([aba6701](https://github.com/informatievlaanderen/public-api/commit/aba6701a614a8408f398ccbe77a5a42652d422e9))
+
 ## [4.0.7](https://github.com/informatievlaanderen/public-api/compare/v4.0.6...v4.0.7) (2020-07-16)
 
 
