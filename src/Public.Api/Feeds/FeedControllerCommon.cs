@@ -13,10 +13,11 @@ namespace Public.Api.Feeds
     using Microsoft.Extensions.Logging;
     using RestSharp;
 
+    [ApiVisible]
     [ApiVersion("1.0")]
     [AdvertiseApiVersions("1.0")]
     [ApiRoute("feeds")]
-    [ApiExplorerSettings(GroupName = "Feeds", IgnoreApi = true)]
+    [ApiExplorerSettings(GroupName = "Feeds")]
     [ApiOrder(Order = ApiOrder.Feeds)]
     [ApiProduces(EndpointType.Sync)]
     [ApiKeyAuth("Sync")]
