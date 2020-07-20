@@ -1,3 +1,10 @@
+## [4.0.9](https://github.com/informatievlaanderen/public-api/compare/v4.0.8...v4.0.9) (2020-07-20)
+
+
+### Bug Fixes
+
+* remove clean query parameter attribute GRAR-1497 ([34925c2](https://github.com/informatievlaanderen/public-api/commit/34925c2794cd7c75e69edbd2770011be6a1721a9))
+
 ## [4.0.8](https://github.com/informatievlaanderen/public-api/compare/v4.0.7...v4.0.8) (2020-07-19)
 
 
