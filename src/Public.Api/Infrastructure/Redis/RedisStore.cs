@@ -43,7 +43,7 @@ end
             var db = _redis.GetDatabase();
 
             var redisValues =
-                await db.HashGetAsync(key.ToString(), new RedisValue[] { ETagKey, ETagTypeKey, LastModifiedKey, SetByRegistryKey }, CommandFlags.PreferSlave);
+                await db.HashGetAsync(key.ToString(), new RedisValue[] { ETagKey, ETagTypeKey, LastModifiedKey, SetByRegistryKey }, CommandFlags.PreferReplica);
 
             if (redisValues.Length != 4 ||
                 redisValues[0].IsNullOrEmpty ||
