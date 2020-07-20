@@ -16,7 +16,7 @@ nuget Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting 5.0.8
 
 // VBR STUFF
 nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      3.8.1   copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            2.9.1   copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            2.9.2   copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        2.10.1  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           2.17.1  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.18.1  copy_content_to_output_dir: always

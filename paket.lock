@@ -192,7 +192,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.0.1)
     Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (3.11.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.0.1)
-    Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (2.9.1) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (2.9.2) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.ProblemDetails (5.0.9)
       System.Reflection.Metadata (>= 1.8.1)
     Be.Vlaanderen.Basisregisters.ProjectionHandling.Connector (6.0.7)
