@@ -1,3 +1,15 @@
+# [4.1.0](https://github.com/informatievlaanderen/public-api/compare/v4.0.9...v4.1.0) (2020-07-20)
+
+
+### Bug Fixes
+
+* update deps GRAR-1498 ([f755768](https://github.com/informatievlaanderen/public-api/commit/f755768e39911b29e9cdd8f8764e528333240c5f))
+
+
+### Features
+
+* show feeds GRAR-1498 ([15c7d97](https://github.com/informatievlaanderen/public-api/commit/15c7d974e2d133f7dfd1b4ddde06c1a159ecc05f))
+
 ## [4.0.9](https://github.com/informatievlaanderen/public-api/compare/v4.0.8...v4.0.9) (2020-07-20)
 
 
