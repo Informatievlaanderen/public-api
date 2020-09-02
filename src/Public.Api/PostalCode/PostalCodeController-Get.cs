@@ -31,7 +31,7 @@ namespace Public.Api.PostalCode
         /// <response code="404">Als de postinfo voor een postcode niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("postinfo/{objectId}")]
+        [HttpGet("postinfo/{objectId}", Name = nameof(GetPostalCode))]
         [ProducesResponseType(typeof(PostalInformationResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -73,7 +73,7 @@ namespace Public.Api.PostalCode
         /// <response code="404">Als de postinfo voor een postcode niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("postinfo/{objectId}.{format}")]
+        [HttpGet("postinfo/{objectId}.{format}", Name = nameof(GetPostalCodeWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(PostalInformationResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]

@@ -44,7 +44,7 @@ namespace Public.Api.Address
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adressen")]
+        [HttpGet("adressen", Name = nameof(ListAddresses))]
         [ProducesResponseType(typeof(AddressListResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -110,7 +110,7 @@ namespace Public.Api.Address
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adressen.{format}")]
+        [HttpGet("adressen.{format}", Name = nameof(ListAddressesWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(AddressListResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]

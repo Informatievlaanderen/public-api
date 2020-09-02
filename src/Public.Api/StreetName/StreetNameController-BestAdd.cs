@@ -5,7 +5,6 @@ namespace Public.Api.StreetName
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
@@ -14,7 +13,7 @@ namespace Public.Api.StreetName
 
     public partial class StreetNameController
     {
-        [HttpPost("bosa/straatnamen")]
+        [HttpPost("bosa/straatnamen", Name = nameof(SearchBestAddStreetName))]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddStreetName(
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -30,7 +29,7 @@ namespace Public.Api.StreetName
                 searchBody,
                 cancellationToken);
 
-        [HttpPost("bosa/straatnamen.{format}")]
+        [HttpPost("bosa/straatnamen.{format}", Name = nameof(SearchBestAddStreetNameWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddStreetNameWithFormat(
             [FromRoute] string format,

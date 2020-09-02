@@ -37,7 +37,7 @@ namespace Public.Api.Building
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gebouwen")]
+        [HttpGet("gebouwen", Name = nameof(ListBuildings))]
         [ProducesResponseType(typeof(BuildingListResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -85,7 +85,7 @@ namespace Public.Api.Building
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gebouwen.{format}")]
+        [HttpGet("gebouwen.{format}", Name = nameof(ListBuildingsWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(BuildingListResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]

@@ -5,7 +5,6 @@ namespace Public.Api.Municipality
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
@@ -14,7 +13,7 @@ namespace Public.Api.Municipality
 
     public partial class MunicipalityController
     {
-        [HttpPost("bosa/gemeenten")]
+        [HttpPost("bosa/gemeenten", Name = nameof(SearchBestAddMunicipality))]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddMunicipality(
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -30,7 +29,7 @@ namespace Public.Api.Municipality
                 searchBody,
                 cancellationToken);
 
-        [HttpPost("bosa/gemeenten.{format}")]
+        [HttpPost("bosa/gemeenten.{format}", Name = nameof(SearchBestAddMunicipalityWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddMunicipalityWithFormat(
             [FromRoute] string format,

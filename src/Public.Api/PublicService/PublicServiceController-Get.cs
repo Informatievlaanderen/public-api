@@ -30,7 +30,7 @@ namespace Public.Api.PublicService
         /// <response code="404">Als de dienstverlening niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("dienstverleningen/{objectId}")]
+        [HttpGet("dienstverleningen/{objectId}", Name = nameof(GetPublicService))]
         [ProducesResponseType(typeof(PublicServiceResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -69,7 +69,7 @@ namespace Public.Api.PublicService
         /// <response code="404">Als de dienstverlening niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("dienstverleningen/{objectId}.{format}")]
+        [HttpGet("dienstverleningen/{objectId}.{format}", Name = nameof(GetPublicServiceWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(PublicServiceResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]

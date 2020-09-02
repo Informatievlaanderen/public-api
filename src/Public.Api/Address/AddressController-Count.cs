@@ -37,7 +37,7 @@ namespace Public.Api.Address
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adressen/totaal-aantal")]
+        [HttpGet("adressen/totaal-aantal", Name = nameof(CountAddresses))]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(TotaalAantalResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
@@ -92,7 +92,7 @@ namespace Public.Api.Address
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adressen/totaal-aantal.{format}")]
+        [HttpGet("adressen/totaal-aantal.{format}", Name = nameof(CountAddressesWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(TotaalAantalResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
@@ -122,7 +122,6 @@ namespace Public.Api.Address
             var contentFormat = DetermineFormat(format, actionContextAccessor.ActionContext);
 
             IRestRequest BackendRequest() => CreateBackendCountRequest(
-                Taal.NL,
                 busnummer,
                 huisnummer,
                 postcode,
@@ -139,7 +138,6 @@ namespace Public.Api.Address
         }
 
         private static IRestRequest CreateBackendCountRequest(
-            Taal language,
             string boxNumber,
             string houseNumber,
             int? postalCode,

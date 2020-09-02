@@ -1,6 +1,5 @@
 namespace Public.Api.Municipality
 {
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
@@ -31,7 +30,7 @@ namespace Public.Api.Municipality
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gemeenten/totaal-aantal")]
+        [HttpGet("gemeenten/totaal-aantal", Name = nameof(CountMunicipalities))]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(TotaalAantalResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
@@ -69,7 +68,7 @@ namespace Public.Api.Municipality
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gemeenten/totaal-aantal.{format}")]
+        [HttpGet("gemeenten/totaal-aantal.{format}", Name = nameof(CountMunicipalitiesWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(TotaalAantalResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]

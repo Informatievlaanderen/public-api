@@ -32,7 +32,7 @@ namespace Public.Api.BuildingUnit
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als de gebouweenheid verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gebouweenheden/{objectId}")]
+        [HttpGet("gebouweenheden/{objectId}", Name = nameof(GetBuildingUnit))]
         [ProducesResponseType(typeof(BuildingUnitResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -77,7 +77,7 @@ namespace Public.Api.BuildingUnit
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als de gebouweenheid verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gebouweenheden/{objectId}.{format}")]
+        [HttpGet("gebouweenheden/{objectId}.{format}", Name = nameof(GetBuildingUnitWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(BuildingUnitResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]

@@ -31,7 +31,7 @@ namespace Public.Api.Municipality
         /// <response code="404">Als de gemeente niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gemeenten/{objectId}")]
+        [HttpGet("gemeenten/{objectId}", Name = nameof(GetMunicipality))]
         [ProducesResponseType(typeof(MunicipalityResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -73,7 +73,7 @@ namespace Public.Api.Municipality
         /// <response code="404">Als de gemeente niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gemeenten/{objectId}.{format}")]
+        [HttpGet("gemeenten/{objectId}.{format}", Name = nameof(GetMunicipalityWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(MunicipalityResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]

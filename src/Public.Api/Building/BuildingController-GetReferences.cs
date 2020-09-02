@@ -32,7 +32,7 @@ namespace Public.Api.Building
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als het gebouw verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gebouwen/{objectId}/referenties")]
+        [HttpGet("gebouwen/{objectId}/referenties", Name = nameof(GetBuildingReferences))]
         [ProducesResponseType(typeof(BuildingReferencesResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -77,7 +77,7 @@ namespace Public.Api.Building
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als het gebouw verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gebouwen/{objectId}.{format}/referenties")]
+        [HttpGet("gebouwen/{objectId}.{format}/referenties", Name = nameof(GetBuildingReferencesWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(BuildingReferencesResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]

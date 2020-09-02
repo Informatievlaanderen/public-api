@@ -38,7 +38,7 @@ namespace Public.Api.CrabHouseNumber
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("crabhuisnummers")]
+        [HttpGet("crabhuisnummers", Name = nameof(ListCrabHouseNumbers))]
         [ProducesResponseType(typeof(CrabHouseNumberAddressListResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -89,7 +89,7 @@ namespace Public.Api.CrabHouseNumber
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("crabhuisnummers.{format}")]
+        [HttpGet("crabhuisnummers.{format}", Name = nameof(ListCrabHouseNumbersWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(CrabHouseNumberAddressListResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]

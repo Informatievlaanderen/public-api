@@ -6,7 +6,6 @@ namespace Public.Api.AddressRepresentation
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
@@ -14,7 +13,7 @@ namespace Public.Api.AddressRepresentation
 
     public partial class AddressRepresentationController
     {
-        [HttpPost("bosa/adresvoorstellingen")]
+        [HttpPost("bosa/adresvoorstellingen", Name = nameof(SearchBestAddAddressRepresentation))]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddAddressRepresentation(
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -30,7 +29,7 @@ namespace Public.Api.AddressRepresentation
                 searchBody,
                 cancellationToken);
 
-        [HttpPost("bosa/adresvoorstellingen.{format}")]
+        [HttpPost("bosa/adresvoorstellingen.{format}", Name = nameof(SearchBestAddAddressRepresentationWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddAddressRepresentationWithFormat(
             [FromRoute] string format,

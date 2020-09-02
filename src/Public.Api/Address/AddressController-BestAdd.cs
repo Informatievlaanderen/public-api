@@ -6,7 +6,6 @@ namespace Public.Api.Address
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
@@ -14,7 +13,7 @@ namespace Public.Api.Address
 
     public partial class AddressController
     {
-        [HttpPost("bosa/adressen")]
+        [HttpPost("bosa/adressen", Name = nameof(SearchBestAddAddress))]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddAddress(
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -30,7 +29,7 @@ namespace Public.Api.Address
                 searchBody,
                 cancellationToken);
 
-        [HttpPost("bosa/adressen.{format}")]
+        [HttpPost("bosa/adressen.{format}", Name = nameof(SearchBestAddAddressWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddAddressWithFormat(
             [FromRoute] string format,

@@ -1,6 +1,5 @@
 namespace Public.Api.StreetName
 {
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
@@ -8,12 +7,10 @@ namespace Public.Api.StreetName
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Common.Infrastructure;
     using Infrastructure;
-    using Infrastructure.Configuration;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using Microsoft.Extensions.Options;
     using Newtonsoft.Json.Converters;
     using RestSharp;
     using StreetNameRegistry.Api.Legacy.StreetName.Query;
@@ -35,7 +32,7 @@ namespace Public.Api.StreetName
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("straatnamen/totaal-aantal")]
+        [HttpGet("straatnamen/totaal-aantal", Name = nameof(CountStreetNames))]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(TotaalAantalResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
@@ -75,7 +72,7 @@ namespace Public.Api.StreetName
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("straatnamen/totaal-aantal.{format}")]
+        [HttpGet("straatnamen/totaal-aantal.{format}", Name = nameof(CountStreetNamesWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(TotaalAantalResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
