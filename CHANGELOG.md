@@ -1,3 +1,10 @@
+## [4.1.2](https://github.com/informatievlaanderen/public-api/compare/v4.1.1...v4.1.2) (2020-09-02)
+
+
+### Bug Fixes
+
+* give method operation ids ([09da403](https://github.com/informatievlaanderen/public-api/commit/09da403a5ae10c68386091bf785d5b1fae097fc5))
+
 ## [4.1.1](https://github.com/informatievlaanderen/public-api/compare/v4.1.0...v4.1.1) (2020-09-02)
 
 
