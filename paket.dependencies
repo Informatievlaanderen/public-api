@@ -14,28 +14,32 @@ nuget Be.Vlaanderen.Basisregisters.ProjectionHandling.Runner 6.0.7
 nuget Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore 5.0.8
 nuget Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting 5.0.8
 
+// .NET 5 ISSUES
+nuget NuGet.Packaging 5.6.0
+nuget Microsoft.Extensions.Configuration 3.1.7
+
 // VBR STUFF
-nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      3.8.1   copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            2.9.2   copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        2.10.1  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           2.17.1  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.18.1  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            3.11.1  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      3.8.2   copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            2.9.3   copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        2.10.2  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           2.18.1  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.18.2  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            3.11.2  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice 2.1.1   copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 4.2.2
 
-nuget Be.Vlaanderen.Basisregisters.Api 11.7.5
+nuget Be.Vlaanderen.Basisregisters.Api 11.8.1
 
-nuget Be.Vlaanderen.Basisregisters.GrAr.Common 16.0.1
-nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 16.0.1
-nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 16.0.1
+nuget Be.Vlaanderen.Basisregisters.GrAr.Common 16.1.1
+nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 16.1.1
+nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 16.1.1
 
 // TEST STUFF
-nuget Microsoft.NET.Test.Sdk 16.6.1
-nuget Microsoft.EntityFrameworkCore.InMemory 3.1.6
+nuget Microsoft.NET.Test.Sdk 16.7.1
+nuget Microsoft.EntityFrameworkCore.InMemory 3.1.7
 nuget xunit 2.4.1
-nuget xunit.runner.visualstudio 2.4.2
+nuget xunit.runner.visualstudio 2.4.3
 nuget xunit.categories 2.0.4
 nuget AutoFixture 4.13.0
 nuget AutoFixture.Xunit2 4.13.0
