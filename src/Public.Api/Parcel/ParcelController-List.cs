@@ -38,7 +38,7 @@ namespace Public.Api.Parcel
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("percelen")]
-        [ProducesResponseType(typeof(List<ParcelListResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ParcelListResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
@@ -87,7 +87,7 @@ namespace Public.Api.Parcel
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("percelen.{format}")]
         [ApiExplorerSettings(IgnoreApi = true)]
-        [ProducesResponseType(typeof(List<ParcelListResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ParcelListResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
