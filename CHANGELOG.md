@@ -1,3 +1,11 @@
+## [4.1.1](https://github.com/informatievlaanderen/public-api/compare/v4.1.0...v4.1.1) (2020-09-02)
+
+
+### Bug Fixes
+
+* lists return a list response, not a list of lists ([fab0721](https://github.com/informatievlaanderen/public-api/commit/fab0721686274da726d2fbea33fb340524d314c7))
+* update swagger for utf bug ([c117f2b](https://github.com/informatievlaanderen/public-api/commit/c117f2bfcec772bc31dea259227e325e3c6df337))
+
 # [4.1.0](https://github.com/informatievlaanderen/public-api/compare/v4.0.9...v4.1.0) (2020-07-20)
 
 
