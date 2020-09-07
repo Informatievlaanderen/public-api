@@ -1,3 +1,10 @@
+## [4.1.3](https://github.com/informatievlaanderen/public-api/compare/v4.1.2...v4.1.3) (2020-09-07)
+
+
+### Bug Fixes
+
+* hide feeds ([5d5e497](https://github.com/informatievlaanderen/public-api/commit/5d5e49736f70d09513e45732a1af6db48675cdc6))
+
 ## [4.1.2](https://github.com/informatievlaanderen/public-api/compare/v4.1.1...v4.1.2) (2020-09-02)
 
 
