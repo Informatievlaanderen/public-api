@@ -1,3 +1,10 @@
+# [4.2.0](https://github.com/informatievlaanderen/public-api/compare/v4.1.3...v4.2.0) (2020-09-11)
+
+
+### Features
+
+* provide info on feeds GRAR-1398 ([1564129](https://github.com/informatievlaanderen/public-api/commit/1564129759989c7615c25d5461acb496f9fb9545))
+
 ## [4.1.3](https://github.com/informatievlaanderen/public-api/compare/v4.1.2...v4.1.3) (2020-09-07)
 
 
