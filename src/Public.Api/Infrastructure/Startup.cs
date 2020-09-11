@@ -452,7 +452,30 @@ De Basisregisters Vlaanderen API gebruikt [Problem Details for HTTP APIs (RFC780
   ""status"": number,
   ""instance"": ""string""
 }}
-```");
+```
+
+## Gebruik van Feeds
+
+De endpoints onder [Feeds](#tag/Feeds) laten u toe om alle wijzigingen per object op te vragen. Deze maken gebruik van [Atom](https://en.wikipedia.org/wiki/Atom_(Web_standard)) als standaard.
+
+Aan de hand van een feed kan u twee types wijzigingen bevragen: de objecten op een bepaald punt en de gebeurtenissen zelf. Dit doet u door aan de `embed` parameter `object`, `event` of `object,event` mee te geven.
+
+U gebruikt de `from` parameter om een startpunt te kiezen vanaf wanneer u de wijzigingen wilt krijgen, in combinatie met de `limit` parameter voor het aantal wijzigingen.
+
+Deze functionaliteit stelt u in staat een pull-based mechanisme te bouwen om op de hoogte te blijven van elke wijziging. In pseudo-code zou u dit doen als volgt:
+
+* Roep een feeds endpoint aan van het object dat u wenst, zonder `from` parameter.
+* Lees het `link` veld met `rel=""next""` uit om de volgende pagina van wijzigingen te weten te komen.
+* Lees de gevraagde gegevens uit en bewaar het `id` veld zodat u weet tot hoever u reeds hebt gelezen.
+* Roep nu de volgende pagina van wijzigingen aan.
+* Herhaal dit tot u alle gegevens hebt verwerkt en er geen volgende pagina meer is.
+
+Wanneer uw proces zou stopgezet worden, kan u eenvoudig terug oppikken waar u gebleven was:
+
+* Roep opnieuw het feeds endpoint aan, maar dit keer met de `from` parameter 1 groter dan het laatste `id` veld dat u hebt uitgelezen.
+* Voer bovenstaande stappen uit om alle gegevens te verwerken.
+
+In het veld `content` kan u het object en/of het event terugvinden per wijziging.");
 
             return text.ToString();
         }
