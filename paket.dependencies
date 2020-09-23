@@ -2,49 +2,54 @@ framework: netcoreapp31
 source https://api.nuget.org/v3/index.json
 
 // PRODUCTION STUFF
-nuget RestSharp 106.11.4
+nuget RestSharp 106.11.5
 nuget Marvin.Cache.Headers 5.0.1
 nuget StackExchange.Redis 2.1.58
-nuget AWSSDK.S3 3.3.111.27
+nuget AWSSDK.S3 3.5.1.7
 
 // MISSING ASSEMBLY REFERENCES
 nuget Microsoft.IdentityModel.Tokens 6.7.1
-nuget IdentityModel 4.3.1
-nuget Be.Vlaanderen.Basisregisters.ProjectionHandling.Runner 6.0.7
-nuget Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore 5.0.8
-nuget Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting 5.0.8
-
-// .NET 5 ISSUES
-nuget NuGet.Packaging 5.6.0
-nuget Microsoft.Extensions.Configuration 3.1.7
+nuget IdentityModel 4.4.0
+nuget Be.Vlaanderen.Basisregisters.ProjectionHandling.Runner 6.1.0
+nuget Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore 5.0.9
+nuget Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting 5.0.9
 
 // VBR STUFF
-nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      3.8.2   copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            2.9.3   copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        2.10.2  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           2.18.1  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.18.2  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            3.11.2  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      3.9.0   copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            2.9.8   copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        2.11.0  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           2.19.0  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.19.0  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            3.12.0  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice 2.1.1   copy_content_to_output_dir: always
 
-nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 4.2.2
+nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 4.2.3
+nuget Nuget.Packaging < 5.7
 
-nuget Be.Vlaanderen.Basisregisters.Api 11.8.1
+nuget Be.Vlaanderen.Basisregisters.Api 11.8.2
 
-nuget Be.Vlaanderen.Basisregisters.GrAr.Common 16.1.1
-nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 16.1.1
-nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 16.1.1
+nuget Be.Vlaanderen.Basisregisters.GrAr.Common 16.3.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 16.3.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 16.3.0
 
 // TEST STUFF
 nuget Microsoft.NET.Test.Sdk 16.7.1
-nuget Microsoft.EntityFrameworkCore.InMemory 3.1.7
+nuget Microsoft.EntityFrameworkCore.InMemory 3.1.8
 nuget xunit 2.4.1
 nuget xunit.runner.visualstudio 2.4.3
 nuget xunit.categories 2.0.4
-nuget AutoFixture 4.13.0
-nuget AutoFixture.Xunit2 4.13.0
+nuget AutoFixture 4.14.0
+nuget AutoFixture.Xunit2 4.14.0
 nuget FluentAssertions 5.10.3
 
 // BUILD STUFF
 nuget SourceLink.Embed.AllSourceFiles 2.8.3 copy_local: true
 nuget SourceLink.Copy.PdbFiles 2.8.3 copy_local: true
+
+// MS Nuget issue, they are referencing previews
+// https://github.com/fsprojects/Paket/issues/3907
+//group NuGetIssue
+//  framework: netcoreapp31
+//  source https://api.nuget.org/v3/index.json
+//  nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 4.2.3
+//  nuget Nuget.Packaging < 5.7
