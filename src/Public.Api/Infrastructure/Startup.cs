@@ -436,9 +436,9 @@ Iedereen    | {_configuration["BaseUrl"]}{description.GroupName} |
 
 ## Toegang tot de API
 
-U kan anoniem gebruik maken van de API, echter is deze beperkt in het aantal verzoeken dat u tegelijk kan sturen.
+U kan anoniem gebruik maken van de API, maar deze anonieme toegang is beperkt in het aantal verzoeken dat u tegelijk kan sturen.
 
-Wenst u volwaardige toegang tot de api, dan kan u zich [hier aanmelden als ontwikkelaar](mailto:{_contact.Email}).
+Wenst u volwaardige toegang tot de API, [kan u hier een sleutel aanvragen](https://dynamicforms.crmiv.vlaanderen.be/DynamicForms/APIKey-aanvraag). Die gebruikt u dan voortaan door bij de API request een HTTP header genaamd `x-api-key` toe te voegen, met als waarde uw persoonlijke API-sleutel.
 
 ## Foutmeldingen
 
