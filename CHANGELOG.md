@@ -1,3 +1,10 @@
+## [4.2.1](https://github.com/informatievlaanderen/public-api/compare/v4.2.0...v4.2.1) (2020-09-23)
+
+
+### Bug Fixes
+
+* move to 3.1.8 ([e1c773f](https://github.com/informatievlaanderen/public-api/commit/e1c773fe149f24b3146ecfb4636ff35cd05eea55))
+
 # [4.2.0](https://github.com/informatievlaanderen/public-api/compare/v4.1.3...v4.2.0) (2020-09-11)
 
 
