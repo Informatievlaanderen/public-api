@@ -35,6 +35,7 @@ namespace Common.Infrastructure.Modules
             {
                 RegisterRestClient(registry.Key, registry.Value.ApiUrl, _downstreamUser, _downstreamPass, _serviceName, builder);
                 RegisterHealthClient(registry.Key, registry.Value.HealthUrl, _downstreamUser, _downstreamPass, _serviceName, builder);
+                RegisterImportRestClient(registry.Key, registry.Value.ImportUrl, _downstreamUser, _downstreamPass, _serviceName, builder);
                 RegisterApiCacheToggle(registry.Key, registry.Value.UseCache, builder);
 
                 healthUrls.Add(registry.Key, registry.Value.HealthUrl);
@@ -72,17 +73,42 @@ namespace Common.Infrastructure.Modules
             string serviceName,
             ContainerBuilder builder)
         {
+            var healthServiceName = $"Health-{name}";
             builder
                 .RegisterType<RestClient>()
                 .WithProperty("BaseUrl", new Uri(baseUrl))
                 .WithProperty("CookieContainer", new CookieContainer())
                 .WithProperty("Authenticator", new HttpBasicAuthenticator(user, password))
-                .Keyed<RestClient>($"Health-{name}");
+                .Keyed<RestClient>(healthServiceName);
 
             builder
-                .Register(context => new TraceRestClient(context.ResolveNamed<RestClient>($"Health-{name}"), serviceName))
-                .Keyed<TraceRestClient>($"Health-{name}")
-                .Keyed<IRestClient>($"Health-{name}");
+                .Register(context => new TraceRestClient(context.ResolveNamed<RestClient>(healthServiceName), serviceName))
+                .Keyed<TraceRestClient>(healthServiceName)
+                .Keyed<IRestClient>(healthServiceName);
+        }
+
+        private static void RegisterImportRestClient(
+            string name,
+            string baseUrl,
+            string user,
+            string password,
+            string serviceName,
+            ContainerBuilder builder)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                return;
+
+            var importServiceName = $"Import-{name}";
+            builder
+                .RegisterType<RestClient>()
+                .WithProperty("BaseUrl", new Uri(baseUrl))
+                .WithProperty("CookieContainer", new CookieContainer())
+                .WithProperty("Authenticator", new HttpBasicAuthenticator(user, password))
+                .Keyed<RestClient>(importServiceName);
+
+            builder
+                .Register(context => new ImportRestClient(context.ResolveNamed<RestClient>(importServiceName), serviceName))
+                .AsSelf();
         }
 
         private static void RegisterApiCacheToggle(string name, bool toggleValue, ContainerBuilder builder)
@@ -96,4 +122,9 @@ namespace Common.Infrastructure.Modules
     }
 
     public class HealthUrls : Dictionary<string, string> { }
+    public class ImportRestClient : TraceRestClient {
+        public ImportRestClient(IRestClient restClient, string serviceName)
+            : base(restClient, serviceName)
+        {}
+    }
 }

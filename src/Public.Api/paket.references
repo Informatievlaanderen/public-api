@@ -12,6 +12,7 @@ Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice
 Be.Vlaanderen.Basisregisters.GrAr.Common
 Be.Vlaanderen.Basisregisters.GrAr.Legacy
 Be.Vlaanderen.Basisregisters.GrAr.Provenance
+Be.Vlaanderen.Basisregisters.GrAr.Import
 
 Marvin.Cache.Headers
 StackExchange.Redis
