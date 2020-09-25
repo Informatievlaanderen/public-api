@@ -3,7 +3,6 @@ namespace Common.Infrastructure
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text.RegularExpressions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Primitives;
 
