@@ -122,9 +122,10 @@ namespace Common.Infrastructure.Modules
     }
 
     public class HealthUrls : Dictionary<string, string> { }
-    public class ImportRestClient : TraceRestClient {
+    
+    public class ImportRestClient : TraceRestClient 
+    {
         public ImportRestClient(IRestClient restClient, string serviceName)
-            : base(restClient, serviceName)
-        {}
+            : base(restClient, serviceName) {}
     }
 }
