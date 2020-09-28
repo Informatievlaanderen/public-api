@@ -1,10 +1,8 @@
 namespace Public.Api.Status
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
-    using System.Runtime.InteropServices.ComTypes;
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
@@ -19,7 +17,7 @@ namespace Public.Api.Status
     [ApiVersion("1.0")]
     [AdvertiseApiVersions("1.0")]
     [ApiRoute("status")]
-    [ApiExplorerSettings(GroupName = "Status")]
+    [ApiExplorerSettings(GroupName = "Status", IgnoreApi = true)]
     [ApiOrder(Order = ApiOrder.Status)]
     [Produces(AcceptTypes.Json)]
     public class StatusController : ApiController
@@ -29,9 +27,8 @@ namespace Public.Api.Status
         /// </summary>
         /// <param name="clients"></param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de gebouweenheid gevonden is.</response>
+        /// <response code="200">Als opvragen van de status van de importers gelukt is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(ImportStatusResponse), StatusCodes.Status200OK)]
         [HttpGet("import")]
         public async Task<IActionResult> Get(
@@ -50,7 +47,7 @@ namespace Public.Api.Status
             return Ok(importStatuses);
         }
 
-        public async Task<IEnumerable<RegistryImportStatus>> GetImportStatuses(IRestClient client, CancellationToken cancellationToken)
+        private async Task<IEnumerable<RegistryImportStatus>> GetImportStatuses(IRestClient client, CancellationToken cancellationToken)
         {
             var response = await client.ExecuteAsync<IEnumerable<ImportStatus>>(new RestRequest("crabimport/status"), cancellationToken);
 
