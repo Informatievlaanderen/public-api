@@ -35,19 +35,34 @@ namespace Public.Api.Status
             [FromServices] IEnumerable<ImportRestClient> clients,
             CancellationToken cancellationToken = default)
         {
-            var importStatuses = new ImportStatusResponse();
-            foreach (var client in clients)
-            {
-                var responses = await GetImportStatuses(client, cancellationToken);
-                importStatuses.AddRange(responses);
-            }
+            var importStatuses = (await GetImportStatuses(clients, cancellationToken))
+                .Aggregate(
+                    new ImportStatusResponse(),
+                    (response, repositoryStatuses) =>
+                    {
+                        response.AddRange(repositoryStatuses);
+                        return response;
+                    });
 
             importStatuses.Sort((x, y) => string.CompareOrdinal(x.Name, y.Name));
 
             return Ok(importStatuses);
         }
 
-        private async Task<IEnumerable<RegistryImportStatus>> GetImportStatuses(IRestClient client, CancellationToken cancellationToken)
+        private async Task<IEnumerable<IEnumerable<RegistryImportStatus>>> GetImportStatuses(
+            IEnumerable<ImportRestClient> clients,
+            CancellationToken cancellationToken)
+        {
+            return await Task.WhenAll(
+                clients
+                    .AsParallel()
+                    .Select(async client => await GetRegistryImportStatuses(client, cancellationToken))
+            );
+        }
+
+        private async Task<IEnumerable<RegistryImportStatus>> GetRegistryImportStatuses(
+            IRestClient client,
+            CancellationToken cancellationToken)
         {
             var response = await client.ExecuteAsync<IEnumerable<ImportStatus>>(new RestRequest("crabimport/status"), cancellationToken);
 
