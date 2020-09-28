@@ -1,3 +1,16 @@
+# [4.3.0](https://github.com/informatievlaanderen/public-api/compare/v4.2.1...v4.3.0) (2020-09-28)
+
+
+### Bug Fixes
+
+* clean up copied code GRAR-1400 ([4134eee](https://github.com/informatievlaanderen/public-api/commit/4134eee9b8c66b7fd05b8a8cbc3f6eb7bd4c256a))
+* do status calls in parallel GRAR-1400 ([872de68](https://github.com/informatievlaanderen/public-api/commit/872de68abc18191b84acd8d151eaa04d66c354db))
+
+
+### Features
+
+* add importer status GRAR-1400 ([edb2f6d](https://github.com/informatievlaanderen/public-api/commit/edb2f6defad15158da2a361c028ec4a9443e59dc))
+
 ## [4.2.1](https://github.com/informatievlaanderen/public-api/compare/v4.2.0...v4.2.1) (2020-09-23)
 
 
