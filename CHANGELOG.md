@@ -1,3 +1,10 @@
+## [4.3.1](https://github.com/informatievlaanderen/public-api/compare/v4.3.0...v4.3.1) (2020-09-30)
+
+
+### Bug Fixes
+
+* remove personal GRAR-1568 ([f3f6734](https://github.com/informatievlaanderen/public-api/commit/f3f67342edcf5b96c84bf3b46e645a532ae4a9db))
+
 # [4.3.0](https://github.com/informatievlaanderen/public-api/compare/v4.2.1...v4.3.0) (2020-09-28)
 
 
