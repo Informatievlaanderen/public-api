@@ -18,7 +18,10 @@ namespace Common.Infrastructure.Controllers
     using RestSharp;
     using StackExchange.Redis;
 
-    public abstract class PublicApiController : ApiController { }
+    public abstract class PublicApiController : ApiController
+    {
+        protected const int DefaultStatusCaching = 0;
+    }
 
     [ApiController]
     [RejectInvalidQueryParametersFilter]
@@ -40,7 +43,7 @@ namespace Common.Infrastructure.Controllers
             _redis = redis.GetConnectionMultiplexer();
             _logger = logger;
         }
-        
+
         protected async Task<BackendResponse> GetFromCacheThenFromBackendAsync(
             AcceptType acceptType,
             IRestClient restClient,

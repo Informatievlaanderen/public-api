@@ -9,7 +9,9 @@ namespace Public.Api.Status
     using Be.Vlaanderen.Basisregisters.GrAr.Import.Processing.Api.Messages;
     using Common.Infrastructure;
     using Common.Infrastructure.Modules;
+    using Common.Infrastructure.Controllers;
     using Infrastructure.Swagger;
+    using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using RestSharp;
@@ -20,7 +22,7 @@ namespace Public.Api.Status
     [ApiExplorerSettings(GroupName = "Status", IgnoreApi = true)]
     [ApiOrder(Order = ApiOrder.Status)]
     [Produces(AcceptTypes.Json)]
-    public class StatusController : ApiController
+    public class StatusController : PublicApiController
     {
         /// <summary>
         /// Vraag de status van importers op.
@@ -29,8 +31,9 @@ namespace Public.Api.Status
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als opvragen van de status van de importers gelukt is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [ProducesResponseType(typeof(ImportStatusResponse), StatusCodes.Status200OK)]
         [HttpGet("import")]
+        [ProducesResponseType(typeof(ImportStatusResponse), StatusCodes.Status200OK)]
+        [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
         public async Task<IActionResult> Get(
             [FromServices] IEnumerable<ImportRestClient> clients,
             CancellationToken cancellationToken = default)
