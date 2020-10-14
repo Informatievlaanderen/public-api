@@ -16,7 +16,7 @@ NUGET
       AWSSDK.Core (>= 3.5.1.16 < 3.6)
     AWSSDK.S3 (3.5.1.7)
       AWSSDK.Core (>= 3.5.1.16 < 3.6)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (2.19) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (2.20) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.AggregateSource (5.0.9)
       Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (>= 2.2.6)
       Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (>= 2.2.6)
@@ -218,9 +218,9 @@ NUGET
       Microsoft.CSharp (>= 4.7)
     Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (3.9) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.3)
-    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (3.12) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (3.13) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.3)
-    Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (2.9.8) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (2.11) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.ProblemDetails (5.0.10)
       System.Reflection.Metadata (>= 1.8.1)
     Be.Vlaanderen.Basisregisters.ProjectionHandling.Connector (6.1)
@@ -242,7 +242,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.EventHandling (>= 2.2.6)
       SqlStreamStore (>= 1.2)
     Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice (2.1.1) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (2.11) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (2.13.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.3)
     Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (2.2.6)
     Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (2.2.6)
