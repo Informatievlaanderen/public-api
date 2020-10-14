@@ -1,3 +1,10 @@
+## [4.3.2](https://github.com/informatievlaanderen/public-api/compare/v4.3.1...v4.3.2) (2020-10-14)
+
+
+### Bug Fixes
+
+* dont cache status GRAR-1576 ([c06b766](https://github.com/informatievlaanderen/public-api/commit/c06b766218b53d161c12bdbaf63953a8fefe98f9))
+
 ## [4.3.1](https://github.com/informatievlaanderen/public-api/compare/v4.3.0...v4.3.1) (2020-09-30)
 
 
