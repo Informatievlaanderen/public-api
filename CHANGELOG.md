@@ -1,3 +1,10 @@
+# [4.4.0](https://github.com/informatievlaanderen/public-api/compare/v4.3.2...v4.4.0) (2020-10-14)
+
+
+### Features
+
+* update docs for status in list changes ([5cddbb0](https://github.com/informatievlaanderen/public-api/commit/5cddbb0d45cef573153ff98b5da9f223140043d7))
+
 ## [4.3.2](https://github.com/informatievlaanderen/public-api/compare/v4.3.1...v4.3.2) (2020-10-14)
 
 
