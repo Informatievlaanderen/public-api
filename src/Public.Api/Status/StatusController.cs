@@ -40,6 +40,26 @@ namespace Public.Api.Status
         }
 
         /// <summary>
+        /// Vraag de status van projections op.
+        /// </summary>
+        /// <param name="clients"></param>
+        /// <param name="cancellationToken"></param>
+        /// <response code="200">Als opvragen van de status van de projections gelukt is.</response>
+        /// <response code="500">Als er een interne fout is opgetreden.</response>
+        [HttpGet("projection")]
+        [ProducesResponseType(typeof(CacheStatusResponse), StatusCodes.Status200OK)]
+        [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
+        public async Task<IActionResult> GetProjectionStatus(
+            [FromServices] IEnumerable<ProjectionStatusClient> clients,
+            CancellationToken cancellationToken = default)
+        {
+            var keyValuePairs = await clients.GetStatuses(cancellationToken);
+            var projectionStatuses = ProjectionStatusResponse.From(keyValuePairs);
+
+            return Ok(projectionStatuses);
+        }
+
+        /// <summary>
         /// Vraag de status van caches op.
         /// </summary>
         /// <param name="clients"></param>

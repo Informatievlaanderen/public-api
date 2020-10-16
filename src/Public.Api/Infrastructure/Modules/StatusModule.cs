@@ -1,20 +1,15 @@
 namespace Public.Api.Infrastructure.Modules
 {
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Net;
     using Autofac;
     using Autofac.Core;
     using Autofac.Core.Registration;
     using Common.Infrastructure;
     using Common.Infrastructure.Configuration;
-    using Common.Infrastructure.Modules;
     using Microsoft.Extensions.Configuration;
     using RestSharp;
-    using RestSharp.Authenticators;
     using Status.Clients;
-    using Status.Responses;
 
     public class StatusModule : Module
     {
@@ -32,6 +27,7 @@ namespace Public.Api.Infrastructure.Modules
             foreach (var (key, value) in _apiStatusConfigurations)
             {
                 RegisterImportStatusClient(key, value.ImportUrl, builder);
+                RegisterProjectionStatusClient(key, value.ProjectionsUrl, builder);
                 RegisterCacheStatusClient(key, value.ProjectionsUrl, builder);
             }
         }
@@ -49,6 +45,22 @@ namespace Public.Api.Infrastructure.Modules
 
             builder
                 .Register(context => new ImportStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
+                .AsSelf();
+        }
+
+        private void RegisterProjectionStatusClient(
+            string name,
+            string baseUrl,
+            ContainerBuilder builder)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                return;
+
+            var key = $"Projection-{name}";
+            RegisterKeyedRestClient(baseUrl, key, builder);
+
+            builder
+                .Register(context => new ProjectionStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
                 .AsSelf();
         }
 
