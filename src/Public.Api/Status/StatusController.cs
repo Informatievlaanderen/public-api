@@ -1,7 +1,6 @@
 namespace Public.Api.Status
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
@@ -32,22 +31,32 @@ namespace Public.Api.Status
         [HttpGet("import")]
         [ProducesResponseType(typeof(ImportStatusResponse), StatusCodes.Status200OK)]
         [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
-        public async Task<IActionResult> Get(
+        public async Task<IActionResult> GetImportStatus(
             [FromServices] IEnumerable<ImportStatusClient> clients,
             CancellationToken cancellationToken = default)
         {
-            var importStatuses = (await clients.GetStatuses(cancellationToken))
-                .Aggregate(
-                    new ImportStatusResponse(),
-                    (response, repositoryStatuses) =>
-                    {
-                        response.AddRange(repositoryStatuses);
-                        return response;
-                    });
-
-            importStatuses.Sort((x, y) => string.CompareOrdinal(x.Name, y.Name));
-
+            var importStatuses = ImportStatusResponse.From(await clients.GetStatuses(cancellationToken));
             return Ok(importStatuses);
+        }
+
+        /// <summary>
+        /// Vraag de status van caches op.
+        /// </summary>
+        /// <param name="clients"></param>
+        /// <param name="cancellationToken"></param>
+        /// <response code="200">Als opvragen van de status van de caches gelukt is.</response>
+        /// <response code="500">Als er een interne fout is opgetreden.</response>
+        [HttpGet("cache")]
+        [ProducesResponseType(typeof(CacheStatusResponse), StatusCodes.Status200OK)]
+        [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
+        public async Task<IActionResult> GetCacheStatus(
+            [FromServices] IEnumerable<CacheStatusClient> clients,
+            CancellationToken cancellationToken = default)
+        {
+            var keyValuePairs = await clients.GetStatuses(cancellationToken);
+            var cacheStatuses = CacheStatusResponse.From(keyValuePairs);
+
+            return Ok(cacheStatuses);
         }
     }
 }

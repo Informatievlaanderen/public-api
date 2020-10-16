@@ -1,5 +1,6 @@
 namespace Public.Api.Status.Clients
 {
+    using System;
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
@@ -10,8 +11,15 @@ namespace Public.Api.Status.Clients
     {
         private readonly TraceRestClient _restClient;
 
-        protected BaseStatusClient(TraceRestClient restClient)
-            => _restClient = restClient;
+        public string Registry { get; }
+
+        protected BaseStatusClient(string registry, TraceRestClient restClient)
+        {
+            if (string.IsNullOrWhiteSpace(registry))
+                throw new ArgumentNullException(nameof(registry));
+            Registry = registry;
+            _restClient = restClient ?? throw new ArgumentNullException(nameof(restClient));
+        }
 
         public async Task<TStatus> GetStatus(CancellationToken cancellationToken)
         {
