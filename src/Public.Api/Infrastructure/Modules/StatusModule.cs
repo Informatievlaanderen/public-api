@@ -32,6 +32,7 @@ namespace Public.Api.Infrastructure.Modules
             foreach (var (key, value) in _apiStatusConfigurations)
             {
                 RegisterImportStatusClient(key, value.ImportUrl, builder);
+                RegisterCacheStatusClient(key, value.ProjectionsUrl, builder);
             }
         }
         
@@ -47,7 +48,23 @@ namespace Public.Api.Infrastructure.Modules
             RegisterKeyedRestClient(baseUrl, key, builder);
 
             builder
-                .Register(context => new ImportStatusClient(context.ResolveNamed<TraceRestClient>(key)))
+                .Register(context => new ImportStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
+                .AsSelf();
+        }
+
+        private void RegisterCacheStatusClient(
+            string name,
+            string baseUrl,
+            ContainerBuilder builder)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                return;
+
+            var key = $"Cache-{name}";
+            RegisterKeyedRestClient(baseUrl, key, builder);
+
+            builder
+                .Register(context => new CacheStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
                 .AsSelf();
         }
         

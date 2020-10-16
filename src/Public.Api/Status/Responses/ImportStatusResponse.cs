@@ -1,10 +1,9 @@
 namespace Public.Api.Status.Responses
 {
     using System;
-    using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    public class ImportStatusResponse : List<RegistryImportStatus> {}
+    public class ImportStatusResponse : ListResponse<RegistryImportStatus> {}
 
     public class RegistryImportStatus
     {
