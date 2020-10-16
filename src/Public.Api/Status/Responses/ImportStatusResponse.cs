@@ -1,4 +1,4 @@
-namespace Public.Api.Status
+namespace Public.Api.Status.Responses
 {
     using System;
     using System.Collections.Generic;
