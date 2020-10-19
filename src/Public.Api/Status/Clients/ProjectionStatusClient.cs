@@ -9,8 +9,7 @@ namespace Public.Api.Status.Clients
     public class ProjectionStatusClient : BaseStatusClient<IEnumerable<RegistryProjectionStatus>, IEnumerable<ProjectionStatusClient.ProjectionStatus>>
     {
         public ProjectionStatusClient(string registry, TraceRestClient restClient)
-            : base(registry, restClient)
-        { }
+            : base(registry, restClient) { }
 
         protected override IRestRequest CreateStatusRequest()
             => new RestRequest("projections");
