@@ -17,6 +17,7 @@ namespace Public.Api.Status.Clients
         {
             if (string.IsNullOrWhiteSpace(registry))
                 throw new ArgumentNullException(nameof(registry));
+                
             Registry = registry;
             _restClient = restClient ?? throw new ArgumentNullException(nameof(restClient));
         }
