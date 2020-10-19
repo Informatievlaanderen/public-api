@@ -9,8 +9,7 @@ namespace Public.Api.Status.Clients
     public class CacheStatusClient : BaseStatusClient<IEnumerable<RegistryCacheStatus>, IEnumerable<CacheStatusClient.CacheStatus>>
     {
         public CacheStatusClient(string registry, TraceRestClient restClient)
-            : base(registry, restClient)
-        { }
+            : base(registry, restClient) { }
 
         protected override IRestRequest CreateStatusRequest()
             => new RestRequest("caches");
