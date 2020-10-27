@@ -3,7 +3,6 @@ namespace Public.Api.Status.Clients
     using System.Collections.Generic;
     using System.Linq;
     using BackendResponse;
-    using Be.Vlaanderen.Basisregisters.GrAr.Import.Processing.Api.Messages;
     using Common.Infrastructure;
     using Responses;
     using RestSharp;
