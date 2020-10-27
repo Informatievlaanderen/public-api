@@ -1,3 +1,18 @@
+# [4.5.0](https://github.com/informatievlaanderen/public-api/compare/v4.4.0...v4.5.0) (2020-10-27)
+
+
+### Bug Fixes
+
+* decoupled from ImportStatus from grar.import ([5a794e6](https://github.com/informatievlaanderen/public-api/commit/5a794e6d9aa11e5bf6981f2a30220889705e7e5c))
+* remove reference ([1b41ee3](https://github.com/informatievlaanderen/public-api/commit/1b41ee3fe32cd2c8418424df282651cd9cefcad8))
+
+
+### Features
+
+* add cache status ([d5fd01b](https://github.com/informatievlaanderen/public-api/commit/d5fd01b5a0b4103e603c602afd371971d11b1814))
+* add projection status ([55fd60f](https://github.com/informatievlaanderen/public-api/commit/55fd60f72dea97ebd9d47762b3b65da2ae31db46))
+* entend projection status to show projection progress ([b15ccec](https://github.com/informatievlaanderen/public-api/commit/b15ccecffa72ae613055bdafaae66a3b9fb8e4bf))
+
 # [4.4.0](https://github.com/informatievlaanderen/public-api/compare/v4.3.2...v4.4.0) (2020-10-14)
 
 
