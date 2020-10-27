@@ -2,12 +2,13 @@ namespace Public.Api.Status.Clients
 {
     using System.Collections.Generic;
     using System.Linq;
+    using BackendResponse;
     using Be.Vlaanderen.Basisregisters.GrAr.Import.Processing.Api.Messages;
     using Common.Infrastructure;
     using Responses;
     using RestSharp;
 
-    public class ImportStatusClient : BaseStatusClient<IEnumerable<RegistryImportStatus>, IEnumerable<ImportStatus>>
+    public class ImportStatusClient : BaseStatusClient<IEnumerable<RegistryImportStatus>, ImportStatusList>
     {
         public ImportStatusClient(string registry, TraceRestClient restClient)
             : base(registry, restClient) { }
@@ -15,7 +16,7 @@ namespace Public.Api.Status.Clients
         protected override IRestRequest CreateStatusRequest()
             => new RestRequest("crabimport/status");
 
-        protected override IEnumerable<RegistryImportStatus> Map(IEnumerable<ImportStatus> response)
+        protected override IEnumerable<RegistryImportStatus> Map(ImportStatusList response)
             => response?
                 .Select(MapToImportStatusResponse)
                 .Where(status => status != null)
