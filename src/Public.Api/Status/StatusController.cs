@@ -35,7 +35,9 @@ namespace Public.Api.Status
             [FromServices] IEnumerable<ImportStatusClient> clients,
             CancellationToken cancellationToken = default)
         {
-            var importStatuses = ImportStatusResponse.From(await clients.GetStatuses(cancellationToken));
+            var keyValuePairs = await clients.GetStatuses(cancellationToken);
+            var importStatuses = ImportStatusResponse.From(keyValuePairs);
+
             return Ok(importStatuses);
         }
 

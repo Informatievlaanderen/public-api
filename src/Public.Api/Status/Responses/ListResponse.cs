@@ -3,9 +3,9 @@ namespace Public.Api.Status.Responses
     using System.Collections.Generic;
     using System.Linq;
 
-    public class ListResponse<T> : Dictionary<string, IEnumerable<T>>
+    public class ListResponse<T> : Dictionary<string, T>
     {
-        public static ListResponse<T> From(IEnumerable<KeyValuePair<string, IEnumerable<T>>> collection)
+        public static ListResponse<T> From(IEnumerable<KeyValuePair<string, T>> collection)
         {
             if (collection == null)
                 return new ListResponse<T>();

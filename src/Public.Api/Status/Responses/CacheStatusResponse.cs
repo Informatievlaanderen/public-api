@@ -1,8 +1,9 @@
 namespace Public.Api.Status.Responses
 {
+    using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    public class CacheStatusResponse : ListResponse<RegistryCacheStatus> { }
+    public class CacheStatusResponse : ListResponse<IEnumerable<RegistryCacheStatus>> { }
 
     public class RegistryCacheStatus
     {
