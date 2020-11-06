@@ -1,3 +1,10 @@
+## [4.5.1](https://github.com/informatievlaanderen/public-api/compare/v4.5.0...v4.5.1) (2020-11-06)
+
+
+### Bug Fixes
+
+* information level ([88abdf8](https://github.com/informatievlaanderen/public-api/commit/88abdf8bb4252df6c508806c6cc28752b84a389d))
+
 # [4.5.0](https://github.com/informatievlaanderen/public-api/compare/v4.4.0...v4.5.0) (2020-10-27)
 
 
