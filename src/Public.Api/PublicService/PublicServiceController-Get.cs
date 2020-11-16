@@ -10,7 +10,6 @@ namespace Public.Api.PublicService
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using Newtonsoft.Json.Converters;
     using PublicServiceRegistry.Api.Backoffice.PublicService.Responses;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
@@ -38,11 +37,11 @@ namespace Public.Api.PublicService
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "CorrelationId", "string", "Correlatie identificator van de respons.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PublicServiceResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(PublicServiceNotFoundResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PublicServiceResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(PublicServiceNotFoundResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheExpiration(MaxAge = DefaultDetailCaching)]
         public async Task<IActionResult> GetPublicService(
             [FromRoute] string objectId,
@@ -78,11 +77,11 @@ namespace Public.Api.PublicService
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "CorrelationId", "string", "Correlatie identificator van de respons.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PublicServiceResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(PublicServiceNotFoundResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PublicServiceResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(PublicServiceNotFoundResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheExpiration(MaxAge = DefaultDetailCaching)]
         public async Task<IActionResult> GetPublicServiceWithFormat(
             [FromRoute] string format,

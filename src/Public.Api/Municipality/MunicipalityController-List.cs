@@ -3,7 +3,7 @@ namespace Public.Api.Municipality
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using Be.Vlaanderen.Basisregisters.Api.ETag;
+    using Be.Vlaanderen.Basisregisters.Api.LastObservedPosition;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Common.Infrastructure;
@@ -15,7 +15,6 @@ namespace Public.Api.Municipality
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
     using MunicipalityRegistry.Api.Legacy.Municipality.Responses;
-    using Newtonsoft.Json.Converters;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -45,11 +44,11 @@ namespace Public.Api.Municipality
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "CorrelationId", "string", "Correlatie identificator van de respons.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(MunicipalityListResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(MunicipalityListResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ListMunicipalities(
@@ -95,11 +94,11 @@ namespace Public.Api.Municipality
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "CorrelationId", "string", "Correlatie identificator van de respons.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(MunicipalityListResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(MunicipalityListResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ListMunicipalitiesWithFormat(

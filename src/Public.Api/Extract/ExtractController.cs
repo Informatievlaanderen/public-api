@@ -16,7 +16,6 @@ namespace Public.Api.Extract
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using Newtonsoft.Json.Converters;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
     using ValidationProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails;
@@ -47,9 +46,9 @@ namespace Public.Api.Extract
         [ProducesResponseType(typeof(void), StatusCodes.Status302Found)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseExample(StatusCodes.Status302Found, typeof(ExtractRedirectResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(ExtractNotFoundResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status302Found, typeof(ExtractRedirectResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(ExtractNotFoundResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         public async Task<IActionResult> DownloadLatestExtract(CancellationToken cancellationToken = default)
             => await _extractDownloads.RedirectToMostRecent(cancellationToken);
 
@@ -65,10 +64,10 @@ namespace Public.Api.Extract
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseExample(StatusCodes.Status302Found, typeof(ExtractRedirectResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(ExtractBadRequestResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(ExtractNotFoundResponseExamples), jsonConverter: typeof(StringEnumConverter))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples), jsonConverter: typeof(StringEnumConverter))]
+        [SwaggerResponseExample(StatusCodes.Status302Found, typeof(ExtractRedirectResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(ExtractBadRequestResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(ExtractNotFoundResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         public async Task<IActionResult> DownloadExtractForDate(string extractDate, CancellationToken cancellationToken = default)
             => DateTime.TryParseExact(extractDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var date)
                 ? await _extractDownloads.RedirectTo(date, cancellationToken)
