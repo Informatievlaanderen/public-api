@@ -1,3 +1,10 @@
+## [4.5.2](https://github.com/informatievlaanderen/public-api/compare/v4.5.1...v4.5.2) (2020-11-16)
+
+
+### Bug Fixes
+
+* update register referenences GRAR-1599 ([f25629c](https://github.com/informatievlaanderen/public-api/commit/f25629c807661440cbe7ed4dc1445fb7276a8f17))
+
 ## [4.5.1](https://github.com/informatievlaanderen/public-api/compare/v4.5.0...v4.5.1) (2020-11-06)
 
 
