@@ -1,3 +1,10 @@
+## [4.5.3](https://github.com/informatievlaanderen/public-api/compare/v4.5.2...v4.5.3) (2020-11-18)
+
+
+### Bug Fixes
+
+* remove set-env usage in gh-actions ([5544c4f](https://github.com/informatievlaanderen/public-api/commit/5544c4f57864718bf0602f39ffd392ea6867a25f))
+
 ## [4.5.2](https://github.com/informatievlaanderen/public-api/compare/v4.5.1...v4.5.2) (2020-11-16)
 
 
