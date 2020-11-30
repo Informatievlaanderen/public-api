@@ -6,6 +6,7 @@ namespace Public.Api.PostalCode
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
+    using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -20,14 +21,12 @@ namespace Public.Api.PostalCode
     [ApiProduces]
     public partial class PostalCodeController : RegistryApiController<PostalCodeController>
     {
-        private const string Registry = "PostalRegistry";
-
         protected override string NotFoundExceptionMessage => "Onbestaande postcode.";
         protected override string GoneExceptionMessage => "Verwijderde postcode.";
 
         public PostalCodeController(
-            [KeyFilter(Registry)] IRestClient restClient,
-            [KeyFilter(Registry)] IFeatureToggle cacheToggle,
+            [KeyFilter(RegistryKeys.Postal)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Postal)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<PostalCodeController> logger)
             : base(restClient, cacheToggle, redis, logger) { }

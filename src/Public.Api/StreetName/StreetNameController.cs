@@ -6,6 +6,7 @@ namespace Public.Api.StreetName
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
+    using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -20,14 +21,12 @@ namespace Public.Api.StreetName
     [ApiProduces]
     public partial class StreetNameController : RegistryApiController<StreetNameController>
     {
-        private const string Registry = "StreetNameRegistry";
-
         protected override string NotFoundExceptionMessage => "Onbestaande straatnaam.";
         protected override string GoneExceptionMessage => "Verwijderde straatnaam.";
 
         public StreetNameController(
-            [KeyFilter(Registry)] IRestClient restClient,
-            [KeyFilter(Registry)] IFeatureToggle cacheToggle,
+            [KeyFilter(RegistryKeys.StreetName)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.StreetName)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<StreetNameController> logger)
             : base(restClient, cacheToggle, redis, logger) { }

@@ -6,6 +6,7 @@ namespace Public.Api.BuildingUnit
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
+    using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -20,14 +21,12 @@ namespace Public.Api.BuildingUnit
     [ApiProduces]
     public partial class BuildingUnitController : RegistryApiController<BuildingUnitController>
     {
-        private const string Registry = "BuildingRegistry";
-
         protected override string NotFoundExceptionMessage => "Onbestaande gebouweenheid.";
         protected override string GoneExceptionMessage => "Verwijderde gebouweenheid.";
 
         public BuildingUnitController(
-            [KeyFilter(Registry)] IRestClient restClient,
-            [KeyFilter(Registry)] IFeatureToggle cacheToggle,
+            [KeyFilter(RegistryKeys.Building)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Building)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<BuildingUnitController> logger)
             : base(restClient, cacheToggle, redis, logger) { }

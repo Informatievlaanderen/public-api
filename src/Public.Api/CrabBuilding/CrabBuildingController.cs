@@ -6,6 +6,7 @@ namespace Public.Api.CrabBuilding
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
+    using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -20,14 +21,12 @@ namespace Public.Api.CrabBuilding
     [ApiProduces]
     public partial class CrabBuildingController : RegistryApiController<CrabBuildingController>
     {
-        private const string Registry = "BuildingRegistry";
-
         protected override string NotFoundExceptionMessage => "Onbestaand gebouw.";
         protected override string GoneExceptionMessage => "Verwijderd gebouw.";
 
         public CrabBuildingController(
-            [KeyFilter(Registry)] IRestClient restClient,
-            [KeyFilter(Registry)] IFeatureToggle cacheToggle,
+            [KeyFilter(RegistryKeys.Building)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Building)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<CrabBuildingController> logger)
             : base(restClient, cacheToggle, redis, logger) { }

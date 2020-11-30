@@ -6,6 +6,7 @@ namespace Public.Api.Municipality
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
+    using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -20,14 +21,12 @@ namespace Public.Api.Municipality
     [ApiProduces]
     public partial class MunicipalityController : RegistryApiController<MunicipalityController>
     {
-        private const string Registry = "MunicipalityRegistry";
-
         protected override string NotFoundExceptionMessage => "Onbestaande gemeente.";
         protected override string GoneExceptionMessage => "Verwijderde gemeente.";
 
         public MunicipalityController(
-            [KeyFilter(Registry)] IRestClient restClient,
-            [KeyFilter(Registry)] IFeatureToggle cacheToggle,
+            [KeyFilter(RegistryKeys.Municipality)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Municipality)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<MunicipalityController> logger)
             : base(restClient, cacheToggle, redis, logger) { }

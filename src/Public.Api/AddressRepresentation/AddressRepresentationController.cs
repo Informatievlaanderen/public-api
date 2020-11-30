@@ -6,6 +6,7 @@ namespace Public.Api.AddressRepresentation
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
+    using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -19,14 +20,12 @@ namespace Public.Api.AddressRepresentation
     [ApiProduces]
     public partial class AddressRepresentationController : RegistryApiController<AddressRepresentationController>
     {
-        private const string Registry = "AddressRegistry";
-
         protected override string NotFoundExceptionMessage => "Onbestaand adres.";
         protected override string GoneExceptionMessage => "Verwijderd adres.";
 
         public AddressRepresentationController(
-            [KeyFilter(Registry)] IRestClient restClient,
-            [KeyFilter(Registry)] IFeatureToggle cacheToggle,
+            [KeyFilter(RegistryKeys.Address)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Address)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<AddressRepresentationController> logger)
             : base(restClient, cacheToggle, redis, logger) { }
