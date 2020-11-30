@@ -123,7 +123,7 @@ namespace Public.Api.Feeds
                 embed);
 
             var value = await GetFromBackendAsync(
-                restClients["PostalRegistry"].Value,
+                restClients[RegistryKeys.Postal].Value,
                 BackendRequest,
                 contentFormat.ContentType,
                 HandleBadRequest,

@@ -6,6 +6,7 @@ namespace Public.Api.Parcel
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
+    using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -20,14 +21,12 @@ namespace Public.Api.Parcel
     [ApiProduces]
     public partial class ParcelController : RegistryApiController<ParcelController>
     {
-        private const string Registry = "ParcelRegistry";
-
         protected override string NotFoundExceptionMessage => "Onbestaand perceel.";
         protected override string GoneExceptionMessage => "Verwijderd perceel.";
 
         public ParcelController(
-            [KeyFilter(Registry)] IRestClient restClient,
-            [KeyFilter(Registry)] IFeatureToggle cacheToggle,
+            [KeyFilter(RegistryKeys.Parcel)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Parcel)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<ParcelController> logger)
             : base(restClient, cacheToggle, redis, logger) { }

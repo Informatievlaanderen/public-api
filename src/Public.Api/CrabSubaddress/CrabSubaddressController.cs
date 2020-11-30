@@ -6,6 +6,7 @@ namespace Public.Api.CrabSubaddress
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
+    using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -20,14 +21,12 @@ namespace Public.Api.CrabSubaddress
     [ApiProduces]
     public partial class CrabSubaddressController : RegistryApiController<CrabSubaddressController>
     {
-        private const string Registry = "AddressRegistry";
-
         protected override string NotFoundExceptionMessage => "Onbestaand adres.";
         protected override string GoneExceptionMessage => "Verwijderd adres.";
 
         public CrabSubaddressController(
-            [KeyFilter(Registry)] IRestClient restClient,
-            [KeyFilter(Registry)] IFeatureToggle cacheToggle,
+            [KeyFilter(RegistryKeys.Address)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Address)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<CrabSubaddressController> logger)
             : base(restClient, cacheToggle, redis, logger) { }
