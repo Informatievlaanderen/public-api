@@ -1,3 +1,10 @@
+# [4.6.0](https://github.com/informatievlaanderen/public-api/compare/v4.5.3...v4.6.0) (2020-12-02)
+
+
+### Features
+
+* added markdown documentation endpoint with event info GRAR-1613 ([7ed4ad0](https://github.com/informatievlaanderen/public-api/commit/7ed4ad063a37ed1072039f2ee72e8e688a652f7e))
+
 ## [4.5.3](https://github.com/informatievlaanderen/public-api/compare/v4.5.2...v4.5.3) (2020-11-18)
 
 
