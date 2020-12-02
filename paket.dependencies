@@ -13,6 +13,7 @@ nuget IdentityModel 4.4.0
 nuget Be.Vlaanderen.Basisregisters.ProjectionHandling.Runner 7.0.0
 nuget Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore 5.0.9
 nuget Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting 5.0.9
+nuget NetTopologySuite 2.1.0
 
 // VBR STUFF
 nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      3.11.3   copy_content_to_output_dir: always
@@ -32,6 +33,8 @@ nuget Be.Vlaanderen.Basisregisters.GrAr.Common 16.3.0
 nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 16.3.0
 nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 16.3.0
 nuget Be.Vlaanderen.Basisregisters.GrAr.Import 16.3.0
+
+nuget Be.Vlaanderen.Basisregisters.EventHandling 2.4.1
 
 // TEST STUFF
 nuget Microsoft.NET.Test.Sdk 16.7.1
