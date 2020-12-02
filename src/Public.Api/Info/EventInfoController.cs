@@ -30,7 +30,7 @@ namespace Public.Api.Info
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als opvragen van de markdown documentatie van alle events gelukt is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("")]
+        [HttpGet]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
         public IActionResult GetAllEventsMarkdown(
