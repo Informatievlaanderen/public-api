@@ -257,7 +257,8 @@ namespace Public.Api.Infrastructure
                 .RegisterModule(new DataDogModule(_configuration))
                 .RegisterModule(new RedisModule(_configuration))
                 .RegisterModule(new ExtractDownloadModule(_configuration, _marketingVersion))
-                .RegisterModule(new StatusModule(_configuration));
+                .RegisterModule(new StatusModule(_configuration))
+                .RegisterModule(new InfoModule(_configuration));
 
             containerBuilder.Populate(services);
 
