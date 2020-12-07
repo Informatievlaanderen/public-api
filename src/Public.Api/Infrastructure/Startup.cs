@@ -473,7 +473,7 @@ Deze functionaliteit stelt u in staat een pull-based mechanisme te bouwen om op 
 In pseudo-code zou u als volgt wijzigingen binnenhalen:
 
 * Roep het feeds endpoint aan van het objecttype dat u wenst, zonder `from` parameter.
-* Lees het `link` veld met `rel=""next""` uit om de volgende pagina met wijzigingen te weten te komen.
+* Lees het `<link>` veld met `rel=""next""` uit om de volgende pagina met wijzigingen te weten te komen.
 * Lees de gevraagde gegevens uit en sla het `<id>` veld van de laatste `<entry>` op de pagina op zodat u weet tot hoever u de wijzigingen reeds verwerkt hebt.
 * Roep nu de volgende pagina met wijzigingen aan.
 * Herhaal dit tot u alle gegevens hebt verwerkt en er geen volgende pagina meer is.
