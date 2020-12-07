@@ -22,7 +22,7 @@ namespace Public.Api.Feeds
     public partial class FeedController
     {
         /// <summary>
-        /// Vraag een lijst met wijzigingen van postinfo op in het Atom formaat.
+        /// Vraag een lijst met wijzigingen op postinfo op in het Atom formaat.
         /// </summary>
         /// <param name="actionContextAccessor"></param>
         /// <param name="restClients"></param>
@@ -72,7 +72,7 @@ namespace Public.Api.Feeds
                 cancellationToken);
 
         /// <summary>
-        /// Vraag een lijst met wijzigingen van postinfo op in het XML of Atom formaat.
+        /// Vraag een lijst met wijzigingen op postinfo op in het XML of Atom formaat.
         /// </summary>
         /// <param name="format">Gewenste formaat: postinfo.xml of postinfo.atom</param>
         /// <param name="actionContextAccessor"></param>
