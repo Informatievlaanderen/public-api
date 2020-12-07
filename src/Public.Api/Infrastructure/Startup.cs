@@ -456,28 +456,46 @@ De Basisregisters Vlaanderen API gebruikt [Problem Details for HTTP APIs (RFC780
 }}
 ```
 
-## Gebruik van Feeds
+## Gebruik van feeds
 
-De endpoints onder [Feeds](#tag/Feeds) laten u toe om alle wijzigingen per object op te vragen. Deze maken gebruik van [Atom](https://en.wikipedia.org/wiki/Atom_(Web_standard)) als standaard.
+### Beoogde toepassing
 
-Aan de hand van een feed kan u twee types wijzigingen bevragen: de objecten op een bepaald punt en de gebeurtenissen zelf. Dit doet u door aan de `embed` parameter `object`, `event` of `object,event` mee te geven.
+De endpoints onder [Feeds](#tag/Feeds) laten u toe om alle wijzigingen per objecttype of ‘resource’ op te vragen. Deze maken gebruik van [Atom](https://en.wikipedia.org/wiki/Atom_(Web_standard)) als standaard.
 
-U gebruikt de `from` parameter om een startpunt te kiezen vanaf wanneer u de wijzigingen wilt krijgen, in combinatie met de `limit` parameter voor het aantal wijzigingen.
+Aan de hand van een feed kan u de wijzigingen op drie manieren opvragen: als gebeurtenissen (‘business events’), als de daaruit resulterende objectversies, of een combinatie van beide. Dit doet u door aan de `embed` parameter respectievelijk `event`, `object` of `object,event` mee te geven.
 
-Deze functionaliteit stelt u in staat een pull-based mechanisme te bouwen om op de hoogte te blijven van elke wijziging. In pseudo-code zou u dit doen als volgt:
+U gebruikt de `from` parameter om een startpunt te kiezen vanaf waar u de wijzigingen wilt binnenhalen, in combinatie met de `limit` parameter voor het aantal wijzigingen.
 
-* Roep een feeds endpoint aan van het object dat u wenst, zonder `from` parameter.
-* Lees het `link` veld met `rel=""next""` uit om de volgende pagina van wijzigingen te weten te komen.
-* Lees de gevraagde gegevens uit en bewaar het `id` veld zodat u weet tot hoever u reeds hebt gelezen.
-* Roep nu de volgende pagina van wijzigingen aan.
+Deze functionaliteit stelt u in staat een pull-based mechanisme te bouwen om op de hoogte te blijven van voor u relevante wijzigingen. Zo kan u uw lokale databank bijwerken met de laatst beschikbare informatie uit het centrale register, of kan u bijvoorbeeld de gebeurtenissen als trigger gebruiken om uw bedrijfsprocessen te activeren (bv. IF[‘AddressWasRetired’ AND ‘dossier gekoppeld aan adres’] THEN ‘check of dossier mag afgesloten worden’).
+
+### Aan de slag
+
+In pseudo-code zou u als volgt wijzigingen binnenhalen:
+
+* Roep het feeds endpoint aan van het objecttype dat u wenst, zonder `from` parameter.
+* Lees het `link` veld met `rel=""next""` uit om de volgende pagina met wijzigingen te weten te komen.
+* Lees de gevraagde gegevens uit en sla het `<id>` veld van de laatste `<entry>` op de pagina op zodat u weet tot hoever u de wijzigingen reeds verwerkt hebt.
+* Roep nu de volgende pagina met wijzigingen aan.
 * Herhaal dit tot u alle gegevens hebt verwerkt en er geen volgende pagina meer is.
 
-Wanneer uw proces zou stopgezet worden, kan u eenvoudig terug oppikken waar u gebleven was:
+Wanneer uw proces zou stopgezet of onderbroken worden, kan u eenvoudig terug oppikken waar u gebleven was:
 
-* Roep opnieuw het feeds endpoint aan, maar dit keer met de `from` parameter 1 groter dan het laatste `id` veld dat u hebt uitgelezen.
+* Roep opnieuw het feeds endpoint aan, maar dit keer met de `from` parameter 1 groter dan het laatste `<id>` veld dat u hebt uitgelezen.
 * Voer bovenstaande stappen uit om alle gegevens te verwerken.
 
-In het veld `content` kan u het object en/of het event terugvinden per wijziging.");
+In het veld `<content>` kan u het event en/of de objectversiedetails terugvinden per wijziging (`<entry>`).
+
+### Kanttekening
+
+Merk op dat de granulariteit vrij hoog is door het doorvertalen van de volledige CRAB-historiek (legacysysteem) naar het Gebouwen- en Adressenregister (GR-AR). Om dezelfde reden zult u zien dat de meeste objecten gradueel opgebouwd worden (toevoegen status, geometrie enz.) tot wanneer ze ‘complete’ zijn.
+
+Het ‘compleet worden van een object’ (wat betekent dat het object nu over alle attributen beschikt volgens het GR-AR-informatiemodel) wordt aangegeven met een apart event.
+
+De persistente identificator van een object (van de vorm `https://data.vlaanderen.be/id/<objecttype>/<persistentelokaleid>`) waarmee u naar het object kunt verwijzen in uw toepassingen, wordt beschikbaar vanaf het event `<objecttype>PersistentLocalIdentifierWasAssigned`.
+
+Wanneer deze identificator nog niet beschikbaar is kunt u gebruik maken van de technische sleutel (GUID die ook in het antwoord aanwezig is) om alle events op één object aan elkaar te relateren. We raden echter af deze GUID te gebruiken in communicatie met derde partijen; daarvoor dient u de persistente identificator te gebruiken.
+
+Het is onze intentie om bij het opzetten van decentraal beheer op het register de granulariteit van de events te herbekijken om het gebruik van de feed in de toekomst te vereenvoudigen.");
 
             return text.ToString();
         }
