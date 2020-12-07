@@ -1,3 +1,10 @@
+## [4.6.3](https://github.com/informatievlaanderen/public-api/compare/v4.6.2...v4.6.3) (2020-12-07)
+
+
+### Bug Fixes
+
+* update registry packages GRAR-1657 ([5304439](https://github.com/informatievlaanderen/public-api/commit/5304439a893a8237654cef3df9cfebf2626574b1))
+
 ## [4.6.2](https://github.com/informatievlaanderen/public-api/compare/v4.6.1...v4.6.2) (2020-12-07)
 
 
