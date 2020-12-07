@@ -1,3 +1,10 @@
+## [4.6.2](https://github.com/informatievlaanderen/public-api/compare/v4.6.1...v4.6.2) (2020-12-07)
+
+
+### Bug Fixes
+
+* correct document for feeds usage GRAR-1398 ([71d74c1](https://github.com/informatievlaanderen/public-api/commit/71d74c1f717ccc723585539681d11bc06cc5649c))
+
 ## [4.6.1](https://github.com/informatievlaanderen/public-api/compare/v4.6.0...v4.6.1) (2020-12-07)
 
 
