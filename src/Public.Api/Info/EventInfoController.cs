@@ -50,7 +50,7 @@ namespace Public.Api.Info
                 }
             }
 
-            return Ok(markdown.ToString());
+            return Content(markdown.ToString());
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Public.Api.Info
         public IActionResult GetMunicipalityEventsMarkdown(
             [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
             CancellationToken cancellationToken = default)
-            => Ok(markdownGenerators[RegistryKeys.Municipality].Generate());
+            => Content(markdownGenerators[RegistryKeys.Municipality].Generate());
 
         /// <summary>
         /// Vraag de markdown documentatie voor postinfo events op.
@@ -81,7 +81,7 @@ namespace Public.Api.Info
         public IActionResult GetPostalEventsMarkdown(
             [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
             CancellationToken cancellationToken = default)
-            => Ok(markdownGenerators[RegistryKeys.Postal].Generate());
+            => Content(markdownGenerators[RegistryKeys.Postal].Generate());
 
         /// <summary>
         /// Vraag de markdown documentatie voor straatnamen events op.
@@ -96,7 +96,7 @@ namespace Public.Api.Info
         public IActionResult GetStreetNameEventsMarkdown(
             [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
             CancellationToken cancellationToken = default)
-            => Ok(markdownGenerators[RegistryKeys.StreetName].Generate());
+            => Content(markdownGenerators[RegistryKeys.StreetName].Generate());
 
         /// <summary>
         /// Vraag de markdown documentatie voor adressen events op.
@@ -111,7 +111,7 @@ namespace Public.Api.Info
         public IActionResult GetAddressEventsMarkdown(
             [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
             CancellationToken cancellationToken = default)
-            => Ok(markdownGenerators[RegistryKeys.Address].Generate());
+            => Content(markdownGenerators[RegistryKeys.Address].Generate());
 
         /// <summary>
         /// Vraag de markdown documentatie voor gebouwen en gebouweenheden events op.
@@ -127,7 +127,7 @@ namespace Public.Api.Info
         public IActionResult GetBuildingEventsMarkdown(
             [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
             CancellationToken cancellationToken = default)
-            => Ok(markdownGenerators[RegistryKeys.Building].Generate());
+            => Content(markdownGenerators[RegistryKeys.Building].Generate());
 
         /// <summary>
         /// Vraag de markdown documentatie voor percelen events op.
@@ -142,6 +142,6 @@ namespace Public.Api.Info
             public IActionResult GetParcelEventsMarkdown(
                 [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
                 CancellationToken cancellationToken = default)
-                => Ok(markdownGenerators[RegistryKeys.Parcel].Generate());
+                => Content(markdownGenerators[RegistryKeys.Parcel].Generate());
         }
 }
