@@ -1,3 +1,10 @@
+## [4.6.1](https://github.com/informatievlaanderen/public-api/compare/v4.6.0...v4.6.1) (2020-12-07)
+
+
+### Bug Fixes
+
+* change return type to text/plain GRAR-1613 ([a729f84](https://github.com/informatievlaanderen/public-api/commit/a729f847a41e1e776535883885ae1dd4de0581c7))
+
 # [4.6.0](https://github.com/informatievlaanderen/public-api/compare/v4.5.3...v4.6.0) (2020-12-02)
 
 
