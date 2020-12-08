@@ -1,3 +1,10 @@
+## [4.6.5](https://github.com/informatievlaanderen/public-api/compare/v4.6.4...v4.6.5) (2020-12-08)
+
+
+### Bug Fixes
+
+* force build ([622124f](https://github.com/informatievlaanderen/public-api/commit/622124f1b5d1381ccccb6386a425953a6ca36d0e))
+
 ## [4.6.4](https://github.com/informatievlaanderen/public-api/compare/v4.6.3...v4.6.4) (2020-12-07)
 
 
