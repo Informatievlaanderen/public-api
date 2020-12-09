@@ -1,3 +1,10 @@
+## [4.6.7](https://github.com/informatievlaanderen/public-api/compare/v4.6.6...v4.6.7) (2020-12-09)
+
+
+### Bug Fixes
+
+* correct typo in embed parameter GRAR-1666 ([24a9f08](https://github.com/informatievlaanderen/public-api/commit/24a9f08691ef220c65719216526c082118735528))
+
 ## [4.6.6](https://github.com/informatievlaanderen/public-api/compare/v4.6.5...v4.6.6) (2020-12-09)
 
 
