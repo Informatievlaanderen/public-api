@@ -1,3 +1,10 @@
+## [4.6.6](https://github.com/informatievlaanderen/public-api/compare/v4.6.5...v4.6.6) (2020-12-09)
+
+
+### Bug Fixes
+
+* correct explanation on feed 200 codes GRAR-1667 ([6c4bb5e](https://github.com/informatievlaanderen/public-api/commit/6c4bb5e31c7289acec7de81a06b4b604f00c3722))
+
 ## [4.6.5](https://github.com/informatievlaanderen/public-api/compare/v4.6.4...v4.6.5) (2020-12-08)
 
 
