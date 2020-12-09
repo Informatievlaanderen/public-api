@@ -36,22 +36,7 @@ namespace Public.Api.Info
         public IActionResult GetAllEventsMarkdown(
             [FromServices] IEnumerable<IRegistryEventsMarkdownGenerator> markdownGenerators,
             CancellationToken cancellationToken = default)
-        {
-            var markdown = new StringBuilder();
-            using (var generators = markdownGenerators.GetEnumerator())
-            {
-                var next = generators.MoveNext();
-                while (next)
-                {
-                    generators.Current?.WriteTo(markdown);
-                    next = generators.MoveNext();
-                    if (next)
-                        markdown.AppendLine();
-                }
-            }
-
-            return Content(markdown.ToString());
-        }
+            => Content(markdownGenerators.Generate());
 
         /// <summary>
         /// Vraag de markdown documentatie voor gemeenten events op.
