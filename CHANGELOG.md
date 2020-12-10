@@ -1,3 +1,15 @@
+# [4.7.0](https://github.com/informatievlaanderen/public-api/compare/v4.6.7...v4.7.0) (2020-12-10)
+
+
+### Bug Fixes
+
+* update eventhandling package GRAR-1612 ([de6e038](https://github.com/informatievlaanderen/public-api/commit/de6e0382bc8176f96d6a9a992871d74a9b841764))
+
+
+### Features
+
+* allow filtering events documentation on event type GRAR-1612 ([a917628](https://github.com/informatievlaanderen/public-api/commit/a91762819fbbd1c3e8598fd23ebddead89e226d3))
+
 ## [4.6.7](https://github.com/informatievlaanderen/public-api/compare/v4.6.6...v4.6.7) (2020-12-09)
 
 
