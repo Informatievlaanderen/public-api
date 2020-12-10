@@ -181,13 +181,13 @@ NUGET
       System.Data.Common (>= 4.3)
     Be.Vlaanderen.Basisregisters.EntityFrameworkCore.EntityTypeConfiguration (2.2.6)
       Microsoft.EntityFrameworkCore (>= 3.1.8)
-    Be.Vlaanderen.Basisregisters.EventHandling (3.0)
+    Be.Vlaanderen.Basisregisters.EventHandling (3.0.2)
       Be.Vlaanderen.Basisregisters.Converters.TrimString (>= 2.2.6)
       Newtonsoft.Json (>= 12.0.3)
       NodaTime.Serialization.JsonNet (>= 3.0)
-    Be.Vlaanderen.Basisregisters.EventHandling.Autofac (3.0)
+    Be.Vlaanderen.Basisregisters.EventHandling.Autofac (3.0.2)
       Autofac.Extensions.DependencyInjection (>= 6.0)
-      Be.Vlaanderen.Basisregisters.EventHandling (3.0)
+      Be.Vlaanderen.Basisregisters.EventHandling (3.0.2)
     Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic (2.2.6)
     Be.Vlaanderen.Basisregisters.GrAr.Common (16.4)
       Be.Vlaanderen.Basisregisters.AggregateSource (>= 5.0.11)
@@ -216,7 +216,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.Crab (>= 2.2.2)
       Be.Vlaanderen.Basisregisters.GrAr.Common (16.4)
       Microsoft.CSharp (>= 4.7)
-    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (3.11.5) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (3.11.6) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.3)
     Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (3.17.3) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.3)
