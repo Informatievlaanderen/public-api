@@ -1,4 +1,4 @@
-namespace Public.Api.Error
+namespace Public.Api.ErrorMessage
 {
     public class ErrorMessageResponse {}
 }
