@@ -1,3 +1,12 @@
+## [4.7.1](https://github.com/informatievlaanderen/public-api/compare/v4.7.0...v4.7.1) (2020-12-14)
+
+
+### Bug Fixes
+
+* add infrastructure for error message GRAR-400 ([6e73fb6](https://github.com/informatievlaanderen/public-api/commit/6e73fb663b90a035d6685fa65579349f4dc03d3e))
+* add missing status code attributes on event info ([cc8fa1e](https://github.com/informatievlaanderen/public-api/commit/cc8fa1e1caff16ea852a485624a1aa99003f3a7e))
+* do ignore case html check GRAR-400 ([0df7da7](https://github.com/informatievlaanderen/public-api/commit/0df7da7d5e7c0e74c7002c13ba0206d6175b8ace))
+
 # [4.7.0](https://github.com/informatievlaanderen/public-api/compare/v4.6.7...v4.7.0) (2020-12-10)
 
 
