@@ -8,12 +8,13 @@ namespace Public.Api.AddressRepresentation
     using FeatureToggle;
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
+    using Infrastructure.Version;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
 
-    [ApiVersion("1.0")]
-    [AdvertiseApiVersions("1.0")]
+    [ApiVersion(Version.Current)]
+    [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Adresvoorstellingen")]
     [ApiOrder(Order = ApiOrder.AddressRepresentation)]

@@ -19,9 +19,10 @@ namespace Public.Api.Extract
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
     using ValidationProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails;
+    using Version = Infrastructure.Version.Version;
 
-    [ApiVersion("1.0")]
-    [AdvertiseApiVersions("1.0")]
+    [ApiVersion(Version.Current)]
+    [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Extract")]
     [ApiOrder(Order = ApiOrder.Extract)]

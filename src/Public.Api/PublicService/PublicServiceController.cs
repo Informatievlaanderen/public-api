@@ -7,12 +7,13 @@ namespace Public.Api.PublicService
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
     using Infrastructure.Swagger;
+    using Infrastructure.Version;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
 
-    [ApiVersion("1.0")]
-    [AdvertiseApiVersions("1.0")]
+    [ApiVersion(Version.Current)]
+    [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Dienstverleningen")]
     [ApiOrder(Order = ApiOrder.PublicService)]
