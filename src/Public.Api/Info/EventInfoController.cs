@@ -33,6 +33,7 @@ namespace Public.Api.Info
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
         public IActionResult GetAllEventsMarkdown(
             [FromServices] IEnumerable<IRegistryEventsMarkdownGenerator> markdownGenerators,
@@ -50,6 +51,7 @@ namespace Public.Api.Info
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("gemeenten")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
         public IActionResult GetMunicipalityEventsMarkdown(
             [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
@@ -67,6 +69,7 @@ namespace Public.Api.Info
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("postinfo")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
         public IActionResult GetPostalEventsMarkdown(
             [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
@@ -84,6 +87,7 @@ namespace Public.Api.Info
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("straatnamen")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
         public IActionResult GetStreetNameEventsMarkdown(
             [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
@@ -101,6 +105,7 @@ namespace Public.Api.Info
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("adressen")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
         public IActionResult GetAddressEventsMarkdown(
             [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
@@ -119,6 +124,7 @@ namespace Public.Api.Info
         [HttpGet("gebouwen")]
         [HttpGet("gebouweenheden")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
         public IActionResult GetBuildingEventsMarkdown(
             [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
@@ -136,6 +142,7 @@ namespace Public.Api.Info
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("percelen")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
         public IActionResult GetParcelEventsMarkdown(
             [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
