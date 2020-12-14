@@ -8,13 +8,14 @@ namespace Public.Api.PostalCode
     using FeatureToggle;
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
+    using Infrastructure.Version;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
 
     [ApiVisible]
-    [ApiVersion("1.0")]
-    [AdvertiseApiVersions("1.0")]
+    [ApiVersion(Version.Current)]
+    [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Postinfo")]
     [ApiOrder(Order = ApiOrder.PostalCode)]

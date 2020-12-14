@@ -8,14 +8,15 @@ namespace Public.Api.Feeds
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
     using Infrastructure.Swagger;
+    using Infrastructure.Version;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
 
     [ApiVisible]
-    [ApiVersion("1.0")]
-    [AdvertiseApiVersions("1.0")]
+    [ApiVersion(Version.Current)]
+    [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("feeds")]
     [ApiExplorerSettings(GroupName = "Feeds")]
     [ApiOrder(Order = ApiOrder.Feeds)]

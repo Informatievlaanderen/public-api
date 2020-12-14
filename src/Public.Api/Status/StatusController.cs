@@ -8,13 +8,14 @@ namespace Public.Api.Status
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
     using Infrastructure.Swagger;
+    using Infrastructure.Version;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Responses;
 
-    [ApiVersion("1.0")]
-    [AdvertiseApiVersions("1.0")]
+    [ApiVersion(Version.Current)]
+    [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("status")]
     [ApiExplorerSettings(GroupName = "Status", IgnoreApi = true)]
     [ApiOrder(Order = ApiOrder.Status)]
