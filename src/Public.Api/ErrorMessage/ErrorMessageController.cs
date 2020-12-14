@@ -4,6 +4,7 @@ namespace Public.Api.ErrorMessage
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
+    using Infrastructure;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
     using Marvin.Cache.Headers;
@@ -37,7 +38,7 @@ namespace Public.Api.ErrorMessage
             [FromRoute] string errorId,
             CancellationToken cancellationToken = default)
         {
-            if (Request.Headers[HeaderNames.Accept].ToString().Contains("text/html"))
+            if (Request.IsHtmlRequest())
                  return new RedirectResult(string.Format(configuration["ErrorMessageUrl"], errorId));
 
             // todo: lookup error message details for ID

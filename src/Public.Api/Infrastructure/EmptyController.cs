@@ -12,7 +12,7 @@ namespace Public.Api.Infrastructure
         [HttpGet]
         [ApiExplorerSettings(IgnoreApi = true)]
         public IActionResult Get()
-            => Request.Headers[HeaderNames.Accept].ToString().Contains("text/html")
+            => Request.IsHtmlRequest()
                 ? (IActionResult) new RedirectResult("/docs")
                 : new OkObjectResult($"Welcome to the Basisregisters Vlaanderen Api {Assembly.GetEntryAssembly().GetVersionText()}.");
     }
