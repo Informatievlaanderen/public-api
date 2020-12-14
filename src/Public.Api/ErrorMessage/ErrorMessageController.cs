@@ -37,7 +37,7 @@ namespace Public.Api.ErrorMessage
             [FromRoute] string errorId,
             CancellationToken cancellationToken = default)
         {
-            if(Request.Headers[HeaderNames.Accept].ToString().Contains("text/html"))
+            if (Request.Headers[HeaderNames.Accept].ToString().Contains("text/html"))
                  return new RedirectResult(string.Format(configuration["ErrorMessageUrl"], errorId));
 
             // todo: lookup error message details for ID
