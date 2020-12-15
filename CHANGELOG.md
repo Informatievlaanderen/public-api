@@ -1,3 +1,10 @@
+# [4.8.0](https://github.com/informatievlaanderen/public-api/compare/v4.7.1...v4.8.0) (2020-12-15)
+
+
+### Features
+
+* add total count crab endpoints GRAR-1258 GRAR-1238 ([12ab97d](https://github.com/informatievlaanderen/public-api/commit/12ab97d1f410c96074b46d29128524d3ccd31df7))
+
 ## [4.7.1](https://github.com/informatievlaanderen/public-api/compare/v4.7.0...v4.7.1) (2020-12-14)
 
 
