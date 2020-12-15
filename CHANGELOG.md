@@ -1,3 +1,12 @@
+## [4.8.1](https://github.com/informatievlaanderen/public-api/compare/v4.8.0...v4.8.1) (2020-12-15)
+
+
+### Bug Fixes
+
+* force paket downgrade to remove net50 refs ([449ba6e](https://github.com/informatievlaanderen/public-api/commit/449ba6e6c407543d2d6ba388a961cfb6c8487f23))
+* remove local isHtmlRequest entension method ([f142986](https://github.com/informatievlaanderen/public-api/commit/f142986df94e363ea4313f9155dc0ee7e6200271))
+* update basisregister dependencies ([7b2cff1](https://github.com/informatievlaanderen/public-api/commit/7b2cff17bd3bfa250feea43b3cec448524b1f198))
+
 # [4.8.0](https://github.com/informatievlaanderen/public-api/compare/v4.7.1...v4.8.0) (2020-12-15)
 
 
