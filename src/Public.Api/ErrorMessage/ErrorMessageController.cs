@@ -4,7 +4,6 @@ namespace Public.Api.ErrorMessage
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
-    using Infrastructure;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
     using Marvin.Cache.Headers;
