@@ -401,6 +401,11 @@ namespace Common.Infrastructure
             return _database.ListLeftPushAsync(key, value, when, flags);
         }
 
+        public Task<long> ListLeftPushAsync(RedisKey key, RedisValue[] values, When when = When.Always, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.ListLeftPushAsync(key, values, when, flags);
+        }
+
         public Task<long> ListLeftPushAsync(RedisKey key, RedisValue[] values, CommandFlags flags = CommandFlags.None)
         {
             return _database.ListLeftPushAsync(key, values, flags);
@@ -434,6 +439,11 @@ namespace Common.Infrastructure
         public Task<long> ListRightPushAsync(RedisKey key, RedisValue value, When when = When.Always, CommandFlags flags = CommandFlags.None)
         {
             return _database.ListRightPushAsync(key, value, when, flags);
+        }
+
+        public Task<long> ListRightPushAsync(RedisKey key, RedisValue[] values, When when = When.Always, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.ListRightPushAsync(key, values, when, flags);
         }
 
         public Task<long> ListRightPushAsync(RedisKey key, RedisValue[] values, CommandFlags flags = CommandFlags.None)
@@ -1293,6 +1303,11 @@ namespace Common.Infrastructure
             return _database.ListLeftPush(key, value, when, flags);
         }
 
+        public long ListLeftPush(RedisKey key, RedisValue[] values, When when = When.Always, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.ListLeftPush(key, values, when, flags);
+        }
+
         public long ListLeftPush(RedisKey key, RedisValue[] values, CommandFlags flags = CommandFlags.None)
         {
             return _database.ListLeftPush(key, values, flags);
@@ -1326,6 +1341,11 @@ namespace Common.Infrastructure
         public long ListRightPush(RedisKey key, RedisValue value, When when = When.Always, CommandFlags flags = CommandFlags.None)
         {
             return _database.ListRightPush(key, value, when, flags);
+        }
+
+        public long ListRightPush(RedisKey key, RedisValue[] values, When when = When.Always, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.ListRightPush(key, values, when, flags);
         }
 
         public long ListRightPush(RedisKey key, RedisValue[] values, CommandFlags flags = CommandFlags.None)

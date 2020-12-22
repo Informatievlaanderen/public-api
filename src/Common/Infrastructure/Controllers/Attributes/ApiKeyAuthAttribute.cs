@@ -9,6 +9,7 @@ namespace Common.Infrastructure.Controllers.Attributes
     using Microsoft.AspNetCore.Mvc.Filters;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Primitives;
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class ApiKeyAuthAttribute : Attribute, IAsyncActionFilter
@@ -33,8 +34,11 @@ namespace Common.Infrastructure.Controllers.Attributes
                 throw new ApiException(message, StatusCodes.Status401Unauthorized);
             }
 
-            if (!context.HttpContext.Request.Headers.TryGetValue(ApiKeyHeaderName, out var potentialHeaderApiKey) &&
-                !context.HttpContext.Request.Query.TryGetValue(ApiKeyQueryName, out var potentialQueryApiKey))
+            var potentialHeaderApiKey = StringValues.Empty;
+            var potentialQueryApiKey = StringValues.Empty;
+
+            if (!context.HttpContext.Request.Headers.TryGetValue(ApiKeyHeaderName, out potentialHeaderApiKey) &&
+                !context.HttpContext.Request.Query.TryGetValue(ApiKeyQueryName, out potentialQueryApiKey))
                 RefuseAccess(context.HttpContext, "API key verplicht.");
 
             var potentialApiKey = string.Empty;
