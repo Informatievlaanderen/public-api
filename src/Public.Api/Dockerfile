@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/runtime-deps:3.1.10
+FROM mcr.microsoft.com/dotnet/runtime-deps:5.0.1
 
 LABEL maintainer "agentschap Informatie Vlaanderen <basisregisters@vlaanderen.be>"
 

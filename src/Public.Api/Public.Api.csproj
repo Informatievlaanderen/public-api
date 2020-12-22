@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp3.1\Public.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\net5.0\Public.Api.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;1591</NoWarn>
-    <DefineConstants>TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NETCOREAPP;NET5_0</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netcoreapp3.1\Public.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\net5.0\Public.Api.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
 
@@ -25,10 +25,10 @@
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy\content\ParcelRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice\content\PublicServiceRegistry.Api.Backoffice.xml" CopyToOutputDirectory="Always" />
 
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Common\lib\netcoreapp3.1\Be.Vlaanderen.Basisregisters.GrAr.Common.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Legacy\lib\netcoreapp3.1\Be.Vlaanderen.Basisregisters.GrAr.Legacy.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Provenance\lib\netcoreapp3.1\Be.Vlaanderen.Basisregisters.GrAr.Provenance.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.ProblemDetails\lib\netcoreapp3.1\Be.Vlaanderen.Basisregisters.ProblemDetails.xml" CopyToOutputDirectory="Always" />
+    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Common\lib\net5.0\Be.Vlaanderen.Basisregisters.GrAr.Common.xml" CopyToOutputDirectory="Always" />
+    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Legacy\lib\net5.0\Be.Vlaanderen.Basisregisters.GrAr.Legacy.xml" CopyToOutputDirectory="Always" />
+    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Provenance\lib\net5.0\Be.Vlaanderen.Basisregisters.GrAr.Provenance.xml" CopyToOutputDirectory="Always" />
+    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.ProblemDetails\lib\net5.0\Be.Vlaanderen.Basisregisters.ProblemDetails.xml" CopyToOutputDirectory="Always" />
 
     <Content Include="Be.Vlaanderen.Basisregisters.Utilities.Rfc3339DateTimeOffset.xml" CopyToOutputDirectory="Always" />
   </ItemGroup>
