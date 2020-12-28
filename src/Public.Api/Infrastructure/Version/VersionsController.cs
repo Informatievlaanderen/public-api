@@ -11,6 +11,7 @@ namespace Public.Api.Infrastructure.Version
     using Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware;
     using Common.Infrastructure.Modules;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Configuration;
     using RestSharp;
 
     [ApiVersionNeutral]
@@ -22,6 +23,7 @@ namespace Public.Api.Infrastructure.Version
         [HttpGet]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> Get(
+            [FromServices] IConfiguration configuration,
             [FromServices] HealthUrls healthUrls,
             [FromServices] MarketingVersion version,
             [FromServices] ILifetimeScope scope,
@@ -30,6 +32,7 @@ namespace Public.Api.Infrastructure.Version
             var components = new ConcurrentDictionary<string, string>();
 
             components.TryAdd("publicApi", FormatVersion(Assembly.GetEntryAssembly().GetName().Version.ToString(4)));
+            components.TryAdd("publicSite", configuration["SiteVersion"]);
 
             await Task.WhenAll(healthUrls.Select(url => GetDownstreamVersionAsync(url.Key, scope, components, cancellationToken)));
 
