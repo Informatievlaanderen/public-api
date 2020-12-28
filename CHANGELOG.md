@@ -1,3 +1,10 @@
+# [4.9.0](https://github.com/informatievlaanderen/public-api/compare/v4.8.3...v4.9.0) (2020-12-28)
+
+
+### Features
+
+* add site version GRAR-1308 ([0e75b18](https://github.com/informatievlaanderen/public-api/commit/0e75b1830e6bcd12a45a1066a86004a280c79e49))
+
 ## [4.8.3](https://github.com/informatievlaanderen/public-api/compare/v4.8.2...v4.8.3) (2020-12-22)
 
 
