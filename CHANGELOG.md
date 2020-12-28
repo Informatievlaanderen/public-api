@@ -1,3 +1,10 @@
+## [4.9.1](https://github.com/informatievlaanderen/public-api/compare/v4.9.0...v4.9.1) (2020-12-28)
+
+
+### Bug Fixes
+
+* update basisregisters api dependency ([93d7fda](https://github.com/informatievlaanderen/public-api/commit/93d7fda8df13fef48cb85099d8f7d7a732376bf8))
+
 # [4.9.0](https://github.com/informatievlaanderen/public-api/compare/v4.8.3...v4.9.0) (2020-12-28)
 
 
