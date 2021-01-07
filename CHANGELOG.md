@@ -1,3 +1,10 @@
+## [4.9.2](https://github.com/informatievlaanderen/public-api/compare/v4.9.1...v4.9.2) (2021-01-07)
+
+
+### Bug Fixes
+
+* update deps ([10ed1a9](https://github.com/informatievlaanderen/public-api/commit/10ed1a95e4a910d685bd87a8e4c8daff52b344a3))
+
 ## [4.9.1](https://github.com/informatievlaanderen/public-api/compare/v4.9.0...v4.9.1) (2020-12-28)
 
 
