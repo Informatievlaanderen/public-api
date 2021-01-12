@@ -50,7 +50,7 @@ namespace Public.Api.Status
         /// <response code="200">Als opvragen van de status van de projections gelukt is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("projection")]
-        [ProducesResponseType(typeof(CacheStatusResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProjectionStatusResponse), StatusCodes.Status200OK)]
         [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
         public async Task<IActionResult> GetProjectionStatus(
             [FromServices] IEnumerable<ProjectionStatusClient> clients,
@@ -80,6 +80,26 @@ namespace Public.Api.Status
             var cacheStatuses = CacheStatusResponse.From(keyValuePairs);
 
             return Ok(cacheStatuses);
+        }
+
+        /// <summary>
+        /// Vraag de status van syndication op.
+        /// </summary>
+        /// <param name="clients"></param>
+        /// <param name="cancellationToken"></param>
+        /// <response code="200">Als opvragen van de status van de syndication gelukt is.</response>
+        /// <response code="500">Als er een interne fout is opgetreden.</response>
+        [HttpGet("syndication")]
+        [ProducesResponseType(typeof(SyndicationStatusResponse), StatusCodes.Status200OK)]
+        [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
+        public async Task<IActionResult> GetSyndicationStatus(
+            [FromServices] IEnumerable<SyndicationStatusClient> clients,
+            CancellationToken cancellationToken = default)
+        {
+            var keyValuePairs = await clients.GetStatuses(cancellationToken);
+            var syndicationStatuses = SyndicationStatusResponse.From(keyValuePairs);
+
+            return Ok(syndicationStatuses);
         }
     }
 }
