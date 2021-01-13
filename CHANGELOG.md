@@ -1,3 +1,10 @@
+# [4.10.0](https://github.com/informatievlaanderen/public-api/compare/v4.9.2...v4.10.0) (2021-01-13)
+
+
+### Features
+
+* add syndication status to api GRAR-1567 ([8a588fa](https://github.com/informatievlaanderen/public-api/commit/8a588fa201c0e44f7d490f44886f7e9bba76637a))
+
 ## [4.9.2](https://github.com/informatievlaanderen/public-api/compare/v4.9.1...v4.9.2) (2021-01-07)
 
 
