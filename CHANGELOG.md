@@ -1,3 +1,10 @@
+## [4.10.2](https://github.com/informatievlaanderen/public-api/compare/v4.10.1...v4.10.2) (2021-01-13)
+
+
+### Bug Fixes
+
+* show all actions in docs GRAR-1736 ([55fcb04](https://github.com/informatievlaanderen/public-api/commit/55fcb0489ec10b4d4a5a84ef5bf84725a7f25c1d))
+
 ## [4.10.1](https://github.com/informatievlaanderen/public-api/compare/v4.10.0...v4.10.1) (2021-01-13)
 
 
