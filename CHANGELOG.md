@@ -1,3 +1,10 @@
+## [4.10.1](https://github.com/informatievlaanderen/public-api/compare/v4.10.0...v4.10.1) (2021-01-13)
+
+
+### Bug Fixes
+
+* register url's for syndication status endpoint GRAR-1567 ([76ae800](https://github.com/informatievlaanderen/public-api/commit/76ae800603089f03fd7977b3ed0f5709887148af))
+
 # [4.10.0](https://github.com/informatievlaanderen/public-api/compare/v4.9.2...v4.10.0) (2021-01-13)
 
 
