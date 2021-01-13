@@ -29,9 +29,10 @@ namespace Public.Api.Infrastructure.Modules
                 RegisterImportStatusClient(key, value.ImportUrl, builder);
                 RegisterProjectionStatusClient(key, value.ProjectionsUrl, builder);
                 RegisterCacheStatusClient(key, value.ProjectionsUrl, builder);
+                RegisterSyndicationStatusClient(key, value.ProjectionsUrl, builder);
             }
         }
-        
+
         private void RegisterImportStatusClient(
             string name,
             string baseUrl,
@@ -79,7 +80,23 @@ namespace Public.Api.Infrastructure.Modules
                 .Register(context => new CacheStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
                 .AsSelf();
         }
-        
+
+        private void RegisterSyndicationStatusClient(
+            string name,
+            string baseUrl,
+            ContainerBuilder builder)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                return;
+
+            var key = $"Syndication-{name}";
+            RegisterKeyedRestClient(baseUrl, key, builder);
+
+            builder
+                .Register(context => new SyndicationStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
+                .AsSelf();
+        }
+
         private void RegisterKeyedRestClient(
             string baseUrl,
             string key,
