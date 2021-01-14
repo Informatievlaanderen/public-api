@@ -36,6 +36,7 @@ namespace Public.Api.Infrastructure
     using Microsoft.Extensions.DependencyInjection.Extensions;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Options;
     using Microsoft.OpenApi.Models;
     using Modules;
     using Redis;
@@ -104,7 +105,7 @@ namespace Public.Api.Infrastructure
                         {
                             Version = _marketingVersion,
                             Title = "Basisregisters Vlaanderen API",
-                            Description = GetApiLeadingText(description),
+                            Description = GetApiLeadingText(description, Convert.ToBoolean(_configuration.GetSection("FeatureToggles")["IsFeedsVisible"])),
                             Contact = _contact,
                             License = new OpenApiLicense
                             {
@@ -244,7 +245,8 @@ namespace Public.Api.Infrastructure
                 .ConfigureRegistryOptions<StreetNameOptions>(_configuration.GetSection("ApiConfiguration:StreetNameRegistry"))
                 .ConfigureRegistryOptions<AddressOptions>(_configuration.GetSection("ApiConfiguration:AddressRegistry"))
                 .ConfigureRegistryOptions<BuildingOptions>(_configuration.GetSection("ApiConfiguration:BuildingRegistry"))
-                .ConfigureRegistryOptions<ParcelOptions>(_configuration.GetSection("ApiConfiguration:ParcelRegistry"));
+                .ConfigureRegistryOptions<ParcelOptions>(_configuration.GetSection("ApiConfiguration:ParcelRegistry"))
+                .Configure<FeatureToggleOptions>(_configuration.GetSection("FeatureToggles"));
 
             services
                 .RemoveAll<IApiControllerSpecification>()
@@ -397,7 +399,7 @@ namespace Public.Api.Infrastructure
                 });
         }
 
-        private string GetApiLeadingText(ApiVersionDescription description)
+        private string GetApiLeadingText(ApiVersionDescription description, bool isFeedsVisibleToggle)
         {
             var text = new StringBuilder(1000);
 
@@ -454,19 +456,21 @@ De Basisregisters Vlaanderen API gebruikt [Problem Details for HTTP APIs (RFC780
   ""status"": number,
   ""instance"": ""string""
 }}
-```
+```");
 
-## Gebruik van feeds
+            if (isFeedsVisibleToggle)
+                text.AppendLine(
+                    @"## Gebruik van feeds
 
 ### Beoogde toepassing
 
-De endpoints onder [Feeds](#tag/Feeds) laten u toe om alle wijzigingen per objecttype of ‘resource’ op te vragen. Deze maken gebruik van [Atom](https://en.wikipedia.org/wiki/Atom_(Web_standard)) als standaard.
+De endpoints onder[Feeds](#tag/Feeds) laten u toe om alle wijzigingen per objecttype of ‘resource’ op te vragen. Deze maken gebruik van [Atom](https://en.wikipedia.org/wiki/Atom_(Web_standard)) als standaard.
 
-Aan de hand van een feed kan u de wijzigingen op drie manieren opvragen: als gebeurtenissen (‘business events’), als de daaruit resulterende objectversies, of een combinatie van beide. Dit doet u door aan de `embed` parameter respectievelijk `event`, `object` of `object,event` mee te geven.
+Aan de hand van een feed kan u de wijzigingen op drie manieren opvragen: als gebeurtenissen(‘business events’), als de daaruit resulterende objectversies, of een combinatie van beide.Dit doet u door aan de `embed` parameter respectievelijk `event`, `object` of `object,event` mee te geven.
 
 U gebruikt de `from` parameter om een startpunt te kiezen vanaf waar u de wijzigingen wilt binnenhalen, in combinatie met de `limit` parameter voor het aantal wijzigingen.
 
-Deze functionaliteit stelt u in staat een pull-based mechanisme te bouwen om op de hoogte te blijven van voor u relevante wijzigingen. Zo kan u uw lokale databank bijwerken met de laatst beschikbare informatie uit het centrale register, of kan u bijvoorbeeld de gebeurtenissen als trigger gebruiken om uw bedrijfsprocessen te activeren (bv. IF[‘AddressWasRetired’ AND ‘dossier gekoppeld aan adres’] THEN ‘check of dossier mag afgesloten worden’).
+Deze functionaliteit stelt u in staat een pull-based mechanisme te bouwen om op de hoogte te blijven van voor u relevante wijzigingen. Zo kan u uw lokale databank bijwerken met de laatst beschikbare informatie uit het centrale register, of kan u bijvoorbeeld de gebeurtenissen als trigger gebruiken om uw bedrijfsprocessen te activeren (bv.IF[‘AddressWasRetired’ AND ‘dossier gekoppeld aan adres’] THEN ‘check of dossier mag afgesloten worden’).
 
 ### Aan de slag
 
@@ -487,13 +491,13 @@ In het veld `<content>` kan u het event en/of de objectversiedetails terugvinden
 
 ### Kanttekening
 
-Merk op dat de granulariteit vrij hoog is door het doorvertalen van de volledige CRAB-historiek (legacysysteem) naar het Gebouwen- en Adressenregister (GR-AR). Om dezelfde reden zult u zien dat de meeste objecten gradueel opgebouwd worden (toevoegen status, geometrie enz.) tot wanneer ze ‘complete’ zijn.
+Merk op dat de granulariteit vrij hoog is door het doorvertalen van de volledige CRAB-historiek(legacysysteem) naar het Gebouwen- en Adressenregister(GR-AR). Om dezelfde reden zult u zien dat de meeste objecten gradueel opgebouwd worden(toevoegen status, geometrie enz.) tot wanneer ze ‘complete’ zijn.
 
 Het ‘compleet worden van een object’ (wat betekent dat het object nu over alle attributen beschikt volgens het GR-AR-informatiemodel) wordt aangegeven met een apart event.
 
 De persistente identificator van een object (van de vorm `https://data.vlaanderen.be/id/<objecttype>/<persistentelokaleid>`) waarmee u naar het object kunt verwijzen in uw toepassingen, wordt beschikbaar vanaf het event `<objecttype>PersistentLocalIdentifierWasAssigned`.
 
-Wanneer deze identificator nog niet beschikbaar is kunt u gebruik maken van de technische sleutel (GUID die ook in het antwoord aanwezig is) om alle events op één object aan elkaar te relateren. We raden echter af deze GUID te gebruiken in communicatie met derde partijen; daarvoor dient u de persistente identificator te gebruiken.
+Wanneer deze identificator nog niet beschikbaar is kunt u gebruik maken van de technische sleutel(GUID die ook in het antwoord aanwezig is) om alle events op één object aan elkaar te relateren.We raden echter af deze GUID te gebruiken in communicatie met derde partijen; daarvoor dient u de persistente identificator te gebruiken.
 
 Het is onze intentie om bij het opzetten van decentraal beheer op het register de granulariteit van de events te herbekijken om het gebruik van de feed in de toekomst te vereenvoudigen.");
 

@@ -18,12 +18,14 @@ namespace Public.Api.Feeds
     [ApiVersion(Version.Current)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("feeds")]
-    [ApiExplorerSettings(GroupName = "Feeds")]
+    [ApiExplorerSettings(GroupName = FeedsGroupName)]
     [ApiOrder(Order = ApiOrder.Feeds)]
     [ApiProduces(EndpointType.Sync)]
     [ApiKeyAuth("Sync")]
     public partial class FeedController : ApiController<FeedController>
     {
+        public const string FeedsGroupName = "Feeds";
+
         protected const int DefaultFeedCaching = 0;
         private const int NoPaging = 0;
 
