@@ -3,10 +3,9 @@ namespace Public.Api.Infrastructure.Swagger
     using System;
     using System.Linq;
     using System.Reflection;
-    using Configuration;
+    using Common.Infrastructure;
     using Feeds;
     using Microsoft.AspNetCore.Mvc.ApplicationModels;
-    using Microsoft.Extensions.Options;
 
     [AttributeUsage(AttributeTargets.Class)]
     public class ApiVisibleAttribute : Attribute
@@ -19,11 +18,11 @@ namespace Public.Api.Infrastructure.Swagger
 
     public class ToggledApiControllerSpec : IApiControllerSpecification
     {
-        private readonly FeatureToggleOptions _featureToggleOptions;
+        private readonly FeedsVisibleToggle _feedsVisibleToggle;
 
-        public ToggledApiControllerSpec(IOptions<FeatureToggleOptions> featureToggleOptions)
+        public ToggledApiControllerSpec(FeedsVisibleToggle feedsVisibleToggle)
         {
-            _featureToggleOptions = featureToggleOptions.Value;
+            _feedsVisibleToggle = feedsVisibleToggle;
         }
 
         public bool IsSatisfiedBy(ControllerModel controller)
@@ -35,7 +34,7 @@ namespace Public.Api.Infrastructure.Swagger
                 .ToList();
 
             if (controller.ApiExplorer.GroupName == FeedController.FeedsGroupName)
-                return _featureToggleOptions.IsFeedsVisible;
+                return _feedsVisibleToggle.FeatureEnabled;
 
             return apiVisibility.Count != 0 && apiVisibility.First();
         }
