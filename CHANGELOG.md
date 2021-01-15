@@ -1,3 +1,16 @@
+# [4.11.0](https://github.com/informatievlaanderen/public-api/compare/v4.10.2...v4.11.0) (2021-01-15)
+
+
+### Bug Fixes
+
+* feeds building docs endpoint updated GRAR-1740 ([aa56975](https://github.com/informatievlaanderen/public-api/commit/aa56975cbabdf8a612c6da919a759b86640d31c6))
+* update feed docs general info GRAR-1747 ([a4436c4](https://github.com/informatievlaanderen/public-api/commit/a4436c45c87ef7c154fbe0569f4c5bf0b1223b48))
+
+
+### Features
+
+* add featuretoggle for feeds visibility GRAR-1746 ([e73876f](https://github.com/informatievlaanderen/public-api/commit/e73876f43b3d6c3a43f3e03344d482db155bb44c))
+
 ## [4.10.2](https://github.com/informatievlaanderen/public-api/compare/v4.10.1...v4.10.2) (2021-01-13)
 
 
