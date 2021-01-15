@@ -103,7 +103,7 @@ namespace Public.Api.Address
             CancellationToken cancellationToken = default)
         {
             var contentFormat = DetermineFormat(format, actionContextAccessor.ActionContext);
-            
+
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
             var cacheKey = $"legacy/address:{objectId}";
