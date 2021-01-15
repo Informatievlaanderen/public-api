@@ -22,7 +22,7 @@ namespace Public.Api.Feeds
     public partial class FeedController
     {
         /// <summary>
-        /// Vraag een lijst met wijzigingen op gebouwen op in het Atom formaat.
+        /// Vraag een lijst met wijzigingen op gebouwen/gebouweenheden op in het Atom formaat.
         /// </summary>
         /// <param name="actionContextAccessor"></param>
         /// <param name="restClients"></param>
