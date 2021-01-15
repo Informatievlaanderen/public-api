@@ -1,3 +1,10 @@
+## [4.11.1](https://github.com/informatievlaanderen/public-api/compare/v4.11.0...v4.11.1) (2021-01-15)
+
+
+### Bug Fixes
+
+* errorpage not found now returns problem details GRAR-1723 ([01e9972](https://github.com/informatievlaanderen/public-api/commit/01e9972e82557b51381a799623d25e630603933e))
+
 # [4.11.0](https://github.com/informatievlaanderen/public-api/compare/v4.10.2...v4.11.0) (2021-01-15)
 
 
