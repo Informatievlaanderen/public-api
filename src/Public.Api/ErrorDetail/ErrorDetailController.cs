@@ -2,6 +2,7 @@ namespace Public.Api.ErrorDetail
 {
     using System.Threading;
     using Be.Vlaanderen.Basisregisters.Api;
+    using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
     using Infrastructure.Swagger;
@@ -25,11 +26,13 @@ namespace Public.Api.ErrorDetail
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als opvragen van de foutmelding gelukt is.</response>
         /// <response code="302">Als foutmelding details als html wordt opgevraagd.</response>
+        /// <response code="404">Als foutmelding niet gevonden kan worden.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("foutmeldingen/{errorId}")]
         [ProducesResponseType(typeof(ErrorDetailResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status302Found)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
         public IActionResult Get(
@@ -41,7 +44,7 @@ namespace Public.Api.ErrorDetail
                  return new RedirectResult(string.Format(configuration["ErrorDetailPageUrl"], errorId));
 
             // todo: lookup error message details for ID
-            return NotFound($"Foutmelding {errorId} werd niet gevonden");
+            throw new ApiException($"Foutmelding {errorId} werd niet gevonden", StatusCodes.Status404NotFound);
         }
     }
 }
