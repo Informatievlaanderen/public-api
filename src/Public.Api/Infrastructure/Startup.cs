@@ -26,7 +26,6 @@ namespace Public.Api.Infrastructure
     using Marvin.Cache.Headers.Interfaces;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.AspNetCore.Mvc.ApplicationModels;
@@ -246,7 +245,8 @@ namespace Public.Api.Infrastructure
                 .ConfigureRegistryOptions<AddressOptions>(_configuration.GetSection("ApiConfiguration:AddressRegistry"))
                 .ConfigureRegistryOptions<BuildingOptions>(_configuration.GetSection("ApiConfiguration:BuildingRegistry"))
                 .ConfigureRegistryOptions<ParcelOptions>(_configuration.GetSection("ApiConfiguration:ParcelRegistry"))
-                .Configure<FeatureToggleOptions>(_configuration.GetSection("FeatureToggles"));
+                .Configure<FeatureToggleOptions>(_configuration.GetSection("FeatureToggles"))
+                .AddSingleton(c => new FeedsVisibleToggle(c.GetService<IOptions<FeatureToggleOptions>>().Value.IsFeedsVisible));
 
             services
                 .RemoveAll<IApiControllerSpecification>()
@@ -456,7 +456,8 @@ De Basisregisters Vlaanderen API gebruikt [Problem Details for HTTP APIs (RFC780
   ""status"": number,
   ""instance"": ""string""
 }}
-```");
+```
+");
 
             if (isFeedsVisibleToggle)
                 text.AppendLine(
