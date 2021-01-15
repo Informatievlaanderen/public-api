@@ -498,7 +498,7 @@ Het ‘compleet worden van een object’ (wat betekent dat het object nu over al
 
 De persistente identificator van een object (van de vorm `https://data.vlaanderen.be/id/<objecttype>/<persistentelokaleid>`) waarmee u naar het object kunt verwijzen in uw toepassingen, wordt beschikbaar vanaf het event `<objecttype>PersistentLocalIdentifierWasAssigned`.
 
-Wanneer deze identificator nog niet beschikbaar is kunt u gebruik maken van de technische sleutel(GUID die ook in het antwoord aanwezig is) om alle events op één object aan elkaar te relateren.We raden echter af deze GUID te gebruiken in communicatie met derde partijen; daarvoor dient u de persistente identificator te gebruiken.
+Wanneer deze identificator nog niet beschikbaar is kunt u gebruik maken van de technische sleutel (GUID die ook in het antwoord aanwezig is) om alle events op één object aan elkaar te relateren. Deze GUID kan enkel gebruikt worden binnen de feed. Voor communicatie met derde partijen dient de persistente identificator gebruikt te worden.
 
 Het is onze intentie om bij het opzetten van decentraal beheer op het register de granulariteit van de events te herbekijken om het gebruik van de feed in de toekomst te vereenvoudigen.");
 
