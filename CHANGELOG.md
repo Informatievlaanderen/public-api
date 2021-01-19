@@ -1,3 +1,10 @@
+## [4.11.4](https://github.com/informatievlaanderen/public-api/compare/v4.11.3...v4.11.4) (2021-01-19)
+
+
+### Bug Fixes
+
+* add space in feed text ([0db288d](https://github.com/informatievlaanderen/public-api/commit/0db288d3974766028c1fe604017cb17303a5177f))
+
 ## [4.11.3](https://github.com/informatievlaanderen/public-api/compare/v4.11.2...v4.11.3) (2021-01-19)
 
 
