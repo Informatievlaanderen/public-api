@@ -1,3 +1,11 @@
+## [4.11.3](https://github.com/informatievlaanderen/public-api/compare/v4.11.2...v4.11.3) (2021-01-19)
+
+
+### Bug Fixes
+
+* building list feeds docs updated GRAR-1757 ([8fbc016](https://github.com/informatievlaanderen/public-api/commit/8fbc016dd1567e012a8890cad473383462282c27))
+* update building/street/address register dependencies ([6dc4811](https://github.com/informatievlaanderen/public-api/commit/6dc48119508569d842857ccc8843ac6676f83f38))
+
 ## [4.11.2](https://github.com/informatievlaanderen/public-api/compare/v4.11.1...v4.11.2) (2021-01-17)
 
 
