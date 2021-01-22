@@ -12,6 +12,7 @@ namespace Common.Infrastructure.Controllers
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware;
     using Extensions;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
@@ -122,7 +123,7 @@ namespace Common.Infrastructure.Controllers
             var backendRequest = createBackendRequestFunc();
             backendRequest.AddHeader(HeaderNames.Accept, contentType);
 
-            var response = await restClient.ExecuteAsync(backendRequest, cancellationToken);
+            var response = await ExecuteRequestAsync(restClient, backendRequest, cancellationToken);
 
             if ((response.IsSuccessful && response.StatusCode == HttpStatusCode.OK) || response.StatusCode == HttpStatusCode.BadRequest)
             {
@@ -160,7 +161,7 @@ namespace Common.Infrastructure.Controllers
             var backendRequest = createBackendRequestFunc();
             backendRequest.AddHeader(HeaderNames.Accept, contentType);
 
-            var response = await restClient.ExecuteAsync(backendRequest, cancellationToken);
+            var response = await ExecuteRequestAsync(restClient, backendRequest, cancellationToken);
 
             if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
             {
@@ -179,6 +180,22 @@ namespace Common.Infrastructure.Controllers
             handleNotOkResponseAction(response.StatusCode);
 
             throw new ApiException("Fout bij de bron.", (int)response.StatusCode, response.ErrorException);
+        }
+
+        private static async Task<IRestResponse> ExecuteRequestAsync(
+            IRestClient restClient,
+            IRestRequest backendRequest,
+            CancellationToken cancellationToken)
+        {
+            var response = await restClient.ExecuteAsync(backendRequest, cancellationToken);
+
+            // Api gateway hard limit: https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html
+            if (response.Content.Length > 10_000_000)
+                throw new ApiException(
+                    "Response is te groot, probeer de 'limit' parameter te verkleinen en probeer opnieuw.",
+                    StatusCodes.Status500InternalServerError);
+
+            return response;
         }
     }
 }
