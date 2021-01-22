@@ -1,3 +1,10 @@
+## [4.11.5](https://github.com/informatievlaanderen/public-api/compare/v4.11.4...v4.11.5) (2021-01-22)
+
+
+### Bug Fixes
+
+* give proper response when content is too large for apigateway GRAR-1772 ([ffb00b4](https://github.com/informatievlaanderen/public-api/commit/ffb00b4b28cf3e9d82603c589690a58320a5b101))
+
 ## [4.11.4](https://github.com/informatievlaanderen/public-api/compare/v4.11.3...v4.11.4) (2021-01-19)
 
 
