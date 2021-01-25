@@ -13,33 +13,16 @@ namespace Public.Api.StreetName
 
     public partial class StreetNameController
     {
-        [HttpPost("bosa/straatnamen", Name = nameof(SearchBestAddStreetName))]
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<IActionResult> SearchBestAddStreetName(
-            [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<MunicipalityOptions> responseOptions,
-            [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromBody] BosaStreetNameRequest searchBody,
-            CancellationToken cancellationToken = default)
-            => await SearchBestAddStreetNameWithFormat(
-                null,
-                actionContextAccessor,
-                responseOptions,
-                ifNoneMatch,
-                searchBody,
-                cancellationToken);
-
-        [HttpPost("bosa/straatnamen.{format}", Name = nameof(SearchBestAddStreetNameWithFormat))]
+        [HttpPost("bosa/straatnamen", Name = nameof(SearchBestAddStreetNameWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddStreetNameWithFormat(
-            [FromRoute] string format,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             [FromBody] BosaStreetNameRequest searchBody,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = DetermineFormat(format, actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             IRestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
 
@@ -49,7 +32,7 @@ namespace Public.Api.StreetName
                 CreateDefaultHandleBadRequest(),
                 cancellationToken);
 
-            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl, contentFormat.UrlExtension);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
         private static IRestRequest CreateBackendSearchBestAddRequest(BosaStreetNameRequest searchBody)
