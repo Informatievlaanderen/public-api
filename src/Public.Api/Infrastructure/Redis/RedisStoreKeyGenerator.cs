@@ -121,10 +121,7 @@ namespace Public.Api.Infrastructure.Redis
                 return DefaultStoreKeyGenerator.GenerateStoreKey(context);
 
             var requestHeaders = context.HttpRequest.GetTypedHeaders();
-            var format = regexResult.Groups["format"];
-            var acceptType = format.Success
-                ? requestHeaders.DetermineAcceptType(format.Value.Substring(1), null)
-                : requestHeaders.DetermineAcceptType(null);
+            var acceptType = requestHeaders.DetermineAcceptType(null);
 
             var cacheKey = string.Format(
                 cacheKeyFormat,

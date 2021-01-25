@@ -40,14 +40,6 @@ namespace Common.Infrastructure.Extensions
 
         public static AcceptType DetermineAcceptType(
             this RequestHeaders requestHeaders,
-            string format,
-            ActionDescriptor? actionDescriptor)
-            => Enum.TryParse(format, ignoreCase: true, out AcceptType acceptType)
-                ? acceptType
-                : requestHeaders.DetermineAcceptType(actionDescriptor);
-
-        public static AcceptType DetermineAcceptType(
-            this RequestHeaders requestHeaders,
             ActionDescriptor? actionDescriptor)
         {
             var acceptHeaders = requestHeaders.Accept;

@@ -39,7 +39,7 @@ namespace Common.Infrastructure
             StatusCode = statusCode;
         }
 
-        public void UpdateNextPageUrlWithQueryParameters(NonPagedQueryCollection requestQuery, string nextPageUrlTemplate, UrlExtension urlExtension)
+        public void UpdateNextPageUrlWithQueryParameters(NonPagedQueryCollection requestQuery, string nextPageUrlTemplate)
         {
             if (string.IsNullOrWhiteSpace(nextPageUrlTemplate) || IsProblemDetail)
                 return;
@@ -50,13 +50,13 @@ namespace Common.Infrastructure
                 .Select(EscapeForContentType)
                 .Aggregate(string.Empty, (result, parameter) => $"{result}{parameter}");
 
-            if (string.IsNullOrWhiteSpace(parameters) && urlExtension.IsEmpty)
+            if (string.IsNullOrWhiteSpace(parameters))
                 return;
 
             Content = Regex.Replace(
                 Content,
                 GetNextPagePattern(nextPageUrlTemplate),
-                $"$1{urlExtension}$2{parameters}$3",
+                $"$1$2{parameters}$3",
                 RegexOptions.IgnoreCase);
         }
 

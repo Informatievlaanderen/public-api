@@ -31,7 +31,7 @@ namespace Public.Api.BuildingUnit
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gebouweenheden/totaal-aantal.{format}", Name = nameof(CountBuildingUnits))]
+        [HttpGet("gebouweenheden/totaal-aantal", Name = nameof(CountBuildingUnits))]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(TotaalAantalResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
