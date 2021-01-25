@@ -43,74 +43,7 @@ namespace Public.Api.Address
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adressen", Name = nameof(ListAddresses))]
-        [ProducesResponseType(typeof(AddressListResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AddressListResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
-        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> ListAddresses(
-            [FromQuery] int? offset,
-            [FromQuery] int? limit,
-            [FromQuery] string sort,
-            [FromQuery] string gemeentenaam,
-            [FromQuery] int? postcode,
-            [FromQuery] string straatnaam,
-            [FromQuery] string homoniemToevoeging,
-            [FromQuery] string huisnummer,
-            [FromQuery] string busnummer,
-            [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<AddressOptions> responseOptions,
-            [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            CancellationToken cancellationToken = default)
-            => await ListAddressesWithFormat(
-                null,
-                offset,
-                limit,
-                sort,
-                gemeentenaam,
-                postcode,
-                straatnaam,
-                homoniemToevoeging,
-                huisnummer,
-                busnummer,
-                actionContextAccessor,
-                responseOptions,
-                ifNoneMatch,
-                cancellationToken);
-
-        /// <summary>
-        /// Vraag een lijst met adressen op.
-        /// </summary>
-        /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
-        /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat (id, postcode, huisnummer, busnummer).</param>
-        /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de adressen (exact).</param>
-        /// <param name="postcode">Filter op de postcode van het adres (exact).</param>
-        /// <param name="straatnaam">Filter op de straatnaam van het adres (exact).</param>
-        /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres (exact).</param>
-        /// <param name="huisnummer">Filter op het huisnummer van het adres (exact).</param>
-        /// <param name="busnummer">Filter op het busnummer van het adres (exact).</param>
-        /// <param name="actionContextAccessor"></param>
-        /// <param name="responseOptions"></param>
-        /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
-        /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met adressen gelukt is.</response>
-        /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
-        /// <response code="400">Als uw verzoek foutieve data bevat.</response>
-        /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
-        /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adressen.{format}", Name = nameof(ListAddressesWithFormat))]
-        [ApiExplorerSettings(IgnoreApi = true)]
+        [HttpGet("adressen", Name = nameof(ListAddressesWithFormat))]
         [ProducesResponseType(typeof(AddressListResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -125,7 +58,6 @@ namespace Public.Api.Address
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ListAddressesWithFormat(
-            [FromRoute] string format,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
@@ -140,7 +72,7 @@ namespace Public.Api.Address
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = DetermineFormat(format, actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
             const Taal taal = Taal.NL;
 
             IRestRequest BackendRequest() => CreateBackendListRequest(
@@ -170,7 +102,7 @@ namespace Public.Api.Address
                     CreateDefaultHandleBadRequest(),
                     cancellationToken));
 
-            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl, contentFormat.UrlExtension);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
         private static IRestRequest CreateBackendListRequest(

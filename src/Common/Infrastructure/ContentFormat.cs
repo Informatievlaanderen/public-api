@@ -26,6 +26,16 @@ namespace Common.Infrastructure
             return new ContentFormat(urlFormat, acceptType);
         }
 
+        public static ContentFormat For(
+            EndpointType endpointType,
+            ActionContext context)
+        {
+            var acceptType = DetermineAcceptType(context, string.Empty)
+                .ValidateFor(endpointType);
+
+            return new ContentFormat(string.Empty, acceptType);
+        }
+
         public static AcceptType DetermineAcceptType(ActionContext context)
             => DetermineAcceptType(context, string.Empty);
 

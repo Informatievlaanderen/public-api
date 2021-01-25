@@ -36,65 +36,7 @@ namespace Public.Api.Address
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adresmatch", Name = nameof(AddressMatch))]
-        [ProducesResponseType(typeof(AddressMatchCollection), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AddressMatchResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        public async Task<IActionResult> AddressMatch(
-            [FromQuery] string gemeentenaam,
-            [FromQuery] string niscode,
-            [FromQuery] string postcode,
-            [FromQuery] string kadStraatcode,
-            [FromQuery] string rrStraatcode,
-            [FromQuery] string straatnaam,
-            [FromQuery] string huisnummer,
-            [FromQuery] string index,
-            [FromQuery] string busnummer,
-            [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<AddressOptions> responseOptions,
-            CancellationToken cancellationToken = default)
-            => await AddressMatchWithFormat(
-                null,
-                gemeentenaam,
-                niscode,
-                postcode,
-                kadStraatcode,
-                rrStraatcode,
-                straatnaam,
-                huisnummer,
-                index,
-                busnummer,
-                actionContextAccessor,
-                responseOptions,
-                cancellationToken);
-
-        /// <summary>
-        /// Voer een adres match vraag uit en krijg de adressen die gematcht worden.
-        /// </summary>
-        /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de adressen.</param>
-        /// <param name="niscode">Filter op de NisCode van de gemeente.</param>
-        /// <param name="postcode">Filter op de postcode van het adres.</param>
-        /// <param name="kadStraatcode">Filter op de straatcode van het kadaster.</param>
-        /// <param name="rrStraatcode">Filter op de straatcode van het rijksregister.</param>
-        /// <param name="straatnaam">Filter op de straatnaam van het adres.</param>
-        /// <param name="huisnummer">Filter op het huisnummer van het adres.</param>
-        /// <param name="index">Filter op het huisnummer gekend in het rijksregister.</param>
-        /// <param name="busnummer">Filter op het busnummer van het adres.</param>
-        /// <param name="actionContextAccessor"></param>
-        /// <param name="responseOptions"></param>
-        /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met adressen gelukt is.</response>
-        /// <response code="400">Als uw verzoek foutieve data bevat.</response>
-        /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
-        /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adresmatch.{format}", Name = nameof(AddressMatchWithFormat))]
-        [ApiExplorerSettings(IgnoreApi = true)]
+        [HttpGet("adresmatch", Name = nameof(AddressMatchWithFormat))]
         [ProducesResponseType(typeof(AddressMatchCollection), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
@@ -104,7 +46,6 @@ namespace Public.Api.Address
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         public async Task<IActionResult> AddressMatchWithFormat(
-            [FromRoute] string format,
             [FromQuery] string gemeentenaam,
             [FromQuery] string niscode,
             [FromQuery] string postcode,
@@ -118,7 +59,7 @@ namespace Public.Api.Address
             [FromServices] IOptions<AddressOptions> responseOptions,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = DetermineFormat(format, actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             IRestRequest BackendRequest() => CreateBackendMatchRequest(
                 Taal.NL,
@@ -138,7 +79,7 @@ namespace Public.Api.Address
                 CreateDefaultHandleBadRequest(),
                 cancellationToken);
 
-            return BackendListResponseResult.Create(response, Request.Query, string.Empty, contentFormat.UrlExtension);
+            return BackendListResponseResult.Create(response, Request.Query, string.Empty);
         }
 
         private static IRestRequest CreateBackendMatchRequest(
