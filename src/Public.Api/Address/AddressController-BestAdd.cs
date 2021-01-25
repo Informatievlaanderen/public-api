@@ -13,33 +13,16 @@ namespace Public.Api.Address
 
     public partial class AddressController
     {
-        [HttpPost("bosa/adressen", Name = nameof(SearchBestAddAddress))]
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<IActionResult> SearchBestAddAddress(
-            [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<MunicipalityOptions> responseOptions,
-            [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromBody] BosaAddressRequest searchBody,
-            CancellationToken cancellationToken = default)
-            => await SearchBestAddAddressWithFormat(
-                null,
-                actionContextAccessor,
-                responseOptions,
-                ifNoneMatch,
-                searchBody,
-                cancellationToken);
-
-        [HttpPost("bosa/adressen.{format}", Name = nameof(SearchBestAddAddressWithFormat))]
+        [HttpPost("bosa/adressen", Name = nameof(SearchBestAddAddressWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddAddressWithFormat(
-            [FromRoute] string format,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             [FromBody] BosaAddressRequest searchBody,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = DetermineFormat(format, actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             IRestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
 
@@ -49,7 +32,7 @@ namespace Public.Api.Address
                 CreateDefaultHandleBadRequest(),
                 cancellationToken);
 
-            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl, contentFormat.UrlExtension);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
         private static IRestRequest CreateBackendSearchBestAddRequest(BosaAddressRequest searchBody)

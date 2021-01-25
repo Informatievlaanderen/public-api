@@ -43,8 +43,8 @@ namespace Common.Infrastructure.Extensions
                 : actionContext.DetermineFormatParameter();
 
         public static string DetermineFormatParameter(this ActionContext actionContext)
-            => actionContext.GetValueFromHeader("format")
-               ?? actionContext.GetValueFromRouteData("format")
-               ?? actionContext.GetValueFromQueryString("format");
+            => actionContext.GetValueFromHeader("format");
+               //?? actionContext.GetValueFromRouteData("format")
+               //?? actionContext.GetValueFromQueryString("format");
     }
 }

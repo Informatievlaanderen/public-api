@@ -13,33 +13,16 @@ namespace Public.Api.AddressRepresentation
 
     public partial class AddressRepresentationController
     {
-        [HttpPost("bosa/adresvoorstellingen", Name = nameof(SearchBestAddAddressRepresentation))]
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<IActionResult> SearchBestAddAddressRepresentation(
-            [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<MunicipalityOptions> responseOptions,
-            [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromBody] BosaAddressRepresentationRequest searchBody,
-            CancellationToken cancellationToken = default)
-            => await SearchBestAddAddressRepresentationWithFormat(
-                null,
-                actionContextAccessor,
-                responseOptions,
-                ifNoneMatch,
-                searchBody,
-                cancellationToken);
-
-        [HttpPost("bosa/adresvoorstellingen.{format}", Name = nameof(SearchBestAddAddressRepresentationWithFormat))]
+        [HttpPost("bosa/adresvoorstellingen", Name = nameof(SearchBestAddAddressRepresentationWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddAddressRepresentationWithFormat(
-            [FromRoute] string format,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             [FromBody] BosaAddressRepresentationRequest searchBody,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = DetermineFormat(format, actionContextAccessor.ActionContext); ;
+            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             IRestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
 
@@ -49,7 +32,7 @@ namespace Public.Api.AddressRepresentation
                 CreateDefaultHandleBadRequest(),
                 cancellationToken);
 
-            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl, contentFormat.UrlExtension);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
         private static IRestRequest CreateBackendSearchBestAddRequest(BosaAddressRepresentationRequest searchBody)
