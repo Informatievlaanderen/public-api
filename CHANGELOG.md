@@ -1,3 +1,10 @@
+## [4.11.6](https://github.com/informatievlaanderen/public-api/compare/v4.11.5...v4.11.6) (2021-01-25)
+
+
+### Bug Fixes
+
+* method names to remove WithFormat ([c7c42df](https://github.com/informatievlaanderen/public-api/commit/c7c42dfb94076408245839fc27a799b0a453023a))
+
 ## [4.11.5](https://github.com/informatievlaanderen/public-api/compare/v4.11.4...v4.11.5) (2021-01-22)
 
 
