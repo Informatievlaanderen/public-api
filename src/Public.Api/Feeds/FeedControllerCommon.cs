@@ -34,8 +34,8 @@ namespace Public.Api.Feeds
             ILogger<FeedController> logger)
             : base(redis, logger) { }
 
-        private static ContentFormat DetermineFormat(string urlFormat, ActionContext context)
-            => ContentFormat.For(EndpointType.Sync, urlFormat, context);
+        private static ContentFormat DetermineFormat(ActionContext context)
+            => ContentFormat.For(EndpointType.Sync, context);
 
         private static IRestRequest CreateBackendSyndicationRequest(
             string resourcename,
