@@ -39,57 +39,7 @@ namespace Public.Api.CrabBuilding
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("crabgebouwen", Name = nameof(ListCrabBuildings))]
-        [ProducesResponseType(typeof(BuildingCrabMappingResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(BuildingCrabMappingResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
-        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> ListCrabBuildings(
-            [FromQuery] int? terreinObjectId,
-            [FromQuery] string identificatorTerreinObject,
-            [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<AddressOptions> responseOptions,
-            [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            CancellationToken cancellationToken = default)
-            => await ListCrabBuildingsWithFormat(
-                null,
-                terreinObjectId,
-                identificatorTerreinObject,
-                actionContextAccessor,
-                responseOptions,
-                ifNoneMatch,
-                cancellationToken);
-
-        /// <summary>
-        /// Vraag een lijst met CRAB-gebouwen op die voldoen aan de filterparameters.
-        /// </summary>
-        /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="terreinObjectId">Filter op de CRAB-TerreinObjectId van het gebouw (exact).</param>
-        /// <param name="identificatorTerreinObject">
-        /// Filter op het CRAB-IdentificatorTerreinObject van het gebouw (exact).<br/>
-        /// (= OIDN van de corresponderende GRB-gebouwgeometrie)<br/>
-        /// (= enige identificator waarmee in Lara op gebouw kan gezocht worden)
-        /// </param>
-        /// <param name="actionContextAccessor"></param>
-        /// <param name="responseOptions"></param>
-        /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
-        /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met CRAB-gebouwen gelukt is.</response>
-        /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
-        /// <response code="400">Als uw verzoek foutieve data bevat.</response>
-        /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
-        /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("crabgebouwen.{format}", Name = nameof(ListCrabBuildingsWithFormat))]
-        [ApiExplorerSettings(IgnoreApi = true)]
+        [HttpGet("crabgebouwen", Name = nameof(ListCrabBuildingsWithFormat))]
         [ProducesResponseType(typeof(BuildingCrabMappingResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -104,7 +54,6 @@ namespace Public.Api.CrabBuilding
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ListCrabBuildingsWithFormat(
-            [FromRoute] string format,
             [FromQuery] int? terreinObjectId,
             [FromQuery] string identificatorTerreinObject,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -112,7 +61,7 @@ namespace Public.Api.CrabBuilding
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = DetermineFormat(format, actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             if (!terreinObjectId.HasValue && string.IsNullOrEmpty(identificatorTerreinObject))
                 throw new ApiException("Er dient minstens één identificator als input te worden meegegeven.", StatusCodes.Status400BadRequest);
@@ -136,7 +85,7 @@ namespace Public.Api.CrabBuilding
                     CreateDefaultHandleBadRequest(),
                     cancellationToken));
 
-            return BackendListResponseResult.Create(value, Request.Query, string.Empty, contentFormat.UrlExtension);
+            return BackendListResponseResult.Create(value, Request.Query, string.Empty);
         }
 
         private static IRestRequest CreateBackendListRequest(
