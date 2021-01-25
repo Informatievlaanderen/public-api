@@ -11,24 +11,11 @@ namespace Public.Api.Infrastructure
         public static BackendListResponseResult Create(
             BackendResponse response,
             IQueryCollection requestQuery,
-            string nextPageUrlTemplate,
-            UrlExtension urlExtension)
-        {
-            var nonPagedQueryCollection = new NonPagedQueryCollection(requestQuery);
-
-            response.UpdateNextPageUrlWithQueryParameters(nonPagedQueryCollection, nextPageUrlTemplate, urlExtension);
-
-            return new BackendListResponseResult(response);
-        }
-
-        public static BackendListResponseResult Create(
-            BackendResponse response,
-            IQueryCollection requestQuery,
             string nextPageUrlTemplate)
         {
             var nonPagedQueryCollection = new NonPagedQueryCollection(requestQuery);
 
-            response.UpdateNextPageUrlWithQueryParameters(nonPagedQueryCollection, nextPageUrlTemplate, new UrlExtension(string.Empty));
+            response.UpdateNextPageUrlWithQueryParameters(nonPagedQueryCollection, nextPageUrlTemplate);
 
             return new BackendListResponseResult(response);
         }
