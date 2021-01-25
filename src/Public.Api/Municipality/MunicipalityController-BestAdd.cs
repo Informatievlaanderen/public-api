@@ -13,9 +13,9 @@ namespace Public.Api.Municipality
 
     public partial class MunicipalityController
     {
-        [HttpPost("bosa/gemeenten", Name = nameof(SearchBestAddMunicipalityWithFormat))]
+        [HttpPost("bosa/gemeenten", Name = nameof(SearchBestAddMunicipality))]
         [ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<IActionResult> SearchBestAddMunicipalityWithFormat(
+        public async Task<IActionResult> SearchBestAddMunicipality(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
