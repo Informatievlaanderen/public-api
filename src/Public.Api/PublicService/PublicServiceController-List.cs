@@ -33,53 +33,7 @@ namespace Public.Api.PublicService
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("dienstverleningen", Name = nameof(ListPublicServices))]
-        [ProducesResponseType(typeof(PublicServiceListResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PublicServiceListResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
-        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> ListPublicServices(
-            [FromQuery] int? offset,
-            [FromQuery] int? limit,
-            [FromQuery] string sort,
-            [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            CancellationToken cancellationToken = default)
-            => await ListPublicServicesWithFormat(
-                null,
-                offset,
-                limit,
-                sort,
-                actionContextAccessor,
-                ifNoneMatch,
-                cancellationToken);
-
-        /// <summary>
-        /// Vraag een lijst met dienstverleningen op.
-        /// </summary>
-        /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
-        /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat (id, naam, verantwoordelijke-autoriteit).</param>
-        /// <param name="actionContextAccessor"></param>
-        /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
-        /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met dienstverleningen gelukt is.</response>
-        /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
-        /// <response code="400">Als uw verzoek foutieve data bevat.</response>
-        /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
-        /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("dienstverleningen.{format}", Name = nameof(ListPublicServicesWithFormat))]
-        [ApiExplorerSettings(IgnoreApi = true)]
+        [HttpGet("dienstverleningen", Name = nameof(ListPublicServicesWithFormat))]
         [ProducesResponseType(typeof(PublicServiceListResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -94,7 +48,6 @@ namespace Public.Api.PublicService
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ListPublicServicesWithFormat(
-            [FromRoute] string format,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
@@ -102,7 +55,7 @@ namespace Public.Api.PublicService
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = DetermineFormat(format, actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
             const Taal taal = Taal.NL;
 
             IRestRequest BackendRequest() => CreateBackendListRequest(
