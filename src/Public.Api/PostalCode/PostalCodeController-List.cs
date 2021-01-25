@@ -27,57 +27,6 @@ namespace Public.Api.PostalCode
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat.</param>
-        /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de postcodes (exact).</param>
-        /// <param name="actionContextAccessor"></param>
-        /// <param name="responseOptions"></param>
-        /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
-        /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met postinfo over postcodes gelukt is.</response>
-        /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
-        /// <response code="400">Als uw verzoek foutieve data bevat.</response>
-        /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
-        /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("postinfo", Name = nameof(ListPostalCodes))]
-        [ProducesResponseType(typeof(PostalInformationListResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PostalInformationListResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
-        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> ListPostalCodes(
-            [FromQuery] int? offset,
-            [FromQuery] int? limit,
-            [FromQuery] string sort,
-            [FromQuery] string gemeentenaam,
-            [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<PostalOptions> responseOptions,
-            [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            CancellationToken cancellationToken = default)
-            => await ListPostalCodesWithFormat(
-                null,
-                offset,
-                limit,
-                sort,
-                gemeentenaam,
-                actionContextAccessor,
-                responseOptions,
-                ifNoneMatch,
-                cancellationToken);
-
-        /// <summary>
-        /// Vraag een lijst met postinfo over postcodes op.
-        /// </summary>
-        /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
-        /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (postcode).</param>
         /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de postcodes (exact).</param>
         /// <param name="actionContextAccessor"></param>
@@ -89,8 +38,7 @@ namespace Public.Api.PostalCode
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("postinfo.{format}", Name = nameof(ListPostalCodesWithFormat))]
-        [ApiExplorerSettings(IgnoreApi = true)]
+        [HttpGet("postinfo", Name = nameof(ListPostalCodesWithFormat))]
         [ProducesResponseType(typeof(PostalInformationListResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -105,7 +53,6 @@ namespace Public.Api.PostalCode
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ListPostalCodesWithFormat(
-            [FromRoute] string format,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
@@ -115,7 +62,7 @@ namespace Public.Api.PostalCode
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = DetermineFormat(format, actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
             const Taal taal = Taal.NL;
 
             IRestRequest BackendRequest() => CreateBackendListRequest(
@@ -140,7 +87,7 @@ namespace Public.Api.PostalCode
                     CreateDefaultHandleBadRequest(),
                     cancellationToken));
 
-            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl, contentFormat.UrlExtension);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
         private static IRestRequest CreateBackendListRequest(
