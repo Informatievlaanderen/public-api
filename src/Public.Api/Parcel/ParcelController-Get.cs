@@ -30,7 +30,7 @@ namespace Public.Api.Parcel
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als het perceel verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("percelen/{objectId}", Name = nameof(GetParcelWithFormat))]
+        [HttpGet("percelen/{objectId}", Name = nameof(GetParcel))]
         [ProducesResponseType(typeof(ParcelResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -46,7 +46,7 @@ namespace Public.Api.Parcel
         [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(ParcelGoneResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheExpiration(MaxAge = DefaultDetailCaching)]
-        public async Task<IActionResult> GetParcelWithFormat(
+        public async Task<IActionResult> GetParcel(
             [FromRoute] string objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,

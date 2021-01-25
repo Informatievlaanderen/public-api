@@ -29,7 +29,7 @@ namespace Public.Api.PublicService
         /// <response code="404">Als de dienstverlening niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("dienstverleningen/{objectId}", Name = nameof(GetPublicServiceWithFormat))]
+        [HttpGet("dienstverleningen/{objectId}", Name = nameof(GetPublicService))]
         [ProducesResponseType(typeof(PublicServiceResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -43,7 +43,7 @@ namespace Public.Api.PublicService
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheExpiration(MaxAge = DefaultDetailCaching)]
-        public async Task<IActionResult> GetPublicServiceWithFormat(
+        public async Task<IActionResult> GetPublicService(
             [FromRoute] string objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,

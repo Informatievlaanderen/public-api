@@ -39,7 +39,7 @@ namespace Public.Api.CrabBuilding
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("crabgebouwen", Name = nameof(ListCrabBuildingsWithFormat))]
+        [HttpGet("crabgebouwen", Name = nameof(ListCrabBuildings))]
         [ProducesResponseType(typeof(BuildingCrabMappingResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -53,7 +53,7 @@ namespace Public.Api.CrabBuilding
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> ListCrabBuildingsWithFormat(
+        public async Task<IActionResult> ListCrabBuildings(
             [FromQuery] int? terreinObjectId,
             [FromQuery] string identificatorTerreinObject,
             [FromServices] IActionContextAccessor actionContextAccessor,

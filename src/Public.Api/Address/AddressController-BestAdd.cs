@@ -13,9 +13,9 @@ namespace Public.Api.Address
 
     public partial class AddressController
     {
-        [HttpPost("bosa/adressen", Name = nameof(SearchBestAddAddressWithFormat))]
+        [HttpPost("bosa/adressen", Name = nameof(SearchBestAddAddress))]
         [ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<IActionResult> SearchBestAddAddressWithFormat(
+        public async Task<IActionResult> SearchBestAddAddress(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,

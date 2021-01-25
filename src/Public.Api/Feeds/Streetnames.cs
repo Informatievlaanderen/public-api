@@ -37,7 +37,7 @@ namespace Public.Api.Feeds
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("straatnamen", Name = nameof(GetStreetNamesFeedWithFormat))]
+        [HttpGet("straatnamen", Name = nameof(GetStreetNamesFeed))]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -51,7 +51,7 @@ namespace Public.Api.Feeds
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultFeedCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> GetStreetNamesFeedWithFormat(
+        public async Task<IActionResult> GetStreetNamesFeed(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IIndex<string, Lazy<IRestClient>> restClients,
             [FromServices] IOptions<StreetNameOptions> responseOptions,

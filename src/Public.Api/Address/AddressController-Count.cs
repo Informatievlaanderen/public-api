@@ -36,7 +36,7 @@ namespace Public.Api.Address
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adressen/totaal-aantal", Name = nameof(CountAddressesWithFormat))]
+        [HttpGet("adressen/totaal-aantal", Name = nameof(CountAddresses))]
         [ProducesResponseType(typeof(TotaalAantalResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -50,7 +50,7 @@ namespace Public.Api.Address
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultCountCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> CountAddressesWithFormat(
+        public async Task<IActionResult> CountAddresses(
             [FromQuery] string gemeentenaam,
             [FromQuery] int? postcode,
             [FromQuery] string straatnaam,
