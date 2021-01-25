@@ -36,57 +36,7 @@ namespace Public.Api.Municipality
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gemeenten", Name = nameof(ListMunicipalities))]
-        [ProducesResponseType(typeof(MunicipalityListResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "CorrelationId", "string", "Correlatie identificator van de respons.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(MunicipalityListResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
-        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> ListMunicipalities(
-            [FromQuery] int? offset,
-            [FromQuery] int? limit,
-            [FromQuery] string sort,
-            [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<MunicipalityOptions> responseOptions,
-            [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            CancellationToken cancellationToken = default)
-            => await ListMunicipalitiesWithFormat(
-                null,
-                offset,
-                limit,
-                sort,
-                actionContextAccessor,
-                responseOptions,
-                ifNoneMatch,
-                cancellationToken);
-
-        /// <summary>
-        /// Vraag een lijst met gemeenten op.
-        /// </summary>
-        /// <param name="format">Gewenste formaat: json of xml.</param>
-        /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
-        /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
-        /// <param name="sort">Optionele sortering van het resultaat (niscode, naam, naam-nl, naam-fr, naam-de, naam-en).</param>
-        /// <param name="actionContextAccessor"></param>
-        /// <param name="responseOptions"></param>
-        /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
-        /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met gemeenten gelukt is.</response>
-        /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>
-        /// <response code="400">Als uw verzoek foutieve data bevat.</response>
-        /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
-        /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gemeenten.{format}", Name = nameof(ListMunicipalitiesWithFormat))]
-        [ApiExplorerSettings(IgnoreApi = true)]
+        [HttpGet("gemeenten", Name = nameof(ListMunicipalitiesWithFormat))]
         [ProducesResponseType(typeof(MunicipalityListResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -102,7 +52,6 @@ namespace Public.Api.Municipality
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ListMunicipalitiesWithFormat(
-            [FromRoute] string format,
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
@@ -111,7 +60,7 @@ namespace Public.Api.Municipality
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = DetermineFormat(format, actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
             const Taal taal = Taal.NL;
 
             IRestRequest BackendRequest() => CreateBackendListRequest(
@@ -135,7 +84,7 @@ namespace Public.Api.Municipality
                     CreateDefaultHandleBadRequest(),
                     cancellationToken));
 
-            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl, contentFormat.UrlExtension);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
         private static IRestRequest CreateBackendListRequest(

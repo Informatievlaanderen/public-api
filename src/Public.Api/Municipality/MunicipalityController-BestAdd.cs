@@ -13,33 +13,16 @@ namespace Public.Api.Municipality
 
     public partial class MunicipalityController
     {
-        [HttpPost("bosa/gemeenten", Name = nameof(SearchBestAddMunicipality))]
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public async Task<IActionResult> SearchBestAddMunicipality(
-            [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<MunicipalityOptions> responseOptions,
-            [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromBody] BosaMunicipalityRequest searchBody,
-            CancellationToken cancellationToken = default)
-            => await SearchBestAddMunicipalityWithFormat(
-                null,
-                actionContextAccessor,
-                responseOptions,
-                ifNoneMatch,
-                searchBody,
-                cancellationToken);
-
-        [HttpPost("bosa/gemeenten.{format}", Name = nameof(SearchBestAddMunicipalityWithFormat))]
+        [HttpPost("bosa/gemeenten", Name = nameof(SearchBestAddMunicipalityWithFormat))]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> SearchBestAddMunicipalityWithFormat(
-            [FromRoute] string format,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             [FromBody] BosaMunicipalityRequest searchBody,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = DetermineFormat(format, actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             IRestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
 
@@ -49,7 +32,7 @@ namespace Public.Api.Municipality
                 CreateDefaultHandleBadRequest(),
                 cancellationToken);
 
-            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl, contentFormat.UrlExtension);
+            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
         private static IRestRequest CreateBackendSearchBestAddRequest(BosaMunicipalityRequest searchBody)
