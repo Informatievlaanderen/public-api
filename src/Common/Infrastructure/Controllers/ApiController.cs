@@ -179,7 +179,7 @@ namespace Common.Infrastructure.Controllers
 
             handleNotOkResponseAction(response.StatusCode);
 
-            throw new ApiException("Fout bij de bron.", (int)response.StatusCode, response.ErrorException);
+            throw new ApiProblemDetailsException("Fout bij de bron.", (int)response.StatusCode, response.GetProblemDetails(), response.ErrorException);
         }
 
         private static async Task<IRestResponse> ExecuteRequestAsync(

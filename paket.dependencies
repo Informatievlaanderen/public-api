@@ -20,13 +20,13 @@ nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      3.11.12 
 nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            2.14.0  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        2.16.1  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           2.25.2  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.25.1  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.25.5  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            3.18.0  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice 2.1.1   copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 5.0.1
 
-nuget Be.Vlaanderen.Basisregisters.Api 12.1.4
+nuget Be.Vlaanderen.Basisregisters.Api 13.0.1
 
 nuget Be.Vlaanderen.Basisregisters.GrAr.Common 16.4.1
 nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 16.4.1
@@ -34,6 +34,7 @@ nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 16.4.1
 nuget Be.Vlaanderen.Basisregisters.GrAr.Import 16.4.1
 
 nuget Be.Vlaanderen.Basisregisters.EventHandling 3.0.3
+nuget Be.Vlaanderen.Basisregisters.ProblemDetails 6.0.3
 
 // TEST STUFF
 nuget Microsoft.NET.Test.Sdk 16.8.3
