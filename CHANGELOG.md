@@ -1,3 +1,10 @@
+# [4.12.0](https://github.com/informatievlaanderen/public-api/compare/v4.11.6...v4.12.0) (2021-01-29)
+
+
+### Features
+
+* show specific problem details for grb wfs exceptions GRAR-170 ([2f1d075](https://github.com/informatievlaanderen/public-api/commit/2f1d07514a35f18bd3de67f79727f15c8902c21c))
+
 ## [4.11.6](https://github.com/informatievlaanderen/public-api/compare/v4.11.5...v4.11.6) (2021-01-25)
 
 
