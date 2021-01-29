@@ -38,6 +38,7 @@ namespace Public.Api.Infrastructure
     using Microsoft.Extensions.Options;
     using Microsoft.OpenApi.Models;
     using Modules;
+    using ProblemDetailsExceptionMapping;
     using Redis;
     using Swagger;
     using Swashbuckle.AspNetCore.Filters;
@@ -96,7 +97,9 @@ namespace Public.Api.Infrastructure
                     },
                     Server =
                     {
-                        BaseUrl = baseUrlForExceptions
+                        BaseUrl = baseUrlForExceptions,
+                        // keep public facing problem details consistent with existing ones, also looks more meaningful than public.api
+                        ProblemDetailsTypeNamespaceOverride = "be.vlaanderen.registers.api"
                     },
                     Swagger =
                     {
@@ -390,7 +393,8 @@ namespace Public.Api.Infrastructure
                         TypeScriptClientOptions =
                         {
                             ClassName = "BaseRegistry"
-                        }
+                        },
+                        ProblemDetailsExceptionMappers = new [] { new GrbWfsExceptionMapping() }
                     },
                     MiddlewareHooks =
                     {
