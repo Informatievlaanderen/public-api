@@ -1,3 +1,10 @@
+# [4.13.0](https://github.com/informatievlaanderen/public-api/compare/v4.12.0...v4.13.0) (2021-01-30)
+
+
+### Features
+
+* update docs for feeds ([38b2200](https://github.com/informatievlaanderen/public-api/commit/38b220094ee0514152df5831815948bdf3cadc57))
+
 # [4.12.0](https://github.com/informatievlaanderen/public-api/compare/v4.11.6...v4.12.0) (2021-01-29)
 
 
