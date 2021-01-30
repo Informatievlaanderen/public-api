@@ -465,7 +465,7 @@ De Basisregisters Vlaanderen API gebruikt [Problem Details for HTTP APIs (RFC780
 
             if (isFeedsVisibleToggle)
                 text.AppendLine(
-                    @"## Gebruik van feeds
+                    $@"## Gebruik van feeds
 
 ### Beoogde toepassing
 
@@ -493,6 +493,10 @@ Wanneer uw proces zou stopgezet of onderbroken worden, kan u eenvoudig terug opp
 * Voer bovenstaande stappen uit om alle gegevens te verwerken.
 
 In het veld `<content>` kan u het event en/of de objectversiedetails terugvinden per wijziging (`<entry>`).
+
+### Betekenis van de events en velden in de feed
+
+Een overzicht van alle mogelijke business events en de betekenis van de attributen onder het blokje <event> vindt u op deze pagina: [{_configuration["BaseUrl"]}{description.GroupName}/info/events?tags=sync]({_configuration["BaseUrl"]}{description.GroupName}/info/events?tags=sync).
 
 ### Kanttekening
 

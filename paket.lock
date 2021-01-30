@@ -12,12 +12,12 @@ NUGET
     AutoFixture.Xunit2 (4.15)
       AutoFixture (>= 4.15)
       xunit.extensibility.core (>= 2.2 < 3.0)
-    AWSSDK.Core (3.5.1.59)
-    AWSSDK.DynamoDBv2 (3.5.4.18)
-      AWSSDK.Core (>= 3.5.1.59 < 3.6)
+    AWSSDK.Core (3.5.2.5)
+    AWSSDK.DynamoDBv2 (3.5.4.24)
+      AWSSDK.Core (>= 3.5.2.4 < 3.6)
     AWSSDK.S3 (3.5.7.6)
       AWSSDK.Core (>= 3.5.1.59 < 3.6)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (2.25.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (2.26) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.AggregateSource (5.0.12)
       Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (>= 2.2.10)
       Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (>= 2.2.9)
@@ -139,7 +139,7 @@ NUGET
       Fake.IO.FileSystem (>= 5.20.3)
       Fake.JavaScript.Npm (>= 5.20.3)
       Newtonsoft.Json (>= 12.0.3)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (2.25.5) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (2.26) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.CommandHandling (5.0.12)
     Be.Vlaanderen.Basisregisters.CommandHandling.Idempotency (5.0.12)
       Autofac.Extensions.DependencyInjection (>= 7.1)
@@ -217,11 +217,11 @@ NUGET
       Be.Vlaanderen.Basisregisters.Crab (>= 2.2.4)
       Be.Vlaanderen.Basisregisters.GrAr.Common (16.4.1)
       Microsoft.CSharp (>= 4.7)
-    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (3.11.12) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (3.12) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.4.1)
-    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (3.18) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (3.19) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.4.1)
-    Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (2.14) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (2.15) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.ProblemDetails (6.0.3)
       System.Reflection.Metadata (>= 5.0)
     Be.Vlaanderen.Basisregisters.ProjectionHandling.Connector (7.0.5)
@@ -243,7 +243,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.EventHandling (>= 3.0.3)
       SqlStreamStore (>= 1.2)
     Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice (2.1.1) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (2.16.1) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (2.17) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.4.1)
     Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (2.2.10)
     Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (2.2.9)
@@ -582,7 +582,7 @@ NUGET
       Microsoft.Extensions.Options (>= 5.0)
       Microsoft.Extensions.Primitives (>= 5.0)
     Microsoft.Extensions.Primitives (5.0)
-    Microsoft.Identity.Client (4.24)
+    Microsoft.Identity.Client (4.25)
       Microsoft.CSharp (>= 4.5)
       NETStandard.Library (>= 1.6.1)
       System.ComponentModel.TypeConverter (>= 4.3)
@@ -651,12 +651,12 @@ NUGET
       System.Security.Cryptography.Pkcs (>= 4.7)
       System.Text.Encoding.CodePages (>= 4.4)
     Mono.Posix.NETStandard (1.0)
-    MSBuild.StructuredLogger (2.1.272)
+    MSBuild.StructuredLogger (2.1.303)
       Microsoft.Build (>= 16.4)
       Microsoft.Build.Framework (>= 16.4)
       Microsoft.Build.Tasks.Core (>= 16.4)
       Microsoft.Build.Utilities.Core (>= 16.4)
-    Namotion.Reflection (1.0.15)
+    Namotion.Reflection (1.0.16)
       Microsoft.CSharp (>= 4.3)
     NETStandard.Library (2.0.3)
       Microsoft.NETCore.Platforms (>= 1.1)
@@ -681,7 +681,7 @@ NUGET
       Newtonsoft.Json (>= 9.0.1)
       NJsonSchema (>= 10.3.3)
       NJsonSchema.CodeGeneration (>= 10.3.3)
-    NodaTime (3.0.3)
+    NodaTime (3.0.5)
       System.Runtime.CompilerServices.Unsafe (>= 4.7.1)
     NodaTime.Serialization.JsonNet (3.0)
       Newtonsoft.Json (>= 12.0.1)
