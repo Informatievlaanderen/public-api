@@ -1,3 +1,10 @@
+## [4.13.2](https://github.com/informatievlaanderen/public-api/compare/v4.13.1...v4.13.2) (2021-02-03)
+
+
+### Bug Fixes
+
+* correct typo in sync docs ([01f4041](https://github.com/informatievlaanderen/public-api/commit/01f4041f0c3db2b8070f52124f3cb4d183759b3e))
+
 ## [4.13.1](https://github.com/informatievlaanderen/public-api/compare/v4.13.0...v4.13.1) (2021-02-03)
 
 
