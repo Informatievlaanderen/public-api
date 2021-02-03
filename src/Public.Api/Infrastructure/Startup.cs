@@ -496,7 +496,7 @@ In het veld `<content>` kan u het event en/of de objectversiedetails terugvinden
 
 ### Betekenis van de events en velden in de feed
 
-Een overzicht van alle mogelijke business events en de betekenis van de attributen onder het blokje <event> vindt u op deze pagina: [{_configuration["BaseUrl"]}{description.GroupName}/info/events?tags=sync]({_configuration["BaseUrl"]}{description.GroupName}/info/events?tags=sync).
+Een overzicht van alle mogelijke business events en de betekenis van de attributen onder het blokje `<event>` vindt u op deze pagina: [{_configuration["BaseUrl"]}{description.GroupName}/info/events?tags=sync]({_configuration["BaseUrl"]}{description.GroupName}/info/events?tags=sync).
 
 ### Kanttekening
 
