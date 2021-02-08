@@ -7,6 +7,7 @@ namespace Common.Infrastructure.Controllers
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Xml.Linq;
     using Attributes;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
@@ -116,6 +117,7 @@ namespace Common.Infrastructure.Controllers
             Func<IRestRequest> createBackendRequestFunc,
             AcceptType acceptType,
             Action<HttpStatusCode> handleNotOkResponseAction,
+            ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken)
         {
             var contentType = acceptType.ToMimeTypeString();
@@ -136,7 +138,7 @@ namespace Common.Infrastructure.Controllers
                     : response.ContentType;
 
                 return new BackendResponse(
-                    response.Content,
+                    GetPublicContentValue(response, problemDetailsHelper),
                     downstreamVersion?.Value.ToString(),
                     DateTimeOffset.UtcNow,
                     responseContentType,
@@ -147,6 +149,25 @@ namespace Common.Infrastructure.Controllers
             handleNotOkResponseAction(response.StatusCode);
 
             throw new ApiException("Fout bij de bron.", (int)response.StatusCode, response.ErrorException);
+        }
+
+        private static string GetPublicContentValue(IRestResponse response, ProblemDetailsHelper helper)
+        {
+            var problemDetails = response.GetProblemDetails();
+            if (string.IsNullOrWhiteSpace(problemDetails.ProblemTypeUri))
+                return response.Content;
+
+            string Encode(string value)
+                => (response.ContentType.Contains("xml", StringComparison.InvariantCultureIgnoreCase)
+                       ? new XElement(XName.Get("dummy"), value).LastNode?.ToString()
+                       : value)
+                   ?? string.Empty;
+
+            return response
+                .Content
+                .Replace(
+                    Encode(problemDetails.ProblemTypeUri),
+                    Encode(helper.RewriteExceptionTypeFrom(problemDetails)));
         }
 
         protected static async Task<BackendResponse> GetFromBackendAsync(

@@ -66,12 +66,14 @@ namespace Common.Infrastructure.Controllers
             AcceptType acceptType,
             Func<IRestRequest> createBackendRequestFunc,
             Action<HttpStatusCode> handleNotOkResponseAction,
+            ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken)
             => await GetFromBackendWithBadRequestAsync(
                 _restClient,
                 createBackendRequestFunc,
                 acceptType,
                 handleNotOkResponseAction,
+                problemDetailsHelper,
                 cancellationToken);
 
         protected string CreateCacheKeyForRequestQuery(string keyBaseValue)

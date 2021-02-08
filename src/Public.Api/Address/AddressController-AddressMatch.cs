@@ -57,6 +57,7 @@ namespace Public.Api.Address
             [FromQuery] string busnummer,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
+            [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
@@ -77,6 +78,7 @@ namespace Public.Api.Address
                 contentFormat.ContentType,
                 BackendRequest,
                 CreateDefaultHandleBadRequest(),
+                problemDetailsHelper,
                 cancellationToken);
 
             return BackendListResponseResult.Create(response, Request.Query, string.Empty);
