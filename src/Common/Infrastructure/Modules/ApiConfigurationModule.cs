@@ -4,6 +4,7 @@ namespace Common.Infrastructure.Modules
     using System.Collections.Generic;
     using System.Net;
     using Autofac;
+    using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Configuration;
     using FeatureToggle;
     using Microsoft.Extensions.Configuration;
@@ -41,6 +42,7 @@ namespace Common.Infrastructure.Modules
             }
 
             builder.RegisterInstance(healthUrls);
+            builder.RegisterType<ProblemDetailsHelper>();
         }
 
         private static void RegisterRestClient(
