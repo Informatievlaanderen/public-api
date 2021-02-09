@@ -1,3 +1,10 @@
+## [4.13.3](https://github.com/informatievlaanderen/public-api/compare/v4.13.2...v4.13.3) (2021-02-09)
+
+
+### Bug Fixes
+
+* use public problemdetails type uri for bad request GRAR-1814 ([55cb11d](https://github.com/informatievlaanderen/public-api/commit/55cb11dbc3dc23ac88dc525ead69bd50b1231964))
+
 ## [4.13.2](https://github.com/informatievlaanderen/public-api/compare/v4.13.1...v4.13.2) (2021-02-03)
 
 
