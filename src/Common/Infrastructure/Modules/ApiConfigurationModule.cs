@@ -42,7 +42,9 @@ namespace Common.Infrastructure.Modules
             }
 
             builder.RegisterInstance(healthUrls);
-            builder.RegisterType<ProblemDetailsHelper>();
+            builder
+                .RegisterType<ProblemDetailsHelper>()
+                .AsSelf();
         }
 
         private static void RegisterRestClient(
