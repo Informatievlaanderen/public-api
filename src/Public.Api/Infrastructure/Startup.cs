@@ -513,7 +513,14 @@ De persistente identificator van een object (van de vorm `https://data.vlaandere
 
 Wanneer deze identificator nog niet beschikbaar is kunt u gebruik maken van de technische sleutel (GUID die ook in het antwoord aanwezig is) om alle events op één object aan elkaar te relateren. Deze GUID kan enkel gebruikt worden binnen de feed. Voor communicatie met derde partijen dient de persistente identificator gebruikt te worden.
 
-Het is onze intentie om bij het opzetten van decentraal beheer op het register de granulariteit van de events te herbekijken om het gebruik van de feed in de toekomst te vereenvoudigen.");
+Het is onze intentie om bij het opzetten van decentraal beheer op het register de granulariteit van de events te herbekijken om het gebruik van de feed in de toekomst te vereenvoudigen.
+
+### API key verplicht
+
+Om de feed endpoints te gebruiken is het verplicht om een API key mee te geven. Als u dit namelijk niet doet dan krijgt u een errormelding 401 als response terug. Er zijn 2 mogelijkheden om de API key mee te geven:
+
+ - Via de header x-api-key
+ - In de URL vb. https://api.basisregisters.dev-vlaanderen.be/v1/feeds/adressen?apikey={{apikey}} waarbij {{apikey}} vervangen wordt door de unieke code van uw API key.");
 
             return text.ToString();
         }
