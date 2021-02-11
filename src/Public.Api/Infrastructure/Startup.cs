@@ -180,15 +180,20 @@ namespace Public.Api.Infrastructure
                             options.InvalidModelStateResponseFactory = actionContext =>
                             {
                                 actionContext.SetContentFormatAcceptType();
-                                actionContext
-                                    .HttpContext
+                                var httpContext = actionContext.HttpContext;
+                                httpContext
                                     .Request
                                     .RewriteAcceptTypeForProblemDetail();
 
+                                var problemDetailsHelper = httpContext
+                                    .RequestServices
+                                    .GetRequiredService<ProblemDetailsHelper>();
+
                                 var modelStateProblemDetails = new ModelStateProblemDetails(actionContext.ModelState)
                                 {
-                                    ProblemInstanceUri = actionContext.HttpContext.GetProblemInstanceUri()
+                                    ProblemInstanceUri = problemDetailsHelper.GetInstanceUri(httpContext)
                                 };
+                                modelStateProblemDetails.ProblemTypeUri = problemDetailsHelper.RewriteExceptionTypeFrom(modelStateProblemDetails);
 
                                 return new BadRequestObjectResult(modelStateProblemDetails)
                                 {
