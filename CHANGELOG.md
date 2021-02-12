@@ -1,3 +1,10 @@
+## [4.13.4](https://github.com/informatievlaanderen/public-api/compare/v4.13.3...v4.13.4) (2021-02-12)
+
+
+### Bug Fixes
+
+* update api with use of problemdetailshelper GRAR-1814 ([f95a6fa](https://github.com/informatievlaanderen/public-api/commit/f95a6fabd9e24bfb9acd83dff5b744c7365a564b))
+
 ## [4.13.3](https://github.com/informatievlaanderen/public-api/compare/v4.13.2...v4.13.3) (2021-02-09)
 
 
