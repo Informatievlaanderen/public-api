@@ -486,7 +486,7 @@ Deze functionaliteit stelt u in staat een pull-based mechanisme te bouwen om op 
 
 In pseudo-code zou u als volgt wijzigingen binnenhalen:
 
-* Roep het feeds endpoint aan van het objecttype dat u wenst, zonder `from` parameter.
+* Roep het feed endpoint aan van het objecttype dat u wenst, zonder `from` parameter.
 * Lees het `<link>` veld met `rel=""next""` uit om de volgende pagina met wijzigingen te weten te komen.
 * Lees de gevraagde gegevens uit en sla het `<id>` veld van de laatste `<entry>` op de pagina op zodat u weet tot hoever u de wijzigingen reeds verwerkt hebt.
 * Roep nu de volgende pagina met wijzigingen aan.
@@ -494,7 +494,7 @@ In pseudo-code zou u als volgt wijzigingen binnenhalen:
 
 Wanneer uw proces zou stopgezet of onderbroken worden, kan u eenvoudig terug oppikken waar u gebleven was:
 
-* Roep opnieuw het feeds endpoint aan, maar dit keer met de `from` parameter 1 groter dan het laatste `<id>` veld dat u hebt uitgelezen.
+* Roep opnieuw het feed endpoint aan, maar dit keer met de `from` parameter 1 groter dan het laatste `<id>` veld dat u hebt uitgelezen.
 * Voer bovenstaande stappen uit om alle gegevens te verwerken.
 
 In het veld `<content>` kan u het event en/of de objectversiedetails terugvinden per wijziging (`<entry>`).
@@ -517,10 +517,10 @@ Het is onze intentie om bij het opzetten van decentraal beheer op het register d
 
 ### API key verplicht
 
-Om de feed endpoints te gebruiken is het verplicht om een API key mee te geven. Als u dit namelijk niet doet dan krijgt u een errormelding 401 als response terug. Er zijn 2 mogelijkheden om de API key mee te geven:
+Om de [Feeds](#tag/Feeds) te gebruiken is het verplicht om een API key mee te geven. Als u dit namelijk niet doet dan krijgt u een errormelding 401 als response terug. Er zijn 2 mogelijkheden om de API key mee te geven:
 
- - Via de header x-api-key
- - In de URL vb. https://api.basisregisters.dev-vlaanderen.be/v1/feeds/adressen?apikey={{apikey}} waarbij {{apikey}} vervangen wordt door de unieke code van uw API key.");
+* Via de header `x-api-key`.
+* In de URL. Bijvoorbeeld: `{_configuration["BaseUrl"]}{description.GroupName}/feeds/adressen?apikey={{apikey}}` waarbij `{{apikey}}` vervangen wordt door de unieke code van uw API key.");
 
             return text.ToString();
         }
