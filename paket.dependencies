@@ -26,7 +26,7 @@ nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice 2.1.1   
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 5.0.2
 
-nuget Be.Vlaanderen.Basisregisters.Api 14.0.0
+nuget Be.Vlaanderen.Basisregisters.Api 14.1.1
 
 nuget Be.Vlaanderen.Basisregisters.GrAr.Common 16.4.2
 nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 16.4.2
