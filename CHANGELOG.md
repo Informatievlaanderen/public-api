@@ -1,3 +1,10 @@
+## [4.13.6](https://github.com/informatievlaanderen/public-api/compare/v4.13.5...v4.13.6) (2021-02-12)
+
+
+### Bug Fixes
+
+* correct base url for feed api key example ([3caf18b](https://github.com/informatievlaanderen/public-api/commit/3caf18b0e77df637c562c7aaabebbe27cba57b3c))
+
 ## [4.13.5](https://github.com/informatievlaanderen/public-api/compare/v4.13.4...v4.13.5) (2021-02-12)
 
 
