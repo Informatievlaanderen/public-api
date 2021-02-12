@@ -1,3 +1,12 @@
+## [4.13.5](https://github.com/informatievlaanderen/public-api/compare/v4.13.4...v4.13.5) (2021-02-12)
+
+
+### Bug Fixes
+
+* add api-key docs GRAR-1830 ([e7e8d2e](https://github.com/informatievlaanderen/public-api/commit/e7e8d2e64d44949739b400b4296a6168e1f1dadb))
+* add docs for examples 401, 403 GRAR-1833 GRAR-1837 ([12fe225](https://github.com/informatievlaanderen/public-api/commit/12fe2256e785d988fcd87574bcbb715f9dd26918))
+* remove 304 response from docs in feeds GRAR-1831 ([d2f9226](https://github.com/informatievlaanderen/public-api/commit/d2f9226ac595dc2d24cc13a80ae2a4097e2441dd))
+
 ## [4.13.4](https://github.com/informatievlaanderen/public-api/compare/v4.13.3...v4.13.4) (2021-02-12)
 
 
