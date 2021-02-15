@@ -1,3 +1,10 @@
+## [4.13.7](https://github.com/informatievlaanderen/public-api/compare/v4.13.6...v4.13.7) (2021-02-15)
+
+
+### Bug Fixes
+
+* use public namespace for embed validation details GRAR-1814 ([e42c0b8](https://github.com/informatievlaanderen/public-api/commit/e42c0b8382c721cc75ea90689d59b7470f32a740))
+
 ## [4.13.6](https://github.com/informatievlaanderen/public-api/compare/v4.13.5...v4.13.6) (2021-02-12)
 
 
