@@ -1,3 +1,10 @@
+## [4.13.8](https://github.com/informatievlaanderen/public-api/compare/v4.13.7...v4.13.8) (2021-03-02)
+
+
+### Bug Fixes
+
+* change problem detail instance GRAR-1875 ([0e2dcd1](https://github.com/informatievlaanderen/public-api/commit/0e2dcd142744822732f4d9ed143839872399593c))
+
 ## [4.13.7](https://github.com/informatievlaanderen/public-api/compare/v4.13.6...v4.13.7) (2021-02-15)
 
 
