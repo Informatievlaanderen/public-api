@@ -98,8 +98,7 @@ namespace Public.Api.Infrastructure
                     Server =
                     {
                         BaseUrl = baseUrlForExceptions,
-                        // keep public facing problem details consistent with existing ones, also looks more meaningful than public.api
-                        ProblemDetailsTypeNamespaceOverride = "be.vlaanderen.registers.api"
+                        ProblemDetailsTypeNamespaceOverride = "be.vlaanderen.basisregisters.api"
                     },
                     Swagger =
                     {
