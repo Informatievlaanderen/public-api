@@ -1,3 +1,10 @@
+## [4.13.9](https://github.com/informatievlaanderen/public-api/compare/v4.13.8...v4.13.9) (2021-03-03)
+
+
+### Bug Fixes
+
+* disable caching on extract download GRAR-1800 ([8379dfa](https://github.com/informatievlaanderen/public-api/commit/8379dfa8a36fa9b6782065d2785845a5a0cb2aa9))
+
 ## [4.13.8](https://github.com/informatievlaanderen/public-api/compare/v4.13.7...v4.13.8) (2021-03-02)
 
 
