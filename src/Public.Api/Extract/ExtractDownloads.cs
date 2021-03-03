@@ -11,18 +11,25 @@ namespace Public.Api.Extract
     using Infrastructure.Version;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using NodaTime;
 
     public class ExtractDownloads
     {
         private readonly IAmazonS3 _client;
         private readonly DownloadConfiguration _config;
         private readonly MarketingVersion _version;
+        private readonly IClock _clock;
 
-        public ExtractDownloads(IAmazonS3 s3Client, DownloadConfiguration config, MarketingVersion version)
+        public ExtractDownloads(
+            IAmazonS3 s3Client,
+            DownloadConfiguration config,
+            MarketingVersion version,
+            IClock clock)
         {
             _client = s3Client;
             _config = config;
             _version = version;
+            _clock = clock;
         }
 
         public async Task<IActionResult> RedirectToMostRecent(CancellationToken cancellationToken)
@@ -33,34 +40,29 @@ namespace Public.Api.Extract
 
         private async Task<IActionResult> RedirectTo(DateTime? extractDate, CancellationToken cancellationToken)
         {
-            try
-            {
-                var extractObjectRegex = CreateFileRegexForDate(extractDate);
-                var response = await _client.ListObjectsAsync(_config.Bucket, cancellationToken);
-                var extract = response
-                    ?.S3Objects
-                    ?.Where(item => extractObjectRegex.IsMatch(item.Key))
-                    .OrderByDescending(item => item.LastModified)
-                    .FirstOrDefault();
+            var extractObjectRegex = CreateFileRegexForDate(extractDate);
+            var response = await _client.ListObjectsAsync(_config.Bucket, cancellationToken);
+            var extract = response
+                ?.S3Objects
+                ?.Where(item => extractObjectRegex.IsMatch(item.Key))
+                .OrderByDescending(item => item.LastModified)
+                .FirstOrDefault();
 
-                if (extract == null)
-                    throw new ApiException("Onbestaand testbestand.", StatusCodes.Status404NotFound);
+            if (extract == null)
+                throw new ApiException("Onbestaand testbestand.", StatusCodes.Status404NotFound);
 
-                var signedUrl = _client.GetPreSignedURL(
-                    new GetPreSignedUrlRequest
-                    {
-                        BucketName = extract.BucketName,
-                        Key = extract.Key,
-                        Expires = DateTime.Now.AddSeconds(_config.ExpiresInSeconds)
-                    });
+            var signedUrl = _client.GetPreSignedURL(
+                new GetPreSignedUrlRequest
+                {
+                    BucketName = extract.BucketName,
+                    Key = extract.Key,
+                    Expires = _clock
+                        .GetCurrentInstant()
+                        .Plus(Duration.FromSeconds(_config.ExpiresInSeconds))
+                        .ToDateTimeUtc()
+                });
 
-                return new RedirectResult(signedUrl, false);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            return new RedirectResult(signedUrl, false);
         }
 
         private Regex CreateFileRegexForDate(DateTime? matchDate)

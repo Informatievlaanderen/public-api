@@ -6,6 +6,7 @@ namespace Public.Api.Infrastructure.Modules
     using Autofac;
     using Extract;
     using Microsoft.Extensions.Configuration;
+    using NodaTime;
     using Version;
 
     public class ExtractDownloadModule : Module
@@ -25,7 +26,11 @@ namespace Public.Api.Infrastructure.Modules
             var amazonS3Client = CreateS3Client();
 
             builder
-                .Register(context => new ExtractDownloads(amazonS3Client, extractConfiguration, _marketingVersion))
+                .Register(context => new ExtractDownloads(
+                    amazonS3Client,
+                    extractConfiguration,
+                    _marketingVersion,
+                    SystemClock.Instance))
                 .AsSelf();
         }
 
