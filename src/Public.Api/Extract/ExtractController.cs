@@ -13,6 +13,7 @@ namespace Public.Api.Extract
     using FluentValidation;
     using FluentValidation.Results;
     using Infrastructure.Swagger;
+    using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
@@ -30,6 +31,7 @@ namespace Public.Api.Extract
     public class ExtractController : ApiController<ExtractController>
     {
         private readonly ExtractDownloads _extractDownloads;
+        private const int NoCaching = 0;
 
         public ExtractController(
             ConnectionMultiplexerProvider redis,
@@ -44,6 +46,7 @@ namespace Public.Api.Extract
         /// <response code="404">Als er geen extract download gevonden kan worden.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("extract", Name = nameof(DownloadLatestExtract))]
+        [HttpCacheExpiration(MaxAge = NoCaching)]
         [ProducesResponseType(typeof(void), StatusCodes.Status302Found)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
@@ -61,6 +64,7 @@ namespace Public.Api.Extract
         /// <response code="404">Als de extract download niet gevonden kan worden.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("extract/{extractDate}", Name = nameof(DownloadExtractForDate))]
+        [HttpCacheExpiration(MaxAge = NoCaching)]
         [ProducesResponseType(typeof(void), StatusCodes.Status302Found)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
