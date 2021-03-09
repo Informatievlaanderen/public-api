@@ -42,6 +42,5 @@ namespace Public.Api.Status.Clients
                 CurrentPosition = status.CurrentPosition
             };
         }
-
     }
 }
