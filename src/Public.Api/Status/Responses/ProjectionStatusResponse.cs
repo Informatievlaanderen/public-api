@@ -17,12 +17,18 @@ namespace Public.Api.Status.Responses
     public class RegistryProjectionStatus
     {
         [DataMember(Order = 1)]
-        public string Name { get; set; }
+        public string Key { get; set; }
 
         [DataMember(Order = 2)]
-        public string State { get; set; }
+        public string Name { get; set; }
 
         [DataMember(Order = 3)]
+        public string Description { get; set; }
+
+        [DataMember(Order = 4)]
+        public string State { get; set; }
+
+        [DataMember(Order = 5)]
         public long CurrentPosition { get; set; }
     }
 }
