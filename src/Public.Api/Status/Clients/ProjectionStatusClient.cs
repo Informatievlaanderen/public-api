@@ -20,19 +20,15 @@ namespace Public.Api.Status.Clients
                 StreamPosition = response.StreamPosition,
                 Projections = response
                     .Projections
-                    .Select(CreateStatus)
+                    .Select(status =>
+                        new RegistryProjectionStatus
+                        {
+                            Key = status.Id,
+                            Name = string.IsNullOrWhiteSpace(status.Name) ? status.Id : status.Name,
+                            Description = status.Description,
+                            State = status.State,
+                            CurrentPosition = status.CurrentPosition
+                        })
             };
-
-        private RegistryProjectionStatus CreateStatus(ProjectionStatus status)
-        {
-            return new RegistryProjectionStatus
-            {
-                Key = status.Id,
-                Name = string.IsNullOrWhiteSpace(status.Name) ? status.Id : status.Name,
-                Description = status.Description,
-                State = status.State,
-                CurrentPosition = status.CurrentPosition
-            };
-        }
     }
 }
