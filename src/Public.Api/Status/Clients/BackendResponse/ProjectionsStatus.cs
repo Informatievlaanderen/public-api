@@ -10,8 +10,10 @@ namespace Public.Api.Status.Clients.BackendResponse
 
     public class ProjectionStatus
     {
-        public string ProjectionName { get; set; }
-        public string ProjectionState { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string State { get; set; }
         public long CurrentPosition { get; set; }
         public string ErrorMessage { get; set; }
     }

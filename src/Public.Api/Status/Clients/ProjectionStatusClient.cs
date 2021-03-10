@@ -1,7 +1,5 @@
 namespace Public.Api.Status.Clients
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using BackendResponse;
     using Common.Infrastructure;
@@ -10,13 +8,8 @@ namespace Public.Api.Status.Clients
 
     public class ProjectionStatusClient : BaseStatusClient<RegistryProjectionStatusResponse, ProjectionsStatusList>
     {
-        private readonly IEnumerable<ProjectionInfo.Info> _registryInfo;
-
         public ProjectionStatusClient(string registry, TraceRestClient restClient)
-            : base(registry, restClient)
-        {
-            _registryInfo = new ProjectionInfo().For(registry);
-        }
+            : base(registry, restClient) { }
 
         protected override IRestRequest CreateStatusRequest()
             => new RestRequest("projections");
@@ -32,13 +25,12 @@ namespace Public.Api.Status.Clients
 
         private RegistryProjectionStatus CreateStatus(ProjectionStatus status)
         {
-            var info = _registryInfo.SingleOrDefault(projectionInfo => projectionInfo.Key.Equals(status.ProjectionName, StringComparison.InvariantCultureIgnoreCase));
             return new RegistryProjectionStatus
             {
-                Key = status.ProjectionName,
-                Name = string.IsNullOrWhiteSpace(info?.Name) ? status.ProjectionName : info.Name,
-                Description = info?.Description ?? string.Empty,
-                State = status.ProjectionState,
+                Key = status.Id,
+                Name = string.IsNullOrWhiteSpace(status.Name) ? status.Id : status.Name,
+                Description = status.Description,
+                State = status.State,
                 CurrentPosition = status.CurrentPosition
             };
         }
