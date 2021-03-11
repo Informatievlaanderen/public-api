@@ -1,3 +1,17 @@
+# [4.14.0](https://github.com/informatievlaanderen/public-api/compare/v4.13.9...v4.14.0) (2021-03-11)
+
+
+### Bug Fixes
+
+* add name and description to to projection status GRARG-1876 ([f792646](https://github.com/informatievlaanderen/public-api/commit/f792646b53cf5b01be683c0f153f36b02cbb9895))
+* get projection info from registries GRAR-1876 ([b04c24a](https://github.com/informatievlaanderen/public-api/commit/b04c24a93b46cf2fb68a6e395890eecceb6154c2))
+* update registries ([19896d6](https://github.com/informatievlaanderen/public-api/commit/19896d6346fb6429e62370807b77ea4760621a62))
+
+
+### Features
+
+* use dutch error messages for default mvc model binding errors GRAR-1877 ([6de6210](https://github.com/informatievlaanderen/public-api/commit/6de62104d6fb94e90eddbf310547f30497ddfbc1))
+
 ## [4.13.9](https://github.com/informatievlaanderen/public-api/compare/v4.13.8...v4.13.9) (2021-03-03)
 
 
