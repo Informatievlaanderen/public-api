@@ -162,6 +162,27 @@ namespace Public.Api.Infrastructure
 
                         AfterMvcCore = builder =>
                         {
+                            builder
+                                .AddMvcOptions(options =>
+                                {
+                                    //GRAR-1877
+                                    options.ModelBindingMessageProvider.SetAttemptedValueIsInvalidAccessor((value,fieldName) => $"De waarde '{value}' is ongeldig voor {fieldName}.");
+
+                                    options.ModelBindingMessageProvider.SetMissingBindRequiredValueAccessor(value => $"Waarde ontbreekt voor de parameter '{value}'.");
+                                    options.ModelBindingMessageProvider.SetMissingKeyOrValueAccessor(() => $"Verplichte invoer.");
+                                    options.ModelBindingMessageProvider.SetMissingRequestBodyRequiredValueAccessor(() => $"De body van het verzoek mag niet leeg zijn.");
+
+                                    options.ModelBindingMessageProvider.SetNonPropertyAttemptedValueIsInvalidAccessor(value => $"De waarde '{value}' is ongeldig.");
+                                    options.ModelBindingMessageProvider.SetNonPropertyUnknownValueIsInvalidAccessor(() => $"De opgegeven waarde is ongeldig.");
+                                    options.ModelBindingMessageProvider.SetNonPropertyValueMustBeANumberAccessor(() => $"De waarde in het veld moet numeriek zijn.");
+
+                                    options.ModelBindingMessageProvider.SetUnknownValueIsInvalidAccessor(fieldName => $"De opgegeven waarde is ongeldig voor {fieldName}.");
+
+                                    options.ModelBindingMessageProvider.SetValueIsInvalidAccessor(value => $"De waarde '{value}' is ongeldig.");
+                                    options.ModelBindingMessageProvider.SetValueMustBeANumberAccessor(fieldName => $"De waarde in het veld {fieldName} moet numeriek zijn.");
+                                    options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(value => $"De waarde '{value}' is ongeldig.");
+                                });
+
                             builder.ConfigureApplicationPartManager(apm =>
                             {
                                 var parts = apm.ApplicationParts;
