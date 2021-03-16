@@ -496,7 +496,7 @@ De Basisregisters Vlaanderen API gebruikt [Problem Details for HTTP APIs (RFC780
 
 De endpoints onder [Feeds](#tag/Feeds) laten u toe om alle wijzigingen per objecttype of ‘resource’ op te vragen. Deze maken gebruik van [Atom](https://en.wikipedia.org/wiki/Atom_(Web_standard)) als standaard.
 
-Aan de hand van een feed kan u de wijzigingen op drie manieren opvragen: als gebeurtenissen(‘business events’), als de daaruit resulterende objectversies, of een combinatie van beide.Dit doet u door aan de `embed` parameter respectievelijk `event`, `object` of `object,event` mee te geven.
+Aan de hand van een feed kan u de wijzigingen op drie manieren opvragen: als gebeurtenissen(‘business events’), als de daaruit resulterende objectversies, of een combinatie van beide. Dit doet u door aan de `embed` parameter respectievelijk `event`, `object` of `object,event` mee te geven.
 
 U gebruikt de `from` parameter om een startpunt te kiezen vanaf waar u de wijzigingen wilt binnenhalen, in combinatie met de `limit` parameter voor het aantal wijzigingen.
 
