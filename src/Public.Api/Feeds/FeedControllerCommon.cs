@@ -41,7 +41,7 @@ namespace Public.Api.Feeds
             string resourcename,
             long? from,
             int? limit,
-            EmbedValue embed)
+            SyncEmbedValue embed)
             => new RestRequest($"{resourcename}/sync")
                     .AddPagination(NoPaging, limit)
                     .AddFiltering(new
