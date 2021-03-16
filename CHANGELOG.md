@@ -1,3 +1,10 @@
+## [4.14.1](https://github.com/informatievlaanderen/public-api/compare/v4.14.0...v4.14.1) (2021-03-16)
+
+
+### Bug Fixes
+
+* update api package to fix GRAR-1891 ([8daa196](https://github.com/informatievlaanderen/public-api/commit/8daa196cfb4b17deafeae9027d3d24268edebfb0))
+
 # [4.14.0](https://github.com/informatievlaanderen/public-api/compare/v4.13.9...v4.14.0) (2021-03-11)
 
 
