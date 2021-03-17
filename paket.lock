@@ -243,7 +243,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.EventHandling (>= 3.0.4)
       SqlStreamStore (>= 1.2)
     Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice (2.1.1) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (2.18) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (2.18.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.4.2)
     Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (2.2.11)
     Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (2.2.10)
