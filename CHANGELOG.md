@@ -1,3 +1,10 @@
+## [4.14.2](https://github.com/informatievlaanderen/public-api/compare/v4.14.1...v4.14.2) (2021-03-17)
+
+
+### Bug Fixes
+
+* update packages to fix sync docs GRAR-1898 ([fb40de8](https://github.com/informatievlaanderen/public-api/commit/fb40de87b622b28f6d5bafceea7d541a9783944d))
+
 ## [4.14.1](https://github.com/informatievlaanderen/public-api/compare/v4.14.0...v4.14.1) (2021-03-16)
 
 
