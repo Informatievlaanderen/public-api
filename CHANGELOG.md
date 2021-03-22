@@ -1,3 +1,10 @@
+## [4.14.4](https://github.com/informatievlaanderen/public-api/compare/v4.14.3...v4.14.4) (2021-03-22)
+
+
+### Bug Fixes
+
+* remove ridingwolf, collaboration ended ([01dd8ee](https://github.com/informatievlaanderen/public-api/commit/01dd8ee9855780169a6dd69afd5a87593edad327))
+
 ## [4.14.3](https://github.com/informatievlaanderen/public-api/compare/v4.14.2...v4.14.3) (2021-03-19)
 
 
