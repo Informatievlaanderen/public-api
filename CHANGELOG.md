@@ -1,3 +1,10 @@
+# [4.15.0](https://github.com/informatievlaanderen/public-api/compare/v4.14.4...v4.15.0) (2021-03-23)
+
+
+### Features
+
+* update feed docs with provenance info ([860141d](https://github.com/informatievlaanderen/public-api/commit/860141dee758b3e39fe953d27bd65d83067ca252))
+
 ## [4.14.4](https://github.com/informatievlaanderen/public-api/compare/v4.14.3...v4.14.4) (2021-03-22)
 
 
