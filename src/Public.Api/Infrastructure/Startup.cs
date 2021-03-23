@@ -540,8 +540,16 @@ Het is onze intentie om bij het opzetten van decentraal beheer op het register d
 Om de [Feeds](#tag/Feeds) te gebruiken is het verplicht om een API key mee te geven. Als u dit namelijk niet doet dan krijgt u een errormelding 401 als response terug. Er zijn 2 mogelijkheden om de API key mee te geven:
 
 * Via de header `x-api-key`.
-* In de URL. Bijvoorbeeld: `{_configuration["BaseUrl"]}{description.GroupName}/feeds/adressen?apikey={{apikey}}` waarbij `{{apikey}}` vervangen wordt door de unieke code van uw API key.");
+* In de URL. Bijvoorbeeld: `{_configuration["BaseUrl"]}{description.GroupName}/feeds/adressen?apikey={{apikey}}` waarbij `{{apikey}}` vervangen wordt door de unieke code van uw API key.
 
+ ### Provenance
+
+In het veld `Provenance` staat de metadata van een event. Het bestaat uit 3 onderdelen:
+
+* `Timestamp`/`Tijdstip`: In dit veld staat het tijdstip waarop het event is uitgevoerd.
+* `Organisation`/`Organisatie`: In dit veld staat de organisatie die de agent vertegenwoordigt bij het uitvoeren van een specifieke activiteit en waarvan hij/zij de vereiste autoriteit/verantwoordelijkheid heeft gekregen om dit te doen. De mogelijke waarden bij onderdeel ‘Event’ zijn: Unknown, Municipality, NationalRegister, Akred, TeleAtlas, Vlm, Agiv, Aiv, Ngi, DePost, NavTeq, Vkbo of Other. De mogelijke waarden bij onderdeel ‘Object’ zijn: Onbekend, Gemeente, Federale Overheidsdienst Binnenlandse Zaken (Rijksregister), Federale Overheidsdienst Financiën (Algemene Administratie van de Patrimoniumdocumentatie), TeleAtlas, Vlaamse Landmaatschappij, Agentschap voor Geografische Informatie Vlaanderen, Agentschap Informatie Vlaanderen, Nationaal Geografisch Instituut, bpost, NavTeq, Coördinatiecel Vlaams e-government of Andere.
+* `Reason`/`Reden`: In dit veld staat de aanleiding of motivatie voor de activiteit op de entiteit.");
+                                             
             return text.ToString();
         }
     }
