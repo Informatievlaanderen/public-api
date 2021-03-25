@@ -73,7 +73,6 @@ namespace Public.Api.StreetName
                 gemeentenaam);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/streetname-list:{taal}");
-
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
