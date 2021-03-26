@@ -192,7 +192,6 @@ namespace Public.Api.Infrastructure
                                     parts.Remove(unneededPart);
                             });
                         },
-
                         AfterMvc = builder => builder.Services.Configure<ApiBehaviorOptions>(options =>
                         {
                             options.SuppressInferBindingSourcesForParameters = true;
