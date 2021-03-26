@@ -1,3 +1,10 @@
+## [4.15.2](https://github.com/informatievlaanderen/public-api/compare/v4.15.1...v4.15.2) (2021-03-26)
+
+
+### Bug Fixes
+
+* style to force build ([89333a1](https://github.com/informatievlaanderen/public-api/commit/89333a174882e3ade7c01546ff79133166c176b2))
+
 ## [4.15.1](https://github.com/informatievlaanderen/public-api/compare/v4.15.0...v4.15.1) (2021-03-25)
 
 
