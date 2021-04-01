@@ -1,3 +1,10 @@
+## [4.15.3](https://github.com/informatievlaanderen/public-api/compare/v4.15.2...v4.15.3) (2021-04-01)
+
+
+### Bug Fixes
+
+* bump packages ([cc4cbe2](https://github.com/informatievlaanderen/public-api/commit/cc4cbe242dd2e065a43ffd8839cabd1ce8041a7e))
+
 ## [4.15.2](https://github.com/informatievlaanderen/public-api/compare/v4.15.1...v4.15.2) (2021-03-26)
 
 
