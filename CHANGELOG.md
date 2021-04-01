@@ -1,3 +1,10 @@
+## [4.15.4](https://github.com/informatievlaanderen/public-api/compare/v4.15.3...v4.15.4) (2021-04-01)
+
+
+### Bug Fixes
+
+* typo space by 'Provenance' ([0b6e5e4](https://github.com/informatievlaanderen/public-api/commit/0b6e5e4a6b027490c43da3122f9e3b4007e3cb08))
+
 ## [4.15.3](https://github.com/informatievlaanderen/public-api/compare/v4.15.2...v4.15.3) (2021-04-01)
 
 
