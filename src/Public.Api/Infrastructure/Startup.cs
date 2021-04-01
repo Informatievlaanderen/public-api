@@ -541,7 +541,7 @@ Om de [Feeds](#tag/Feeds) te gebruiken is het verplicht om een API key mee te ge
 * Via de header `x-api-key`.
 * In de URL. Bijvoorbeeld: `{_configuration["BaseUrl"]}{description.GroupName}/feeds/adressen?apikey={{apikey}}` waarbij `{{apikey}}` vervangen wordt door de unieke code van uw API key.
 
- ### Provenance
+### Provenance
 
 In het veld `Provenance` staat de metadata van een event. Het bestaat uit 3 onderdelen:
 
