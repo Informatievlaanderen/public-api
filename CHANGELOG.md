@@ -1,3 +1,10 @@
+# [4.16.0](https://github.com/informatievlaanderen/public-api/compare/v4.15.4...v4.16.0) (2021-04-28)
+
+
+### Features
+
+* add status filters for api list endpoints ([4250c60](https://github.com/informatievlaanderen/public-api/commit/4250c6053769c097027121100cef503e90198b27))
+
 ## [4.15.4](https://github.com/informatievlaanderen/public-api/compare/v4.15.3...v4.15.4) (2021-04-01)
 
 
