@@ -14,6 +14,7 @@ namespace Public.Api.Municipality
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
+    using MunicipalityRegistry.Api.Legacy.Municipality.Query;
     using MunicipalityRegistry.Api.Legacy.Municipality.Responses;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
@@ -27,6 +28,7 @@ namespace Public.Api.Municipality
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (niscode, naam, naam-nl, naam-fr, naam-de, naam-en).</param>
+        /// <param name="status">Filter op de status van de gemeente (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -55,6 +57,7 @@ namespace Public.Api.Municipality
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
+            [FromQuery] string status,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -67,7 +70,8 @@ namespace Public.Api.Municipality
                 offset,
                 limit,
                 taal,
-                sort);
+                sort,
+                status);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/municipality-list:{taal}");
 
@@ -87,12 +91,17 @@ namespace Public.Api.Municipality
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        private static IRestRequest CreateBackendListRequest(
-            int? offset,
+        private static IRestRequest CreateBackendListRequest(int? offset,
             int? limit,
             Taal language,
-            string sort)
+            string sort,
+            string status)
         {
+            var filter = new MunicipalityListFilter
+            {
+                Status = status
+            };
+
             // niscode, naam, naam-nl, naam-fr, naam-de, naam-en
             var sortMapping = new Dictionary<string, string>
             {
@@ -111,6 +120,7 @@ namespace Public.Api.Municipality
             return new RestRequest("gemeenten?taal={language}")
                 .AddParameter("language", language, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
+                .AddFiltering(filter)
                 .AddSorting(sort, sortMapping);
         }
     }

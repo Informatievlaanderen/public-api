@@ -29,6 +29,7 @@ namespace Public.Api.BuildingUnit
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id).</param>
         /// <param name="adresObjectId">Optionele objectidentificator van het gekoppelde adres.</param>
+        /// <param name="status">Filter op de status van de gebouweenheid (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -57,6 +58,7 @@ namespace Public.Api.BuildingUnit
             [FromQuery] int? limit,
             [FromQuery] string sort,
             [FromQuery] int? adresObjectId,
+            [FromQuery] string status,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<BuildingOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -70,7 +72,8 @@ namespace Public.Api.BuildingUnit
                 limit,
                 taal,
                 adresObjectId,
-                sort);
+                sort,
+                status);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/buildingunit-list:{taal}");
 
@@ -95,11 +98,13 @@ namespace Public.Api.BuildingUnit
             int? limit,
             Taal language,
             int? addressId,
-            string sort)
+            string sort,
+            string status)
         {
             var filter = new BuildingUnitFilter
             {
-                AddressPersistentLocalId = addressId?.ToString()
+                AddressPersistentLocalId = addressId?.ToString(),
+                Status = status
             };
 
             var sortMapping = new Dictionary<string, string>
