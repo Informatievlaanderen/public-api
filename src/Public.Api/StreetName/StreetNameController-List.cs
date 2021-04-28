@@ -29,6 +29,7 @@ namespace Public.Api.StreetName
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id, naam-nl, naam-fr, naam-de, naam-en).</param>
         /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de straatnamen (exact).</param>
+        /// <param name="status">Filter op de status van de straatnaam (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -57,6 +58,7 @@ namespace Public.Api.StreetName
             [FromQuery] int? limit,
             [FromQuery] string sort,
             [FromQuery] string gemeentenaam,
+            [FromQuery] string status,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<StreetNameOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -70,7 +72,8 @@ namespace Public.Api.StreetName
                 limit,
                 taal,
                 sort,
-                gemeentenaam);
+                gemeentenaam,
+                status);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/streetname-list:{taal}");
             var value = await (CacheToggle.FeatureEnabled
@@ -89,16 +92,17 @@ namespace Public.Api.StreetName
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        private static IRestRequest CreateBackendListRequest(
-            int? offset,
+        private static IRestRequest CreateBackendListRequest(int? offset,
             int? limit,
             Taal language,
             string sort,
-            string municipalityName)
+            string municipalityName,
+            string status)
         {
             var filter = new StreetNameFilter
             {
-                MunicipalityName = municipalityName
+                MunicipalityName = municipalityName,
+                Status = status
             };
 
             // id, naam-nl, naam-fr, naam-de, naam-en

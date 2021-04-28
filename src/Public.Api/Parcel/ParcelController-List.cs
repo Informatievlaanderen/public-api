@@ -14,6 +14,8 @@ namespace Public.Api.Parcel
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
+    using ParcelRegistry;
+    using ParcelRegistry.Api.Legacy.Parcel.Query;
     using ParcelRegistry.Api.Legacy.Parcel.Responses;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
@@ -27,6 +29,7 @@ namespace Public.Api.Parcel
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id).</param>
+        /// <param name="status">Filter op de status van het perceel (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -54,6 +57,7 @@ namespace Public.Api.Parcel
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
+            [FromQuery] string status,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<ParcelOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -66,7 +70,8 @@ namespace Public.Api.Parcel
                 offset,
                 limit,
                 taal,
-                sort);
+                sort,
+                status);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/parcel-list:{taal}");
 
@@ -86,12 +91,17 @@ namespace Public.Api.Parcel
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        private static IRestRequest CreateBackendListRequest(
-            int? offset,
+        private static IRestRequest CreateBackendListRequest(int? offset,
             int? limit,
             Taal language,
-            string sort)
+            string sort,
+            string status)
         {
+            var filter = new ParcelFilter
+            {
+                Status = status
+            };
+
             var sortMapping = new Dictionary<string, string>
             {
                 { "Id", "PersistentLocalId" },
@@ -100,6 +110,7 @@ namespace Public.Api.Parcel
             return new RestRequest("percelen?taal={language}")
                 .AddParameter("language", language, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
+                .AddFiltering(filter)
                 .AddSorting(sort, sortMapping);
         }
     }

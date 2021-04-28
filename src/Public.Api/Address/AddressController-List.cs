@@ -34,6 +34,7 @@ namespace Public.Api.Address
         /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres (exact).</param>
         /// <param name="huisnummer">Filter op het huisnummer van het adres (exact).</param>
         /// <param name="busnummer">Filter op het busnummer van het adres (exact).</param>
+        /// <param name="status">Filter op de status van het adres (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -67,6 +68,7 @@ namespace Public.Api.Address
             [FromQuery] string homoniemToevoeging,
             [FromQuery] string huisnummer,
             [FromQuery] string busnummer,
+            [FromQuery] string status,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -85,7 +87,8 @@ namespace Public.Api.Address
                 postcode,
                 gemeentenaam,
                 straatnaam,
-                homoniemToevoeging);
+                homoniemToevoeging,
+                status);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/address-list:{taal}");
 
@@ -105,8 +108,7 @@ namespace Public.Api.Address
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        private static IRestRequest CreateBackendListRequest(
-            int? offset,
+        private static IRestRequest CreateBackendListRequest(int? offset,
             int? limit,
             Taal language,
             string sort,
@@ -115,7 +117,8 @@ namespace Public.Api.Address
             int? postalCode,
             string municipalityName,
             string streetName,
-            string homonymAddition)
+            string homonymAddition,
+            string status)
         {
             var filter = new AddressFilter
             {
@@ -124,7 +127,8 @@ namespace Public.Api.Address
                 PostalCode = postalCode?.ToString(),
                 MunicipalityName = municipalityName,
                 StreetName = streetName,
-                HomonymAddition = homonymAddition
+                HomonymAddition = homonymAddition,
+                Status = status
             };
 
             // id, postcode, huisnummer, busnummer

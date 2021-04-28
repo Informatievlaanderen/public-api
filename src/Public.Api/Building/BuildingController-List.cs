@@ -6,7 +6,9 @@ namespace Public.Api.Building
     using Be.Vlaanderen.Basisregisters.Api.LastObservedPosition;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using BuildingRegistry.Api.Legacy.Building.Query;
     using BuildingRegistry.Api.Legacy.Building.Responses;
+    using BuildingRegistry.Api.Legacy.BuildingUnit.Query;
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
@@ -27,6 +29,7 @@ namespace Public.Api.Building
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id).</param>
+        /// <param name="status">Filter op de status van het gebouw (exact).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
@@ -54,6 +57,7 @@ namespace Public.Api.Building
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
+            [FromQuery] string status,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<BuildingOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -66,7 +70,8 @@ namespace Public.Api.Building
                 offset,
                 limit,
                 taal,
-                sort);
+                sort,
+                status);
 
             // As long as we do not control WFS, buildings cannot be cached
             //var cacheKey = CreateCacheKeyForRequestQuery($"legacy/building-list:{taal}");
@@ -88,8 +93,14 @@ namespace Public.Api.Building
             int? offset,
             int? limit,
             Taal language,
-            string sort)
+            string sort,
+            string status)
         {
+            var filter = new BuildingFilter
+            {
+                Status = status
+            };
+
             var sortMapping = new Dictionary<string, string>
             {
                 { "Id", "PersistentLocalId" },
@@ -98,6 +109,7 @@ namespace Public.Api.Building
             return new RestRequest("gebouwen?taal={language}")
                 .AddParameter("language", language, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
+                .AddFiltering(filter)
                 .AddSorting(sort, sortMapping);
         }
     }
