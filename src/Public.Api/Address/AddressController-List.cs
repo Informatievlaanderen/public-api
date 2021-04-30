@@ -34,7 +34,10 @@ namespace Public.Api.Address
         /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres (exact).</param>
         /// <param name="huisnummer">Filter op het huisnummer van het adres (exact).</param>
         /// <param name="busnummer">Filter op het busnummer van het adres (exact).</param>
-        /// <param name="status">Filter op de status van het adres (exact).</param>
+        /// <param name="status">
+        /// Filter op de status van het adres (exact).<br/>
+        /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"`
+        /// </param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>

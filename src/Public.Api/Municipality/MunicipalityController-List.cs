@@ -28,7 +28,10 @@ namespace Public.Api.Municipality
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (niscode, naam, naam-nl, naam-fr, naam-de, naam-en).</param>
-        /// <param name="status">Filter op de status van de gemeente (exact).</param>
+        /// <param name="status">
+        /// Filter op de status van de gemeente (exact). <br />
+        /// `"inGebruik"` `"gehistoreerd"` `"voorgesteld"`
+        /// </param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
