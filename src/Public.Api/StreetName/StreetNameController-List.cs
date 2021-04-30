@@ -29,7 +29,10 @@ namespace Public.Api.StreetName
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id, naam-nl, naam-fr, naam-de, naam-en).</param>
         /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de straatnamen (exact).</param>
-        /// <param name="status">Filter op de status van de straatnaam (exact).</param>
+        /// <param name="status">
+        /// Filter op de status van de straatnaam (exact). <br />
+        /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"`
+        /// </param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>

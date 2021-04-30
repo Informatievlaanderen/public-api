@@ -29,7 +29,10 @@ namespace Public.Api.BuildingUnit
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id).</param>
         /// <param name="adresObjectId">Optionele objectidentificator van het gekoppelde adres.</param>
-        /// <param name="status">Filter op de status van de gebouweenheid (exact).</param>
+        /// <param name="status">
+        /// Filter op de status van de gebouweenheid (exact).<br/>
+        /// `"gepland"` `"gerealiseerd"` `"gehistoreerd"` `"nietGerealiseerd"`
+        /// </param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>

@@ -8,7 +8,6 @@ namespace Public.Api.Building
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using BuildingRegistry.Api.Legacy.Building.Query;
     using BuildingRegistry.Api.Legacy.Building.Responses;
-    using BuildingRegistry.Api.Legacy.BuildingUnit.Query;
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
@@ -29,7 +28,10 @@ namespace Public.Api.Building
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id).</param>
-        /// <param name="status">Filter op de status van het gebouw (exact).</param>
+        /// <param name="status">
+        /// Filter op de status van het gebouw (exact).<br/>
+        /// `"gepland"` `"inAanbouw"` `"gerealiseerd"` `"gehistoreerd"` `"nietGerealiseerd"`
+        /// </param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>

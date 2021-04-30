@@ -14,7 +14,6 @@ namespace Public.Api.Parcel
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
-    using ParcelRegistry;
     using ParcelRegistry.Api.Legacy.Parcel.Query;
     using ParcelRegistry.Api.Legacy.Parcel.Responses;
     using RestSharp;
@@ -29,7 +28,10 @@ namespace Public.Api.Parcel
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id).</param>
-        /// <param name="status">Filter op de status van het perceel (exact).</param>
+        /// <param name="status">
+        /// Filter op de status van het perceel (exact).<br/>
+        /// `"gerealiseerd"` `"gehistoreerd"`
+        /// </param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
