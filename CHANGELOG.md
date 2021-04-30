@@ -1,3 +1,10 @@
+## [4.16.1](https://github.com/informatievlaanderen/public-api/compare/v4.16.0...v4.16.1) (2021-04-30)
+
+
+### Bug Fixes
+
+* expand docs on status filter parameters ([#198](https://github.com/informatievlaanderen/public-api/issues/198)) ([d325bda](https://github.com/informatievlaanderen/public-api/commit/d325bda1601968b728f1a2340236fd9753466dbc))
+
 # [4.16.0](https://github.com/informatievlaanderen/public-api/compare/v4.15.4...v4.16.0) (2021-04-28)
 
 
