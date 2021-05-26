@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/runtime-deps:5.0.2
 
-LABEL maintainer "agentschap Informatie Vlaanderen <basisregisters@vlaanderen.be>"
+LABEL maintainer "agentschap Digitaal Vlaanderen <basisregisters@vlaanderen.be>"
 
 COPY / /app
 WORKDIR /app
