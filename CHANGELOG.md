@@ -1,3 +1,10 @@
+## [4.16.3](https://github.com/informatievlaanderen/public-api/compare/v4.16.2...v4.16.3) (2021-05-26)
+
+
+### Bug Fixes
+
+*  update nuget package AddressRegistry 2.30.0 -> 2.31.3 ([a953dad](https://github.com/informatievlaanderen/public-api/commit/a953dad29c020243e989fd071b709be4d572ddbc))
+
 ## [4.16.2](https://github.com/informatievlaanderen/public-api/compare/v4.16.1...v4.16.2) (2021-05-26)
 
 
