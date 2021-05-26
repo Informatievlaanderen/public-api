@@ -1,3 +1,10 @@
+## [4.16.2](https://github.com/informatievlaanderen/public-api/compare/v4.16.1...v4.16.2) (2021-05-26)
+
+
+### Bug Fixes
+
+* rename 'informatie vlaanderen' to 'digitaal vlaanderen' ([d0f6135](https://github.com/informatievlaanderen/public-api/commit/d0f6135d8f3012e1d4f70b1ea2d248d9b00d08e0))
+
 ## [4.16.1](https://github.com/informatievlaanderen/public-api/compare/v4.16.0...v4.16.1) (2021-04-30)
 
 
