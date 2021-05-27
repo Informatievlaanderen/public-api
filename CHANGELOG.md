@@ -1,3 +1,10 @@
+## [4.16.4](https://github.com/informatievlaanderen/public-api/compare/v4.16.3...v4.16.4) (2021-05-27)
+
+
+### Bug Fixes
+
+*  change name and email address ([0a215e2](https://github.com/informatievlaanderen/public-api/commit/0a215e2ee75c7d11cf7ad37111ffb9881ebdede3))
+
 ## [4.16.3](https://github.com/informatievlaanderen/public-api/compare/v4.16.2...v4.16.3) (2021-05-26)
 
 
