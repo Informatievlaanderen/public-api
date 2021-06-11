@@ -1,3 +1,10 @@
+## [4.17.1](https://github.com/informatievlaanderen/public-api/compare/v4.17.0...v4.17.1) (2021-06-11)
+
+
+### Bug Fixes
+
+* update nuget packages StreetRegistry, AddressRegistry ([69f63d6](https://github.com/informatievlaanderen/public-api/commit/69f63d628a6981dc9d4c0a9a76809602259be933))
+
 # [4.17.0](https://github.com/informatievlaanderen/public-api/compare/v4.16.5...v4.17.0) (2021-06-11)
 
 
