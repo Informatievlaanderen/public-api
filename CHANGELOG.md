@@ -1,3 +1,10 @@
+# [4.17.0](https://github.com/informatievlaanderen/public-api/compare/v4.16.5...v4.17.0) (2021-06-11)
+
+
+### Features
+
+* added new filters for StreetName, Municipality, Address ([42f1bf7](https://github.com/informatievlaanderen/public-api/commit/42f1bf7c638fe245e32993dfaeb2ff5a193c713b))
+
 ## [4.16.5](https://github.com/informatievlaanderen/public-api/compare/v4.16.4...v4.16.5) (2021-06-01)
 
 
