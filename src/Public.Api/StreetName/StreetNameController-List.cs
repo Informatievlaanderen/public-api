@@ -28,7 +28,7 @@ namespace Public.Api.StreetName
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id, naam-nl, naam-fr, naam-de, naam-en).</param>
-        /// <param name="straatnaam">De straatnaam (exact).</param>
+        /// <param name="straatnaam">De naam van de straatnaam (exact).</param>
         /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de straatnamen (exact).</param>
         /// <param name="nisCode">De gerelateerde niscode van de straatnamen (exact).</param>
         /// <param name="status">
