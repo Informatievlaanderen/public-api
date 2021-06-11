@@ -28,7 +28,9 @@ namespace Public.Api.StreetName
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (id, naam-nl, naam-fr, naam-de, naam-en).</param>
+        /// <param name="straatnaam">De naam van de straatnaam (exact).</param>
         /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de straatnamen (exact).</param>
+        /// <param name="nisCode">De gerelateerde niscode van de straatnamen (exact).</param>
         /// <param name="status">
         /// Filter op de status van de straatnaam (exact). <br />
         /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"`
@@ -60,7 +62,9 @@ namespace Public.Api.StreetName
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
+            [FromQuery] string straatnaam,
             [FromQuery] string gemeentenaam,
+            [FromQuery] string nisCode,
             [FromQuery] string status,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<StreetNameOptions> responseOptions,
@@ -75,7 +79,9 @@ namespace Public.Api.StreetName
                 limit,
                 taal,
                 sort,
+                straatnaam,
                 gemeentenaam,
+                nisCode,
                 status);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/streetname-list:{taal}");
@@ -99,12 +105,16 @@ namespace Public.Api.StreetName
             int? limit,
             Taal language,
             string sort,
+            string streetNameName,
             string municipalityName,
+            string nisCode,
             string status)
         {
             var filter = new StreetNameFilter
             {
+                StreetNameName = streetNameName,
                 MunicipalityName = municipalityName,
+                NisCode = nisCode,
                 Status = status
             };
 

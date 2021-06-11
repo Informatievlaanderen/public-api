@@ -34,6 +34,7 @@ namespace Public.Api.Address
         /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres (exact).</param>
         /// <param name="huisnummer">Filter op het huisnummer van het adres (exact).</param>
         /// <param name="busnummer">Filter op het busnummer van het adres (exact).</param>
+        /// <param name="nisCode">De gerelateerde niscode van het adres (exact).</param>
         /// <param name="status">
         /// Filter op de status van het adres (exact).<br/>
         /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"`
@@ -71,6 +72,7 @@ namespace Public.Api.Address
             [FromQuery] string homoniemToevoeging,
             [FromQuery] string huisnummer,
             [FromQuery] string busnummer,
+            [FromQuery] string nisCode,
             [FromQuery] string status,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
@@ -91,6 +93,7 @@ namespace Public.Api.Address
                 gemeentenaam,
                 straatnaam,
                 homoniemToevoeging,
+                nisCode,
                 status);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/address-list:{taal}");
@@ -121,6 +124,7 @@ namespace Public.Api.Address
             string municipalityName,
             string streetName,
             string homonymAddition,
+            string nisCode,
             string status)
         {
             var filter = new AddressFilter
@@ -131,6 +135,7 @@ namespace Public.Api.Address
                 MunicipalityName = municipalityName,
                 StreetName = streetName,
                 HomonymAddition = homonymAddition,
+                NisCode = nisCode,
                 Status = status
             };
 

@@ -28,6 +28,7 @@ namespace Public.Api.Municipality
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
         /// <param name="sort">Optionele sortering van het resultaat (niscode, naam, naam-nl, naam-fr, naam-de, naam-en).</param>
+        /// <param name="gemeentenaam">De gemeentenaam van de gemeenten (exact).</param>
         /// <param name="status">
         /// Filter op de status van de gemeente (exact). <br />
         /// `"inGebruik"` `"gehistoreerd"` `"voorgesteld"`
@@ -60,6 +61,7 @@ namespace Public.Api.Municipality
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
+            [FromQuery] string gemeentenaam,
             [FromQuery] string status,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
@@ -73,6 +75,7 @@ namespace Public.Api.Municipality
                 offset,
                 limit,
                 taal,
+                gemeentenaam,
                 sort,
                 status);
 
@@ -97,11 +100,13 @@ namespace Public.Api.Municipality
         private static IRestRequest CreateBackendListRequest(int? offset,
             int? limit,
             Taal language,
+            string municipalityName,
             string sort,
             string status)
         {
             var filter = new MunicipalityListFilter
             {
+                MunicipalityName = municipalityName,
                 Status = status
             };
 
