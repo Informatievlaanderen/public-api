@@ -1,3 +1,10 @@
+## [4.17.3](https://github.com/informatievlaanderen/public-api/compare/v4.17.2...v4.17.3) (2021-09-10)
+
+
+### Bug Fixes
+
+* api documentation GAWR-606 ([3b5082b](https://github.com/informatievlaanderen/public-api/commit/3b5082bbac22de27b0d8e7485919e2a943e31c46))
+
 ## [4.17.2](https://github.com/informatievlaanderen/public-api/compare/v4.17.1...v4.17.2) (2021-06-17)
 
 
