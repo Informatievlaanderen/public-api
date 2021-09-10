@@ -450,7 +450,7 @@ Basisregisters Vlaanderen stelt u in staat om alles te weten te komen rond:
 * de Vlaamse organisaties en organen;
 * de publieke dienstverleningen in Vlaanderen.
 
-Basisregisters Vlaanderen is de authentieke bron rond al bovenstaande gegevens met uitzondering van gemeenten, postcodes en percelen, die wij aanbieden als referentiebron.
+Basisregisters Vlaanderen is de authentieke bron rond al de bovenstaande gegevens met uitzondering van gemeenten, postcodes en percelen, die wij aanbieden als referentiebron.
 
 ## Contact
 
