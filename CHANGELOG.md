@@ -1,3 +1,11 @@
+## [4.17.4](https://github.com/informatievlaanderen/public-api/compare/v4.17.3...v4.17.4) (2021-09-15)
+
+
+### Bug Fixes
+
+* GAWR-566 add text to doc ([193cf6a](https://github.com/informatievlaanderen/public-api/commit/193cf6a573a3daa27757d02deb29648af39165f9))
+* update nuget packages ([79a6e87](https://github.com/informatievlaanderen/public-api/commit/79a6e872240bc9b9d9c6078b211f97f3d6044b60))
+
 ## [4.17.3](https://github.com/informatievlaanderen/public-api/compare/v4.17.2...v4.17.3) (2021-09-10)
 
 
