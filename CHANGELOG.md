@@ -1,3 +1,10 @@
+## [4.17.5](https://github.com/informatievlaanderen/public-api/compare/v4.17.4...v4.17.5) (2021-09-15)
+
+
+### Bug Fixes
+
+* update nuget packages ([99afb7c](https://github.com/informatievlaanderen/public-api/commit/99afb7c3f4f6d9fdd1eaf598f80dde41d204c225))
+
 ## [4.17.4](https://github.com/informatievlaanderen/public-api/compare/v4.17.3...v4.17.4) (2021-09-15)
 
 
