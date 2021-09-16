@@ -11,6 +11,7 @@ namespace Common.Infrastructure.Controllers
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Primitives;
+    using ProblemDetailsException;
     using RestSharp;
 
     public abstract class RegistryApiController<T> : ApiController<T>
@@ -118,6 +119,7 @@ namespace Common.Infrastructure.Controllers
             string goneExceptionMessage,
             string notFoundExceptionMessage)
         {
+            var registryName = typeof(T).Name.ToLower().Replace("controller", "");
             switch (statusCode)
             {
                 case HttpStatusCode.NotAcceptable:
@@ -131,14 +133,14 @@ namespace Common.Infrastructure.Controllers
                         : badRequestExceptionMessage, StatusCodes.Status400BadRequest);
 
                 case HttpStatusCode.Gone:
-                    throw new ApiException(string.IsNullOrWhiteSpace(goneExceptionMessage)
+                    throw new GoneException(string.IsNullOrWhiteSpace(goneExceptionMessage)
                         ? "Verwijderd."
-                        : GoneExceptionMessage, StatusCodes.Status410Gone);
+                        : goneExceptionMessage, registryName);
 
                 case HttpStatusCode.NotFound:
-                    throw new ApiException(string.IsNullOrWhiteSpace(notFoundExceptionMessage)
+                    throw new NotFoundException(string.IsNullOrWhiteSpace(notFoundExceptionMessage)
                         ? "Niet gevonden."
-                        : notFoundExceptionMessage, StatusCodes.Status404NotFound);
+                        : notFoundExceptionMessage, registryName);
             }
         }
     }
