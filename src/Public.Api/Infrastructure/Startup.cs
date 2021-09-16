@@ -39,6 +39,7 @@ namespace Public.Api.Infrastructure
     using Microsoft.OpenApi.Models;
     using Modules;
     using ProblemDetailsExceptionMapping;
+    using ProblemDetailsExceptionMappings;
     using Redis;
     using Swagger;
     using Swashbuckle.AspNetCore.Filters;
@@ -418,7 +419,12 @@ namespace Public.Api.Infrastructure
                         {
                             ClassName = "BaseRegistry"
                         },
-                        ProblemDetailsExceptionMappers = new [] { new GrbWfsExceptionMapping() }
+                        ProblemDetailsExceptionMappers = new List<ApiProblemDetailsExceptionMapping>
+                        {
+                            new GrbWfsExceptionMapping(),
+                            new GoneExceptionMapping(),
+                            new NotFoundExceptionMapping(),
+                        }
                     },
                     MiddlewareHooks =
                     {
