@@ -1,3 +1,10 @@
+## [4.17.6](https://github.com/informatievlaanderen/public-api/compare/v4.17.5...v4.17.6) (2021-09-17)
+
+
+### Bug Fixes
+
+* garw-730 problemdetail type fix for notfound and gone status ([1e5e4d3](https://github.com/informatievlaanderen/public-api/commit/1e5e4d302c3edbe53a0c5a53881a052db82323d6))
+
 ## [4.17.5](https://github.com/informatievlaanderen/public-api/compare/v4.17.4...v4.17.5) (2021-09-15)
 
 
