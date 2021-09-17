@@ -1,3 +1,10 @@
+## [4.17.7](https://github.com/informatievlaanderen/public-api/compare/v4.17.6...v4.17.7) (2021-09-17)
+
+
+### Bug Fixes
+
+* gawr-566 fix spelling mistake ([5d005e5](https://github.com/informatievlaanderen/public-api/commit/5d005e5927de95ae439fdb60c95754b1fee703e5))
+
 ## [4.17.6](https://github.com/informatievlaanderen/public-api/compare/v4.17.5...v4.17.6) (2021-09-17)
 
 
