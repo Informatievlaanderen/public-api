@@ -559,7 +559,7 @@ In het veld `Provenance` staat de metadata van een event. Het bestaat uit 3 onde
 
 De feed bevat een aantal velden waarin een timestamp staat. Hieronder staat de betekenis van de verschillende timestamps.
 
-* `<Feed><Uptaded>`: Tijdstip waarop de data feed het laatst gewijzigd werd.
+* `<Feed><Updated>`: Tijdstip waarop de data feed het laatst gewijzigd werd.
 * `<Feed><Updaded>`: Tijdstip waarop het event zich voordeed.
 * `<Entry> <Published>`: Tijdstip waarop de eerste versie van het object aangeboden werd.
 
