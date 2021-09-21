@@ -540,12 +540,18 @@ Wanneer deze identificator nog niet beschikbaar is kunt u gebruik maken van de t
 
 Het is onze intentie om bij het opzetten van decentraal beheer op het register de granulariteit van de events te herbekijken om het gebruik van de feed in de toekomst te vereenvoudigen.
 
+### Interne events
+
+In de feed endpoints kan u alle eventids terugvinden van alle aangeboden objecttypes. Echter zal u merken dat er soms eventids niet aanwezig zijn. De eventids die niet getoond worden, zijn interne events en niet beschikbaar voor de externe gebruikers. Wanneer u een eventid van een intern event meegeeft in de URL dan zal automatisch het eerstvolgende extern eventid na het meegegeven eventid in de response getoond worden.
+
 ### API key verplicht
 
 Om de [Feeds](#tag/Feeds) te gebruiken is het verplicht om een API key mee te geven. Als u dit namelijk niet doet dan krijgt u een errormelding 401 als response terug. Er zijn 2 mogelijkheden om de API key mee te geven:
 
 * Via de header `x-api-key`.
 * In de URL. Bijvoorbeeld: `{_configuration["BaseUrl"]}{description.GroupName}/feeds/adressen?apikey={{apikey}}` waarbij `{{apikey}}` vervangen wordt door de unieke code van uw API key.
+
+[Hier](https://dynamicforms.crmiv.vlaanderen.be/DynamicForms/Page/Show/CfDJ8M4Eu9v84l9JmW3p7WGylS9LgRV8RaaFB4kfHpofS_AGLb0p5kC-wMqGmDl7zdiZ6pivD2a80ArIuYssObUVzrWbiJdBqRAf5aS3fW6cOW7ftrxjowRj90ZPyww2LzVL-25O4o1MZ3ft6Pt4qEhIjzBfD8K39e6HhNKlMt6eh-OM2G4ysteDWGVbXlwiQIfOEZHr%2FuthUZbxKimbTCrg6nToraIYmIeQQviqmNgAoyOVV?path=APIKey-aanvraag) kan u een API key aanvragen.
 
 ### Provenance
 
