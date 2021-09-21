@@ -1,3 +1,10 @@
+## [4.17.8](https://github.com/informatievlaanderen/public-api/compare/v4.17.7...v4.17.8) (2021-09-21)
+
+
+### Bug Fixes
+
+* update registry packages ([515eb67](https://github.com/informatievlaanderen/public-api/commit/515eb67058503860835924e2b94afdb8732d0665))
+
 ## [4.17.7](https://github.com/informatievlaanderen/public-api/compare/v4.17.6...v4.17.7) (2021-09-17)
 
 
