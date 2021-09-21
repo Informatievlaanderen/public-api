@@ -19,13 +19,14 @@ namespace Public.Api.Road.Changes
 
     public partial class ChangeFeedController
     {
-        [HttpGet("wegen/activiteit/begin", Name = nameof(GetHead))]
-        public async Task<IActionResult> GetHead(
+        [HttpGet("wegen/activiteit/volgende", Name = nameof(GetNext))]
+        public async Task<IActionResult> GetNext(
+            [FromQuery] long? afterEntry,
             [FromQuery] int? maxEntryCount,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
-            IRestRequest BackendRequest() => CreateBackendHeadRequest(maxEntryCount);
+            IRestRequest BackendRequest() => CreateBackendNextRequest(maxEntryCount, afterEntry);
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
@@ -36,7 +37,8 @@ namespace Public.Api.Road.Changes
             return new BackendResponseResult(response);
         }
 
-        private static IRestRequest CreateBackendHeadRequest(int? maxEntryCount) => new RestRequest("changefeed/head")
-            .AddParameter(nameof(maxEntryCount), maxEntryCount, ParameterType.QueryString);
+        private static IRestRequest CreateBackendNextRequest(int? maxEntryCount, long? afterEntry) => new RestRequest("changefeed/next")
+            .AddParameter(nameof(maxEntryCount), maxEntryCount, ParameterType.QueryString)
+            .AddParameter(nameof(afterEntry), afterEntry, ParameterType.QueryString);
     }
 }
