@@ -472,11 +472,14 @@ Doelpubliek | REST basis-URL                                                    
 ----------- | ----------------------------------------------------------------- |
 Iedereen    | {_configuration["BaseUrl"]}{description.GroupName} |
 
-## Toegang tot de API
+## Toegang tot de read API’s
 
-U kan anoniem gebruik maken van de API, maar deze anonieme toegang is beperkt in het aantal verzoeken dat u tegelijk kan sturen.
+U kan momenteel anoniem gebruik maken van de read API’s zonder enige beperking. In de toekomst zal dit wijzigen en komt er een beperking op het aantal verzoeken dat u tegelijk kan versturen.
 
-Wenst u volwaardige toegang tot de API, [kan u hier een sleutel aanvragen](https://dynamicforms.crmiv.vlaanderen.be/DynamicForms/APIKey-aanvraag). Die gebruikt u dan voortaan door bij de API request een HTTP header genaamd `x-api-key` toe te voegen, met als waarde uw API-sleutel.
+Om in de toekomst optimaal gebruik te maken van de API’s vraagt u best nu al een API key aan. Dit kan door op de volgende link te drukken: [Vraag hier uw API key aan](https://dynamicforms.crmiv.vlaanderen.be/DynamicForms/Page/Show/CfDJ8M4Eu9v84l9JmW3p7WGylS-u2ToCLC5KvqQZmZ4G99X5TBULO4n0LCDpm7870eDUOk90hogqVcE7BCVQf2u_4WlsZ7B8friBrkyuAqmXYpIX_BzvQVVo8eUZyNd-njc33Y-Z-B87y03Y2Jgukp2AN5U93jT1Xv2l0afgvenLD9k0fasSMJkt4uNzKmlr_gILGrOy%2FJSqnRom_MLu0h7sALJ8uNvPywCMsZ1zy5Lal4h63?path=APIKey-aanvraag).  U kan deze API key op 2 manieren meegeven:
+
+* Via de header `x-api-key`.
+* In de URL. Bijvoorbeeld: `https://api.basisregisters.dev-vlaanderen.be/v1/feeds/adressen?apikey={{apikey}}` waarbij `{{apikey}}` vervangen wordt door de unieke code van uw API key.
 
 ## Foutmeldingen
 
