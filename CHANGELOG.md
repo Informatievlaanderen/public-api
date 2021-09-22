@@ -1,3 +1,10 @@
+## [4.17.10](https://github.com/informatievlaanderen/public-api/compare/v4.17.9...v4.17.10) (2021-09-22)
+
+
+### Bug Fixes
+
+* version bump registries ([6d38fe0](https://github.com/informatievlaanderen/public-api/commit/6d38fe0307c2ce7618e1fdd2d602d81ee0f2ccd2))
+
 ## [4.17.9](https://github.com/informatievlaanderen/public-api/compare/v4.17.8...v4.17.9) (2021-09-22)
 
 
