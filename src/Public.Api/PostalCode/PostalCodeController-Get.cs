@@ -45,7 +45,8 @@ namespace Public.Api.PostalCode
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(PostalInformationNotFoundResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [HttpCacheExpiration(MaxAge = DefaultDetailCaching)]
+        [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
+        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultCountCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> GetPostalCode(
             [FromRoute] string objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
