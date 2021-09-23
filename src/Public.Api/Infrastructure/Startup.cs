@@ -41,6 +41,7 @@ namespace Public.Api.Infrastructure
     using ProblemDetailsExceptionMapping;
     using ProblemDetailsExceptionMappings;
     using Redis;
+    using Road.Downloads;
     using Swagger;
     using Swashbuckle.AspNetCore.Filters;
     using Version;
@@ -234,6 +235,8 @@ namespace Public.Api.Infrastructure
                     }
                 })
 
+                .AddHttpClient()
+
                 .AddSingleton<IActionContextAccessor, ActionContextAccessor>()
 
                 .AddHttpCacheHeaders(
@@ -314,6 +317,10 @@ namespace Public.Api.Infrastructure
 
             containerBuilder
                 .RegisterType<ExtractController>()
+                .WithAttributeFiltering();
+
+            containerBuilder
+                .RegisterType<DownloadController>()
                 .WithAttributeFiltering();
 
             containerBuilder
@@ -428,7 +435,7 @@ namespace Public.Api.Infrastructure
                     },
                     MiddlewareHooks =
                     {
-                        AfterResponseCompression = x => x.UseHttpCacheHeaders(),
+                        AfterResponseCompression = x => x.UseConditionalHttpCacheHeaders()
                     }
                 });
         }

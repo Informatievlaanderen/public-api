@@ -18,6 +18,7 @@ namespace Public.Api.Infrastructure.Swagger
         public const int PublicService = 135;
 
         public const int RoadChangeFeed = 136;
+        public const int RoadDownload = 137;
 
         public const int Extract = 140;
         public const int Feeds = 145;
