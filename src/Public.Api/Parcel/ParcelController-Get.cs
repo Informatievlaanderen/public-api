@@ -25,14 +25,12 @@ namespace Public.Api.Parcel
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als het perceel gevonden is.</response>
-        /// <response code="304">Als het perceel niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="404">Als het perceel niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als het perceel verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("percelen/{objectId}", Name = nameof(GetParcel))]
         [ProducesResponseType(typeof(ParcelResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status410Gone)]
@@ -40,7 +38,6 @@ namespace Public.Api.Parcel
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "CorrelationId", "string", "Correlatie identificator van de respons.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(ParcelResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(ParcelNotFoundResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(ParcelGoneResponseExamples))]

@@ -25,7 +25,6 @@ namespace Public.Api.BuildingUnit
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de gebouweenheid gevonden is.</response>
-        /// <response code="304">Als de gebouweenheid niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="404">Als de gebouweenheid niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
@@ -33,7 +32,6 @@ namespace Public.Api.BuildingUnit
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("gebouweenheden/{objectId}", Name = nameof(GetBuildingUnit))]
         [ProducesResponseType(typeof(BuildingUnitResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
@@ -42,7 +40,6 @@ namespace Public.Api.BuildingUnit
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de respons.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "CorrelationId", "string", "Correlatie identificator van de respons.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(BuildingUnitResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(BuildingUnitNotFoundResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
