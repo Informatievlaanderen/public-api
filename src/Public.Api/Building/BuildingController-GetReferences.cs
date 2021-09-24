@@ -32,7 +32,6 @@ namespace Public.Api.Building
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("gebouwen/{objectId}/referenties", Name = nameof(GetBuildingReferences))]
         [ProducesResponseType(typeof(BuildingReferencesResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(void), StatusCodes.)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
