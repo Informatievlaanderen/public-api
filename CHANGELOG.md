@@ -1,3 +1,10 @@
+## [4.17.12](https://github.com/informatievlaanderen/public-api/compare/v4.17.11...v4.17.12) (2021-09-24)
+
+
+### Bug Fixes
+
+* gawr 610 api error 304 removal ([306fd3f](https://github.com/informatievlaanderen/public-api/commit/306fd3f625fd1d47b349434fd104cf00907f4cae))
+
 ## [4.17.11](https://github.com/informatievlaanderen/public-api/compare/v4.17.10...v4.17.11) (2021-09-23)
 
 
