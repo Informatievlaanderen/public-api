@@ -18,7 +18,7 @@ namespace Public.Api.Address
     public partial class AddressController
     {
         /// <summary>
-        /// Voer een adres match vraag uit en krijg de adressen die gematcht worden.
+        /// Voer een adresmatch vraag uit en krijg de adressen die gematcht worden.
         /// </summary>
         /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de adressen.</param>
         /// <param name="niscode">Filter op de NisCode van de gemeente.</param>
