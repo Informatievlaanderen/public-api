@@ -1,3 +1,10 @@
+## [4.17.16](https://github.com/informatievlaanderen/public-api/compare/v4.17.15...v4.17.16) (2021-09-29)
+
+
+### Bug Fixes
+
+* add Road api keys sections ([aa7a836](https://github.com/informatievlaanderen/public-api/commit/aa7a836fccb8683dcd002a0eaf58d09cb8854e05))
+
 ## [4.17.15](https://github.com/informatievlaanderen/public-api/compare/v4.17.14...v4.17.15) (2021-09-29)
 
 
