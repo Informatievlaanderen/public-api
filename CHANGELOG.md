@@ -1,3 +1,11 @@
+## [4.17.15](https://github.com/informatievlaanderen/public-api/compare/v4.17.14...v4.17.15) (2021-09-29)
+
+
+### Bug Fixes
+
+* gawr-2093 add gebouweenheden to documentation line ([732b2e9](https://github.com/informatievlaanderen/public-api/commit/732b2e9f37e89d8aeaf4ad85658c9f8cd81fbd5a))
+* gawr-604 changed adres to crabhuisnummer/subadress ([29bbeec](https://github.com/informatievlaanderen/public-api/commit/29bbeec1b1058df2f97e08d3fdab0411ad9ecd10))
+
 ## [4.17.14](https://github.com/informatievlaanderen/public-api/compare/v4.17.13...v4.17.14) (2021-09-29)
 
 
