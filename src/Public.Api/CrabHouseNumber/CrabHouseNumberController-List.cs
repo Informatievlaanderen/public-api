@@ -22,7 +22,7 @@ namespace Public.Api.CrabHouseNumber
     public partial class CrabHouseNumberController
     {
         /// <summary>
-        /// Vraag een lijst met adressen op.
+        /// Vraag een lijst met CRAB huisnummers op.
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
         /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
@@ -32,7 +32,7 @@ namespace Public.Api.CrabHouseNumber
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met adressen gelukt is.</response>
+        /// <response code="200">Als de opvraging van een lijst met CRAB huisnummers gelukt is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
