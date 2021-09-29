@@ -1,7 +1,6 @@
 namespace Public.Api.Road.Downloads
 {
     using System.Net.Http;
-    using System.Net.Mime;
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
@@ -9,8 +8,8 @@ namespace Public.Api.Road.Downloads
 
     public partial class DownloadController
     {
-        [HttpGet("wegen/download/voor-editor", Name = "test-1000")]
-        public async Task GetContent(CancellationToken cancellationToken = default)
+        [HttpGet("wegen/download/voor-editor")]
+        public async Task GetForEditor(CancellationToken cancellationToken = default)
         {
             using (var response = await _httpClient.GetAsync("download/for-editor", HttpCompletionOption.ResponseHeadersRead, cancellationToken))
             using (var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken))

@@ -10,7 +10,7 @@ namespace Common.Infrastructure
     using Extensions;
     using Microsoft.Extensions.Primitives;
 
-    public class BackendResponse
+    public class BackendResponse : IBackendResponse
     {
         public string Content { get; private set; }
         public string DownstreamVersion { get; }
