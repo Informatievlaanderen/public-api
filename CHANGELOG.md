@@ -1,3 +1,10 @@
+## [4.17.13](https://github.com/informatievlaanderen/public-api/compare/v4.17.12...v4.17.13) (2021-09-29)
+
+
+### Bug Fixes
+
+* gawr-729 version bump postal & building registry ([3360a2b](https://github.com/informatievlaanderen/public-api/commit/3360a2b76e890a7be3a947fb56a943be732df68d))
+
 ## [4.17.12](https://github.com/informatievlaanderen/public-api/compare/v4.17.11...v4.17.12) (2021-09-24)
 
 
