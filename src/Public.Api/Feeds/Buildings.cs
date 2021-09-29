@@ -22,7 +22,7 @@ namespace Public.Api.Feeds
     public partial class FeedController
     {
         /// <summary>
-        /// Vraag een lijst met wijzigingen op gebouwen op in het XML of Atom formaat.
+        /// Vraag een lijst met wijzigingen op gebouwen en gebouweenheden op in het XML of Atom formaat.
         /// </summary>
         /// <param name="actionContextAccessor"></param>
         /// <param name="restClients"></param>
@@ -32,7 +32,7 @@ namespace Public.Api.Feeds
         /// <param name="embed">Keuze welke info in het <![CDATA[&lt;Content&gt;]]>-gedeelte van de output moet zitten. ("event", "object", "event,object")</param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met wijzigingen op gebouwen gelukt is.</response>
+        /// <response code="200">Als de opvraging van een lijst met wijzigingen op gebouwen en gebouweenheden gelukt is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="401">Als er geen API key is meegegeven.</response>
         /// <response code="403">Als u niet de correcte rechten heeft.</response>
