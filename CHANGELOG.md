@@ -1,3 +1,11 @@
+## [4.17.17](https://github.com/informatievlaanderen/public-api/compare/v4.17.16...v4.17.17) (2021-10-01)
+
+
+### Bug Fixes
+
+* gawr 621 & gawr 622 api documentation ([40d2201](https://github.com/informatievlaanderen/public-api/commit/40d2201242be0f425668165355e6176fdbd6bd9a))
+* gawr-2097 expand limit field ([b497897](https://github.com/informatievlaanderen/public-api/commit/b4978979420fe45c297d8d2248ed9715d6c05bcd))
+
 ## [4.17.16](https://github.com/informatievlaanderen/public-api/compare/v4.17.15...v4.17.16) (2021-09-29)
 
 
