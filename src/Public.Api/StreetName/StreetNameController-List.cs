@@ -26,7 +26,7 @@ namespace Public.Api.StreetName
         /// Vraag een lijst met straatnamen op.
         /// </summary>
         /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
-        /// <param name="limit">Optioneel maximaal aantal instanties dat teruggegeven wordt.</param>
+        /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
         /// <param name="sort">Optionele sortering van het resultaat (id, naam-nl, naam-fr, naam-de, naam-en).</param>
         /// <param name="straatnaam">De naam van de straatnaam (exact).</param>
         /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de straatnamen (exact).</param>
