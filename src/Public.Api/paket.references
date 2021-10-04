@@ -8,6 +8,7 @@ Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice
+Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api
 
 Be.Vlaanderen.Basisregisters.GrAr.Common
 Be.Vlaanderen.Basisregisters.GrAr.Legacy

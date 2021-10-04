@@ -23,6 +23,7 @@ nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           2.31.10 
 nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.29.6  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            3.24.4  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice 2.1.1   copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api          1.57.5  copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 5.0.4
 
