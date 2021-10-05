@@ -3,22 +3,29 @@ namespace Public.Api.Road.Downloads
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
+    using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Net.Http.Headers;
 
     public partial class DownloadController
     {
         [HttpGet("wegen/download/voor-editor")]
-        public async Task GetForEditor(CancellationToken cancellationToken = default)
+        public async Task<IActionResult> GetForEditor(
+            [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            CancellationToken cancellationToken = default)
         {
-            using (var response = await _httpClient.GetAsync("download/for-editor", HttpCompletionOption.ResponseHeadersRead, cancellationToken))
-            using (var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken))
-            {
-                Response.Headers.Add(HeaderNames.ContentType, response.Content.Headers.ContentType.MediaType);
-                Response.Headers.Add(HeaderNames.ContentDisposition, response.Content.Headers.ContentDisposition.ToString());
+            var response = await GetFromBackendWithBadRequestAsync(
+                _httpClient,
+                CreateBackendDownloadForEditorRequest,
+                CreateDefaultHandleBadRequest(),
+                problemDetailsHelper,
+                cancellationToken
+            );
 
-                await responseStream.CopyToAsync(Response.Body, cancellationToken);
-            }
+            return response.ToActionResult();
         }
+
+        private static HttpRequestMessage CreateBackendDownloadForEditorRequest() => new HttpRequestMessage(HttpMethod.Get, "download/for-editor");
     }
 }
