@@ -4,7 +4,6 @@ namespace Public.Api.Road.Changes
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
-    using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;

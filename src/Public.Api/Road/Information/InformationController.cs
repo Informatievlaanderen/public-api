@@ -1,4 +1,4 @@
-namespace Public.Api.Road.Extracts
+namespace Public.Api.Road.Information
 {
     using System.Net.Http;
     using Autofac.Features.AttributeFilters;
@@ -16,23 +16,20 @@ namespace Public.Api.Road.Extracts
     [ApiVersion(Version.Current)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
-    [ApiExplorerSettings(GroupName = "Extract")]
-    [ApiOrder(Order = ApiOrder.RoadExtract)]
-    public partial class ExtractController : RegistryApiController<ExtractController>
+    [ApiExplorerSettings(GroupName = "Informatie")]
+    [ApiOrder(Order = ApiOrder.RoadInformation)]
+    public partial class InformationController : RegistryApiController<InformationController>
     {
-        private readonly HttpClient _httpClient;
-        protected override string NotFoundExceptionMessage => "Onbestaand extract.";
-        protected override string GoneExceptionMessage => "Verwijderd extract.";
+        protected override string NotFoundExceptionMessage => "Onbestaande informatie.";
+        protected override string GoneExceptionMessage => "Verwijderde informatie.";
 
-        public ExtractController(
+        public InformationController(
             [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
-            [KeyFilter(RegistryKeys.Road)] HttpClient httpClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
-            ILogger<ExtractController> logger)
+            ILogger<InformationController> logger)
             : base(restClient, cacheToggle, redis, logger)
         {
-            _httpClient = httpClient;
         }
     }
 }
