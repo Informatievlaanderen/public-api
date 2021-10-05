@@ -5,6 +5,7 @@ namespace Common.Infrastructure.Controllers
     using System.Globalization;
     using System.Linq;
     using System.Net;
+    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Xml.Linq;
@@ -16,6 +17,7 @@ namespace Common.Infrastructure.Controllers
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Primitives;
     using Newtonsoft.Json;
     using RestSharp;
     using StackExchange.Redis;
@@ -88,7 +90,8 @@ namespace Common.Infrastructure.Controllers
                                     "O",
                                     CultureInfo.InvariantCulture),
                                 acceptType.ToMimeTypeString(),
-                                true);
+                                true,
+                                Enumerable.Empty<KeyValuePair<string, StringValues>>());
                         }
 
                         _logger.LogError("Failed to retrieve record {Record} from Redis, cached values not set by registry.", key);
@@ -143,12 +146,55 @@ namespace Common.Infrastructure.Controllers
                     DateTimeOffset.UtcNow,
                     responseContentType,
                     false,
+                    response.HeadersToKeyValuePairs(),
                     response.StatusCode);
             }
 
             handleNotOkResponseAction(response.StatusCode);
 
             throw new ApiException("Fout bij de bron.", (int)response.StatusCode, response.ErrorException);
+        }
+
+        protected static async Task<IBackendResponse> GetFromBackendWithBadRequestAsync(
+            HttpClient httpClient,
+            Func<HttpRequestMessage> createBackendRequestFunc,
+            Action<HttpStatusCode> handleNotOkResponseAction,
+            ProblemDetailsHelper problemDetailsHelper,
+            CancellationToken cancellationToken)
+        {
+            var backendRequest = createBackendRequestFunc();
+            var response = await httpClient.SendAsync(backendRequest, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+
+            if (response.IsSuccessStatusCode && response.StatusCode == HttpStatusCode.OK)
+            {
+                var contentType = response.Content.Headers.ContentType?.ToString();
+                var contentDisposition = response.Content.Headers.ContentDisposition?.ToString();
+                var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken);
+
+                return new StreamingBackendResponse(
+                    contentType,
+                    contentDisposition,
+                    responseStream,
+                    response.HeadersToKeyValuePairs());
+            }
+
+            if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                var responseContentType = response.Content.Headers.ContentType?.ToString();
+                var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
+
+                return new BackendResponse(
+                    GetPublicContentValue(response, responseContent, problemDetailsHelper),
+                    null,
+                    DateTimeOffset.UtcNow,
+                    responseContentType,
+                    false,
+                    response.HeadersToKeyValuePairs(),
+                    response.StatusCode);
+            }
+
+            handleNotOkResponseAction(response.StatusCode);
+            throw new ApiException("Fout bij de bron.", (int)response.StatusCode);
         }
 
         private static string GetPublicContentValue(IRestResponse response, ProblemDetailsHelper helper)
@@ -165,6 +211,24 @@ namespace Common.Infrastructure.Controllers
 
             return response
                 .Content
+                .Replace(
+                    Encode(problemDetails.ProblemTypeUri),
+                    Encode(helper.RewriteExceptionTypeFrom(problemDetails)));
+        }
+
+        private static string GetPublicContentValue(HttpResponseMessage response, string responseContent, ProblemDetailsHelper helper)
+        {
+            var problemDetails = response.GetProblemDetails(responseContent);
+            if (string.IsNullOrWhiteSpace(problemDetails.ProblemTypeUri))
+                return responseContent;
+
+            string Encode(string value)
+                => (response.Content.Headers.ContentType.MediaType.Contains("xml", StringComparison.InvariantCultureIgnoreCase)
+                       ? new XElement(XName.Get("dummy"), value).LastNode?.ToString()
+                       : value)
+                   ?? string.Empty;
+
+            return responseContent
                 .Replace(
                     Encode(problemDetails.ProblemTypeUri),
                     Encode(helper.RewriteExceptionTypeFrom(problemDetails)));
@@ -195,7 +259,8 @@ namespace Common.Infrastructure.Controllers
                     downstreamVersion?.Value.ToString(),
                     DateTimeOffset.UtcNow,
                     contentType,
-                    false);
+                    false,
+                    response.HeadersToKeyValuePairs());
             }
 
             handleNotOkResponseAction(response.StatusCode);

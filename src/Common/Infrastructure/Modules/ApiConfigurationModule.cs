@@ -3,6 +3,7 @@ namespace Common.Infrastructure.Modules
     using System;
     using System.Collections.Generic;
     using System.Net;
+    using System.Net.Http;
     using Autofac;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Configuration;
@@ -34,7 +35,8 @@ namespace Common.Infrastructure.Modules
 
             foreach (var registry in _apiConfiguration)
             {
-                RegisterRestClient(registry.Key, registry.Value.ApiUrl, _downstreamUser, _downstreamPass, _serviceName, builder);
+                RegisterRestClient(registry.Key, registry.Value.ApiUrl, _serviceName, builder);
+                RegisterHttpClient(registry.Key, registry.Value.ApiUrl, builder);
                 RegisterHealthClient(registry.Key, registry.Value.HealthUrl, _downstreamUser, _downstreamPass, _serviceName, builder);
                 RegisterApiCacheToggle(registry.Key, registry.Value.UseCache, builder);
 
@@ -47,11 +49,25 @@ namespace Common.Infrastructure.Modules
                 .AsSelf();
         }
 
+        private void RegisterHttpClient(
+            string name,
+            string valueApiUrl,
+            ContainerBuilder builder)
+        {
+            builder
+                .Register<HttpClient>(c =>
+                {
+                    var client = c.Resolve<IHttpClientFactory>().CreateClient();
+                    client.BaseAddress = new Uri(valueApiUrl.EndsWith("/") ? valueApiUrl : valueApiUrl + "/");
+                    return client;
+                })
+                .As<HttpClient>()
+                .Keyed<HttpClient>(name);
+        }
+
         private static void RegisterRestClient(
             string name,
             string baseUrl,
-            string user,
-            string password,
             string serviceName,
             ContainerBuilder builder)
         {
@@ -59,7 +75,6 @@ namespace Common.Infrastructure.Modules
                 .RegisterType<RestClient>()
                 .WithProperty("BaseUrl", new Uri(baseUrl))
                 .WithProperty("CookieContainer", new CookieContainer())
-                .WithProperty("Authenticator", new HttpBasicAuthenticator(user, password))
                 .Keyed<RestClient>(name);
 
             builder

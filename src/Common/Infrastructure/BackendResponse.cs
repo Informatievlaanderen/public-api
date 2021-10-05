@@ -10,25 +10,26 @@ namespace Common.Infrastructure
     using Extensions;
     using Microsoft.Extensions.Primitives;
 
-    public class BackendResponse
+    public class BackendResponse : IBackendResponse
     {
         public string Content { get; private set; }
         public string DownstreamVersion { get; }
         public DateTimeOffset LastModified { get; }
         public string ContentType { get; }
         public bool CameFromCache { get; }
+        public IEnumerable<KeyValuePair<string, StringValues>> ResponseHeaders { get; }
         public HttpStatusCode StatusCode { get; }
 
         private bool IsXmlContent => ContentType.Contains("xml", StringComparison.OrdinalIgnoreCase);
         private bool IsAtomContent => Content.Contains("<feed xmlns=\"http://www.w3.org/2005/Atom\">", StringComparison.OrdinalIgnoreCase);
         private bool IsProblemDetail => ContentType.Contains("problem", StringComparison.OrdinalIgnoreCase);
 
-        public BackendResponse(
-            string content,
+        public BackendResponse(string content,
             string downstreamVersion,
             DateTimeOffset lastModified,
             string contentType,
             bool cameFromCache,
+            IEnumerable<KeyValuePair<string, StringValues>> responseHeaders,
             HttpStatusCode statusCode = HttpStatusCode.OK)
         {
             Content = content;
@@ -36,6 +37,7 @@ namespace Common.Infrastructure
             LastModified = lastModified;
             ContentType = contentType.ToLowerInvariant();
             CameFromCache = cameFromCache;
+            ResponseHeaders = responseHeaders;
             StatusCode = statusCode;
         }
 
