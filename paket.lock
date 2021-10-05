@@ -129,6 +129,10 @@ NUGET
     Be.Vlaanderen.Basisregisters.Aws.DistributedMutex (2.3.1)
       AWSSDK.DynamoDBv2 (>= 3.7.0.29)
       Microsoft.Extensions.Logging (>= 5.0)
+    Be.Vlaanderen.Basisregisters.BlobStore (2.2.12) - copy_content_to_output_dir: always
+      AWSSDK.S3 (>= 3.7.0.31)
+      Microsoft.Data.SqlClient (>= 2.1.3)
+      System.Collections.Immutable (>= 5.0)
     Be.Vlaanderen.Basisregisters.Build.Pipeline (5.0.4)
       Fake.Core.Environment (>= 5.20.4)
       Fake.Core.Process (>= 5.20.4)
@@ -243,6 +247,9 @@ NUGET
       Be.Vlaanderen.Basisregisters.EventHandling (>= 3.1.1)
       SqlStreamStore (>= 1.2)
     Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice (2.1.1) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (1.57.5) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.BlobStore (>= 2.2.12)
+      Microsoft.IO.RecyclableMemoryStream (>= 1.4)
     Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (2.22.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.7.1)
     Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (2.2.12)
@@ -598,6 +605,7 @@ NUGET
       Microsoft.CSharp (>= 4.5)
       Microsoft.IdentityModel.Logging (>= 6.11.1)
       System.Security.Cryptography.Cng (>= 4.5)
+    Microsoft.IO.RecyclableMemoryStream (2.1.3) - copy_content_to_output_dir: always
     Microsoft.Net.Http.Headers (2.2.8)
       Microsoft.Extensions.Primitives (>= 2.2)
       System.Buffers (>= 4.5)

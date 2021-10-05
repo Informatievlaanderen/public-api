@@ -176,7 +176,6 @@ namespace Common.Infrastructure.Controllers
                     contentDisposition,
                     responseStream,
                     response.HeadersToKeyValuePairs());
-
             }
 
             if (response.StatusCode == HttpStatusCode.BadRequest)

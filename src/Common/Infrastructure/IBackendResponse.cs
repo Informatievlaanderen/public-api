@@ -1,7 +1,4 @@
 namespace Common.Infrastructure
 {
-    public interface IBackendResponse
-    {
-
-    }
+    public interface IBackendResponse  { }
 }

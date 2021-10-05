@@ -33,5 +33,6 @@ namespace Public.Api.Road.Extracts
         }
 
         private static IRestRequest CreateBackendUploadStatusRequest(string uploadId) => new RestRequest("extracts/upload/{uploadId}/status")
-            .AddParameter(nameof(uploadId), uploadId, ParameterType.UrlSegment);    }
+            .AddParameter(nameof(uploadId), uploadId, ParameterType.UrlSegment);
+    }
 }
