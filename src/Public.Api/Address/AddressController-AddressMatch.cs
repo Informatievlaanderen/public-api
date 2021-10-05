@@ -18,7 +18,7 @@ namespace Public.Api.Address
     public partial class AddressController
     {
         /// <summary>
-        /// Voer een adres match vraag uit en krijg de adressen die gematcht worden.
+        /// Voer een adresmatch vraag uit en krijg de adressen die gematcht worden.
         /// </summary>
         /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de adressen.</param>
         /// <param name="niscode">Filter op de NisCode van de gemeente.</param>
@@ -32,7 +32,7 @@ namespace Public.Api.Address
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met adressen gelukt is.</response>
+        /// <response code="200">Als de adresmatch gelukt is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>

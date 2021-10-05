@@ -1,3 +1,75 @@
+## [4.17.17](https://github.com/informatievlaanderen/public-api/compare/v4.17.16...v4.17.17) (2021-10-01)
+
+
+### Bug Fixes
+
+* gawr 621 & gawr 622 api documentation ([40d2201](https://github.com/informatievlaanderen/public-api/commit/40d2201242be0f425668165355e6176fdbd6bd9a))
+* gawr-2097 expand limit field ([b497897](https://github.com/informatievlaanderen/public-api/commit/b4978979420fe45c297d8d2248ed9715d6c05bcd))
+
+## [4.17.16](https://github.com/informatievlaanderen/public-api/compare/v4.17.15...v4.17.16) (2021-09-29)
+
+
+### Bug Fixes
+
+* add Road api keys sections ([aa7a836](https://github.com/informatievlaanderen/public-api/commit/aa7a836fccb8683dcd002a0eaf58d09cb8854e05))
+
+## [4.17.15](https://github.com/informatievlaanderen/public-api/compare/v4.17.14...v4.17.15) (2021-09-29)
+
+
+### Bug Fixes
+
+* gawr-2093 add gebouweenheden to documentation line ([732b2e9](https://github.com/informatievlaanderen/public-api/commit/732b2e9f37e89d8aeaf4ad85658c9f8cd81fbd5a))
+* gawr-604 changed adres to crabhuisnummer/subadress ([29bbeec](https://github.com/informatievlaanderen/public-api/commit/29bbeec1b1058df2f97e08d3fdab0411ad9ecd10))
+
+## [4.17.14](https://github.com/informatievlaanderen/public-api/compare/v4.17.13...v4.17.14) (2021-09-29)
+
+
+### Bug Fixes
+
+* gawr-621 api documentatie ([9cb8a2b](https://github.com/informatievlaanderen/public-api/commit/9cb8a2b6e1678545b37d0275e63afca5aa00822a))
+
+## [4.17.13](https://github.com/informatievlaanderen/public-api/compare/v4.17.12...v4.17.13) (2021-09-29)
+
+
+### Bug Fixes
+
+* gawr-729 version bump postal & building registry ([3360a2b](https://github.com/informatievlaanderen/public-api/commit/3360a2b76e890a7be3a947fb56a943be732df68d))
+
+## [4.17.12](https://github.com/informatievlaanderen/public-api/compare/v4.17.11...v4.17.12) (2021-09-24)
+
+
+### Bug Fixes
+
+* gawr 610 api error 304 removal ([306fd3f](https://github.com/informatievlaanderen/public-api/commit/306fd3f625fd1d47b349434fd104cf00907f4cae))
+
+## [4.17.11](https://github.com/informatievlaanderen/public-api/compare/v4.17.10...v4.17.11) (2021-09-23)
+
+
+### Bug Fixes
+
+* gawr-566 api documentation ([e4a9bb2](https://github.com/informatievlaanderen/public-api/commit/e4a9bb2ccbc8da57ccabcec14c87e9b5ad41f0ba))
+
+## [4.17.10](https://github.com/informatievlaanderen/public-api/compare/v4.17.9...v4.17.10) (2021-09-22)
+
+
+### Bug Fixes
+
+* version bump registries ([6d38fe0](https://github.com/informatievlaanderen/public-api/commit/6d38fe0307c2ce7618e1fdd2d602d81ee0f2ccd2))
+
+## [4.17.9](https://github.com/informatievlaanderen/public-api/compare/v4.17.8...v4.17.9) (2021-09-22)
+
+
+### Bug Fixes
+
+* gawr-617 fix api documentation ([4cce3d9](https://github.com/informatievlaanderen/public-api/commit/4cce3d9e38fadd72c7e4b89b51d4c07e487e1cc5))
+
+## [4.17.8](https://github.com/informatievlaanderen/public-api/compare/v4.17.7...v4.17.8) (2021-09-21)
+
+
+### Bug Fixes
+
+* update registry packages ([515eb67](https://github.com/informatievlaanderen/public-api/commit/515eb67058503860835924e2b94afdb8732d0665))
+
 ## [4.17.7](https://github.com/informatievlaanderen/public-api/compare/v4.17.6...v4.17.7) (2021-09-17)
 
 

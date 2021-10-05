@@ -479,11 +479,14 @@ Doelpubliek | REST basis-URL                                                    
 ----------- | ----------------------------------------------------------------- |
 Iedereen    | {_configuration["BaseUrl"]}{description.GroupName} |
 
-## Toegang tot de API
+## Toegang tot de read API’s
 
-U kan anoniem gebruik maken van de API, maar deze anonieme toegang is beperkt in het aantal verzoeken dat u tegelijk kan sturen.
+U kan momenteel anoniem gebruik maken van de read API’s zonder enige beperking. In de toekomst zal dit wijzigen en komt er een beperking op het aantal verzoeken dat u tegelijk kan versturen.
 
-Wenst u volwaardige toegang tot de API, [kan u hier een sleutel aanvragen](https://dynamicforms.crmiv.vlaanderen.be/DynamicForms/APIKey-aanvraag). Die gebruikt u dan voortaan door bij de API request een HTTP header genaamd `x-api-key` toe te voegen, met als waarde uw API-sleutel.
+Om in de toekomst optimaal gebruik te maken van de API’s vraagt u best nu al een API key aan. Dit kan door op de volgende link te drukken: [Vraag hier uw API key aan](https://dynamicforms.crmiv.vlaanderen.be/DynamicForms/Page/Show/CfDJ8M4Eu9v84l9JmW3p7WGylS-u2ToCLC5KvqQZmZ4G99X5TBULO4n0LCDpm7870eDUOk90hogqVcE7BCVQf2u_4WlsZ7B8friBrkyuAqmXYpIX_BzvQVVo8eUZyNd-njc33Y-Z-B87y03Y2Jgukp2AN5U93jT1Xv2l0afgvenLD9k0fasSMJkt4uNzKmlr_gILGrOy%2FJSqnRom_MLu0h7sALJ8uNvPywCMsZ1zy5Lal4h63?path=APIKey-aanvraag).  U kan deze API key op 2 manieren meegeven:
+
+* Via de header `x-api-key`.
+* In de URL. Bijvoorbeeld: `https://api.basisregisters.dev-vlaanderen.be/v1/feeds/adressen?apikey={{apikey}}` waarbij `{{apikey}}` vervangen wordt door de unieke code van uw API key.
 
 ## Foutmeldingen
 
@@ -547,12 +550,18 @@ Wanneer deze identificator nog niet beschikbaar is kunt u gebruik maken van de t
 
 Het is onze intentie om bij het opzetten van decentraal beheer op het register de granulariteit van de events te herbekijken om het gebruik van de feed in de toekomst te vereenvoudigen.
 
+### Interne events
+
+In de feed endpoints kan u alle eventids terugvinden van alle aangeboden objecttypes. Echter zal u merken dat er soms eventids niet aanwezig zijn. De eventids die niet getoond worden, zijn interne events en niet beschikbaar voor de externe gebruikers. Wanneer u een eventid van een intern event meegeeft in de URL dan zal automatisch het eerstvolgende extern eventid na het meegegeven eventid in de response getoond worden.
+
 ### API key verplicht
 
 Om de [Feeds](#tag/Feeds) te gebruiken is het verplicht om een API key mee te geven. Als u dit namelijk niet doet dan krijgt u een errormelding 401 als response terug. Er zijn 2 mogelijkheden om de API key mee te geven:
 
 * Via de header `x-api-key`.
 * In de URL. Bijvoorbeeld: `{_configuration["BaseUrl"]}{description.GroupName}/feeds/adressen?apikey={{apikey}}` waarbij `{{apikey}}` vervangen wordt door de unieke code van uw API key.
+
+[Hier](https://dynamicforms.crmiv.vlaanderen.be/DynamicForms/Page/Show/CfDJ8M4Eu9v84l9JmW3p7WGylS9LgRV8RaaFB4kfHpofS_AGLb0p5kC-wMqGmDl7zdiZ6pivD2a80ArIuYssObUVzrWbiJdBqRAf5aS3fW6cOW7ftrxjowRj90ZPyww2LzVL-25O4o1MZ3ft6Pt4qEhIjzBfD8K39e6HhNKlMt6eh-OM2G4ysteDWGVbXlwiQIfOEZHr%2FuthUZbxKimbTCrg6nToraIYmIeQQviqmNgAoyOVV?path=APIKey-aanvraag) kan u een API key aanvragen.
 
 ### Provenance
 
@@ -566,9 +575,9 @@ In het veld `Provenance` staat de metadata van een event. Het bestaat uit 3 onde
 
 De feed bevat een aantal velden waarin een timestamp staat. Hieronder staat de betekenis van de verschillende timestamps.
 
-* `<Feed><Updated>`: Tijdstip waarop de data feed het laatst gewijzigd werd.
-* `<Feed><Updaded>`: Tijdstip waarop het event zich voordeed.
-* `<Entry> <Published>`: Tijdstip waarop de eerste versie van het object aangeboden werd.
+* `<Feed> <Updated>` : Tijdstip waarop de data feed het laatst gewijzigd werd.
+* `<Entry> <Updated>` : Tijdstip waarop het event zich voordeed.
+* `<Entry> <Published>` : Tijdstip waarop de eerste versie van het object aangeboden werd.
 
 ");
             return text.ToString();
