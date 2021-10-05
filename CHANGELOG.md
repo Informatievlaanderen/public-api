@@ -1,3 +1,10 @@
+# [4.18.0](https://github.com/informatievlaanderen/public-api/compare/v4.17.17...v4.18.0) (2021-10-05)
+
+
+### Features
+
+* add road-registry endpoints ([ce78f6c](https://github.com/informatievlaanderen/public-api/commit/ce78f6c8cde367d4bd4edd2200ee6ea2604c7309))
+
 ## [4.17.17](https://github.com/informatievlaanderen/public-api/compare/v4.17.16...v4.17.17) (2021-10-01)
 
 
