@@ -31,7 +31,7 @@ namespace Public.Api.Road.Extracts
 
         private static HttpRequestMessage CreateBackendUploadRequest(
             string downloadId,
-            IFormFile archive) => new HttpRequestMessage(HttpMethod.Post, $"download/{downloadId}/uploads")
+            IFormFile archive) => new HttpRequestMessage(HttpMethod.Post, $"extracts/download/{downloadId}/uploads")
         {
             Content = new StreamContent(archive.OpenReadStream()),
             Headers =

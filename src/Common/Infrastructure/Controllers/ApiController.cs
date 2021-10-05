@@ -17,6 +17,7 @@ namespace Common.Infrastructure.Controllers
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Primitives;
     using Newtonsoft.Json;
     using RestSharp;
     using StackExchange.Redis;
@@ -89,7 +90,8 @@ namespace Common.Infrastructure.Controllers
                                     "O",
                                     CultureInfo.InvariantCulture),
                                 acceptType.ToMimeTypeString(),
-                                true);
+                                true,
+                                Enumerable.Empty<KeyValuePair<string, StringValues>>());
                         }
 
                         _logger.LogError("Failed to retrieve record {Record} from Redis, cached values not set by registry.", key);
@@ -144,6 +146,7 @@ namespace Common.Infrastructure.Controllers
                     DateTimeOffset.UtcNow,
                     responseContentType,
                     false,
+                    response.HeadersToKeyValuePairs(),
                     response.StatusCode);
             }
 
@@ -171,7 +174,8 @@ namespace Common.Infrastructure.Controllers
                 return new StreamingBackendResponse(
                     contentType,
                     contentDisposition,
-                    responseStream);
+                    responseStream,
+                    response.HeadersToKeyValuePairs());
 
             }
 
@@ -186,6 +190,7 @@ namespace Common.Infrastructure.Controllers
                     DateTimeOffset.UtcNow,
                     responseContentType,
                     false,
+                    response.HeadersToKeyValuePairs(),
                     response.StatusCode);
             }
 
@@ -255,7 +260,8 @@ namespace Common.Infrastructure.Controllers
                     downstreamVersion?.Value.ToString(),
                     DateTimeOffset.UtcNow,
                     contentType,
-                    false);
+                    false,
+                    response.HeadersToKeyValuePairs());
             }
 
             handleNotOkResponseAction(response.StatusCode);

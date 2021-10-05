@@ -26,6 +26,6 @@ namespace Public.Api.Road.Extracts
             return response.ToActionResult();
         }
 
-        private static HttpRequestMessage CreateBackendDownloadRequest(string downloadId) => new HttpRequestMessage(HttpMethod.Get, $"download/{downloadId}");
+        private static HttpRequestMessage CreateBackendDownloadRequest(string downloadId) => new HttpRequestMessage(HttpMethod.Get, $"extracts/download/{downloadId}");
     }
 }

@@ -1,8 +1,10 @@
 namespace Common.Infrastructure.Extensions
 {
     using System;
+    using System.Collections.Generic;
     using System.Runtime.Serialization;
     using System.Xml;
+    using Microsoft.Extensions.Primitives;
     using Newtonsoft.Json;
     using RestSharp;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -25,6 +27,22 @@ namespace Common.Infrastructure.Extensions
             catch (Exception)
             {
                 return new T();
+            }
+        }
+
+        public static IEnumerable<KeyValuePair<string, StringValues>> HeadersToKeyValuePairs(this IRestResponse restResponse)
+        {
+            foreach (var header in restResponse.Headers)
+            {
+                switch (header.Value)
+                {
+                    case string headerValue:
+                        yield return new KeyValuePair<string, StringValues>(header.Name, new StringValues(headerValue));
+                        break;
+                    case string[] headerValues:
+                        yield return new KeyValuePair<string, StringValues>(header.Name, new StringValues(headerValues));
+                        break;
+                }
             }
         }
     }

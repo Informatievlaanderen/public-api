@@ -1,14 +1,18 @@
 namespace Common.Infrastructure.Extensions
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Net.Http;
     using System.Runtime.Serialization;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Xml;
     using Be.Vlaanderen.Basisregisters.BasicApiProblem;
+    using Microsoft.Extensions.Primitives;
     using Newtonsoft.Json;
+    using RestSharp;
 
     public static class HttpResponseMessageExtensions
     {
@@ -34,5 +38,8 @@ namespace Common.Infrastructure.Extensions
                 return new T();
             }
         }
+
+        public static IEnumerable<KeyValuePair<string, StringValues>> HeadersToKeyValuePairs(this HttpResponseMessage response) =>
+            response.Headers.Select(header => new KeyValuePair<string, StringValues>(header.Key, new StringValues(header.Value.ToArray())));
     }
 }

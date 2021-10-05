@@ -6,14 +6,16 @@ namespace Public.Api.Infrastructure
 
     public static class BackendResponseExtensions
     {
-        public static ActionResult ToActionResult(this IBackendResponse response)
+        public static ActionResult ToActionResult(
+            this IBackendResponse response,
+            BackendResponseResultOptions options = default)
         {
             switch (response)
             {
                 case BackendResponse backendResponse:
-                    return new BackendResponseResult(backendResponse);
+                    return new BackendResponseResult(backendResponse, options);
                 case StreamingBackendResponse streamingBackendResponse:
-                    return new StreamingBackendResponseResult(streamingBackendResponse);
+                    return new StreamingBackendResponseResult(streamingBackendResponse, options);
             }
 
             throw new ArgumentException("response has unsupported type", nameof(response));

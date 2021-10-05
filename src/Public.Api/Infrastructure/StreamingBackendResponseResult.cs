@@ -1,31 +1,43 @@
 namespace Public.Api.Infrastructure
 {
     using System.IO;
+    using System.Linq;
     using System.Threading.Tasks;
     using Common.Infrastructure;
     using Microsoft.AspNetCore.Mvc;
 
     public class StreamingBackendResponseResult : ActionResult
     {
-        private readonly Stream _stream;
-        private readonly string _contentType;
-        private readonly string _contentDisposition;
+        private readonly StreamingBackendResponse _response;
+        private readonly BackendResponseResultOptions _options;
 
-        public StreamingBackendResponseResult(StreamingBackendResponse streamingBackendResponse)
+        public StreamingBackendResponseResult(
+            StreamingBackendResponse streamingBackendResponse,
+            BackendResponseResultOptions options = default)
         {
-            _stream = streamingBackendResponse.ResponseStream;
-            _contentType = streamingBackendResponse.ResponseContentType;
-            _contentDisposition = streamingBackendResponse.ContentDisposition;
+            _response = streamingBackendResponse;
+            _options = options ?? new BackendResponseResultOptions();
         }
 
         public override async Task ExecuteResultAsync(ActionContext context)
         {
             var response = context.HttpContext.Response;
 
-            response.Headers.Add(HeaderNames.ContentType, _contentType);
-            response.Headers.Add(HeaderNames.ContentDisposition, _contentDisposition);
+            response.Headers.Add(HeaderNames.ContentType, _response.ResponseContentType);
+            response.Headers.Add(HeaderNames.ContentDisposition, _response.ContentDisposition);
 
-            await _stream.CopyToAsync(response.Body, context.HttpContext.RequestAborted);
+            foreach (var headerToForward in _options.ForwardHeaders)
+            {
+                var headerFromResponse = _response.ResponseHeaders
+                    .SingleOrDefault(responseHeader => responseHeader.Key == headerToForward);
+
+                if (!headerFromResponse.Equals(default))
+                {
+                    context.HttpContext.Response.Headers.Add(headerFromResponse.Key, headerFromResponse.Value);
+                }
+            }
+
+            await _response.ResponseStream.CopyToAsync(response.Body, context.HttpContext.RequestAborted);
         }
     }
 }
