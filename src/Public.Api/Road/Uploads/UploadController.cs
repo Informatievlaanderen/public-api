@@ -1,5 +1,8 @@
-namespace Public.Api.Road.Information
+namespace Public.Api.Road.Uploads
 {
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Autofac.Features.AttributeFilters;
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
@@ -8,6 +11,7 @@ namespace Public.Api.Road.Information
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
@@ -15,20 +19,23 @@ namespace Public.Api.Road.Information
     [ApiVersion(Version.Current)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
-    [ApiExplorerSettings(GroupName = "Informatie")]
-    [ApiOrder(Order = ApiOrder.RoadInformation)]
-    public partial class InformationController : RegistryApiController<InformationController>
+    [ApiExplorerSettings(GroupName = "Upload")]
+    [ApiOrder(Order = ApiOrder.RoadUpload)]
+    public partial class UploadController : RegistryApiController<UploadController>
     {
-        protected override string NotFoundExceptionMessage => "Onbestaande informatie.";
-        protected override string GoneExceptionMessage => "Verwijderde informatie.";
+        private readonly HttpClient _httpClient;
+        protected override string NotFoundExceptionMessage => "Onbestaande upload.";
+        protected override string GoneExceptionMessage => "Verwijderde upload.";
 
-        public InformationController(
+        public UploadController(
             [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Road)] HttpClient httpClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
-            ILogger<InformationController> logger)
+            ILogger<UploadController> logger)
             : base(restClient, cacheToggle, redis, logger)
         {
+            _httpClient = httpClient;
         }
     }
 }

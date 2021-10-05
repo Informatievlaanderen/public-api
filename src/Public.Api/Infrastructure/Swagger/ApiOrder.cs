@@ -21,8 +21,9 @@ namespace Public.Api.Infrastructure.Swagger
         public const int RoadDownload = 137;
         public const int RoadExtract = 138;
         public const int RoadInformation = 139;
+        public const int RoadUpload = 140;
 
-        public const int Extract = 140;
+        public const int Extract = 141;
         public const int Feeds = 145;
 
         public const int CrabHouseNumber = 150;
