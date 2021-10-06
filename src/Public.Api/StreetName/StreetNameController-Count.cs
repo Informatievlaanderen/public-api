@@ -22,7 +22,7 @@ namespace Public.Api.StreetName
         /// <summary>
         /// Vraag het totaal aantal straatnamen op.
         /// </summary>
-        /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de straatnamen (exact).</param>
+        /// <param name="gemeentenaam">Filter op de gemeentenaam van de straatnaam (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>

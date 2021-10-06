@@ -25,12 +25,12 @@ namespace Public.Api.Municipality
         /// <summary>
         /// Vraag een lijst met gemeenten op.
         /// </summary>
-        /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
+        /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
         /// <param name="sort">Optionele sortering van het resultaat (niscode, naam, naam-nl, naam-fr, naam-de, naam-en).</param>
-        /// <param name="gemeentenaam">De gemeentenaam van de gemeenten (exact).</param>
+        /// <param name="gemeentenaam">Filter op de gemeentenaam van de gemeente (exact) (optioneel).</param>
         /// <param name="status">
-        /// Filter op de status van de gemeente (exact). <br />
+        /// Filter op de status van de gemeente (exact) (optioneel). <br />
         /// `"inGebruik"` `"gehistoreerd"` `"voorgesteld"`
         /// </param>
         /// <param name="actionContextAccessor"></param>

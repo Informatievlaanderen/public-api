@@ -25,7 +25,7 @@ namespace Public.Api.BuildingUnit
         /// <summary>
         /// Vraag een lijst met gebouweenheden op.
         /// </summary>
-        /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
+        /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
         /// <param name="sort">Optionele sortering van het resultaat (id).</param>
         /// <param name="adresObjectId">Optionele objectidentificator van het gekoppelde adres.</param>

@@ -22,12 +22,12 @@ namespace Public.Api.Address
         /// <summary>
         /// Vraag het totaal aantal adressen op.
         /// </summary>
-        /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de adressen (exact).</param>
-        /// <param name="postcode">Filter op de postcode van het adres (exact).</param>
-        /// <param name="straatnaam">Filter op de straatnaam van het adres (exact).</param>
-        /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres (exact).</param>
-        /// <param name="huisnummer">Filter op het huisnummer van het adres (exact).</param>
-        /// <param name="busnummer">Filter op het busnummer van het adres (exact).</param>
+        /// <param name="gemeentenaam">Filter op de gemeentenaam van het adres (exact) (optioneel).</param>
+        /// <param name="postcode">Filter op de postcode van het adres (exact) (optioneel).</param>
+        /// <param name="straatnaam">Filter op de straatnaam van het adres (exact) (optioneel).</param>
+        /// <param name="homoniemToevoeging">Filter op de homoniemtoevoeging van het adres (exact) (optioneel).</param>
+        /// <param name="huisnummer">Filter op het huisnummer van het adres (exact) (optioneel).</param>
+        /// <param name="busnummer">Filter op het busnummer van het adres (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
