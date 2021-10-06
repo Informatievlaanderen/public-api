@@ -1,3 +1,11 @@
+## [4.19.1](https://github.com/informatievlaanderen/public-api/compare/v4.19.0...v4.19.1) (2021-10-06)
+
+
+### Bug Fixes
+
+* add Test to ECR ([e7704b7](https://github.com/informatievlaanderen/public-api/commit/e7704b7b481c7bd034cfe8a7cc67aecb89b49eaa))
+* gawr-2141 adding optional comment to api doc ([5e2a961](https://github.com/informatievlaanderen/public-api/commit/5e2a961d13044eed0abb04cc99ff2bf60d246675))
+
 # [4.19.0](https://github.com/informatievlaanderen/public-api/compare/v4.18.0...v4.19.0) (2021-10-06)
 
 
