@@ -4,6 +4,7 @@ namespace Public.Api.Road.Changes
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
+    using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
@@ -17,6 +18,7 @@ namespace Public.Api.Road.Changes
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Activiteit")]
     [ApiOrder(Order = ApiOrder.RoadChangeFeed)]
+    [ApiKeyAuth("Road")]
     public partial class ChangeFeedController : RegistryApiController<ChangeFeedController>
     {
         protected override string NotFoundExceptionMessage => "Onbestaande activiteit.";

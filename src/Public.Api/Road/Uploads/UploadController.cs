@@ -7,11 +7,11 @@ namespace Public.Api.Road.Uploads
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
+    using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
@@ -21,6 +21,7 @@ namespace Public.Api.Road.Uploads
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Upload")]
     [ApiOrder(Order = ApiOrder.RoadUpload)]
+    [ApiKeyAuth("Road")]
     public partial class UploadController : RegistryApiController<UploadController>
     {
         private readonly HttpClient _httpClient;
