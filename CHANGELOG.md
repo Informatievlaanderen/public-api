@@ -1,3 +1,10 @@
+## [4.19.4](https://github.com/informatievlaanderen/public-api/compare/v4.19.3...v4.19.4) (2021-10-06)
+
+
+### Bug Fixes
+
+* cache problem ([973eede](https://github.com/informatievlaanderen/public-api/commit/973eede98a2c1de7b9b2ed06f37d76e0eca540c4))
+
 ## [4.19.3](https://github.com/informatievlaanderen/public-api/compare/v4.19.2...v4.19.3) (2021-10-06)
 
 
