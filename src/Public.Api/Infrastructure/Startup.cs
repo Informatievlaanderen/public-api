@@ -279,8 +279,6 @@ namespace Public.Api.Infrastructure
                 .Configure<ExcludedRouteModelOptions>(_configuration.GetSection("ExcludedRoutes"))
                 .AddSingleton(c => new FeedsVisibleToggle(c.GetService<IOptions<FeatureToggleOptions>>().Value.IsFeedsVisible));
 
-
-
             services
                 .RemoveAll<IApiControllerSpecification>()
                 .TryAddEnumerable(ServiceDescriptor.Transient<IApiControllerSpecification, ToggledApiControllerSpec>());
