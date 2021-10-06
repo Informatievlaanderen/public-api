@@ -25,18 +25,18 @@ namespace Public.Api.Address
         /// <summary>
         /// Vraag een lijst met adressen op.
         /// </summary>
-        /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
+        /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
         /// <param name="sort">Optionele sortering van het resultaat (id, postcode, huisnummer, busnummer).</param>
-        /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de adressen (exact).</param>
-        /// <param name="postcode">Filter op de postcode van het adres (exact).</param>
-        /// <param name="straatnaam">Filter op de straatnaam van het adres (exact).</param>
-        /// <param name="homoniemToevoeging">Filter op de homoniem toevoeging van het adres (exact).</param>
-        /// <param name="huisnummer">Filter op het huisnummer van het adres (exact).</param>
-        /// <param name="busnummer">Filter op het busnummer van het adres (exact).</param>
-        /// <param name="nisCode">De gerelateerde niscode van het adres (exact).</param>
+        /// <param name="gemeentenaam">Filter op de gemeentenaam van het adres (exact) (optioneel).</param>
+        /// <param name="postcode">Filter op de postcode van het adres (exact) (optioneel).</param>
+        /// <param name="straatnaam">Filter op de straatnaam van het adres (exact) (optioneel).</param>
+        /// <param name="homoniemToevoeging">Filter op de homoniemtoevoeging van het adres (exact) (optioneel).</param>
+        /// <param name="huisnummer">Filter op het huisnummer van het adres (exact) (optioneel).</param>
+        /// <param name="busnummer">Filter op het busnummer van het adres (exact) (optioneel).</param>
+        /// <param name="nisCode">Filter op de niscode van het adres (exact) (optioneel).</param>
         /// <param name="status">
-        /// Filter op de status van het adres (exact).<br/>
+        /// Filter op de status van het adres (exact) (optioneel).<br/>
         /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"`
         /// </param>
         /// <param name="actionContextAccessor"></param>

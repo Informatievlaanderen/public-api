@@ -25,14 +25,14 @@ namespace Public.Api.StreetName
         /// <summary>
         /// Vraag een lijst met straatnamen op.
         /// </summary>
-        /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
+        /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
         /// <param name="sort">Optionele sortering van het resultaat (id, naam-nl, naam-fr, naam-de, naam-en).</param>
-        /// <param name="straatnaam">De naam van de straatnaam (exact).</param>
-        /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de straatnamen (exact).</param>
-        /// <param name="nisCode">De gerelateerde niscode van de straatnamen (exact).</param>
+        /// <param name="straatnaam">Filter op de naam van de straatnaam (exact) (optioneel).</param>
+        /// <param name="gemeentenaam">Filter op de gemeentenaam van de straatnaam (exact) (optioneel).</param>
+        /// <param name="nisCode">Filter op de niscode van de straatnaam (exact) (optioneel).</param>
         /// <param name="status">
-        /// Filter op de status van de straatnaam (exact). <br />
+        /// Filter op de status van de straatnaam (exact) (optioneel). <br />
         /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"`
         /// </param>
         /// <param name="actionContextAccessor"></param>

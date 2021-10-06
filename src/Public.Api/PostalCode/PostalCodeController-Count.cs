@@ -22,7 +22,7 @@ namespace Public.Api.PostalCode
         /// <summary>
         /// Vraag het totaal aantal postinfo over postcodes op.
         /// </summary>
-        /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de postcodes (exact).</param>
+        /// <param name="gemeentenaam">Filter op de gemeentenaam van de postcode (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>

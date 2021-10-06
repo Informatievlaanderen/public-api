@@ -24,10 +24,10 @@ namespace Public.Api.CrabHouseNumber
         /// <summary>
         /// Vraag een lijst met CRAB huisnummers op.
         /// </summary>
-        /// <param name="offset">Optionele nulgebaseerde index van de eerste instantie die teruggegeven wordt.</param>
+        /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
         /// <param name="sort">Optionele sortering van het resultaat (id).</param>
-        /// <param name="objectId">Filter op de CRAB-HuisnummerId van het adres (exact).</param>
+        /// <param name="objectId">Filter op de CRAB huisnummerid van het adres (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
