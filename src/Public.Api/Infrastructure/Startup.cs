@@ -263,7 +263,6 @@ namespace Public.Api.Infrastructure
                     {
                         var redisProvider = x.GetService<ConnectionMultiplexerProvider>();
                         var redis = redisProvider.GetConnectionMultiplexer();
-
                         return redis != null
                             ? new RedisStore(_loggerFactory.CreateLogger<RedisStore>(), redis) as IValidatorValueStore
                             : new InMemoryValidatorValueStore(_loggerFactory.CreateLogger<InMemoryValidatorValueStore>()) as IValidatorValueStore;
@@ -277,6 +276,7 @@ namespace Public.Api.Infrastructure
                 .ConfigureRegistryOptions<BuildingOptions>(_configuration.GetSection("ApiConfiguration:BuildingRegistry"))
                 .ConfigureRegistryOptions<ParcelOptions>(_configuration.GetSection("ApiConfiguration:ParcelRegistry"))
                 .Configure<FeatureToggleOptions>(_configuration.GetSection("FeatureToggles"))
+                .Configure<ExcludedRouteModelOptions>(_configuration.GetSection("ExcludedRoutes"))
                 .AddSingleton(c => new FeedsVisibleToggle(c.GetService<IOptions<FeatureToggleOptions>>().Value.IsFeedsVisible));
 
             services
