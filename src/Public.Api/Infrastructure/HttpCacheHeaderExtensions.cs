@@ -1,27 +1,17 @@
 namespace Public.Api.Infrastructure
 {
     using System;
-    using System.Linq;
+    using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Builder;
 
     public static class HttpCacheHeaderExtensions
     {
-        private static readonly string[] DontUseHttpCacheHeadersForPathsWithTheseParts =
-        {
-            "/wegen/"
-        };
-
         public static IApplicationBuilder UseConditionalHttpCacheHeaders(
-            this IApplicationBuilder applicationBuilder)
+            this IApplicationBuilder builder)
         {
-            applicationBuilder.MapWhen(ctx =>
-            {
-                var requestPath = ctx.Request.Path;
-                return !DontUseHttpCacheHeadersForPathsWithTheseParts.Any(part => requestPath.Value.Contains(part, StringComparison.InvariantCultureIgnoreCase));
-
-            }, builder => builder.UseHttpCacheHeaders());
-
-            return applicationBuilder;
+            if (builder != null)
+                return builder.UseMiddleware<HttpCacheHeaderWithExclusionsMiddleware>();
+            throw new ArgumentNullException(nameof(builder));
         }
     }
 }
