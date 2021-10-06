@@ -1,3 +1,10 @@
+## [4.19.2](https://github.com/informatievlaanderen/public-api/compare/v4.19.1...v4.19.2) (2021-10-06)
+
+
+### Bug Fixes
+
+* gawr-632 remove dash from crab building docu ([a72f000](https://github.com/informatievlaanderen/public-api/commit/a72f000a33248e8b0ef93b8996c0189f013a908e))
+
 ## [4.19.1](https://github.com/informatievlaanderen/public-api/compare/v4.19.0...v4.19.1) (2021-10-06)
 
 
