@@ -1,3 +1,10 @@
+# [4.19.0](https://github.com/informatievlaanderen/public-api/compare/v4.18.0...v4.19.0) (2021-10-06)
+
+
+### Features
+
+* add authentication to road registry endpoints ([ce31c1e](https://github.com/informatievlaanderen/public-api/commit/ce31c1e563a2c0199800b716ec288edb8c2689ee))
+
 # [4.18.0](https://github.com/informatievlaanderen/public-api/compare/v4.17.17...v4.18.0) (2021-10-05)
 
 
