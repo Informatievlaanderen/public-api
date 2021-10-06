@@ -5,6 +5,7 @@ namespace Public.Api.Road.Extracts
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
+    using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
@@ -18,6 +19,7 @@ namespace Public.Api.Road.Extracts
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Extract")]
     [ApiOrder(Order = ApiOrder.RoadExtract)]
+    [ApiKeyAuth("Road")]
     public partial class ExtractController : RegistryApiController<ExtractController>
     {
         private readonly HttpClient _httpClient;
