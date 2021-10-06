@@ -1,3 +1,10 @@
+## [4.19.3](https://github.com/informatievlaanderen/public-api/compare/v4.19.2...v4.19.3) (2021-10-06)
+
+
+### Bug Fixes
+
+* gawr-2098 multiple docs changed ([daf31ec](https://github.com/informatievlaanderen/public-api/commit/daf31ecc959c235881a806715a18a4743bdadb9f))
+
 ## [4.19.2](https://github.com/informatievlaanderen/public-api/compare/v4.19.1...v4.19.2) (2021-10-06)
 
 
