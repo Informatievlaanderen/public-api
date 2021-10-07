@@ -1,3 +1,10 @@
+## [4.19.5](https://github.com/informatievlaanderen/public-api/compare/v4.19.4...v4.19.5) (2021-10-07)
+
+
+### Bug Fixes
+
+* bump registers ([b2202da](https://github.com/informatievlaanderen/public-api/commit/b2202da1b2a85ec5f8080e99733abea21bb328e4))
+
 ## [4.19.4](https://github.com/informatievlaanderen/public-api/compare/v4.19.3...v4.19.4) (2021-10-06)
 
 
