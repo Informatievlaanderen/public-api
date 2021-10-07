@@ -1,3 +1,10 @@
+## [4.19.6](https://github.com/informatievlaanderen/public-api/compare/v4.19.5...v4.19.6) (2021-10-07)
+
+
+### Bug Fixes
+
+* add x-correlation-id to all public endpoints ([8950bea](https://github.com/informatievlaanderen/public-api/commit/8950bea66c4c5223fbfbfc5e7e0a4583c2381d2b))
+
 ## [4.19.5](https://github.com/informatievlaanderen/public-api/compare/v4.19.4...v4.19.5) (2021-10-07)
 
 
