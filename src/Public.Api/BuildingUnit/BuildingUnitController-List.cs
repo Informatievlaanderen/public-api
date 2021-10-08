@@ -28,7 +28,7 @@ namespace Public.Api.BuildingUnit
         /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
         /// <param name="sort">Optionele sortering van het resultaat (id).</param>
-        /// <param name="adresObjectId">Optionele objectidentificator van het gekoppelde adres.</param>
+        /// <param name="adresObjectId">Optionele objectidentificator van het gekoppelde adres (exact) (optioneel).</param>
         /// <param name="status">
         /// Filter op de status van de gebouweenheid (exact).<br/>
         /// `"gepland"` `"gerealiseerd"` `"gehistoreerd"` `"nietGerealiseerd"`
