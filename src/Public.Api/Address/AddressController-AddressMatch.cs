@@ -21,7 +21,7 @@ namespace Public.Api.Address
         /// Voer een adresmatch vraag uit en krijg de adressen die gematcht worden.
         /// </summary>
         /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de adressen.</param>
-        /// <param name="niscode">Filter op de NisCode van de gemeente.</param>
+        /// <param name="nisCode">Filter op de NisCode van de gemeente.</param>
         /// <param name="postcode">Filter op de postcode van het adres.</param>
         /// <param name="kadStraatcode">Filter op de straatcode van het kadaster.</param>
         /// <param name="rrStraatcode">Filter op de straatcode van het rijksregister.</param>
