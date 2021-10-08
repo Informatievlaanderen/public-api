@@ -20,7 +20,7 @@ nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      3.16.6  
 nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            2.19.8  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        2.22.9  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           2.32.14  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.30.8  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.30.9  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            3.25.6  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice 2.1.1   copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api          1.57.6  copy_content_to_output_dir: always
