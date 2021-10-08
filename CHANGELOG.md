@@ -1,3 +1,10 @@
+## [4.19.9](https://github.com/informatievlaanderen/public-api/compare/v4.19.8...v4.19.9) (2021-10-08)
+
+
+### Bug Fixes
+
+* docs change NisCode to be consistent GAWR-2145 ([b9708d4](https://github.com/informatievlaanderen/public-api/commit/b9708d453975b417bfc004b28a9cbb858f2ae6c3))
+
 ## [4.19.8](https://github.com/informatievlaanderen/public-api/compare/v4.19.7...v4.19.8) (2021-10-08)
 
 
