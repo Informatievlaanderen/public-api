@@ -1,3 +1,10 @@
+## [4.19.8](https://github.com/informatievlaanderen/public-api/compare/v4.19.7...v4.19.8) (2021-10-08)
+
+
+### Bug Fixes
+
+* added forgotten documentation ([e42a36f](https://github.com/informatievlaanderen/public-api/commit/e42a36ffa449174cfefbce67a0a17353be7bab0b))
+
 ## [4.19.7](https://github.com/informatievlaanderen/public-api/compare/v4.19.6...v4.19.7) (2021-10-08)
 
 
