@@ -29,7 +29,7 @@ namespace Public.Api.Feeds
         /// <param name="responseOptions"></param>
         /// <param name="from">Eventidentificator (volgnummer) vanaf waar de feed moet gestart of hernomen worden (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
-        /// <param name="embed">Keuze welke info in het <![CDATA[&lt;Content&gt;]]>-gedeelte van de output moet zitten. ("event", "object", "event,object") (optioneel)</param>
+        /// <param name="embed">Keuze welke info in het <![CDATA[&lt;Content&gt;]]>-gedeelte van de output moet zitten: "event", "object", "event,object" (optioneel).</param>
         /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van een lijst met wijzigingen op gebouwen en gebouweenheden gelukt is.</response>
