@@ -1,3 +1,10 @@
+## [4.19.7](https://github.com/informatievlaanderen/public-api/compare/v4.19.6...v4.19.7) (2021-10-08)
+
+
+### Bug Fixes
+
+* GAWR-2141 change embed param in feed docs ([3ddd71e](https://github.com/informatievlaanderen/public-api/commit/3ddd71e4241d59a8032a24d2c7862b33fdc50073))
+
 ## [4.19.6](https://github.com/informatievlaanderen/public-api/compare/v4.19.5...v4.19.6) (2021-10-07)
 
 
