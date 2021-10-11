@@ -1,3 +1,10 @@
+# [4.20.0](https://github.com/informatievlaanderen/public-api/compare/v4.19.10...v4.20.0) (2021-10-11)
+
+
+### Features
+
+* added clarification to documentations. Also enabled swagger annotation and bumped registries ([d5aba78](https://github.com/informatievlaanderen/public-api/commit/d5aba785df6c2f430c087ecd62b61901a0168ebf))
+
 ## [4.19.10](https://github.com/informatievlaanderen/public-api/compare/v4.19.9...v4.19.10) (2021-10-08)
 
 
