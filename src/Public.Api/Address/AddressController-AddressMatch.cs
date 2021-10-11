@@ -13,6 +13,7 @@ namespace Public.Api.Address
     using Swashbuckle.AspNetCore.Filters;
     using System.Threading;
     using System.Threading.Tasks;
+    using Swashbuckle.AspNetCore.Annotations;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class AddressController
@@ -20,15 +21,15 @@ namespace Public.Api.Address
         /// <summary>
         /// Voer een adresmatch vraag uit en krijg de adressen die gematcht worden.
         /// </summary>
-        /// <param name="gemeentenaam">De gerelateerde gemeentenaam van de adressen.</param>
-        /// <param name="niscode">Filter op de NisCode van de gemeente.</param>
-        /// <param name="postcode">Filter op de postcode van het adres.</param>
-        /// <param name="kadStraatcode">Filter op de straatcode van het kadaster.</param>
-        /// <param name="rrStraatcode">Filter op de straatcode van het rijksregister.</param>
-        /// <param name="straatnaam">Filter op de straatnaam van het adres.</param>
-        /// <param name="huisnummer">Filter op het huisnummer van het adres.</param>
-        /// <param name="index">Filter op het huisnummer gekend in het rijksregister.</param>
-        /// <param name="busnummer">Filter op het busnummer van het adres.</param>
+        /// <param name="gemeentenaam">Filter op de gemeentenaam van het adres (1).</param>
+        /// <param name="niscode">Filter op de niscode van het adres (1).</param>
+        /// <param name="postcode">Filter op de postcode van het adres (1).</param>
+        /// <param name="kadStraatcode">Filter op de straatcode van het kadaster (2) (3).</param>
+        /// <param name="rrStraatcode">Filter op de straatcode van het rijksregister (2) (3).</param>
+        /// <param name="straatnaam">Filter op de straatnaam van het adres (2).</param>
+        /// <param name="huisnummer">Filter op het huisnummer van het adres (1).</param>
+        /// <param name="index">Filter op het huisnummer gekend in het rijksregister (4).</param>
+        /// <param name="busnummer">Filter op het busnummer van het adres (4).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="cancellationToken"></param>
@@ -45,6 +46,7 @@ namespace Public.Api.Address
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        [SwaggerOperation(Description = "Van de optionele parameters (2) resp. (1) moet er minstens één ingevuld zijn. Van de optionele parameters(3) resp. (4) mag er maximaal één van de twee ingevuld zijn.")]
         public async Task<IActionResult> AddressMatch(
             [FromQuery] string gemeentenaam,
             [FromQuery] string niscode,
