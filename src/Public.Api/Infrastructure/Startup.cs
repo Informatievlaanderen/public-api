@@ -86,6 +86,7 @@ namespace Public.Api.Infrastructure
                 ? baseUrl.Substring(0, baseUrl.Length - 1)
                 : baseUrl;
 
+
             services
                 .ConfigureDefaultForApi<Startup>(new StartupConfigureOptions
                 {
@@ -147,6 +148,7 @@ namespace Public.Api.Infrastructure
                             {
                                 x.OperationFilter<RemoveParameterOperationFilter>("sort");
                                 x.OperationFilter<ProblemDetailsOperationFilter>();
+                                x.EnableAnnotations();
                             }
                         }
                     },

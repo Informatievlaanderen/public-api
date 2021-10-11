@@ -17,7 +17,7 @@ NUGET
       AWSSDK.Core (>= 3.7.0.31 < 4.0)
     AWSSDK.S3 (3.7.0.32)
       AWSSDK.Core (>= 3.7.0.31 < 4.0)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (2.32.14) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (2.32.15) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.AggregateSource (5.2.1)
       Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (>= 2.2.12)
       Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (>= 2.2.11)
@@ -247,7 +247,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.EventHandling (>= 3.1.1)
       SqlStreamStore (>= 1.2)
     Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice (2.1.1) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (1.57.6) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (1.57.7) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.BlobStore (>= 2.2.12)
       Microsoft.IO.RecyclableMemoryStream (>= 1.4)
     Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (2.22.9) - copy_content_to_output_dir: always
