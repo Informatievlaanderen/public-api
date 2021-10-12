@@ -1,3 +1,10 @@
+## [4.20.1](https://github.com/informatievlaanderen/public-api/compare/v4.20.0...v4.20.1) (2021-10-12)
+
+
+### Bug Fixes
+
+* add api key header to cors definition ([fa92b26](https://github.com/informatievlaanderen/public-api/commit/fa92b263c7083ee730fd54215a319da8ce3e5238))
+
 # [4.20.0](https://github.com/informatievlaanderen/public-api/compare/v4.19.10...v4.20.0) (2021-10-11)
 
 
