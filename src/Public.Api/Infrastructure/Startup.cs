@@ -96,7 +96,8 @@ namespace Public.Api.Infrastructure
                             .GetSection("Cors")
                             .GetChildren()
                             .Select(c => c.Value)
-                            .ToArray()
+                            .ToArray(),
+                        Headers = new[] {"x-api-key"}
                     },
                     Server =
                     {
