@@ -130,21 +130,28 @@ namespace Common.Infrastructure.Controllers
 
             var response = await ExecuteRequestAsync(restClient, backendRequest, cancellationToken);
 
-            if ((response.IsSuccessful && response.StatusCode == HttpStatusCode.OK) || response.StatusCode == HttpStatusCode.BadRequest)
+            var downstreamVersion = response
+                .Headers
+                .FirstOrDefault(x => x.Name.Equals(AddVersionHeaderMiddleware.HeaderName, StringComparison.InvariantCultureIgnoreCase));
+
+            if (response.StatusCode == HttpStatusCode.BadRequest)
             {
-                var downstreamVersion = response
-                    .Headers
-                    .FirstOrDefault(x => x.Name.Equals(AddVersionHeaderMiddleware.HeaderName, StringComparison.InvariantCultureIgnoreCase));
-
-                var responseContentType = response.StatusCode == HttpStatusCode.OK
-                    ? contentType
-                    : response.ContentType;
-
                 return new BackendResponse(
                     GetPublicContentValue(response, problemDetailsHelper),
                     downstreamVersion?.Value.ToString(),
                     DateTimeOffset.UtcNow,
-                    responseContentType,
+                    response.ContentType,
+                    false,
+                    response.HeadersToKeyValuePairs(),
+                    response.StatusCode);
+            }
+            if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
+            {
+                return new BackendResponse(
+                    response.Content,
+                    downstreamVersion?.Value.ToString(),
+                    DateTimeOffset.UtcNow,
+                    contentType,
                     false,
                     response.HeadersToKeyValuePairs(),
                     response.StatusCode);
