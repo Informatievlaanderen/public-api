@@ -1,3 +1,10 @@
+## [4.20.2](https://github.com/informatievlaanderen/public-api/compare/v4.20.1...v4.20.2) (2021-10-13)
+
+
+### Bug Fixes
+
+* don't modify types for successful requests ([b402564](https://github.com/informatievlaanderen/public-api/commit/b402564d98a430c6ebf1c733ebcf3cb59c788f5a))
+
 ## [4.20.1](https://github.com/informatievlaanderen/public-api/compare/v4.20.0...v4.20.1) (2021-10-12)
 
 
