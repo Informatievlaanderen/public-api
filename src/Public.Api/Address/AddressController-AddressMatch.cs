@@ -22,7 +22,7 @@ namespace Public.Api.Address
         /// Voer een adresmatch vraag uit en krijg de adressen die gematcht worden.
         /// </summary>
         /// <param name="gemeentenaam">Filter op de gemeentenaam van het adres (1).</param>
-        /// <param name="niscode">Filter op de niscode van het adres (1).</param>
+        /// <param name="niscode">Filter op de NIS-code van het adres (1).</param>
         /// <param name="postcode">Filter op de postcode van het adres (1).</param>
         /// <param name="kadStraatcode">Filter op de straatcode van het kadaster (2) (3).</param>
         /// <param name="rrStraatcode">Filter op de straatcode van het rijksregister (2) (3).</param>

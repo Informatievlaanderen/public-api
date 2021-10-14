@@ -30,7 +30,7 @@ namespace Public.Api.StreetName
         /// <param name="sort">Optionele sortering van het resultaat (id, naam-nl, naam-fr, naam-de, naam-en).</param>
         /// <param name="straatnaam">Filter op de naam van de straatnaam (exact) (optioneel).</param>
         /// <param name="gemeentenaam">Filter op de gemeentenaam van de straatnaam (exact) (optioneel).</param>
-        /// <param name="niscode">Filter op de niscode van de straatnaam (exact) (optioneel).</param>
+        /// <param name="niscode">Filter op de NIS-code van de straatnaam (exact) (optioneel).</param>
         /// <param name="status">
         /// Filter op de status van de straatnaam (exact) (optioneel). <br />
         /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"`
