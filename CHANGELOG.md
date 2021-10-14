@@ -1,3 +1,13 @@
+## [4.20.3](https://github.com/informatievlaanderen/public-api/compare/v4.20.2...v4.20.3) (2021-10-14)
+
+
+### Bug Fixes
+
+* gawr-2142 fixed comments under params ([b09f7ec](https://github.com/informatievlaanderen/public-api/commit/b09f7ec03ad98347f944fb4f54118b4e8a578e59))
+* gawr-2165 changed nisCode to niscode for streetnames ([51db4d9](https://github.com/informatievlaanderen/public-api/commit/51db4d97177f94ebe08336491f423cc6b6876098))
+* gawr-2166 changed if-none-match to optional ([a796a15](https://github.com/informatievlaanderen/public-api/commit/a796a15bf26c711f78393ce8ff0968fd84b6d57e))
+* gawr-2167 changed niscode to NIS-code ([a530199](https://github.com/informatievlaanderen/public-api/commit/a5301997d5df8ff4703d351d33b8f6417b5ce4db))
+
 ## [4.20.2](https://github.com/informatievlaanderen/public-api/compare/v4.20.1...v4.20.2) (2021-10-13)
 
 
