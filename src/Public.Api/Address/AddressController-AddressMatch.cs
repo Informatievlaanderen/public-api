@@ -46,7 +46,7 @@ namespace Public.Api.Address
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Van de optionele parameters (2) resp. (1) moet er minstens één ingevuld zijn. Van de optionele parameters(3) resp. (4) mag er maximaal één van de twee ingevuld zijn.")]
+        [SwaggerOperation(Description = "Van de optionele parameters (2) resp. (1) moet er minstens één ingevuld zijn. <br />Van de optionele parameters (3) resp. (4) mag er maximaal één van de twee ingevuld zijn.")]
         public async Task<IActionResult> AddressMatch(
             [FromQuery] string gemeentenaam,
             [FromQuery] string niscode,
