@@ -34,7 +34,7 @@ namespace Public.Api.Address
         /// <param name="homoniemToevoeging">Filter op de homoniemtoevoeging van het adres (exact) (optioneel).</param>
         /// <param name="huisnummer">Filter op het huisnummer van het adres (exact) (optioneel).</param>
         /// <param name="busnummer">Filter op het busnummer van het adres (exact) (optioneel).</param>
-        /// <param name="niscode">Filter op de niscode van het adres (exact) (optioneel).</param>
+        /// <param name="niscode">Filter op de NIS-code van het adres (exact) (optioneel).</param>
         /// <param name="status">
         /// Filter op de status van het adres (exact) (optioneel).<br/>
         /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"`
