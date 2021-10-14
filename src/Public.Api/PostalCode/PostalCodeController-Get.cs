@@ -22,7 +22,7 @@ namespace Public.Api.PostalCode
         /// </summary>
         /// <param name="objectId">Identificator van de postinfo.</param>
         /// <param name="actionContextAccessor"></param>
-        /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
+        /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de postinfo voor een postcode gevonden is.</response>
         /// <response code="304">Als de postinfo voor een postcode niet gewijzigd is ten opzicht van uw verzoek.</response>

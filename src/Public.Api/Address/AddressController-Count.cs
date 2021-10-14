@@ -29,7 +29,7 @@ namespace Public.Api.Address
         /// <param name="huisnummer">Filter op het huisnummer van het adres (exact) (optioneel).</param>
         /// <param name="busnummer">Filter op het busnummer van het adres (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>
-        /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
+        /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van het totaal aantal adressen gelukt is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
