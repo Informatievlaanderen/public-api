@@ -26,7 +26,7 @@ namespace Public.Api.PublicService
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
         /// <param name="sort">Optionele sortering van het resultaat (id, naam, verantwoordelijke-autoriteit).</param>
         /// <param name="actionContextAccessor"></param>
-        /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
+        /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van een lijst met dienstverleningen gelukt is.</response>
         /// <response code="304">Als de lijst niet gewijzigd is ten opzicht van uw verzoek.</response>

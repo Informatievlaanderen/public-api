@@ -22,7 +22,7 @@ namespace Public.Api.CrabSubaddress
         /// Vraag het totaal aantal crab subadressen op.
         /// </summary>
         /// <param name="actionContextAccessor"></param>
-        /// <param name="ifNoneMatch">Optionele If-None-Match header met ETag van een vorig verzoek.</param>
+        /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van het totaal aantal crab subadressen gelukt is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
