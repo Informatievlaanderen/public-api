@@ -1,3 +1,10 @@
+# [4.21.0](https://github.com/informatievlaanderen/public-api/compare/v4.20.3...v4.21.0) (2021-10-15)
+
+
+### Features
+
+* gawr-1177 gawr-1186 added propose streetname ([1e9bb2f](https://github.com/informatievlaanderen/public-api/commit/1e9bb2fc7910508fec4bfd906f17a3ca99c51e98))
+
 ## [4.20.3](https://github.com/informatievlaanderen/public-api/compare/v4.20.2...v4.20.3) (2021-10-14)
 
 
