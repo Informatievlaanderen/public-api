@@ -3,6 +3,7 @@ namespace Public.Api.StreetName.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.Infrastructure;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ namespace Public.Api.StreetName.BackOffice
     using StreetNameRegistry.Api.BackOffice.StreetName.Requests;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class StreetNameBackOfficeController
     {
@@ -20,6 +22,7 @@ namespace Public.Api.StreetName.BackOffice
         /// <param name="streetNameProposeRequest"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
+        /// <param name="proposeStreetNameToggle"></param>
         /// <param name="cancellationToken"></param>
         /// <response code="201">Als de straatnaam voorgesteld is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
@@ -43,8 +46,12 @@ namespace Public.Api.StreetName.BackOffice
             [FromBody] StreetNameProposeRequest streetNameProposeRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] ProposeStreetNameToggle proposeStreetNameToggle,
             CancellationToken cancellationToken = default)
         {
+            if (!proposeStreetNameToggle.FeatureEnabled)
+                return NotFound();
+
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(streetNameProposeRequest);
