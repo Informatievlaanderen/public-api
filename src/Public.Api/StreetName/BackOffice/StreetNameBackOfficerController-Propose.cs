@@ -1,10 +1,13 @@
 namespace Public.Api.StreetName.BackOffice
 {
-    using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using RestSharp;
     using StreetNameRegistry.Api.BackOffice.StreetName.Requests;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
@@ -15,6 +18,9 @@ namespace Public.Api.StreetName.BackOffice
         /// Stel een straatnaam voor.
         /// </summary>
         /// <param name="streetNameProposeRequest"></param>
+        /// <param name="actionContextAccessor"></param>
+        /// <param name="problemDetailsHelper"></param>
+        /// <param name="cancellationToken"></param>
         /// <response code="201">Als de straatnaam voorgesteld is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
@@ -33,10 +39,32 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Voer een nieuwe straatnaam in met status  `\"voorgesteld\"`.")]
         [HttpPost("straatnamen/voorgesteld", Name = nameof(ProposeStreetName))]
-        public async Task<IActionResult> ProposeStreetName([FromBody] StreetNameProposeRequest streetNameProposeRequest)
+        public async Task<IActionResult> ProposeStreetName(
+            [FromBody] StreetNameProposeRequest streetNameProposeRequest,
+            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            CancellationToken cancellationToken = default)
         {
+            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            return Created(new Uri(string.Format("", "1")), null);
+            RestRequest BackendRequest() => CreateBackendDetailRequest(streetNameProposeRequest);
+
+            var value = await GetFromBackendWithBadRequestAsync(
+                    contentFormat.ContentType,
+                    BackendRequest,
+                    CreateDefaultHandleBadRequest(),
+                    problemDetailsHelper,
+                    cancellationToken);
+
+            return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
+        }
+
+        private static RestRequest CreateBackendDetailRequest(StreetNameProposeRequest streetNameProposeRequest)
+        {
+            var request = new RestRequest("straatnamen/voorgesteld");
+            request.Method = Method.POST;
+            request.AddJsonBody(streetNameProposeRequest);
+            return request;
         }
     }
 }
