@@ -4,6 +4,7 @@ namespace Common.Infrastructure.Extensions
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Net.Mime;
     using Microsoft.AspNetCore.Mvc.Formatters;
 
     public static class EndPointTypeExtensions
@@ -25,6 +26,24 @@ namespace Common.Infrastructure.Extensions
                     AcceptType.Atom,
                     AcceptType.Xml
                 },
+                EndpointType.BackOffice
+                    => new []
+                    {
+                        AcceptType.Json
+                    },
+                _ => new[] { AcceptType.Json }
+            };
+        }
+
+        public static IEnumerable<AcceptType> GetContentTypes(this EndpointType endpointType)
+        {
+            return endpointType switch
+            {
+                EndpointType.BackOffice
+                    => new []
+                    {
+                        AcceptType.Json
+                    },
                 _ => new[] { AcceptType.Json }
             };
         }
@@ -38,6 +57,26 @@ namespace Common.Infrastructure.Extensions
                     {
                         AcceptTypeExtensions.ToMimeTypeString(type),
                         AcceptTypeExtensions.ToProblemResponseMimeTypeString(type)
+                    })
+                .Distinct()
+                .OrderBy(type => type, new AcceptTypeComparer())
+                .Aggregate(
+                    new MediaTypeCollection(),
+                    (collection, type) =>
+                    {
+                        collection.Add(type);
+                        return collection;
+                    });
+        }
+
+        public static MediaTypeCollection Consumes(this EndpointType endpointType)
+        {
+            return endpointType
+                .GetContentTypes()
+                .SelectMany(type =>
+                    new []
+                    {
+                        AcceptTypeExtensions.ToMimeTypeString(type)
                     })
                 .Distinct()
                 .OrderBy(type => type, new AcceptTypeComparer())
