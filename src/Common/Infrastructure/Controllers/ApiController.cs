@@ -145,7 +145,7 @@ namespace Common.Infrastructure.Controllers
                     response.HeadersToKeyValuePairs(),
                     response.StatusCode);
             }
-            if (response.StatusCode == HttpStatusCode.OK)
+            if (response.StatusCode is HttpStatusCode.OK or HttpStatusCode.Created)
             {
                 return new BackendResponse(
                     response.Content,
@@ -255,7 +255,7 @@ namespace Common.Infrastructure.Controllers
 
             var response = await ExecuteRequestAsync(restClient, backendRequest, cancellationToken);
 
-            if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK)
+            if (response.IsSuccessful && response.StatusCode is HttpStatusCode.OK or HttpStatusCode.Created)
             {
                 var downstreamVersion = response
                     .Headers
@@ -267,7 +267,8 @@ namespace Common.Infrastructure.Controllers
                     DateTimeOffset.UtcNow,
                     contentType,
                     false,
-                    response.HeadersToKeyValuePairs());
+                    response.HeadersToKeyValuePairs(),
+                    response.StatusCode);
             }
 
             handleNotOkResponseAction(response.StatusCode);

@@ -12,5 +12,10 @@ namespace Public.Api.Infrastructure
             get => _forwardHeaders ?? Enumerable.Empty<string>();
             set => _forwardHeaders = value;
         }
+
+        public static BackendResponseResultOptions ForBackOffice()
+        {
+            return new BackendResponseResultOptions { ForwardHeaders = new List<string> { "Location", "ETag" }};
+        }
     }
 }

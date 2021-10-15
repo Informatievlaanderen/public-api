@@ -88,6 +88,8 @@ namespace Public.Api.Infrastructure
 
 
             services
+                .AddControllers(c => c.Conventions.Add(new FeatureToggleConvention(_configuration)));
+            services
                 .ConfigureDefaultForApi<Startup>(new StartupConfigureOptions
                 {
                     Cors =
@@ -110,7 +112,7 @@ namespace Public.Api.Infrastructure
                         {
                             Version = _marketingVersion,
                             Title = "Basisregisters Vlaanderen API",
-                            Description = GetApiLeadingText(description, Convert.ToBoolean(_configuration.GetSection("FeatureToggles")["IsFeedsVisible"])),
+                            Description = GetApiLeadingText(description, Convert.ToBoolean(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey)["IsFeedsVisible"])),
                             Contact = _contact,
                             License = new OpenApiLicense
                             {
@@ -132,6 +134,7 @@ namespace Public.Api.Infrastructure
                             typeof(MunicipalityRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(PostalRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(StreetNameRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(StreetNameRegistry.Api.BackOffice.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(AddressRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(BuildingRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
@@ -278,9 +281,10 @@ namespace Public.Api.Infrastructure
                 .ConfigureRegistryOptions<AddressOptions>(_configuration.GetSection("ApiConfiguration:AddressRegistry"))
                 .ConfigureRegistryOptions<BuildingOptions>(_configuration.GetSection("ApiConfiguration:BuildingRegistry"))
                 .ConfigureRegistryOptions<ParcelOptions>(_configuration.GetSection("ApiConfiguration:ParcelRegistry"))
-                .Configure<FeatureToggleOptions>(_configuration.GetSection("FeatureToggles"))
+                .Configure<FeatureToggleOptions>(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey))
                 .Configure<ExcludedRouteModelOptions>(_configuration.GetSection("ExcludedRoutes"))
-                .AddSingleton(c => new FeedsVisibleToggle(c.GetService<IOptions<FeatureToggleOptions>>().Value.IsFeedsVisible));
+                .AddSingleton(c => new FeedsVisibleToggle(c.GetService<IOptions<FeatureToggleOptions>>().Value.IsFeedsVisible))
+                .AddSingleton(c => new ProposeStreetNameToggle(c.GetService<IOptions<FeatureToggleOptions>>().Value.ProposeStreetName));
 
             services
                 .RemoveAll<IApiControllerSpecification>()
