@@ -1,3 +1,10 @@
+## [4.21.1](https://github.com/informatievlaanderen/public-api/compare/v4.21.0...v4.21.1) (2021-10-18)
+
+
+### Bug Fixes
+
+* gawr-2203 add x-api-key ([58b78e1](https://github.com/informatievlaanderen/public-api/commit/58b78e1accb8b5aea8283fc6856c396ae268eeed))
+
 # [4.21.0](https://github.com/informatievlaanderen/public-api/compare/v4.20.3...v4.21.0) (2021-10-15)
 
 
