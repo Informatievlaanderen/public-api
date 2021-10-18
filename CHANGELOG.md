@@ -1,3 +1,10 @@
+## [4.21.2](https://github.com/informatievlaanderen/public-api/compare/v4.21.1...v4.21.2) (2021-10-18)
+
+
+### Bug Fixes
+
+* version bump streetname registry ([e138bef](https://github.com/informatievlaanderen/public-api/commit/e138bef91feaeafe469950a6baa60da7b879b497))
+
 ## [4.21.1](https://github.com/informatievlaanderen/public-api/compare/v4.21.0...v4.21.1) (2021-10-18)
 
 
