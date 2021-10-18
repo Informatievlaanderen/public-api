@@ -1,5 +1,9 @@
 namespace Public.Api.Infrastructure.Swagger
 {
+    using System.Collections.Generic;
+    using Feeds;
+    using Microsoft.AspNetCore.JsonPatch.Operations;
+    using Microsoft.AspNetCore.Mvc.Controllers;
     using Microsoft.OpenApi.Models;
     using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -21,6 +25,40 @@ namespace Public.Api.Infrastructure.Swagger
                     operationResponse.Value.Content.Remove("application/xml");
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// Operation filter to add the requirement of the custom header
+    /// </summary>
+    public class XApiFilter : IOperationFilter
+    {
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
+        {
+            if (operation.Parameters == null)
+                operation.Parameters = new List<OpenApiParameter>();
+
+            if (context.ApiDescription.ActionDescriptor is ControllerActionDescriptor descriptor &&
+                descriptor.ControllerTypeInfo.Name.Equals(nameof(FeedController)))
+            {
+                operation.Parameters.Add(new OpenApiParameter
+                {
+                    Name = "x-api-key",
+                    In = ParameterLocation.Header,
+                    Description = "x-api-key header met verkregen API key.",
+                    Schema = new OpenApiSchema { Type = "string" },
+                    Required = true
+                });
+            }
+            else
+                operation.Parameters.Add(new OpenApiParameter
+                {
+                    Name = "x-api-key",
+                    In = ParameterLocation.Header,
+                    Description = "x-api-key header met verkregen API key (optioneel).",
+                    Schema = new OpenApiSchema { Type = "string" },
+                    Required = false // set to false if this is optional
+                });
         }
     }
 }

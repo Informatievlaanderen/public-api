@@ -152,6 +152,7 @@ namespace Public.Api.Infrastructure
                             {
                                 x.OperationFilter<RemoveParameterOperationFilter>("sort");
                                 x.OperationFilter<ProblemDetailsOperationFilter>();
+                                x.OperationFilter<XApiFilter>();
                                 x.EnableAnnotations();
                             }
                         }
