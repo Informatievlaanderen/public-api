@@ -86,9 +86,6 @@ namespace Public.Api.Infrastructure
                 ? baseUrl.Substring(0, baseUrl.Length - 1)
                 : baseUrl;
 
-
-            services
-                .AddControllers(c => c.Conventions.Add(new FeatureToggleConvention(_configuration)));
             services
                 .ConfigureDefaultForApi<Startup>(new StartupConfigureOptions
                 {
@@ -174,6 +171,7 @@ namespace Public.Api.Infrastructure
                             builder
                                 .AddMvcOptions(options =>
                                 {
+                                    options.Conventions.Add(new FeatureToggleConvention(_configuration));
                                     //GRAR-1877
                                     options.ModelBindingMessageProvider.SetAttemptedValueIsInvalidAccessor((value,fieldName) => $"De waarde '{value}' is ongeldig voor {fieldName}.");
 
