@@ -1,3 +1,10 @@
+## [4.21.3](https://github.com/informatievlaanderen/public-api/compare/v4.21.2...v4.21.3) (2021-10-19)
+
+
+### Bug Fixes
+
+* GAWR-2239 - 400 status fix ([642a5d3](https://github.com/informatievlaanderen/public-api/commit/642a5d3d520dc442ca918d5d957aee9fe72b826a))
+
 ## [4.21.2](https://github.com/informatievlaanderen/public-api/compare/v4.21.1...v4.21.2) (2021-10-18)
 
 
