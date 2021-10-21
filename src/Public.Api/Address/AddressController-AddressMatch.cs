@@ -32,6 +32,7 @@ namespace Public.Api.Address
         /// <param name="busnummer">Filter op het busnummer van het adres (4).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
+        /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de adresmatch gelukt is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
@@ -60,6 +61,7 @@ namespace Public.Api.Address
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptions> responseOptions,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
