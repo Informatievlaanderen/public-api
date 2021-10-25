@@ -1,3 +1,11 @@
+## [4.21.4](https://github.com/informatievlaanderen/public-api/compare/v4.21.3...v4.21.4) (2021-10-25)
+
+
+### Bug Fixes
+
+* added correct using for header ([b25d9df](https://github.com/informatievlaanderen/public-api/commit/b25d9df293dcbc5aed433e17a4458b90fe157184))
+* gawr-2166 added ifnonematch header to address match ([cc72684](https://github.com/informatievlaanderen/public-api/commit/cc726842d758efe7bed645cfac062d4fcdad1ee5))
+
 ## [4.21.3](https://github.com/informatievlaanderen/public-api/compare/v4.21.2...v4.21.3) (2021-10-19)
 
 
