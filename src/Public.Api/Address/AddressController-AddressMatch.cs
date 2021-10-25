@@ -13,6 +13,7 @@ namespace Public.Api.Address
     using Swashbuckle.AspNetCore.Filters;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.Infrastructure;
     using Swashbuckle.AspNetCore.Annotations;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
