@@ -16,13 +16,13 @@ nuget Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting 5.2.1
 nuget NetTopologySuite 2.2.0
 
 // VBR STUFF
-nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      3.16.6  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            2.19.8  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        2.24.2  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice    2.24.2  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           2.32.15  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.30.9  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            3.25.6  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      3.16.8  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            2.19.10  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        2.26.2  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice    2.26.2  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           2.32.18  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.30.12  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            3.26.0  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice 2.1.1   copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api          1.57.7  copy_content_to_output_dir: always
 
@@ -30,10 +30,10 @@ nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 5.0.4
 
 nuget Be.Vlaanderen.Basisregisters.Api 15.0.12
 
-nuget Be.Vlaanderen.Basisregisters.GrAr.Common 16.8.0
-nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 16.8.0
-nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 16.8.0
-nuget Be.Vlaanderen.Basisregisters.GrAr.Import 16.8.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Common 16.8.2
+nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 16.8.2
+nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 16.8.2
+nuget Be.Vlaanderen.Basisregisters.GrAr.Import 16.8.2
 
 nuget Be.Vlaanderen.Basisregisters.EventHandling 3.1.1
 nuget Be.Vlaanderen.Basisregisters.ProblemDetails 6.0.6
