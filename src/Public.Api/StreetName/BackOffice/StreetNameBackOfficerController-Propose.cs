@@ -1,5 +1,6 @@
 namespace Public.Api.StreetName.BackOffice
 {
+    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
@@ -8,7 +9,9 @@ namespace Public.Api.StreetName.BackOffice
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Newtonsoft.Json;
     using RestSharp;
+    using RestSharp.Serialization.Json;
     using StreetNameRegistry.Api.BackOffice.StreetName.Requests;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
@@ -54,7 +57,10 @@ namespace Public.Api.StreetName.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendDetailRequest(streetNameProposeRequest);
+            IRestRequest BackendRequest() => CreateBackendRequestWithJsonBody(
+                "straatnamen/voorgesteld",
+                streetNameProposeRequest,
+                Method.POST);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,
@@ -64,14 +70,6 @@ namespace Public.Api.StreetName.BackOffice
                     cancellationToken);
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
-        }
-
-        private static RestRequest CreateBackendDetailRequest(StreetNameProposeRequest streetNameProposeRequest)
-        {
-            var request = new RestRequest("straatnamen/voorgesteld");
-            request.Method = Method.POST;
-            request.AddJsonBody(streetNameProposeRequest);
-            return request;
         }
     }
 }

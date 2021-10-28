@@ -4,6 +4,7 @@ namespace Common.Infrastructure.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
+    using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
@@ -11,6 +12,7 @@ namespace Common.Infrastructure.Controllers
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Primitives;
+    using Newtonsoft.Json;
     using ProblemDetailsException;
     using RestSharp;
 
@@ -76,6 +78,14 @@ namespace Common.Infrastructure.Controllers
                 handleNotOkResponseAction,
                 problemDetailsHelper,
                 cancellationToken);
+
+        protected static IRestRequest CreateBackendRequestWithJsonBody<TRequest>(string path, TRequest body, Method method)
+        {
+            var request = new RestRequest(path)
+                .AddParameter("application/json; charset=utf-8", JsonConvert.SerializeObject(body), ParameterType.RequestBody);
+            request.Method = method;
+            return request;
+        }
 
         protected string CreateCacheKeyForRequestQuery(string keyBaseValue)
         {

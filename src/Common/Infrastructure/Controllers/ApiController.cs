@@ -145,7 +145,7 @@ namespace Common.Infrastructure.Controllers
                     response.HeadersToKeyValuePairs(),
                     response.StatusCode);
             }
-            if (response.StatusCode is HttpStatusCode.OK or HttpStatusCode.Created)
+            if (response.StatusCode is HttpStatusCode.OK or HttpStatusCode.Created or HttpStatusCode.Accepted)
             {
                 return new BackendResponse(
                     response.Content,
