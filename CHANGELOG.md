@@ -1,3 +1,10 @@
+## [4.21.6](https://github.com/informatievlaanderen/public-api/compare/v4.21.5...v4.21.6) (2021-10-28)
+
+
+### Bug Fixes
+
+* internal server error propose streetname ([5bf7cf2](https://github.com/informatievlaanderen/public-api/commit/5bf7cf202cfe7d37803c7fac7525e9c492ead29f))
+
 ## [4.21.5](https://github.com/informatievlaanderen/public-api/compare/v4.21.4...v4.21.5) (2021-10-26)
 
 
