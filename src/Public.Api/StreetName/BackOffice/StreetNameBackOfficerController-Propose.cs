@@ -27,7 +27,7 @@ namespace Public.Api.StreetName.BackOffice
         /// <param name="problemDetailsHelper"></param>
         /// <param name="proposeStreetNameToggle"></param>
         /// <param name="cancellationToken"></param>
-        /// <response code="201">Als de straatnaam voorgesteld is.</response>
+        /// <response code="201">Als de straatnaam succesvol voorgesteld is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
