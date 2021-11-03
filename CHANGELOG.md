@@ -1,3 +1,11 @@
+## [4.21.7](https://github.com/informatievlaanderen/public-api/compare/v4.21.6...v4.21.7) (2021-11-03)
+
+
+### Bug Fixes
+
+* docs 201 propose streetname GAWR-2334 ([ee47ec4](https://github.com/informatievlaanderen/public-api/commit/ee47ec47e84266e2b5293b58e748499764867120))
+* docs propose streetname GAWR-2333 ([375fc09](https://github.com/informatievlaanderen/public-api/commit/375fc096d875860a434b1e096d931990d8f4da43))
+
 ## [4.21.6](https://github.com/informatievlaanderen/public-api/compare/v4.21.5...v4.21.6) (2021-10-28)
 
 
