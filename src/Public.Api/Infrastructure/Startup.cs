@@ -483,7 +483,7 @@ De REST API van Basisregisters Vlaanderen is te bereiken via volgende basis-URL.
 
 Doelpubliek | REST basis-URL                                                    |
 ----------- | ----------------------------------------------------------------- |
-Iedereen    | {_configuration["BaseUrl"]}{description.GroupName} |
+Iedereen    | {_configuration["BaseUrl"]} |
 
 ## Toegang tot de read API’s
 
