@@ -1,3 +1,10 @@
+## [4.21.8](https://github.com/informatievlaanderen/public-api/compare/v4.21.7...v4.21.8) (2021-11-04)
+
+
+### Bug Fixes
+
+* remove api version from base url technical info GAWR-650 ([4468e07](https://github.com/informatievlaanderen/public-api/commit/4468e07f8380b776f910f095b7028dc564b1362c))
+
 ## [4.21.7](https://github.com/informatievlaanderen/public-api/compare/v4.21.6...v4.21.7) (2021-11-03)
 
 
