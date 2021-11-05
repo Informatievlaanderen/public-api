@@ -43,7 +43,7 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Voer een nieuwe straatnaam in met status  `\"voorgesteld\"`.")]
+        [SwaggerOperation(Description = "Voer een nieuwe straatnaam in met status \"voorgesteld\".")]
         [HttpPost("straatnamen/voorgesteld", Name = nameof(ProposeStreetName))]
         public async Task<IActionResult> ProposeStreetName(
             [FromBody] StreetNameProposeRequest streetNameProposeRequest,
