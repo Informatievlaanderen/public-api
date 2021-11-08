@@ -1,3 +1,10 @@
+## [4.21.10](https://github.com/informatievlaanderen/public-api/compare/v4.21.9...v4.21.10) (2021-11-08)
+
+
+### Bug Fixes
+
+* gawr2202- paket bump ([b199fde](https://github.com/informatievlaanderen/public-api/commit/b199fdeaa6fe4d9bda33e62921942b9ededb9c82))
+
 ## [4.21.9](https://github.com/informatievlaanderen/public-api/compare/v4.21.8...v4.21.9) (2021-11-05)
 
 
