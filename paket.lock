@@ -143,7 +143,7 @@ NUGET
       Fake.IO.FileSystem (>= 5.20.4)
       Fake.JavaScript.Npm (>= 5.20.4)
       Newtonsoft.Json (>= 12.0.3)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (2.30.15) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (2.30.17) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.CommandHandling (5.2.1)
     Be.Vlaanderen.Basisregisters.CommandHandling.Idempotency (5.2.1)
       Autofac.Extensions.DependencyInjection (>= 7.1)
