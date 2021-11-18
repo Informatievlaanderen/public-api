@@ -1,3 +1,10 @@
+## [4.21.11](https://github.com/informatievlaanderen/public-api/compare/v4.21.10...v4.21.11) (2021-11-18)
+
+
+### Bug Fixes
+
+* correct repons to response in docs GAWR-2336 ([d6e8ca9](https://github.com/informatievlaanderen/public-api/commit/d6e8ca98728c95b2a27f07e104514c3065be9afd))
+
 ## [4.21.10](https://github.com/informatievlaanderen/public-api/compare/v4.21.9...v4.21.10) (2021-11-08)
 
 
