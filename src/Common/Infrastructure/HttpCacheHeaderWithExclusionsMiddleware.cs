@@ -1,19 +1,21 @@
 // Any comments, input: @KevinDockx
 // Any issues, requests: https://github.com/KevinDockx/HttpCacheHeaders
 
+using System;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Be.Vlaanderen.Basisregisters.Api.Search.Helpers;
+using Marvin.Cache.Headers.Extensions;
+using Marvin.Cache.Headers.Domain;
 using Marvin.Cache.Headers.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
-using System;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Marvin.Cache.Headers.Extensions;
-using Marvin.Cache.Headers.Domain;
 
 namespace Marvin.Cache.Headers
 {
@@ -557,9 +559,15 @@ namespace Marvin.Cache.Headers
                 return;
             }
 
-            _logger.LogInformation("Generating Validation headers.");
-
             var headers = httpContext.Response.Headers;
+
+            if (httpContext.Response.StatusCode == (int)HttpStatusCode.Created && !headers[HeaderNames.ETag].IsNullOrEmpty())
+            {
+                _logger.LogInformation("Validation headers generation skipped. Status code is {httpContext.Response.StatusCode} and ETag is already present: {eTag.ETagType}, {eTag}. Last-Modified: {lastModifiedValue}");
+                return;
+            }
+
+            _logger.LogInformation("Generating Validation headers.");
 
             // remove any other ETag and Last-Modified headers (could be set by other pieces of code)
             headers.Remove(HeaderNames.ETag);
@@ -575,7 +583,7 @@ namespace Marvin.Cache.Headers
                 httpContext.Response.Body.Position = 0;
             }
 
-            var responseBodyContent = new StreamReader(httpContext.Response.Body).ReadToEnd();
+            var responseBodyContent = await new StreamReader(httpContext.Response.Body).ReadToEndAsync();
 
             // Calculate the ETag to store in the store.
             var eTag = await _eTagGenerator.GenerateETag(storeKey, responseBodyContent);
