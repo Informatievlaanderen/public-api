@@ -13,7 +13,6 @@ namespace Public.Api.Info
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using AcceptTypes = Common.Infrastructure.AcceptTypes;
 
     [ApiVersion("1.0")]
     [AdvertiseApiVersions("1.0")]

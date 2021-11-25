@@ -6,6 +6,7 @@ namespace Common.Infrastructure.Controllers
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
+    using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using FeatureToggle;
     using Microsoft.AspNetCore.Http;

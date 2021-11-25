@@ -4,6 +4,7 @@ namespace Common.Infrastructure
     {
         Legacy,
         Sync,
-        BackOffice
+        BackOffice,
+        Oslo
     }
 }

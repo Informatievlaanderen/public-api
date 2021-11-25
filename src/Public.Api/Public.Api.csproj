@@ -20,6 +20,7 @@
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy\content\MunicipalityRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy\content\PostalRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy\content\StreetNameRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
+    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo\content\StreetNameRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice\content\StreetNameRegistry.Api.BackOffice.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy\content\AddressRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy\content\BuildingRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
@@ -38,7 +39,11 @@
     <Content Include="Dockerfile" CopyToOutputDirectory="Always" />
     <Content Include="appsettings.json" CopyToOutputDirectory="Always" />
     <Content Include="appsettings.*.json" CopyToOutputDirectory="Always" />
+    <None Remove="StreetNameRegistry.Api.Oslo.xml" />
     <Content Include="init.sh" CopyToOutputDirectory="Always" />
+    <Content Include="StreetNameRegistry.Api.Oslo.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

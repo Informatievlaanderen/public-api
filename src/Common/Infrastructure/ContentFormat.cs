@@ -3,6 +3,7 @@ namespace Common.Infrastructure
     using Extensions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Be.Vlaanderen.Basisregisters.Api;
 
     public class ContentFormat
     {

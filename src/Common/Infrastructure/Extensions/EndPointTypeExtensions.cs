@@ -4,7 +4,7 @@ namespace Common.Infrastructure.Extensions
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Net.Mime;
+    using Be.Vlaanderen.Basisregisters.Api;
     using Microsoft.AspNetCore.Mvc.Formatters;
 
     public static class EndPointTypeExtensions
@@ -17,7 +17,6 @@ namespace Common.Infrastructure.Extensions
                 => new[]
                 {
                     AcceptType.Json,
-                    //AcceptType.JsonLd,
                     AcceptType.Xml
                 },
                 EndpointType.Sync
@@ -31,6 +30,11 @@ namespace Common.Infrastructure.Extensions
                     {
                         AcceptType.Json
                     },
+                EndpointType.Oslo
+                    => new []
+                    {
+                        AcceptType.JsonLd
+                    },
                 _ => new[] { AcceptType.Json }
             };
         }
@@ -43,6 +47,11 @@ namespace Common.Infrastructure.Extensions
                     => new []
                     {
                         AcceptType.Json
+                    },
+                EndpointType.Oslo
+                    => new[]
+                    {
+                        AcceptType.JsonLd
                     },
                 _ => new[] { AcceptType.Json }
             };

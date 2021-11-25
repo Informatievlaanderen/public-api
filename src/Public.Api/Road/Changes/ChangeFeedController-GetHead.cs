@@ -2,8 +2,8 @@ namespace Public.Api.Road.Changes
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Common.Infrastructure;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
     using RestSharp;

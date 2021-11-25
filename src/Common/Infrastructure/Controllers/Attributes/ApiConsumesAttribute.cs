@@ -1,5 +1,6 @@
 namespace Common.Infrastructure.Controllers.Attributes
 {
+    using Be.Vlaanderen.Basisregisters.Api;
     using Extensions;
     using Microsoft.AspNetCore.Mvc;
 
