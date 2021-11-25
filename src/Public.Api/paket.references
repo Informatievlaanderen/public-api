@@ -4,6 +4,7 @@ Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac
 Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy
+Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo
 Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice
 Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy

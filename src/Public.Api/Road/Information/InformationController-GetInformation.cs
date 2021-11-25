@@ -2,7 +2,7 @@ namespace Public.Api.Road.Information
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Common.Infrastructure;
+    using Be.Vlaanderen.Basisregisters.Api;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
     using RestSharp;

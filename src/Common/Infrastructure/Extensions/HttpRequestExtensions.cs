@@ -1,5 +1,6 @@
 namespace Common.Infrastructure.Extensions
 {
+    using Be.Vlaanderen.Basisregisters.Api;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 

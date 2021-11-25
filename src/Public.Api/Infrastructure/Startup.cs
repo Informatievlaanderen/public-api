@@ -225,8 +225,8 @@ namespace Public.Api.Infrastructure
                                 {
                                     ContentTypes =
                                     {
-                                        Common.Infrastructure.AcceptTypes.JsonProblem,
-                                        Common.Infrastructure.AcceptTypes.XmlProblem
+                                        AcceptTypes.JsonProblem,
+                                        AcceptTypes.XmlProblem
                                     }
                                 };
                             };

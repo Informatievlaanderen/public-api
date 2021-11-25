@@ -28,6 +28,11 @@ namespace Public.Api.Infrastructure.Redis
         private const string StreetNameCacheKey = StreetNameCachePrefix + "{0}.{1}";
         private static readonly Regex StreetNameRegex = new Regex(@"/v1/straatnamen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
+        private const string StreetNameV2PathPrefix = "/v2/straatnamen/";
+        private const string StreetNameV2CachePrefix = "oslo/streetname:";
+        private const string StreetNameV2CacheKey = StreetNameV2CachePrefix + "{0}.{1}";
+        private static readonly Regex StreetNameV2Regex = new Regex(@"/v2/straatnamen/(?<id>\d*)(?<format>\.(jsonld))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+
         private const string AddressPathPrefix = "/v1/adressen/";
         private const string AddressCachePrefix = "legacy/address:";
         private const string AddressCacheKey = AddressCachePrefix + "{0}.{1}";
@@ -80,29 +85,50 @@ namespace Public.Api.Infrastructure.Redis
 
             // http://cc.davelozinski.com/c-sharp/fastest-way-to-check-if-a-string-occurs-within-a-string
             if (resourcePath.StartsWith(MunicipalityPathPrefix))
+            {
                 return GenerateStoreKey(context, resourcePath, MunicipalityRegex, MunicipalityCacheKey);
+            }
 
             if (resourcePath.StartsWith(PostalPathPrefix))
+            {
                 return GenerateStoreKey(context, resourcePath, PostalRegex, PostalCacheKey);
+            }
 
             if (resourcePath.StartsWith(StreetNamePathPrefix))
+            {
                 return GenerateStoreKey(context, resourcePath, StreetNameRegex, StreetNameCacheKey);
+            }
+
+            if (resourcePath.StartsWith(StreetNameV2PathPrefix))
+            {
+                return GenerateStoreKey(context, resourcePath, StreetNameV2Regex, StreetNameV2CacheKey);
+            }
 
             if (resourcePath.StartsWith(AddressPathPrefix))
+            {
                 return GenerateStoreKey(context, resourcePath, AddressRegex, AddressCacheKey);
+            }
 
             // As long as we do not control WFS, buildings cannot be cached
             //if (resourcePath.StartsWith(BuildingPathPrefix))
+            //{
             //    return GenerateStoreKey(context, resourcePath, BuildingRegex, BuildingCacheKey);
+            //}
 
             if (resourcePath.StartsWith(BuildingUnitPathPrefix))
+            {
                 return GenerateStoreKey(context, resourcePath, BuildingUnitRegex, BuildingUnitCacheKey);
+            }
 
             if (resourcePath.StartsWith(ParcelPathPrefix))
+            {
                 return GenerateStoreKey(context, resourcePath, ParcelRegex, ParcelCacheKey);
+            }
 
             if (resourcePath.StartsWith(PublicServicePathPrefix))
+            {
                 return GenerateStoreKey(context, resourcePath, PublicServiceRegex, PublicServiceCacheKey);
+            }
 
             // TODO: Add organisations when the time comes
 
@@ -118,7 +144,9 @@ namespace Public.Api.Infrastructure.Redis
             var regexResult = regex.Match(resourcePath);
 
             if (!regexResult.Success)
+            {
                 return DefaultStoreKeyGenerator.GenerateStoreKey(context);
+            }
 
             var requestHeaders = context.HttpRequest.GetTypedHeaders();
             var acceptType = requestHeaders.DetermineAcceptType(null);
