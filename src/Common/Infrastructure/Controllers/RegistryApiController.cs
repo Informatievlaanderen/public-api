@@ -4,7 +4,6 @@ namespace Common.Infrastructure.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
-    using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;

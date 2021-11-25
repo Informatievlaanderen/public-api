@@ -5,7 +5,6 @@ namespace Public.Api.Status
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Clients;
-    using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
@@ -13,6 +12,7 @@ namespace Public.Api.Status
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Responses;
+    using AcceptTypes = Be.Vlaanderen.Basisregisters.Api.AcceptTypes;
 
     [ApiVersion(Version.Current)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]

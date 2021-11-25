@@ -3,7 +3,6 @@ namespace Public.Api.ErrorDetail
     using System.Threading;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
@@ -11,6 +10,7 @@ namespace Public.Api.ErrorDetail
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
+    using AcceptTypes = Common.Infrastructure.AcceptTypes;
 
     [ApiVersion(Version.Current)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
