@@ -1,3 +1,10 @@
+## [4.21.14](https://github.com/informatievlaanderen/public-api/compare/v4.21.13...v4.21.14) (2021-11-25)
+
+
+### Bug Fixes
+
+* bump api for GAWR-2413 ([3e00e36](https://github.com/informatievlaanderen/public-api/commit/3e00e36808a906fadea2c2660756a9e1987c4928))
+
 ## [4.21.13](https://github.com/informatievlaanderen/public-api/compare/v4.21.12...v4.21.13) (2021-11-18)
 
 
