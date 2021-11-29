@@ -1,3 +1,15 @@
+# [4.22.0](https://github.com/informatievlaanderen/public-api/compare/v4.21.14...v4.22.0) (2021-11-29)
+
+
+### Bug Fixes
+
+* use problemjson middleware ([c8d5216](https://github.com/informatievlaanderen/public-api/commit/c8d5216fc21426d2957a9ede3b373dd17b620fd1))
+
+
+### Features
+
+* make streetname oslo compliant ([c9ea326](https://github.com/informatievlaanderen/public-api/commit/c9ea3266867a4508822398913e3c75b2aa70b465))
+
 ## [4.21.14](https://github.com/informatievlaanderen/public-api/compare/v4.21.13...v4.21.14) (2021-11-25)
 
 
