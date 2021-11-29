@@ -58,7 +58,7 @@ using Be.Vlaanderen.Basisregisters.Api;
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = StreetNameOsloController.DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
