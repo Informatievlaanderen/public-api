@@ -33,7 +33,8 @@ namespace Common.Infrastructure.Extensions
                 EndpointType.Oslo
                     => new []
                     {
-                        AcceptType.JsonLd
+                        AcceptType.JsonLd,
+                        AcceptType.JsonProblem
                     },
                 _ => new[] { AcceptType.Json }
             };

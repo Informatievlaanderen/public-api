@@ -23,7 +23,6 @@ namespace Public.Api.Infrastructure
     using Extract;
     using Feeds;
     using Marvin.Cache.Headers;
-    using Marvin.Cache.Headers.Interfaces;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -115,7 +114,7 @@ namespace Public.Api.Infrastructure
                             {
                                 Name = "Modellicentie Gratis Hergebruik - v1.0",
                                 Url = new Uri("https://overheid.vlaanderen.be/sites/default/files/documenten/ict-egov/licenties/hergebruik/modellicentie_gratis_hergebruik_v1_0.html")
-                            },
+                            }
                         },
 
                         CustomSortFunc = SortByApiOrder.Sort,
@@ -140,7 +139,7 @@ namespace Public.Api.Infrastructure
                             typeof(Be.Vlaanderen.Basisregisters.GrAr.Legacy.Identificator).GetTypeInfo().Assembly.GetName().Name,
                             typeof(Be.Vlaanderen.Basisregisters.GrAr.Provenance.Provenance).GetTypeInfo().Assembly.GetName().Name,
                             typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(Be.Vlaanderen.Basisregisters.Utilities.Rfc3339SerializableDateTimeOffset).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(Be.Vlaanderen.Basisregisters.Utilities.Rfc3339SerializableDateTimeOffset).GetTypeInfo().Assembly.GetName().Name
                         },
 
                         MiddlewareHooks =
@@ -176,12 +175,12 @@ namespace Public.Api.Infrastructure
                                     options.ModelBindingMessageProvider.SetAttemptedValueIsInvalidAccessor((value,fieldName) => $"De waarde '{value}' is ongeldig voor {fieldName}.");
 
                                     options.ModelBindingMessageProvider.SetMissingBindRequiredValueAccessor(value => $"Waarde ontbreekt voor de parameter '{value}'.");
-                                    options.ModelBindingMessageProvider.SetMissingKeyOrValueAccessor(() => $"Verplichte invoer.");
-                                    options.ModelBindingMessageProvider.SetMissingRequestBodyRequiredValueAccessor(() => $"De body van het verzoek mag niet leeg zijn.");
+                                    options.ModelBindingMessageProvider.SetMissingKeyOrValueAccessor(() => "Verplichte invoer.");
+                                    options.ModelBindingMessageProvider.SetMissingRequestBodyRequiredValueAccessor(() => "De body van het verzoek mag niet leeg zijn.");
 
                                     options.ModelBindingMessageProvider.SetNonPropertyAttemptedValueIsInvalidAccessor(value => $"De waarde '{value}' is ongeldig.");
-                                    options.ModelBindingMessageProvider.SetNonPropertyUnknownValueIsInvalidAccessor(() => $"De opgegeven waarde is ongeldig.");
-                                    options.ModelBindingMessageProvider.SetNonPropertyValueMustBeANumberAccessor(() => $"De waarde in het veld moet numeriek zijn.");
+                                    options.ModelBindingMessageProvider.SetNonPropertyUnknownValueIsInvalidAccessor(() => "De opgegeven waarde is ongeldig.");
+                                    options.ModelBindingMessageProvider.SetNonPropertyValueMustBeANumberAccessor(() => "De waarde in het veld moet numeriek zijn.");
 
                                     options.ModelBindingMessageProvider.SetUnknownValueIsInvalidAccessor(fieldName => $"De opgegeven waarde is ongeldig voor {fieldName}.");
 
@@ -196,7 +195,9 @@ namespace Public.Api.Infrastructure
                                 var unneededParts = parts.Where(part => part.Name.Contains("Registry.Api")).ToArray();
 
                                 foreach (var unneededPart in unneededParts)
+                                {
                                     parts.Remove(unneededPart);
+                                }
                             });
                         },
                         AfterMvc = builder => builder.Services.Configure<ApiBehaviorOptions>(options =>
@@ -266,11 +267,9 @@ namespace Public.Api.Infrastructure
                     storeKeyGeneratorFunc: _ => new RedisStoreKeyGenerator(_loggerFactory.CreateLogger<RedisStoreKeyGenerator>()),
                     validatorValueStoreFunc: x =>
                     {
-                        var redisProvider = x.GetService<ConnectionMultiplexerProvider>();
+                        var redisProvider = x.GetRequiredService<ConnectionMultiplexerProvider>();
                         var redis = redisProvider.GetConnectionMultiplexer();
-                        return redis != null
-                            ? new RedisStore(_loggerFactory.CreateLogger<RedisStore>(), redis) as IValidatorValueStore
-                            : new InMemoryValidatorValueStore(_loggerFactory.CreateLogger<InMemoryValidatorValueStore>()) as IValidatorValueStore;
+                        return new RedisStore(_loggerFactory.CreateLogger<RedisStore>(), redis);
                     },
                     lastModifiedInjectorFunc: _ => new RedisLastModifiedInjector())
 
@@ -282,8 +281,8 @@ namespace Public.Api.Infrastructure
                 .ConfigureRegistryOptions<ParcelOptions>(_configuration.GetSection("ApiConfiguration:ParcelRegistry"))
                 .Configure<FeatureToggleOptions>(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey))
                 .Configure<ExcludedRouteModelOptions>(_configuration.GetSection("ExcludedRoutes"))
-                .AddSingleton(c => new FeedsVisibleToggle(c.GetService<IOptions<FeatureToggleOptions>>().Value.IsFeedsVisible))
-                .AddSingleton(c => new ProposeStreetNameToggle(c.GetService<IOptions<FeatureToggleOptions>>().Value.ProposeStreetName));
+                .AddSingleton(c => new FeedsVisibleToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsFeedsVisible))
+                .AddSingleton(c => new ProposeStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ProposeStreetName));
 
             services
                 .RemoveAll<IApiControllerSpecification>()
@@ -306,7 +305,7 @@ namespace Public.Api.Infrastructure
                     AppDomain
                         .CurrentDomain
                         .GetAssemblies()
-                        .Where(x => x.FullName.Contains("Registry.Api") || x.FullName.Contains("Be.Vlaanderen.Basisregisters.Api"))
+                        .Where(x => (x.FullName ?? string.Empty).Contains("Registry.Api") || (x.FullName ?? string.Empty).Contains("Be.Vlaanderen.Basisregisters.Api"))
                         .ToArray())
                 .AsClosedTypesOf(typeof(IExamplesProvider<>))
                 .AsImplementedInterfaces()
@@ -347,7 +346,7 @@ namespace Public.Api.Infrastructure
             ApiDataDogToggle datadogToggle,
             ApiDebugDataDogToggle debugDataDogToggle)
         {
-            var version = Assembly.GetEntryAssembly().GetName().Version;
+            var version = Assembly.GetEntryAssembly()?.GetName().Version;
 
             app
                 .UseDataDog<Startup>(new DataDogOptions
@@ -390,7 +389,7 @@ namespace Public.Api.Infrastructure
                         ServiceProvider = serviceProvider,
                         HostingEnvironment = env,
                         ApplicationLifetime = appLifetime,
-                        LoggerFactory = loggerFactory,
+                        LoggerFactory = loggerFactory
                     },
                     Api =
                     {
@@ -401,7 +400,7 @@ namespace Public.Api.Infrastructure
                         ApplicationName = _ => "Basisregisters Vlaanderen",
                         HeaderTitle = groupName => "Basisregisters Vlaanderen",
                         HeaderLink = groupName => _configuration["SiteUrl"],
-                        FooterVersion = $"{version.Minor}.{version.Build}.{version.Revision}",
+                        FooterVersion = $"{version?.Minor}.{version?.Build}.{version?.Revision}",
                         HeadContent = _ => @"
                             <style>
                                 input.search-input {
@@ -436,7 +435,7 @@ namespace Public.Api.Infrastructure
                         {
                             new GrbWfsExceptionMapping(),
                             new GoneExceptionMapping(),
-                            new NotFoundExceptionMapping(),
+                            new NotFoundExceptionMapping()
                         }
                     },
                     MiddlewareHooks =
@@ -510,6 +509,7 @@ De Basisregisters Vlaanderen API gebruikt [Problem Details for HTTP APIs (RFC780
 ");
 
             if (isFeedsVisibleToggle)
+            {
                 text.AppendLine(
                     $@"## Gebruik van feeds
 
@@ -586,6 +586,8 @@ De feed bevat een aantal velden waarin een timestamp staat. Hieronder staat de b
 * `<Entry> <Published>` : Tijdstip waarop de eerste versie van het object aangeboden werd.
 
 ");
+            }
+
             return text.ToString();
         }
     }

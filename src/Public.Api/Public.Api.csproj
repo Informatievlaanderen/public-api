@@ -39,11 +39,7 @@
     <Content Include="Dockerfile" CopyToOutputDirectory="Always" />
     <Content Include="appsettings.json" CopyToOutputDirectory="Always" />
     <Content Include="appsettings.*.json" CopyToOutputDirectory="Always" />
-    <None Remove="StreetNameRegistry.Api.Oslo.xml" />
     <Content Include="init.sh" CopyToOutputDirectory="Always" />
-    <Content Include="StreetNameRegistry.Api.Oslo.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
