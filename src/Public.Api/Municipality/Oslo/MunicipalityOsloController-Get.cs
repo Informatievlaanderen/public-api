@@ -18,7 +18,7 @@ namespace Public.Api.Municipality.Oslo
     public partial class MunicipalityOsloController
     {
         /// <summary>
-        /// Vraag een gemeente op.
+        /// Vraag een gemeente op in OSLO formaat.
         /// </summary>
         /// <param name="objectId">Identificator van de gemeente.</param>
         /// <param name="actionContextAccessor"></param>

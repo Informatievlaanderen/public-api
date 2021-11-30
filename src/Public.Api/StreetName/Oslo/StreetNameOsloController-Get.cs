@@ -19,7 +19,7 @@ namespace Public.Api.StreetName.Oslo
     public partial class StreetNameOsloController
     {
         /// <summary>
-        /// Vraag een straatnaam op.
+        /// Vraag een straatnaam op in OSLO formaat.
         /// </summary>
         /// <param name="objectId">Identificator van de straatnaam.</param>
         /// <param name="actionContextAccessor"></param>

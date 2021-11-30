@@ -22,7 +22,7 @@ namespace Public.Api.Municipality.Oslo
     public partial class MunicipalityOsloController
     {
         /// <summary>
-        /// Vraag een lijst met gemeenten op.
+        /// Vraag een lijst met gemeenten op in OSLO formaat.
         /// </summary>
         /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
@@ -60,7 +60,7 @@ namespace Public.Api.Municipality.Oslo
             [FromQuery] string gemeentenaam,
             [FromQuery] string status,
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<MunicipalityOptions> responseOptions,
+            [FromServices] IOptions<MunicipalityOptionsV2> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
