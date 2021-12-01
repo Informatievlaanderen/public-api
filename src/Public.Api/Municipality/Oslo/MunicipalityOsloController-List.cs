@@ -40,7 +40,7 @@ namespace Public.Api.Municipality.Oslo
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gemeenten", Name = nameof(ListMunicipalities))]
+        [HttpGet("gemeenten", Name = nameof(ListMunicipalitiesV2))]
         [ProducesResponseType(typeof(MunicipalityListOsloResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
@@ -53,7 +53,7 @@ namespace Public.Api.Municipality.Oslo
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> ListMunicipalities(
+        public async Task<IActionResult> ListMunicipalitiesV2(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
