@@ -1,3 +1,11 @@
+## [4.23.1](https://github.com/informatievlaanderen/public-api/compare/v4.23.0...v4.23.1) (2021-12-01)
+
+
+### Bug Fixes
+
+* documentation fixes ([8a5419d](https://github.com/informatievlaanderen/public-api/commit/8a5419d2e26d0395afb53351171d7708cff6b3ec))
+* return correct content-type / use correct accept-type ([be776c8](https://github.com/informatievlaanderen/public-api/commit/be776c8de067d58c50fe420ed9b4491e3f862a80))
+
 # [4.23.0](https://github.com/informatievlaanderen/public-api/compare/v4.22.0...v4.23.0) (2021-12-01)
 
 
