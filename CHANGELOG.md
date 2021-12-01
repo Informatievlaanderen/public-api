@@ -1,3 +1,10 @@
+# [4.23.0](https://github.com/informatievlaanderen/public-api/compare/v4.22.0...v4.23.0) (2021-12-01)
+
+
+### Features
+
+* add oslo municipality ([9a09dcc](https://github.com/informatievlaanderen/public-api/commit/9a09dcc60c68cb26ebdbb962764cba740757de98))
+
 # [4.22.0](https://github.com/informatievlaanderen/public-api/compare/v4.21.14...v4.22.0) (2021-11-29)
 
 
