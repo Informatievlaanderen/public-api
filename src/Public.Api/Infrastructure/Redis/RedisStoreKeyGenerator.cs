@@ -18,6 +18,11 @@ namespace Public.Api.Infrastructure.Redis
         private const string MunicipalityCacheKey = MunicipalityCachePrefix + "{0}.{1}";
         private static readonly Regex MunicipalityRegex = new Regex(@"/v1/gemeenten/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
+        private const string MunicipalityV2PathPrefix = "/v2/gemeenten/";
+        private const string MunicipalityV2CachePrefix = "oslo/municipality:";
+        private const string MunicipalityV2CacheKey = MunicipalityV2CachePrefix + "{0}.{1}";
+        private static readonly Regex MunicipalityV2Regex = new Regex(@"/v2/gemeenten/(?<id>\d*)(?<format>\.(jsonld))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+
         private const string PostalPathPrefix = "/v1/postinfo/";
         private const string PostalCachePrefix = "legacy/postalinfo:";
         private const string PostalCacheKey = PostalCachePrefix + "{0}.{1}";
@@ -87,6 +92,11 @@ namespace Public.Api.Infrastructure.Redis
             if (resourcePath.StartsWith(MunicipalityPathPrefix))
             {
                 return GenerateStoreKey(context, resourcePath, MunicipalityRegex, MunicipalityCacheKey);
+            }
+
+            if (resourcePath.StartsWith(MunicipalityV2PathPrefix))
+            {
+                return GenerateStoreKey(context, resourcePath, MunicipalityV2Regex, MunicipalityV2CacheKey);
             }
 
             if (resourcePath.StartsWith(PostalPathPrefix))
