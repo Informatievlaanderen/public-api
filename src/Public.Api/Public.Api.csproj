@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy\content\MunicipalityRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
+    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo\content\MunicipalityRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy\content\PostalRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy\content\StreetNameRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo\content\StreetNameRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
