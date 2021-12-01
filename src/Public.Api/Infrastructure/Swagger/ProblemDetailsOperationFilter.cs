@@ -2,7 +2,6 @@ namespace Public.Api.Infrastructure.Swagger
 {
     using System.Collections.Generic;
     using Feeds;
-    using Microsoft.AspNetCore.JsonPatch.Operations;
     using Microsoft.AspNetCore.Mvc.Controllers;
     using Microsoft.OpenApi.Models;
     using Swashbuckle.AspNetCore.SwaggerGen;
@@ -22,6 +21,7 @@ namespace Public.Api.Infrastructure.Swagger
                 if (operationResponse.Key.StartsWith("4") || operationResponse.Key.StartsWith("5"))
                 {
                     operationResponse.Value.Content.Remove("application/json");
+                    operationResponse.Value.Content.Remove("application/ld+json");
                     operationResponse.Value.Content.Remove("application/xml");
                 }
             }

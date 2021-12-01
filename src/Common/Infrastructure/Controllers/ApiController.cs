@@ -29,7 +29,7 @@ namespace Common.Infrastructure.Controllers
 
     [ApiController]
     [RejectInvalidQueryParametersFilter]
-    [SupportUrlFormat]
+    //[SupportUrlFormat] TODO: WHY?
     public abstract class ApiController<T> : PublicApiController
     {
         private const string ValueKey = "value";

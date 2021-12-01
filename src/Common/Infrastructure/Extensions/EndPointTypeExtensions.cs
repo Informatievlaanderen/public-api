@@ -48,11 +48,6 @@ namespace Common.Infrastructure.Extensions
                     {
                         AcceptType.Json
                     },
-                EndpointType.Oslo
-                    => new[]
-                    {
-                        AcceptType.JsonLd
-                    },
                 _ => new[] { AcceptType.Json }
             };
         }

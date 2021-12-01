@@ -20,7 +20,7 @@ namespace Common.Infrastructure.Extensions
             return acceptType switch
             {
                 AcceptType.Json => AcceptTypes.Json,
-                AcceptType.JsonLd => $"{AcceptTypes.JsonLd}, {AcceptTypes.JsonProblem}",
+                AcceptType.JsonLd => AcceptTypes.JsonLd,
                 AcceptType.Xml => AcceptTypes.Xml,
                 AcceptType.Atom => AcceptTypes.Atom,
                 _ => throw new ArgumentOutOfRangeException(nameof(acceptType), acceptType, null)
@@ -33,7 +33,6 @@ namespace Common.Infrastructure.Extensions
             {
                 AcceptType.Json => AcceptTypes.JsonProblem,
                 AcceptType.JsonLd => AcceptTypes.JsonProblem,
-                AcceptType.JsonProblem => AcceptTypes.JsonProblem,
                 AcceptType.Xml => AcceptTypes.XmlProblem,
                 AcceptType.Atom => AcceptTypes.XmlProblem,
                 _ => throw new ArgumentOutOfRangeException(nameof(acceptType), acceptType, null)
