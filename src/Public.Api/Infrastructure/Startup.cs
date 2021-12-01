@@ -207,7 +207,7 @@ namespace Public.Api.Infrastructure
 
                             options.InvalidModelStateResponseFactory = actionContext =>
                             {
-                                actionContext.SetContentFormatAcceptType();
+                                //actionContext.SetContentFormatAcceptType(); //TODO: WHY?
                                 var httpContext = actionContext.HttpContext;
                                 httpContext
                                     .Request
