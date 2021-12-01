@@ -22,7 +22,7 @@ namespace Public.Api.StreetName.Oslo
     public partial class StreetNameOsloController
     {
         /// <summary>
-        /// Vraag een lijst met straatnamen op.
+        /// Vraag een lijst met straatnamen op in OSLO formaat.
         /// </summary>
         /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>

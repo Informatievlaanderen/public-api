@@ -17,7 +17,7 @@ namespace Public.Api.Municipality.Oslo
     [ApiVersion(Version.V2)]
     [AdvertiseApiVersions(Version.V2)]
     [ApiRoute("")]
-    [ApiExplorerSettings(GroupName = "Gemeenten")]
+    [ApiExplorerSettings(GroupName = "Gemeenten OSLO")]
     [ApiOrder(Order = ApiOrder.Municipality)]
     [ApiProduces(EndpointType.Oslo)]
     public partial class MunicipalityOsloController : RegistryApiController<MunicipalityOsloController>

@@ -30,7 +30,7 @@ namespace Public.Api.Municipality.Oslo
         /// <response code="404">Als de gemeente niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gemeenten/{objectId}", Name = nameof(GetMunicipality))]
+        [HttpGet("gemeenten/{objectId}", Name = nameof(GetMunicipalityV2))]
         [ProducesResponseType(typeof(MunicipalityOsloResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -46,7 +46,7 @@ namespace Public.Api.Municipality.Oslo
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheExpiration(MaxAge = DefaultDetailCaching)]
-        public async Task<IActionResult> GetMunicipality(
+        public async Task<IActionResult> GetMunicipalityV2(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
