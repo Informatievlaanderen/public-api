@@ -22,7 +22,7 @@ namespace Public.Api.Municipality.Oslo
     public partial class MunicipalityOsloController
     {
         /// <summary>
-        /// Vraag een lijst met gemeenten op in OSLO formaat.
+        /// Vraag een lijst met gemeenten op (v2).
         /// </summary>
         /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>

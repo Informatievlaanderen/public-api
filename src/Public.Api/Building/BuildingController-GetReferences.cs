@@ -2,7 +2,6 @@ namespace Public.Api.Building
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Be.Vlaanderen.Basisregisters.Api.LastObservedPosition;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using BuildingRegistry.Api.Legacy.Building.Responses;
     using Common.Infrastructure;

@@ -2,7 +2,7 @@ namespace Public.Api.Municipality
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Be.Vlaanderen.Basisregisters.Api.LastObservedPosition;
+    using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Infrastructure;
@@ -18,7 +18,7 @@ namespace Public.Api.Municipality
     public partial class MunicipalityController
     {
         /// <summary>
-        /// Vraag een gemeente op.
+        /// Vraag een gemeente op (v1).
         /// </summary>
         /// <param name="objectId">Identificator van de gemeente.</param>
         /// <param name="actionContextAccessor"></param>

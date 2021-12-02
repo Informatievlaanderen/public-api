@@ -3,7 +3,6 @@ namespace Public.Api.BuildingUnit
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using Be.Vlaanderen.Basisregisters.Api.LastObservedPosition;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using BuildingRegistry.Api.Legacy.BuildingUnit.Query;

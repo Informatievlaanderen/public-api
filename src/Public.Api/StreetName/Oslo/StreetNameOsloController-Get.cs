@@ -3,7 +3,7 @@ namespace Public.Api.StreetName.Oslo
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Be.Vlaanderen.Basisregisters.Api.LastObservedPosition;
+    using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Common.Infrastructure;
     using Infrastructure;
     using Marvin.Cache.Headers;
@@ -19,7 +19,7 @@ namespace Public.Api.StreetName.Oslo
     public partial class StreetNameOsloController
     {
         /// <summary>
-        /// Vraag een straatnaam op in OSLO Formaat.
+        /// Vraag een straatnaam op (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de straatnaam.</param>
         /// <param name="actionContextAccessor"></param>

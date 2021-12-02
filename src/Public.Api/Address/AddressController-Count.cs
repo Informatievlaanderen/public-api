@@ -5,7 +5,6 @@ namespace Public.Api.Address
     using AddressRegistry.Api.Legacy.Address.Query;
     using AddressRegistry.Api.Legacy.Address.Responses;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Be.Vlaanderen.Basisregisters.Api.LastObservedPosition;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Common.Infrastructure;
     using Infrastructure;

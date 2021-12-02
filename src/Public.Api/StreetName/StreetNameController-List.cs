@@ -3,7 +3,6 @@ namespace Public.Api.StreetName
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using Be.Vlaanderen.Basisregisters.Api.LastObservedPosition;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Common.Infrastructure;
@@ -23,7 +22,7 @@ namespace Public.Api.StreetName
     public partial class StreetNameController
     {
         /// <summary>
-        /// Vraag een lijst met straatnamen op.
+        /// Vraag een lijst met straatnamen op (v1).
         /// </summary>
         /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>

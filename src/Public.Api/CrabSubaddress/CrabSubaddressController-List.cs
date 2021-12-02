@@ -4,7 +4,6 @@ namespace Public.Api.CrabSubaddress
     using System.Threading;
     using System.Threading.Tasks;
     using AddressRegistry.Api.Legacy.CrabSubaddress;
-    using Be.Vlaanderen.Basisregisters.Api.LastObservedPosition;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Common.Infrastructure;
