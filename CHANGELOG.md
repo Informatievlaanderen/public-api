@@ -1,3 +1,10 @@
+# [4.24.0](https://github.com/informatievlaanderen/public-api/compare/v4.23.2...v4.24.0) (2021-12-02)
+
+
+### Features
+
+* add totaal aantal V2 for street/muni ([20fa6ff](https://github.com/informatievlaanderen/public-api/commit/20fa6ffb302e1f592ddaff4bf4a84e306f74906c))
+
 ## [4.23.2](https://github.com/informatievlaanderen/public-api/compare/v4.23.1...v4.23.2) (2021-12-02)
 
 
