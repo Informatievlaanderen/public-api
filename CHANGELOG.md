@@ -1,3 +1,10 @@
+## [4.24.1](https://github.com/informatievlaanderen/public-api/compare/v4.24.0...v4.24.1) (2021-12-02)
+
+
+### Bug Fixes
+
+* removed LastObserved references and cleanup docs ([4b76e94](https://github.com/informatievlaanderen/public-api/commit/4b76e9434340c02a6131821f4f66041edc477d96))
+
 # [4.24.0](https://github.com/informatievlaanderen/public-api/compare/v4.23.2...v4.24.0) (2021-12-02)
 
 
