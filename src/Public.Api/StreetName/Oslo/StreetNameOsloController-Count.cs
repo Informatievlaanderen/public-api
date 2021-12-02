@@ -1,4 +1,4 @@
-namespace Public.Api.Municipality
+namespace Public.Api.StreetName.Oslo
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -10,24 +10,26 @@ namespace Public.Api.Municipality
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using MunicipalityRegistry.Api.Legacy.Municipality.Responses;
     using RestSharp;
+    using StreetNameRegistry.Api.Legacy.StreetName.Query;
+    using StreetNameRegistry.Api.Legacy.StreetName.Responses;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
-    public partial class MunicipalityController
+    public partial class StreetNameOsloController
     {
         /// <summary>
-        /// Vraag het totaal aantal gemeenten op.
+        /// Vraag het totaal aantal straatnamen op.
         /// </summary>
+        /// <param name="gemeentenaam">Filter op de gemeentenaam van de straatnaam (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van het totaal aantal gemeenten gelukt is.</response>
+        /// <response code="200">Als de opvraging van het totaal aantal straatnamen gelukt is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gemeenten/totaal-aantal", Name = nameof(CountMunicipalities))]
+        [HttpGet("straatnamen/totaal-aantal", Name = nameof(CountStreetNamesV2))]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(TotaalAantalResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -41,14 +43,15 @@ namespace Public.Api.Municipality
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultCountCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> CountMunicipalities(
+        public async Task<IActionResult> CountStreetNamesV2(
+            [FromQuery] string gemeentenaam,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            IRestRequest BackendRequest() => CreateBackendCountRequest();
+            IRestRequest BackendRequest() => CreateBackendCountRequest(gemeentenaam);
 
             return new BackendResponseResult(
                 await GetFromBackendAsync(
@@ -58,6 +61,15 @@ namespace Public.Api.Municipality
                     cancellationToken));
         }
 
-        private static IRestRequest CreateBackendCountRequest() => new RestRequest("gemeenten/totaal-aantal");
+        private static IRestRequest CreateBackendCountRequest(string municipalityName)
+        {
+            var filter = new StreetNameFilter
+            {
+                MunicipalityName = municipalityName
+            };
+
+            return new RestRequest("straatnamen/totaal-aantal")
+                .AddFiltering(filter);
+        }
     }
 }
