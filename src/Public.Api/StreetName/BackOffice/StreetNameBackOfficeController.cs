@@ -14,8 +14,8 @@ namespace Public.Api.StreetName.BackOffice
     using Version = Infrastructure.Version.Version;
 
     [ApiVisible]
-    [ApiVersion(Version.Current)]
-    [AdvertiseApiVersions(Version.CurrentAdvertised)]
+    [ApiVersion(Version.V2)]
+    [AdvertiseApiVersions(Version.V2)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Straatnamen")]
     [ApiOrder(Order = ApiOrder.StreetName)]
