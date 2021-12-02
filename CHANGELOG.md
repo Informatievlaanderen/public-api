@@ -1,3 +1,10 @@
+## [4.23.2](https://github.com/informatievlaanderen/public-api/compare/v4.23.1...v4.23.2) (2021-12-02)
+
+
+### Bug Fixes
+
+* move edit streetname endpoint to V2 GAWR-2415 ([95828b9](https://github.com/informatievlaanderen/public-api/commit/95828b958591a49163fd6803409750bb363723f7))
+
 ## [4.23.1](https://github.com/informatievlaanderen/public-api/compare/v4.23.0...v4.23.1) (2021-12-01)
 
 
