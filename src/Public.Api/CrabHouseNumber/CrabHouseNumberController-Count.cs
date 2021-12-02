@@ -4,7 +4,6 @@ namespace Public.Api.CrabHouseNumber
     using System.Threading.Tasks;
     using AddressRegistry.Api.Legacy.Address.Responses;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Be.Vlaanderen.Basisregisters.Api.LastObservedPosition;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Common.Infrastructure;
     using Infrastructure;

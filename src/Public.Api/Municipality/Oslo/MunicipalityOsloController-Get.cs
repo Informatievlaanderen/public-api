@@ -3,7 +3,7 @@ namespace Public.Api.Municipality.Oslo
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Be.Vlaanderen.Basisregisters.Api.LastObservedPosition;
+    using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Common.Infrastructure;
     using Infrastructure;
     using Marvin.Cache.Headers;
@@ -18,7 +18,7 @@ namespace Public.Api.Municipality.Oslo
     public partial class MunicipalityOsloController
     {
         /// <summary>
-        /// Vraag een gemeente op in OSLO formaat.
+        /// Vraag een gemeente op (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de gemeente.</param>
         /// <param name="actionContextAccessor"></param>

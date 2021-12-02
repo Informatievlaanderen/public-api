@@ -4,7 +4,6 @@ namespace Public.Api.Feeds
    using System.Threading;
    using System.Threading.Tasks;
    using Autofac.Features.Indexed;
-   using Be.Vlaanderen.Basisregisters.Api.LastObservedPosition;
    using Be.Vlaanderen.Basisregisters.Api.Exceptions;
    using Common.Infrastructure;
    using Infrastructure;

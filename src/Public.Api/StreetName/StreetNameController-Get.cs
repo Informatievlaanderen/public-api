@@ -2,7 +2,7 @@ namespace Public.Api.StreetName
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Be.Vlaanderen.Basisregisters.Api.LastObservedPosition;
+    using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Infrastructure;
@@ -18,7 +18,7 @@ namespace Public.Api.StreetName
     public partial class StreetNameController
     {
         /// <summary>
-        /// Vraag een straatnaam op.
+        /// Vraag een straatnaam op (v1).
         /// </summary>
         /// <param name="objectId">Identificator van de straatnaam.</param>
         /// <param name="actionContextAccessor"></param>
