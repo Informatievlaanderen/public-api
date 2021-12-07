@@ -28,7 +28,7 @@ let pack = pack nugetVersionNumber
 let push = push dockerRepository
 let containerize = containerize dockerRepository
 
-supportedRuntimeIdentifiers <- [ "msil"; "linux-x64" ]
+supportedRuntimeIdentifiers <- [ "linux-x64" ]
 
 // Public API -----------------------------------------------------------------------
 
