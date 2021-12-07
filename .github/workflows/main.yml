@@ -190,5 +190,5 @@ jobs:
         CONFLUENCE_USERNAME: ${{ secrets.VBR_CONFLUENCE_USER }}
         CONFLUENCE_PASSWORD: ${{ secrets.VBR_CONFLUENCE_PASSWORD }}
         JIRA_PREFIX: PublicApi
-        JIRA_PROJECT: GAWR
+        JIRA_PROJECT: VBR
         JIRA_VERSION: ${{ env.RELEASE_VERSION }}
