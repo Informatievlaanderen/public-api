@@ -1,4 +1,4 @@
-namespace Public.Api.PostalCode
+namespace Public.Api.PostalCode.Oslo
 {
     using System.Collections.Generic;
     using System.Threading;
@@ -13,16 +13,16 @@ namespace Public.Api.PostalCode
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
-    using PostalRegistry.Api.Legacy.PostalInformation.Query;
-    using PostalRegistry.Api.Legacy.PostalInformation.Responses;
+    using PostalRegistry.Api.Oslo.PostalInformation.Query;
+    using PostalRegistry.Api.Oslo.PostalInformation.Responses;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
-    public partial class PostalCodeController
+    public partial class PostalCodeOsloController
     {
         /// <summary>
-        /// Vraag een lijst met postinfo over postcodes op (v1).
+        /// Vraag een lijst met postinfo over postcodes op (v2).
         /// </summary>
         /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
@@ -36,25 +36,25 @@ namespace Public.Api.PostalCode
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("postinfo", Name = nameof(ListPostalCodes))]
-        [ProducesResponseType(typeof(PostalInformationListResponse), StatusCodes.Status200OK)]
+        [HttpGet("postinfo", Name = nameof(ListPostalCodesV2))]
+        [ProducesResponseType(typeof(PostalInformationListOsloResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PostalInformationListResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PostalInformationListOsloResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> ListPostalCodes(
+        public async Task<IActionResult> ListPostalCodesV2(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
             [FromQuery] string gemeentenaam,
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<PostalOptions> responseOptions,
+            [FromServices] IOptions<PostalOptionsV2> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
@@ -68,7 +68,7 @@ namespace Public.Api.PostalCode
                 sort,
                 gemeentenaam);
 
-            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/postalinfo-list:{taal}");
+            var cacheKey = CreateCacheKeyForRequestQuery($"oslo/postalinfo-list:{taal}");
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(

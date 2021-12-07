@@ -28,6 +28,11 @@ namespace Public.Api.Infrastructure.Redis
         private const string PostalCacheKey = PostalCachePrefix + "{0}.{1}";
         private static readonly Regex PostalRegex = new Regex(@"/v1/postinfo/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
+        private const string PostalV2PathPrefix = "/v2/postinfo/";
+        private const string PostalV2CachePrefix = "oslo/postalinfo:";
+        private const string PostalV2CacheKey = PostalV2CachePrefix + "{0}.{1}";
+        private static readonly Regex PostalV2Regex = new Regex(@"/v2/postinfo/(?<id>\d*)(?<format>\.(jsonld))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+
         private const string StreetNamePathPrefix = "/v1/straatnamen/";
         private const string StreetNameCachePrefix = "legacy/streetname:";
         private const string StreetNameCacheKey = StreetNameCachePrefix + "{0}.{1}";
@@ -69,8 +74,11 @@ namespace Public.Api.Infrastructure.Redis
         public static readonly string[] CachePrefixes =
         {
             MunicipalityCachePrefix.ToLowerInvariant(),
+            // MunicipalityV2CachePrefix.ToLowerInvariant(),
             PostalCachePrefix.ToLowerInvariant(),
+            // PostalV2CachePrefix.ToLowerInvariant(),
             StreetNameCachePrefix.ToLowerInvariant(),
+            // StreetNameV2CachePrefix.ToLowerInvariant(),
             AddressCachePrefix.ToLowerInvariant(),
             //BuildingCachePrefix.ToLowerInvariant(),
             BuildingUnitCachePrefix.ToLowerInvariant(),
@@ -102,6 +110,11 @@ namespace Public.Api.Infrastructure.Redis
             if (resourcePath.StartsWith(PostalPathPrefix))
             {
                 return GenerateStoreKey(context, resourcePath, PostalRegex, PostalCacheKey);
+            }
+
+            if (resourcePath.StartsWith(PostalV2PathPrefix))
+            {
+                return GenerateStoreKey(context, resourcePath, PostalV2Regex, PostalV2CacheKey);
             }
 
             if (resourcePath.StartsWith(StreetNamePathPrefix))
