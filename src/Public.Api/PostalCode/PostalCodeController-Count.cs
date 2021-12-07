@@ -19,7 +19,7 @@ namespace Public.Api.PostalCode
     public partial class PostalCodeController
     {
         /// <summary>
-        /// Vraag het totaal aantal postinfo over postcodes op.
+        /// Vraag het totaal aantal postinfo over postcodes op (v1).
         /// </summary>
         /// <param name="gemeentenaam">Filter op de gemeentenaam van de postcode (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>

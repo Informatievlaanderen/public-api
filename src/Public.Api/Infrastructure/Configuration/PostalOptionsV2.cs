@@ -1,8 +1,8 @@
 namespace Public.Api.Infrastructure.Configuration
 {
-    using PostalRegistry.Api.Legacy.Infrastructure.Options;
+    using PostalRegistry.Api.Oslo.Infrastructure.Options;
 
-    public class PostalOptions : ResponseOptions, IRegistryOptions
+    public class PostalOptionsV2 : ResponseOptions, IRegistryOptions
     {
         public SyndicationOptions Syndication { get; set; }
     }

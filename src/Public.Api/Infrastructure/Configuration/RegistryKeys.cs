@@ -5,6 +5,7 @@ namespace Public.Api.Infrastructure.Configuration
         public const string Municipality = "MunicipalityRegistry";
         public const string MunicipalityV2 = "MunicipalityRegistryV2";
         public const string Postal = "PostalRegistry";
+        public const string PostalV2 = "PostalRegistryV2";
         public const string StreetName = "StreetNameRegistry";
         public const string StreetNameV2 = "StreetNameRegistryV2";
         public const string StreetNameBackOffice = "StreetNameRegistryBackOffice";
