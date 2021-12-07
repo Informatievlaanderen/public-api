@@ -74,11 +74,11 @@ namespace Public.Api.Infrastructure.Redis
         public static readonly string[] CachePrefixes =
         {
             MunicipalityCachePrefix.ToLowerInvariant(),
-            // MunicipalityV2CachePrefix.ToLowerInvariant(),
+            MunicipalityV2CachePrefix.ToLowerInvariant(),
             PostalCachePrefix.ToLowerInvariant(),
-            // PostalV2CachePrefix.ToLowerInvariant(),
+            PostalV2CachePrefix.ToLowerInvariant(),
             StreetNameCachePrefix.ToLowerInvariant(),
-            // StreetNameV2CachePrefix.ToLowerInvariant(),
+            StreetNameV2CachePrefix.ToLowerInvariant(),
             AddressCachePrefix.ToLowerInvariant(),
             //BuildingCachePrefix.ToLowerInvariant(),
             BuildingUnitCachePrefix.ToLowerInvariant(),
