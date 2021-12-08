@@ -227,7 +227,9 @@ NUGET
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.8.2)
     Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo (3.17.3) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.8.2)
-    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (3.26) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (3.27.2) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.8.2)
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo (3.27.2) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.8.2)
     Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (2.20.2) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo (2.20.2) - copy_content_to_output_dir: always

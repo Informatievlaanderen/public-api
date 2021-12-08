@@ -12,6 +12,7 @@ namespace Public.Api.Infrastructure.Configuration
         public const string Address = "AddressRegistry";
         public const string Building = "BuildingRegistry";
         public const string Parcel = "ParcelRegistry";
+        public const string ParcelV2 = "ParcelRegistryV2";
         public const string Road = "RoadRegistry";
     }
 }

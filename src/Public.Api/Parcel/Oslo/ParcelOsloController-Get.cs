@@ -1,4 +1,4 @@
-namespace Public.Api.Parcel
+namespace Public.Api.Parcel.Oslo
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -9,15 +9,15 @@ namespace Public.Api.Parcel
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using ParcelRegistry.Api.Legacy.Parcel.Responses;
+    using ParcelRegistry.Api.Oslo.Parcel.Responses;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
-    public partial class ParcelController
+    public partial class ParcelOsloController
     {
         /// <summary>
-        /// Vraag een perceel op (v1).
+        /// Vraag een perceel op (v2).
         /// </summary>
         /// <param name="objectId">Objectidentificator van het perceel (CaPaKey waarbij forward slash `/` vervangen werd door koppelteken `-`).</param>
         /// <param name="actionContextAccessor"></param>
@@ -28,21 +28,21 @@ namespace Public.Api.Parcel
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als het perceel verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("percelen/{objectId}", Name = nameof(GetParcel))]
-        [ProducesResponseType(typeof(ParcelResponse), StatusCodes.Status200OK)]
+        [HttpGet("percelen/{objectId}", Name = nameof(GetParcelV2))]
+        [ProducesResponseType(typeof(ParcelOsloResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status410Gone)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(ParcelResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(ParcelOsloResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(ParcelNotFoundResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(ParcelGoneResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheExpiration(MaxAge = DefaultDetailCaching)]
-        public async Task<IActionResult> GetParcel(
+        public async Task<IActionResult> GetParcelV2(
             [FromRoute] string objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -52,7 +52,7 @@ namespace Public.Api.Parcel
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
-            var cacheKey = $"legacy/parcel:{objectId}";
+            var cacheKey = $"oslo/parcel:{objectId}";
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(
