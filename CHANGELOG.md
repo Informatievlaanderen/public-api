@@ -1,3 +1,10 @@
+# [4.25.0](https://github.com/informatievlaanderen/public-api/compare/v4.24.2...v4.25.0) (2021-12-08)
+
+
+### Features
+
+* add parcel v2 oslo endpoints ([bedf729](https://github.com/informatievlaanderen/public-api/commit/bedf729c844265c0f228b44718814eaf1f1cfd0a))
+
 ## [4.24.2](https://github.com/informatievlaanderen/public-api/compare/v4.24.1...v4.24.2) (2021-12-08)
 
 
