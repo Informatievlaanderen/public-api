@@ -1,3 +1,10 @@
+## [4.24.2](https://github.com/informatievlaanderen/public-api/compare/v4.24.1...v4.24.2) (2021-12-08)
+
+
+### Bug Fixes
+
+* add null check for redisstore and log error when not found ([31d45ff](https://github.com/informatievlaanderen/public-api/commit/31d45ff51407699aa24422aa2b29fad8d9901156))
+
 ## [4.24.1](https://github.com/informatievlaanderen/public-api/compare/v4.24.0...v4.24.1) (2021-12-02)
 
 
