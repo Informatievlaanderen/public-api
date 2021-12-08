@@ -64,6 +64,11 @@ namespace Public.Api.Infrastructure.Redis
         private const string ParcelCacheKey = ParcelCachePrefix + "{0}.{1}";
         private static readonly Regex ParcelRegex = new Regex(@"/v1/percelen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
+        private const string ParcelV2PathPrefix = "/v2/percelen/";
+        private const string ParcelV2CachePrefix = "oslo/parcel:";
+        private const string ParcelV2CacheKey = ParcelV2CachePrefix + "{0}.{1}";
+        private static readonly Regex ParcelV2Regex = new Regex(@"/v2/percelen/(?<id>\d*)(?<format>\.(jsonld))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+
         private const string PublicServicePathPrefix = "/v1/dienstverleningen/";
         private const string PublicServiceCachePrefix = "legacy/publicservice:";
         private const string PublicServiceCacheKey = PublicServiceCachePrefix + "{0}.{1}";
@@ -83,6 +88,7 @@ namespace Public.Api.Infrastructure.Redis
             //BuildingCachePrefix.ToLowerInvariant(),
             BuildingUnitCachePrefix.ToLowerInvariant(),
             ParcelCachePrefix.ToLowerInvariant(),
+            ParcelV2CachePrefix.ToLowerInvariant(),
             PublicServiceCachePrefix.ToLowerInvariant()
         };
 
@@ -146,6 +152,11 @@ namespace Public.Api.Infrastructure.Redis
             if (resourcePath.StartsWith(ParcelPathPrefix))
             {
                 return GenerateStoreKey(context, resourcePath, ParcelRegex, ParcelCacheKey);
+            }
+
+            if (resourcePath.StartsWith(ParcelV2PathPrefix))
+            {
+                return GenerateStoreKey(context, resourcePath, ParcelV2Regex, ParcelV2CacheKey);
             }
 
             if (resourcePath.StartsWith(PublicServicePathPrefix))

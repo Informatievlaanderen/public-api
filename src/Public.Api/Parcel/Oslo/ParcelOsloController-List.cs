@@ -1,4 +1,4 @@
-namespace Public.Api.Parcel
+namespace Public.Api.Parcel.Oslo
 {
     using System.Collections.Generic;
     using System.Threading;
@@ -13,16 +13,16 @@ namespace Public.Api.Parcel
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
-    using ParcelRegistry.Api.Legacy.Parcel.Query;
-    using ParcelRegistry.Api.Legacy.Parcel.Responses;
+    using ParcelRegistry.Api.Oslo.Parcel.Query;
+    using ParcelRegistry.Api.Oslo.Parcel.Responses;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
-    public partial class ParcelController
+    public partial class ParcelOsloController
     {
         /// <summary>
-        /// Vraag een lijst met percelen op (v1).
+        /// Vraag een lijst met percelen op (v2).
         /// </summary>
         /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
@@ -39,20 +39,20 @@ namespace Public.Api.Parcel
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("percelen", Name = nameof(ListParcels))]
-        [ProducesResponseType(typeof(ParcelListResponse), StatusCodes.Status200OK)]
+        [HttpGet("percelen", Name = nameof(ListParcelsV2))]
+        [ProducesResponseType(typeof(ParcelListOsloResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(ParcelListResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(ParcelListOsloResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> ListParcels(
+        public async Task<IActionResult> ListParcelsV2(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
@@ -72,7 +72,7 @@ namespace Public.Api.Parcel
                 sort,
                 status);
 
-            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/parcel-list:{taal}");
+            var cacheKey = CreateCacheKeyForRequestQuery($"oslo/parcel-list:{taal}");
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(
