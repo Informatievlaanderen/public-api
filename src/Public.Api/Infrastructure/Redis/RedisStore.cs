@@ -40,6 +40,12 @@ end
 
             _logger.LogDebug("Checking Redis for key '{key}'", key.ToString());
 
+            if (_redis == null)
+            {
+                _logger.LogError("Cannot find Redis database to get the storekey");
+                return null;
+            }
+
             var db = _redis.GetDatabase();
 
             var redisValues =
@@ -71,6 +77,12 @@ end
         {
             if (!ShouldCacheValue(key.Values.FirstOrDefault()))
                 return;
+
+            if (_redis == null)
+            {
+                _logger.LogError("Cannot find Redis database to set the storekey");
+                return;
+            }
 
             var db = _redis.GetDatabase();
 
