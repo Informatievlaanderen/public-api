@@ -80,7 +80,7 @@ end
 
             if (_redis == null)
             {
-                _logger.LogError("Cannot find Redis database to get the storekey");
+                _logger.LogError("Cannot find Redis database to set the storekey");
                 return;
             }
 
