@@ -23,6 +23,7 @@ namespace Public.Api.Extract
     using Version = Infrastructure.Version.Version;
 
     [ApiVersion(Version.Current)]
+    [ApiVersion(Version.V2)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Extract")]

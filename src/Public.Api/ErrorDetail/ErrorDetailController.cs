@@ -12,6 +12,7 @@ namespace Public.Api.ErrorDetail
     using Microsoft.Extensions.Configuration;
 
     [ApiVersion(Version.Current)]
+    [ApiVersion(Version.V2)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Foutmeldingen", IgnoreApi = true)]

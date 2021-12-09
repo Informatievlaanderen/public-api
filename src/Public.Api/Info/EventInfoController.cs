@@ -10,12 +10,14 @@ namespace Public.Api.Info
     using Infrastructure.Configuration;
     using Infrastructure.ModelBinding;
     using Infrastructure.Swagger;
+    using Infrastructure.Version;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
-    [ApiVersion("1.0")]
-    [AdvertiseApiVersions("1.0")]
+    [ApiVersion(Version.Current)]
+    [ApiVersion(Version.V2)]
+    [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("info/events")]
     [ApiExplorerSettings(GroupName = "Info", IgnoreApi = true)]
     [ApiOrder(Order = ApiOrder.Status)]
