@@ -1,3 +1,10 @@
+# [4.26.0](https://github.com/informatievlaanderen/public-api/compare/v4.25.0...v4.26.0) (2021-12-10)
+
+
+### Features
+
+* add v2 for several endpoints ([142ec8e](https://github.com/informatievlaanderen/public-api/commit/142ec8e8559ed990009aa349bb0dc66493cd2e83))
+
 # [4.25.0](https://github.com/informatievlaanderen/public-api/compare/v4.24.2...v4.25.0) (2021-12-08)
 
 
