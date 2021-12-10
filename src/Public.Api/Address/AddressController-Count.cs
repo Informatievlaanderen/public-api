@@ -19,7 +19,7 @@ namespace Public.Api.Address
     public partial class AddressController
     {
         /// <summary>
-        /// Vraag het totaal aantal adressen op.
+        /// Vraag het totaal aantal adressen op (v1).
         /// </summary>
         /// <param name="gemeentenaam">Filter op de gemeentenaam van het adres (exact) (optioneel).</param>
         /// <param name="postcode">Filter op de postcode van het adres (exact) (optioneel).</param>
