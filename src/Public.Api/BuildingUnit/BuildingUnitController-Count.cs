@@ -19,7 +19,7 @@ namespace Public.Api.BuildingUnit
     public partial class BuildingUnitController
     {
         /// <summary>
-        /// Vraag een totaal aantal gebouweenheden op.
+        /// Vraag een totaal aantal gebouweenheden op (v1).
         /// </summary>
         /// <param name="adresObjectId">Optionele objectidentificator van het gekoppelde adres.</param>
         /// <param name="actionContextAccessor"></param>

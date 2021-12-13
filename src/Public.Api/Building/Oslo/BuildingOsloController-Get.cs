@@ -1,9 +1,9 @@
-namespace Public.Api.Building
+namespace Public.Api.Building.Oslo
 {
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using BuildingRegistry.Api.Legacy.Building.Responses;
+    using BuildingRegistry.Api.Oslo.Building.Responses;
     using Common.Infrastructure;
     using Infrastructure;
     using Marvin.Cache.Headers;
@@ -14,10 +14,10 @@ namespace Public.Api.Building
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
-    public partial class BuildingController
+    public partial class BuildingOsloController
     {
         /// <summary>
-        /// Vraag een gebouw op (v1).
+        /// Vraag een gebouw op (v2).
         /// </summary>
         /// <param name="objectId">Identificator van het gebouw.</param>
         /// <param name="actionContextAccessor"></param>
@@ -29,8 +29,8 @@ namespace Public.Api.Building
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als het gebouw verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gebouwen/{objectId}", Name = nameof(GetBuilding))]
-        [ProducesResponseType(typeof(BuildingResponse), StatusCodes.Status200OK)]
+        [HttpGet("gebouwen/{objectId}", Name = nameof(GetBuildingV2))]
+        [ProducesResponseType(typeof(BuildingListOsloResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
@@ -38,14 +38,14 @@ namespace Public.Api.Building
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(BuildingResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(BuildingOsloResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(BuildingNotFoundResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(BuildingGoneResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheExpiration(MaxAge = DefaultDetailCaching)]
-        public async Task<IActionResult> GetBuilding(
+        public async Task<IActionResult> GetBuildingV2(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -56,7 +56,7 @@ namespace Public.Api.Building
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
             // As long as we do not control WFS, buildings cannot be cached
-            //var cacheKey = $"legacy/building:{objectId}";
+            //var cacheKey = $"Oslo/building:{objectId}";
 
             //var value = await (CacheToggle.FeatureEnabled
             //    ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)

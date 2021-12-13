@@ -11,6 +11,7 @@ namespace Public.Api.Infrastructure.Configuration
         public const string StreetNameBackOffice = "StreetNameRegistryBackOffice";
         public const string Address = "AddressRegistry";
         public const string Building = "BuildingRegistry";
+        public const string BuildingV2 = "BuildingRegistryV2";
         public const string Parcel = "ParcelRegistry";
         public const string ParcelV2 = "ParcelRegistryV2";
         public const string Road = "RoadRegistry";
