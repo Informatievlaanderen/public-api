@@ -17,7 +17,8 @@ NUGET
       AWSSDK.Core (>= 3.7.0.31 < 4.0)
     AWSSDK.S3 (3.7.0.32)
       AWSSDK.Core (>= 3.7.0.31 < 4.0)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (2.32.20) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (2.34) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo (2.34) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.AggregateSource (5.2.1)
       Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (>= 2.2.12)
       Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (>= 2.2.11)

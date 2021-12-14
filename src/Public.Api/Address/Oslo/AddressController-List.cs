@@ -1,10 +1,10 @@
-namespace Public.Api.Address
+namespace Public.Api.Address.Oslo
 {
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Legacy.Address.Query;
-    using AddressRegistry.Api.Legacy.Address.Responses;
+    using AddressRegistry.Api.Oslo.Address.Query;
+    using AddressRegistry.Api.Oslo.Address.Responses;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Common.Infrastructure;
@@ -19,10 +19,10 @@ namespace Public.Api.Address
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
-    public partial class AddressController
+    public partial class AddressOsloController
     {
         /// <summary>
-        /// Vraag een lijst met adressen op (v1).
+        /// Vraag een lijst met adressen op (v2).
         /// </summary>
         /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
@@ -46,20 +46,20 @@ namespace Public.Api.Address
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adressen", Name = nameof(ListAddresses))]
-        [ProducesResponseType(typeof(AddressListResponse), StatusCodes.Status200OK)]
+        [HttpGet("adressen", Name = nameof(ListAddressesV2))]
+        [ProducesResponseType(typeof(AddressListOsloResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AddressListResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AddressListOsloResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> ListAddresses(
+        public async Task<IActionResult> ListAddressesV2(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
@@ -93,7 +93,7 @@ namespace Public.Api.Address
                 niscode,
                 status);
 
-            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/address-list:{taal}");
+            var cacheKey = CreateCacheKeyForRequestQuery($"oslo/address-list:{taal}");
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(

@@ -1,8 +1,8 @@
-namespace Public.Api.Address
+namespace Public.Api.Address.Oslo
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Legacy.Address.Responses;
+    using AddressRegistry.Api.Oslo.Address.Responses;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
@@ -15,10 +15,10 @@ namespace Public.Api.Address
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
-    public partial class AddressController
+    public partial class AddressOsloController
     {
         /// <summary>
-        /// Vraag een adres op (v1).
+        /// Vraag een adres op (v2).
         /// </summary>
         /// <param name="objectId">Objectidentificator van het adres.</param>
         /// <param name="actionContextAccessor"></param>
@@ -31,8 +31,8 @@ namespace Public.Api.Address
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als het adres verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adressen/{objectId}", Name = nameof(GetAddress))]
-        [ProducesResponseType(typeof(AddressResponse), StatusCodes.Status200OK)]
+        [HttpGet("adressen/{objectId}", Name = nameof(GetAddressV2))]
+        [ProducesResponseType(typeof(AddressOsloResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -41,7 +41,7 @@ namespace Public.Api.Address
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AddressResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AddressOsloResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(AddressNotFoundResponseExamples))]
@@ -49,7 +49,7 @@ namespace Public.Api.Address
         [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(AddressGoneResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheExpiration(MaxAge = DefaultDetailCaching)]
-        public async Task<IActionResult> GetAddress(
+        public async Task<IActionResult> GetAddressV2(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -59,7 +59,7 @@ namespace Public.Api.Address
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
-            var cacheKey = $"legacy/address:{objectId}";
+            var cacheKey = $"oslo/address:{objectId}";
 
             var value = await (CacheToggle.FeatureEnabled
                 ? GetFromCacheThenFromBackendAsync(

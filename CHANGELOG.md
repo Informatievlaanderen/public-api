@@ -1,3 +1,10 @@
+# [4.27.0](https://github.com/informatievlaanderen/public-api/compare/v4.26.0...v4.27.0) (2021-12-13)
+
+
+### Features
+
+* add address v2 oslo endpoints ([6b90916](https://github.com/informatievlaanderen/public-api/commit/6b9091648eace28559c209c3c1b583c9aa61934b))
+
 # [4.26.0](https://github.com/informatievlaanderen/public-api/compare/v4.25.0...v4.26.0) (2021-12-10)
 
 

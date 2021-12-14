@@ -25,6 +25,7 @@
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo\content\StreetNameRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice\content\StreetNameRegistry.Api.BackOffice.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy\content\AddressRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
+    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo\content\AddressRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy\content\BuildingRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo\content\BuildingRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy\content\ParcelRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />

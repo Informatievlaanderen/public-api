@@ -20,7 +20,7 @@ namespace Public.Api.Address
     public partial class AddressController
     {
         /// <summary>
-        /// Voer een adresmatch vraag uit en krijg de adressen die gematcht worden.
+        /// Voer een adresmatch vraag uit en krijg de adressen die gematcht worden (v1).
         /// </summary>
         /// <param name="gemeentenaam">Filter op de gemeentenaam van het adres (1).</param>
         /// <param name="niscode">Filter op de NIS-code van het adres (1).</param>

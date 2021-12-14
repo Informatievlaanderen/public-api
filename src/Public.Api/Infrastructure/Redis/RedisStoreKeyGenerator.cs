@@ -48,6 +48,11 @@ namespace Public.Api.Infrastructure.Redis
         private const string AddressCacheKey = AddressCachePrefix + "{0}.{1}";
         private static readonly Regex AddressRegex = new Regex(@"/v1/adressen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
+        private const string AddressV2PathPrefix = "/v2/adressen/";
+        private const string AddressV2CachePrefix = "oslo/address:";
+        private const string AddressV2CacheKey = AddressV2CachePrefix + "{0}.{1}";
+        private static readonly Regex AddressV2Regex = new Regex(@"/v2/adressen/(?<id>\d*)(?<format>\.(jsonld))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+
         // As long as we do not control WFS, buildings cannot be cached
         //private const string BuildingPathPrefix = "/v1/gebouwen/";
         //private const string BuildingCachePrefix = "legacy/building:";
@@ -90,6 +95,7 @@ namespace Public.Api.Infrastructure.Redis
             StreetNameCachePrefix.ToLowerInvariant(),
             StreetNameV2CachePrefix.ToLowerInvariant(),
             AddressCachePrefix.ToLowerInvariant(),
+            AddressV2CachePrefix.ToLowerInvariant(),
             //BuildingCachePrefix.ToLowerInvariant(),
             BuildingUnitCachePrefix.ToLowerInvariant(),
             ParcelCachePrefix.ToLowerInvariant(),
@@ -141,6 +147,11 @@ namespace Public.Api.Infrastructure.Redis
             if (resourcePath.StartsWith(AddressPathPrefix))
             {
                 return GenerateStoreKey(context, resourcePath, AddressRegex, AddressCacheKey);
+            }
+
+            if (resourcePath.StartsWith(AddressV2PathPrefix))
+            {
+                return GenerateStoreKey(context, resourcePath, AddressV2Regex, AddressV2CacheKey);
             }
 
             // As long as we do not control WFS, buildings cannot be cached
