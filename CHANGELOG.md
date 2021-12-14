@@ -1,3 +1,10 @@
+## [4.28.1](https://github.com/informatievlaanderen/public-api/compare/v4.28.0...v4.28.1) (2021-12-14)
+
+
+### Bug Fixes
+
+* add feature flag oslo, fix docs bug ([4a7bf04](https://github.com/informatievlaanderen/public-api/commit/4a7bf04ff52ac529c46bada3e99152a0f73d0977))
+
 # [4.28.0](https://github.com/informatievlaanderen/public-api/compare/v4.27.0...v4.28.0) (2021-12-14)
 
 
