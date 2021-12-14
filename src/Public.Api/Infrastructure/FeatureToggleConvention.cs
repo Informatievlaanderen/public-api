@@ -21,7 +21,16 @@ namespace Public.Api.Infrastructure
         {
             if (action.ApiExplorer.IsVisible.HasValue && !action.ApiExplorer.IsVisible.Value)
              return;
-            
+
+            var ns = action.DisplayName.Split('.');
+            if (ns.Length > 2 && ns[3] == "Oslo")
+            {
+                string featureName = $"Is{ns[2]}OsloApiEnabled";
+                action.ApiExplorer.IsVisible =  !_features.ContainsKey(featureName) ||
+                                                (_features.ContainsKey(featureName) && _features[featureName]);
+                return;
+            }
+
             action.ApiExplorer.IsVisible =  !_features.ContainsKey(action.ActionName) ||
                                            (_features.ContainsKey(action.ActionName) && _features[action.ActionName]);
         }

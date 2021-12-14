@@ -23,6 +23,7 @@ namespace Public.Api.PostalCode.Oslo
         /// <param name="objectId">Identificator van de postinfo.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
+        /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de postinfo voor een postcode gevonden is.</response>
         /// <response code="304">Als de postinfo voor een postcode niet gewijzigd is ten opzicht van uw verzoek.</response>
@@ -50,8 +51,12 @@ namespace Public.Api.PostalCode.Oslo
             [FromRoute] string objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
+            [FromServices] IsPostalCodeOsloApiEnabledToggle featureToggle,
             CancellationToken cancellationToken = default)
         {
+            if (!featureToggle.FeatureEnabled)
+                return NotFound();
+
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
