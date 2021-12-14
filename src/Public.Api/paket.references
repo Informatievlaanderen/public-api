@@ -11,6 +11,7 @@ Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice
 Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo
 Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy
+Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo
 Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo
 Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice

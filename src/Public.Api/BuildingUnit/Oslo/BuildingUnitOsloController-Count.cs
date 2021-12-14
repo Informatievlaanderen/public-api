@@ -1,10 +1,13 @@
-namespace Public.Api.Building
+namespace Public.Api.BuildingUnit.Oslo
 {
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using BuildingRegistry.Api.Legacy.Building.Responses;
+    using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using BuildingRegistry.Api.Oslo.BuildingUnit.Query;
+    using BuildingRegistry.Api.Oslo.Infrastructure;
     using Common.Infrastructure;
+    using Common.Infrastructure.Controllers;
     using Infrastructure;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
@@ -14,61 +17,60 @@ namespace Public.Api.Building
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
-    public partial class BuildingController
+    public partial class BuildingUnitOsloController
     {
         /// <summary>
-        /// Vraag de referenties van een gebouw op (v1).
+        /// Vraag een totaal aantal gebouweenheden op (v2).
         /// </summary>
-        /// <param name="objectId">Identificator van het gebouw.</param>
+        /// <param name="adresObjectId">Optionele objectidentificator van het gekoppelde adres.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">De referenties van het gebouw.</response>
+        /// <response code="200">Als de opvraging van het totaal aantal gebouweenheden gelukt is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
-        /// <response code="404">Als het gebouw niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
-        /// <response code="410">Als het gebouw verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gebouwen/{objectId}/referenties", Name = nameof(GetBuildingReferences))]
-        [ProducesResponseType(typeof(BuildingReferencesResponse), StatusCodes.Status200OK)]
+        [HttpGet("gebouweenheden/totaal-aantal", Name = nameof(CountBuildingUnitsV2))]
+        [ApiExplorerSettings(IgnoreApi = true)]
+        [ProducesResponseType(typeof(TotaalAantalResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status410Gone)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(BuildingReferencesResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(TotalCountOsloResponseExample))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(BuildingNotFoundResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status406NotAcceptable, typeof(NotAcceptableResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(BuildingGoneResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [HttpCacheExpiration(MaxAge = DefaultDetailCaching)]
-        public async Task<IActionResult> GetBuildingReferences(
-            [FromRoute] int objectId,
+        [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
+        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = RegistryApiController<BuildingUnitController>.DefaultCountCaching, NoStore = true, NoTransform = true)]
+        public async Task<IActionResult> CountBuildingUnitsV2(
+            [FromQuery] int? adresObjectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendReferencesRequest(objectId);
+            IRestRequest BackendRequest() => CreateBackendCountRequest(adresObjectId);
 
-            var value = await GetFromBackendAsync(
-                contentFormat.ContentType,
-                BackendRequest,
-                CreateDefaultHandleBadRequest(),
-                cancellationToken);
-
-            return new BackendResponseResult(value);
+            return new BackendResponseResult(
+                await GetFromBackendAsync(
+                    contentFormat.ContentType,
+                    BackendRequest,
+                    CreateDefaultHandleBadRequest(),
+                    cancellationToken));
         }
 
-        private static RestRequest CreateBackendReferencesRequest(int buildingId)
+        private static IRestRequest CreateBackendCountRequest(int? addressId)
         {
-            var request = new RestRequest("gebouwen/{buildingId}/referenties");
-            request.AddParameter("buildingId", buildingId, ParameterType.UrlSegment);
-            return request;
+            var filter = new BuildingUnitFilter
+            {
+                AddressPersistentLocalId = addressId?.ToString()
+            };
+
+            return new RestRequest("gebouweenheden/totaal-aantal")
+                .AddFiltering(filter);
         }
     }
 }

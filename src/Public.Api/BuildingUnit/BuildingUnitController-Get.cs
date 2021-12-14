@@ -17,7 +17,7 @@ namespace Public.Api.BuildingUnit
     public partial class BuildingUnitController
     {
         /// <summary>
-        /// Vraag een gebouweenheid op.
+        /// Vraag een gebouweenheid op (v1).
         /// </summary>
         /// <param name="objectId">Identificator van de gebouweenheid.</param>
         /// <param name="actionContextAccessor"></param>
