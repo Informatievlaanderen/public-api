@@ -23,6 +23,7 @@ namespace Public.Api.Address.Oslo
         /// <param name="objectId">Objectidentificator van het adres.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
+        /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als het adres gevonden is.</response>
         /// <response code="304">Als het adres niet gewijzigd is ten opzicht van uw verzoek.</response>
@@ -53,8 +54,12 @@ namespace Public.Api.Address.Oslo
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
+            [FromServices] IsAddressOsloApiEnabledToggle featureToggle,
             CancellationToken cancellationToken = default)
         {
+            if (!featureToggle.FeatureEnabled)
+                return NotFound();
+
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);

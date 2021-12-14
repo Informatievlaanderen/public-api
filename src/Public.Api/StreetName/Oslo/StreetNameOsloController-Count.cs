@@ -24,6 +24,7 @@ namespace Public.Api.StreetName.Oslo
         /// <param name="gemeentenaam">Filter op de gemeentenaam van de straatnaam (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
+        /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van het totaal aantal straatnamen gelukt is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
@@ -47,8 +48,12 @@ namespace Public.Api.StreetName.Oslo
             [FromQuery] string gemeentenaam,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
+            [FromServices] IsStreetNameOsloApiEnabledToggle featureToggle,
             CancellationToken cancellationToken = default)
         {
+            if (!featureToggle.FeatureEnabled)
+                return NotFound();
+
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             IRestRequest BackendRequest() => CreateBackendCountRequest(gemeentenaam);

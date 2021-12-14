@@ -5,5 +5,12 @@ namespace Public.Api.Infrastructure.Configuration
         public const string ConfigurationKey = "FeatureToggles";
         public bool IsFeedsVisible { get; set; }
         public bool ProposeStreetName { get; set; }
+        public bool IsAddressOsloApiEnabled { get; set; }
+        public bool IsBuildingOsloApiEnabled { get; set; }
+        public bool IsBuildingUnitOsloApiEnabled { get; set; }
+        public bool IsMunicipalityOsloApiEnabled { get; set; }
+        public bool IsParcelOsloApiEnabled { get; set; }
+        public bool IsPostalCodeOsloApiEnabled { get; set; }
+        public bool IsStreetNameOsloApiEnabled { get; set; }
     }
 }

@@ -293,7 +293,14 @@ namespace Public.Api.Infrastructure
                 .Configure<FeatureToggleOptions>(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey))
                 .Configure<ExcludedRouteModelOptions>(_configuration.GetSection("ExcludedRoutes"))
                 .AddSingleton(c => new FeedsVisibleToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsFeedsVisible))
-                .AddSingleton(c => new ProposeStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ProposeStreetName));
+                .AddSingleton(c => new ProposeStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ProposeStreetName))
+                .AddSingleton(c => new IsAddressOsloApiEnabledToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsAddressOsloApiEnabled))
+                .AddSingleton(c => new IsBuildingOsloApiEnabledToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsBuildingOsloApiEnabled))
+                .AddSingleton(c => new IsBuildingUnitOsloApiEnabledToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsBuildingUnitOsloApiEnabled))
+                .AddSingleton(c => new IsMunicipalityOsloApiEnabledToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsMunicipalityOsloApiEnabled))
+                .AddSingleton(c => new IsParcelOsloApiEnabledToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsParcelOsloApiEnabled))
+                .AddSingleton(c => new IsPostalCodeOsloApiEnabledToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsPostalCodeOsloApiEnabled))
+                .AddSingleton(c => new IsStreetNameOsloApiEnabledToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsStreetNameOsloApiEnabled));
 
             services
                 .RemoveAll<IApiControllerSpecification>()

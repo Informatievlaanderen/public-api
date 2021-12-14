@@ -14,4 +14,53 @@ namespace Common.Infrastructure
 
         public ProposeStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
+
+    public class IsAddressOsloApiEnabledToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public IsAddressOsloApiEnabledToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class IsBuildingOsloApiEnabledToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public IsBuildingOsloApiEnabledToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class IsBuildingUnitOsloApiEnabledToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public IsBuildingUnitOsloApiEnabledToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class IsMunicipalityOsloApiEnabledToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public IsMunicipalityOsloApiEnabledToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class IsParcelOsloApiEnabledToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public IsParcelOsloApiEnabledToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class IsPostalCodeOsloApiEnabledToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public IsPostalCodeOsloApiEnabledToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class IsStreetNameOsloApiEnabledToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public IsStreetNameOsloApiEnabledToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
 }
