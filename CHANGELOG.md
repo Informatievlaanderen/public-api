@@ -1,3 +1,10 @@
+# [4.28.0](https://github.com/informatievlaanderen/public-api/compare/v4.27.0...v4.28.0) (2021-12-14)
+
+
+### Features
+
+* public endpoint for oslo buildings ([26aa78c](https://github.com/informatievlaanderen/public-api/commit/26aa78c9cfe1346c77f2783433bbdcefc0d73f0f))
+
 # [4.27.0](https://github.com/informatievlaanderen/public-api/compare/v4.26.0...v4.27.0) (2021-12-13)
 
 
