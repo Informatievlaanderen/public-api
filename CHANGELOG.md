@@ -1,3 +1,10 @@
+## [4.28.2](https://github.com/informatievlaanderen/public-api/compare/v4.28.1...v4.28.2) (2021-12-21)
+
+
+### Bug Fixes
+
+* v2 api endpoint doc fixes ([0b56ccc](https://github.com/informatievlaanderen/public-api/commit/0b56cccfc260d249cd6ccbb2fc439eb37e71e416))
+
 ## [4.28.1](https://github.com/informatievlaanderen/public-api/compare/v4.28.0...v4.28.1) (2021-12-14)
 
 
