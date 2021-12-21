@@ -1,3 +1,10 @@
+## [4.28.3](https://github.com/informatievlaanderen/public-api/compare/v4.28.2...v4.28.3) (2021-12-21)
+
+
+### Bug Fixes
+
+* gawr-2052 & gawr-2053 api docs fix ([d4ccaca](https://github.com/informatievlaanderen/public-api/commit/d4ccaca064fd9032ba802dc7a44df001014dc976))
+
 ## [4.28.2](https://github.com/informatievlaanderen/public-api/compare/v4.28.1...v4.28.2) (2021-12-21)
 
 
