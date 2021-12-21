@@ -31,7 +31,7 @@ namespace Public.Api.Building.Oslo
         /// <response code="410">Als het gebouw verwijderd is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("gebouwen/{objectId}", Name = nameof(GetBuildingV2))]
-        [ProducesResponseType(typeof(BuildingListOsloResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BuildingOsloResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status406NotAcceptable)]
