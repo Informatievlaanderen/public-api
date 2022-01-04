@@ -1,3 +1,10 @@
+# [4.29.0](https://github.com/informatievlaanderen/public-api/compare/v4.28.3...v4.29.0) (2022-01-04)
+
+
+### Features
+
+* gawr-2519 add buildingPolygoon property with gml 3.2 xml string ([98b02d6](https://github.com/informatievlaanderen/public-api/commit/98b02d60ea504372957916b1876a766d5d722cfb))
+
 ## [4.28.3](https://github.com/informatievlaanderen/public-api/compare/v4.28.2...v4.28.3) (2021-12-21)
 
 
