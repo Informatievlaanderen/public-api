@@ -1,3 +1,10 @@
+## [4.29.1](https://github.com/informatievlaanderen/public-api/compare/v4.29.0...v4.29.1) (2022-01-14)
+
+
+### Bug Fixes
+
+* enable oslo feature flags ([38b0211](https://github.com/informatievlaanderen/public-api/commit/38b02115bd263af2c5fffe109eb280cf341a7aa5))
+
 # [4.29.0](https://github.com/informatievlaanderen/public-api/compare/v4.28.3...v4.29.0) (2022-01-04)
 
 
