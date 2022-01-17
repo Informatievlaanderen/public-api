@@ -59,7 +59,7 @@ namespace Public.Api.Parcel.Oslo
             [FromQuery] string sort,
             [FromQuery] string status,
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IOptions<ParcelOptions> responseOptions,
+            [FromServices] IOptions<ParcelOptionsV2> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             [FromServices] IsParcelOsloApiEnabledToggle featureToggle,
             CancellationToken cancellationToken = default)
