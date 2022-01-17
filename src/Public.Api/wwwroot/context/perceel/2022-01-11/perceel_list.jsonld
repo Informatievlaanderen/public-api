@@ -1,0 +1,20 @@
+{
+    "@base": "https://basisregisters.vlaanderen.be/ns/gebouw",
+    "@vocab": "#",
+    "identificator": "@nest",
+    "id": "@id",
+    "versieId": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#versieIdentificator",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "naamruimte": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#naamruimte",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "objectId": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#lokaleIdentificator",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "detail": "http://www.iana.org/assignments/relation/self",
+    "percelen": "@graph"
+  }

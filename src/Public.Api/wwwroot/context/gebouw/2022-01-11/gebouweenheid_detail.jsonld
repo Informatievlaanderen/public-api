@@ -1,0 +1,75 @@
+{
+    "@base": "https://basisregisters.vlaanderen.be/ns/gebouw",
+    "@vocab": "#",
+    "identificator": "@nest",
+    "id": "@id",
+    "versieId": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#versieIdentificator",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "naamruimte": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#naamruimte",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "objectId": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#lokaleIdentificator",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "gebouweenheidStatus": {
+      "@id": "https://data.vlaanderen.be/ns/gebouw#Gebouweenheid.status",
+      "@type": "@id",
+      "@context": {
+        "@base": "https://data.vlaanderen.be/id/conceptscheme/gebouweenheidstatus/"
+      }
+    },
+    "functie": {
+      "@id": "https://data.vlaanderen.be/ns/gebouw#functie",
+      "@type": "@id",
+      "@context": {
+        "@base": "https://data.vlaanderen.be/id/conceptscheme/gebouweenheidfunctie/"
+      }
+    },
+    "gebouw": {
+      "@reverse": "https://data.vlaanderen.be/ns/gebouw#bestaatUit",
+      "@type": "@id",
+      "@context": {
+        "objectId": "@id",
+        "@base": "https://data.vlaanderen.be/id/gebouw/"
+      }
+    },
+    "adressen": {
+      "@id": "https://data.vlaanderen.be/ns/gebouw#Gebouweenheid.adres",
+      "@type": "@id",
+      "@context": {
+        "objectId": "@id",
+        "@base": "https://data.vlaanderen.be/id/adres/"
+      }
+    },
+    "gebouweenheidPositie": {
+      "@id": "https://data.vlaanderen.be/ns/gebouw#Gebouweenheid.geometrie",
+      "@type": "@id",
+      "@context": {
+        "positieGeometrieMethode": {
+          "@id": "https://data.vlaanderen.be/ns/generiek#methode",
+          "@type": "@id",
+          "@context": {
+            "@base": "https://data.vlaanderen.be/id/conceptscheme/geometriemethode/"
+          }
+        },
+        "geometrie": {
+          "@id": "https://data.vlaanderen.be/ns/gebouw#geometrie",
+          "@context": {
+            "gml": {
+              "@id": "http://www.opengis.net/ont/geosparql#asGML",
+              "@type": "http://www.opengis.net/ont/geosparql#gmlLiteral"
+            },
+            "type": "@type",
+            "Polygon": "http://www.opengis.net/ont/sf#Polygon",
+            "Point": "http://www.opengis.net/ont/sf#Point"
+          }
+        }
+      }
+    },
+    "detail": "http://www.iana.org/assignments/relation/self",
+    "gebouweenheden": "@graph"
+  }
