@@ -1,3 +1,10 @@
+# [4.30.0](https://github.com/informatievlaanderen/public-api/compare/v4.29.3...v4.30.0) (2022-01-17)
+
+
+### Features
+
+* add jsonld files ([6a50d6b](https://github.com/informatievlaanderen/public-api/commit/6a50d6b0ed282c1192923916e20348c52cc008fc))
+
 ## [4.29.3](https://github.com/informatievlaanderen/public-api/compare/v4.29.2...v4.29.3) (2022-01-17)
 
 
