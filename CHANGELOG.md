@@ -1,3 +1,10 @@
+## [4.30.1](https://github.com/informatievlaanderen/public-api/compare/v4.30.0...v4.30.1) (2022-01-17)
+
+
+### Bug Fixes
+
+* copy files if newer ([5c1b170](https://github.com/informatievlaanderen/public-api/commit/5c1b17068a3386c0be7fbd5f596afadefc9b6e06))
+
 # [4.30.0](https://github.com/informatievlaanderen/public-api/compare/v4.29.3...v4.30.0) (2022-01-17)
 
 
