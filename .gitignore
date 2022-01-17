@@ -1,6 +1,5 @@
 appsettings.*.json
 *.Importer-*.config
-wwwroot/
 
 .vs/
 .vscode/

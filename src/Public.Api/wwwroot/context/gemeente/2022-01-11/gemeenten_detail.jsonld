@@ -1,0 +1,38 @@
+
+{
+    "@base": "https://basisregisters.vlaanderen.be/ns/adres",
+    "@vocab": "#",
+    "identificator": "@nest",
+    "id": "@id",
+    "versieId": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#versieIdentificator",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "naamruimte": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#naamruimte",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "objectId": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#lokaleIdentificator",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "gemeentenamen": {
+      "@id": "http://www.w3.org/2000/01/rdf-schema#label",
+      "@context": {
+        "spelling": "@value",
+        "taal": "@language"
+      }
+    },
+    "gemeenteStatus": {
+      "@type": "@id",
+      "@context": {
+        "@base": "https://data.vlaanderen.be/id/concept/gemeentestatus/"
+      }
+    },
+    "officieleTalen": {
+      "@id": "https://basisregisters.vlaanderen.be/ns/adres#officieleTaal"
+    },
+    "faciliteitenTalen": {
+      "@id": "https://basisregisters.vlaanderen.be/ns/adres#faciliteitenTaal"
+    }
+  }

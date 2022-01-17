@@ -3,6 +3,7 @@ namespace Public.Api.Infrastructure
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using System.IO;
     using System.Linq;
     using System.Numerics;
     using System.Reflection;
@@ -29,9 +30,11 @@ namespace Public.Api.Infrastructure
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.AspNetCore.Mvc.ApplicationModels;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.AspNetCore.StaticFiles;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.DependencyInjection.Extensions;
+    using Microsoft.Extensions.FileProviders;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Options;
@@ -461,6 +464,13 @@ namespace Public.Api.Infrastructure
                     {
                         AfterResponseCompression = x => x.UseConditionalHttpCacheHeaders()
                     }
+                })
+
+                .UseStaticFiles(new StaticFileOptions
+                {
+                    ContentTypeProvider = new FileExtensionContentTypeProvider(new Dictionary<string, string> { [".jsonld"] = "application/ld+json" }),
+                    FileProvider = new PhysicalFileProvider(Path.Combine(env.WebRootPath, "context")),
+                    RequestPath = "/context"
                 });
         }
 
