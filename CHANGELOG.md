@@ -1,3 +1,10 @@
+## [4.29.3](https://github.com/informatievlaanderen/public-api/compare/v4.29.2...v4.29.3) (2022-01-17)
+
+
+### Bug Fixes
+
+* correct options parcel oslo GAWR-2579 ([#339](https://github.com/informatievlaanderen/public-api/issues/339)) ([beace47](https://github.com/informatievlaanderen/public-api/commit/beace471b68d86d1d448d085f62c1dacfd7a6113))
+
 ## [4.29.2](https://github.com/informatievlaanderen/public-api/compare/v4.29.1...v4.29.2) (2022-01-14)
 
 
