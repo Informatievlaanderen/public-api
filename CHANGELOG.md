@@ -1,3 +1,10 @@
+## [4.30.2](https://github.com/informatievlaanderen/public-api/compare/v4.30.1...v4.30.2) (2022-01-18)
+
+
+### Bug Fixes
+
+* change names for oslo files ([54c08ef](https://github.com/informatievlaanderen/public-api/commit/54c08ef645af19f1ea018c199364074b3abf0841))
+
 ## [4.30.1](https://github.com/informatievlaanderen/public-api/compare/v4.30.0...v4.30.1) (2022-01-17)
 
 
