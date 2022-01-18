@@ -1,3 +1,10 @@
+## [4.30.3](https://github.com/informatievlaanderen/public-api/compare/v4.30.2...v4.30.3) (2022-01-18)
+
+
+### Bug Fixes
+
+* docs issue gawr-2616 ([da34c7a](https://github.com/informatievlaanderen/public-api/commit/da34c7af32a41ea1aa68b990f1244d0bd4a5144c))
+
 ## [4.30.2](https://github.com/informatievlaanderen/public-api/compare/v4.30.1...v4.30.2) (2022-01-18)
 
 
