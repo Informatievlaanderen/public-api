@@ -1,3 +1,10 @@
+## [4.30.4](https://github.com/informatievlaanderen/public-api/compare/v4.30.3...v4.30.4) (2022-01-19)
+
+
+### Bug Fixes
+
+* change docs oslo context ([47cb329](https://github.com/informatievlaanderen/public-api/commit/47cb3299ac3e9a6413df286afa27e26c9fa9bd28))
+
 ## [4.30.3](https://github.com/informatievlaanderen/public-api/compare/v4.30.2...v4.30.3) (2022-01-18)
 
 
