@@ -1,3 +1,10 @@
+# [4.31.0](https://github.com/informatievlaanderen/public-api/compare/v4.30.4...v4.31.0) (2022-01-28)
+
+
+### Features
+
+* add endpoints for requesting limited extracts ([34f7b00](https://github.com/informatievlaanderen/public-api/commit/34f7b00c74abeb1e2f959d609e84034584d25e29))
+
 ## [4.30.4](https://github.com/informatievlaanderen/public-api/compare/v4.30.3...v4.30.4) (2022-01-19)
 
 
