@@ -17,7 +17,7 @@ namespace Public.Api.Road.Extracts
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
-            IRestRequest BackendRequest() => CreateBackendDownloadRequestRequestByContour(body);
+            IRestRequest BackendRequest() => CreateBackendDownloadRequestByContour(body);
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
@@ -29,7 +29,7 @@ namespace Public.Api.Road.Extracts
             return new BackendResponseResult(response);
         }
 
-        private static IRestRequest CreateBackendDownloadRequestRequestByContour(DownloadExtractByContourRequestBody body) => new RestRequest("extracts/downloadrequests/bycontour")
+        private static IRestRequest CreateBackendDownloadRequestByContour(DownloadExtractByContourRequestBody body) => new RestRequest("extracts/downloadrequests/bycontour")
             .AddParameter(nameof(body), body, ParameterType.RequestBody);
 
         // TODO: use contract in nuget package

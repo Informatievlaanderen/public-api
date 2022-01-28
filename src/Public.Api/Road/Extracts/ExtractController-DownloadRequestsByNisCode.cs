@@ -16,7 +16,7 @@ namespace Public.Api.Road.Extracts
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
-            IRestRequest BackendRequest() => CreateBackendDownloadRequestRequestByNisCode(body);
+            IRestRequest BackendRequest() => CreateBackendDownloadRequestByNisCode(body);
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
@@ -28,7 +28,7 @@ namespace Public.Api.Road.Extracts
             return new BackendResponseResult(response);
         }
 
-        private static IRestRequest CreateBackendDownloadRequestRequestByNisCode(DownloadExtractByNisCodeRequestBody body) => new RestRequest("extracts/downloadrequests/bycontour")
+        private static IRestRequest CreateBackendDownloadRequestByNisCode(DownloadExtractByNisCodeRequestBody body) => new RestRequest("extracts/downloadrequests/bycontour")
             .AddParameter(nameof(body), body, ParameterType.RequestBody);
 
         // TODO: use contract in nuget package
