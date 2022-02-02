@@ -513,7 +513,9 @@ Doelpubliek | REST basis-URL                                                    
 ----------- | ----------------------------------------------------------------- |
 Iedereen    | {_configuration["BaseUrl"]} |
 
-## Toegang tot de read API’s
+## Gebruik van de read API’s
+
+### Toegang
 
 U kan momenteel anoniem gebruik maken van de read API’s zonder enige beperking. In de toekomst zal dit wijzigen en komt er een beperking op het aantal verzoeken dat u tegelijk kan versturen.
 
@@ -521,6 +523,21 @@ Om in de toekomst optimaal gebruik te maken van de API’s vraagt u best nu al e
 
 * Via de header `x-api-key`.
 * In de URL. Bijvoorbeeld: `https://api.basisregisters.dev-vlaanderen.be/v1/feeds/adressen?apikey={{apikey}}` waarbij `{{apikey}}` vervangen wordt door de unieke code van uw API key.
+
+### V1 vs v2
+
+Voor de read endpoints zijn er zowel v1 als v2 endpoints beschikbaar. De v2 read endpoints zijn een vernieuwde versie van de v1 read endpoints en zijn conform aan het OSLO-model. Om duidelijk aan te geven of het een v1 of een v2 endpoint is, hebben we achteraan de titels gewerkt met (v1) voor versie 1 en (v2) voor versie 2.
+
+Wat is het verschil tussen de v1 en de v2 endpoints?:
+
+* Het content-type van v2 is ‘application/ld+json’. Van v1 is dit default ‘application+json’, maar ‘application/xml’ is ook mogelijk.
+* Er zijn 2 velden bijgekomen, namelijk @context en @type. Het @context veld bevat de linked-data context van het endpoint. Dit is een URI naar de JSON-LD file. Het @type veld bevat het linked-data type van het endpoint.
+* De geometrievelden bij ‘Vraag een adres op (v2)’, ‘Vraag een gebouw op (v2)’ en ‘Vraag een gebouweenheid op (v2)’ zijn gewijzigd. De coördinaten van het object staan vanaf nu in het gml-formaat en alle velden die met geometrie te maken hebben zijn samengevoegd onder 1 veld.
+
+Wat betekent 'conform aan het OSLO-model'?
+
+* Door informatie conform aan het OSLO-model te ontsluiten, kan deze vlot gecombineerd worden met datasets op het wereldwijde web. Contextuele informatie wordt aan de response van de endpoints gekoppeld waardoor ze geschikt zijn om te gebruiken in Linked Data toepassingen.
+* Meer informatie over OSLO kan u hier vinden: https://overheid.vlaanderen.be/producten-diensten/oslo.
 
 ## Foutmeldingen
 
