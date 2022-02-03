@@ -528,10 +528,12 @@ Om in de toekomst optimaal gebruik te maken van de API’s vraagt u best nu al e
 
 Voor de read endpoints zijn er zowel v1 als v2 endpoints beschikbaar. De v2 read endpoints zijn een vernieuwde versie van de v1 read endpoints en zijn conform aan het OSLO-model. Om duidelijk aan te geven of het een v1 of een v2 endpoint is, hebben we achteraan de titels gewerkt met (v1) voor versie 1 en (v2) voor versie 2.
 
-Wat is het verschil tussen de v1 en de v2 endpoints?:
+Wat is het verschil tussen de v1 en de v2 endpoints?
 
 * Het content-type van v2 is ‘application/ld+json’. Van v1 is dit default ‘application+json’, maar ‘application/xml’ is ook mogelijk.
-* Er zijn 2 velden bijgekomen, namelijk @context en @type. Het @context veld bevat de linked-data context van het endpoint. Dit is een URI naar de JSON-LD file. Het @type veld bevat het linked-data type van het endpoint.
+* Er zijn 2 velden bijgekomen, namelijk `@context` en `@type`.
+ * Het `@context` veld bevat de linked-data context van het endpoint. Dit is een URI naar de JSON-LD file.
+ * Het `@type` veld bevat het linked-data type van het endpoint.
 * De geometrievelden bij ‘Vraag een adres op (v2)’, ‘Vraag een gebouw op (v2)’ en ‘Vraag een gebouweenheid op (v2)’ zijn gewijzigd. De coördinaten van het object staan vanaf nu in het gml-formaat en alle velden die met geometrie te maken hebben zijn samengevoegd onder 1 veld.
 
 Wat betekent 'conform aan het OSLO-model'?
