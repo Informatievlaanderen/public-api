@@ -1,3 +1,10 @@
+## [4.31.2](https://github.com/informatievlaanderen/public-api/compare/v4.31.1...v4.31.2) (2022-02-03)
+
+
+### Bug Fixes
+
+* added some modifications to documentation ([3fb0e1c](https://github.com/informatievlaanderen/public-api/commit/3fb0e1c6d6521def29c91ac30f8a7d7ee035bb19))
+
 ## [4.31.1](https://github.com/informatievlaanderen/public-api/compare/v4.31.0...v4.31.1) (2022-02-03)
 
 
