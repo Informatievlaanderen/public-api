@@ -111,7 +111,7 @@ namespace Public.Api.Infrastructure
                         {
                             Version = _marketingVersion,
                             Title = "Basisregisters Vlaanderen API",
-                            Description = GetApiLeadingText(description, Convert.ToBoolean(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey)["IsFeedsVisible"])),
+                            Description = GetApiLeadingText(description, Convert.ToBoolean(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey)["IsFeedsVisible"]),Convert.ToBoolean(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey)["ProposeStreetName"])),
                             Contact = _contact,
                             License = new OpenApiLicense
                             {
@@ -474,7 +474,7 @@ namespace Public.Api.Infrastructure
                 });
         }
 
-        private string GetApiLeadingText(ApiVersionDescription description, bool isFeedsVisibleToggle)
+        private string GetApiLeadingText(ApiVersionDescription description, bool isFeedsVisibleToggle, bool isProposeStreetName)
         {
             var text = new StringBuilder(1000);
 
@@ -555,7 +555,7 @@ De Basisregisters Vlaanderen API gebruikt [Problem Details for HTTP APIs (RFC780
 }}
 ```
 
-## Mogelijke foutmeldingen
+### Mogelijke foutmeldingen
 
 Binnen de aangeboden endpoints zijn er een aantal foutmeldingen die kunnen voorkomen. U moet naar het veld ‘Detail’ kijken voor meer informatie.
 
@@ -652,6 +652,11 @@ De feed bevat een aantal velden waarin een timestamp staat. Hieronder staat de b
 
 ");
             }
+
+            if (isProposeStreetName)
+                text.AppendLine(
+                    $@"## Gebruik van de Edit API");
+
 
             return text.ToString();
         }
