@@ -1,3 +1,10 @@
+## [4.31.3](https://github.com/informatievlaanderen/public-api/compare/v4.31.2...v4.31.3) (2022-02-04)
+
+
+### Bug Fixes
+
+* paket bump ([11ba41e](https://github.com/informatievlaanderen/public-api/commit/11ba41e3dec2a1070f469a48779748292e568c71))
+
 ## [4.31.2](https://github.com/informatievlaanderen/public-api/compare/v4.31.1...v4.31.2) (2022-02-03)
 
 
