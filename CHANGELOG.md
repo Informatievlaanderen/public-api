@@ -1,3 +1,10 @@
+## [4.31.5](https://github.com/informatievlaanderen/public-api/compare/v4.31.4...v4.31.5) (2022-02-04)
+
+
+### Bug Fixes
+
+* adding edit api docu section ([d12d8b4](https://github.com/informatievlaanderen/public-api/commit/d12d8b476230c1c2538e2a98e08fc2998e461f98))
+
 ## [4.31.4](https://github.com/informatievlaanderen/public-api/compare/v4.31.3...v4.31.4) (2022-02-04)
 
 
