@@ -1,3 +1,10 @@
+## [4.31.6](https://github.com/informatievlaanderen/public-api/compare/v4.31.5...v4.31.6) (2022-02-04)
+
+
+### Bug Fixes
+
+* 406 no body example ([094d51b](https://github.com/informatievlaanderen/public-api/commit/094d51bf82c27e0f6fd87bb4fedff584afcf8221))
+
 ## [4.31.5](https://github.com/informatievlaanderen/public-api/compare/v4.31.4...v4.31.5) (2022-02-04)
 
 
