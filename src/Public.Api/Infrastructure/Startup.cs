@@ -655,7 +655,7 @@ De feed bevat een aantal velden waarin een timestamp staat. Hieronder staat de b
 
             if (isProposeStreetName)
                 text.AppendLine(
-                    $@"## Gebruik van de Edit API");
+                    $@"## Gebruik van de edit API");
 
 
             return text.ToString();
