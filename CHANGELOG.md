@@ -1,3 +1,10 @@
+## [4.31.7](https://github.com/informatievlaanderen/public-api/compare/v4.31.6...v4.31.7) (2022-02-09)
+
+
+### Bug Fixes
+
+* typo ([d64a682](https://github.com/informatievlaanderen/public-api/commit/d64a6829362197347455f0b9519e06e64ded4269))
+
 ## [4.31.6](https://github.com/informatievlaanderen/public-api/compare/v4.31.5...v4.31.6) (2022-02-04)
 
 
