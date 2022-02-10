@@ -1,3 +1,87 @@
+## [4.31.7](https://github.com/informatievlaanderen/public-api/compare/v4.31.6...v4.31.7) (2022-02-09)
+
+
+### Bug Fixes
+
+* typo ([d64a682](https://github.com/informatievlaanderen/public-api/commit/d64a6829362197347455f0b9519e06e64ded4269))
+
+## [4.31.6](https://github.com/informatievlaanderen/public-api/compare/v4.31.5...v4.31.6) (2022-02-04)
+
+
+### Bug Fixes
+
+* 406 no body example ([094d51b](https://github.com/informatievlaanderen/public-api/commit/094d51bf82c27e0f6fd87bb4fedff584afcf8221))
+
+## [4.31.5](https://github.com/informatievlaanderen/public-api/compare/v4.31.4...v4.31.5) (2022-02-04)
+
+
+### Bug Fixes
+
+* adding edit api docu section ([d12d8b4](https://github.com/informatievlaanderen/public-api/commit/d12d8b476230c1c2538e2a98e08fc2998e461f98))
+
+## [4.31.4](https://github.com/informatievlaanderen/public-api/compare/v4.31.3...v4.31.4) (2022-02-04)
+
+
+### Bug Fixes
+
+* added docu foutmeldingen ([34c9c07](https://github.com/informatievlaanderen/public-api/commit/34c9c07345449dafa9bd93a9ad5515ed79d6f81c))
+
+## [4.31.3](https://github.com/informatievlaanderen/public-api/compare/v4.31.2...v4.31.3) (2022-02-04)
+
+
+### Bug Fixes
+
+* paket bump ([11ba41e](https://github.com/informatievlaanderen/public-api/commit/11ba41e3dec2a1070f469a48779748292e568c71))
+
+## [4.31.2](https://github.com/informatievlaanderen/public-api/compare/v4.31.1...v4.31.2) (2022-02-03)
+
+
+### Bug Fixes
+
+* added some modifications to documentation ([3fb0e1c](https://github.com/informatievlaanderen/public-api/commit/3fb0e1c6d6521def29c91ac30f8a7d7ee035bb19))
+
+## [4.31.1](https://github.com/informatievlaanderen/public-api/compare/v4.31.0...v4.31.1) (2022-02-03)
+
+
+### Bug Fixes
+
+* changed documentation to clarify v1 and v2 differences ([b523ccd](https://github.com/informatievlaanderen/public-api/commit/b523ccdb78358267599c305404fda96b6539ff53))
+
+# [4.31.0](https://github.com/informatievlaanderen/public-api/compare/v4.30.4...v4.31.0) (2022-01-28)
+
+
+### Features
+
+* add endpoints for requesting limited extracts ([34f7b00](https://github.com/informatievlaanderen/public-api/commit/34f7b00c74abeb1e2f959d609e84034584d25e29))
+
+## [4.30.4](https://github.com/informatievlaanderen/public-api/compare/v4.30.3...v4.30.4) (2022-01-19)
+
+
+### Bug Fixes
+
+* change docs oslo context ([47cb329](https://github.com/informatievlaanderen/public-api/commit/47cb3299ac3e9a6413df286afa27e26c9fa9bd28))
+
+## [4.30.3](https://github.com/informatievlaanderen/public-api/compare/v4.30.2...v4.30.3) (2022-01-18)
+
+
+### Bug Fixes
+
+* docs issue gawr-2616 ([da34c7a](https://github.com/informatievlaanderen/public-api/commit/da34c7af32a41ea1aa68b990f1244d0bd4a5144c))
+
+## [4.30.2](https://github.com/informatievlaanderen/public-api/compare/v4.30.1...v4.30.2) (2022-01-18)
+
+
+### Bug Fixes
+
+* change names for oslo files ([54c08ef](https://github.com/informatievlaanderen/public-api/commit/54c08ef645af19f1ea018c199364074b3abf0841))
+
+## [4.30.1](https://github.com/informatievlaanderen/public-api/compare/v4.30.0...v4.30.1) (2022-01-17)
+
+
+### Bug Fixes
+
+* copy files if newer ([5c1b170](https://github.com/informatievlaanderen/public-api/commit/5c1b17068a3386c0be7fbd5f596afadefc9b6e06))
+
 # [4.30.0](https://github.com/informatievlaanderen/public-api/compare/v4.29.3...v4.30.0) (2022-01-17)
 
 

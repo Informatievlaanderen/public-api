@@ -111,7 +111,7 @@ namespace Public.Api.Infrastructure
                         {
                             Version = _marketingVersion,
                             Title = "Basisregisters Vlaanderen API",
-                            Description = GetApiLeadingText(description, Convert.ToBoolean(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey)["IsFeedsVisible"])),
+                            Description = GetApiLeadingText(description, Convert.ToBoolean(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey)["IsFeedsVisible"]),Convert.ToBoolean(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey)["ProposeStreetName"])),
                             Contact = _contact,
                             License = new OpenApiLicense
                             {
@@ -474,7 +474,7 @@ namespace Public.Api.Infrastructure
                 });
         }
 
-        private string GetApiLeadingText(ApiVersionDescription description, bool isFeedsVisibleToggle)
+        private string GetApiLeadingText(ApiVersionDescription description, bool isFeedsVisibleToggle, bool isProposeStreetName)
         {
             var text = new StringBuilder(1000);
 
@@ -513,7 +513,9 @@ Doelpubliek | REST basis-URL                                                    
 ----------- | ----------------------------------------------------------------- |
 Iedereen    | {_configuration["BaseUrl"]} |
 
-## Toegang tot de read API’s
+## Gebruik van de read API’s
+
+### Toegang
 
 U kan momenteel anoniem gebruik maken van de read API’s zonder enige beperking. In de toekomst zal dit wijzigen en komt er een beperking op het aantal verzoeken dat u tegelijk kan versturen.
 
@@ -521,6 +523,23 @@ Om in de toekomst optimaal gebruik te maken van de API’s vraagt u best nu al e
 
 * Via de header `x-api-key`.
 * In de URL. Bijvoorbeeld: `https://api.basisregisters.dev-vlaanderen.be/v1/feeds/adressen?apikey={{apikey}}` waarbij `{{apikey}}` vervangen wordt door de unieke code van uw API key.
+
+### V1 vs v2
+
+Voor de read endpoints zijn er zowel v1 als v2 endpoints beschikbaar. De v2 read endpoints zijn een vernieuwde versie van de v1 read endpoints en zijn conform aan het OSLO-model. Om duidelijk aan te geven of het een v1 of een v2 endpoint is, hebben we achteraan de titels gewerkt met (v1) voor versie 1 en (v2) voor versie 2.
+
+Wat is het verschil tussen de v1 en de v2 endpoints?
+
+* Het content-type van v2 is ‘application/ld+json’. Van v1 is dit default ‘application+json’, maar ‘application/xml’ is ook mogelijk.
+* Er zijn 2 velden bijgekomen, namelijk `@context` en `@type`.
+ * Het `@context` veld bevat de linked-data context van het endpoint. Dit is een URI naar de JSON-LD file.
+ * Het `@type` veld bevat het linked-data type van het endpoint.
+* De geometrievelden bij ‘Vraag een adres op (v2)’, ‘Vraag een gebouw op (v2)’ en ‘Vraag een gebouweenheid op (v2)’ zijn gewijzigd. De coördinaten van het object staan vanaf nu in het gml-formaat en alle velden die met geometrie te maken hebben zijn samengevoegd onder 1 veld.
+
+Wat betekent 'conform aan het OSLO-model'?
+
+* Door informatie conform aan het OSLO-model te ontsluiten, kan deze vlot gecombineerd worden met datasets op het wereldwijde web. Contextuele informatie wordt aan de response van de endpoints gekoppeld waardoor ze geschikt zijn om te gebruiken in Linked Data toepassingen.
+* Meer informatie over OSLO kan u hier vinden: https://overheid.vlaanderen.be/producten-diensten/oslo.
 
 ## Foutmeldingen
 
@@ -535,6 +554,23 @@ De Basisregisters Vlaanderen API gebruikt [Problem Details for HTTP APIs (RFC780
   ""instance"": ""string""
 }}
 ```
+
+### Mogelijke foutmeldingen
+
+Binnen de aangeboden endpoints zijn er een aantal foutmeldingen die kunnen voorkomen. U moet naar het veld ‘Detail’ kijken voor meer informatie.
+
+Foutmelding | Wanneer                                                           |
+----------- | ----------------------------------------------------------------- |
+304    | Wanneer de request niet gewijzigd is tegenover de vorige opvraging.  |
+400    | Wanneer uw verzoek foutieve data bevat. Bijvoorbeeld:        <br>     -	Wanneer het veld numeriek is, maar er geen numerieke waarde wordt meegegeven,<br>            -	Wanneer bij de request parameter een . wordt meegegeven,<br>            -	Wanneer bij endpoint ‘Crabgebouwen’ er geen parameters worden meegegeven.|
+401    |Wanneer er geen API key in de feed wordt meegegeven. |
+403    |Wanneer het formaat in de URL wordt meegegeven. <br> Wanneer u een API key meegeeft die niet correct is. |
+404    |Wanneer het objectid niet gevonden kan worden. |
+406    |Wanneer het verkeerde formaat wordt meegegeven in de accept header.|
+410    |Wanneer het objectid verwijderd is.|
+500    |Wanneer de response groter is dan 10MB.<br> Wanneer er een interne fout is gebeurd. <br> Wanneer de GRB WFS-service niet kan gecontacteerd worden. |
+
+ 
 ");
 
             if (isFeedsVisibleToggle)
@@ -616,6 +652,11 @@ De feed bevat een aantal velden waarin een timestamp staat. Hieronder staat de b
 
 ");
             }
+
+            if (isProposeStreetName)
+                text.AppendLine(
+                    $@"## Gebruik van de edit API");
+
 
             return text.ToString();
         }
