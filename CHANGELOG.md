@@ -1,3 +1,10 @@
+## [4.31.8](https://github.com/informatievlaanderen/public-api/compare/v4.31.7...v4.31.8) (2022-02-10)
+
+
+### Bug Fixes
+
+* update Api dependency to fix exception handler ([3640448](https://github.com/informatievlaanderen/public-api/commit/36404486582cf2930da6fc9a8baaaa9784309dc8))
+
 ## [4.31.7](https://github.com/informatievlaanderen/public-api/compare/v4.31.6...v4.31.7) (2022-02-09)
 
 
