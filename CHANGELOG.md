@@ -1,3 +1,10 @@
+## [4.31.9](https://github.com/informatievlaanderen/public-api/compare/v4.31.8...v4.31.9) (2022-02-10)
+
+
+### Bug Fixes
+
+* bump packet.lock ([a93db8d](https://github.com/informatievlaanderen/public-api/commit/a93db8d60b34e4436071d740a86dd70931047cb9))
+
 ## [4.31.8](https://github.com/informatievlaanderen/public-api/compare/v4.31.7...v4.31.8) (2022-02-10)
 
 
