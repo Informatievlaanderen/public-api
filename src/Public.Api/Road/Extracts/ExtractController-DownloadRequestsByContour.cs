@@ -29,14 +29,8 @@ namespace Public.Api.Road.Extracts
             return new BackendResponseResult(response);
         }
 
-        private static IRestRequest CreateBackendDownloadRequestByContour(DownloadExtractByContourRequestBody body) => new RestRequest("extracts/downloadrequests/bycontour")
-            .AddParameter(nameof(body), body, ParameterType.RequestBody);
-
-        // TODO: use contract in nuget package
-        public class DownloadExtractByContourRequestBody
-        {
-            public string Contour { get; set; }
-            public int Buffer { get; set; }
-        }
+        private static IRestRequest CreateBackendDownloadRequestByContour(DownloadExtractByContourRequestBody body) =>
+            new RestRequest("extracts/downloadrequests/bycontour", Method.POST)
+            .AddJsonBodyOrEmpty(body);
     }
 }
