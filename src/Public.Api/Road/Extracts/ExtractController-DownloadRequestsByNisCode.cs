@@ -7,6 +7,7 @@ namespace Public.Api.Road.Extracts
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
     using RestSharp;
+    using RoadRegistry.BackOffice.Api.Extracts;
 
     public partial class ExtractController
     {
@@ -28,14 +29,8 @@ namespace Public.Api.Road.Extracts
             return new BackendResponseResult(response);
         }
 
-        private static IRestRequest CreateBackendDownloadRequestByNisCode(DownloadExtractByNisCodeRequestBody body) => new RestRequest("extracts/downloadrequests/bycontour")
-            .AddParameter(nameof(body), body, ParameterType.RequestBody);
-
-        // TODO: use contract in nuget package
-        public class DownloadExtractByNisCodeRequestBody
-        {
-            public string NisCode { get; set; }
-            public int Buffer { get; set; }
-        }
+        private static IRestRequest CreateBackendDownloadRequestByNisCode(DownloadExtractByNisCodeRequestBody body) =>
+            new RestRequest("extracts/downloadrequests/bycontour", Method.POST)
+            .AddJsonBodyOrEmpty(body);
     }
 }
