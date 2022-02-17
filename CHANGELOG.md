@@ -1,3 +1,10 @@
+## [4.31.10](https://github.com/informatievlaanderen/public-api/compare/v4.31.9...v4.31.10) (2022-02-17)
+
+
+### Bug Fixes
+
+* fix extract by contour and by nis code requests ([ac2ee2c](https://github.com/informatievlaanderen/public-api/commit/ac2ee2cd254d071049938f88cbc39e568a7db397))
+
 ## [4.31.9](https://github.com/informatievlaanderen/public-api/compare/v4.31.8...v4.31.9) (2022-02-10)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "public-api",
-  "version": "4.31.9",
+  "version": "4.31.10",
   "description": "Provide a common api across all registries.",
   "author": "Basisregisters Vlaanderen",
   "license": "EUPL-1.2",
