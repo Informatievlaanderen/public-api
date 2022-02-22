@@ -30,7 +30,7 @@ namespace Public.Api.Road.Extracts
         }
 
         private static IRestRequest CreateBackendDownloadRequestByNisCode(DownloadExtractByNisCodeRequestBody body) =>
-            new RestRequest("extracts/downloadrequests/bycontour", Method.POST)
+            new RestRequest("extracts/downloadrequests/byniscode", Method.POST)
             .AddJsonBodyOrEmpty(body);
     }
 }
