@@ -1,3 +1,10 @@
+## [4.31.11](https://github.com/informatievlaanderen/public-api/compare/v4.31.10...v4.31.11) (2022-02-22)
+
+
+### Bug Fixes
+
+* forward request to correct endpoint ([00fb296](https://github.com/informatievlaanderen/public-api/commit/00fb296da0eddc0ca4998d92dc62137e1b9db165))
+
 ## [4.31.10](https://github.com/informatievlaanderen/public-api/compare/v4.31.9...v4.31.10) (2022-02-17)
 
 
