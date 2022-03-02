@@ -248,7 +248,8 @@ namespace Public.Api.Infrastructure
                                 .RewriteAcceptTypeForProblemDetail();
                         }
                     }
-                })
+                }
+                    .EnableJsonErrorActionFilterOption())
 
                 .AddHttpClient()
 
