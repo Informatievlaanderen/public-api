@@ -8,6 +8,7 @@ namespace Public.Api.Extract
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.BasicApiProblem;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
     using FluentValidation;
@@ -105,9 +106,9 @@ namespace Public.Api.Extract
             new ValidationProblemDetails
             {
                 Title = ProblemDetails.DefaultTitle,
-                ValidationErrors = new Dictionary<string, string[]>
+                ValidationErrors = new Dictionary<string, ValidationProblemDetails.Errors>
                 {
-                    { "extractDate", new[] { "Ongeldige datum." }}
+                    {"extractDate", new ValidationProblemDetails.Errors{ new ValidationError("Ongeldige datum.")}}
                 },
                 ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext)
             };

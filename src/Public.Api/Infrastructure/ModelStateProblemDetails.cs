@@ -18,7 +18,7 @@ namespace Public.Api.Infrastructure
                 .Where(x => x.Value.Errors.Any())
                 .ToDictionary(
                     x => x.Key,
-                    x => x.Value.Errors.Select(error => error.ErrorMessage).ToArray());
+                    x => new Errors(x.Value.Errors.Select(error => new ValidationError(error.ErrorMessage)).ToList()));
         }
     }
 }
