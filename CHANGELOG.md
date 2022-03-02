@@ -1,3 +1,10 @@
+## [4.32.1](https://github.com/informatievlaanderen/public-api/compare/v4.32.0...v4.32.1) (2022-03-02)
+
+
+### Bug Fixes
+
+* enable jsonerror filter ([24f6916](https://github.com/informatievlaanderen/public-api/commit/24f6916a9a8733e5fa33a8ea4b1abd7e6558eabf))
+
 # [4.32.0](https://github.com/informatievlaanderen/public-api/compare/v4.31.11...v4.32.0) (2022-03-02)
 
 
