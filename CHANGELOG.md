@@ -1,3 +1,10 @@
+# [4.33.0](https://github.com/informatievlaanderen/public-api/compare/v4.32.1...v4.33.0) (2022-03-04)
+
+
+### Features
+
+* add x-api-token ([7b8cf60](https://github.com/informatievlaanderen/public-api/commit/7b8cf604835b6b60117bf46d70604c7f328dfa2b))
+
 ## [4.32.1](https://github.com/informatievlaanderen/public-api/compare/v4.32.0...v4.32.1) (2022-03-02)
 
 
