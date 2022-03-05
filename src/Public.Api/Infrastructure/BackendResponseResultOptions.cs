@@ -17,5 +17,10 @@ namespace Public.Api.Infrastructure
         {
             return new BackendResponseResultOptions { ForwardHeaders = new List<string> { "Location", "ETag" }};
         }
+
+        public static BackendResponseResultOptions ForRead()
+        {
+            return new BackendResponseResultOptions { ForwardHeaders = new List<string> { "ETag" } };
+        }
     }
 }
