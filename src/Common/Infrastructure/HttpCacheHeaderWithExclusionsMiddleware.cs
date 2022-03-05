@@ -562,7 +562,7 @@ namespace Marvin.Cache.Headers
             var headers = httpContext.Response.Headers;
 
             // remove any other ETag and Last-Modified headers (could be set by other pieces of code)
-            headers.Remove(HeaderNames.ETag);
+            //headers.Remove(HeaderNames.ETag);
             headers.Remove(HeaderNames.LastModified);
 
             // get the request key
@@ -578,7 +578,18 @@ namespace Marvin.Cache.Headers
             var responseBodyContent = new StreamReader(httpContext.Response.Body).ReadToEnd();
 
             // Calculate the ETag to store in the store.
-            var eTag = await _eTagGenerator.GenerateETag(storeKey, responseBodyContent);
+            ETag eTag;
+            if (headers.ContainsKey(HeaderNames.ETag))
+            {
+                var eTagHeaderValue = headers[HeaderNames.ETag].First();
+                var eTagType = eTagHeaderValue.StartsWith("W/") ? ETagType.Weak : ETagType.Strong;
+                var eTagValue = eTagType == ETagType.Strong ? eTagHeaderValue : eTagHeaderValue[2..];
+                eTag = new ETag(eTagType, eTagValue);
+            }
+            else
+            {
+                eTag = await _eTagGenerator.GenerateETag(storeKey, responseBodyContent);
+            }
 
             var lastModified = await _lastModifiedInjector.CalculateLastModified(
                 new ResourceContext(httpContext.Request, storeKey));

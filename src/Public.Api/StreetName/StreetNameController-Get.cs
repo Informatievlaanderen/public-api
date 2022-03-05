@@ -72,7 +72,7 @@ namespace Public.Api.StreetName
                     CreateDefaultHandleBadRequest(),
                     cancellationToken));
 
-            return new BackendResponseResult(value);
+            return new BackendResponseResult(value, BackendResponseResultOptions.ForRead());
         }
 
         private static RestRequest CreateBackendDetailRequest(int streetNameId)
