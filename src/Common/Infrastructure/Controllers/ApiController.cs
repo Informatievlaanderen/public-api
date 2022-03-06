@@ -121,12 +121,17 @@ namespace Common.Infrastructure.Controllers
             AcceptType acceptType,
             Action<HttpStatusCode> handleNotOkResponseAction,
             ProblemDetailsHelper problemDetailsHelper,
-            CancellationToken cancellationToken)
+            ICollection<KeyValuePair<string, string>>? headersToForward = null,
+            CancellationToken cancellationToken = default)
         {
             var contentType = acceptType.ToMimeTypeString();
 
             var backendRequest = createBackendRequestFunc();
             backendRequest.AddHeader(HeaderNames.Accept, contentType);
+            if (headersToForward != null && headersToForward.Any())
+            {
+                backendRequest.AddHeaders(headersToForward);
+            }
 
             var response = await ExecuteRequestAsync(restClient, backendRequest, cancellationToken);
 

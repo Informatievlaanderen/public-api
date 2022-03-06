@@ -70,13 +70,15 @@ namespace Common.Infrastructure.Controllers
             Func<IRestRequest> createBackendRequestFunc,
             Action<HttpStatusCode> handleNotOkResponseAction,
             ProblemDetailsHelper problemDetailsHelper,
-            CancellationToken cancellationToken)
+            ICollection<KeyValuePair<string, string>>? headersToForward = null,
+            CancellationToken cancellationToken = default)
             => await GetFromBackendWithBadRequestAsync(
                 _restClient,
                 createBackendRequestFunc,
                 acceptType,
                 handleNotOkResponseAction,
                 problemDetailsHelper,
+                headersToForward,
                 cancellationToken);
 
         protected static IRestRequest CreateBackendRequestWithJsonBody<TRequest>(string path, TRequest body, Method method)

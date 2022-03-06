@@ -105,10 +105,11 @@ namespace Marvin.Cache.Headers
                 return;
             }
 
-            if (await PutOrPostIndicatesResourceHasChanged(httpContext))
-            {
-                return;
-            }
+            // Let backend check precondition
+            //if (await PutOrPostIndicatesResourceHasChanged(httpContext))
+            //{
+            //    return;
+            //}
 
             await HandleResponse(httpContext);
         }
