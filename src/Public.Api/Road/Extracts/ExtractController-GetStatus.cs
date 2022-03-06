@@ -21,7 +21,7 @@ namespace Public.Api.Road.Extracts
                 () => CreateBackendUploadStatusRequest(uploadId),
                 CreateDefaultHandleBadRequest(),
                 problemDetailsHelper,
-                cancellationToken);
+                cancellationToken: cancellationToken);
 
             var options = new BackendResponseResultOptions
             {

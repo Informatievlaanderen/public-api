@@ -24,7 +24,7 @@ namespace Public.Api.Road.Extracts
                 BackendRequest,
                 CreateDefaultHandleBadRequest(),
                 problemDetailsHelper,
-                cancellationToken);
+                cancellationToken: cancellationToken);
 
             return new BackendResponseResult(response);
         }
