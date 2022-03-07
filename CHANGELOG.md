@@ -1,3 +1,16 @@
+# [4.34.0](https://github.com/informatievlaanderen/public-api/compare/v4.33.0...v4.34.0) (2022-03-07)
+
+
+### Bug Fixes
+
+* allow e-tag to pass through from backend ([8fb3469](https://github.com/informatievlaanderen/public-api/commit/8fb3469b915e17fce65b0366d9affe565f0d0bf2))
+* also let v2 return etag ([cf6fa07](https://github.com/informatievlaanderen/public-api/commit/cf6fa07eb0a881dcd71c5592dccfcf817250d4c8))
+
+
+### Features
+
+* do not check PUT if-match headers and allow to forward to backend ([776930d](https://github.com/informatievlaanderen/public-api/commit/776930d3c082a36e7a7a6506471ab433c4502ff4))
+
 # [4.33.0](https://github.com/informatievlaanderen/public-api/compare/v4.32.1...v4.33.0) (2022-03-04)
 
 
