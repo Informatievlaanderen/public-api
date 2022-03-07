@@ -1,3 +1,10 @@
+## [4.34.2](https://github.com/informatievlaanderen/public-api/compare/v4.34.1...v4.34.2) (2022-03-07)
+
+
+### Bug Fixes
+
+* trim quotes for e-tag ([60562f1](https://github.com/informatievlaanderen/public-api/commit/60562f11fc63b507120db5bf1966067a2a53f2b1))
+
 ## [4.34.1](https://github.com/informatievlaanderen/public-api/compare/v4.34.0...v4.34.1) (2022-03-07)
 
 
