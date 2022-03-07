@@ -494,7 +494,7 @@ namespace Marvin.Cache.Headers
             var savedResponse = await _store.GetAsync(storeKey);
             if (savedResponse?.ETag != null)
             {
-                var eTag = new ETag(savedResponse.ETag.ETagType, savedResponse.ETag.Value);
+                var eTag = new ETag(savedResponse.ETag.ETagType, savedResponse.ETag.Value.Trim('"'));
                 headers[HeaderNames.ETag] = savedResponse.ETag.ToString();
                 logInformation = $"ETag: {eTag.ETagType}, {eTag}, ";
             }
@@ -585,7 +585,7 @@ namespace Marvin.Cache.Headers
                 var eTagHeaderValue = headers[HeaderNames.ETag].First();
                 var eTagType = eTagHeaderValue.StartsWith("W/") ? ETagType.Weak : ETagType.Strong;
                 var eTagValue = eTagType == ETagType.Strong ? eTagHeaderValue : eTagHeaderValue[2..];
-                eTag = new ETag(eTagType, eTagValue);
+                eTag = new ETag(eTagType, eTagValue.Trim('"'));
             }
             else
             {
