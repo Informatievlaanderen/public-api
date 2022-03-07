@@ -14,8 +14,8 @@ namespace Public.Api.Infrastructure
     using Autofac.Features.AttributeFilters;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Swagger;
+    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Extensions;
@@ -35,8 +35,8 @@ namespace Public.Api.Infrastructure
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.DependencyInjection.Extensions;
     using Microsoft.Extensions.FileProviders;
-    using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Options;
     using Microsoft.OpenApi.Models;
     using Modules;
@@ -62,6 +62,8 @@ namespace Public.Api.Infrastructure
         private readonly ILoggerFactory _loggerFactory;
         private readonly OpenApiContact _contact;
         private readonly MarketingVersion _marketingVersion;
+
+        private Url BaseUrl => new Url(_configuration["BaseUrl"]);
 
         public Startup(
             IConfiguration configuration,
@@ -479,7 +481,9 @@ namespace Public.Api.Infrastructure
         {
             var text = new StringBuilder(1000);
 
-            text.Append(
+            var baseUrlWithGroupName = BaseUrl.Combine(description.GroupName);
+
+text.Append(
 $@"# Introductie
 
 Welkom bij de REST API van Basisregisters Vlaanderen!
@@ -523,7 +527,7 @@ U kan momenteel anoniem gebruik maken van de read API’s zonder enige beperking
 Om in de toekomst optimaal gebruik te maken van de API’s vraagt u best nu al een API key aan. Dit kan door op de volgende link te drukken: [Vraag hier uw API key aan](https://dynamicforms.crmiv.vlaanderen.be/DynamicForms/Page/Show/CfDJ8M4Eu9v84l9JmW3p7WGylS-u2ToCLC5KvqQZmZ4G99X5TBULO4n0LCDpm7870eDUOk90hogqVcE7BCVQf2u_4WlsZ7B8friBrkyuAqmXYpIX_BzvQVVo8eUZyNd-njc33Y-Z-B87y03Y2Jgukp2AN5U93jT1Xv2l0afgvenLD9k0fasSMJkt4uNzKmlr_gILGrOy%2FJSqnRom_MLu0h7sALJ8uNvPywCMsZ1zy5Lal4h63?path=APIKey-aanvraag).  U kan deze API key op 2 manieren meegeven:
 
 * Via de header `x-api-key`.
-* In de URL. Bijvoorbeeld: `https://api.basisregisters.dev-vlaanderen.be/v1/feeds/adressen?apikey={{apikey}}` waarbij `{{apikey}}` vervangen wordt door de unieke code van uw API key.
+* In de URL. Bijvoorbeeld: `{baseUrlWithGroupName}/feeds/adressen?apikey={{apikey}}` waarbij `{{apikey}}` vervangen wordt door de unieke code van uw API key.
 
 ### V1 vs v2
 
@@ -571,7 +575,6 @@ Foutmelding | Wanneer                                                           
 410    |Wanneer het objectid verwijderd is.|
 500    |Wanneer de response groter is dan 10MB.<br> Wanneer er een interne fout is gebeurd. <br> Wanneer de GRB WFS-service niet kan gecontacteerd worden. |
 
- 
 ");
 
             if (isFeedsVisibleToggle)
@@ -608,7 +611,7 @@ In het veld `<content>` kan u het event en/of de objectversiedetails terugvinden
 
 ### Betekenis van de events en velden in de feed
 
-Een overzicht van alle mogelijke business events en de betekenis van de attributen onder het blokje `<event>` vindt u op deze pagina: [{_configuration["BaseUrl"]}{description.GroupName}/info/events?tags=sync]({_configuration["BaseUrl"]}{description.GroupName}/info/events?tags=sync).
+Een overzicht van alle mogelijke business events en de betekenis van de attributen onder het blokje `<event>` vindt u op deze pagina: [{baseUrlWithGroupName}/info/events?tags=sync]({baseUrlWithGroupName}/info/events?tags=sync).
 
 ### Kanttekening
 
@@ -631,7 +634,7 @@ In de feed endpoints kan u alle eventids terugvinden van alle aangeboden objectt
 Om de [Feeds](#tag/Feeds) te gebruiken is het verplicht om een API key mee te geven. Als u dit namelijk niet doet dan krijgt u een errormelding 401 als response terug. Er zijn 2 mogelijkheden om de API key mee te geven:
 
 * Via de header `x-api-key`.
-* In de URL. Bijvoorbeeld: `{_configuration["BaseUrl"]}{description.GroupName}/feeds/adressen?apikey={{apikey}}` waarbij `{{apikey}}` vervangen wordt door de unieke code van uw API key.
+* In de URL. Bijvoorbeeld: `{baseUrlWithGroupName}/feeds/adressen?apikey={{apikey}}` waarbij `{{apikey}}` vervangen wordt door de unieke code van uw API key.
 
 [Hier](https://dynamicforms.crmiv.vlaanderen.be/DynamicForms/Page/Show/CfDJ8M4Eu9v84l9JmW3p7WGylS9LgRV8RaaFB4kfHpofS_AGLb0p5kC-wMqGmDl7zdiZ6pivD2a80ArIuYssObUVzrWbiJdBqRAf5aS3fW6cOW7ftrxjowRj90ZPyww2LzVL-25O4o1MZ3ft6Pt4qEhIjzBfD8K39e6HhNKlMt6eh-OM2G4ysteDWGVbXlwiQIfOEZHr%2FuthUZbxKimbTCrg6nToraIYmIeQQviqmNgAoyOVV?path=APIKey-aanvraag) kan u een API key aanvragen.
 
