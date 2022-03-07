@@ -78,9 +78,14 @@ namespace Common.Infrastructure.Controllers
                             var cachedValue = cachedValues.FirstOrDefault(x => x.Name.Equals(ValueKey));
                             var cachedHeaders = cachedValues.FirstOrDefault(x => x.Name.Equals(HeadersKey));
                             var cachedLastModified = cachedValues.FirstOrDefault(x => x.Name.Equals(LastModifiedKey));
+                            var cachedETag = cachedValues.FirstOrDefault(x => x.Name.Equals(HeaderNames.ETag));
 
-                            var headers = JsonConvert.DeserializeObject<Dictionary<string, string[]>>(cachedHeaders.Value);
+                            var headers = JsonConvert.DeserializeObject<Dictionary<string, string[]>>(cachedHeaders.Value) ?? new Dictionary<string, string[]>();
                             headers.TryGetValue(AddVersionHeaderMiddleware.HeaderName, out var downstreamVersion);
+                            if (cachedETag.Value.HasValue)
+                            {
+                                headers.Add(HeaderNames.ETag, new[] { cachedETag.Value.ToString() });
+                            }
 
                             return new BackendResponse(
                                 cachedValue.Value,
@@ -91,7 +96,7 @@ namespace Common.Infrastructure.Controllers
                                     CultureInfo.InvariantCulture),
                                 acceptType.ToMimeTypeString(),
                                 true,
-                                Enumerable.Empty<KeyValuePair<string, StringValues>>());
+                                headers.Select(x => new KeyValuePair<string, StringValues>(x.Key, new StringValues(x.Value))));
                         }
 
                         _logger.LogError("Failed to retrieve record {Record} from Redis, cached values not set by registry.", key);
