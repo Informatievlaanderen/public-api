@@ -1,3 +1,10 @@
+## [4.34.1](https://github.com/informatievlaanderen/public-api/compare/v4.34.0...v4.34.1) (2022-03-07)
+
+
+### Bug Fixes
+
+* add trailing slash behind baseurl in documentation ([3a79202](https://github.com/informatievlaanderen/public-api/commit/3a792028d800676d655635ffe004f0afed76c168))
+
 # [4.34.0](https://github.com/informatievlaanderen/public-api/compare/v4.33.0...v4.34.0) (2022-03-07)
 
 
