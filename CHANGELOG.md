@@ -1,3 +1,10 @@
+# [4.35.0](https://github.com/informatievlaanderen/public-api/compare/v4.34.4...v4.35.0) (2022-03-08)
+
+
+### Features
+
+* add paragraph to docs, gawr-2751 ([8c690d8](https://github.com/informatievlaanderen/public-api/commit/8c690d83b6095b025a539b491bf817bb1a0584ee))
+
 ## [4.34.4](https://github.com/informatievlaanderen/public-api/compare/v4.34.3...v4.34.4) (2022-03-08)
 
 
