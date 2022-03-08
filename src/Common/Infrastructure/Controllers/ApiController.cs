@@ -32,6 +32,7 @@ namespace Common.Infrastructure.Controllers
     //[SupportUrlFormat] TODO: WHY?
     public abstract class ApiController<T> : PublicApiController
     {
+        private const string ETagKey = "eTag";
         private const string ValueKey = "value";
         private const string HeadersKey = "headers";
         private const string LastModifiedKey = "lastModified";
@@ -78,7 +79,7 @@ namespace Common.Infrastructure.Controllers
                             var cachedValue = cachedValues.FirstOrDefault(x => x.Name.Equals(ValueKey));
                             var cachedHeaders = cachedValues.FirstOrDefault(x => x.Name.Equals(HeadersKey));
                             var cachedLastModified = cachedValues.FirstOrDefault(x => x.Name.Equals(LastModifiedKey));
-                            var cachedETag = cachedValues.FirstOrDefault(x => x.Name.Equals(HeaderNames.ETag));
+                            var cachedETag = cachedValues.FirstOrDefault(x => x.Name.Equals(ETagKey));
 
                             var headers = JsonConvert.DeserializeObject<Dictionary<string, string[]>>(cachedHeaders.Value) ?? new Dictionary<string, string[]>();
                             headers.TryGetValue(AddVersionHeaderMiddleware.HeaderName, out var downstreamVersion);
