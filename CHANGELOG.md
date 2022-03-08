@@ -1,3 +1,10 @@
+## [4.34.3](https://github.com/informatievlaanderen/public-api/compare/v4.34.2...v4.34.3) (2022-03-08)
+
+
+### Bug Fixes
+
+* get etag from redis store if available ([d72480d](https://github.com/informatievlaanderen/public-api/commit/d72480d241228e05f855771771fcc04c97e64bed))
+
 ## [4.34.2](https://github.com/informatievlaanderen/public-api/compare/v4.34.1...v4.34.2) (2022-03-07)
 
 
