@@ -1,3 +1,10 @@
+# [4.36.0](https://github.com/informatievlaanderen/public-api/compare/v4.35.0...v4.36.0) (2022-03-09)
+
+
+### Features
+
+* add 429 error code on api ([e36dd7b](https://github.com/informatievlaanderen/public-api/commit/e36dd7bfc85ed427c60c0aa1777652d37bcf2206))
+
 # [4.35.0](https://github.com/informatievlaanderen/public-api/compare/v4.34.4...v4.35.0) (2022-03-08)
 
 
