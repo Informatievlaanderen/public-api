@@ -25,12 +25,14 @@ namespace Public.Api.StreetName.BackOffice
         /// <param name="proposeStreetNameToggle"></param>
         /// <param name="cancellationToken"></param>
         /// <response code="201">Als de straatnaam succesvol voorgesteld is.</response>
+        /// <response code="202">Als de aanvraag reeds in verwerking is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         /// <returns></returns>
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
