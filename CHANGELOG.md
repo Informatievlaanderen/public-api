@@ -1,3 +1,10 @@
+## [4.36.1](https://github.com/informatievlaanderen/public-api/compare/v4.36.0...v4.36.1) (2022-03-10)
+
+
+### Bug Fixes
+
+* add 202 status to propose streetname ([13297e2](https://github.com/informatievlaanderen/public-api/commit/13297e26f60ea339af5998a4d035a93dc13e8a6f))
+
 # [4.36.0](https://github.com/informatievlaanderen/public-api/compare/v4.35.0...v4.36.0) (2022-03-09)
 
 
