@@ -131,7 +131,7 @@ namespace Common.Infrastructure.Controllers
             string goneExceptionMessage,
             string notFoundExceptionMessage)
         {
-            var registryName = typeof(T).Name.ToLower().Replace("controller", "");
+            var registryName = typeof(T).Name.ToLower().Replace("controller", "").Replace("backoffice", "");
             switch (statusCode)
             {
                 case HttpStatusCode.NotAcceptable:
@@ -153,6 +153,9 @@ namespace Common.Infrastructure.Controllers
                     throw new NotFoundException(string.IsNullOrWhiteSpace(notFoundExceptionMessage)
                         ? "Niet gevonden."
                         : notFoundExceptionMessage, registryName);
+
+                case HttpStatusCode.PreconditionFailed:
+                    throw new PreconditionFailedException("ETag precondition failed.", registryName);
             }
         }
     }

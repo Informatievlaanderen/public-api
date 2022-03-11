@@ -8,11 +8,19 @@ namespace Common.Infrastructure
 
         public FeedsVisibleToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
+
     public class ProposeStreetNameToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
         public ProposeStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class ApproveStreetNameToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public ApproveStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
     public class IsAddressOsloApiEnabledToggle : IFeatureToggle
