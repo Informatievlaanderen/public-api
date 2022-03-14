@@ -20,9 +20,9 @@ nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      3.23.1  
 nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo        3.23.1  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            2.22.0  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo              2.22.0  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        2.52.3  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo          2.52.3  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice    2.52.3  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        2.58.0  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo          2.58.0  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice    2.58.0  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          2.33.5  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo            2.33.5  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           2.37.0  copy_content_to_output_dir: always
@@ -36,10 +36,10 @@ nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 5.0.4
 
 nuget Be.Vlaanderen.Basisregisters.Api 17.2.1
 
-nuget Be.Vlaanderen.Basisregisters.GrAr.Common 16.14.1
-nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 16.14.1
-nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 16.14.1
-nuget Be.Vlaanderen.Basisregisters.GrAr.Import 16.14.1
+nuget Be.Vlaanderen.Basisregisters.GrAr.Common 16.15.1
+nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 16.15.1
+nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 16.15.1
+nuget Be.Vlaanderen.Basisregisters.GrAr.Import 16.15.1
 
 nuget Be.Vlaanderen.Basisregisters.EventHandling 3.1.1
 nuget Be.Vlaanderen.Basisregisters.ProblemDetails 7.0.1
