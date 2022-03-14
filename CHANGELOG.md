@@ -1,3 +1,10 @@
+# [4.37.0](https://github.com/informatievlaanderen/public-api/compare/v4.36.1...v4.37.0) (2022-03-14)
+
+
+### Features
+
+* add streetname approve endpoint ([99945c1](https://github.com/informatievlaanderen/public-api/commit/99945c1f30069dc4a10cc9dd71f1226e9965c289))
+
 ## [4.36.1](https://github.com/informatievlaanderen/public-api/compare/v4.36.0...v4.36.1) (2022-03-10)
 
 
