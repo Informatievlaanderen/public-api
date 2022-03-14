@@ -1,3 +1,10 @@
+## [4.37.1](https://github.com/informatievlaanderen/public-api/compare/v4.37.0...v4.37.1) (2022-03-14)
+
+
+### Bug Fixes
+
+* update grar-common & streetname packages ([8344af4](https://github.com/informatievlaanderen/public-api/commit/8344af4d80b650bbd5de7e852c29b0d5280ca9ab))
+
 # [4.37.0](https://github.com/informatievlaanderen/public-api/compare/v4.36.1...v4.37.0) (2022-03-14)
 
 
