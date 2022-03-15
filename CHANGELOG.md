@@ -1,3 +1,10 @@
+## [4.37.2](https://github.com/informatievlaanderen/public-api/compare/v4.37.1...v4.37.2) (2022-03-15)
+
+
+### Bug Fixes
+
+* update streetname ([adddceb](https://github.com/informatievlaanderen/public-api/commit/adddcebf0a3c4317679adc647e172e99eb131bce))
+
 ## [4.37.1](https://github.com/informatievlaanderen/public-api/compare/v4.37.0...v4.37.1) (2022-03-14)
 
 
