@@ -9,6 +9,7 @@ namespace Public.Api.StreetName.BackOffice
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
+    using StreetNameRegistry.Api.Legacy.StreetName.Responses;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -27,8 +28,10 @@ namespace Public.Api.StreetName.BackOffice
         /// <response code="202">Als de aanvraag reeds in verwerking is.</response>
         /// <response code="204">Als de straatnaam succesvol goedgekeurd is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
+        /// <response code="404">Als de straatnaam niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="409">Als de straatnaam status niet 'voorgesteld' is. TODO: possible change </response>
+        /// <response code="410">Als de straatnaam verwijderd is.</response>
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
@@ -41,7 +44,9 @@ namespace Public.Api.StreetName.BackOffice
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(StreetNameNotFoundResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status409Conflict, typeof(ConflictResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(StreetNameGoneResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
