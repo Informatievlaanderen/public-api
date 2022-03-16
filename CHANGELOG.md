@@ -1,3 +1,10 @@
+## [4.38.2](https://github.com/informatievlaanderen/public-api/compare/v4.38.1...v4.38.2) (2022-03-16)
+
+
+### Bug Fixes
+
+* 404/410 missing swagger produce ([0f20ce1](https://github.com/informatievlaanderen/public-api/commit/0f20ce10b045aa9956beaea0616bd011f730f54d))
+
 ## [4.38.1](https://github.com/informatievlaanderen/public-api/compare/v4.38.0...v4.38.1) (2022-03-16)
 
 
