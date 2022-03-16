@@ -1,3 +1,10 @@
+## [4.38.1](https://github.com/informatievlaanderen/public-api/compare/v4.38.0...v4.38.1) (2022-03-16)
+
+
+### Bug Fixes
+
+* add docs 404/410 to approve ([06a85e1](https://github.com/informatievlaanderen/public-api/commit/06a85e187b09cefeeb0e9eb7e89cf71ceba5e5de))
+
 # [4.38.0](https://github.com/informatievlaanderen/public-api/compare/v4.37.3...v4.38.0) (2022-03-16)
 
 
