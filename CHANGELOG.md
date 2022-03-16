@@ -1,3 +1,10 @@
+# [4.38.0](https://github.com/informatievlaanderen/public-api/compare/v4.37.3...v4.38.0) (2022-03-16)
+
+
+### Features
+
+* add 409 Conflict response example ([2579a50](https://github.com/informatievlaanderen/public-api/commit/2579a50124a350d637dc3367074e5ed9924871eb))
+
 ## [4.37.3](https://github.com/informatievlaanderen/public-api/compare/v4.37.2...v4.37.3) (2022-03-15)
 
 
