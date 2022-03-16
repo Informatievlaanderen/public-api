@@ -8,12 +8,12 @@ namespace Common.Infrastructure.Controllers
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.ProblemDetailsException;
     using FeatureToggle;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Primitives;
     using Newtonsoft.Json;
-    using ProblemDetailsException;
     using RestSharp;
 
     public abstract class RegistryApiController<T> : ApiController<T>

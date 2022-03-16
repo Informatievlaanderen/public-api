@@ -2,7 +2,7 @@ namespace Public.Api.Infrastructure.ProblemDetailsExceptionMappings
 {
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.BasicApiProblem;
-    using Common.Infrastructure.ProblemDetailsException;
+    using Common.ProblemDetailsException;
     using Microsoft.AspNetCore.Http;
 
     public class GoneExceptionMapping : ApiProblemDetailsExceptionMapping

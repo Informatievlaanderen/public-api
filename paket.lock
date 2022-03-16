@@ -31,7 +31,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.AggregateSource (5.2.1)
       Be.Vlaanderen.Basisregisters.EventHandling (>= 3.1.1)
       SqlStreamStore (>= 1.2)
-    Be.Vlaanderen.Basisregisters.Api (17.2.1)
+    Be.Vlaanderen.Basisregisters.Api (17.3)
       Autofac (>= 6.2)
       Autofac.Extensions.DependencyInjection (>= 7.1)
       Be.Vlaanderen.Basisregisters.AggregateSource (>= 5.2.1)
@@ -259,11 +259,11 @@ NUGET
     Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (1.60.4) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.BlobStore (>= 2.2.12)
       Microsoft.IO.RecyclableMemoryStream (>= 1.4)
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice (2.59) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice (2.61) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.15.1)
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (2.59) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (2.61) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.15.1)
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo (2.59) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo (2.61) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 16.15.1)
     Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (2.2.12)
     Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (2.2.11)

@@ -1,4 +1,4 @@
-namespace Common.Infrastructure.ProblemDetailsException
+namespace Common.ProblemDetailsException
 {
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.BasicApiProblem;
