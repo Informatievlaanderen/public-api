@@ -100,16 +100,16 @@ namespace Common.Infrastructure.Controllers
                                 headers.Select(x => new KeyValuePair<string, StringValues>(x.Key, new StringValues(x.Value))));
                         }
 
-                        _logger.LogError("Failed to retrieve record {Record} from Redis, cached values not set by registry.", key);
+                        _logger.LogWarning("Failed to retrieve record {Record} from Redis, cached values not set by registry.", key);
                     }
                     else
                     {
-                        _logger.LogError("Failed to retrieve record {Record} from Redis, no cached values.", key);
+                        _logger.LogWarning("Failed to retrieve record {Record} from Redis, no cached values.", key);
                     }
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Failed to retrieve record {Record} from Redis.", key);
+                    _logger.LogWarning(ex, "Failed to retrieve record {Record} from Redis.", key);
                 }
             }
 
