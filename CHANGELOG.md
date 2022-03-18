@@ -1,3 +1,10 @@
+## [4.38.3](https://github.com/informatievlaanderen/public-api/compare/v4.38.2...v4.38.3) (2022-03-18)
+
+
+### Bug Fixes
+
+* change cachemiss to warning GAWR-2859 ([adc61ed](https://github.com/informatievlaanderen/public-api/commit/adc61ed969698056e11684187549599e775b0319))
+
 ## [4.38.2](https://github.com/informatievlaanderen/public-api/compare/v4.38.1...v4.38.2) (2022-03-16)
 
 
