@@ -22,7 +22,7 @@ namespace Public.Api.StreetName.BackOffice
         /// <param name="objectId">Identificator van de straatnaam.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
-        /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van de straatnaam (optioneel). </param>
+        /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van de straatnaam (optioneel).</param>
         /// <param name="approveStreetNameToggle"></param>
         /// <param name="cancellationToken"></param>
         /// <response code="202">Als de aanvraag reeds in verwerking is.</response>
@@ -30,7 +30,7 @@ namespace Public.Api.StreetName.BackOffice
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="404">Als de straatnaam niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
-        /// <response code="409">Als de straatnaam status niet 'voorgesteld' is. TODO: possible change </response>
+        /// <response code="409">Als de straatnaam status niet 'voorgesteld' is.</response>
         /// <response code="410">Als de straatnaam verwijderd is.</response>
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
