@@ -7,7 +7,8 @@ namespace Common.ProblemDetailsException
     public class PreconditionFailedException : ApiProblemDetailsException
     {
         public string RegistryName { get; }
-        public PreconditionFailedException(string message, string registryName) : base(message, StatusCodes.Status410Gone, new ExceptionProblemDetails(), null)
+
+        public PreconditionFailedException(string message, string registryName) : base(message, StatusCodes.Status412PreconditionFailed, new ExceptionProblemDetails(), null)
         {
             RegistryName = registryName;
         }
