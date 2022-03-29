@@ -396,6 +396,11 @@ namespace Common.Infrastructure
             return _database.ListLeftPopAsync(key, flags);
         }
 
+        public Task<RedisValue[]> ListLeftPopAsync(RedisKey key, long count, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.ListLeftPopAsync(key, count, flags);
+        }
+
         public Task<long> ListLeftPushAsync(RedisKey key, RedisValue value, When when = When.Always, CommandFlags flags = CommandFlags.None)
         {
             return _database.ListLeftPushAsync(key, value, when, flags);
@@ -429,6 +434,11 @@ namespace Common.Infrastructure
         public Task<RedisValue> ListRightPopAsync(RedisKey key, CommandFlags flags = CommandFlags.None)
         {
             return _database.ListRightPopAsync(key, flags);
+        }
+
+        public Task<RedisValue[]> ListRightPopAsync(RedisKey key, long count, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.ListRightPopAsync(key, count, flags);
         }
 
         public Task<RedisValue> ListRightPopLeftPushAsync(RedisKey source, RedisKey destination, CommandFlags flags = CommandFlags.None)
@@ -957,6 +967,11 @@ namespace Common.Infrastructure
             return _database.StringGetSetAsync(key, value, flags);
         }
 
+        public Task<RedisValue> StringGetDeleteAsync(RedisKey key, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.StringGetDeleteAsync(key, flags);
+        }
+
         public Task<RedisValueWithExpiry> StringGetWithExpiryAsync(RedisKey key, CommandFlags flags = CommandFlags.None)
         {
             return _database.StringGetWithExpiryAsync(key, flags);
@@ -986,6 +1001,12 @@ namespace Common.Infrastructure
         public Task<bool> StringSetAsync(KeyValuePair<RedisKey, RedisValue>[] values, When when = When.Always, CommandFlags flags = CommandFlags.None)
         {
             return _database.StringSetAsync(values, when, flags);
+        }
+
+        public Task<RedisValue> StringSetAndGetAsync(RedisKey key, RedisValue value, TimeSpan? expiry = null, When when = When.Always,
+            CommandFlags flags = CommandFlags.None)
+        {
+            return _database.StringSetAndGetAsync(key, value, expiry, when, flags);
         }
 
         public Task<bool> StringSetBitAsync(RedisKey key, long offset, bool bit, CommandFlags flags = CommandFlags.None)
@@ -1298,6 +1319,11 @@ namespace Common.Infrastructure
             return _database.ListLeftPop(key, flags);
         }
 
+        public RedisValue[] ListLeftPop(RedisKey key, long count, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.ListLeftPop(key, count, flags);
+        }
+
         public long ListLeftPush(RedisKey key, RedisValue value, When when = When.Always, CommandFlags flags = CommandFlags.None)
         {
             return _database.ListLeftPush(key, value, when, flags);
@@ -1331,6 +1357,11 @@ namespace Common.Infrastructure
         public RedisValue ListRightPop(RedisKey key, CommandFlags flags = CommandFlags.None)
         {
             return _database.ListRightPop(key, flags);
+        }
+
+        public RedisValue[] ListRightPop(RedisKey key, long count, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.ListRightPop(key, count, flags);
         }
 
         public RedisValue ListRightPopLeftPush(RedisKey source, RedisKey destination, CommandFlags flags = CommandFlags.None)
@@ -1861,6 +1892,11 @@ namespace Common.Infrastructure
             return _database.StringGetSet(key, value, flags);
         }
 
+        public RedisValue StringGetDelete(RedisKey key, CommandFlags flags = CommandFlags.None)
+        {
+            return _database.StringGetDelete(key, flags);
+        }
+
         public RedisValueWithExpiry StringGetWithExpiry(RedisKey key, CommandFlags flags = CommandFlags.None)
         {
             return _database.StringGetWithExpiry(key, flags);
@@ -1889,6 +1925,12 @@ namespace Common.Infrastructure
         public bool StringSet(KeyValuePair<RedisKey, RedisValue>[] values, When when = When.Always, CommandFlags flags = CommandFlags.None)
         {
             return _database.StringSet(values, when, flags);
+        }
+
+        public RedisValue StringSetAndGet(RedisKey key, RedisValue value, TimeSpan? expiry = null, When when = When.Always,
+            CommandFlags flags = CommandFlags.None)
+        {
+            return _database.StringSetAndGet(key, value, expiry, when, flags);
         }
 
         public bool StringSetBit(RedisKey key, long offset, bool bit, CommandFlags flags = CommandFlags.None)

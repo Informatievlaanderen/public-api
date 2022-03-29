@@ -116,6 +116,11 @@ end
             return Task.FromResult(true);
         }
 
+        public Task<IEnumerable<StoreKey>> FindStoreKeysByKeyPartAsync(string valueToMatch, bool ignoreCase)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<StoreKey>> FindStoreKeysByKeyPartAsync(string valueToMatch)
         {
             // We dont use this in public api
