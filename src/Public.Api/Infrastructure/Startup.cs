@@ -462,7 +462,8 @@ namespace Public.Api.Infrastructure
                             new GrbWfsExceptionMapping(),
                             new GoneExceptionMapping(),
                             new NotFoundExceptionMapping(),
-                            new PreconditionFailedExceptionMapping()
+                            new PreconditionFailedExceptionMapping(),
+                            new ConflictExceptionMapping(),
                         }
                     },
                     MiddlewareHooks =

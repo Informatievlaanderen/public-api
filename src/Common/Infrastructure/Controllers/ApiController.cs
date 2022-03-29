@@ -145,8 +145,7 @@ namespace Common.Infrastructure.Controllers
                 .Headers
                 .FirstOrDefault(x => x.Name.Equals(AddVersionHeaderMiddleware.HeaderName, StringComparison.InvariantCultureIgnoreCase));
 
-            if (response.StatusCode is HttpStatusCode.BadRequest
-                or HttpStatusCode.Conflict)
+            if (response.StatusCode is HttpStatusCode.BadRequest)
             {
                 return new BackendResponse(
                     GetPublicContentValue(response, problemDetailsHelper),
@@ -157,6 +156,7 @@ namespace Common.Infrastructure.Controllers
                     response.HeadersToKeyValuePairs(),
                     response.StatusCode);
             }
+
             if (response.IsSuccessful)
             {
                 return new BackendResponse(

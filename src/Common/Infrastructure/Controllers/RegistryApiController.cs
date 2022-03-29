@@ -156,6 +156,9 @@ namespace Common.Infrastructure.Controllers
 
                 case HttpStatusCode.PreconditionFailed:
                     throw new PreconditionFailedException("ETag precondition failed.", registryName);
+
+                case HttpStatusCode.Conflict:
+                    throw new ConflictException("Conflict", registryName);
             }
         }
     }
