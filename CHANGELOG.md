@@ -1,3 +1,21 @@
+# [5.0.0](https://github.com/informatievlaanderen/public-api/compare/v4.38.3...v5.0.0) (2022-03-30)
+
+
+### Bug Fixes
+
+* docs remove TODO streetname approve ([213635e](https://github.com/informatievlaanderen/public-api/commit/213635e238d6a5b070a652c6069594a523d5bc39))
+* treat 409 as generic error ([0ddb4d0](https://github.com/informatievlaanderen/public-api/commit/0ddb4d02a8ea1253910327aa9b8e5a2ba80720cf))
+
+
+### Features
+
+* move to dotnet 6.0.3 ([fee3615](https://github.com/informatievlaanderen/public-api/commit/fee36154512c14334712dcc194194f9de4b6314f))
+
+
+### BREAKING CHANGES
+
+* move to dotnet 6.0.3
+
 ## [4.38.3](https://github.com/informatievlaanderen/public-api/compare/v4.38.2...v4.38.3) (2022-03-18)
 
 
