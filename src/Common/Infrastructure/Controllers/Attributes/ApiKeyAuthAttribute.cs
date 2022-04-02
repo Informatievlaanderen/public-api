@@ -70,6 +70,30 @@ namespace Common.Infrastructure.Controllers.Attributes
 
         public Task OnActionExecutionApiTokenAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
+            //We get the x-api-key header or query param string
+            //Check if the user used this and thus is not anonymous GAWR-2968
+            if (!context.HttpContext.Request.Headers.TryGetValue(ApiKeyHeaderName, out var potentialHeaderApiKey)
+                & !context.HttpContext.Request.Query.TryGetValue(ApiKeyQueryName, out var potentialQueryApiKey))
+            {
+                RefuseAccess(context, "API key verplicht.");
+            }
+
+            var potentialApiKey = string.Empty;
+            if (!string.IsNullOrWhiteSpace(potentialQueryApiKey))
+            {
+                potentialApiKey = potentialQueryApiKey;
+            }
+
+            if (!string.IsNullOrWhiteSpace(potentialHeaderApiKey))
+            {
+                potentialApiKey = potentialHeaderApiKey;
+            }
+
+            if (string.IsNullOrWhiteSpace(potentialApiKey))
+            {
+                RefuseAccess(context, "API key verplicht.");
+            }
+
             if (!context.HttpContext.Request.Headers.TryGetValue(ApiTokenHeaderName, out var potentialHeaderApiTokens))
             {
                 RefuseAccess(context, "Gelieve een geldige API key op te geven");
