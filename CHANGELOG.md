@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/informatievlaanderen/public-api/compare/v5.0.0...v5.0.1) (2022-04-04)
+
+
+### Bug Fixes
+
+* empty apikey check ([45336c9](https://github.com/informatievlaanderen/public-api/commit/45336c98360a92a95eea35100bb1c816f15d2942))
+
 # [5.0.0](https://github.com/informatievlaanderen/public-api/compare/v4.38.3...v5.0.0) (2022-03-30)
 
 
