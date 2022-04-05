@@ -62,7 +62,7 @@ end
             if (!setByRegistry)
                 return null;
 
-            var eTag = redisValues[0].ToString();
+            var eTag = redisValues[0].ToString().Replace("W/", string.Empty).Trim('"');
             var eTagType = Enum.Parse<ETagType>(redisValues[1].ToString(), true);
 
             var lastModified = DateTimeOffset.ParseExact(
