@@ -1,3 +1,10 @@
+## [5.0.3](https://github.com/informatievlaanderen/public-api/compare/v5.0.2...v5.0.3) (2022-04-05)
+
+
+### Bug Fixes
+
+* etag compare from redis ([80e2180](https://github.com/informatievlaanderen/public-api/commit/80e21808703f433a0d094b443631590c73a569dc))
+
 ## [5.0.2](https://github.com/informatievlaanderen/public-api/compare/v5.0.1...v5.0.2) (2022-04-04)
 
 
