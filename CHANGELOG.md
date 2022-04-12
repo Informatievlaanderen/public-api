@@ -1,3 +1,10 @@
+## [5.1.1](https://github.com/informatievlaanderen/public-api/compare/v5.1.0...v5.1.1) (2022-04-12)
+
+
+### Bug Fixes
+
+* set default response format and bump problemdetails ([1cd5278](https://github.com/informatievlaanderen/public-api/commit/1cd5278b0ea73a95606ed40d74704716188f78c1))
+
 # [5.1.0](https://github.com/informatievlaanderen/public-api/compare/v5.0.3...v5.1.0) (2022-04-12)
 
 
