@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/informatievlaanderen/public-api/compare/v5.0.3...v5.1.0) (2022-04-12)
+
+
+### Features
+
+* use jsonnet serializer for restsharp GAWR-2982 ([b442b70](https://github.com/informatievlaanderen/public-api/commit/b442b708312a4784cdfa67c07b4bd819fee1350a))
+
 ## [5.0.3](https://github.com/informatievlaanderen/public-api/compare/v5.0.2...v5.0.3) (2022-04-05)
 
 
