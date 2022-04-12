@@ -29,7 +29,7 @@ namespace Common.Infrastructure.Controllers
 
     [ApiController]
     [RejectInvalidQueryParametersFilter]
-    //[SupportUrlFormat] TODO: WHY?
+    [SupportUrlFormat] //to ensure errors are returned in the format which the controller [Produces]
     public abstract class ApiController<T> : PublicApiController
     {
         private const string ETagKey = "eTag";
