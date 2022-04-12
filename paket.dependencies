@@ -41,7 +41,7 @@ nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api          1.60.4  
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 6.0.3
 
-nuget Be.Vlaanderen.Basisregisters.Api 18.0.2
+nuget Be.Vlaanderen.Basisregisters.Api 18.0.3
 
 nuget Be.Vlaanderen.Basisregisters.GrAr.Common 17.2.0
 nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 17.2.0
@@ -49,7 +49,7 @@ nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 17.2.0
 nuget Be.Vlaanderen.Basisregisters.GrAr.Import 17.2.0
 
 nuget Be.Vlaanderen.Basisregisters.EventHandling 4.0.0
-nuget Be.Vlaanderen.Basisregisters.ProblemDetails 8.0.0
+nuget Be.Vlaanderen.Basisregisters.ProblemDetails 8.0.1
 
 // TEST STUFF
 nuget Microsoft.NET.Test.Sdk 17.1.0

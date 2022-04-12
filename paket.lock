@@ -47,7 +47,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.AggregateSource (6.0)
       Be.Vlaanderen.Basisregisters.EventHandling (>= 4.0)
       SqlStreamStore (>= 1.2)
-    Be.Vlaanderen.Basisregisters.Api (18.0.2)
+    Be.Vlaanderen.Basisregisters.Api (18.0.3)
       Autofac (>= 6.3)
       Autofac.Extensions.DependencyInjection (>= 7.2)
       Be.Vlaanderen.Basisregisters.AggregateSource (>= 6.0)
@@ -73,7 +73,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.EventHandling.Autofac (>= 4.0)
       Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic (>= 3.0.1)
       Be.Vlaanderen.Basisregisters.Middleware.AddProblemJsonHeader (>= 2.0)
-      Be.Vlaanderen.Basisregisters.ProblemDetails (>= 8.0)
+      Be.Vlaanderen.Basisregisters.ProblemDetails (>= 8.0.1)
       FluentValidation.AspNetCore (>= 10.4)
       Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore (>= 6.0.3)
       Microsoft.AspNetCore.Mvc.NewtonsoftJson (>= 6.0.3)
@@ -254,7 +254,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.0)
     Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (3.0.1) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo (3.0.1) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.ProblemDetails (8.0)
+    Be.Vlaanderen.Basisregisters.ProblemDetails (8.0.1)
       System.Reflection.Metadata (>= 6.0.1)
     Be.Vlaanderen.Basisregisters.ProjectionHandling.Connector (10.0.1)
       Microsoft.EntityFrameworkCore (>= 6.0.3)
