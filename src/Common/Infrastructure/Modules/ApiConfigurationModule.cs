@@ -78,7 +78,12 @@ namespace Common.Infrastructure.Modules
                 .Keyed<RestClient>(name);
 
             builder
-                .Register(context => new TraceRestClient(context.ResolveNamed<RestClient>(name), serviceName))
+                .Register(context =>
+                {
+                    var restClient = new TraceRestClient(context.ResolveNamed<RestClient>(name), serviceName);
+                    restClient.UseSerializer<JsonNetSerializer>();
+                    return restClient;
+                })
                 .Keyed<TraceRestClient>(name)
                 .Keyed<IRestClient>(name);
         }
