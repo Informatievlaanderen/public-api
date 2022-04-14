@@ -30,7 +30,7 @@ namespace Public.Api.Building
             [KeyFilter(RegistryKeys.Building)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<BuildingController> logger)
-            : base(restClient, cacheToggle, redis, logger) { }
+            : base(restClient, cacheToggle, redis, logger){ }
 
         private static ContentFormat DetermineFormat(ActionContext context)
             => ContentFormat.For(EndpointType.Legacy, context);
