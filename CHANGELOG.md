@@ -1,3 +1,10 @@
+## [5.1.3](https://github.com/informatievlaanderen/public-api/compare/v5.1.2...v5.1.3) (2022-04-27)
+
+
+### Bug Fixes
+
+* redirect sonar to /dev/null ([ac07e2d](https://github.com/informatievlaanderen/public-api/commit/ac07e2db42a0413923c37efd70d197c8a9234558))
+
 ## [5.1.2](https://github.com/informatievlaanderen/public-api/compare/v5.1.1...v5.1.2) (2022-04-14)
 
 
