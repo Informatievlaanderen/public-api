@@ -1,3 +1,10 @@
+## [5.1.4](https://github.com/informatievlaanderen/public-api/compare/v5.1.3...v5.1.4) (2022-04-29)
+
+
+### Bug Fixes
+
+* run sonar end when release version != none ([c772a54](https://github.com/informatievlaanderen/public-api/commit/c772a54d88a7b02dceecdcb989927c1020382db6))
+
 ## [5.1.3](https://github.com/informatievlaanderen/public-api/compare/v5.1.2...v5.1.3) (2022-04-27)
 
 
