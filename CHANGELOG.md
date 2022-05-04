@@ -1,3 +1,10 @@
+## [5.1.5](https://github.com/informatievlaanderen/public-api/compare/v5.1.4...v5.1.5) (2022-05-04)
+
+
+### Bug Fixes
+
+* fix EndpointTypeExtensions.GetContentTypes return ([c013de1](https://github.com/informatievlaanderen/public-api/commit/c013de1d2edb0c4c5dc5874d7c28adc1c4455976))
+
 ## [5.1.4](https://github.com/informatievlaanderen/public-api/compare/v5.1.3...v5.1.4) (2022-04-29)
 
 
