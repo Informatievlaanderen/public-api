@@ -2,7 +2,6 @@ namespace Common.Infrastructure.Extensions
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Be.Vlaanderen.Basisregisters.Api;
     using Microsoft.AspNetCore.Mvc.Formatters;
@@ -39,18 +38,7 @@ namespace Common.Infrastructure.Extensions
             };
         }
 
-        public static IEnumerable<AcceptType> GetContentTypes(this EndpointType endpointType)
-        {
-            return endpointType switch
-            {
-                EndpointType.BackOffice
-                    => new []
-                    {
-                        AcceptType.Json
-                    },
-                _ => new[] { AcceptType.Json }
-            };
-        }
+        public static IEnumerable<AcceptType> GetContentTypes(this EndpointType endpointType) => new[] { AcceptType.Json };
 
         public static MediaTypeCollection Produces(this EndpointType endpointType)
         {
@@ -59,8 +47,8 @@ namespace Common.Infrastructure.Extensions
                 .SelectMany(type =>
                     new []
                     {
-                        AcceptTypeExtensions.ToMimeTypeString(type),
-                        AcceptTypeExtensions.ToProblemResponseMimeTypeString(type)
+                        type.ToMimeTypeString(),
+                        type.ToProblemResponseMimeTypeString()
                     })
                 .Distinct()
                 .OrderBy(type => type, new AcceptTypeComparer())
@@ -80,7 +68,7 @@ namespace Common.Infrastructure.Extensions
                 .SelectMany(type =>
                     new []
                     {
-                        AcceptTypeExtensions.ToMimeTypeString(type)
+                        type.ToMimeTypeString()
                     })
                 .Distinct()
                 .OrderBy(type => type, new AcceptTypeComparer())
@@ -95,21 +83,28 @@ namespace Common.Infrastructure.Extensions
 
         private class AcceptTypeComparer : IComparer<string>
         {
-            public int Compare([AllowNull] string x, [AllowNull] string y)
+            public int Compare(string? x, string? y)
             {
                 if (x == null || y == null)
+                {
                     return DefaultCompare(x, y);
+                }
 
                 var problemResult = 0;
                 if (ContainsProblem(x))
+                {
                     problemResult -= 1;
+                }
+
                 if (ContainsProblem(y))
+                {
                     problemResult += 1;
+                }
 
                 return problemResult != 0 ? problemResult : string.CompareOrdinal(x, y);
             }
 
-            private static int DefaultCompare([AllowNull] string x, [AllowNull] string y)
+            private static int DefaultCompare(string? x, string? y)
                 => string.CompareOrdinal(x, y);
 
             private static bool ContainsProblem(string value) =>
