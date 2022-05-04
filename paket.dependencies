@@ -8,7 +8,7 @@ nuget StackExchange.Redis 2.5.43
 nuget AWSSDK.S3 3.7.8.13
 
 // MISSING ASSEMBLY REFERENCES
-nuget Microsoft.IdentityModel.Tokens 6.16.0
+nuget Microsoft.IdentityModel.Tokens 6.17.0
 nuget IdentityModel 6.0.0
 nuget Be.Vlaanderen.Basisregisters.ProjectionHandling.Runner 10.0.1
 nuget Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore 6.0.0
