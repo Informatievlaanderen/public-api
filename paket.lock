@@ -244,9 +244,9 @@ NUGET
       Be.Vlaanderen.Basisregisters.GrAr.Common (17.2)
       Microsoft.CSharp (>= 4.7)
     Be.Vlaanderen.Basisregisters.Middleware.AddProblemJsonHeader (2.0)
-    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (4.0.1) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (4.1.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.0)
-    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo (4.0.1) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo (4.1.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.0)
     Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (4.0.2) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.0)
