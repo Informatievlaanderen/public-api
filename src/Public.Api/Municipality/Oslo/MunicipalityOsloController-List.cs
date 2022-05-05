@@ -32,6 +32,7 @@ namespace Public.Api.Municipality.Oslo
         /// Filter op de status van de gemeente (exact) (optioneel). <br />
         /// `"inGebruik"` `"gehistoreerd"` `"voorgesteld"`
         /// </param>
+        /// <param name="isFlemishRegion"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
@@ -61,6 +62,7 @@ namespace Public.Api.Municipality.Oslo
             [FromQuery] string sort,
             [FromQuery] string gemeentenaam,
             [FromQuery] string status,
+            [FromQuery] bool isFlemishRegion,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptionsV2> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -68,7 +70,9 @@ namespace Public.Api.Municipality.Oslo
             CancellationToken cancellationToken = default)
         {
             if (!featureToggle.FeatureEnabled)
+            {
                 return NotFound();
+            }
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
             const Taal taal = Taal.NL;
@@ -79,7 +83,8 @@ namespace Public.Api.Municipality.Oslo
                 taal,
                 gemeentenaam,
                 sort,
-                status);
+                status,
+                isFlemishRegion);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"oslo/municipality-list:{taal}");
 
@@ -104,12 +109,14 @@ namespace Public.Api.Municipality.Oslo
             Taal language,
             string municipalityName,
             string sort,
-            string status)
+            string status,
+            bool isFlemishRegion)
         {
             var filter = new MunicipalityListFilter
             {
                 MunicipalityName = municipalityName,
-                Status = status
+                Status = status,
+                IsFlemishRegion = isFlemishRegion
             };
 
             // niscode, naam, naam-nl, naam-fr, naam-de, naam-en
