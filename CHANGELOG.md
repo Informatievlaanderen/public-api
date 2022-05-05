@@ -1,3 +1,10 @@
+# [5.2.0](https://github.com/informatievlaanderen/public-api/compare/v5.1.5...v5.2.0) (2022-05-05)
+
+
+### Features
+
+* support flemish region constraint ([86e9da6](https://github.com/informatievlaanderen/public-api/commit/86e9da6928a0c2c2a27a03042874650f4e5ffc8d))
+
 ## [5.1.5](https://github.com/informatievlaanderen/public-api/compare/v5.1.4...v5.1.5) (2022-05-04)
 
 
