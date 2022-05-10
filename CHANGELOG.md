@@ -1,3 +1,10 @@
+# [5.3.0](https://github.com/informatievlaanderen/public-api/compare/v5.2.0...v5.3.0) (2022-05-10)
+
+
+### Features
+
+* add propose address ([bf626ad](https://github.com/informatievlaanderen/public-api/commit/bf626ad16b86690aea75b43d1fca85074e798a60))
+
 # [5.2.0](https://github.com/informatievlaanderen/public-api/compare/v5.1.5...v5.2.0) (2022-05-05)
 
 
