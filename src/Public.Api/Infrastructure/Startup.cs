@@ -302,6 +302,7 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new FeedsVisibleToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsFeedsVisible))
                 .AddSingleton(c => new ProposeStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ProposeStreetName))
                 .AddSingleton(c => new ApproveStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ApproveStreetName))
+                .AddSingleton(c => new ProposeAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ProposeAddress))
                 .AddSingleton(c => new IsAddressOsloApiEnabledToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsAddressOsloApiEnabled))
                 .AddSingleton(c => new IsBuildingOsloApiEnabledToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsBuildingOsloApiEnabled))
                 .AddSingleton(c => new IsBuildingUnitOsloApiEnabledToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsBuildingUnitOsloApiEnabled))

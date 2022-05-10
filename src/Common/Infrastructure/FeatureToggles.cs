@@ -23,6 +23,13 @@ namespace Common.Infrastructure
         public ApproveStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class ProposeAddressToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public ProposeAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class IsAddressOsloApiEnabledToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
