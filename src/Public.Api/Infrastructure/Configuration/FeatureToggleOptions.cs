@@ -6,6 +6,7 @@ namespace Public.Api.Infrastructure.Configuration
         public bool IsFeedsVisible { get; set; }
         public bool ProposeStreetName { get; set; }
         public bool ApproveStreetName { get; set; }
+        public bool ProposeAddress { get; set; }
         public bool IsAddressOsloApiEnabled { get; set; }
         public bool IsBuildingOsloApiEnabled { get; set; }
         public bool IsBuildingUnitOsloApiEnabled { get; set; }
