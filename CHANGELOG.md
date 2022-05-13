@@ -1,3 +1,10 @@
+## [5.3.2](https://github.com/informatievlaanderen/public-api/compare/v5.3.1...v5.3.2) (2022-05-13)
+
+
+### Bug Fixes
+
+* use short-circuit bool operators ([2f5cab4](https://github.com/informatievlaanderen/public-api/commit/2f5cab4f9fad21bd2ed725b70a8a2335d6247858))
+
 ## [5.3.1](https://github.com/informatievlaanderen/public-api/compare/v5.3.0...v5.3.1) (2022-05-13)
 
 
