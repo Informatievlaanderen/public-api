@@ -1,3 +1,10 @@
+## [5.3.1](https://github.com/informatievlaanderen/public-api/compare/v5.3.0...v5.3.1) (2022-05-13)
+
+
+### Bug Fixes
+
+* remove DisableRequestSizeLimit ([35234b6](https://github.com/informatievlaanderen/public-api/commit/35234b6e77d2071f6de532260f1af3a1b1cb2bff))
+
 # [5.3.0](https://github.com/informatievlaanderen/public-api/compare/v5.2.0...v5.3.0) (2022-05-10)
 
 
