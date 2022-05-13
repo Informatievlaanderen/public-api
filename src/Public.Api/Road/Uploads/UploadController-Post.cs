@@ -12,7 +12,6 @@ namespace Public.Api.Road.Uploads
     public partial class UploadController
     {
         [HttpPost("wegen/upload")]
-        [DisableRequestSizeLimit]
         [RequestFormLimits(MultipartBodyLengthLimit = int.MaxValue, ValueLengthLimit = int.MaxValue)]
         public async Task<IActionResult> Post(
             IFormFile archive,
@@ -31,7 +30,7 @@ namespace Public.Api.Road.Uploads
         }
 
         private static HttpRequestMessage CreateBackendUploadRequest(IFormFile archive) =>
-            new HttpRequestMessage(HttpMethod.Post, $"upload")
+            new HttpRequestMessage(HttpMethod.Post, "upload")
             {
                 Content = new StreamContent(archive.OpenReadStream()),
                 Headers =
