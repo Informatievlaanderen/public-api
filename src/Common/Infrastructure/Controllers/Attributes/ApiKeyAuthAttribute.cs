@@ -10,6 +10,7 @@ namespace Common.Infrastructure.Controllers.Attributes
     using Microsoft.AspNetCore.Mvc.Filters;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Primitives;
     using Newtonsoft.Json;
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
@@ -26,8 +27,9 @@ namespace Common.Infrastructure.Controllers.Attributes
 
         public Task OnActionExecutionApiKeyAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
+            var potentialQueryApiKey = StringValues.Empty;
             if (!context.HttpContext.Request.Headers.TryGetValue(ApiKeyHeaderName, out var potentialHeaderApiKey)
-                & !context.HttpContext.Request.Query.TryGetValue(ApiKeyQueryName, out var potentialQueryApiKey))
+                && !context.HttpContext.Request.Query.TryGetValue(ApiKeyQueryName, out potentialQueryApiKey))
             {
                 RefuseAccess(context, "API key verplicht.");
             }
@@ -70,10 +72,11 @@ namespace Common.Infrastructure.Controllers.Attributes
 
         public Task OnActionExecutionApiTokenAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            //We get the x-api-key header or query param string
-            //Check if the user used this and thus is not anonymous GAWR-2968
+            // We get the x-api-key header or query param string
+            // Check if the user used this and thus is not anonymous GAWR-2968
+            var potentialQueryApiKey = StringValues.Empty;
             if (!context.HttpContext.Request.Headers.TryGetValue(ApiKeyHeaderName, out var potentialHeaderApiKey)
-                & !context.HttpContext.Request.Query.TryGetValue(ApiKeyQueryName, out var potentialQueryApiKey))
+                && !context.HttpContext.Request.Query.TryGetValue(ApiKeyQueryName, out potentialQueryApiKey))
             {
                 RefuseAccess(context, "API key verplicht.");
             }
