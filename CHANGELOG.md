@@ -1,3 +1,10 @@
+## [5.3.3](https://github.com/informatievlaanderen/public-api/compare/v5.3.2...v5.3.3) (2022-05-16)
+
+
+### Bug Fixes
+
+* hide isFlemishRegion in Municipality-list controllers ([b7a3bd2](https://github.com/informatievlaanderen/public-api/commit/b7a3bd2d5727ba5daef51a24e5140c0cca143682))
+
 ## [5.3.2](https://github.com/informatievlaanderen/public-api/compare/v5.3.1...v5.3.2) (2022-05-13)
 
 
