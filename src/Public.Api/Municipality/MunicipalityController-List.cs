@@ -1,6 +1,7 @@
 namespace Public.Api.Municipality
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
@@ -32,7 +33,6 @@ namespace Public.Api.Municipality
         /// Filter op de status van de gemeente (exact) (optioneel). <br />
         /// `"inGebruik"` `"gehistoreerd"` `"voorgesteld"`
         /// </param>
-        /// <param name="isFlemishRegion"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
@@ -61,7 +61,6 @@ namespace Public.Api.Municipality
             [FromQuery] string sort,
             [FromQuery] string gemeentenaam,
             [FromQuery] string status,
-            [FromQuery] bool isFlemishRegion,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -69,6 +68,8 @@ namespace Public.Api.Municipality
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
             const Taal taal = Taal.NL;
+
+            var isFlemishRegion = GetIsFlemishRegionQueryParameter();
 
             IRestRequest BackendRequest() => CreateBackendListRequest(
                 offset,
@@ -95,6 +96,19 @@ namespace Public.Api.Municipality
                     cancellationToken));
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
+        }
+
+        private bool GetIsFlemishRegionQueryParameter()
+        {
+            var isFlemishRegion = false;
+            var paramName = "isFlemishRegion";
+
+            if (Request.Query.ContainsKey(paramName))
+            {
+                bool.TryParse(Request.Query[paramName].First(), out isFlemishRegion);
+            }
+
+            return isFlemishRegion;
         }
 
         private static IRestRequest CreateBackendListRequest(int? offset,

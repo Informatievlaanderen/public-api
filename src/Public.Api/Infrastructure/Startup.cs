@@ -667,7 +667,32 @@ De feed bevat een aantal velden waarin een timestamp staat. Hieronder staat de b
 
             if (isProposeStreetName)
                 text.AppendLine(
-                    $@"## Gebruik van de edit API");
+                    $@"## Gebruik van de edit API's
+
+### Decentraal beheer
+
+De edit endpoints maken decentraal beheer mogelijk in het gebouwen- en adressenregister. Deze endpoints worden door de dienstenleveranciers geïmplementeerd in hun software. Zo kunnen vb. straatnamen, adressen, gebouwen en gebouweenheden toegevoegd, verwijderd of aangepast worden. Hieronder kan u per register een lijst vinden van welke beheersacties er allemaal mogelijk zijn.
+
+Straatnamen
+
+* Stel een straatnaam voor
+
+* Keur een straatnaam goed
+
+Adressen
+
+* Stel een adres voor
+
+* Keur een adres goed
+
+### Demo’s
+
+* Demo ‘stel een straatnaam voor’ en ‘keur een straatnaam goed’: [Demo](https://digitaalvlaanderen.wetransfer.com/downloads/71857fa1b1150f40f11d532464b87dac20220422080405/76d4db11ef56ea67bbaa97059cc0714020220422080405/5e3c69). 
+
+### Betekenis van de edit events en velden in de feed
+
+Een overzicht van alle mogelijke edit events en de betekenis van de attributen onder het blokje `<event>` vindt u op deze pagina: https://api.basisregisters.staging-vlaanderen.be/v1/info/events?tags=edit.
+");
 
 
             return text.ToString();
