@@ -1,3 +1,10 @@
+## [5.3.6](https://github.com/informatievlaanderen/public-api/compare/v5.3.5...v5.3.6) (2022-05-17)
+
+
+### Bug Fixes
+
+* bump eventhandling package ([3ae5e4e](https://github.com/informatievlaanderen/public-api/commit/3ae5e4ec54f7b6fe92775466f182071b51c388b1))
+
 ## [5.3.5](https://github.com/informatievlaanderen/public-api/compare/v5.3.4...v5.3.5) (2022-05-17)
 
 
