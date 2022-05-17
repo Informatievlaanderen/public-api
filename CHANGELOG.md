@@ -1,3 +1,10 @@
+## [5.3.7](https://github.com/informatievlaanderen/public-api/compare/v5.3.6...v5.3.7) (2022-05-17)
+
+
+### Bug Fixes
+
+* bump address/streetname packages ([3e7ca43](https://github.com/informatievlaanderen/public-api/commit/3e7ca431f08dc39cded33192d69a661c9adb6b6e))
+
 ## [5.3.6](https://github.com/informatievlaanderen/public-api/compare/v5.3.5...v5.3.6) (2022-05-17)
 
 
