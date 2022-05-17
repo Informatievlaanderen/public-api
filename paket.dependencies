@@ -27,9 +27,9 @@ nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      4.1.1  c
 nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo        4.1.1  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            3.0.1  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo              3.0.1  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        3.0.2  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo          3.0.2  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice    3.0.2  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        3.0.8  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo          3.0.8  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice    3.0.8  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          3.0.1  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo            3.0.1  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           3.10.1  copy_content_to_output_dir: always

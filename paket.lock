@@ -280,11 +280,11 @@ NUGET
     Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (1.60.4) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.BlobStore (>= 2.2.12)
       Microsoft.IO.RecyclableMemoryStream (>= 1.4)
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice (3.0.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice (3.0.8) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.2)
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (3.0.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (3.0.8) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.2)
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo (3.0.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo (3.0.8) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.2)
     Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (3.0)
     Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (3.0)
