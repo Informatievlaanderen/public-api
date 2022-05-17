@@ -49,7 +49,7 @@ nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 17.2.0
 nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 17.2.0
 nuget Be.Vlaanderen.Basisregisters.GrAr.Import 17.2.0
 
-nuget Be.Vlaanderen.Basisregisters.EventHandling 4.0.0
+nuget Be.Vlaanderen.Basisregisters.EventHandling 4.2.0
 nuget Be.Vlaanderen.Basisregisters.ProblemDetails 8.0.1
 
 // TEST STUFF
