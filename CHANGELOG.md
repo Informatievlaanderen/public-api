@@ -1,3 +1,10 @@
+## [5.3.4](https://github.com/informatievlaanderen/public-api/compare/v5.3.3...v5.3.4) (2022-05-17)
+
+
+### Bug Fixes
+
+* register docs for address registry backoffice ([08a05b2](https://github.com/informatievlaanderen/public-api/commit/08a05b26adad379a82e5367cb52d4ed83b8de138))
+
 ## [5.3.3](https://github.com/informatievlaanderen/public-api/compare/v5.3.2...v5.3.3) (2022-05-16)
 
 
