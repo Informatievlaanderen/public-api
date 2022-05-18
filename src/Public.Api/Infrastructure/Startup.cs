@@ -555,41 +555,12 @@ Hoe v2 endpoints visueel in browser tonen?
 
 In de browser moet een accept header meegegeven worden bij de request. In Chrome is dit door middel van een extensie. Een voorbeeld hiervan is ‘NoRefer’. In het witte scherm dat verschijnt na het klikken op het extensie icoon moet het volgende meegegeven worden: _'accept: application/ld+json'_. Daarna wordt de pagina best opnieuw geladen.
 
-## Foutmeldingen
-
-De Basisregisters Vlaanderen API gebruikt [Problem Details for HTTP APIs (RFC7807)](https://tools.ietf.org/html/rfc7807) om foutmeldingen te ontsluiten. Een foutmelding zal resulteren in volgende datastructuur:
-
-```
-{{
-  ""type"": ""string"",
-  ""title"": ""string"",
-  ""detail"": ""string"",
-  ""status"": number,
-  ""instance"": ""string""
-}}
-```
-
-### Mogelijke foutmeldingen
-
-Binnen de aangeboden endpoints zijn er een aantal foutmeldingen die kunnen voorkomen. U moet naar het veld ‘Detail’ kijken voor meer informatie.
-
-Foutmelding | Wanneer                                                           |
------------ | ----------------------------------------------------------------- |
-304    | Wanneer de request niet gewijzigd is tegenover de vorige opvraging.  |
-400    | Wanneer uw verzoek foutieve data bevat. Bijvoorbeeld:        <br>     -	Wanneer het veld numeriek is, maar er geen numerieke waarde wordt meegegeven,<br>            -	Wanneer bij de request parameter een . wordt meegegeven,<br>            -	Wanneer bij endpoint ‘Crabgebouwen’ er geen parameters worden meegegeven.|
-401    |Wanneer er geen API key in de feed wordt meegegeven. |
-403    |Wanneer het formaat in de URL wordt meegegeven. <br> Wanneer u een API key meegeeft die niet correct is. |
-404    |Wanneer het objectid niet gevonden kan worden. |
-406    |Wanneer het verkeerde formaat wordt meegegeven in de accept header.|
-410    |Wanneer het objectid verwijderd is.|
-500    |Wanneer de response groter is dan 10MB.<br> Wanneer er een interne fout is gebeurd. <br> Wanneer de GRB WFS-service niet kan gecontacteerd worden. |
-
 ");
 
             if (isFeedsVisibleToggle)
             {
                 text.AppendLine(
-                    $@"## Gebruik van feeds
+                    $@"## Gebruik van de feed API's
 
 ### Beoogde toepassing
 
@@ -695,6 +666,36 @@ Adressen
 Een overzicht van alle mogelijke edit events en de betekenis van de attributen onder het blokje `<event>` vindt u op deze pagina: https://api.basisregisters.staging-vlaanderen.be/v1/info/events?tags=edit.
 ");
 
+text.AppendLine(@"
+## Foutmeldingen
+
+De Basisregisters Vlaanderen API gebruikt [Problem Details for HTTP APIs (RFC7807)](https://tools.ietf.org/html/rfc7807) om foutmeldingen te ontsluiten. Een foutmelding zal resulteren in volgende datastructuur:
+
+```
+{{
+  ""type"": ""string"",
+  ""title"": ""string"",
+  ""detail"": ""string"",
+  ""status"": number,
+  ""instance"": ""string""
+}}
+```
+
+### Mogelijke foutmeldingen
+
+Binnen de aangeboden endpoints zijn er een aantal foutmeldingen die kunnen voorkomen. U moet naar het veld ‘Detail’ kijken voor meer informatie.
+
+Foutmelding | Wanneer                                                           |
+----------- | ----------------------------------------------------------------- |
+304    | Wanneer de request niet gewijzigd is tegenover de vorige opvraging.  |
+400    | Wanneer uw verzoek foutieve data bevat. Bijvoorbeeld:        <br>     -	Wanneer het veld numeriek is, maar er geen numerieke waarde wordt meegegeven,<br>            -	Wanneer bij de request parameter een . wordt meegegeven,<br>            -	Wanneer bij endpoint ‘Crabgebouwen’ er geen parameters worden meegegeven.|
+401    |Wanneer er geen API key in de feed wordt meegegeven. |
+403    |Wanneer het formaat in de URL wordt meegegeven. <br> Wanneer u een API key meegeeft die niet correct is. |
+404    |Wanneer het objectid niet gevonden kan worden. |
+406    |Wanneer het verkeerde formaat wordt meegegeven in de accept header.|
+410    |Wanneer het objectid verwijderd is.|
+500    |Wanneer de response groter is dan 10MB.<br> Wanneer er een interne fout is gebeurd. <br> Wanneer de GRB WFS-service niet kan gecontacteerd worden. |
+");
 
             return text.ToString();
         }
