@@ -1,4 +1,4 @@
-namespace Public.Api.StreetName.BackOffice
+namespace Public.Api.Address.BackOffice
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -9,29 +9,29 @@ namespace Public.Api.StreetName.BackOffice
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
-    using StreetNameRegistry.Api.Legacy.StreetName.Responses;
+    using AddressRegistry.Api.Legacy.Address.Responses;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
-    public partial class StreetNameBackOfficeController
+    public partial class AddressBackOfficeController
     {
         /// <summary>
-        /// Keur een straatnaam goed.
+        /// Keur een adres goed.
         /// </summary>
-        /// <param name="objectId">Identificator van de straatnaam.</param>
+        /// <param name="objectId">Identificator van het adres.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
-        /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van de straatnaam (optioneel).</param>
-        /// <param name="approveStreetNameToggle"></param>
+        /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van het adres (optioneel).</param>
+        /// <param name="approveAddressToggle"></param>
         /// <param name="cancellationToken"></param>
         /// <response code="202">Als de aanvraag reeds in verwerking is.</response>
-        /// <response code="204">Als de straatnaam succesvol goedgekeurd is.</response>
+        /// <response code="204">Als het adres succesvol goedgekeurd is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
-        /// <response code="404">Als de straatnaam niet gevonden kan worden.</response>
+        /// <response code="404">Als het adres niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
-        /// <response code="409">Als de straatnaam status niet 'voorgesteld' is.</response>
-        /// <response code="410">Als de straatnaam verwijderd is.</response>
+        /// <response code="409">Als de adres status niet 'voorgesteld' is.</response>
+        /// <response code="410">Als het adres verwijderd is.</response>
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
@@ -46,30 +46,30 @@ namespace Public.Api.StreetName.BackOffice
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(StreetNameNotFoundResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(AddressNotFoundResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status409Conflict, typeof(ConflictResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(StreetNameGoneResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(AddressGoneResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Wijzig de straatnaam status van `voorgesteld` naar `inGebruik`.")]
-        [HttpPut("straatnamen/{objectId}/goedgekeurd", Name = nameof(ApproveStreetName))]
-        public async Task<IActionResult> ApproveStreetName(
+        [SwaggerOperation(Description = "Wijzig de adres status van `voorgesteld` naar `inGebruik`.")]
+        [HttpPost("adressen/{objectId}/acties/goedkeuren", Name = nameof(ApproveAddress))]
+        public async Task<IActionResult> ApproveAddress(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] ApproveStreetNameToggle approveStreetNameToggle,
+            [FromServices] ApproveStreetNameToggle approveAddressToggle,
             [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
             CancellationToken cancellationToken = default)
         {
-            if (!approveStreetNameToggle.FeatureEnabled)
+            if (!approveAddressToggle.FeatureEnabled)
             {
                 return NotFound();
             }
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            IRestRequest BackendRequest() => CreateBackendPutRequest(objectId, ifMatch);
+            IRestRequest BackendRequest() => CreateBackendRequest(objectId, ifMatch);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,
@@ -81,9 +81,9 @@ namespace Public.Api.StreetName.BackOffice
             return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
         }
 
-        private static RestRequest CreateBackendPutRequest(int persistentLocalId, string? ifMatch)
+        private static RestRequest CreateBackendRequest(int persistentLocalId, string? ifMatch)
         {
-            var request = new RestRequest("straatnamen/{persistentLocalId}/goedgekeurd", Method.PUT);
+            var request = new RestRequest("adressen/{persistentLocalId}/acties/goedkeuren", Method.POST);
             request.AddParameter("persistentLocalId", persistentLocalId, ParameterType.UrlSegment);
 
             if (ifMatch is not null)
