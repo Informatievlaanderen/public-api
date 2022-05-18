@@ -1,3 +1,10 @@
+# [5.4.0](https://github.com/informatievlaanderen/public-api/compare/v5.3.8...v5.4.0) (2022-05-18)
+
+
+### Features
+
+* add approve address ([e781899](https://github.com/informatievlaanderen/public-api/commit/e781899299f09798399db96bee24a3ad9b61ed42))
+
 ## [5.3.8](https://github.com/informatievlaanderen/public-api/compare/v5.3.7...v5.3.8) (2022-05-18)
 
 
