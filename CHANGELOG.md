@@ -1,3 +1,10 @@
+## [5.3.8](https://github.com/informatievlaanderen/public-api/compare/v5.3.7...v5.3.8) (2022-05-18)
+
+
+### Bug Fixes
+
+* change docs use of feeds title gawr-3021 ([e3e05aa](https://github.com/informatievlaanderen/public-api/commit/e3e05aad1608c7d314d17561b990a945376a04cc))
+
 ## [5.3.7](https://github.com/informatievlaanderen/public-api/compare/v5.3.6...v5.3.7) (2022-05-17)
 
 
