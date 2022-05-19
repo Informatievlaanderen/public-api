@@ -52,7 +52,7 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Wijzig de straatnaam status van `voorgesteld` naar `inGebruik`.")]
+        [SwaggerOperation(Description = "Wijzig de straatnaamstatus van `voorgesteld` naar `inGebruik`.")]
         [HttpPut("straatnamen/{objectId}/goedgekeurd", Name = nameof(ApproveStreetName))]
         public async Task<IActionResult> ApproveStreetName(
             [FromRoute] int objectId,

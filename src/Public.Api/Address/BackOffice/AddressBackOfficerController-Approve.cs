@@ -52,7 +52,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Wijzig de adres status van `voorgesteld` naar `inGebruik`.")]
+        [SwaggerOperation(Description = "Wijzig de adresstatus van `voorgesteld` naar `inGebruik`.")]
         [HttpPost("adressen/{objectId}/acties/goedkeuren", Name = nameof(ApproveAddress))]
         public async Task<IActionResult> ApproveAddress(
             [FromRoute] int objectId,
