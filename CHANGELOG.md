@@ -1,3 +1,10 @@
+## [5.4.1](https://github.com/informatievlaanderen/public-api/compare/v5.4.0...v5.4.1) (2022-05-19)
+
+
+### Bug Fixes
+
+* typos gawr-3090 ([030fd34](https://github.com/informatievlaanderen/public-api/commit/030fd3491a354ca260ee85ce4b80ebba1212bee1))
+
 # [5.4.0](https://github.com/informatievlaanderen/public-api/compare/v5.3.8...v5.4.0) (2022-05-18)
 
 
