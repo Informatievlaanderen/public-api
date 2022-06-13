@@ -30,6 +30,13 @@ namespace Common.Infrastructure
         public ProposeAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class PlanBuildingToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public PlanBuildingToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class IsAddressOsloApiEnabledToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }

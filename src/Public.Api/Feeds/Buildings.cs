@@ -5,7 +5,7 @@ namespace Public.Api.Feeds
     using System.Threading.Tasks;
     using Autofac.Features.Indexed;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using BuildingRegistry.Api.Legacy.Building.Responses;
+    using BuildingRegistry.Api.Legacy.Abstractions.Building.Responses;
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;

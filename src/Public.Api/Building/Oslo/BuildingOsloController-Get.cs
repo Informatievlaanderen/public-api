@@ -3,7 +3,7 @@ namespace Public.Api.Building.Oslo
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using BuildingRegistry.Api.Oslo.Building.Responses;
+    using BuildingRegistry.Api.Oslo.Abstractions.Building.Responses;
     using Common.Infrastructure;
     using Infrastructure;
     using Marvin.Cache.Headers;
