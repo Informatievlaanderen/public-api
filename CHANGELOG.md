@@ -1,3 +1,10 @@
+## [5.5.1](https://github.com/informatievlaanderen/public-api/compare/v5.5.0...v5.5.1) (2022-06-13)
+
+
+### Bug Fixes
+
+* update wr dependency ([2fb9785](https://github.com/informatievlaanderen/public-api/commit/2fb97855a08d06c779ccfdf51f31be767283eb66))
+
 # [5.5.0](https://github.com/informatievlaanderen/public-api/compare/v5.4.1...v5.5.0) (2022-06-10)
 
 
