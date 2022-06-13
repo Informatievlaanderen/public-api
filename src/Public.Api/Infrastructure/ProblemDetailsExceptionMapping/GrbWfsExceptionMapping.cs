@@ -3,7 +3,7 @@ namespace Public.Api.Infrastructure.ProblemDetailsExceptionMapping
     using System;
     using System.Text.RegularExpressions;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using BuildingRegistry.Api.Legacy.Infrastructure.Grb.Wfs;
+    using BuildingRegistry.Api.Legacy.Abstractions.Infrastructure.Grb.Wfs;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public class GrbWfsExceptionMapping : ApiProblemDetailsExceptionMapping

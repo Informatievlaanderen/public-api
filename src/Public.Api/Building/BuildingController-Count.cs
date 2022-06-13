@@ -4,7 +4,7 @@ namespace Public.Api.Building
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
-    using BuildingRegistry.Api.Legacy.Infrastructure;
+    using BuildingRegistry.Api.Legacy.Abstractions.Infrastructure;
     using Common.Infrastructure;
     using Infrastructure;
     using Marvin.Cache.Headers;

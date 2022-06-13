@@ -4,6 +4,7 @@ namespace Public.Api.Building.Oslo
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using BuildingRegistry.Api.Oslo.Abstractions.Infrastructure;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
     using Infrastructure;
@@ -11,7 +12,6 @@ namespace Public.Api.Building.Oslo
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using ParcelRegistry.Api.Oslo.Parcel.Responses;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
 

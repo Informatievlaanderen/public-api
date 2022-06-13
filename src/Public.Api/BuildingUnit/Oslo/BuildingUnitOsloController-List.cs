@@ -5,8 +5,8 @@ namespace Public.Api.BuildingUnit.Oslo
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
-    using BuildingRegistry.Api.Oslo.BuildingUnit.Query;
-    using BuildingRegistry.Api.Oslo.BuildingUnit.Responses;
+    using BuildingRegistry.Api.Oslo.Abstractions.BuildingUnit.Query;
+    using BuildingRegistry.Api.Oslo.Abstractions.BuildingUnit.Responses;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
     using Infrastructure;

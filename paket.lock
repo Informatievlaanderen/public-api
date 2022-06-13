@@ -166,8 +166,15 @@ NUGET
       Fake.IO.FileSystem (>= 5.22)
       Fake.JavaScript.Npm (>= 5.22)
       Newtonsoft.Json (>= 13.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (3.0.1) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo (3.0.1) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions (3.9.4) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.Api (>= 18.0)
+      MediatR.Contracts (>= 1.0.1)
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy.Abstractions (3.9.4) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.Api (>= 18.0)
+      MediatR.Contracts (>= 1.0.1)
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo.Abstractions (3.9.4) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.Api (>= 18.0)
+      MediatR.Contracts (>= 1.0.1)
     Be.Vlaanderen.Basisregisters.CommandHandling (6.0.2)
     Be.Vlaanderen.Basisregisters.CommandHandling.Idempotency (6.0.2)
       Autofac.Extensions.DependencyInjection (>= 7.2)
@@ -424,6 +431,7 @@ NUGET
     MailKit (3.2)
       MimeKit (>= 3.2)
     Marvin.Cache.Headers (6.1)
+    MediatR.Contracts (1.0.1) - copy_content_to_output_dir: always
     Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore (6.0.4)
       Microsoft.EntityFrameworkCore.Relational (>= 6.0.4)
     Microsoft.AspNetCore.Hosting.Abstractions (2.2)

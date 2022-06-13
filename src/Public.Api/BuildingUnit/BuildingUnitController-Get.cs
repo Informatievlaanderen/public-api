@@ -3,7 +3,7 @@ namespace Public.Api.BuildingUnit
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using BuildingRegistry.Api.Legacy.BuildingUnit.Responses;
+    using BuildingRegistry.Api.Legacy.Abstractions.BuildingUnit.Responses;
     using Common.Infrastructure;
     using Infrastructure;
     using Marvin.Cache.Headers;
