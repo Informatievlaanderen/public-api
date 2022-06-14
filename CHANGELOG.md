@@ -1,3 +1,10 @@
+# [5.6.0](https://github.com/informatievlaanderen/public-api/compare/v5.5.1...v5.6.0) (2022-06-14)
+
+
+### Features
+
+* add plan building + bump packages ([6c11b9e](https://github.com/informatievlaanderen/public-api/commit/6c11b9ea1d25b27cf4fa38db90cb89ad5490e1db))
+
 ## [5.5.1](https://github.com/informatievlaanderen/public-api/compare/v5.5.0...v5.5.1) (2022-06-13)
 
 
