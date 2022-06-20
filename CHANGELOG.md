@@ -1,3 +1,10 @@
+# [5.7.0](https://github.com/informatievlaanderen/public-api/compare/v5.6.0...v5.7.0) (2022-06-20)
+
+
+### Features
+
+* building underconstruction & realize endpoints ([e272ba1](https://github.com/informatievlaanderen/public-api/commit/e272ba1fb99e850724d7de56ebb10dccece66caf))
+
 # [5.6.0](https://github.com/informatievlaanderen/public-api/compare/v5.5.1...v5.6.0) (2022-06-14)
 
 
