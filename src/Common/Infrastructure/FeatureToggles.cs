@@ -37,6 +37,20 @@ namespace Common.Infrastructure
         public PlanBuildingToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class BuildingUnderConstructionToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public BuildingUnderConstructionToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class RealizeBuildingToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RealizeBuildingToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class IsAddressOsloApiEnabledToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }

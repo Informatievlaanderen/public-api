@@ -3,7 +3,6 @@ namespace Public.Api.Building.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using BuildingRegistry.Api.BackOffice.Abstractions.Building.Requests;
     using Common.Infrastructure;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
@@ -17,14 +16,14 @@ namespace Public.Api.Building.BackOffice
     public partial class BuildingBackOfficeController
     {
         /// <summary>
-        /// Plan een gebouw in.
+        /// Realiseer een gebouw.
         /// </summary>
-        /// <param name="planBuildingRequest"></param>
+        /// <param name="request"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
-        /// <param name="planBuildingToggle"></param>
+        /// <param name="realizeBuildingToggle"></param>
         /// <param name="cancellationToken"></param>
-        /// <response code="202">Als de aanvraag om het gebouw te plannen succesvol is.</response>
+        /// <response code="202">Als de aanvraag om het gebouw te realiseren succesvol is.</response>
         /// <response code="202">Als de aanvraag reeds in verwerking is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
@@ -35,31 +34,32 @@ namespace Public.Api.Building.BackOffice
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string", "De URL van het geplande gebouw.", "")]
+        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string", "De URL van het gerealiseerde gebouw.", "")]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-        [SwaggerRequestExample(typeof(PlanBuildingRequest), typeof(PlanBuildingRequestExamples))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Voer een nieuw geschetst gebouw in met status 'gepland'.")]
-        [HttpPost("gebouwen/acties/plannen", Name = nameof(PlanBuilding))]
-        public async Task<IActionResult> PlanBuilding(
-            [FromBody] PlanBuildingRequest planBuildingRequest,
+        [SwaggerOperation(Description = "Gebouw realiseren.")]
+        [HttpPost("gebouwen/{objectId}/acties/realiseren", Name = nameof(RealizeBuilding))]
+        public async Task<IActionResult> RealizeBuilding(
+            [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] PlanBuildingToggle planBuildingToggle,
+            [FromServices] RealizeBuildingToggle realizeBuildingToggle,
             CancellationToken cancellationToken = default)
         {
-            if (!planBuildingToggle.FeatureEnabled)
+            if (!realizeBuildingToggle.FeatureEnabled)
                 return NotFound();
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            IRestRequest BackendRequest() => CreateBackendRequestWithJsonBody(
-                "gebouwen/acties/plannen",
-                planBuildingRequest,
-                Method.POST);
+            IRestRequest BackendRequest()
+            {
+                var request = new RestRequest("gebouwen/{persistentLocalId}/acties/realiseren", Method.POST);
+                request.AddParameter("persistentLocalId", objectId, ParameterType.UrlSegment);
+                return request;
+            }
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

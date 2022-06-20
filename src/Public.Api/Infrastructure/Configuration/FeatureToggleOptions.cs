@@ -8,6 +8,8 @@ namespace Public.Api.Infrastructure.Configuration
         public bool ApproveStreetName { get; set; }
         public bool ProposeAddress { get; set; }
         public bool PlanBuilding { get; set; }
+        public bool BuildingUnderConstruction { get; set; }
+        public bool RealizeBuilding { get; set; }
         public bool IsAddressOsloApiEnabled { get; set; }
         public bool IsBuildingOsloApiEnabled { get; set; }
         public bool IsBuildingUnitOsloApiEnabled { get; set; }
