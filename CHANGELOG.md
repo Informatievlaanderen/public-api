@@ -1,3 +1,10 @@
+## [5.7.2](https://github.com/informatievlaanderen/public-api/compare/v5.7.1...v5.7.2) (2022-06-21)
+
+
+### Bug Fixes
+
+* correct double 202 docs building ([371e8bf](https://github.com/informatievlaanderen/public-api/commit/371e8bfbdb8630c833c1ce92bcaab0b260f21cce))
+
 ## [5.7.1](https://github.com/informatievlaanderen/public-api/compare/v5.7.0...v5.7.1) (2022-06-21)
 
 
