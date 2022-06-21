@@ -22,7 +22,7 @@ namespace Public.Api.Building.BackOffice
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="realizeBuildingToggle"></param>
-        /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van het adres (optioneel).</param>
+        /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van het gebouw (optioneel).</param>
         /// <param name="cancellationToken"></param>
         /// <response code="202">Als de aanvraag om het gebouw te realiseren succesvol is.</response>
         /// <response code="202">Als de aanvraag reeds in verwerking is.</response>
