@@ -22,6 +22,7 @@ namespace Public.Api.Building.BackOffice
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="buildingUnderConstructionToggle"></param>
+        /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van het gebouw (optioneel).</param>
         /// <param name="cancellationToken"></param>
         /// <response code="202">Als de aanvraag om het gebouw in aanbouw te zetten succesvol is.</response>
         /// <response code="202">Als de aanvraag reeds in verwerking is.</response>
@@ -47,6 +48,7 @@ namespace Public.Api.Building.BackOffice
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] BuildingUnderConstructionToggle buildingUnderConstructionToggle,
+            [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
             CancellationToken cancellationToken = default)
         {
             if (!buildingUnderConstructionToggle.FeatureEnabled)
@@ -58,6 +60,11 @@ namespace Public.Api.Building.BackOffice
             {
                 var request = new RestRequest("gebouwen/{persistentLocalId}/acties/inaanbouwplaatsen", Method.POST);
                 request.AddParameter("persistentLocalId", objectId, ParameterType.UrlSegment);
+
+                if (ifMatch is not null)
+                {
+                    request.AddHeader(HeaderNames.IfMatch, ifMatch);
+                }
 
                 return request;
             }
