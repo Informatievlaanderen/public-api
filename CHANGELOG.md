@@ -1,3 +1,10 @@
+## [5.7.3](https://github.com/informatievlaanderen/public-api/compare/v5.7.2...v5.7.3) (2022-06-21)
+
+
+### Bug Fixes
+
+* correct docs under construction / realize ([302b4de](https://github.com/informatievlaanderen/public-api/commit/302b4dedd07bec30adeba8275afd959f9282bcb5))
+
 ## [5.7.2](https://github.com/informatievlaanderen/public-api/compare/v5.7.1...v5.7.2) (2022-06-21)
 
 
