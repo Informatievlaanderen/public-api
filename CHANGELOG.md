@@ -1,3 +1,10 @@
+## [5.7.1](https://github.com/informatievlaanderen/public-api/compare/v5.7.0...v5.7.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* etag building underconstruction/realize ([8d75960](https://github.com/informatievlaanderen/public-api/commit/8d75960fb15ca93e6b7d7cd4e0e95871e1fd62da))
+
 # [5.7.0](https://github.com/informatievlaanderen/public-api/compare/v5.6.0...v5.7.0) (2022-06-20)
 
 
