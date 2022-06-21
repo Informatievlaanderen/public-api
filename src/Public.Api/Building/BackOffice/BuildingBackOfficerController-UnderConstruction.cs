@@ -24,8 +24,7 @@ namespace Public.Api.Building.BackOffice
         /// <param name="buildingUnderConstructionToggle"></param>
         /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van het gebouw (optioneel).</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="202">Als de aanvraag om het gebouw in aanbouw te zetten succesvol is.</response>
-        /// <response code="202">Als de aanvraag reeds in verwerking is.</response>
+        /// <response code="202">Als het gebouw succesvol in aanbouw gezet is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>

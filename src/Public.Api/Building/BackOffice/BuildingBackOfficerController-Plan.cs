@@ -24,8 +24,7 @@ namespace Public.Api.Building.BackOffice
         /// <param name="problemDetailsHelper"></param>
         /// <param name="planBuildingToggle"></param>
         /// <param name="cancellationToken"></param>
-        /// <response code="202">Als de aanvraag om het gebouw te plannen succesvol is.</response>
-        /// <response code="202">Als de aanvraag reeds in verwerking is.</response>
+        /// <response code="202">Als het gebouw succesvol gepland is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
