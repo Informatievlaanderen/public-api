@@ -16,9 +16,9 @@ namespace Public.Api.Building.BackOffice
     public partial class BuildingBackOfficeController
     {
         /// <summary>
-        /// Zet een gebouw in aanbouw.
+        /// Plaats een gebouw in aanbouw.
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="objectId">Identificator van het gebouw.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="buildingUnderConstructionToggle"></param>
@@ -40,7 +40,7 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Gebouw in aanbouw zetten.")]
+        [SwaggerOperation(Description = "Wijzig de status van een gebouw van `gepland` naar `inAanbouw`.")]
         [HttpPost("gebouwen/{objectId}/acties/inaanbouwplaatsen", Name = nameof(BuildingUnderConstruction))]
         public async Task<IActionResult> BuildingUnderConstruction(
             [FromRoute] int objectId,

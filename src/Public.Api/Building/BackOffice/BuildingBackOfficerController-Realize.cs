@@ -18,7 +18,7 @@ namespace Public.Api.Building.BackOffice
         /// <summary>
         /// Realiseer een gebouw.
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="objectId">Identificator van het gebouw.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="realizeBuildingToggle"></param>
@@ -40,7 +40,7 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Gebouw realiseren.")]
+        [SwaggerOperation(Description = "Wijzig de adresstatus van `inAanbouw` naar `gerealiseerd`.")]
         [HttpPost("gebouwen/{objectId}/acties/realiseren", Name = nameof(RealizeBuilding))]
         public async Task<IActionResult> RealizeBuilding(
             [FromRoute] int objectId,
