@@ -3,6 +3,7 @@ namespace Public.Api.Building.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using BuildingRegistry.Api.Legacy.Abstractions.Building.Responses;
     using Common.Infrastructure;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
@@ -26,7 +27,11 @@ namespace Public.Api.Building.BackOffice
         /// <param name="cancellationToken"></param>
         /// <response code="202">Als het gebouw succesvol gerealiseerd is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
+        /// <response code="404">Als het gebouw niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
+        /// <response code="409">Als de gebouw status niet 'voorgesteld' is.</response>
+        /// <response code="410">Als het gebouw verwijderd is.</response>
+        /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         /// <returns></returns>
@@ -38,9 +43,13 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(BuildingNotFoundResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status409Conflict, typeof(ConflictResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(BuildingGoneResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Wijzig de adresstatus van `inAanbouw` naar `gerealiseerd`.")]
+        [SwaggerOperation(Description = "Wijzig de gebouwstatus van `inAanbouw` naar `gerealiseerd`.")]
         [HttpPost("gebouwen/{objectId}/acties/realiseren", Name = nameof(RealizeBuilding))]
         public async Task<IActionResult> RealizeBuilding(
             [FromRoute] int objectId,
