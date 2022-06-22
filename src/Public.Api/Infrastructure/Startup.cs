@@ -597,14 +597,6 @@ In het veld `<content>` kan u het event en/of de objectversiedetails terugvinden
 
 Een overzicht van alle mogelijke business events en de betekenis van de attributen onder het blokje `<event>` vindt u op deze pagina: [{baseUrlWithGroupName}/info/events?tags=sync]({baseUrlWithGroupName}/info/events?tags=sync).
 
-### Welke huisnummers & busnummers worden aanvaard voor een nieuw adres?
-
-Als er een nieuw voorgesteld adres wordt ingevoerd dan moet het huisnummer en eventueel het busnummer aan bepaalde voorwaarden voldoen.
-
-De regex die van toepassing is op het huisnummer is `^[1-9]([0-9]{{0,8}}([A-H]|[K-N]|[P]|[R-T]|[V-Z]){{0,1}}|[0-9]{{0,9}})$`. Dit wilt zeggen dat huisnummers `45`, `2C` of `7563M` zullen aanvaard worden, maar huisnummers `045`, `2I`, `5BIS` of `4a` niet aanvaard zullen worden.
-
-De regex die van toepassing is op het busnummer is `^[a-zA-Z0-9]{{1,10}}$`. Bovenop deze regex wordt het woord bus, Bus of BUS ook niet aanvaard. Dit wilt zeggen dat busnummers `1`, `001` of `5C` aanvaard zullen worden, maar busnummers `0`, `Bus 1` of `1-A` niet aanvaard zullen worden. 
-
 ### Kanttekening
 
 Merk op dat de granulariteit vrij hoog is door het doorvertalen van de volledige CRAB-historiek(legacysysteem) naar het Gebouwen- en Adressenregister(GR-AR). Om dezelfde reden zult u zien dat de meeste objecten gradueel opgebouwd worden(toevoegen status, geometrie enz.) tot wanneer ze ‘complete’ zijn.
@@ -676,6 +668,14 @@ Adressen
 ### Betekenis van de edit events en velden in de feed
 
 Een overzicht van alle mogelijke edit events en de betekenis van de attributen onder het blokje `<event>` vindt u op deze pagina: https://api.basisregisters.staging-vlaanderen.be/v1/info/events?tags=edit.
+
+### Welke huisnummers & busnummers worden aanvaard voor een nieuw adres?
+
+Als er een nieuw voorgesteld adres wordt ingevoerd dan moet het huisnummer en eventueel het busnummer aan bepaalde voorwaarden voldoen.
+
+De regex die van toepassing is op het huisnummer is `^[1-9]([0-9]{{0,8}}([A-H]|[K-N]|[P]|[R-T]|[V-Z]){{0,1}}|[0-9]{{0,9}})$`. Dit wilt zeggen dat huisnummers `45`, `2C` of `7563M` zullen aanvaard worden, maar huisnummers `045`, `2I`, `5BIS` of `4a` niet aanvaard zullen worden.
+
+De regex die van toepassing is op het busnummer is `^[a-zA-Z0-9]{{1,10}}$`. Bovenop deze regex wordt het woord bus, Bus of BUS ook niet aanvaard. Dit wilt zeggen dat busnummers `1`, `001` of `5C` aanvaard zullen worden, maar busnummers `0`, `Bus 1` of `1-A` niet aanvaard zullen worden.
 ");
 
 text.AppendLine(@"
