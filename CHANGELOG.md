@@ -1,3 +1,10 @@
+## [5.7.6](https://github.com/informatievlaanderen/public-api/compare/v5.7.5...v5.7.6) (2022-06-22)
+
+
+### Bug Fixes
+
+* correct examples of building under construction / realize ([ca76cf8](https://github.com/informatievlaanderen/public-api/commit/ca76cf8aef884b6701225d625dfbeb8ad59aff07))
+
 ## [5.7.5](https://github.com/informatievlaanderen/public-api/compare/v5.7.4...v5.7.5) (2022-06-22)
 
 
