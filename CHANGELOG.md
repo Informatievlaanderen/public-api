@@ -1,3 +1,10 @@
+## [5.7.7](https://github.com/informatievlaanderen/public-api/compare/v5.7.6...v5.7.7) (2022-06-22)
+
+
+### Bug Fixes
+
+* move docs housenumber/boxnumber to correct section ([566b003](https://github.com/informatievlaanderen/public-api/commit/566b0034a5164522da0661c83a51dabda4c3e472))
+
 ## [5.7.6](https://github.com/informatievlaanderen/public-api/compare/v5.7.5...v5.7.6) (2022-06-22)
 
 
