@@ -1,3 +1,10 @@
+## [5.7.5](https://github.com/informatievlaanderen/public-api/compare/v5.7.4...v5.7.5) (2022-06-22)
+
+
+### Bug Fixes
+
+* add docs for regex housenumber/boxnumber ([933f468](https://github.com/informatievlaanderen/public-api/commit/933f4689fc14b671b92f0be07037b4efd84a501a))
+
 ## [5.7.4](https://github.com/informatievlaanderen/public-api/compare/v5.7.3...v5.7.4) (2022-06-21)
 
 
