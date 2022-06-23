@@ -55,7 +55,7 @@ namespace Public.Api.Address.BackOffice
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] ApproveStreetNameToggle approveAddressToggle,
+            [FromServices] ApproveAddressToggle approveAddressToggle,
             [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
             CancellationToken cancellationToken = default)
         {

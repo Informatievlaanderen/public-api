@@ -23,11 +23,46 @@ namespace Common.Infrastructure
         public ApproveStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class RejectStreetNameToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RejectStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class RetireStreetNameToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RetireStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class ProposeAddressToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
         public ProposeAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class ApproveAddressToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public ApproveAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class RejectAddressToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RejectAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class RetireAddressToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RetireAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
     public class PlanBuildingToggle : IFeatureToggle
@@ -49,6 +84,48 @@ namespace Common.Infrastructure
         public bool FeatureEnabled { get; }
 
         public RealizeBuildingToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class NotRealizeBuildingToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public NotRealizeBuildingToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class DemolishBuildingToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public DemolishBuildingToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class PlanBuildingUnitToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public PlanBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class RealizeBuildingUnitToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RealizeBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class NotRealizeBuildingUnitToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public NotRealizeBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class RetireBuildingUnitToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RetireBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
     public class IsAddressOsloApiEnabledToggle : IFeatureToggle
