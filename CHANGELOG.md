@@ -1,3 +1,10 @@
+## [5.9.1](https://github.com/informatievlaanderen/public-api/compare/v5.9.0...v5.9.1) (2022-06-24)
+
+
+### Bug Fixes
+
+* order buildinunit backoffice ([21deae5](https://github.com/informatievlaanderen/public-api/commit/21deae546a9e8f03ee0348f15ccdc1cd3a4cdf91))
+
 # [5.9.0](https://github.com/informatievlaanderen/public-api/compare/v5.8.0...v5.9.0) (2022-06-24)
 
 
