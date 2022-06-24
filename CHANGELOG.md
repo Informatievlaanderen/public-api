@@ -1,3 +1,10 @@
+# [5.9.0](https://github.com/informatievlaanderen/public-api/compare/v5.8.0...v5.9.0) (2022-06-24)
+
+
+### Features
+
+* add plan & realize buildingunit ([5bb52d0](https://github.com/informatievlaanderen/public-api/commit/5bb52d05f6e620dbc62d19c7a3503be4fa05b5c0))
+
 # [5.8.0](https://github.com/informatievlaanderen/public-api/compare/v5.7.7...v5.8.0) (2022-06-24)
 
 
