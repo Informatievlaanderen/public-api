@@ -1,3 +1,10 @@
+# [5.8.0](https://github.com/informatievlaanderen/public-api/compare/v5.7.7...v5.8.0) (2022-06-24)
+
+
+### Features
+
+* add toggles for streetname/address/building(unit) ([a180ddd](https://github.com/informatievlaanderen/public-api/commit/a180ddd17bc4d11e97a14a63718cbf7243f27f59))
+
 ## [5.7.7](https://github.com/informatievlaanderen/public-api/compare/v5.7.6...v5.7.7) (2022-06-22)
 
 
