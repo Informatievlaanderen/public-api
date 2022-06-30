@@ -41,7 +41,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Voer een nieuw gebouweenheid in met status 'gepland'.")]
+        [SwaggerOperation(Description = "Voer een nieuwe gebouweenheid in met status 'gepland'.")]
         [HttpPost("gebouweenheden/acties/plannen", Name = nameof(PlanBuildingUnit))]
         public async Task<IActionResult> PlanBuildingUnit(
             [FromBody] PlanBuildingUnitRequest planBuildingUnitRequest,
