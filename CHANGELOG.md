@@ -1,3 +1,10 @@
+## [5.9.2](https://github.com/informatievlaanderen/public-api/compare/v5.9.1...v5.9.2) (2022-06-30)
+
+
+### Bug Fixes
+
+* typo + bump building packages ([0247a46](https://github.com/informatievlaanderen/public-api/commit/0247a46dccc730dabcf8145650956a738aa19082))
+
 ## [5.9.1](https://github.com/informatievlaanderen/public-api/compare/v5.9.0...v5.9.1) (2022-06-24)
 
 
