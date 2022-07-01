@@ -149,6 +149,7 @@ namespace Public.Api.Infrastructure
                             typeof(ParcelRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(PublicServiceRegistry.Api.Backoffice.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(Be.Vlaanderen.Basisregisters.GrAr.Common.NodaHelpers).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(Be.Vlaanderen.Basisregisters.GrAr.Edit.GmlConstants).GetTypeInfo().Assembly.GetName().Name,
                             typeof(Be.Vlaanderen.Basisregisters.GrAr.Legacy.Identificator).GetTypeInfo().Assembly.GetName().Name,
                             typeof(Be.Vlaanderen.Basisregisters.GrAr.Provenance.Provenance).GetTypeInfo().Assembly.GetName().Name,
                             typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails).GetTypeInfo().Assembly.GetName().Name,
@@ -163,6 +164,7 @@ namespace Public.Api.Infrastructure
                                 x.OperationFilter<ProblemDetailsOperationFilter>();
                                 x.OperationFilter<XApiFilter>();
                                 x.EnableAnnotations();
+                                x.CustomSchemaIds(type => SwashbuckleSchemaHelper.GetSchemaId(type));
                             }
                         }
                     },

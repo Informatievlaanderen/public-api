@@ -166,13 +166,13 @@ NUGET
       Fake.IO.FileSystem (>= 5.22)
       Fake.JavaScript.Npm (>= 5.22)
       Newtonsoft.Json (>= 13.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions (3.19) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions (3.20.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 18.0)
       MediatR.Contracts (>= 1.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy.Abstractions (3.19) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy.Abstractions (3.20.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 18.0)
       MediatR.Contracts (>= 1.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo.Abstractions (3.19) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo.Abstractions (3.20.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 18.0)
       MediatR.Contracts (>= 1.0.1)
     Be.Vlaanderen.Basisregisters.CommandHandling (6.0.2)
@@ -225,10 +225,12 @@ NUGET
       Autofac.Extensions.DependencyInjection (>= 7.2)
       Be.Vlaanderen.Basisregisters.EventHandling (4.2)
     Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic (3.0.1)
-    Be.Vlaanderen.Basisregisters.GrAr.Common (17.2)
+    Be.Vlaanderen.Basisregisters.GrAr.Common (17.4.1)
       Be.Vlaanderen.Basisregisters.AggregateSource (>= 6.0)
       NodaTime (>= 3.0.10)
-    Be.Vlaanderen.Basisregisters.GrAr.Import (17.2)
+    Be.Vlaanderen.Basisregisters.GrAr.Edit (17.4.1)
+      NetTopologySuite (>= 2.4)
+    Be.Vlaanderen.Basisregisters.GrAr.Import (17.4.1)
       Autofac (>= 6.3)
       Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore (>= 6.0)
       Be.Vlaanderen.Basisregisters.CommandHandling (>= 6.0)
@@ -244,13 +246,13 @@ NUGET
       Serilog.Extensions.Logging (>= 3.1)
       Serilog.Sinks.Email (>= 2.4)
       System.Threading.Tasks.Dataflow (>= 6.0)
-    Be.Vlaanderen.Basisregisters.GrAr.Legacy (17.2)
+    Be.Vlaanderen.Basisregisters.GrAr.Legacy (17.4.1)
       Be.Vlaanderen.Basisregisters.Utilities.Rfc3339DateTimeOffset (>= 3.0)
       Newtonsoft.Json (>= 13.0.1)
-    Be.Vlaanderen.Basisregisters.GrAr.Provenance (17.2)
+    Be.Vlaanderen.Basisregisters.GrAr.Provenance (17.4.1)
       Be.Vlaanderen.Basisregisters.CommandHandling (>= 6.0)
       Be.Vlaanderen.Basisregisters.Crab (>= 3.0)
-      Be.Vlaanderen.Basisregisters.GrAr.Common (17.2)
+      Be.Vlaanderen.Basisregisters.GrAr.Common (17.4.1)
       Microsoft.CSharp (>= 4.7)
     Be.Vlaanderen.Basisregisters.Middleware.AddProblemJsonHeader (2.0)
     Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (4.1.1) - copy_content_to_output_dir: always

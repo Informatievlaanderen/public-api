@@ -36,6 +36,7 @@
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice\content\PublicServiceRegistry.Api.Backoffice.xml" CopyToOutputDirectory="Always" />
 
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Common\lib\net6.0\Be.Vlaanderen.Basisregisters.GrAr.Common.xml" CopyToOutputDirectory="Always" />
+    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Edit\lib\net6.0\Be.Vlaanderen.Basisregisters.GrAr.Edit.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Legacy\lib\net6.0\Be.Vlaanderen.Basisregisters.GrAr.Legacy.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Provenance\lib\net6.0\Be.Vlaanderen.Basisregisters.GrAr.Provenance.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.ProblemDetails\lib\net6.0\Be.Vlaanderen.Basisregisters.ProblemDetails.xml" CopyToOutputDirectory="Always" />
