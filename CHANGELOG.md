@@ -1,3 +1,10 @@
+## [5.9.3](https://github.com/informatievlaanderen/public-api/compare/v5.9.2...v5.9.3) (2022-07-01)
+
+
+### Bug Fixes
+
+* update building packages + resolve swagger schema conflict ([733d7fa](https://github.com/informatievlaanderen/public-api/commit/733d7fae80a72aa8a380df29132d47fa1276cd90))
+
 ## [5.9.2](https://github.com/informatievlaanderen/public-api/compare/v5.9.1...v5.9.2) (2022-06-30)
 
 
