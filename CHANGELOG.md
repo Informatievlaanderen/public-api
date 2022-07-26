@@ -1,3 +1,10 @@
+# [5.10.0](https://github.com/informatievlaanderen/public-api/compare/v5.9.3...v5.10.0) (2022-07-26)
+
+
+### Features
+
+* add notrealize buildingunit ([2d8db84](https://github.com/informatievlaanderen/public-api/commit/2d8db845706259946d5fd97ccf0b73b5bc3169dc))
+
 ## [5.9.3](https://github.com/informatievlaanderen/public-api/compare/v5.9.2...v5.9.3) (2022-07-01)
 
 
