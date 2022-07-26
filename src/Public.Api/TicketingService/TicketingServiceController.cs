@@ -14,8 +14,8 @@ namespace Public.Api.TicketingService
     using Version = Infrastructure.Version.Version;
 
     [ApiVisible]
-    [ApiVersion(Version.Current)]
-    [AdvertiseApiVersions(Version.CurrentAdvertised)]
+    [ApiVersion(Version.V2)]
+    [AdvertiseApiVersions(Version.V2)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Tickets")]
     [ApiOrder(Order = ApiOrder.TicketingService)]
