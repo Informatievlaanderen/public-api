@@ -1,3 +1,10 @@
+# [5.11.0](https://github.com/informatievlaanderen/public-api/compare/v5.10.0...v5.11.0) (2022-07-27)
+
+
+### Features
+
+* add not realize building ([36f84ab](https://github.com/informatievlaanderen/public-api/commit/36f84abe122f2cd0e15e11d7d21c62a6b64b72f3))
+
 # [5.10.0](https://github.com/informatievlaanderen/public-api/compare/v5.9.3...v5.10.0) (2022-07-26)
 
 
