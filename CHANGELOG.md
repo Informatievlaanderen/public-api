@@ -1,3 +1,10 @@
+# [5.13.0](https://github.com/informatievlaanderen/public-api/compare/v5.12.0...v5.13.0) (2022-07-28)
+
+
+### Features
+
+* add reject address ([69bfd3f](https://github.com/informatievlaanderen/public-api/commit/69bfd3f83ff89895cdf06a8498b49009b05cd4ce))
+
 # [5.12.0](https://github.com/informatievlaanderen/public-api/compare/v5.11.0...v5.12.0) (2022-07-28)
 
 
