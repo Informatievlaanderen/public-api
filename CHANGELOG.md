@@ -1,3 +1,15 @@
+# [5.12.0](https://github.com/informatievlaanderen/public-api/compare/v5.11.0...v5.12.0) (2022-07-28)
+
+
+### Bug Fixes
+
+* remove duplicate grar.edit in paket.references ([af5de26](https://github.com/informatievlaanderen/public-api/commit/af5de2647f8a141bb6a84ae1721aa3233921e518))
+
+
+### Features
+
+* bump building registry ([819811b](https://github.com/informatievlaanderen/public-api/commit/819811b7fe9ec4490e7163816605393426e20bd2))
+
 # [5.11.0](https://github.com/informatievlaanderen/public-api/compare/v5.10.0...v5.11.0) (2022-07-27)
 
 
