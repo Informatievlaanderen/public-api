@@ -50,7 +50,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Wijzig de status van een gebouweenheid met status “gepland” naar “nietGerealiseerd”.")]
+        [SwaggerOperation(Description = "Wijzig de status van een gebouweenheid met status `gepland` naar `nietGerealiseerd`.")]
         [HttpPost("gebouweenheden/{objectId}/acties/nietrealiseren", Name = nameof(NotRealizeBuildingUnit))]
         public async Task<IActionResult> NotRealizeBuildingUnit(
             [FromRoute] int objectId,
