@@ -18,5 +18,6 @@ namespace Public.Api.Infrastructure.Configuration
         public const string Parcel = "ParcelRegistry";
         public const string ParcelV2 = "ParcelRegistryV2";
         public const string Road = "RoadRegistry";
+        public const string TicketingService = "TicketingService";
     }
 }
