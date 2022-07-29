@@ -1,3 +1,10 @@
+## [5.13.2](https://github.com/informatievlaanderen/public-api/compare/v5.13.1...v5.13.2) (2022-07-29)
+
+
+### Bug Fixes
+
+* update docs ([5eebde0](https://github.com/informatievlaanderen/public-api/commit/5eebde0dce5bf55c8337172f7a523860fb39369e))
+
 ## [5.13.1](https://github.com/informatievlaanderen/public-api/compare/v5.13.0...v5.13.1) (2022-07-29)
 
 
