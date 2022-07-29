@@ -12,6 +12,7 @@ namespace Public.Api.Infrastructure.Configuration
 
         public bool ProposeAddress { get; set; }
         public bool ApproveAddress { get; set; }
+        public bool DeregulateAddress { get; set; }
         public bool RejectAddress { get; set; }
         public bool RetireAddress { get; set; }
 
