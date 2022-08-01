@@ -1,3 +1,10 @@
+# [5.14.0](https://github.com/informatievlaanderen/public-api/compare/v5.13.2...v5.14.0) (2022-08-01)
+
+
+### Features
+
+* add deregulate address ([ffa6d5c](https://github.com/informatievlaanderen/public-api/commit/ffa6d5cb1c6acd89e9361713bd55c2a6aacec692))
+
 ## [5.13.2](https://github.com/informatievlaanderen/public-api/compare/v5.13.1...v5.13.2) (2022-07-29)
 
 
