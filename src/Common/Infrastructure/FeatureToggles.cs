@@ -58,6 +58,13 @@ namespace Common.Infrastructure
         public DeregulateAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class RegularizeAddressToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RegularizeAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class RejectAddressToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
