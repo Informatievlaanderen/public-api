@@ -1,3 +1,11 @@
+## [5.14.1](https://github.com/informatievlaanderen/public-api/compare/v5.14.0...v5.14.1) (2022-08-01)
+
+
+### Bug Fixes
+
+* 'x-api-token' key is called 'Token' in the gateway mapping ([2bc51b7](https://github.com/informatievlaanderen/public-api/commit/2bc51b72a9de1fde57e0abe23b6933e8ac9adefc))
+* version bump paket ([bb26d12](https://github.com/informatievlaanderen/public-api/commit/bb26d12c2e89250ac638e00d2dc050dd6d7cadb7))
+
 # [5.14.0](https://github.com/informatievlaanderen/public-api/compare/v5.13.2...v5.14.0) (2022-08-01)
 
 
