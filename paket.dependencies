@@ -54,6 +54,8 @@ nuget Be.Vlaanderen.Basisregisters.GrAr.Import 17.7.2
 nuget Be.Vlaanderen.Basisregisters.EventHandling 4.2.0
 nuget Be.Vlaanderen.Basisregisters.ProblemDetails 8.0.1
 
+nuget Be.Vlaanderen.Basisregisters.TicketingService.Abstractions 1.3.3
+
 // TEST STUFF
 nuget Microsoft.NET.Test.Sdk 17.1.0
 nuget Microsoft.EntityFrameworkCore.InMemory 6.0.3
