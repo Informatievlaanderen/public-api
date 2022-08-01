@@ -9,26 +9,27 @@ namespace Public.Api.Infrastructure.Swagger
     public static class ApiOrder
     {
         public const int Municipality = 100;
-        public const int PostalCode = 105;
-        public const int StreetName = 110;
-        public const int Address = 115;
-        public const int Building = 120;
-        public const int BuildingUnit = 125;
-        public const int Parcel = 130;
-        public const int PublicService = 135;
+        public const int PostalCode = Municipality + 5;
+        public const int StreetName = PostalCode + 5;
+        public const int Address = StreetName + 5;
+        public const int Building = Address + 5;
+        public const int BuildingUnit = Building + 5;
+        public const int Parcel = BuildingUnit + 5;
+        public const int PublicService = Parcel + 5;
+        public const int TicketingService = PublicService + 5;
 
-        public const int RoadChangeFeed = 136;
-        public const int RoadDownload = 137;
-        public const int RoadExtract = 138;
-        public const int RoadInformation = 139;
-        public const int RoadUpload = 140;
+        public const int RoadChangeFeed = 150;
+        public const int RoadDownload = RoadChangeFeed + 1;
+        public const int RoadExtract = RoadDownload + 1;
+        public const int RoadInformation = RoadExtract + 1;
+        public const int RoadUpload = RoadInformation + 1;
 
-        public const int Extract = 141;
-        public const int Feeds = 145;
+        public const int Extract = 160;
+        public const int Feeds = Extract + 5;
 
-        public const int CrabHouseNumber = 150;
-        public const int CrabSubaddress = 155;
-        public const int CrabBuildings = 159;
+        public const int CrabHouseNumber = 170;
+        public const int CrabSubaddress = CrabHouseNumber + 5;
+        public const int CrabBuildings = CrabSubaddress + 5;
 
         public const int Status = 300;
 

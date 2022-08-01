@@ -104,6 +104,10 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Tickets\" />
+  </ItemGroup>
+
   <Target Name="ChangeAliasesOfStrongNameAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
     <ItemGroup>
       <ReferencePath Condition="'%(FileName)' == 'StackExchange.Redis.StrongName'">
