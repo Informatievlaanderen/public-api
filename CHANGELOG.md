@@ -1,3 +1,15 @@
+# [5.15.0](https://github.com/informatievlaanderen/public-api/compare/v5.14.1...v5.15.0) (2022-08-02)
+
+
+### Bug Fixes
+
+* abstraction dependencies ([e257b29](https://github.com/informatievlaanderen/public-api/commit/e257b29e9a06059e2fb140c5732355fbd9305ebb))
+
+
+### Features
+
+* add regularize address ([584837c](https://github.com/informatievlaanderen/public-api/commit/584837ce7488d5b4f60c1d68d23e7cc71644f492))
+
 ## [5.14.1](https://github.com/informatievlaanderen/public-api/compare/v5.14.0...v5.14.1) (2022-08-01)
 
 
