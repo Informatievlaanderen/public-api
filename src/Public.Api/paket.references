@@ -7,7 +7,7 @@ Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo
 Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo
-Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice
+Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions
 Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo
 Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions
