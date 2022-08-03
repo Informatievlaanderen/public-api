@@ -56,7 +56,7 @@ namespace Public.Api.Tickets
 
         private static RestRequest CreateBackendPendingRequest(Guid ticketId)
         {
-            var request = new RestRequest("tickets/{ticketId/pending}");
+            var request = new RestRequest("tickets/{ticketId}/pending");
             request.AddParameter("ticketId", ticketId, ParameterType.UrlSegment);
             return request;
         }
