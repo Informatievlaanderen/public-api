@@ -45,11 +45,11 @@ nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 6.0.5
 
 nuget Be.Vlaanderen.Basisregisters.Api 18.1.1
 
-nuget Be.Vlaanderen.Basisregisters.GrAr.Common 17.7.1
-nuget Be.Vlaanderen.Basisregisters.GrAr.Edit 17.7.1
-nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 17.7.1
-nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 17.7.1
-nuget Be.Vlaanderen.Basisregisters.GrAr.Import 17.7.1
+nuget Be.Vlaanderen.Basisregisters.GrAr.Common 17.7.2
+nuget Be.Vlaanderen.Basisregisters.GrAr.Edit 17.7.2
+nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 17.7.2
+nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 17.7.2
+nuget Be.Vlaanderen.Basisregisters.GrAr.Import 17.7.2
 
 nuget Be.Vlaanderen.Basisregisters.EventHandling 4.2.0
 nuget Be.Vlaanderen.Basisregisters.ProblemDetails 8.0.1
