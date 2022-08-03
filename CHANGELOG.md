@@ -1,3 +1,10 @@
+## [5.15.2](https://github.com/informatievlaanderen/public-api/compare/v5.15.1...v5.15.2) (2022-08-03)
+
+
+### Bug Fixes
+
+* bump ([7d61ec6](https://github.com/informatievlaanderen/public-api/commit/7d61ec67364d3931e7c9879bbded8e8ed4cc6b62))
+
 ## [5.15.1](https://github.com/informatievlaanderen/public-api/compare/v5.15.0...v5.15.1) (2022-08-03)
 
 
