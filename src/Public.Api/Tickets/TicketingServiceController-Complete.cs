@@ -59,7 +59,7 @@ namespace Public.Api.Tickets
 
         private static RestRequest CreateBackendCompleteRequest(Guid ticketId, TicketResult? ticketResult)
         {
-            var request = new RestRequest("tickets/{ticketId/complete}");
+            var request = new RestRequest("tickets/{ticketId}/complete");
             request.AddParameter("ticketId", ticketId, ParameterType.UrlSegment);
             request.AddParameter("ticketResult", ticketResult, ParameterType.RequestBody);
             return request;

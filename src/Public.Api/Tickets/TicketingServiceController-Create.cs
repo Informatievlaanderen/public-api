@@ -56,7 +56,7 @@ namespace Public.Api.Tickets
 
         private static RestRequest CreateBackendCreateRequest(string originator)
         {
-            var request = new RestRequest("tickets/{ticketId/complete}");
+            var request = new RestRequest("tickets/{ticketId}/complete");
             request.AddParameter("originator", originator, ParameterType.UrlSegment);
             return request;
         }
