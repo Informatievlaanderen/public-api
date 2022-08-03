@@ -24,7 +24,7 @@
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo\content\PostalRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy\content\StreetNameRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo\content\StreetNameRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice\content\StreetNameRegistry.Api.BackOffice.xml" CopyToOutputDirectory="Always" />
+    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions\content\StreetNameRegistry.Api.BackOffice.Abstractions.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy\content\AddressRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo\content\AddressRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions\content\AddressRegistry.Api.BackOffice.Abstractions.xml" CopyToOutputDirectory="Always" />
