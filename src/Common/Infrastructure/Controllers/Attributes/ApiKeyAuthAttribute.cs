@@ -18,7 +18,7 @@ namespace Common.Infrastructure.Controllers.Attributes
     {
         private const string ApiKeyHeaderName = "x-api-key";
         private const string ApiKeyQueryName = "apikey";
-        private const string ApiTokenHeaderName = "Token";
+        private const string ApiTokenHeaderName = "x-api-token";
 
         private readonly string _requiredAccess;
 
