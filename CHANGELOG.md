@@ -1,3 +1,10 @@
+## [5.15.1](https://github.com/informatievlaanderen/public-api/compare/v5.15.0...v5.15.1) (2022-08-03)
+
+
+### Bug Fixes
+
+* GAWR-3440 api key ([8b4bf69](https://github.com/informatievlaanderen/public-api/commit/8b4bf691ed495ac4071185b2fab90f06b70f57a4))
+
 # [5.15.0](https://github.com/informatievlaanderen/public-api/compare/v5.14.1...v5.15.0) (2022-08-02)
 
 
