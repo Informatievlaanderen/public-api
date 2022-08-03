@@ -1,3 +1,15 @@
+# [5.16.0](https://github.com/informatievlaanderen/public-api/compare/v5.15.2...v5.16.0) (2022-08-03)
+
+
+### Bug Fixes
+
+* correct routes ([1a9ed74](https://github.com/informatievlaanderen/public-api/commit/1a9ed74b736e5427bb61f96984f7902e3e3ca713))
+
+
+### Features
+
+* add ticketing service as V2 & with api key authn ([e3f0a09](https://github.com/informatievlaanderen/public-api/commit/e3f0a09797cf688c9cac93363490116dfe98fe65))
+
 ## [5.15.2](https://github.com/informatievlaanderen/public-api/compare/v5.15.1...v5.15.2) (2022-08-03)
 
 
