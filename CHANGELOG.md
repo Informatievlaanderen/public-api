@@ -1,3 +1,10 @@
+# [5.17.0](https://github.com/informatievlaanderen/public-api/compare/v5.16.0...v5.17.0) (2022-08-08)
+
+
+### Features
+
+* add reject street name ([b6cecce](https://github.com/informatievlaanderen/public-api/commit/b6cecced80996111dabf3c6b88bd409cb78194b0))
+
 # [5.16.0](https://github.com/informatievlaanderen/public-api/compare/v5.15.2...v5.16.0) (2022-08-03)
 
 
