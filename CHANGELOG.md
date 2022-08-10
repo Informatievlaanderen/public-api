@@ -1,3 +1,10 @@
+# [5.18.0](https://github.com/informatievlaanderen/public-api/compare/v5.17.0...v5.18.0) (2022-08-10)
+
+
+### Features
+
+* retire streetname ([4c0de17](https://github.com/informatievlaanderen/public-api/commit/4c0de1759960a09070fcff94a39e0b445b99fbcd))
+
 # [5.17.0](https://github.com/informatievlaanderen/public-api/compare/v5.16.0...v5.17.0) (2022-08-08)
 
 
