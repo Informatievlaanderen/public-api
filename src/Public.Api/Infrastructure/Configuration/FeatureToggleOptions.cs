@@ -16,17 +16,34 @@ namespace Public.Api.Infrastructure.Configuration
         public bool RegularizeAddress { get; set; }
         public bool RejectAddress { get; set; }
         public bool RetireAddress { get; set; }
+        public bool ChangePostalCodeAddress { get; set; }
+        public bool ChangePositionAddress { get; set; }
+        public bool CorrectHouseNumberAddress { get; set; }
+        public bool CorrectBoxNumberAddress { get; set; }
+        public bool CorrectPostalCodeAddress { get; set; }
+        public bool CorrectPositionAddress { get; set; }
 
         public bool PlanBuilding { get; set; }
         public bool BuildingUnderConstruction { get; set; }
         public bool RealizeBuilding { get; set; }
         public bool NotRealizeBuilding { get; set; }
         public bool DemolishBuilding { get; set; }
+        public bool ChangeGeometryBuilding { get; set; }
+        public bool CorrectGeometryBuilding { get; set; }
 
         public bool PlanBuildingUnit { get; set; }
         public bool RealizeBuildingUnit { get; set; }
         public bool NotRealizeBuildingUnit { get; set; }
         public bool RetireBuildingUnit { get; set; }
+        public bool AttachAddressBuildingUnit { get; set; }
+        public bool DetachAddressBuildingUnit { get; set; }
+        public bool RegularizeBuildingUnit { get; set; }
+        public bool DeregulateBuildingUnit { get; set; }
+        public bool ChangeFunctionBuildingUnit { get; set; }
+        public bool CorrectFunctionBuildingUnit { get; set; }
+
+        public bool AttachAddressParcel { get; set; }
+        public bool DetachAddressParcel { get; set; }
 
         public bool IsAddressOsloApiEnabled { get; set; }
         public bool IsBuildingOsloApiEnabled { get; set; }
