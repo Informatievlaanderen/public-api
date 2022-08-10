@@ -1,3 +1,10 @@
+# [5.19.0](https://github.com/informatievlaanderen/public-api/compare/v5.18.0...v5.19.0) (2022-08-10)
+
+
+### Features
+
+* add toggles ([c043e05](https://github.com/informatievlaanderen/public-api/commit/c043e05454f8edba098375287962afcc277fa917))
+
 # [5.18.0](https://github.com/informatievlaanderen/public-api/compare/v5.17.0...v5.18.0) (2022-08-10)
 
 
