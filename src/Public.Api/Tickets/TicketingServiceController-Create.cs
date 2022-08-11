@@ -10,6 +10,7 @@ namespace Public.Api.Tickets
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class TicketingServiceController
     {
@@ -24,8 +25,8 @@ namespace Public.Api.Tickets
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpPost("tickets/create/{originator}", Name = nameof(CreateTicket))]
         [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails), StatusCodes.Status429TooManyRequests)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(Guid))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
