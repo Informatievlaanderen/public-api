@@ -1,3 +1,10 @@
+## [5.19.1](https://github.com/informatievlaanderen/public-api/compare/v5.19.0...v5.19.1) (2022-08-11)
+
+
+### Bug Fixes
+
+* use basisregisters problemdetails in ticketing controllers ([362b443](https://github.com/informatievlaanderen/public-api/commit/362b4434740b016aeab79cdf4802c6b683f0718d))
+
 # [5.19.0](https://github.com/informatievlaanderen/public-api/compare/v5.18.0...v5.19.0) (2022-08-10)
 
 
