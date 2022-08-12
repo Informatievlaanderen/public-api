@@ -37,6 +37,13 @@ namespace Common.Infrastructure
         public RetireStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class CorrectStreetNameNamesToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public CorrectStreetNameNamesToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class ProposeAddressToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
