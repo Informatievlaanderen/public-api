@@ -308,6 +308,7 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new ApproveStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ApproveStreetName))
                 .AddSingleton(c => new RejectStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RejectStreetName))
                 .AddSingleton(c => new RetireStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RetireStreetName))
+                .AddSingleton(c => new CorrectStreetNameNamesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectStreetNameNames))
                 .AddSingleton(c => new ProposeAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ProposeAddress))
                 .AddSingleton(c => new ApproveAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ApproveAddress))
                 .AddSingleton(c => new DeregulateAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.DeregulateAddress))
