@@ -1,3 +1,10 @@
+# [5.20.0](https://github.com/informatievlaanderen/public-api/compare/v5.19.1...v5.20.0) (2022-08-12)
+
+
+### Features
+
+* correct streetname names ([8ab28de](https://github.com/informatievlaanderen/public-api/commit/8ab28de8e309cc5661c33899ebe8b347dba9ea8c))
+
 ## [5.19.1](https://github.com/informatievlaanderen/public-api/compare/v5.19.0...v5.19.1) (2022-08-11)
 
 
