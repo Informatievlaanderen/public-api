@@ -1,3 +1,10 @@
+# [5.21.0](https://github.com/informatievlaanderen/public-api/compare/v5.20.0...v5.21.0) (2022-08-16)
+
+
+### Features
+
+* upgrade address and streetname registries ([90a6752](https://github.com/informatievlaanderen/public-api/commit/90a675284b1d546d9efe5d5aa2d61dab1f513063))
+
 # [5.20.0](https://github.com/informatievlaanderen/public-api/compare/v5.19.1...v5.20.0) (2022-08-12)
 
 
