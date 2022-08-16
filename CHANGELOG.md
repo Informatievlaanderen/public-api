@@ -1,3 +1,10 @@
+## [5.21.1](https://github.com/informatievlaanderen/public-api/compare/v5.21.0...v5.21.1) (2022-08-16)
+
+
+### Bug Fixes
+
+* update reject and retire streetname http status 400 docs ([ba5494e](https://github.com/informatievlaanderen/public-api/commit/ba5494e7ac8c310e9fdf61a9af7d62bf41b9855c))
+
 # [5.21.0](https://github.com/informatievlaanderen/public-api/compare/v5.20.0...v5.21.0) (2022-08-16)
 
 
