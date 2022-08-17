@@ -1,3 +1,10 @@
+# [5.22.0](https://github.com/informatievlaanderen/public-api/compare/v5.21.1...v5.22.0) (2022-08-17)
+
+
+### Features
+
+* version bump for propose address validation request ([4b8fda0](https://github.com/informatievlaanderen/public-api/commit/4b8fda0eaa15766e223902b12f2c8b72a81a4b43))
+
 ## [5.21.1](https://github.com/informatievlaanderen/public-api/compare/v5.21.0...v5.21.1) (2022-08-16)
 
 
