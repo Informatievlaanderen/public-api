@@ -1,3 +1,10 @@
+# [5.23.0](https://github.com/informatievlaanderen/public-api/compare/v5.22.0...v5.23.0) (2022-08-19)
+
+
+### Features
+
+* update address registry for propose address with position ([ece4500](https://github.com/informatievlaanderen/public-api/commit/ece450035e182064c0f89be3ef9eb5e9f2745fba))
+
 # [5.22.0](https://github.com/informatievlaanderen/public-api/compare/v5.21.1...v5.22.0) (2022-08-17)
 
 
