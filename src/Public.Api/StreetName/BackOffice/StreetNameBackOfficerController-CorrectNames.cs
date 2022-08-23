@@ -19,7 +19,7 @@ namespace Public.Api.StreetName.BackOffice
     public partial class StreetNameBackOfficeController
     {
         /// <summary>
-        /// Corrigeer een straatnaam - straatnaam.
+        /// Corrigeer de straatnaam van een straatnaam.
         /// </summary>
         /// <param name="objectId">Identificator van de straatnaam.</param>
         /// <param name="streetNameCorrectNamesRequest"></param>
@@ -28,8 +28,8 @@ namespace Public.Api.StreetName.BackOffice
         /// <param name="correctStreetNameNamesToggle"></param>
         /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van de straatnaam (optioneel).</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="202">Als de correctie reeds in verwerking is.</response>
-        /// <response code="400">Als de straatnaam status niet 'voorgesteld' of 'inGebruik' is.</response>
+        /// <response code="202">Als de straatnaam van een straatnaam succesvol gecorrigeerd is.</response>
+        /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="404">Als de straatnaam niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als de straatnaam verwijderd is.</response>
@@ -50,7 +50,7 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Corrigeer een straatnaam - straatnaam.")]
+        [SwaggerOperation(Description = "Correctie van de straatnaam van een straatnaam.")]
         [HttpPost("straatnamen/{objectId}/acties/corrigeren/straatnaam", Name = nameof(CorrectNames))]
         public async Task<IActionResult> CorrectNames(
             [FromRoute] int objectId,
