@@ -1,37 +1,36 @@
-
 namespace Public.Api.Address.BackOffice
 {
     using System.Threading;
     using System.Threading.Tasks;
     using AddressRegistry.Api.BackOffice.Abstractions.Requests;
+    using AddressRegistry.Api.Legacy.Address.Responses;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using RestSharp;
-    using AddressRegistry.Api.Legacy.Address.Responses;
     using Newtonsoft.Json;
+    using RestSharp;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class AddressBackOfficeController
     {
-        public const string ChangePositionRoute = "adressen/{objectId}/acties/wijzigen/adrespositie";
+        public const string CorrectPositionRoute = "adressen/{objectId}/acties/corrigeren/adrespositie";
 
         /// <summary>
-        /// Wijzig een adrespositie.
+        /// Corrigeer een adrespositie.
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
-        /// <param name="addressChangePositionRequest"></param>
+        /// <param name="addressCorrectPositionRequest"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
-        /// <param name="changePositionAddressToggle"></param>
+        /// <param name="correctPositionAddressToggleToggle"></param>
         /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van het adres (optioneel).</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="202">Als de adrespositie wijziging reeds in verwerking is.</response>
+        /// <response code="202">Als de adrespositie correctie reeds in verwerking is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="404">Als het adres niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
@@ -53,19 +52,19 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerRequestExample(typeof(AddressChangePositionRequest), typeof(AddressChangePositionRequestExamples))]
-        [SwaggerOperation(Description = "Wijzig adrespositie.")]
-        [HttpPost(ChangePositionRoute, Name = nameof(ChangeAddressPosition))]
-        public async Task<IActionResult> ChangeAddressPosition(
+        [SwaggerRequestExample(typeof(AddressCorrectPositionRequest), typeof(AddressCorrectPositionRequestExamples))]
+        [SwaggerOperation(Description = "Corrigeer adrespositie.")]
+        [HttpPost(CorrectPositionRoute, Name = nameof(CorrectAddressPosition))]
+        public async Task<IActionResult> CorrectAddressPosition(
             [FromRoute] int objectId,
-            [FromBody] AddressChangePositionRequest addressChangePositionRequest,
+            [FromBody] AddressCorrectPositionRequest addressCorrectPositionRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] ChangePositionAddress changePositionAddressToggle,
+            [FromServices] CorrectPositionAddressToggle correctPositionAddressToggleToggle,
             [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
             CancellationToken cancellationToken = default)
         {
-            if (!changePositionAddressToggle.FeatureEnabled)
+            if (!correctPositionAddressToggleToggle.FeatureEnabled)
             {
                 return NotFound();
             }
@@ -74,10 +73,10 @@ namespace Public.Api.Address.BackOffice
 
             IRestRequest BackendRequest()
             {
-                var request = new RestRequest(ChangePositionRoute, Method.POST)
+                var request = new RestRequest(CorrectPositionRoute, Method.POST)
                     .AddParameter(
                         "application/json; charset=utf-8",
-                        JsonConvert.SerializeObject(addressChangePositionRequest),
+                        JsonConvert.SerializeObject(addressCorrectPositionRequest),
                         ParameterType.RequestBody)
                     .AddParameter(
                         "objectId",

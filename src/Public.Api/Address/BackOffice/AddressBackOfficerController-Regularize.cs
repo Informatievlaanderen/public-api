@@ -16,6 +16,8 @@ namespace Public.Api.Address.BackOffice
 
     public partial class AddressBackOfficeController
     {
+        public const string RegularizeRoute = "adressen/{objectId}/acties/regulariseren";
+
         /// <summary>
         /// Regulariseer een adres.
         /// </summary>
@@ -48,7 +50,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Wijzig officieelToegekend van `false` naar `true`.")]
-        [HttpPost("adressen/{objectId}/acties/regulariseren", Name = nameof(RegularizeAddress))]
+        [HttpPost(RegularizeRoute, Name = nameof(RegularizeAddress))]
         public async Task<IActionResult> RegularizeAddress(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -66,8 +68,8 @@ namespace Public.Api.Address.BackOffice
 
             IRestRequest BackendRequest()
             {
-                var request = new RestRequest("adressen/{persistentLocalId}/acties/regulariseren", Method.POST);
-                request.AddParameter("persistentLocalId", objectId, ParameterType.UrlSegment);
+                var request = new RestRequest(RegularizeRoute, Method.POST);
+                request.AddParameter("objectId", objectId, ParameterType.UrlSegment);
 
                 if (ifMatch is not null)
                 {

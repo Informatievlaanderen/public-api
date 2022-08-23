@@ -16,6 +16,8 @@ namespace Public.Api.Address.BackOffice
 
     public partial class AddressBackOfficeController
     {
+        public const string ProposeAddressRoute = "adressen/acties/voorstellen";
+
         /// <summary>
         /// Stel een adres voor.
         /// </summary>
@@ -44,7 +46,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Voer een nieuw adres in met status `voorgesteld`.")]
-        [HttpPost("adressen/acties/voorstellen", Name = nameof(ProposeAddress))]
+        [HttpPost(ProposeAddressRoute, Name = nameof(ProposeAddress))]
         public async Task<IActionResult> ProposeAddress(
             [FromBody] AddressProposeRequest addressProposeRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -58,7 +60,7 @@ namespace Public.Api.Address.BackOffice
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             IRestRequest BackendRequest() => CreateBackendRequestWithJsonBody(
-                "adressen/acties/voorstellen",
+                ProposeAddressRoute,
                 addressProposeRequest,
                 Method.POST);
 

@@ -16,6 +16,8 @@ namespace Public.Api.Address.BackOffice
 
     public partial class AddressBackOfficeController
     {
+        public const string RejectRoute = "adressen/{objectId}/acties/afkeuren";
+        
         /// <summary>
         /// Keur een adres af.
         /// </summary>
@@ -48,7 +50,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Wijzig de adresstatus van `voorgesteld` naar `afgekeurd`.")]
-        [HttpPost("adressen/{objectId}/acties/afkeuren", Name = nameof(RejectAddress))]
+        [HttpPost(RejectRoute, Name = nameof(RejectAddress))]
         public async Task<IActionResult> RejectAddress(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -66,8 +68,8 @@ namespace Public.Api.Address.BackOffice
 
             IRestRequest BackendRequest()
             {
-                var request = new RestRequest("adressen/{persistentLocalId}/acties/afkeuren", Method.POST);
-                request.AddParameter("persistentLocalId", objectId, ParameterType.UrlSegment);
+                var request = new RestRequest(RejectRoute, Method.POST);
+                request.AddParameter("objectId", objectId, ParameterType.UrlSegment);
 
                 if (ifMatch is not null)
                 {

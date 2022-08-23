@@ -16,6 +16,8 @@ namespace Public.Api.Address.BackOffice
 
     public partial class AddressBackOfficeController
     {
+        public const string DeregulateRoute = "adressen/{objectId}/acties/deregulariseren";
+
         /// <summary>
         /// Deregulariseer een adres.
         /// </summary>
@@ -48,7 +50,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Wijzig officieelToegekend van `true` naar `false`.")]
-        [HttpPost("adressen/{objectId}/acties/deregulariseren", Name = nameof(DeregulateAddress))]
+        [HttpPost(DeregulateRoute, Name = nameof(DeregulateAddress))]
         public async Task<IActionResult> DeregulateAddress(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -66,8 +68,8 @@ namespace Public.Api.Address.BackOffice
 
             IRestRequest BackendRequest()
             {
-                var request = new RestRequest("adressen/{persistentLocalId}/acties/deregulariseren", Method.POST);
-                request.AddParameter("persistentLocalId", objectId, ParameterType.UrlSegment);
+                var request = new RestRequest(DeregulateRoute, Method.POST);
+                request.AddParameter("objectId", objectId, ParameterType.UrlSegment);
 
                 if (ifMatch is not null)
                 {

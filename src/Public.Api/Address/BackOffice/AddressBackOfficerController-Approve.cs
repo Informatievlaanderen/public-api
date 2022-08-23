@@ -16,6 +16,8 @@ namespace Public.Api.Address.BackOffice
 
     public partial class AddressBackOfficeController
     {
+        public const string ApproveAddressRoute = "adressen/{objectId}/acties/goedkeuren";
+
         /// <summary>
         /// Keur een adres goed.
         /// </summary>
@@ -50,7 +52,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Wijzig de adresstatus van `voorgesteld` naar `inGebruik`.")]
-        [HttpPost("adressen/{objectId}/acties/goedkeuren", Name = nameof(ApproveAddress))]
+        [HttpPost(ApproveAddressRoute, Name = nameof(ApproveAddress))]
         public async Task<IActionResult> ApproveAddress(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -80,8 +82,8 @@ namespace Public.Api.Address.BackOffice
 
         private static RestRequest CreateBackendRequest(int persistentLocalId, string? ifMatch)
         {
-            var request = new RestRequest("adressen/{persistentLocalId}/acties/goedkeuren", Method.POST);
-            request.AddParameter("persistentLocalId", persistentLocalId, ParameterType.UrlSegment);
+            var request = new RestRequest(ApproveAddressRoute, Method.POST);
+            request.AddParameter("objectId", persistentLocalId, ParameterType.UrlSegment);
 
             if (ifMatch is not null)
             {
