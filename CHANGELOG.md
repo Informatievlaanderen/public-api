@@ -1,3 +1,10 @@
+# [5.24.0](https://github.com/informatievlaanderen/public-api/compare/v5.23.0...v5.24.0) (2022-08-23)
+
+
+### Features
+
+* change address position ([cd05aec](https://github.com/informatievlaanderen/public-api/commit/cd05aecf724d10a56b7414a063dd5a49d90bdc58))
+
 # [5.23.0](https://github.com/informatievlaanderen/public-api/compare/v5.22.0...v5.23.0) (2022-08-19)
 
 
