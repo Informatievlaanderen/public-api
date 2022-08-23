@@ -16,6 +16,8 @@ namespace Public.Api.Address.BackOffice
 
     public partial class AddressBackOfficeController
     {
+        public const string RetireRoute = "adressen/{objectId}/acties/opheffen";
+
         /// <summary>
         /// Hef een adres op.
         /// </summary>
@@ -48,7 +50,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Wijzig de adresstatus van `inGebruik` naar `gehistoreerd`.")]
-        [HttpPost("adressen/{objectId}/acties/opheffen", Name = nameof(RetireAddress))]
+        [HttpPost(RetireRoute, Name = nameof(RetireAddress))]
         public async Task<IActionResult> RetireAddress(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -66,8 +68,8 @@ namespace Public.Api.Address.BackOffice
 
             IRestRequest BackendRequest()
             {
-                var request = new RestRequest("adressen/{persistentLocalId}/acties/opheffen", Method.POST);
-                request.AddParameter("persistentLocalId", objectId, ParameterType.UrlSegment);
+                var request = new RestRequest(RetireRoute, Method.POST);
+                request.AddParameter("objectId", objectId, ParameterType.UrlSegment);
 
                 if (ifMatch is not null)
                 {

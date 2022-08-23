@@ -121,11 +121,11 @@ namespace Common.Infrastructure
         public CorrectPostalCodeAddress(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class CorrectPositionAddress : IFeatureToggle
+    public class CorrectPositionAddressToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public CorrectPositionAddress(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public CorrectPositionAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
     public class PlanBuildingToggle : IFeatureToggle
@@ -170,11 +170,11 @@ namespace Common.Infrastructure
         public ChangeGeometryBuilding(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class CorrectGeometryBuilding : IFeatureToggle
+    public class CorrectGeometryBuildingToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public CorrectGeometryBuilding(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public CorrectGeometryBuildingToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
     public class PlanBuildingUnitToggle : IFeatureToggle
@@ -205,60 +205,60 @@ namespace Common.Infrastructure
         public RetireBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class AttachAddressBuildingUnit : IFeatureToggle
+    public class AttachAddressBuildingUnitToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public AttachAddressBuildingUnit(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public AttachAddressBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class DetachAddressBuildingUnit : IFeatureToggle
+    public class DetachAddressBuildingUnitToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public DetachAddressBuildingUnit(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public DetachAddressBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class RegularizeBuildingUnit : IFeatureToggle
+    public class RegularizeBuildingUnitToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public RegularizeBuildingUnit(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public RegularizeBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class DeregulateBuildingUnit : IFeatureToggle
+    public class DeregulateBuildingUnitToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public DeregulateBuildingUnit(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public DeregulateBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class ChangeFunctionBuildingUnit : IFeatureToggle
+    public class ChangeFunctionBuildingUnitToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public ChangeFunctionBuildingUnit(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public ChangeFunctionBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class CorrectFunctionBuildingUnit : IFeatureToggle
+    public class CorrectFunctionBuildingUnitToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public CorrectFunctionBuildingUnit(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public CorrectFunctionBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class AttachAddressParcel : IFeatureToggle
+    public class AttachAddressParcelToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public AttachAddressParcel(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public AttachAddressParcelToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class DetachAddressParcel : IFeatureToggle
+    public class DetachAddressParcelToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public DetachAddressParcel(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public DetachAddressParcelToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
     public class IsAddressOsloApiEnabledToggle : IFeatureToggle

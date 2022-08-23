@@ -50,6 +50,7 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        [SwaggerRequestExample(typeof(StreetNameCorrectNamesRequest), typeof(StreetNameCorrectNamesRequestExamples))]
         [SwaggerOperation(Description = "Correctie van de straatnaam van een straatnaam.")]
         [HttpPost("straatnamen/{objectId}/acties/corrigeren/straatnaam", Name = nameof(CorrectNames))]
         public async Task<IActionResult> CorrectNames(
