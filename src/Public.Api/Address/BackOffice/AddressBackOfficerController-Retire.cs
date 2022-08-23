@@ -25,8 +25,7 @@ namespace Public.Api.Address.BackOffice
         /// <param name="retireAddressToggle"></param>
         /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van het adres (optioneel).</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="202">Als de aanvraag reeds in verwerking is.</response>
-        /// <response code="204">Als het adres succesvol gehistoreerd is.</response>
+        /// <response code="202">Als het adres succesvol gehistoreerd is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="404">Als het adres niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
@@ -36,7 +35,6 @@ namespace Public.Api.Address.BackOffice
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         /// <returns></returns>
         [ProducesResponseType(StatusCodes.Status202Accepted)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status410Gone)]
