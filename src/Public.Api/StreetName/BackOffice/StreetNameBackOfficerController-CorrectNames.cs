@@ -18,6 +18,8 @@ namespace Public.Api.StreetName.BackOffice
 
     public partial class StreetNameBackOfficeController
     {
+        public const string CorrectStreetNameRoute = "straatnamen/{objectId}/acties/corrigeren/straatnaam";
+
         /// <summary>
         /// Corrigeer de straatnaam van een straatnaam.
         /// </summary>
@@ -44,6 +46,9 @@ namespace Public.Api.StreetName.BackOffice
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status412PreconditionFailed)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string", "De URL van de gecorrigeerde straatnaam.", "")]
+        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "ETag", "string", "De ETag van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(StreetNameNotFoundResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(StreetNameGoneResponseExamples))]
@@ -52,7 +57,7 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(StreetNameCorrectNamesRequest), typeof(StreetNameCorrectNamesRequestExamples))]
         [SwaggerOperation(Description = "Correctie van de straatnaam van een straatnaam.")]
-        [HttpPost("straatnamen/{objectId}/acties/corrigeren/straatnaam", Name = nameof(CorrectNames))]
+        [HttpPost(CorrectStreetNameRoute, Name = nameof(CorrectNames))]
         public async Task<IActionResult> CorrectNames(
             [FromRoute] int objectId,
             [FromBody] StreetNameCorrectNamesRequest streetNameCorrectNamesRequest,
@@ -71,12 +76,12 @@ namespace Public.Api.StreetName.BackOffice
 
             IRestRequest BackendRequest()
             {
-                var request = new RestRequest("straatnamen/{persistentLocalId}/acties/corrigeren/straatnaam", Method.POST)
+                var request = new RestRequest(CorrectStreetNameRoute, Method.POST)
                     .AddParameter("application/json; charset=utf-8",
                         JsonConvert.SerializeObject(streetNameCorrectNamesRequest),
                         ParameterType.RequestBody);
 
-                request.AddParameter("persistentLocalId", objectId, ParameterType.UrlSegment);
+                request.AddParameter("objectId", objectId, ParameterType.UrlSegment);
 
                 if (ifMatch is not null)
                 {
