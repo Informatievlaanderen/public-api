@@ -1,3 +1,10 @@
+## [5.26.1](https://github.com/informatievlaanderen/public-api/compare/v5.26.0...v5.26.1) (2022-08-24)
+
+
+### Bug Fixes
+
+* change and correct address position docs ([d2d9a92](https://github.com/informatievlaanderen/public-api/commit/d2d9a921ea5bf7a4dd345c155f0929fe35bf538f))
+
 # [5.26.0](https://github.com/informatievlaanderen/public-api/compare/v5.25.0...v5.26.0) (2022-08-24)
 
 
