@@ -1,3 +1,10 @@
+# [5.25.0](https://github.com/informatievlaanderen/public-api/compare/v5.24.1...v5.25.0) (2022-08-24)
+
+
+### Features
+
+* add correctAddressPosition endpoint ([3389811](https://github.com/informatievlaanderen/public-api/commit/3389811436aaa5f67193bc3154c7e943cfe03343))
+
 ## [5.24.1](https://github.com/informatievlaanderen/public-api/compare/v5.24.0...v5.24.1) (2022-08-23)
 
 
