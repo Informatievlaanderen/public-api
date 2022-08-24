@@ -36,7 +36,7 @@ namespace Public.Api.Address
         /// <param name="niscode">Filter op de NIS-code van het adres (exact) (optioneel).</param>
         /// <param name="status">
         /// Filter op de status van het adres (exact) (optioneel).<br/>
-        /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"`
+        /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"` `"afgekeurd"`
         /// </param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>

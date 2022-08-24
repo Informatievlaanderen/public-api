@@ -32,7 +32,7 @@ namespace Public.Api.StreetName.Oslo
         /// <param name="niscode">Filter op de NIS-code van de straatnaam (exact) (optioneel).</param>
         /// <param name="status">
         /// Filter op de status van de straatnaam (exact) (optioneel). <br />
-        /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"`
+        /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"` `"afgekeurd"`
         /// </param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
