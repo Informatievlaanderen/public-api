@@ -22,7 +22,7 @@ namespace Public.Api.Address.BackOffice
         public const string ChangePositionRoute = "adressen/{objectId}/acties/wijzigen/adrespositie";
 
         /// <summary>
-        /// Wijzig een adrespositie.
+        /// Wijzig de adrespositie van een adres.
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
         /// <param name="addressChangePositionRequest"></param>
@@ -57,7 +57,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(AddressChangePositionRequest), typeof(AddressChangePositionRequestExamples))]
-        [SwaggerOperation(Description = "Wijzig adrespositie.")]
+        [SwaggerOperation(Description = "Wijzig de positiespecificatie, positiegeometriemethode of positie van een adres.")]
         [HttpPost(ChangePositionRoute, Name = nameof(ChangeAddressPosition))]
         public async Task<IActionResult> ChangeAddressPosition(
             [FromRoute] int objectId,
