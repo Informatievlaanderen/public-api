@@ -21,7 +21,7 @@ namespace Public.Api.Address.BackOffice
         public const string CorrectPositionRoute = "adressen/{objectId}/acties/corrigeren/adrespositie";
 
         /// <summary>
-        /// Corrigeer een adrespositie.
+        /// Corrigeer de adrespositie van een adres.
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
         /// <param name="addressCorrectPositionRequest"></param>
@@ -56,7 +56,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(AddressCorrectPositionRequest), typeof(AddressCorrectPositionRequestExamples))]
-        [SwaggerOperation(Description = "Corrigeer adrespositie.")]
+        [SwaggerOperation(Description = "Correctie van de positiespecificatie, positiegeometriemethode of positie van een adres.")]
         [HttpPost(CorrectPositionRoute, Name = nameof(CorrectAddressPosition))]
         public async Task<IActionResult> CorrectAddressPosition(
             [FromRoute] int objectId,
