@@ -1,3 +1,10 @@
+# [5.26.0](https://github.com/informatievlaanderen/public-api/compare/v5.25.0...v5.26.0) (2022-08-24)
+
+
+### Features
+
+* add response headers to streetname & address ([4c63e11](https://github.com/informatievlaanderen/public-api/commit/4c63e11e5f4730d11ee503953d4efeda95c5b84d))
+
 # [5.25.0](https://github.com/informatievlaanderen/public-api/compare/v5.24.1...v5.25.0) (2022-08-24)
 
 
