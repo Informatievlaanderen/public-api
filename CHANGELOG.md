@@ -1,3 +1,10 @@
+## [5.27.1](https://github.com/informatievlaanderen/public-api/compare/v5.27.0...v5.27.1) (2022-08-25)
+
+
+### Bug Fixes
+
+* correct action names to match toggles #GAWR-3570 ([d298809](https://github.com/informatievlaanderen/public-api/commit/d298809ad714c43017f33d5ade574747a7333256)), closes [#GAWR-3570](https://github.com/informatievlaanderen/public-api/issues/GAWR-3570)
+
 # [5.27.0](https://github.com/informatievlaanderen/public-api/compare/v5.26.1...v5.27.0) (2022-08-24)
 
 
