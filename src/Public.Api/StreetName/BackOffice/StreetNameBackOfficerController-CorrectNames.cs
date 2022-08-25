@@ -57,8 +57,8 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(StreetNameCorrectNamesRequest), typeof(StreetNameCorrectNamesRequestExamples))]
         [SwaggerOperation(Description = "Correctie van de straatnaam van een straatnaam.")]
-        [HttpPost(CorrectStreetNameRoute, Name = nameof(CorrectNames))]
-        public async Task<IActionResult> CorrectNames(
+        [HttpPost(CorrectStreetNameRoute, Name = nameof(CorrectStreetNameNames))]
+        public async Task<IActionResult> CorrectStreetNameNames(
             [FromRoute] int objectId,
             [FromBody] StreetNameCorrectNamesRequest streetNameCorrectNamesRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,

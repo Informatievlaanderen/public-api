@@ -58,8 +58,8 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(AddressChangePositionRequest), typeof(AddressChangePositionRequestExamples))]
         [SwaggerOperation(Description = "Wijzig de positiespecificatie, positiegeometriemethode of positie van een adres.")]
-        [HttpPost(ChangePositionRoute, Name = nameof(ChangeAddressPosition))]
-        public async Task<IActionResult> ChangeAddressPosition(
+        [HttpPost(ChangePositionRoute, Name = nameof(ChangePositionAddress))]
+        public async Task<IActionResult> ChangePositionAddress(
             [FromRoute] int objectId,
             [FromBody] AddressChangePositionRequest addressChangePositionRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
