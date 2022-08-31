@@ -1,3 +1,10 @@
+# [5.28.0](https://github.com/informatievlaanderen/public-api/compare/v5.27.2...v5.28.0) (2022-08-31)
+
+
+### Features
+
+* update registry versions ([5fcb783](https://github.com/informatievlaanderen/public-api/commit/5fcb783973c3c70ae2cb5b506a6e6ae384c95ba4))
+
 ## [5.27.2](https://github.com/informatievlaanderen/public-api/compare/v5.27.1...v5.27.2) (2022-08-25)
 
 
