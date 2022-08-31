@@ -1,3 +1,10 @@
+## [5.28.1](https://github.com/informatievlaanderen/public-api/compare/v5.28.0...v5.28.1) (2022-08-31)
+
+
+### Bug Fixes
+
+* update address registry packages ([5da5aa9](https://github.com/informatievlaanderen/public-api/commit/5da5aa95d3fdca1caf20b4e1de32e7da6db552a6))
+
 # [5.28.0](https://github.com/informatievlaanderen/public-api/compare/v5.27.2...v5.28.0) (2022-08-31)
 
 
