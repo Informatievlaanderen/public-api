@@ -1,3 +1,10 @@
+## [5.28.2](https://github.com/informatievlaanderen/public-api/compare/v5.28.1...v5.28.2) (2022-09-01)
+
+
+### Bug Fixes
+
+* passthrough etag in response ([ee63a4e](https://github.com/informatievlaanderen/public-api/commit/ee63a4ebc517edc73dda7ca1606d488a2f087204))
+
 ## [5.28.1](https://github.com/informatievlaanderen/public-api/compare/v5.28.0...v5.28.1) (2022-08-31)
 
 
