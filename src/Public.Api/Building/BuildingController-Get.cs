@@ -69,7 +69,7 @@ namespace Public.Api.Building
                 CreateDefaultHandleBadRequest(),
                 cancellationToken);
 
-            return new BackendResponseResult(value);
+            return new BackendResponseResult(value, BackendResponseResultOptions.ForRead());
         }
 
         private static RestRequest CreateBackendDetailRequest(int buildingId)
