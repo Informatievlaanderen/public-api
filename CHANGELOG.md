@@ -1,3 +1,10 @@
+# [5.29.0](https://github.com/informatievlaanderen/public-api/compare/v5.28.2...v5.29.0) (2022-09-09)
+
+
+### Features
+
+* change routes for propose and approve streetname ([f93f9a9](https://github.com/informatievlaanderen/public-api/commit/f93f9a91ef45ba52580e8500158f303541f845c0))
+
 ## [5.28.2](https://github.com/informatievlaanderen/public-api/compare/v5.28.1...v5.28.2) (2022-09-01)
 
 
