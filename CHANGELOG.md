@@ -1,3 +1,10 @@
+## [5.29.1](https://github.com/informatievlaanderen/public-api/compare/v5.29.0...v5.29.1) (2022-09-09)
+
+
+### Bug Fixes
+
+* building registry event documentation ([c02fb95](https://github.com/informatievlaanderen/public-api/commit/c02fb9570742b14b207790be62990dd23585d838))
+
 # [5.29.0](https://github.com/informatievlaanderen/public-api/compare/v5.28.2...v5.29.0) (2022-09-09)
 
 
