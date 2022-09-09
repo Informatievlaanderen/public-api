@@ -16,6 +16,8 @@ namespace Public.Api.StreetName.BackOffice
 
     public partial class StreetNameBackOfficeController
     {
+        public const string ApproveStreetNameRoute = "straatnamen/{objectId}/acties/goedkeuren";
+
         /// <summary>
         /// Keur een straatnaam goed.
         /// </summary>
@@ -53,7 +55,7 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Wijzig de straatnaamstatus van `voorgesteld` naar `inGebruik`.")]
-        [HttpPut("straatnamen/{objectId}/goedgekeurd", Name = nameof(ApproveStreetName))]
+        [HttpPost(ApproveStreetNameRoute, Name = nameof(ApproveStreetName))]
         public async Task<IActionResult> ApproveStreetName(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -83,7 +85,7 @@ namespace Public.Api.StreetName.BackOffice
 
         private static RestRequest CreateBackendPutRequest(int persistentLocalId, string? ifMatch)
         {
-            var request = new RestRequest("straatnamen/{persistentLocalId}/goedgekeurd", Method.PUT);
+            var request = new RestRequest(ApproveStreetNameRoute, Method.POST);
             request.AddParameter("persistentLocalId", persistentLocalId, ParameterType.UrlSegment);
 
             if (ifMatch is not null)

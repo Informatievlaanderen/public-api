@@ -16,6 +16,8 @@ namespace Public.Api.StreetName.BackOffice
 
     public partial class StreetNameBackOfficeController
     {
+        public const string ProposeStreetNameRoute = "straatnamen/acties/voorstellen";
+
         /// <summary>
         /// Stel een straatnaam voor.
         /// </summary>
@@ -44,7 +46,7 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Voer een nieuwe straatnaam in met status `voorgesteld`.")]
-        [HttpPost("straatnamen/voorgesteld", Name = nameof(ProposeStreetName))]
+        [HttpPost(ProposeStreetNameRoute, Name = nameof(ProposeStreetName))]
         public async Task<IActionResult> ProposeStreetName(
             [FromBody] StreetNameProposeRequest streetNameProposeRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -58,7 +60,7 @@ namespace Public.Api.StreetName.BackOffice
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             IRestRequest BackendRequest() => CreateBackendRequestWithJsonBody(
-                "straatnamen/voorgesteld",
+                ProposeStreetNameRoute,
                 streetNameProposeRequest,
                 Method.POST);
 
