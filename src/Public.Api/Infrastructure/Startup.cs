@@ -315,6 +315,7 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new RegularizeAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RegularizeAddress))
                 .AddSingleton(c => new RejectAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RejectAddress))
                 .AddSingleton(c => new RetireAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RetireAddress))
+                .AddSingleton(c => new RemoveAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RemoveAddress))
                 .AddSingleton(c => new ChangePostalCodeAddress(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangePostalCodeAddress))
                 .AddSingleton(c => new ChangePositionAddress(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangePositionAddress))
                 .AddSingleton(c => new CorrectHouseNumberAddress(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectHouseNumberAddress))
