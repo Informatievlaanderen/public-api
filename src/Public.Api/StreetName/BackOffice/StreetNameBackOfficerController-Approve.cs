@@ -83,10 +83,10 @@ namespace Public.Api.StreetName.BackOffice
             return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
         }
 
-        private static RestRequest CreateBackendPutRequest(int persistentLocalId, string? ifMatch)
+        private static RestRequest CreateBackendPutRequest(int objectId, string? ifMatch)
         {
             var request = new RestRequest(ApproveStreetNameRoute, Method.POST);
-            request.AddParameter("persistentLocalId", persistentLocalId, ParameterType.UrlSegment);
+            request.AddParameter("objectId", objectId, ParameterType.UrlSegment);
 
             if (ifMatch is not null)
             {
