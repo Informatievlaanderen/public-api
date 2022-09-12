@@ -86,6 +86,13 @@ namespace Common.Infrastructure
         public RetireAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class RemoveAddressToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RemoveAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class ChangePostalCodeAddress : IFeatureToggle
     {
         public bool FeatureEnabled { get; }

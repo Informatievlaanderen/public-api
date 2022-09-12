@@ -17,6 +17,7 @@ namespace Public.Api.Infrastructure.Configuration
         public bool RegularizeAddress { get; set; }
         public bool RejectAddress { get; set; }
         public bool RetireAddress { get; set; }
+        public bool RemoveAddress { get; set; }
         public bool ChangePostalCodeAddress { get; set; }
         public bool ChangePositionAddress { get; set; }
         public bool CorrectHouseNumberAddress { get; set; }
