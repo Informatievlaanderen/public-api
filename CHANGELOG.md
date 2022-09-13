@@ -1,3 +1,10 @@
+## [5.30.3](https://github.com/informatievlaanderen/public-api/compare/v5.30.2...v5.30.3) (2022-09-13)
+
+
+### Bug Fixes
+
+* add projectionurl roadregistry ([01f84d0](https://github.com/informatievlaanderen/public-api/commit/01f84d05f5abdfb40c11934fbc8b30c55360ed70))
+
 ## [5.30.2](https://github.com/informatievlaanderen/public-api/compare/v5.30.1...v5.30.2) (2022-09-13)
 
 
