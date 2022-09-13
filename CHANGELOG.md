@@ -1,3 +1,10 @@
+## [5.30.1](https://github.com/informatievlaanderen/public-api/compare/v5.30.0...v5.30.1) (2022-09-13)
+
+
+### Bug Fixes
+
+* remove address returns location instead of etag ([2e94587](https://github.com/informatievlaanderen/public-api/commit/2e945873a113f81db0a2677e26a303052c2a0d66))
+
 # [5.30.0](https://github.com/informatievlaanderen/public-api/compare/v5.29.2...v5.30.0) (2022-09-13)
 
 
