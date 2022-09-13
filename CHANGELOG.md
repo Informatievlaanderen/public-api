@@ -1,3 +1,10 @@
+## [5.30.2](https://github.com/informatievlaanderen/public-api/compare/v5.30.1...v5.30.2) (2022-09-13)
+
+
+### Bug Fixes
+
+* add all remove toggles in config ([4842aa0](https://github.com/informatievlaanderen/public-api/commit/4842aa0ff802a6b4d9eb9a90708b43b244417365))
+
 ## [5.30.1](https://github.com/informatievlaanderen/public-api/compare/v5.30.0...v5.30.1) (2022-09-13)
 
 
