@@ -1,3 +1,10 @@
+# [5.30.0](https://github.com/informatievlaanderen/public-api/compare/v5.29.2...v5.30.0) (2022-09-13)
+
+
+### Features
+
+* remove address ([eeeea8e](https://github.com/informatievlaanderen/public-api/commit/eeeea8e57edb9e4b476a50cb5c51bf471150590d))
+
 ## [5.29.2](https://github.com/informatievlaanderen/public-api/compare/v5.29.1...v5.29.2) (2022-09-12)
 
 
