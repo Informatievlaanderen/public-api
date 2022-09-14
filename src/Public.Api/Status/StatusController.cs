@@ -19,7 +19,7 @@ namespace Public.Api.Status
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("status")]
     [ApiExplorerSettings(GroupName = "Status", IgnoreApi = true)]
-    [ApiOrder(Order = ApiOrder.Status)]
+    [ApiOrder(ApiOrder.Status)]
     [Produces(AcceptTypes.Json)]
     public class StatusController : PublicApiController
     {

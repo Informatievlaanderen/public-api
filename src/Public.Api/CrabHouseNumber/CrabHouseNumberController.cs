@@ -18,7 +18,7 @@ namespace Public.Api.CrabHouseNumber
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "CRAB Huisnummers")]
-    [ApiOrder(Order = ApiOrder.CrabHouseNumber)]
+    [ApiOrder(ApiOrder.CrabHouseNumber)]
     [ApiProduces]
     public partial class CrabHouseNumberController : RegistryApiController<CrabHouseNumberController>
     {

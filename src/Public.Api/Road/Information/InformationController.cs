@@ -17,7 +17,7 @@ namespace Public.Api.Road.Information
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Informatie")]
-    [ApiOrder(Order = ApiOrder.RoadInformation)]
+    [ApiOrder(ApiOrder.Road.Information)]
     [ApiKeyAuth("Road")]
     public partial class InformationController : RegistryApiController<InformationController>
     {

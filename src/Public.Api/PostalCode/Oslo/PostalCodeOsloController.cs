@@ -18,7 +18,6 @@ namespace Public.Api.PostalCode.Oslo
     [AdvertiseApiVersions(Version.V2)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Postinfo")]
-    [ApiOrder(Order = ApiOrder.PostalCode)]
     [ApiProduces(EndpointType.Oslo)]
     public partial class PostalCodeOsloController : RegistryApiController<PostalCodeOsloController>
     {

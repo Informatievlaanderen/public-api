@@ -6,6 +6,7 @@ namespace Public.Api.Building.BackOffice
     using BuildingRegistry.Api.BackOffice.Abstractions.Building.Requests;
     using Common.Infrastructure;
     using Infrastructure;
+    using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -29,7 +30,8 @@ namespace Public.Api.Building.BackOffice
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        /// <returns></returns>
+        /// <returns></returns
+        [ApiOrder(ApiOrder.Building.Edit + 1)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
@@ -44,11 +46,11 @@ namespace Public.Api.Building.BackOffice
         [SwaggerOperation(Description = "Voer een nieuw geschetst gebouw in met status 'gepland'.")]
         [HttpPost("gebouwen/acties/plannen", Name = nameof(PlanBuilding))]
         public async Task<IActionResult> PlanBuilding(
-            [FromBody] PlanBuildingRequest planBuildingRequest,
-            [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] PlanBuildingToggle planBuildingToggle,
-            CancellationToken cancellationToken = default)
+                    [FromBody] PlanBuildingRequest planBuildingRequest,
+                    [FromServices] IActionContextAccessor actionContextAccessor,
+                    [FromServices] ProblemDetailsHelper problemDetailsHelper,
+                    [FromServices] PlanBuildingToggle planBuildingToggle,
+                    CancellationToken cancellationToken = default)
         {
             if (!planBuildingToggle.FeatureEnabled)
                 return NotFound();

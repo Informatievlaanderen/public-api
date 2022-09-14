@@ -18,7 +18,6 @@ namespace Public.Api.PostalCode
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Postinfo")]
-    [ApiOrder(Order = ApiOrder.PostalCode)]
     [ApiProduces]
     public partial class PostalCodeController : RegistryApiController<PostalCodeController>
     {

@@ -18,7 +18,6 @@ namespace Public.Api.BuildingUnit.Oslo
     [AdvertiseApiVersions(Version.V2)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Gebouweenheden")]
-    [ApiOrder(Order = ApiOrder.BuildingUnit)]
     [ApiProduces(EndpointType.Oslo)]
     public partial class BuildingUnitOsloController : RegistryApiController<BuildingUnitOsloController>
     {

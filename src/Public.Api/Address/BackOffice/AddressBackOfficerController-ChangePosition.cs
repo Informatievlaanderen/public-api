@@ -12,6 +12,7 @@ namespace Public.Api.Address.BackOffice
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
     using AddressRegistry.Api.Legacy.Address.Responses;
+    using Infrastructure.Swagger;
     using Newtonsoft.Json;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
@@ -40,6 +41,7 @@ namespace Public.Api.Address.BackOffice
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         /// <returns></returns>
+        [ApiOrder(ApiOrder.Address.Edit + 8)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]

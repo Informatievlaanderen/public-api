@@ -18,7 +18,6 @@ namespace Public.Api.Tickets
     [AdvertiseApiVersions(Version.V2)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Tickets")]
-    [ApiOrder(Order = ApiOrder.TicketingService)]
     [ApiProduces]
     [ApiKeyAuth("tickets")]
     public partial class TicketingServiceController : RegistryApiController<TicketingServiceController>

@@ -16,7 +16,6 @@ namespace Public.Api.PublicService
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Dienstverleningen")]
-    [ApiOrder(Order = ApiOrder.PublicService)]
     [ApiProduces]
     public partial class PublicServiceController : RegistryApiController<PublicServiceController>
     {

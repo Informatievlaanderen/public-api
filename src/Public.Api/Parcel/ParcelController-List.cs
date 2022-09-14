@@ -8,6 +8,7 @@ namespace Public.Api.Parcel
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
+    using Infrastructure.Swagger;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -41,6 +42,7 @@ namespace Public.Api.Parcel
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("percelen", Name = nameof(ListParcels))]
+        [ApiOrder(ApiOrder.Parcel.V1 + 2)]
         [ProducesResponseType(typeof(ParcelListResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]

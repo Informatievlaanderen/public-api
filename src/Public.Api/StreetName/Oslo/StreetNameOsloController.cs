@@ -18,7 +18,6 @@ namespace Public.Api.StreetName.Oslo
     [AdvertiseApiVersions(Version.V2)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Straatnamen")]
-    [ApiOrder(Order = ApiOrder.StreetName)]
     [ApiProduces(EndpointType.Oslo)]
     public partial class StreetNameOsloController : RegistryApiController<StreetNameOsloController>
     {

@@ -18,7 +18,6 @@ namespace Public.Api.StreetName
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Straatnamen")]
-    [ApiOrder(Order = ApiOrder.StreetName)]
     [ApiProduces]
     public partial class StreetNameController : RegistryApiController<StreetNameController>
     {

@@ -18,7 +18,7 @@ namespace Public.Api.Road.Downloads
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Download")]
-    [ApiOrder(Order = ApiOrder.RoadDownload)]
+    [ApiOrder(ApiOrder.Road.Download)]
     [ApiKeyAuth("Road")]
     public partial class DownloadController : RegistryApiController<DownloadController>
     {

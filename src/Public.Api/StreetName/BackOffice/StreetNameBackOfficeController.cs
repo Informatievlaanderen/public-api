@@ -18,7 +18,6 @@ namespace Public.Api.StreetName.BackOffice
     [AdvertiseApiVersions(Version.V2)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Straatnamen")]
-    [ApiOrder(Order = ApiOrder.StreetName)]
     [ApiConsumes(EndpointType.BackOffice)]
     [ApiProduces(EndpointType.BackOffice)]
     public partial class StreetNameBackOfficeController : RegistryApiController<StreetNameBackOfficeController>

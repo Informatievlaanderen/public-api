@@ -18,7 +18,6 @@ namespace Public.Api.Building.BackOffice
     [AdvertiseApiVersions(Version.V2)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Gebouwen")]
-    [ApiOrder(Order = ApiOrder.Building)]
     [ApiConsumes(EndpointType.BackOffice)]
     [ApiProduces(EndpointType.BackOffice)]
     public partial class BuildingBackOfficeController : RegistryApiController<BuildingBackOfficeController>

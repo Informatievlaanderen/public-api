@@ -16,7 +16,7 @@ namespace Public.Api.ErrorDetail
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Foutmeldingen", IgnoreApi = true)]
-    [ApiOrder(Order = ApiOrder.Status)]
+    [ApiOrder(ApiOrder.Status)]
     [Produces(AcceptTypes.Json, AcceptTypes.Xml)]
     public class ErrorDetailController : PublicApiController
     {

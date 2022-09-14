@@ -18,7 +18,6 @@ namespace Public.Api.Parcel
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Percelen")]
-    [ApiOrder(Order = ApiOrder.Parcel)]
     [ApiProduces]
     public partial class ParcelController : RegistryApiController<ParcelController>
     {

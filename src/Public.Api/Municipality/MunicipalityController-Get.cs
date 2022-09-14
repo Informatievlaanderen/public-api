@@ -6,6 +6,7 @@ namespace Public.Api.Municipality
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Infrastructure;
+    using Infrastructure.Swagger;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,7 @@ namespace Public.Api.Municipality
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("gemeenten/{objectId}", Name = nameof(GetMunicipality))]
+        [ApiOrder(ApiOrder.Municipality.V1 + 1)]
         [ProducesResponseType(typeof(MunicipalityResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]

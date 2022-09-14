@@ -9,6 +9,7 @@ namespace Public.Api.BuildingUnit.Oslo
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
     using Infrastructure;
+    using Infrastructure.Swagger;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,7 @@ namespace Public.Api.BuildingUnit.Oslo
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("gebouweenheden/totaal-aantal", Name = nameof(CountBuildingUnitsV2))]
+        [ApiOrder(ApiOrder.BuildingUnit.V2 + 3)]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(TotaalAantalResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]

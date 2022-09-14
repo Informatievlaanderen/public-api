@@ -18,7 +18,7 @@ namespace Public.Api.Road.Extracts
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Extract")]
-    [ApiOrder(Order = ApiOrder.RoadExtract)]
+    [ApiOrder(ApiOrder.Road.RoadExtract)]
     [ApiKeyAuth("Road")]
     public partial class ExtractController : RegistryApiController<ExtractController>
     {

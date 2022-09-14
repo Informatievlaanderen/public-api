@@ -20,7 +20,7 @@ namespace Public.Api.Road.Uploads
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Upload")]
-    [ApiOrder(Order = ApiOrder.RoadUpload)]
+    [ApiOrder(ApiOrder.Road.RoadUpload)]
     [ApiKeyAuth("Road")]
     public partial class UploadController : RegistryApiController<UploadController>
     {

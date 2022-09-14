@@ -18,7 +18,7 @@ namespace Public.Api.CrabBuilding
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "CRAB Gebouwen")]
-    [ApiOrder(Order = ApiOrder.CrabBuildings)]
+    [ApiOrder(ApiOrder.CrabBuildings)]
     [ApiProduces]
     public partial class CrabBuildingController : RegistryApiController<CrabBuildingController>
     {

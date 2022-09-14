@@ -5,6 +5,7 @@ namespace Public.Api.Tickets
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Infrastructure;
+    using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -26,6 +27,7 @@ namespace Public.Api.Tickets
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpPut("tickets/{ticketId}/complete", Name = nameof(CompleteTicket))]
+        [ApiOrder(ApiOrder.TicketingService + 5)]
         [ProducesResponseType(typeof(Task), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]

@@ -18,7 +18,6 @@ namespace Public.Api.Building
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Gebouwen")]
-    [ApiOrder(Order = ApiOrder.Building)]
     [ApiProduces]
     public partial class BuildingController : RegistryApiController<BuildingController>
     {

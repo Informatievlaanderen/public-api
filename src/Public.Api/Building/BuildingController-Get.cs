@@ -6,6 +6,7 @@ namespace Public.Api.Building
     using BuildingRegistry.Api.Legacy.Abstractions.Building.Responses;
     using Common.Infrastructure;
     using Infrastructure;
+    using Infrastructure.Swagger;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,7 @@ namespace Public.Api.Building
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("gebouwen/{objectId}", Name = nameof(GetBuilding))]
+        [ApiOrder(ApiOrder.Building.V1 + 1)]
         [ProducesResponseType(typeof(BuildingResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
