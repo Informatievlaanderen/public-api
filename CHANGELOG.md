@@ -1,3 +1,10 @@
+## [5.31.3](https://github.com/informatievlaanderen/public-api/compare/v5.31.2...v5.31.3) (2022-09-14)
+
+
+### Bug Fixes
+
+* small corrections ([1ad9d8f](https://github.com/informatievlaanderen/public-api/commit/1ad9d8f433f2dfbf25e2437096d4d7d22bca4b41))
+
 ## [5.31.2](https://github.com/informatievlaanderen/public-api/compare/v5.31.1...v5.31.2) (2022-09-14)
 
 ## [5.31.1](https://github.com/informatievlaanderen/public-api/compare/v5.31.0...v5.31.1) (2022-09-14)
