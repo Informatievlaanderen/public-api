@@ -6,6 +6,7 @@ namespace Public.Api.PublicService
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Infrastructure;
+    using Infrastructure.Swagger;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,7 @@ namespace Public.Api.PublicService
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("dienstverleningen/{objectId}", Name = nameof(GetPublicService))]
+        [ApiOrder(ApiOrder.PublicService.V1 + 1)]
         [ProducesResponseType(typeof(PublicServiceResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]

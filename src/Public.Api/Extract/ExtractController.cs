@@ -27,8 +27,8 @@ namespace Public.Api.Extract
     [ApiVersion(Version.V2)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
-    [ApiExplorerSettings(GroupName = "Extract")]
-    [ApiOrder(Order = ApiOrder.Extract)]
+    [ApiExplorerSettings(GroupName = "RoadExtract")]
+    [ApiOrder(ApiOrder.Extract)]
     [Produces(MediaTypeNames.Application.Zip)]
     public class ExtractController : ApiController<ExtractController>
     {

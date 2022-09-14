@@ -19,7 +19,7 @@ namespace Public.Api.Feeds
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("feeds")]
     [ApiExplorerSettings(GroupName = FeedsGroupName)]
-    [ApiOrder(Order = ApiOrder.Feeds)]
+    [ApiOrder(ApiOrder.Feeds)]
     [ApiProduces(EndpointType.Sync)]
     [ApiKeyAuth("Sync")]
     public partial class FeedController : ApiController<FeedController>

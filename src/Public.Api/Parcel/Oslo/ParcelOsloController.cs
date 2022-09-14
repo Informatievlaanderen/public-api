@@ -18,7 +18,6 @@ namespace Public.Api.Parcel.Oslo
     [AdvertiseApiVersions(Version.V2)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Percelen")]
-    [ApiOrder(Order = ApiOrder.Parcel)]
     [ApiProduces(EndpointType.Oslo)]
     public partial class ParcelOsloController : RegistryApiController<ParcelOsloController>
     {

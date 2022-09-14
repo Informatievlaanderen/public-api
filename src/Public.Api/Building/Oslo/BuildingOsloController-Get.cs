@@ -6,6 +6,7 @@ namespace Public.Api.Building.Oslo
     using BuildingRegistry.Api.Oslo.Abstractions.Building.Responses;
     using Common.Infrastructure;
     using Infrastructure;
+    using Infrastructure.Swagger;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,7 @@ namespace Public.Api.Building.Oslo
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("gebouwen/{objectId}", Name = nameof(GetBuildingV2))]
+        [ApiOrder(ApiOrder.Building.V2 + 1)]
         [ProducesResponseType(typeof(BuildingOsloResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -62,7 +64,7 @@ namespace Public.Api.Building.Oslo
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
             // As long as we do not control WFS, buildings cannot be cached
-            //var cacheKey = $"Oslo/building:{objectId}";
+            //var cacheKey = $"V2/building:{objectId}";
 
             //var value = await (CacheToggle.FeatureEnabled
             //    ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)

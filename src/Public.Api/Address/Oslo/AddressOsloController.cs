@@ -18,7 +18,6 @@ namespace Public.Api.Address.Oslo
     [AdvertiseApiVersions(Version.V2)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Adressen")]
-    [ApiOrder(Order = ApiOrder.Address)]
     [ApiProduces(EndpointType.Oslo)]
     public partial class AddressOsloController : RegistryApiController<AddressOsloController>
     {

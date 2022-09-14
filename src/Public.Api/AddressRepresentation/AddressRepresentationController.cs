@@ -17,7 +17,7 @@ namespace Public.Api.AddressRepresentation
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Adresvoorstellingen")]
-    [ApiOrder(Order = ApiOrder.AddressRepresentation)]
+    [ApiOrder(ApiOrder.AddressRepresentation)]
     [ApiProduces]
     public partial class AddressRepresentationController : RegistryApiController<AddressRepresentationController>
     {

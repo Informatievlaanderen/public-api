@@ -17,7 +17,7 @@ namespace Public.Api.Road.Changes
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Activiteit")]
-    [ApiOrder(Order = ApiOrder.RoadChangeFeed)]
+    [ApiOrder(ApiOrder.Road.ChangeFeed)]
     [ApiKeyAuth("Road")]
     public partial class ChangeFeedController : RegistryApiController<ChangeFeedController>
     {

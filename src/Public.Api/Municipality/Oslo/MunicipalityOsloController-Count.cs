@@ -6,6 +6,7 @@ namespace Public.Api.Municipality.Oslo
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Common.Infrastructure;
     using Infrastructure;
+    using Infrastructure.Swagger;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,7 @@ namespace Public.Api.Municipality.Oslo
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
+        [ApiOrder(ApiOrder.Municipality.V2 + 3)]
         [HttpGet("gemeenten/totaal-aantal", Name = nameof(CountMunicipalitiesV2))]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(TotaalAantalResponse), StatusCodes.Status200OK)]

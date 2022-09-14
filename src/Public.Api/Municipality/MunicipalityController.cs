@@ -18,7 +18,7 @@ namespace Public.Api.Municipality
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Gemeenten")]
-    [ApiOrder(Order = ApiOrder.Municipality)]
+    [ApiOrder(ApiOrder.Municipality.Base)]
     [ApiProduces]
     public partial class MunicipalityController : RegistryApiController<MunicipalityController>
     {

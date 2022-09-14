@@ -18,7 +18,6 @@ namespace Public.Api.Address.BackOffice
     [AdvertiseApiVersions(Version.V2)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Adressen")]
-    [ApiOrder(Order = ApiOrder.Address)]
     [ApiConsumes(EndpointType.BackOffice)]
     [ApiProduces(EndpointType.BackOffice)]
     public partial class AddressBackOfficeController : RegistryApiController<AddressBackOfficeController>

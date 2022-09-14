@@ -20,7 +20,7 @@ namespace Public.Api.Info
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("info/events")]
     [ApiExplorerSettings(GroupName = "Info", IgnoreApi = true)]
-    [ApiOrder(Order = ApiOrder.Status)]
+    [ApiOrder(ApiOrder.Status)]
     [Produces(AcceptTypes.Json)]
     public class EventInfoController : PublicApiController
     {

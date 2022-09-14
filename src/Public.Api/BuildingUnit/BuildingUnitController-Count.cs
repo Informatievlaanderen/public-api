@@ -8,6 +8,7 @@ namespace Public.Api.BuildingUnit
     using BuildingRegistry.Api.Legacy.Abstractions.Infrastructure;
     using Common.Infrastructure;
     using Infrastructure;
+    using Infrastructure.Swagger;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,7 @@ namespace Public.Api.BuildingUnit
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("gebouweenheden/totaal-aantal", Name = nameof(CountBuildingUnits))]
+        [ApiOrder(ApiOrder.BuildingUnit.V1 + 3)]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(TotaalAantalResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]

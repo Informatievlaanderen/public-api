@@ -18,7 +18,7 @@ namespace Public.Api.CrabSubaddress
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "CRAB Subadressen")]
-    [ApiOrder(Order = ApiOrder.CrabSubaddress)]
+    [ApiOrder(ApiOrder.CrabSubaddress)]
     [ApiProduces]
     public partial class CrabSubaddressController : RegistryApiController<CrabSubaddressController>
     {

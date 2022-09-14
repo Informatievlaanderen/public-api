@@ -14,6 +14,7 @@ namespace Public.Api.Address
     using System.Threading;
     using System.Threading.Tasks;
     using Common.Infrastructure;
+    using Infrastructure.Swagger;
     using Swashbuckle.AspNetCore.Annotations;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
@@ -41,6 +42,7 @@ namespace Public.Api.Address
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("adresmatch", Name = nameof(AddressMatch))]
+        [ApiOrder(ApiOrder.Address.V1 + 4)]
         [ProducesResponseType(typeof(AddressMatchCollection), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]

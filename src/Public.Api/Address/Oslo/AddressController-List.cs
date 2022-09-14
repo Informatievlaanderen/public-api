@@ -10,6 +10,7 @@ namespace Public.Api.Address.Oslo
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
+    using Infrastructure.Swagger;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -49,6 +50,7 @@ namespace Public.Api.Address.Oslo
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("adressen", Name = nameof(ListAddressesV2))]
+        [ApiOrder(ApiOrder.Address.V2 + 2)]
         [ProducesResponseType(typeof(AddressListOsloResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]

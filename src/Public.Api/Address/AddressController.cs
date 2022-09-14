@@ -18,7 +18,6 @@ namespace Public.Api.Address
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Adressen")]
-    [ApiOrder(Order = ApiOrder.Address)]
     [ApiProduces]
     public partial class AddressController : RegistryApiController<AddressController>
     {
