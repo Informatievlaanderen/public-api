@@ -1,3 +1,10 @@
+# [5.32.0](https://github.com/informatievlaanderen/public-api/compare/v5.31.3...v5.32.0) (2022-09-14)
+
+
+### Features
+
+* correct address postal code ([a4f38b6](https://github.com/informatievlaanderen/public-api/commit/a4f38b66bc9c1c376d3a9fef88e82b819be8e9fd))
+
 ## [5.31.3](https://github.com/informatievlaanderen/public-api/compare/v5.31.2...v5.31.3) (2022-09-14)
 
 
