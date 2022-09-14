@@ -30,7 +30,7 @@ namespace Public.Api.Building.BackOffice
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        /// <returns></returns
+        /// <returns></returns>
         [ApiOrder(ApiOrder.Building.Edit + 1)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
