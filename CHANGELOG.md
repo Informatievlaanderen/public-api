@@ -1,3 +1,10 @@
+# [5.31.0](https://github.com/informatievlaanderen/public-api/compare/v5.30.3...v5.31.0) (2022-09-14)
+
+
+### Features
+
+* change address postal code ([2d23f51](https://github.com/informatievlaanderen/public-api/commit/2d23f5197d3a6204f507e17f54e31fa14487eced))
+
 ## [5.30.3](https://github.com/informatievlaanderen/public-api/compare/v5.30.2...v5.30.3) (2022-09-13)
 
 
