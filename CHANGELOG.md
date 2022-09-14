@@ -1,3 +1,5 @@
+## [5.31.2](https://github.com/informatievlaanderen/public-api/compare/v5.31.1...v5.31.2) (2022-09-14)
+
 ## [5.31.1](https://github.com/informatievlaanderen/public-api/compare/v5.31.0...v5.31.1) (2022-09-14)
 
 
