@@ -50,7 +50,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.AggregateSource (7.0)
       Be.Vlaanderen.Basisregisters.EventHandling (>= 4.0)
       SqlStreamStore (>= 1.2)
-    Be.Vlaanderen.Basisregisters.Api (18.1.1)
+    Be.Vlaanderen.Basisregisters.Api (18.2)
       Autofac (>= 6.3)
       Autofac.Extensions.DependencyInjection (>= 7.2)
       Be.Vlaanderen.Basisregisters.AggregateSource (>= 6.2.2)

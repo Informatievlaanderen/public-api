@@ -9,7 +9,6 @@ namespace Public.Api.Tickets
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using OpenApi;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using TicketingService.Abstractions;
@@ -18,7 +17,7 @@ namespace Public.Api.Tickets
     public partial class TicketingServiceController
     {
         /// <summary>
-        /// Vervolledig een ticket (v1).
+        /// Vervolledig een ticket (v2).
         /// </summary>
         /// <param name="ticketId"></param>
         /// <param name="ticketResult"></param>
@@ -37,7 +36,6 @@ namespace Public.Api.Tickets
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [ApiConventionMethod(typeof(ApiDocumentationHiddenConvention), nameof(CompleteTicket))]
         public async Task<IActionResult> CompleteTicket(
             Guid ticketId,
             TicketResult? ticketResult,

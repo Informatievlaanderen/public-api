@@ -9,7 +9,6 @@ namespace Public.Api.Tickets
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using OpenApi;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -17,7 +16,7 @@ namespace Public.Api.Tickets
     public partial class TicketingServiceController
     {
         /// <summary>
-        /// Verwijder een ticket (v1).
+        /// Verwijder een ticket (v2).
         /// </summary>
         /// <param name="ticketId"></param>
         /// <param name="actionContextAccessor"></param>
@@ -35,7 +34,6 @@ namespace Public.Api.Tickets
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [ApiConventionMethod(typeof(ApiDocumentationHiddenConvention), nameof(DeleteTicket))]
         public async Task<IActionResult> DeleteTicket(
             Guid ticketId,
             [FromServices] IActionContextAccessor actionContextAccessor,
