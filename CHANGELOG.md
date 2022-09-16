@@ -1,3 +1,10 @@
+## [5.32.1](https://github.com/informatievlaanderen/public-api/compare/v5.32.0...v5.32.1) (2022-09-16)
+
+
+### Bug Fixes
+
+* hide ticket endpoints from docs ([3d9d7a7](https://github.com/informatievlaanderen/public-api/commit/3d9d7a72630e096a53bf5e408ae1bc3217cb923c))
+
 # [5.32.0](https://github.com/informatievlaanderen/public-api/compare/v5.31.3...v5.32.0) (2022-09-14)
 
 
