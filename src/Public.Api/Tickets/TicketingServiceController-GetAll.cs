@@ -9,6 +9,7 @@ namespace Public.Api.Tickets
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using OpenApi;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using TicketingService.Abstractions;
@@ -34,6 +35,7 @@ namespace Public.Api.Tickets
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        [ApiConventionMethod(typeof(ApiDocumentationHiddenConvention), nameof(GetTickets))]
         public async Task<IActionResult> GetTickets(
             [FromServices] IActionContextAccessor actionContextAccessor,
             CancellationToken cancellationToken = default)

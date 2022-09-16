@@ -9,6 +9,7 @@ namespace Public.Api.Tickets
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using OpenApi;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -34,6 +35,7 @@ namespace Public.Api.Tickets
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        [ApiConventionMethod(typeof(ApiDocumentationHiddenConvention), nameof(CreateTicket))]
         public async Task<IActionResult> CreateTicket(
             string originator,
             [FromServices] IActionContextAccessor actionContextAccessor,
