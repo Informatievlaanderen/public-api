@@ -78,7 +78,7 @@ jobs:
     - name: Build
       shell: bash
       run: |
-        dotnet build --nologo --no-restore --configuration Debug StreetNameRegistry.sln
+        dotnet build --nologo --no-restore --configuration Debug
         
     - name: Sonar end build & analyze
       env:
@@ -87,7 +87,3 @@ jobs:
       shell: bash
       run: |
         ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}" > /dev/null 2>&1
-
-    - name: Test
-      shell: bash
-      run: dotnet test --nologo --no-build StreetNameRegistry.sln
