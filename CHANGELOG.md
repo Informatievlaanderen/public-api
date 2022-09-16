@@ -1,3 +1,10 @@
+## [5.32.2](https://github.com/informatievlaanderen/public-api/compare/v5.32.1...v5.32.2) (2022-09-16)
+
+
+### Bug Fixes
+
+* change documentation address correct position ([611dcc7](https://github.com/informatievlaanderen/public-api/commit/611dcc75e20d4f3f82ee6688e31176637df6c524))
+
 ## [5.32.1](https://github.com/informatievlaanderen/public-api/compare/v5.32.0...v5.32.1) (2022-09-16)
 
 
