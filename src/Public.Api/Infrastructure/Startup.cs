@@ -253,7 +253,8 @@ namespace Public.Api.Infrastructure
                                 .Request
                                 .RewriteAcceptTypeForProblemDetail();
                         }
-                    }
+                    },
+                    ActionModelConventions = { new ApiDocumentationHiddenConvention() }
                 }
                     .EnableJsonErrorActionFilterOption())
 

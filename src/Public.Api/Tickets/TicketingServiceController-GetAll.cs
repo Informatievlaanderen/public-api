@@ -17,7 +17,7 @@ namespace Public.Api.Tickets
     public partial class TicketingServiceController
     {
         /// <summary>
-        /// Vraag alle tickets op (v1).
+        /// Vraag alle tickets op (v2).
         /// </summary>
         /// <param name="actionContextAccessor"></param>
         /// <param name="cancellationToken"></param>

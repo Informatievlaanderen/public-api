@@ -16,7 +16,7 @@ namespace Public.Api.Tickets
     public partial class TicketingServiceController
     {
         /// <summary>
-        /// Begin de verwerking van een ticket (v1).
+        /// Begin de verwerking van een ticket (v2).
         /// </summary>
         /// <param name="ticketId"></param>
         /// <param name="actionContextAccessor"></param>
