@@ -1,3 +1,16 @@
+# [5.33.0](https://github.com/informatievlaanderen/public-api/compare/v5.32.2...v5.33.0) (2022-09-19)
+
+
+### Bug Fixes
+
+* change workflow ([e28e3fd](https://github.com/informatievlaanderen/public-api/commit/e28e3fd6b884f513bfc51393814e0ba351a346ef))
+* fix build.yml ([b5341e8](https://github.com/informatievlaanderen/public-api/commit/b5341e8813a4d94fa1c102e2d2808a2aeb11981c))
+
+
+### Features
+
+* correct address house number ([215e426](https://github.com/informatievlaanderen/public-api/commit/215e426a8ffcc1696c5f09cdb976d5682b2c4dff))
+
 ## [5.32.2](https://github.com/informatievlaanderen/public-api/compare/v5.32.1...v5.32.2) (2022-09-16)
 
 
