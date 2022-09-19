@@ -293,7 +293,7 @@ namespace Marvin.Cache.Headers
             }
 
             var eTagsFromIfNoneMatchHeader =
-                ifNoneMatchHeaderValue.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
+                ifNoneMatchHeaderValue.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
             // check the ETag.  If one of the ETags matches, we're good to
             // go and can return a 304 Not Modified.
@@ -408,7 +408,7 @@ namespace Marvin.Cache.Headers
             }
 
             // otherwise, check the actual ETag(s)
-            var eTagsFromIfMatchHeader = ifMatchHeaderValue.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
+            var eTagsFromIfMatchHeader = ifMatchHeaderValue.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
             // check the ETag.  If one of the ETags matches, the
             // ETag precondition is valid.
@@ -492,7 +492,12 @@ namespace Marvin.Cache.Headers
 
             // take ETag value from the store (if it's found)
             var savedResponse = await _store.GetAsync(storeKey);
-            if (savedResponse?.ETag != null)
+            if (savedResponse is null)
+            {
+                return;
+            }
+
+            if (savedResponse.ETag != null)
             {
                 var eTag = new ETag(savedResponse.ETag.ETagType, savedResponse.ETag.Value.Trim('"'));
                 headers[HeaderNames.ETag] = savedResponse.ETag.ToString();
@@ -732,20 +737,27 @@ namespace Marvin.Cache.Headers.Extensions
         internal static readonly string ContextItemsValidationModelOptions =
             "HttpCacheHeadersMiddleware-ValidationModelOptions";
 
-        internal static ExpirationModelOptions ExpirationModelOptionsOrDefault(this HttpContext httpContext,
-            ExpirationModelOptions @default) =>
-            httpContext.Items.ContainsKey(ContextItemsExpirationModelOptions)
-                ? (ExpirationModelOptions) httpContext.Items[ContextItemsExpirationModelOptions]
-                : @default;
+        internal static ExpirationModelOptions ExpirationModelOptionsOrDefault(this HttpContext httpContext, ExpirationModelOptions @default)
+        {
+            if (httpContext.Items.ContainsKey(ContextItemsExpirationModelOptions))
+            {
+                return httpContext.Items[ContextItemsExpirationModelOptions] as ExpirationModelOptions ?? @default;
+            }
 
-        internal static ValidationModelOptions ValidationModelOptionsOrDefault(this HttpContext httpContext,
-            ValidationModelOptions @default) =>
-            httpContext.Items.ContainsKey(ContextItemsValidationModelOptions)
-                ? (ValidationModelOptions) httpContext.Items[ContextItemsValidationModelOptions]
-                : @default;
+            return @default;
+        }
+
+        internal static ValidationModelOptions ValidationModelOptionsOrDefault(this HttpContext httpContext, ValidationModelOptions @default)
+        {
+            if (httpContext.Items.ContainsKey(ContextItemsValidationModelOptions))
+            {
+                return httpContext.Items[ContextItemsExpirationModelOptions] as ValidationModelOptions ?? @default;
+            }
+
+            return @default;
+        }
     }
 }
-
 
 namespace Marvin.Cache.Headers
 {
@@ -753,6 +765,6 @@ namespace Marvin.Cache.Headers
 
     public class ExcludedRouteModelOptions
     {
-        public List<string> Routes { get; set; }
+        public List<string> Routes { get; set; } = new List<string>();
     }
 }
