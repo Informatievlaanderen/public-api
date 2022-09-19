@@ -44,7 +44,9 @@ namespace Common.Infrastructure
         public void UpdateNextPageUrlWithQueryParameters(NonPagedQueryCollection requestQuery, string nextPageUrlTemplate)
         {
             if (string.IsNullOrWhiteSpace(nextPageUrlTemplate) || IsProblemDetail)
+            {
                 return;
+            }
 
             var parameters = requestQuery
                 .Where(ParameterIsAllowed)
@@ -53,7 +55,9 @@ namespace Common.Infrastructure
                 .Aggregate(string.Empty, (result, parameter) => $"{result}{parameter}");
 
             if (string.IsNullOrWhiteSpace(parameters))
+            {
                 return;
+            }
 
             Content = Regex.Replace(
                 Content,
@@ -67,7 +71,9 @@ namespace Common.Infrastructure
             // The atom-feed uses 'from' instead 'offset' to get the next set.
             // The new 'from' value is already set in the next-uri and the (previous) 'from' should not be added again.
             if (IsAtomContent)
+            {
                 return !string.Equals(parameter.Key, "from", StringComparison.OrdinalIgnoreCase);
+            }
 
             return true;
         }
@@ -82,23 +88,29 @@ namespace Common.Infrastructure
                     .Split('?');
 
             if (templateParts.Length > 2)
+            {
                 throw new ArgumentException($"Argument '{nameof(nextPageUrlTemplate)}' has an invalid format. Multiple '?' where found in '{nextPageUrlTemplate}'");
+            }
 
             var url = new Pattern(templateParts[0], EscapeForContentType);
             var query = new Pattern(templateParts.Length > 1 ? "?" + templateParts[1] : string.Empty, EscapeForContentType);
 
             if (IsAtomContent)
+            {
                 return $"(<link href=\"{url})({query})(\" rel=\"next\" />)";
+            }
 
             if (IsXmlContent)
+            {
                 return $"(<volgende>{url})({query})(</volgende>)";
+            }
 
             return $"(\"volgende\"\\s*:\\s*\"{url})({query})(\")";
         }
 
         private string EscapeForContentType(string value) => IsXmlContent ? new XText(value).ToString() : value;
 
-        private class Pattern
+        private sealed class Pattern
         {
             public const string NumberPatternPlaceholder = "__NUMBER_PATTERN_PLACEHOLDER_THAT_WONT_BE_REGEX_ESCAPED__";
 

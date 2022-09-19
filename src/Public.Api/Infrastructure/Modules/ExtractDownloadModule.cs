@@ -49,8 +49,8 @@ namespace Public.Api.Infrastructure.Modules
 
         private sealed class LocalS3Credentials : AWSCredentials
         {
-            public string ApiKey { get; }
-            public string Secret { get; }
+            public string? ApiKey { get; }
+            public string? Secret { get; }
 
             public bool Configured => !string.IsNullOrWhiteSpace(ApiKey) && !string.IsNullOrWhiteSpace(Secret);
 
