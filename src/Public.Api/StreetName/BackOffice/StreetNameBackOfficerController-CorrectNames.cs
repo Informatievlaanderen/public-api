@@ -48,7 +48,7 @@ namespace Public.Api.StreetName.BackOffice
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status412PreconditionFailed)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string", "De URL van de gecorrigeerde straatnaam.", "")]
+        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string", "De URL van de gecorrigeerde straatnaam.")]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
@@ -91,7 +91,7 @@ namespace Public.Api.StreetName.BackOffice
                 }
 
                 return request;
-            };
+            }
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,
