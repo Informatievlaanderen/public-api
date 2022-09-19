@@ -1,9 +1,19 @@
 namespace Public.Api.Status.Responses
 {
+    using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    public class CacheStatusResponse : ListResponse<IEnumerable<RegistryCacheStatus>> { }
+    [Serializable]
+    public sealed class CacheStatusResponse : ListResponse<IEnumerable<RegistryCacheStatus>>
+    {
+        public CacheStatusResponse()
+        { }
+    
+        private CacheStatusResponse(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        { }
+    }
 
     public class RegistryCacheStatus
     {

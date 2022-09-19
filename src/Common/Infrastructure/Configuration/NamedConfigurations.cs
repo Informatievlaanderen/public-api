@@ -1,10 +1,12 @@
 namespace Common.Infrastructure.Configuration
 {
+    using System;
     using System.Collections.Generic;
+    using System.Runtime.Serialization;
     using Microsoft.Extensions.Configuration;
 
-    public class NamedConfigurations<T>
-        : Dictionary<string, T>
+    [Serializable]
+    public sealed class NamedConfigurations<T> : Dictionary<string, T>
     {
         public NamedConfigurations(IConfiguration configuration, string sectionName)
         {
@@ -12,5 +14,9 @@ namespace Common.Infrastructure.Configuration
                 .GetSection(sectionName)
                 .Bind(this);
         }
+
+        private NamedConfigurations(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        { }
     }
 }
