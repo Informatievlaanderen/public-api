@@ -91,6 +91,7 @@ namespace Common.Infrastructure
             get => _restClient.ThrowOnDeserializationError;
             set => _restClient.ThrowOnDeserializationError = value;
         }
+
         public bool FailOnDeserializationError
         {
             get => _restClient.FailOnDeserializationError;
@@ -325,7 +326,7 @@ namespace Common.Infrastructure
             return _restClient.ExecuteAsPost<T>(request, httpMethod);
         }
 
-        public async Task<IRestResponse> ExecuteAsync(IRestRequest request, CancellationToken token)
+        public async Task<IRestResponse> ExecuteAsync(IRestRequest request, CancellationToken cancellationToken)
         {
             const string name = "rest." + nameof(ExecuteTaskAsync);
             var span = _spanSource.Begin(name, ServiceName, BuildResource(request), TypeName);
@@ -340,7 +341,7 @@ namespace Common.Infrastructure
                     request.AddHeader(DataDogOptions.DefaultParentSpanIdHeaderName, span.SpanId.ToString());
                 }
 
-                var response = await _restClient.ExecuteAsync(request, token);
+                var response = await _restClient.ExecuteAsync(request, cancellationToken);
 
                 span?.SetMeta("http.status_code", response.StatusCode.ToString());
 
