@@ -26,7 +26,7 @@ namespace Common.Infrastructure
         private readonly ISpanSource _spanSource;
         private readonly IRestClient _restClient;
 
-        public CookieContainer CookieContainer
+        public CookieContainer? CookieContainer
         {
             get => _restClient.CookieContainer;
             set => _restClient.CookieContainer = value;
@@ -68,13 +68,13 @@ namespace Common.Infrastructure
             set => _restClient.UseSynchronizationContext = value;
         }
 
-        public IAuthenticator Authenticator
+        public IAuthenticator? Authenticator
         {
             get => _restClient.Authenticator;
             set => _restClient.Authenticator = value;
         }
 
-        public Uri BaseUrl
+        public Uri? BaseUrl
         {
             get => _restClient.BaseUrl;
             set => _restClient.BaseUrl = value;
@@ -103,7 +103,7 @@ namespace Common.Infrastructure
             set => _restClient.ThrowOnAnyError = value;
         }
 
-        public string ConnectionGroupName
+        public string? ConnectionGroupName
         {
             get => _restClient.ConnectionGroupName;
             set => _restClient.ConnectionGroupName = value;
@@ -123,7 +123,7 @@ namespace Common.Infrastructure
 
         public IList<Parameter> DefaultParameters => _restClient.DefaultParameters;
 
-        public string BaseHost
+        public string? BaseHost
         {
             get => _restClient.BaseHost;
             set => _restClient.BaseHost = value;
@@ -135,19 +135,19 @@ namespace Common.Infrastructure
             set => _restClient.AllowMultipleDefaultParametersWithSameName = value;
         }
 
-        public X509CertificateCollection ClientCertificates
+        public X509CertificateCollection? ClientCertificates
         {
             get => _restClient.ClientCertificates;
             set => _restClient.ClientCertificates = value;
         }
 
-        public IWebProxy Proxy
+        public IWebProxy? Proxy
         {
             get => _restClient.Proxy;
             set => _restClient.Proxy = value;
         }
 
-        public RequestCachePolicy CachePolicy
+        public RequestCachePolicy? CachePolicy
         {
             get => _restClient.CachePolicy;
             set => _restClient.CachePolicy = value;
@@ -165,7 +165,7 @@ namespace Common.Infrastructure
             set => _restClient.FollowRedirects = value;
         }
 
-        public RemoteCertificateValidationCallback RemoteCertificateValidationCallback
+        public RemoteCertificateValidationCallback? RemoteCertificateValidationCallback
         {
             get => _restClient.RemoteCertificateValidationCallback;
             set => _restClient.RemoteCertificateValidationCallback = value;
@@ -331,10 +331,10 @@ namespace Common.Infrastructure
             var span = _spanSource.Begin(name, ServiceName, BuildResource(request), TypeName);
             try
             {
-                span?.SetMeta("http.method", request.Method.ToString());
-                span?.SetMeta("http.path", request.Resource);
+                span.SetMeta("http.method", request.Method.ToString());
+                span.SetMeta("http.path", request.Resource);
 
-                if (span != null)
+                if (span is not null)
                 {
                     request.AddHeader(DataDogOptions.DefaultTraceIdHeaderName, span.TraceId.ToString());
                     request.AddHeader(DataDogOptions.DefaultParentSpanIdHeaderName, span.SpanId.ToString());
@@ -360,31 +360,31 @@ namespace Common.Infrastructure
         [Obsolete("Use the overload that accepts the delegate factory")]
         public IRestClient UseSerializer(IRestSerializer serializer) => _restClient.UseSerializer(serializer);
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public RestRequestAsyncHandle ExecuteAsync(IRestRequest request, Action<IRestResponse, RestRequestAsyncHandle> callback)
         {
             return _restClient.ExecuteAsync(request, callback);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public RestRequestAsyncHandle ExecuteAsync<T>(IRestRequest request, Action<IRestResponse<T>, RestRequestAsyncHandle> callback)
         {
             return _restClient.ExecuteAsync(request, callback);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public RestRequestAsyncHandle ExecuteAsync(IRestRequest request, Action<IRestResponse, RestRequestAsyncHandle> callback, Method httpMethod)
         {
             return _restClient.ExecuteAsync(request, callback, httpMethod);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public RestRequestAsyncHandle ExecuteAsync<T>(IRestRequest request, Action<IRestResponse<T>, RestRequestAsyncHandle> callback, Method httpMethod)
         {
             return _restClient.ExecuteAsync(request, callback, httpMethod);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public byte[] DownloadData(IRestRequest request, bool throwOnError)
         {
             return _restClient.DownloadData(request, throwOnError);
@@ -396,113 +396,113 @@ namespace Common.Infrastructure
             _restClient.AddHandler(contentType, deserializer);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public RestRequestAsyncHandle ExecuteAsyncGet(IRestRequest request, Action<IRestResponse, RestRequestAsyncHandle> callback, string httpMethod)
         {
             return _restClient.ExecuteAsyncGet(request, callback, httpMethod);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public RestRequestAsyncHandle ExecuteAsyncPost(IRestRequest request, Action<IRestResponse, RestRequestAsyncHandle> callback, string httpMethod)
         {
             return _restClient.ExecuteAsyncPost(request, callback, httpMethod);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public RestRequestAsyncHandle ExecuteAsyncGet<T>(IRestRequest request, Action<IRestResponse<T>, RestRequestAsyncHandle> callback, string httpMethod)
         {
             return _restClient.ExecuteAsyncGet(request, callback, httpMethod);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public RestRequestAsyncHandle ExecuteAsyncPost<T>(IRestRequest request, Action<IRestResponse<T>, RestRequestAsyncHandle> callback, string httpMethod)
         {
             return _restClient.ExecuteAsyncPost(request, callback, httpMethod);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public Task<IRestResponse<T>> ExecuteTaskAsync<T>(IRestRequest request, Method httpMethod)
         {
             return _restClient.ExecuteTaskAsync<T>(request, httpMethod);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public Task<IRestResponse<T>> ExecuteTaskAsync<T>(IRestRequest request)
         {
             return _restClient.ExecuteTaskAsync<T>(request);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public Task<IRestResponse<T>> ExecuteGetTaskAsync<T>(IRestRequest request)
         {
             return _restClient.ExecuteGetTaskAsync<T>(request);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public Task<IRestResponse<T>> ExecuteGetTaskAsync<T>(IRestRequest request, CancellationToken token)
         {
             return _restClient.ExecuteGetTaskAsync<T>(request, token);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public Task<IRestResponse<T>> ExecutePostTaskAsync<T>(IRestRequest request)
         {
             return _restClient.ExecutePostTaskAsync<T>(request);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public Task<IRestResponse<T>> ExecutePostTaskAsync<T>(IRestRequest request, CancellationToken token)
         {
             return _restClient.ExecutePostTaskAsync<T>(request, token);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public Task<IRestResponse> ExecuteTaskAsync(IRestRequest request, CancellationToken token, Method httpMethod)
         {
             return _restClient.ExecuteTaskAsync(request, token, httpMethod);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public Task<IRestResponse> ExecuteTaskAsync(IRestRequest request)
         {
             return _restClient.ExecuteTaskAsync(request);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public Task<IRestResponse> ExecuteGetTaskAsync(IRestRequest request)
         {
             return _restClient.ExecuteGetTaskAsync(request);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public Task<IRestResponse> ExecuteGetTaskAsync(IRestRequest request, CancellationToken token)
         {
             return _restClient.ExecuteGetTaskAsync(request, token);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public Task<IRestResponse> ExecutePostTaskAsync(IRestRequest request)
         {
             return _restClient.ExecutePostTaskAsync(request);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public Task<IRestResponse> ExecutePostTaskAsync(IRestRequest request, CancellationToken token)
         {
             return _restClient.ExecutePostTaskAsync(request, token);
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public async Task<IRestResponse<T>> ExecuteTaskAsync<T>(IRestRequest request, CancellationToken token)
         {
             const string name = "rest." + nameof(ExecuteTaskAsync);
             var span = _spanSource.Begin(name, ServiceName, BuildResource(request), TypeName);
             try
             {
-                span?.SetMeta("http.method", request.Method.ToString());
-                span?.SetMeta("http.path", request.Resource);
+                span.SetMeta("http.method", request.Method.ToString());
+                span.SetMeta("http.path", request.Resource);
 
-                if (span != null)
+                if (span is not null)
                 {
                     request.AddHeader(DataDogOptions.DefaultTraceIdHeaderName, span.TraceId.ToString());
                     request.AddHeader(DataDogOptions.DefaultParentSpanIdHeaderName, span.SpanId.ToString());
@@ -525,17 +525,17 @@ namespace Common.Infrastructure
             }
         }
 
-        [Obsolete]
+        [Obsolete("No longer used")]
         public async Task<IRestResponse> ExecuteTaskAsync(IRestRequest request, CancellationToken token)
         {
             const string name = "rest." + nameof(ExecuteTaskAsync);
             var span = _spanSource.Begin(name, ServiceName, BuildResource(request), TypeName);
             try
             {
-                span?.SetMeta("http.method", request.Method.ToString());
-                span?.SetMeta("http.path", request.Resource);
+                span.SetMeta("http.method", request.Method.ToString());
+                span.SetMeta("http.path", request.Resource);
 
-                if (span != null)
+                if (span is not null)
                 {
                     request.AddHeader(DataDogOptions.DefaultTraceIdHeaderName, span.TraceId.ToString());
                     request.AddHeader(DataDogOptions.DefaultParentSpanIdHeaderName, span.SpanId.ToString());
