@@ -47,10 +47,10 @@ namespace Public.Api.Infrastructure.Modules
                 : new AmazonS3Client(region);
         }
 
-        private class LocalS3Credentials : AWSCredentials
+        private sealed class LocalS3Credentials : AWSCredentials
         {
-            public string ApiKey { get; set; }
-            public string Secret { get; set; }
+            public string ApiKey { get; }
+            public string Secret { get; }
 
             public bool Configured => !string.IsNullOrWhiteSpace(ApiKey) && !string.IsNullOrWhiteSpace(Secret);
 

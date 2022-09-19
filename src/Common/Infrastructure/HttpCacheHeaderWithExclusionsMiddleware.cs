@@ -132,26 +132,6 @@ namespace Marvin.Cache.Headers
             return false;
         }
 
-        private async Task<bool> PutOrPostIndicatesResourceHasChanged(HttpContext httpContext)
-        {
-            // Check for If-Match / IfUnModifiedSince on PUT/PATCH.  Even though
-            // dates aren't guaranteed to be strong validators, the standard allows
-            // using these.  It's up to the server to ensure they are strong
-            // if they want to allow using them.
-            if (!await ConditionalPutOrPatchIsValid(httpContext))
-            {
-                // not valid anymore.  Return a 412 response
-                await Generate412PreconditionFailedResponse(httpContext);
-
-                // don't continue with the rest of the flow, we don't want
-                // to generate the response.
-                return true;
-            }
-
-            _logger.LogInformation("Don't generate 412 - Precondition Failed.  Continue.");
-            return false;
-        }
-
         private async Task HandleResponse(HttpContext httpContext)
         {
             // We treat dates as weak tags.  There is no backup to IfUnmodifiedSince
