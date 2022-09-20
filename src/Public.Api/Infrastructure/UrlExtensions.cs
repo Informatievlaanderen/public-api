@@ -22,33 +22,55 @@ namespace Public.Api.Infrastructure
         private static string CombineParts(params string[] parts)
         {
             if (parts == null)
+            {
                 throw new ArgumentNullException(nameof(parts));
+            }
 
             string result = "";
             bool inQuery = false, inFragment = false;
 
             string CombineEnsureSingleSeparator(string a, string b, char separator)
             {
-                if (string.IsNullOrEmpty(a)) return b;
-                if (string.IsNullOrEmpty(b)) return a;
+                if (string.IsNullOrEmpty(a))
+                {
+                    return b;
+                }
+
+                if (string.IsNullOrEmpty(b))
+                {
+                    return a;
+                }
+
                 return a.TrimEnd(separator) + separator + b.TrimStart(separator);
             }
 
             foreach (var part in parts)
             {
                 if (string.IsNullOrEmpty(part))
+                {
                     continue;
+                }
 
                 if (result.OrdinalEndsWith("?") || part.OrdinalStartsWith("?"))
+                {
                     result = CombineEnsureSingleSeparator(result, part, '?');
+                }
                 else if (result.OrdinalEndsWith("#") || part.OrdinalStartsWith("#"))
+                {
                     result = CombineEnsureSingleSeparator(result, part, '#');
+                }
                 else if (inFragment)
+                {
                     result += part;
+                }
                 else if (inQuery)
+                {
                     result = CombineEnsureSingleSeparator(result, part, '&');
+                }
                 else
+                {
                     result = CombineEnsureSingleSeparator(result, part, '/');
+                }
 
                 if (part.OrdinalContains("#"))
                 {
@@ -73,17 +95,23 @@ namespace Public.Api.Infrastructure
         public static string EncodeIllegalCharacters(string s, bool encodeSpaceAsPlus = false)
         {
             if (string.IsNullOrEmpty(s))
+            {
                 return s;
+            }
 
             if (encodeSpaceAsPlus)
+            {
                 s = s.Replace(" ", "+");
+            }
 
             // Uri.EscapeUriString mostly does what we want - encodes illegal characters only - but it has a quirk
             // in that % isn't illegal if it's the start of a %-encoded sequence https://stackoverflow.com/a/47636037/62600
 
             // no % characters, so avoid the regex overhead
             if (!s.OrdinalContains("%"))
+            {
                 return Uri.EscapeUriString(s);
+            }
 
             // pick out all %-hex-hex matches and avoid double-encoding
             return Regex.Replace(s, "(.*?)((%[0-9A-Fa-f]{2})|$)", c => {
@@ -109,13 +137,13 @@ namespace Public.Api.Infrastructure
 
     internal static class StringExtensions
     {
-        internal static bool OrdinalContains(this string s, string value, bool ignoreCase = false) =>
+        internal static bool OrdinalContains(this string? s, string value, bool ignoreCase = false) =>
             s != null && s.IndexOf(value, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) >= 0;
 
-        internal static bool OrdinalStartsWith(this string s, string value, bool ignoreCase = false) =>
+        internal static bool OrdinalStartsWith(this string? s, string value, bool ignoreCase = false) =>
             s != null && s.StartsWith(value, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
 
-        internal static bool OrdinalEndsWith(this string s, string value, bool ignoreCase = false) =>
+        internal static bool OrdinalEndsWith(this string? s, string value, bool ignoreCase = false) =>
             s != null && s.EndsWith(value, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
     }
 }
