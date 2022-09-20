@@ -4,6 +4,7 @@ namespace Common.Infrastructure.Modules
     using System.Collections.Generic;
     using System.Net;
     using System.Net.Http;
+    using System.Runtime.Serialization;
     using Autofac;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Configuration;
@@ -120,5 +121,15 @@ namespace Common.Infrastructure.Modules
                 .Keyed<IFeatureToggle>(name);
     }
 
-    public class HealthUrls : Dictionary<string, string> { }
+    [Serializable]
+    public sealed class HealthUrls : Dictionary<string, string>
+    {
+        public HealthUrls()
+        { }
+
+        private HealthUrls(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        { }
+
+    }
 }

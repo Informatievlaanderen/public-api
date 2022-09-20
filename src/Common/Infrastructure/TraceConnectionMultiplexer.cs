@@ -11,7 +11,6 @@ namespace Common.Infrastructure
     public class TraceConnectionMultiplexer : IConnectionMultiplexer
     {
         private const string DefaultServiceName = "redis";
-        private const string TypeName = "cache";
 
         private string ServiceName { get; }
 
@@ -134,31 +133,31 @@ namespace Common.Infrastructure
         public int HashSlot(RedisKey key)
             => _connectionMultiplexer.HashSlot(key);
 
-        public ISubscriber GetSubscriber(object asyncState = null)
+        public ISubscriber GetSubscriber(object? asyncState = null)
             => _connectionMultiplexer.GetSubscriber(asyncState);
 
-        public IDatabase GetDatabase(int db = -1, object asyncState = null)
+        public IDatabase GetDatabase(int db = -1, object? asyncState = null)
             => new TraceDatabase(
                 _connectionMultiplexer.GetDatabase(db, asyncState),
                 ServiceName,
                 _spanSource);
 
-        public IServer GetServer(string host, int port, object asyncState = null)
+        public IServer GetServer(string host, int port, object? asyncState = null)
             => _connectionMultiplexer.GetServer(host, port, asyncState);
 
-        public IServer GetServer(string hostAndPort, object asyncState = null)
+        public IServer GetServer(string hostAndPort, object? asyncState = null)
             => _connectionMultiplexer.GetServer(hostAndPort, asyncState);
 
         public IServer GetServer(IPAddress host, int port)
             => _connectionMultiplexer.GetServer(host, port);
 
-        public IServer GetServer(EndPoint endpoint, object asyncState = null)
+        public IServer GetServer(EndPoint endpoint, object? asyncState = null)
             => _connectionMultiplexer.GetServer(endpoint, asyncState);
 
-        public Task<bool> ConfigureAsync(TextWriter log = null)
+        public Task<bool> ConfigureAsync(TextWriter? log = null)
             => _connectionMultiplexer.ConfigureAsync(log);
 
-        public bool Configure(TextWriter log = null)
+        public bool Configure(TextWriter? log = null)
             => _connectionMultiplexer.Configure(log);
 
         public string GetStatus()

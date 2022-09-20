@@ -1,5 +1,6 @@
 namespace Common.Infrastructure
 {
+    using System;
     using Extensions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -16,19 +17,17 @@ namespace Common.Infrastructure
 
         public static ContentFormat For(
             EndpointType endpointType,
-            ActionContext context)
+            ActionContext? context)
         {
             var acceptType = DetermineAcceptType(context)
-                .ValidateFor(endpointType);
+                ?.ValidateFor(endpointType);
 
-            return new ContentFormat(acceptType);
+            return new ContentFormat(acceptType ?? throw new InvalidOperationException("Invalid accept type."));
         }
 
-        public static AcceptType DetermineAcceptType(ActionContext context)
+        public static AcceptType? DetermineAcceptType(ActionContext? context)
         {
-            return context
-                .HttpContext
-                .Request
+            return context?.HttpContext.Request
                 .GetTypedHeaders()
                 .DetermineAcceptType(context.ActionDescriptor);
         }

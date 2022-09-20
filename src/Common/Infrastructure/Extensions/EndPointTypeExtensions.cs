@@ -81,7 +81,7 @@ namespace Common.Infrastructure.Extensions
                     });
         }
 
-        private class AcceptTypeComparer : IComparer<string>
+        private sealed class AcceptTypeComparer : IComparer<string>
         {
             public int Compare(string? x, string? y)
             {

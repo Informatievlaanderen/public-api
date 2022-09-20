@@ -1,10 +1,13 @@
 namespace Common.ProblemDetailsException
 {
+    using System;
+    using System.Runtime.Serialization;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.BasicApiProblem;
     using Microsoft.AspNetCore.Http;
 
-    public class PreconditionFailedException : ApiProblemDetailsException
+    [Serializable]
+    public sealed class PreconditionFailedException : ApiProblemDetailsException
     {
         public string RegistryName { get; }
 
@@ -12,5 +15,9 @@ namespace Common.ProblemDetailsException
         {
             RegistryName = registryName;
         }
+    
+        private PreconditionFailedException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        { }
     }
 }

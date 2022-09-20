@@ -15,10 +15,12 @@ namespace Common.Infrastructure
 
         private static readonly IEnumerable<string> PageQueryParameters = new[] {"limit", "offset"};
 
-        private static Dictionary<string, StringValues> Filter(IEnumerable<KeyValuePair<string, StringValues>> query)
+        private static Dictionary<string, StringValues> Filter(IEnumerable<KeyValuePair<string, StringValues>>? query)
         {
-            if (query == null)
+            if (query is null)
+            {
                 return new Dictionary<string, StringValues>();
+            }
 
             return query
                 .Where(IsNotPageParameter)
@@ -27,7 +29,7 @@ namespace Common.Infrastructure
         }
 
         private static bool IsNotPageParameter(KeyValuePair<string, StringValues> keyValuePair)
-            => PageQueryParameters.Contains(keyValuePair.Key, StringComparer.InvariantCultureIgnoreCase) == false;
+            => !PageQueryParameters.Contains(keyValuePair.Key, StringComparer.InvariantCultureIgnoreCase);
 
         private static bool HasValue(KeyValuePair<string, StringValues> parameter)
             => parameter.Value.Count > 0 && !string.IsNullOrWhiteSpace(parameter.Value.ToString());

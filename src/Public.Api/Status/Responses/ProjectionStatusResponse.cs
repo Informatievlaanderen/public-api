@@ -1,9 +1,20 @@
 namespace Public.Api.Status.Responses
 {
+    using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    public class ProjectionStatusResponse : ListResponse<RegistryProjectionStatusResponse> { }
+    [Serializable]
+    public sealed class ProjectionStatusResponse : ListResponse<RegistryProjectionStatusResponse>
+    {
+        public ProjectionStatusResponse()
+        { }
+        
+        private ProjectionStatusResponse(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        { }
+
+    }
 
     public class RegistryProjectionStatusResponse
     {

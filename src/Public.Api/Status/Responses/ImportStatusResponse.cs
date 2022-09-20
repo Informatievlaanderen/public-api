@@ -4,7 +4,17 @@ namespace Public.Api.Status.Responses
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    public class ImportStatusResponse : ListResponse<IEnumerable<RegistryImportStatus>> {}
+    [Serializable]
+    public sealed class ImportStatusResponse : ListResponse<IEnumerable<RegistryImportStatus>>
+    {
+        public ImportStatusResponse()
+        { }
+        
+        private ImportStatusResponse(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        { }
+
+    }
 
     public class RegistryImportStatus
     {

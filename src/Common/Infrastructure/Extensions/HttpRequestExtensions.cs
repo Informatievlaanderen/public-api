@@ -22,8 +22,8 @@ namespace Common.Infrastructure.Extensions
         public static string GetValueFromHeader(this ActionContext context, string key)
             => context.HttpContext.Request.Headers.TryGetValue(key, out var headerValue) ? headerValue.ToString().ToLowerInvariant() : null;
 
-        public static void SetAcceptType(this HttpRequest request, AcceptType acceptType)
-            => request.Headers[HeaderNames.Accept] = acceptType.ToMimeTypeString();
+        public static void SetAcceptType(this HttpRequest request, AcceptType? acceptType)
+            => request.Headers[HeaderNames.Accept] = acceptType?.ToMimeTypeString();
 
         public static void SetContentFormatAcceptType(this ActionContext context)
             => context
