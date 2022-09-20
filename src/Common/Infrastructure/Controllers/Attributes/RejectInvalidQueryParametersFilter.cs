@@ -14,17 +14,22 @@ namespace Common.Infrastructure.Controllers.Attributes
         public void OnResourceExecuting(ResourceExecutingContext context)
         {
             if (!context.HttpContext.Request.Query.Keys.Any(x => x.Contains(".")))
+            {
                 return;
+            }
 
             context.SetContentFormatAcceptType();
 
             var configuration = context.HttpContext.RequestServices.GetService<IConfiguration>();
 
             throw new ApiException(
-                $"Ongeldige parameters. Het gebruik van een prefix bij een parameter is niet geldig. Bekijk {configuration["DocsUrl"]} voor een overzicht van geldige parameters.",
+                $"Ongeldige parameters. Het gebruik van een prefix bij een parameter is niet geldig. Bekijk {configuration?["DocsUrl"]} voor een overzicht van geldige parameters.",
                 StatusCodes.Status400BadRequest);
         }
 
-        public void OnResourceExecuted(ResourceExecutedContext context) { }
+        public void OnResourceExecuted(ResourceExecutedContext context)
+        {
+            // intentionally left blank
+        }
     }
 }
