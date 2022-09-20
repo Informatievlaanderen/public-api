@@ -1,3 +1,10 @@
+## [5.33.2](https://github.com/informatievlaanderen/public-api/compare/v5.33.1...v5.33.2) (2022-09-20)
+
+
+### Bug Fixes
+
+* add ticket settings ([2d9032e](https://github.com/informatievlaanderen/public-api/commit/2d9032e29e49160625429fc1fe017a48af1ecf29))
+
 ## [5.33.1](https://github.com/informatievlaanderen/public-api/compare/v5.33.0...v5.33.1) (2022-09-20)
 
 
