@@ -64,6 +64,11 @@ namespace Public.Api.Infrastructure.Redis
         private const string BuildingUnitCacheKey = BuildingUnitCachePrefix + "{0}.{1}";
         private static readonly Regex BuildingUnitRegex = new Regex(@"/v1/gebouweenheden/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
+        private const string BuildingUnitV2PathPrefix = "/v2/gebouweenheden/";
+        private const string BuildingUnitV2CachePrefix = "legacy/buildingunit:";
+        private const string BuildingUnitV2CacheKey = BuildingUnitV2CachePrefix + "{0}.{1}";
+        private static readonly Regex BuildingUnitV2Regex = new Regex(@"/v2/gebouweenheden/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+
         private const string ParcelPathPrefix = "/v1/percelen/";
         private const string ParcelCachePrefix = "legacy/parcel:";
         private const string ParcelCacheKey = ParcelCachePrefix + "{0}.{1}";
@@ -149,15 +154,14 @@ namespace Public.Api.Infrastructure.Redis
                 return GenerateStoreKey(context, resourcePath, AddressV2Regex, AddressV2CacheKey);
             }
 
-            // As long as we do not control WFS, buildings cannot be cached
-            //if (resourcePath.StartsWith(BuildingPathPrefix))
-            //{
-            //    return GenerateStoreKey(context, resourcePath, BuildingRegex, BuildingCacheKey);
-            //}
-
             if (resourcePath.StartsWith(BuildingUnitPathPrefix))
             {
                 return GenerateStoreKey(context, resourcePath, BuildingUnitRegex, BuildingUnitCacheKey);
+            }
+
+            if (resourcePath.StartsWith(BuildingUnitV2PathPrefix))
+            {
+                return GenerateStoreKey(context, resourcePath, BuildingUnitV2Regex, BuildingUnitV2CacheKey);
             }
 
             if (resourcePath.StartsWith(ParcelPathPrefix))
