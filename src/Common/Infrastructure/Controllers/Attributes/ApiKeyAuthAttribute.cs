@@ -68,7 +68,7 @@ namespace Common.Infrastructure.Controllers.Attributes
         }
 
         internal record ApiToken([JsonProperty("clientname")] string ClientName, [JsonProperty("apikey")] string ApiKey, [JsonProperty("metadata")] ApiTokenMetadata Metadata);
-        internal record ApiTokenMetadata([JsonProperty("wraccess")] bool WrAccess, [JsonProperty("syncaccess")] bool SyncAccess);
+        internal record ApiTokenMetadata([JsonProperty("wraccess")] bool WrAccess, [JsonProperty("syncaccess")] bool SyncAccess, [JsonProperty("ticketsaccess")] bool TicketsAccess = false);
 
         public Task OnActionExecutionApiTokenAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
@@ -116,9 +116,11 @@ namespace Common.Infrastructure.Controllers.Attributes
 
             var wrAccess = apiToken?.Metadata.WrAccess;
             var syncAccess = apiToken?.Metadata.SyncAccess;
+            var ticketsAccess = apiToken?.Metadata.TicketsAccess;
 
-            if ((_requiredAccess.Equals("road", StringComparison.InvariantCultureIgnoreCase) && !(wrAccess ?? false))
-            || (_requiredAccess.Equals("sync", StringComparison.InvariantCultureIgnoreCase) && !(syncAccess ?? false)))
+            if (_requiredAccess.Equals("road", StringComparison.InvariantCultureIgnoreCase) && !(wrAccess ?? false)
+                || _requiredAccess.Equals("sync", StringComparison.InvariantCultureIgnoreCase) && !(syncAccess ?? false)
+                || _requiredAccess.Equals("tickets", StringComparison.InvariantCultureIgnoreCase) && !(ticketsAccess ?? false))
             {
                 RefuseAccess(context, "Geen toegang");
                 return next();

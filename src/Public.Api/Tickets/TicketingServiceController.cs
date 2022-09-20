@@ -19,7 +19,6 @@ namespace Public.Api.Tickets
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Tickets")]
     [ApiProduces]
-    [ApiKeyAuth("tickets")]
     public partial class TicketingServiceController : RegistryApiController<TicketingServiceController>
     {
         protected override string NotFoundExceptionMessage => "Onbestaand ticket.";
