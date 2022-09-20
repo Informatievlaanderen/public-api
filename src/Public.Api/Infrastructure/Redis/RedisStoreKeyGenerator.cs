@@ -65,9 +65,9 @@ namespace Public.Api.Infrastructure.Redis
         private static readonly Regex BuildingUnitRegex = new Regex(@"/v1/gebouweenheden/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
         private const string BuildingUnitV2PathPrefix = "/v2/gebouweenheden/";
-        private const string BuildingUnitV2CachePrefix = "legacy/buildingunit:";
+        private const string BuildingUnitV2CachePrefix = "oslo/buildingunit:";
         private const string BuildingUnitV2CacheKey = BuildingUnitV2CachePrefix + "{0}.{1}";
-        private static readonly Regex BuildingUnitV2Regex = new Regex(@"/v2/gebouweenheden/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+        private static readonly Regex BuildingUnitV2Regex = new Regex(@"/v2/gebouweenheden/(?<id>\d*)(?<format>\.(jjsonld))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
         private const string ParcelPathPrefix = "/v1/percelen/";
         private const string ParcelCachePrefix = "legacy/parcel:";
