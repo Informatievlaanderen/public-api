@@ -1,3 +1,11 @@
+## [5.33.1](https://github.com/informatievlaanderen/public-api/compare/v5.33.0...v5.33.1) (2022-09-20)
+
+
+### Bug Fixes
+
+* future-proof way of hiding methods from docs ([4e040f4](https://github.com/informatievlaanderen/public-api/commit/4e040f4241781b1dd1cf2345d2694493702bc1ae))
+* Sonar issues 2 ([103896d](https://github.com/informatievlaanderen/public-api/commit/103896d089192f2c4c69dcf86979949988e7c195))
+
 # [5.33.0](https://github.com/informatievlaanderen/public-api/compare/v5.32.2...v5.33.0) (2022-09-19)
 
 
