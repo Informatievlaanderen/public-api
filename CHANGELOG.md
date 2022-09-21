@@ -1,3 +1,10 @@
+## [5.33.3](https://github.com/informatievlaanderen/public-api/compare/v5.33.2...v5.33.3) (2022-09-21)
+
+
+### Bug Fixes
+
+* documentation correct housenumber postalcode ([c52e25d](https://github.com/informatievlaanderen/public-api/commit/c52e25d1012b36948ce9fddd2826dd1603b5f6e7))
+
 ## [5.33.2](https://github.com/informatievlaanderen/public-api/compare/v5.33.1...v5.33.2) (2022-09-20)
 
 
