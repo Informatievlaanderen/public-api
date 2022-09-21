@@ -1,4 +1,3 @@
-
 namespace Public.Api.Address.BackOffice
 {
     using System.Threading;
@@ -59,7 +58,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(AddressChangePositionRequest), typeof(AddressChangePositionRequestExamples))]
-        [SwaggerOperation(Description = "Corrigeer de postinfoId van een adres.")]
+        [SwaggerOperation(Description = "Correctie van de postinfoId van een adres.")]
         [HttpPost(CorrectPostalCodeRoute, Name = nameof(CorrectPostalCodeAddress))]
         public async Task<IActionResult> CorrectPostalCodeAddress(
             [FromRoute] int objectId,
