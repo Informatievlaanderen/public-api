@@ -689,9 +689,9 @@ De edit endpoints maken decentraal beheer mogelijk in het gebouwen- en adressenr
 
 Straatnamen
 
-* Stel een straatnaam voor
+* Stel een straatnaam voor.
 
-* Keur een straatnaam goed
+* Keur een straatnaam goed.
 
 * Keur een straatnaam af.
 
@@ -701,9 +701,9 @@ Straatnamen
 
 Adressen
 
-* Stel een adres voor
+* Stel een adres voor.
 
-* Keur een adres goed
+* Keur een adres goed.
 
 * Keur een adres af.
 
@@ -715,7 +715,13 @@ Adressen
 
 * Corrigeer de adrespositie van een adres.
 
+* Corrigeer de postcode van een adres.
+
+* Corrigeer het huisnummer van een adres.
+
 * Wijzig de adrespositie van een adres.
+
+* Wijzig de postcode van een adres.
 
 Gebouwen
 
