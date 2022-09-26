@@ -25,7 +25,7 @@ namespace Public.Api.Address.BackOffice
         /// Corrigeer de postcode van een adres.
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
-        /// <param name="addressChangePostalCodeRequest"></param>
+        /// <param name="addressCorrectPostalCodeRequest"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="changePostalCodeAddressToggle"></param>
