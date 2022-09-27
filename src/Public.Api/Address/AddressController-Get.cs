@@ -1,7 +1,5 @@
 namespace Public.Api.Address
 {
-    using System.Threading;
-    using System.Threading.Tasks;
     using AddressRegistry.Api.Legacy.Address.Responses;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
@@ -14,7 +12,8 @@ namespace Public.Api.Address
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
-    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class AddressController
     {
@@ -64,7 +63,7 @@ namespace Public.Api.Address
 
             var cacheKey = $"legacy/address:{objectId}";
 
-            var value = await (CacheToggle.FeatureEnabled
+            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,

@@ -69,7 +69,7 @@ namespace Public.Api.Address.Oslo
 
             var cacheKey = $"oslo/address:{objectId}";
 
-            var value = await (CacheToggle.FeatureEnabled
+            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,

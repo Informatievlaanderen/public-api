@@ -84,7 +84,7 @@ namespace Public.Api.Municipality
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/municipality-list:{taal}");
 
-            var value = await (CacheToggle.FeatureEnabled
+            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,

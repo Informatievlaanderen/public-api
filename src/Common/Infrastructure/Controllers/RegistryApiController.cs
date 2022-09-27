@@ -4,13 +4,15 @@ namespace Common.Infrastructure.Controllers
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
+    using System.Net.Http.Headers;
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Common.ProblemDetailsException;
+    using ProblemDetailsException;
     using FeatureToggle;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Primitives;
     using Newtonsoft.Json;
@@ -20,7 +22,7 @@ namespace Common.Infrastructure.Controllers
     {
         private readonly IRestClient _restClient;
 
-        protected readonly IFeatureToggle CacheToggle;
+        private readonly IFeatureToggle _cacheToggle;
 
         protected abstract string GoneExceptionMessage { get; }
         protected abstract string NotFoundExceptionMessage { get; }
@@ -36,7 +38,16 @@ namespace Common.Infrastructure.Controllers
             ILogger<T> logger) : base(redis, logger)
         {
             _restClient = restClient;
-            CacheToggle = cacheToggle;
+            _cacheToggle = cacheToggle;
+        }
+
+        protected bool CanGetFromCache(ActionContext actionContext)
+        {
+            return _cacheToggle.FeatureEnabled
+                   && !actionContext.HttpContext.Request
+                       .Headers
+                       .CacheControl
+                       .Any(x => CacheControlHeaderValue.TryParse(x, out var value) && value!.NoCache);
         }
 
         protected async Task<BackendResponse> GetFromCacheThenFromBackendAsync(

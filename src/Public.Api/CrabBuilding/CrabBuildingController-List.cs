@@ -70,7 +70,7 @@ namespace Public.Api.CrabBuilding
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/crabgebouwen-list:{Taal.NL}");
 
-            var value = await (CacheToggle.FeatureEnabled
+            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,

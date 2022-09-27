@@ -66,7 +66,7 @@ namespace Public.Api.PublicService
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/publicservice-list:{taal}");
 
-            var value = await (CacheToggle.FeatureEnabled
+            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,

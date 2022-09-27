@@ -66,7 +66,7 @@ namespace Public.Api.Municipality.Oslo
 
             var cacheKey = $"oslo/municipality:{objectId}";
 
-            var value = await (CacheToggle.FeatureEnabled
+            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,

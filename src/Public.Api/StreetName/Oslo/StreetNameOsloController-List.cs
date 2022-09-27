@@ -90,7 +90,7 @@ namespace Public.Api.StreetName.Oslo
                 status);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"oslo/streetname-list:{taal}");
-            var value = await (CacheToggle.FeatureEnabled
+            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,

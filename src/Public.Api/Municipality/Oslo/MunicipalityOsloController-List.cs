@@ -91,7 +91,7 @@ namespace Public.Api.Municipality.Oslo
 
             var cacheKey = CreateCacheKeyForRequestQuery($"oslo/municipality-list:{taal}");
 
-            var value = await (CacheToggle.FeatureEnabled
+            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,
