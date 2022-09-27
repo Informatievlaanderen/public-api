@@ -77,7 +77,7 @@ namespace Public.Api.Parcel
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/parcel-list:{taal}");
 
-            var value = await (CacheToggle.FeatureEnabled
+            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,

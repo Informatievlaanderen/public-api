@@ -103,7 +103,7 @@ namespace Public.Api.Address.Oslo
 
             var cacheKey = CreateCacheKeyForRequestQuery($"oslo/address-list:{taal}");
 
-            var value = await (CacheToggle.FeatureEnabled
+            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,

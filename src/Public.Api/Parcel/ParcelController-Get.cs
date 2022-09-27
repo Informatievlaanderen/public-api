@@ -57,7 +57,7 @@ namespace Public.Api.Parcel
 
             var cacheKey = $"legacy/parcel:{objectId}";
 
-            var value = await (CacheToggle.FeatureEnabled
+            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,

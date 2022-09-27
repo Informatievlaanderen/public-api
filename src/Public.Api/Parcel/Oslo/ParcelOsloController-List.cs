@@ -82,7 +82,7 @@ namespace Public.Api.Parcel.Oslo
 
             var cacheKey = CreateCacheKeyForRequestQuery($"oslo/parcel-list:{taal}");
 
-            var value = await (CacheToggle.FeatureEnabled
+            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,

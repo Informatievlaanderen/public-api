@@ -73,7 +73,7 @@ namespace Public.Api.PostalCode
 
             var cacheKey = CreateCacheKeyForRequestQuery($"legacy/postalinfo-list:{taal}");
 
-            var value = await (CacheToggle.FeatureEnabled
+            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,

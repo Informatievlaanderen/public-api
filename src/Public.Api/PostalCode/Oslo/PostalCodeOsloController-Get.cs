@@ -66,7 +66,7 @@ namespace Public.Api.PostalCode.Oslo
 
             var cacheKey = $"oslo/postalinfo:{objectId}";
 
-            var value = await (CacheToggle.FeatureEnabled
+            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,
