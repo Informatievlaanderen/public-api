@@ -352,7 +352,9 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new IsMunicipalityOsloApiEnabledToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsMunicipalityOsloApiEnabled))
                 .AddSingleton(c => new IsParcelOsloApiEnabledToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsParcelOsloApiEnabled))
                 .AddSingleton(c => new IsPostalCodeOsloApiEnabledToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsPostalCodeOsloApiEnabled))
-                .AddSingleton(c => new IsStreetNameOsloApiEnabledToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsStreetNameOsloApiEnabled));
+                .AddSingleton(c => new IsStreetNameOsloApiEnabledToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsStreetNameOsloApiEnabled))
+
+                .AddSingleton(c => new TicketingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.Ticketing));
 
             services
                 .RemoveAll<IApiControllerSpecification>()

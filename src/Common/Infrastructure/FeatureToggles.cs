@@ -316,4 +316,11 @@ namespace Common.Infrastructure
 
         public IsStreetNameOsloApiEnabledToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
+
+    public class TicketingToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public TicketingToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
 }
