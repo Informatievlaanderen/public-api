@@ -54,5 +54,7 @@ namespace Public.Api.Infrastructure.Configuration
         public bool IsParcelOsloApiEnabled { get; set; }
         public bool IsPostalCodeOsloApiEnabled { get; set; }
         public bool IsStreetNameOsloApiEnabled { get; set; }
+
+        public bool Ticketing { get; set; }
     }
 }

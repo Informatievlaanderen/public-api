@@ -40,6 +40,11 @@ namespace Public.Api.Tickets
             [FromServices] IActionContextAccessor actionContextAccessor,
             CancellationToken cancellationToken = default)
         {
+            if (!_ticketingToggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
+
             if (actionContextAccessor.ActionContext == null)
             {
                 return BadRequest();

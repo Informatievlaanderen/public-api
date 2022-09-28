@@ -21,15 +21,21 @@ namespace Public.Api.Tickets
     [ApiProduces]
     public partial class TicketingServiceController : RegistryApiController<TicketingServiceController>
     {
+        private readonly TicketingToggle _ticketingToggle;
+
         protected override string NotFoundExceptionMessage => "Onbestaand ticket.";
         protected override string GoneExceptionMessage => "Verwijderd ticket.";
 
         public TicketingServiceController(
             [KeyFilter(RegistryKeys.TicketingService)] IRestClient restClient,
             [KeyFilter(RegistryKeys.TicketingService)] IFeatureToggle cacheToggle,
+            TicketingToggle ticketingToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<TicketingServiceController> logger)
-            : base(restClient, cacheToggle, redis, logger) { }
+            : base(restClient, cacheToggle, redis, logger)
+        {
+            _ticketingToggle = ticketingToggle;
+        }
 
         private static ContentFormat DetermineFormat(ActionContext context)
             => ContentFormat.For(EndpointType.Legacy, context);
