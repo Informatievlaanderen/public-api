@@ -1,6 +1,7 @@
 namespace Public.Api.Tickets
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
@@ -10,6 +11,7 @@ namespace Public.Api.Tickets
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
+    using StreetNameRegistry.Api.BackOffice.Abstractions.Response;
     using Swashbuckle.AspNetCore.Filters;
     using TicketingService.Abstractions;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -32,7 +34,7 @@ namespace Public.Api.Tickets
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(Ticket))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(TicketExample))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
@@ -69,6 +71,18 @@ namespace Public.Api.Tickets
             var request = new RestRequest("tickets/{ticketId}");
             request.AddParameter("ticketId", ticketId, ParameterType.UrlSegment);
             return request;
+        }
+    }
+
+    public class TicketExample : IExamplesProvider<Ticket>
+    {
+        public Ticket GetExamples()
+        {
+            return new Ticket(
+                Guid.NewGuid(),
+                TicketStatus.Created,
+                new Dictionary<string, string> { { "Key", "Value" } },
+                new TicketResult(new ETagResponse("https://locationtotheresource", "etag of the resource")));
         }
     }
 }

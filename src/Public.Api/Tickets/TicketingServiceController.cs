@@ -18,7 +18,7 @@ namespace Public.Api.Tickets
     [AdvertiseApiVersions(Version.V2)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Tickets")]
-    [ApiProduces]
+    [ApiProduces(EndpointType.BackOffice)]
     public partial class TicketingServiceController : RegistryApiController<TicketingServiceController>
     {
         private readonly TicketingToggle _ticketingToggle;
