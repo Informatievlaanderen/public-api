@@ -13,6 +13,7 @@ namespace Public.Api.StreetName.BackOffice
     using StreetNameRegistry.Api.BackOffice.Abstractions.Requests;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class StreetNameBackOfficeController
     {

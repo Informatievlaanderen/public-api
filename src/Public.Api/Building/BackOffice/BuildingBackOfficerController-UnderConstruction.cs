@@ -12,6 +12,7 @@ namespace Public.Api.Building.BackOffice
     using RestSharp;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class BuildingBackOfficeController
     {
