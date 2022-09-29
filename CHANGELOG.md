@@ -1,3 +1,10 @@
+## [5.35.1](https://github.com/informatievlaanderen/public-api/compare/v5.35.0...v5.35.1) (2022-09-29)
+
+
+### Bug Fixes
+
+* hide ticketing if toggle is disabled ([fa2b13b](https://github.com/informatievlaanderen/public-api/commit/fa2b13bf9fc62e1919052d3e84b49f39b09ebf82))
+
 # [5.35.0](https://github.com/informatievlaanderen/public-api/compare/v5.34.0...v5.35.0) (2022-09-29)
 
 
