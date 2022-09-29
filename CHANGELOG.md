@@ -1,3 +1,21 @@
+# [5.34.0](https://github.com/informatievlaanderen/public-api/compare/v5.33.3...v5.34.0) (2022-09-29)
+
+
+### Bug Fixes
+
+* documentation ([fc5f3c5](https://github.com/informatievlaanderen/public-api/commit/fc5f3c533fe86bf412fcbe1e693f90ff45c883e6))
+* documentation page problem details ([deea229](https://github.com/informatievlaanderen/public-api/commit/deea2290e4050fdb1b9aba2406e31af85a15bb1b))
+* endpoint ordering address & streetname ([c3c7b21](https://github.com/informatievlaanderen/public-api/commit/c3c7b216934b4b0bb51f96e4f8439512f1d56409))
+* redo ordering ([8d97a6e](https://github.com/informatievlaanderen/public-api/commit/8d97a6effaca81a84239c1bd5d01725b40fa826e))
+
+
+### Features
+
+* add correct address boxnumber ([f807c8c](https://github.com/informatievlaanderen/public-api/commit/f807c8c55b99c7bb24c79d0fcfad8f28f9af95f3))
+* add ticketing feature toggle ([a01eb38](https://github.com/informatievlaanderen/public-api/commit/a01eb380f6fe2f1692424a142f2543177c532078))
+* async operations API docs ([3e3174e](https://github.com/informatievlaanderen/public-api/commit/3e3174ebb75dddc6ee2edc88245cee437c51c505))
+* implement cachecontrol with no-cache ([84a4f32](https://github.com/informatievlaanderen/public-api/commit/84a4f3285e942f4f015d50e0805b1157ab6246f5))
+
 ## [5.33.3](https://github.com/informatievlaanderen/public-api/compare/v5.33.2...v5.33.3) (2022-09-21)
 
 
