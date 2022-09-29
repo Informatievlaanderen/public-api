@@ -254,7 +254,11 @@ namespace Public.Api.Infrastructure
                                 .RewriteAcceptTypeForProblemDetail();
                         }
                     },
-                    ActionModelConventions = { new ApiDocumentationHiddenConvention() }
+                    ActionModelConventions =  { new ApiDocumentationHiddenConvention(_configuration
+                        .GetSection("HiddenApiMethods")
+                        .GetChildren()
+                        .Select(c => c.Value)
+                        .ToArray()) }
                 }
                     .EnableJsonErrorActionFilterOption())
 
