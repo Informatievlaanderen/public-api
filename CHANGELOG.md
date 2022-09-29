@@ -1,3 +1,20 @@
+# [5.35.0](https://github.com/informatievlaanderen/public-api/compare/v5.34.0...v5.35.0) (2022-09-29)
+
+
+### Bug Fixes
+
+* add ticketing example ([9364b83](https://github.com/informatievlaanderen/public-api/commit/9364b8302b0bd9183e8171be477176d3d839d7bc))
+
+
+### Features
+
+* make hidden api methods configurable ([059737b](https://github.com/informatievlaanderen/public-api/commit/059737b831e8736d4ea34cdb39b7e556ea483cb3))
+
+
+### Reverts
+
+* Revert "feat: make hidden api methods configurable" ([d7b3d3a](https://github.com/informatievlaanderen/public-api/commit/d7b3d3a6689168847e9349ca70b0a2f5df06e7c1))
+
 # [5.34.0](https://github.com/informatievlaanderen/public-api/compare/v5.33.3...v5.34.0) (2022-09-29)
 
 
