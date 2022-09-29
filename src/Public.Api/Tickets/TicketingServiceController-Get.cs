@@ -80,9 +80,18 @@ namespace Public.Api.Tickets
         {
             return new Ticket(
                 Guid.NewGuid(),
-                TicketStatus.Created,
-                new Dictionary<string, string> { { "Key", "Value" } },
-                new TicketResult(new ETagResponse("https://locationtotheresource", "etag of the resource")));
+                TicketStatus.Complete,
+                new Dictionary<string, string>
+                {
+                    { "Action", "ProposeStreetName" },
+                    { "ObjectId", "31169" },
+                    { "Registry", "StreetNameRegistry" },
+                    { "AggregateId", Guid.NewGuid().ToString("D") }
+                },
+                new TicketResult(
+                    new ETagResponse(
+                        "https://api.basisregisters.staging-vlaanderen.be/v2/straatnamen/3016611",
+                        "D048BFCE9B392B49C352AE518F6F5393096A80ABC9A6B6DABC7CECC609B76A2264A2003CBB9DDEE44F4AB6AD7EC46960F3907171717C930371B11A3E9D01F970")));
         }
     }
 }
