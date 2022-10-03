@@ -24,7 +24,8 @@ namespace Public.Api.Infrastructure.Configuration
         public bool CorrectBoxNumberAddress { get; set; }
         public bool CorrectPostalCodeAddress { get; set; }
         public bool CorrectPositionAddress { get; set; }
-
+        public bool CorrectRejectionAddress { get; set; }
+        
         public bool PlanBuilding { get; set; }
         public bool BuildingUnderConstruction { get; set; }
         public bool RealizeBuilding { get; set; }
