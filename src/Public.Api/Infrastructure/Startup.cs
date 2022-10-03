@@ -324,7 +324,8 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new CorrectBoxNumberAddress(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBoxNumberAddress))
                 .AddSingleton(c => new CorrectPostalCodeAddress(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectPostalCodeAddress))
                 .AddSingleton(c => new CorrectPositionAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectPositionAddress))
-
+                .AddSingleton(c => new CorrectRejectionAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectRejectionAddress))
+                
                 .AddSingleton(c => new PlanBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.PlanBuilding))
                 .AddSingleton(c => new BuildingUnderConstructionToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.BuildingUnderConstruction))
                 .AddSingleton(c => new RealizeBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RealizeBuilding))

@@ -135,6 +135,13 @@ namespace Common.Infrastructure
         public CorrectPositionAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class CorrectRejectionAddressToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public CorrectRejectionAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class PlanBuildingToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
