@@ -1,3 +1,19 @@
+# [5.36.0](https://github.com/informatievlaanderen/public-api/compare/v5.35.1...v5.36.0) (2022-10-03)
+
+
+### Bug Fixes
+
+* bump address ([c127be7](https://github.com/informatievlaanderen/public-api/commit/c127be75406c47ff3122c4447fca76d55c413456))
+* bump address registry ([b805246](https://github.com/informatievlaanderen/public-api/commit/b805246c1f813ac7805d82a51278222c54e009b8))
+* correct address box number route ([878efb6](https://github.com/informatievlaanderen/public-api/commit/878efb67b4a9f7f492a813eaf4f768c5c834a33b))
+* order of correct address actions ([9152db2](https://github.com/informatievlaanderen/public-api/commit/9152db2cb92c0e58b3412b26eba3696e340bab7c))
+
+
+### Features
+
+* add address correct rejection ([7790481](https://github.com/informatievlaanderen/public-api/commit/7790481ae72900943e74d0b654d5f68015b73a55))
+* correct address approval and retirement ([8ab67ab](https://github.com/informatievlaanderen/public-api/commit/8ab67ab09acd1a75a5c7c62fe0d8af6a6dd76a5d))
+
 ## [5.35.1](https://github.com/informatievlaanderen/public-api/compare/v5.35.0...v5.35.1) (2022-09-29)
 
 
