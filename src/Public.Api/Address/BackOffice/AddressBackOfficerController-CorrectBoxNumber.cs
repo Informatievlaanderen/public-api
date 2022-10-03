@@ -29,7 +29,7 @@ namespace Public.Api.Address.BackOffice
         /// <param name="addressCorrectBoxNumberRequest"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
-        /// <param name="changeBoxNumberAddressToggle"></param>
+        /// <param name="correctBoxNumberToggle"></param>
         /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van het adres (optioneel).</param>
         /// <param name="cancellationToken"></param>
         /// <response code="202">Als het ticket succesvol is aangemaakt.</response>
@@ -58,16 +58,17 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(AddressChangePositionRequest), typeof(AddressChangePositionRequestExamples))]
         [SwaggerOperation(Description = "Correctie van het busnummer van een adres.")]
+        [HttpPost(CorrectBoxNumberRoute, Name = nameof(CorrectBoxNumberAddress))]
         public async Task<IActionResult> CorrectBoxNumberAddress(
             [FromRoute] int objectId,
             [FromBody] AddressCorrectBoxNumberRequest addressCorrectBoxNumberRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] CorrectBoxNumberAddress changeBoxNumberAddressToggle,
+            [FromServices] CorrectBoxNumberAddress correctBoxNumberToggle,
             [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
             CancellationToken cancellationToken = default)
         {
-            if (!changeBoxNumberAddressToggle.FeatureEnabled)
+            if (!correctBoxNumberToggle.FeatureEnabled)
             {
                 return NotFound();
             }
