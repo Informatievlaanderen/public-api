@@ -135,11 +135,25 @@ namespace Common.Infrastructure
         public CorrectPositionAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class CorrectApprovalAddressToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public CorrectApprovalAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class CorrectRejectionAddressToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
         public CorrectRejectionAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class CorrectRetirementAddressToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public CorrectRetirementAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
     public class PlanBuildingToggle : IFeatureToggle

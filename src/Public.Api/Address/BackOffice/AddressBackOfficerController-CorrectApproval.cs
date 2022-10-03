@@ -17,10 +17,10 @@ namespace Public.Api.Address.BackOffice
 
     public partial class AddressBackOfficeController
     {
-        public const string CorrectRejectionRoute = "adressen/{objectId}/acties/corrigeren/afkeuring";
+        public const string CorrectApprovalRoute = "adressen/{objectId}/acties/corrigeren/goedkeuring";
 
         /// <summary>
-        /// Corrigeer de afkeuring van een adres.
+        /// Corrigeer de goedkeuring van een adres.
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
         /// <param name="actionContextAccessor"></param>
@@ -52,13 +52,13 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Correctie van de adresstatus van “afgekeurd” naar “voorgesteld”.")]
-        [HttpPost(CorrectRejectionRoute, Name = nameof(CorrectRejection))]
-        public async Task<IActionResult> CorrectRejection(
+        [SwaggerOperation(Description = "Correctie van de adresstatus van “inGebruik” naar “voorgesteld”.")]
+        [HttpPost(CorrectApprovalRoute, Name = nameof(CorrectApproval))]
+        public async Task<IActionResult> CorrectApproval(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] CorrectRejectionAddressToggle featureToggle,
+            [FromServices] CorrectApprovalAddressToggle featureToggle,
             [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
             CancellationToken cancellationToken = default)
         {
@@ -71,7 +71,7 @@ namespace Public.Api.Address.BackOffice
 
             IRestRequest BackendRequest()
             {
-                var request = new RestRequest(CorrectRejectionRoute, Method.POST);
+                var request = new RestRequest(CorrectApprovalRoute, Method.POST);
                 request.AddParameter("objectId", objectId, ParameterType.UrlSegment);
 
                 if (ifMatch is not null)
