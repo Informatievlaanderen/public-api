@@ -1,3 +1,10 @@
+## [5.36.1](https://github.com/informatievlaanderen/public-api/compare/v5.36.0...v5.36.1) (2022-10-04)
+
+
+### Bug Fixes
+
+* documentation address ([a31fab8](https://github.com/informatievlaanderen/public-api/commit/a31fab8599129304c8eae3d58a41ad47fa024807))
+
 # [5.36.0](https://github.com/informatievlaanderen/public-api/compare/v5.35.1...v5.36.0) (2022-10-03)
 
 
