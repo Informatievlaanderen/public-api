@@ -332,11 +332,11 @@ namespace Common.Infrastructure
             var span = _spanSource.Begin(name, ServiceName, BuildResource(request), TypeName);
             try
             {
-                span.SetMeta("http.method", request.Method.ToString());
-                span.SetMeta("http.path", request.Resource);
-
                 if (span is not null)
                 {
+                    span.SetMeta("http.method", request.Method.ToString());
+                    span.SetMeta("http.path", request.Resource);
+
                     request.AddHeader(DataDogOptions.DefaultTraceIdHeaderName, span.TraceId.ToString());
                     request.AddHeader(DataDogOptions.DefaultParentSpanIdHeaderName, span.SpanId.ToString());
                 }
