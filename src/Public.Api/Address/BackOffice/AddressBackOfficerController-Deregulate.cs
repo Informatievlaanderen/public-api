@@ -50,7 +50,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Wijzig officieelToegekend van `true` naar `false`. Wanneer de status van het adres voorgesteld is, zal de status wijzigen naar `inGebruik`.")]
+        [SwaggerOperation(Description = "Wijzig officieelToegekend van `true` naar `false`. Wanneer de status van het adres `voorgesteld` is, zal de status wijzigen naar `inGebruik`.")]
         [HttpPost(DeregulateRoute, Name = nameof(DeregulateAddress))]
         public async Task<IActionResult> DeregulateAddress(
             [FromRoute] int objectId,
