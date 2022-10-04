@@ -1,3 +1,10 @@
+## [5.36.2](https://github.com/informatievlaanderen/public-api/compare/v5.36.1...v5.36.2) (2022-10-04)
+
+
+### Bug Fixes
+
+* remove 406 examples from backoffice ([0373df2](https://github.com/informatievlaanderen/public-api/commit/0373df25b9c6bb866d99e9e8a2e7109ee4b19ece))
+
 ## [5.36.1](https://github.com/informatievlaanderen/public-api/compare/v5.36.0...v5.36.1) (2022-10-04)
 
 
