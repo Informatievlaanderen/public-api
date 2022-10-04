@@ -50,7 +50,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Correctie van de adresstatus van “inGebruik” naar “voorgesteld”.")]
+        [SwaggerOperation(Description = "Correctie van de adresstatus van `inGebruik` naar `voorgesteld`.")]
         [HttpPost(CorrectApprovalRoute, Name = nameof(CorrectApproval))]
         public async Task<IActionResult> CorrectApproval(
             [FromRoute] int objectId,
