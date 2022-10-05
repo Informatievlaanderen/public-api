@@ -67,7 +67,6 @@
         },
         {
           "type": "docs",
-          "scope": "README",
           "release": "patch"
         },
         {

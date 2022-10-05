@@ -725,6 +725,12 @@ Adressen
 
 * Corrigeer het huisnummer van een adres.
 
+* Corrigeer de goedkeuring van een adres.
+
+* Corrigeer de afkeuring van een adres.
+
+* Corrigeer de opheffing van een adres.
+
 * Wijzig de adrespositie van een adres.
 
 * Wijzig de postcode van een adres.
