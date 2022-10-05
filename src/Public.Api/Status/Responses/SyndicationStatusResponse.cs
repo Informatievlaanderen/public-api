@@ -1,9 +1,19 @@
 namespace Public.Api.Status.Responses
 {
+    using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    public class SyndicationStatusResponse : ListResponse<RegistrySyndicationStatusResponse> { }
+    [Serializable]
+    public sealed class SyndicationStatusResponse : ListResponse<RegistrySyndicationStatusResponse>
+    {
+        public SyndicationStatusResponse()
+        { }
+
+        private SyndicationStatusResponse(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        { }
+    }
 
     public class RegistrySyndicationStatusResponse
     {
