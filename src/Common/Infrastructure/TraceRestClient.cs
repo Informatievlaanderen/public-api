@@ -326,7 +326,7 @@ namespace Common.Infrastructure
             return _restClient.ExecuteAsPost<T>(request, httpMethod);
         }
 
-        public async Task<IRestResponse> ExecuteAsync(IRestRequest request, CancellationToken cancellationToken)
+        public async Task<IRestResponse> ExecuteAsync(IRestRequest request, CancellationToken cancellationToken = new CancellationToken())
         {
             const string name = "rest." + nameof(ExecuteTaskAsync);
             var span = _spanSource.Begin(name, ServiceName, BuildResource(request), TypeName);
