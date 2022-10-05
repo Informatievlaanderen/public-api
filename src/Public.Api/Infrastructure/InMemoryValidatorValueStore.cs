@@ -17,25 +17,32 @@ namespace Public.Api.Infrastructure
 
         public InMemoryValidatorValueStore(ILogger<InMemoryValidatorValueStore> logger) => _logger = logger;
 
-        public async Task<ValidatorValue> GetAsync(StoreKey key)
+        public Task<ValidatorValue?> GetAsync(StoreKey key)
         {
             if (key.Values.Any(x => x.Contains("/docs")))
-                return null;
+            {
+                return Task.FromResult<ValidatorValue?>(null);
+            }
 
             _logger.LogDebug("Checking InMemory for key '{key}'", key.ToString());
 
-            return Get(key.ToString());
+            var result = Get(key.ToString());
+            return Task.FromResult(result);
         }
 
-        public async Task SetAsync(StoreKey key, ValidatorValue eTag)
+        public Task SetAsync(StoreKey key, ValidatorValue validatorValue)
         {
             if (key.Values.Any(x => x.Contains("/docs/")))
-                return;
+            {
+                return Task.CompletedTask;
+            }
 
-            Set(key.ToString(), eTag);
+            Set(key.ToString(), validatorValue);
+            return Task.CompletedTask;
         }
-        private ValidatorValue Get(string key)
-            => _store.ContainsKey(key) && _store[key] is ValidatorValue eTag
+
+        private ValidatorValue? Get(string key)
+            => _store.ContainsKey(key) && _store[key] is { } eTag
                 ? eTag
                 : null;
 
@@ -52,7 +59,7 @@ namespace Public.Api.Infrastructure
             throw new System.NotImplementedException();
         }
 
-        public Task<IEnumerable<StoreKey>> FindStoreKeysByKeyPartAsync(string valueToMatch)
+        public Task<IEnumerable<StoreKey>> FindStoreKeysByKeyPartAsync()
         {
             // We dont use this in public api
             return Task.FromResult(new List<StoreKey>().AsEnumerable());

@@ -9,16 +9,18 @@ namespace Public.Api.Infrastructure.ModelBinding
 
     public class EventTagArrayBinder : IModelBinder
     {
-        public Task BindModelAsync(ModelBindingContext context)
+        public Task BindModelAsync(ModelBindingContext bindingContext)
         {
-            context.Result = Bind(context);
+            bindingContext.Result = Bind(bindingContext);
             return Task.CompletedTask;
         }
 
         private static ModelBindingResult Bind(ModelBindingContext context)
         {
             if (!context.ModelType.IsAssignableFrom(typeof(EventTag[])))
+            {
                 return ModelBindingResult.Failed();
+            }
 
             var eventTags = context
                 .ValueProvider
