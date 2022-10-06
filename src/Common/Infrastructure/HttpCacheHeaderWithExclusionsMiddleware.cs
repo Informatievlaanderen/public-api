@@ -317,11 +317,141 @@ namespace Marvin.Cache.Headers
             return true;
         }
 
+        private async Task<bool> ConditionalPutOrPatchIsValid(HttpContext httpContext)
+        {
+            _logger.LogInformation("Checking for conditional PUT/PATCH.");
+
+            // Preconditional checks are used for concurrency checks only,
+            // on updates: PUT or PATCH
+            if (httpContext.Request.Method != HttpMethod.Put.ToString() &&
+                httpContext.Request.Method != "PATCH")
+            {
+                _logger.LogInformation("Not valid - method isn't PUT or PATCH.");
+                // for all the other methods, return true (no 412 response)
+                return true;
+            }
+
+            // the precondition is valid if one of the ETags submitted through
+            // IfMatch matches with the saved ETag, AND if the If-UnModified-Since
+            // value is smaller than the saved date.  Both must be valid if both
+            // are submitted.
+
+            // If both headers are missing, we should
+            // always return true (the precondition is missing, so it's valid)
+            // We don't need to check anything, and can never return a 412 response
+            if (!httpContext.Request.Headers.Keys.Contains(HeaderNames.IfMatch) &&
+                !httpContext.Request.Headers.Keys.Contains(HeaderNames.IfUnmodifiedSince))
+            {
+                _logger.LogInformation("Not valid - no If Match or If Unmodified-Since headers.");
+                return true;
+            }
+
+            // generate the request key
+            var storeKey = await _storeKeyGenerator.GenerateStoreKey(
+                ConstructStoreKeyContext(httpContext.Request, _validationModelOptions));
+
+            // find the validatorValue with this key in the store
+            var validatorValue = await _store.GetAsync(storeKey);
+
+            // if there is no validation value in the store, we return false:
+            // there is nothing to compare to, so the precondition can
+            // never be OK - return a 412 response
+            if (validatorValue?.ETag == null)
+            {
+                _logger.LogInformation("No saved response found in store.");
+                return false;
+            }
+
+            // check the ETags
+            // return the combined result of all validators.
+            return CheckIfMatchIsValid(httpContext, validatorValue) &&
+                   await CheckIfUnmodifiedSinceIsValid(httpContext, validatorValue);
+        }
+
+        private bool CheckIfMatchIsValid(HttpContext httpContext, ValidatorValue validatorValue)
+        {
+            if (!httpContext.Request.Headers.Keys.Contains(HeaderNames.IfMatch))
+            {
+                // if there is no IfMatch header, the tag precondition is valid.
+                _logger.LogInformation("No If-Match header, don't check ETag.");
+                return true;
+            }
+
+            _logger.LogInformation("Checking If-Match.");
+            var ifMatchHeaderValue = httpContext.Request.Headers[HeaderNames.IfMatch].ToString().Trim();
+            _logger.LogInformation($"Checking If-Match: {ifMatchHeaderValue}.");
+
+            // if the value is *, the check is valid.
+            if (ifMatchHeaderValue == "*")
+            {
+                return true;
+            }
+
+            // otherwise, check the actual ETag(s)
+            var eTagsFromIfMatchHeader = ifMatchHeaderValue.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+            // check the ETag.  If one of the ETags matches, the
+            // ETag precondition is valid.
+
+            // for concurrency checks, we use the strong
+            // comparison function.
+            if (eTagsFromIfMatchHeader.Any(eTag => ETagsMatch(validatorValue.ETag, eTag.Trim(), true)))
+            {
+                _logger.LogInformation($"ETag valid: {validatorValue.ETag}.");
+                return true;
+            }
+
+            // if there is an IfMatch header but none of the ETags match,
+            // the precondition is already invalid.  We don't have to
+            // continue checking.
+
+            _logger.LogInformation("Not valid. No match found for ETag.");
+            return false;
+        }
+
+        private async Task<bool> CheckIfUnmodifiedSinceIsValid(HttpContext httpContext, ValidatorValue validatorValue)
+        {
+            // Either the ETag matches (or one of them), or there was no IfMatch header.
+            // Continue with checking the IfUnModifiedSince header, if it exists.
+            if (httpContext.Request.Headers.Keys.Contains(HeaderNames.IfUnmodifiedSince))
+            {
+                // if the LastModified date is smaller than the IfUnmodifiedSince date,
+                // the precondition is valid.
+                var ifUnmodifiedSinceValue = httpContext.Request.Headers[HeaderNames.IfUnmodifiedSince].ToString();
+                _logger.LogInformation($"Checking If-Unmodified-Since: {ifUnmodifiedSinceValue}");
+
+                var parsedIfUnmodifiedSince =
+                    await _dateParser.IfUnmodifiedSinceToDateTimeOffset(ifUnmodifiedSinceValue);
+
+                if (parsedIfUnmodifiedSince.HasValue)
+                {
+                    // If the LastModified date is smaller than the IfUnmodifiedSince date,
+                    // the precondition is valid.
+                    return validatorValue.LastModified.CompareTo(parsedIfUnmodifiedSince.Value) < 0;
+                }
+
+                // can only check if we can parse it. Invalid values must be ignored.
+                _logger.LogInformation("Cannot parse If-Unmodified-Since value as date, header is ignored.");
+                return true;
+            }
+
+            // if there is no IfUnmodifiedSince header, the check is valid.
+            _logger.LogInformation("No If-Unmodified-Since header.");
+            return true;
+        }
+
         private async Task Generate304NotModifiedResponse(HttpContext httpContext)
         {
             _logger.LogInformation("Generating 304 - Not Modified.");
             httpContext.Response.StatusCode = StatusCodes.Status304NotModified;
             await GenerateResponseFromStore(httpContext, false);
+        }
+
+        private async Task Generate412PreconditionFailedResponse(HttpContext httpContext)
+        {
+            _logger.LogInformation("Generating 412 - Precondition Failed.");
+            httpContext.Response.StatusCode = StatusCodes.Status412PreconditionFailed;
+            await GenerateResponseFromStore(httpContext);
         }
 
         private async Task GenerateResponseFromStore(HttpContext httpContext, bool updateLastModified = true)
