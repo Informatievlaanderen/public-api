@@ -725,6 +725,8 @@ Adressen
 
 * Corrigeer het huisnummer van een adres.
 
+* Corrigeer het busnummer van een adres.
+
 * Corrigeer de goedkeuring van een adres.
 
 * Corrigeer de afkeuring van een adres.
