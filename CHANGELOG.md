@@ -1,3 +1,11 @@
+## [5.36.4](https://github.com/informatievlaanderen/public-api/compare/v5.36.3...v5.36.4) (2022-10-07)
+
+
+### Bug Fixes
+
+* add corrigeer busnummer to docs ([a35d64e](https://github.com/informatievlaanderen/public-api/commit/a35d64e20a434add56180bfb585a982ea86bec46))
+* bump postal + common packages ([c03354a](https://github.com/informatievlaanderen/public-api/commit/c03354a2ddbbbdb68b8111b0d648363d359c6d81))
+
 ## [5.36.3](https://github.com/informatievlaanderen/public-api/compare/v5.36.2...v5.36.3) (2022-10-05)
 
 ## [5.36.2](https://github.com/informatievlaanderen/public-api/compare/v5.36.1...v5.36.2) (2022-10-04)
