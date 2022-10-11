@@ -10,6 +10,7 @@ namespace Public.Api.Infrastructure.Configuration
         public bool RejectStreetName { get; set; }
         public bool RetireStreetName { get; set; }
         public bool CorrectStreetNameNames { get; set; }
+        public bool CorrectStreetNameApproval { get; set; }
 
         public bool ProposeAddress { get; set; }
         public bool ApproveAddress { get; set; }
