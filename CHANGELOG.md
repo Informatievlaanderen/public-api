@@ -1,3 +1,12 @@
+# [5.37.0](https://github.com/informatievlaanderen/public-api/compare/v5.36.4...v5.37.0) (2022-10-12)
+
+
+### Features
+
+* correct streetname approval ([30477a3](https://github.com/informatievlaanderen/public-api/commit/30477a39ab3a18a33a321768d64d7aa54339c344))
+* correct streetname rejection ([affdb10](https://github.com/informatievlaanderen/public-api/commit/affdb1026a1beef78fabc95ca31ec901b83d12a0))
+* correct streetname retirement ([cb5cb60](https://github.com/informatievlaanderen/public-api/commit/cb5cb601bdca0a7c46e3433f807d1b33fe801300))
+
 ## [5.36.4](https://github.com/informatievlaanderen/public-api/compare/v5.36.3...v5.36.4) (2022-10-07)
 
 
