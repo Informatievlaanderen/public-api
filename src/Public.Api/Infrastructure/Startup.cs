@@ -708,6 +708,12 @@ Straatnamen
 
 * Corrigeer de straatnaam van een straatnaam.
 
+* Corrigeer de goedkeuring van een straatnaam.
+
+* Corrigeer de afkeuring van een straatnaam.
+
+* Corrigeer de opheffing van een straatnaam.
+
 Adressen
 
 * Stel een adres voor.
