@@ -33,11 +33,11 @@ NUGET
       System.Security.Cryptography.ProtectedData (>= 4.7)
       System.Text.Json (>= 4.7.2)
       System.Threading.Tasks.Extensions (>= 4.5.4)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions (3.56.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions (3.62) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 18.1)
       MediatR.Contracts (>= 1.0.1)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (3.56.2) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo (3.56.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (3.62) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo (3.62) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.AggregateSource (7.0)
       Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (>= 3.0)
       Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (>= 3.0)
@@ -168,13 +168,13 @@ NUGET
       Fake.IO.FileSystem (>= 5.22)
       Fake.JavaScript.Npm (>= 5.22)
       Newtonsoft.Json (>= 13.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions (3.33.1) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions (3.34.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 18.1.1)
       MediatR.Contracts (>= 1.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy.Abstractions (3.33.1) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy.Abstractions (3.34.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 18.1.1)
       MediatR.Contracts (>= 1.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo.Abstractions (3.33.1) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo.Abstractions (3.34.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 18.1.1)
       MediatR.Contracts (>= 1.0.1)
     Be.Vlaanderen.Basisregisters.CommandHandling (7.0)
