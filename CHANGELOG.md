@@ -1,3 +1,10 @@
+## [5.38.2](https://github.com/informatievlaanderen/public-api/compare/v5.38.1...v5.38.2) (2022-10-14)
+
+
+### Bug Fixes
+
+* hide change address position ([21fb3d6](https://github.com/informatievlaanderen/public-api/commit/21fb3d6a0fed32629268150da0d9abe93ee97d1c))
+
 ## [5.38.1](https://github.com/informatievlaanderen/public-api/compare/v5.38.0...v5.38.1) (2022-10-13)
 
 # [5.38.0](https://github.com/informatievlaanderen/public-api/compare/v5.37.0...v5.38.0) (2022-10-13)
