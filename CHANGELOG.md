@@ -1,3 +1,10 @@
+# [5.39.0](https://github.com/informatievlaanderen/public-api/compare/v5.38.2...v5.39.0) (2022-10-14)
+
+
+### Features
+
+* add new json-ld ([404154f](https://github.com/informatievlaanderen/public-api/commit/404154f7ebab5a6cfab922b9117dde029cc9e6af))
+
 ## [5.38.2](https://github.com/informatievlaanderen/public-api/compare/v5.38.1...v5.38.2) (2022-10-14)
 
 
