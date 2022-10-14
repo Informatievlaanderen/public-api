@@ -1,0 +1,43 @@
+{
+    "@base": "https://basisregisters.vlaanderen.be/implementatiemodel/adressenregister",
+    "@vocab": "#",
+    "identificator": "@nest",
+    "id": "@id",
+    "versieId": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#versieIdentificator",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "naamruimte": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#naamruimte",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "objectId": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#lokaleIdentificator",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "gemeentenamen": {
+      "@id": "https://data.vlaanderen.be/ns/adres#Gemeentenaam",
+      "@context": {
+          "geografischeNaam": {
+             "@id": "http://www.w3.org/2000/01/rdf-schema#label",
+             "@context": {
+                 "spelling": "@value",
+                 "taal": "@language"
+       }
+      }
+     }
+    },
+    "gemeenteStatus": {
+      "@id": "https://basisregisters.vlaanderen.be/implementatiemodel/adressenregister#Gemeente%3Astatus",
+      "@type": "@id",
+      "@context": {
+        "@base": "https://data.vlaanderen.be/id/conceptscheme/gemeentestatus"
+      }
+    },
+    "officieleTalen": {
+      "@id": "//basisregisters.vlaanderen.be/implementatiemodel/adressenregister#Gemeente%3Aoffici%C3%ABle%20taal"
+    },
+    "faciliteitenTalen": {
+      "@id": "//basisregisters.vlaanderen.be/implementatiemodel/adressenregister#Gemeente%3Afaciliteitentaal"
+    }
+  }
