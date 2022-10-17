@@ -1,3 +1,16 @@
+# [5.40.0](https://github.com/informatievlaanderen/public-api/compare/v5.39.0...v5.40.0) (2022-10-17)
+
+
+### Bug Fixes
+
+* correct json ld file names ([29ca4a7](https://github.com/informatievlaanderen/public-api/commit/29ca4a77d7606af4bc790fc41322f4cbcfe395ee))
+* update oslo files for 2022-10-17 ([2116971](https://github.com/informatievlaanderen/public-api/commit/21169713883c3713612db1ab60f3b9e8396f9339))
+
+
+### Features
+
+* correct building realization ([f38b5ac](https://github.com/informatievlaanderen/public-api/commit/f38b5ac279a5aa6292f0f335ed06cd82e5812201))
+
 # [5.39.0](https://github.com/informatievlaanderen/public-api/compare/v5.38.2...v5.39.0) (2022-10-14)
 
 
