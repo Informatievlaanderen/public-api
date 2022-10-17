@@ -33,10 +33,12 @@ end
             _redis = redis;
         }
 
-        public async Task<ValidatorValue> GetAsync(StoreKey key)
+        public async Task<ValidatorValue?> GetAsync(StoreKey key)
         {
             if (!ShouldCacheValue(key.Values.FirstOrDefault()))
+            {
                 return null;
+            }
 
             _logger.LogDebug("Checking Redis for key '{key}'", key.ToString());
 
@@ -56,11 +58,15 @@ end
                 redisValues[1].IsNullOrEmpty ||
                 redisValues[2].IsNullOrEmpty ||
                 redisValues[3].IsNullOrEmpty)
+            {
                 return null;
+            }
 
             var setByRegistry = bool.Parse(redisValues[3].ToString());
             if (!setByRegistry)
+            {
                 return null;
+            }
 
             var eTag = redisValues[0].ToString().Replace("W/", string.Empty).Trim('"');
             var eTagType = Enum.Parse<ETagType>(redisValues[1].ToString(), true);
@@ -73,10 +79,12 @@ end
             return new ValidatorValue(new ETag(eTagType, eTag), lastModified);
         }
 
-        public async Task SetAsync(StoreKey key, ValidatorValue eTag)
+        public async Task SetAsync(StoreKey key, ValidatorValue validatorValue)
         {
             if (!ShouldCacheValue(key.Values.FirstOrDefault()))
+            {
                 return;
+            }
 
             if (_redis == null)
             {
@@ -88,9 +96,9 @@ end
 
             var hashValues = new []
             {
-                ETagKey, eTag.ETag.Value,
-                ETagTypeKey, eTag.ETag.ETagType.ToString(),
-                LastModifiedKey, eTag.LastModified.ToString("O", CultureInfo.InvariantCulture),
+                ETagKey, validatorValue.ETag.Value,
+                ETagTypeKey, validatorValue.ETag.ETagType.ToString(),
+                LastModifiedKey, validatorValue.LastModified.ToString("O", CultureInfo.InvariantCulture),
                 SetByRegistryKey, false.ToString(CultureInfo.InvariantCulture)
             };
 
@@ -100,10 +108,12 @@ end
                 CommandFlags.FireAndForget);
         }
 
-        private static bool ShouldCacheValue(string path)
+        private static bool ShouldCacheValue(string? path)
         {
             if (string.IsNullOrWhiteSpace(path))
+            {
                 return false;
+            }
 
             path = path.ToLowerInvariant();
 

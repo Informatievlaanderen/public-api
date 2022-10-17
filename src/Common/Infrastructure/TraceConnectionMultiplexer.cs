@@ -8,7 +8,7 @@ namespace Common.Infrastructure
     using StackExchange.Redis;
     using StackExchange.Redis.Profiling;
 
-    public class TraceConnectionMultiplexer : IConnectionMultiplexer
+    public sealed class TraceConnectionMultiplexer : IConnectionMultiplexer
     {
         private const string DefaultServiceName = "redis";
 

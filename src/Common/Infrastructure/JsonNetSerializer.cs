@@ -9,8 +9,8 @@ public class JsonNetSerializer : IRestSerializer
     public string Serialize(object obj) =>
         JsonConvert.SerializeObject(obj);
 
-    public string Serialize(Parameter bodyParameter) =>
-        JsonConvert.SerializeObject(bodyParameter.Value);
+    public string Serialize(Parameter parameter) =>
+        JsonConvert.SerializeObject(parameter.Value);
 
     public T Deserialize<T>(IRestResponse response) =>
         JsonConvert.DeserializeObject<T>(response.Content);
@@ -22,5 +22,5 @@ public class JsonNetSerializer : IRestSerializer
 
     public string ContentType { get; set; } = "application/json";
 
-    public DataFormat DataFormat { get; } = DataFormat.Json;
+    public DataFormat DataFormat => DataFormat.Json;
 }
