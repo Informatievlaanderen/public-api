@@ -337,6 +337,7 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new RealizeBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RealizeBuilding))
                 .AddSingleton(c => new CorrectBuildingRealizationToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingRealization))
                 .AddSingleton(c => new NotRealizeBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.NotRealizeBuilding))
+                .AddSingleton(c => new CorrectBuildingNotRealizationToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingNotRealization))
                 .AddSingleton(c => new DemolishBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.DemolishBuilding))
                 .AddSingleton(c => new ChangeGeometryBuilding(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangeGeometryBuilding))
                 .AddSingleton(c => new CorrectGeometryBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectGeometryBuilding))
@@ -760,7 +761,9 @@ Gebouwen
 
 * Corrigeer de inAanbouw plaatsing van een gebouw.
 
-* Corrigeer de realisatie van een gebouw.
+* Corrigeer de realisering van een gebouw.
+
+* Corrigeer de nietRealisering van een gebouw.
 
 Gebouweenheid
 
