@@ -1,5 +1,6 @@
 {
-    "@base": "https://basisregisters.vlaanderen.be/implementatiemodel/gebouwenregister",
+   "@context":
+    {"@base": "https://basisregisters.vlaanderen.be/implementatiemodel/gebouwenregister",
     "@vocab": "#",
     "identificator": "@nest",
     "id": "@id",
@@ -29,6 +30,10 @@
         "@base": "https://data.vlaanderen.be/id/conceptscheme/gebouweenheidfunctie"
       }
     },
+    "afwijkingvastgesteld": {
+        "@id": "https://basisregisters.vlaanderen.be/implementatiemodel/gebouwenregister#afwijkingvastgesteld",
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
     "gebouw": {
       "@reverse": "https://data.vlaanderen.be/ns/gebouw#bestaatUit",
       "@type": "@id",
@@ -52,14 +57,14 @@
       "@type": "@id",
       "@context": {
         "positieGeometrieMethode": {
-          "@id": "https://data.vlaanderen.be/ns/gebouw#methode",
+          "@id": "https://data.vlaanderen.be/id/conceptscheme/geometriemethode",
           "@type": "@id",
           "@context": {
             "@base": "https://data.vlaanderen.be/id/conceptscheme/geometriemethode"
           }
         },
          "geometrie": {
-           "@id": "https://data.vlaanderen.be/ns/gebouw#Gebouweenheid.geometrie",
+           "@id": "https://www.w3.org/ns/locn#geometry",
            "@context": {
              "gml": {
               "@id": "http://www.opengis.net/ont/geosparql#asGML",
@@ -71,3 +76,4 @@
       }
      }      
   }
+}

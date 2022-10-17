@@ -1,5 +1,6 @@
- {
-    "@base": "https://basisregisters.vlaanderen.be/implementatiemodel/adressenregister",
+{
+   "@context":  
+    {"@base": "https://basisregisters.vlaanderen.be/implementatiemodel/adressenregister",
     "@vocab": "#",
     "identificator": "@nest",
     "id": "@id",
@@ -56,3 +57,4 @@
       }
     }
   }
+}

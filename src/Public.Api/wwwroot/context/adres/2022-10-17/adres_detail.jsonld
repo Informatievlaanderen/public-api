@@ -1,5 +1,6 @@
-    {
-      "@base": "https://basisregisters.vlaanderen.be/implementatiemodel/adressenregister",
+{
+   "@context":  
+      {"@base": "https://basisregisters.vlaanderen.be/implementatiemodel/adressenregister",
       "@vocab": "#",
       "identificator": "@nest",
       "id": "@id",
@@ -102,10 +103,22 @@
         "@id": "https://data.vlaanderen.be/ns/adres#positie",
         "@type": "@id",
         "@context": {
-          "positieGeometrieMethode": "https://data.vlaanderen.be/id/conceptscheme/geometriemethode",
-          "positieSpecificatie": "https://data.vlaanderen.be/id/conceptscheme/geometriespecificatie",
-           "geometrie": {
-               "@id": "https://data.vlaanderen.be/ns/gebouw#Geometrie.geometrie",
+          "positieGeometrieMethode": {
+            "@id": "https://data.vlaanderen.be/id/conceptscheme/geometriemethode",
+            "@type": "@id",
+            "@context": {
+              "@base": "https://data.vlaanderen.be/id/conceptscheme/geometriemethode"
+            }
+          },
+          "positieSpecificatie": {
+            "@id": "https://data.vlaanderen.be/id/conceptscheme/geometriespecificatie",
+            "@type": "@id",
+            "@context": {
+              "@base": "https://data.vlaanderen.be/id/conceptscheme/geometriespecificatie"
+            }
+          },
+          "geometrie": {
+               "@id": "https://www.w3.org/ns/locn#geometry",
                "@context": {
                     "gml": {
                        "@id": "http://www.opengis.net/ont/geosparql#asGML",
@@ -117,3 +130,4 @@
       }
      }
     }
+}

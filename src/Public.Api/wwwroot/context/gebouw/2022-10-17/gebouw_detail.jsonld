@@ -1,5 +1,6 @@
 {
-    "@base": "https://basisregisters.vlaanderen.be/implementatiemodel/gebouwenregister",
+   "@context":
+    {"@base": "https://basisregisters.vlaanderen.be/implementatiemodel/gebouwenregister",
     "@vocab": "#",
     "identificator": "@nest",
     "id": "@id",
@@ -62,5 +63,6 @@
           }
         }
       }
+    }
     }
 }

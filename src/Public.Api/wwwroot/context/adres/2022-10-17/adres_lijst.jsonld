@@ -1,5 +1,6 @@
-  {
-    "@base": "https://basisregisters.vlaanderen.be/implementatiemodel/adressenregister",
+{
+   "@context":{ 
+    {"@base": "https://basisregisters.vlaanderen.be/implementatiemodel/adressenregister",
     "@vocab": "#",
     "identificator": "@nest",
     "id": "@id",
@@ -47,3 +48,4 @@
     "volgende": "http://www.w3.org/ns/hydra/core#next",
     "adressen": "@graph"
   }
+}

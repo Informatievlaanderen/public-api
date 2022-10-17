@@ -1,5 +1,6 @@
 {
-    "@base": "https://basisregisters.vlaanderen.be/implementatiemodel/gebouwenregister",
+   "@context":
+    {"@base": "https://basisregisters.vlaanderen.be/implementatiemodel/gebouwenregister",
     "@vocab": "#",
     "identificator": "@nest",
     "id": "@id",
@@ -26,3 +27,4 @@
     "volgende": "http://www.w3.org/ns/hydra/core#next",
     "gebouwen": "@graph"
   }
+}
