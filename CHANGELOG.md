@@ -1,3 +1,11 @@
+# [5.41.0](https://github.com/informatievlaanderen/public-api/compare/v5.40.0...v5.41.0) (2022-10-17)
+
+
+### Features
+
+* correct not realize building ([87fc0f5](https://github.com/informatievlaanderen/public-api/commit/87fc0f5f81819b7627c3f65e1e5c72dfd15394af))
+* CorrectPlaceUnderConstruction ([5763924](https://github.com/informatievlaanderen/public-api/commit/5763924874ff1664b971a42e7859e06ddc01b889))
+
 # [5.40.0](https://github.com/informatievlaanderen/public-api/compare/v5.39.0...v5.40.0) (2022-10-17)
 
 
