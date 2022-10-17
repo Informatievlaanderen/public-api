@@ -191,6 +191,13 @@ namespace Common.Infrastructure
         public BuildingUnderConstructionToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class CorrectBuildingUnderConstructionToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public CorrectBuildingUnderConstructionToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class RealizeBuildingToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
