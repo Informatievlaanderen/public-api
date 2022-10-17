@@ -17,12 +17,12 @@ namespace Public.Api.Building.BackOffice
     public partial class BuildingBackOfficeController
     {
         /// <summary>
-        /// Corrigeer de realisering van een gebouw.
+        /// Corrigeer de nietRealisering van een gebouw.
         /// </summary>
         /// <param name="objectId">Identificator van het gebouw.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
-        /// <param name="correctBuildingRealizationToggle"></param>
+        /// <param name="correctBuildingNotRealizationToggle"></param>
         /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van het gebouw (optioneel).</param>
         /// <param name="cancellationToken"></param>
         /// <response code="202">Als het ticket succesvol is aangemaakt.</response>
@@ -32,7 +32,7 @@ namespace Public.Api.Building.BackOffice
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         /// <returns></returns>
-        [ApiOrder(ApiOrder.Building.Edit + 6)]
+        [ApiOrder(ApiOrder.Building.Edit + 7)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status412PreconditionFailed)]
@@ -44,17 +44,17 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Correctie van de gebouwstatus van `inAanbouw` naar `gerealiseerd`.")]
-        [HttpPost("gebouwen/{objectId}/acties/corrigeren/realisering", Name = nameof(CorrectBuildingRealization))]
-        public async Task<IActionResult> CorrectBuildingRealization(
+        [SwaggerOperation(Description = "Correctie van de gebouwstatus van `nietGerealiseerd` naar `gepland`.")]
+        [HttpPost("gebouwen/{objectId}/acties/corrigeren/nietrealisering", Name = nameof(CorrectBuildingNotRealization))]
+        public async Task<IActionResult> CorrectBuildingNotRealization(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] CorrectBuildingRealizationToggle correctBuildingRealizationToggle,
+            [FromServices] CorrectBuildingNotRealizationToggle correctBuildingNotRealizationToggle,
             [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
             CancellationToken cancellationToken = default)
         {
-            if (!correctBuildingRealizationToggle.FeatureEnabled)
+            if (!correctBuildingNotRealizationToggle.FeatureEnabled)
             {
                 return NotFound();
             }
@@ -63,7 +63,7 @@ namespace Public.Api.Building.BackOffice
 
             IRestRequest BackendRequest()
             {
-                var request = new RestRequest("gebouwen/{persistentLocalId}/acties/corrigeren/realisering", Method.POST);
+                var request = new RestRequest("gebouwen/{persistentLocalId}/acties/corrigeren/nietrealisering", Method.POST);
                 request.AddParameter("persistentLocalId", objectId, ParameterType.UrlSegment);
 
                 if (ifMatch is not null)
