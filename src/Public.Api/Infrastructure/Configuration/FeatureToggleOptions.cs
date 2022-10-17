@@ -33,6 +33,7 @@ namespace Public.Api.Infrastructure.Configuration
 
         public bool PlanBuilding { get; set; }
         public bool BuildingUnderConstruction { get; set; }
+        public bool CorrectBuildingUnderConstruction { get; set; }
         public bool RealizeBuilding { get; set; }
         public bool CorrectBuildingRealization { get; set; }
         public bool NotRealizeBuilding { get; set; }
