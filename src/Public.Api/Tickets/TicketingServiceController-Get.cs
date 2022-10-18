@@ -5,6 +5,7 @@ namespace Public.Api.Tickets
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Sqs.Responses;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;

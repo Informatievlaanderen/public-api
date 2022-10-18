@@ -46,6 +46,7 @@ namespace Public.Api.Infrastructure.Configuration
         public bool RealizeBuildingUnit { get; set; }
         public bool CorrectBuildingUnitRealization { get; set; }
         public bool NotRealizeBuildingUnit { get; set; }
+        public bool CorrectBuildingUnitNotRealization { get; set; }
         public bool RetireBuildingUnit { get; set; }
         public bool AttachAddressBuildingUnit { get; set; }
         public bool DetachAddressBuildingUnit { get; set; }
