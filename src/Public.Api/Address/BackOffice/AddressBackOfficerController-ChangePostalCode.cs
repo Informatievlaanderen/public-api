@@ -56,8 +56,8 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(AddressChangePositionRequest), typeof(AddressChangePositionRequestExamples))]
         [SwaggerOperation(Description = "Wijzig de postinfoId van een adres.")]
-        [HttpPost(ChangePostalCodeRoute, Name = nameof(ChangePostalCodeAddress))]
-        public async Task<IActionResult> ChangePostalCodeAddress(
+        [HttpPost(ChangePostalCodeRoute, Name = nameof(ChangeAddressPostalCode))]
+        public async Task<IActionResult> ChangeAddressPostalCode(
             [FromRoute] int objectId,
             [FromBody] AddressChangePostalCodeRequest addressChangePostalCodeRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,

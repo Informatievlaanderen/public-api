@@ -56,8 +56,8 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(AddressChangePositionRequest), typeof(AddressChangePositionRequestExamples))]
         [SwaggerOperation(Description = "Correctie van het huisnummer van een adres.")]
-        [HttpPost(CorrectHouseNumberRoute, Name = nameof(CorrectHouseNumberAddress))]
-        public async Task<IActionResult> CorrectHouseNumberAddress(
+        [HttpPost(CorrectHouseNumberRoute, Name = nameof(CorrectAddressHouseNumber))]
+        public async Task<IActionResult> CorrectAddressHouseNumber(
             [FromRoute] int objectId,
             [FromBody] AddressCorrectHouseNumberRequest addressCorrectHouseNumberRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
