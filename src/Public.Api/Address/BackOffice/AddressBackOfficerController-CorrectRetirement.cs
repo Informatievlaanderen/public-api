@@ -51,8 +51,8 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Correctie van de adresstatus van `gehistoreerd` naar `inGebruik`.")]
-        [HttpPost(CorrectRetirementRoute, Name = nameof(CorrectRetirement))]
-        public async Task<IActionResult> CorrectRetirement(
+        [HttpPost(CorrectRetirementRoute, Name = nameof(CorrectAddressRetirement))]
+        public async Task<IActionResult> CorrectAddressRetirement(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,

@@ -55,8 +55,8 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(AddressCorrectPositionRequest), typeof(AddressCorrectPositionRequestExamples))]
         [SwaggerOperation(Description = "Correctie van de positiespecificatie, positiegeometriemethode of positie van een adres.")]
-        [HttpPost(CorrectPositionRoute, Name = nameof(CorrectPositionAddress))]
-        public async Task<IActionResult> CorrectPositionAddress(
+        [HttpPost(CorrectPositionRoute, Name = nameof(CorrectAddressPosition))]
+        public async Task<IActionResult> CorrectAddressPosition(
             [FromRoute] int objectId,
             [FromBody] AddressCorrectPositionRequest addressCorrectPositionRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,

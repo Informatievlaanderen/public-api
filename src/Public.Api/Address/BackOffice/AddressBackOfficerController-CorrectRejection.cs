@@ -51,8 +51,8 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Correctie van de adresstatus van `afgekeurd` naar `voorgesteld`.")]
-        [HttpPost(CorrectRejectionRoute, Name = nameof(CorrectRejection))]
-        public async Task<IActionResult> CorrectRejection(
+        [HttpPost(CorrectRejectionRoute, Name = nameof(CorrectAddressRejection))]
+        public async Task<IActionResult> CorrectAddressRejection(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
