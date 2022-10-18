@@ -3,6 +3,7 @@ namespace Public.Api.Building.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using BuildingRegistry.Api.Legacy.Abstractions.Building.Responses;
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Swagger;
@@ -17,7 +18,7 @@ namespace Public.Api.Building.BackOffice
     public partial class BuildingBackOfficeController
     {
         /// <summary>
-        /// Corrigeer de statuswijzing van een ‘in aanbouw geplaatst’ gebouw naar ‘gepland’
+        /// Corrigeer de in aanbouw plaatsing van een gebouw.
         /// </summary>
         /// <param name="objectId">Identificator van het gebouw.</param>
         /// <param name="actionContextAccessor"></param>
@@ -35,18 +36,20 @@ namespace Public.Api.Building.BackOffice
         [ApiOrder(ApiOrder.Building.Edit + 5)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status412PreconditionFailed)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string", "De URL van het aangemaakte ticket.")]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(BuildingNotFoundResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Correctie van de gebouwstatus van `inAanbouw` naar `gepland`.")]
-        [HttpPost("gebouwen/{objectId}/acties/corrigeren/inaanbouwplaatsing", Name = nameof(CorrectPlaceUnderConstruction))]
-        public async Task<IActionResult> CorrectPlaceUnderConstruction(
+        [HttpPost("gebouwen/{objectId}/acties/corrigeren/inaanbouwplaatsing", Name = nameof(CorrectBuildingPlaceUnderConstruction))]
+        public async Task<IActionResult> CorrectBuildingPlaceUnderConstruction(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
