@@ -344,6 +344,7 @@ namespace Public.Api.Infrastructure
 
                 .AddSingleton(c => new PlanBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.PlanBuildingUnit))
                 .AddSingleton(c => new RealizeBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RealizeBuildingUnit))
+                .AddSingleton(c => new CorrectBuildingUnitRealizationToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingUnitRealization))
                 .AddSingleton(c => new NotRealizeBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.NotRealizeBuildingUnit))
                 .AddSingleton(c => new RetireBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RetireBuildingUnit))
                 .AddSingleton(c => new AttachAddressBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.AttachAddressBuildingUnit))
@@ -769,9 +770,11 @@ Gebouweenheid
 
 * Plan een gebouweenheid in.
 
-* Realiseer een gebouweenheid.
+* Realiseer een gebouweenheid
 
 * Realiseer een gebouweenheid niet.
+
+* Corrigeer de realisering van een gebouweenheid.
 
 ### Betekenis van de edit events en velden in de feed
 
