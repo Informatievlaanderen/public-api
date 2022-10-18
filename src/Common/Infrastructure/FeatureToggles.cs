@@ -275,6 +275,13 @@ namespace Common.Infrastructure
         public NotRealizeBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class CorrectBuildingUnitNotRealizationToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public CorrectBuildingUnitNotRealizationToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class RetireBuildingUnitToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
