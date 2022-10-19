@@ -51,7 +51,7 @@ namespace Public.Api.PostalCode
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            IRestRequest BackendRequest() => CreateBackendCountRequest(gemeentenaam);
+            RestRequest BackendRequest() => CreateBackendCountRequest(gemeentenaam);
 
             return new BackendResponseResult(
                 await GetFromBackendAsync(
@@ -61,7 +61,7 @@ namespace Public.Api.PostalCode
                     cancellationToken));
         }
 
-        private static IRestRequest CreateBackendCountRequest(string municipalityName)
+        private static RestRequest CreateBackendCountRequest(string municipalityName)
         {
             var filter = new PostalInformationFilter
             {

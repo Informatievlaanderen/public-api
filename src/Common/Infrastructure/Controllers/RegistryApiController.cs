@@ -20,7 +20,7 @@ namespace Common.Infrastructure.Controllers
 
     public abstract class RegistryApiController<T> : ApiController<T>
     {
-        private readonly IRestClient _restClient;
+        private readonly RestClient _restClient;
 
         private readonly IFeatureToggle _cacheToggle;
 
@@ -32,7 +32,7 @@ namespace Common.Infrastructure.Controllers
         protected const int DefaultCountCaching = 0;
 
         protected RegistryApiController(
-            IRestClient restClient,
+            RestClient restClient,
             IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<T> logger) : base(redis, logger)
@@ -52,7 +52,7 @@ namespace Common.Infrastructure.Controllers
 
         protected async Task<BackendResponse> GetFromCacheThenFromBackendAsync(
             AcceptType acceptType,
-            Func<IRestRequest> createBackendRequestFunc,
+            Func<RestRequest> createBackendRequestFunc,
             string cacheKey,
             Action<HttpStatusCode> handleNotOkResponseAction,
             CancellationToken cancellationToken)
@@ -66,7 +66,7 @@ namespace Common.Infrastructure.Controllers
 
         protected async Task<BackendResponse> GetFromBackendAsync(
             AcceptType acceptType,
-            Func<IRestRequest> createBackendRequestFunc,
+            Func<RestRequest> createBackendRequestFunc,
             Action<HttpStatusCode> handleNotOkResponseAction,
             CancellationToken cancellationToken)
             => await GetFromBackendAsync(
@@ -78,7 +78,7 @@ namespace Common.Infrastructure.Controllers
 
         protected async Task<BackendResponse> GetFromBackendWithBadRequestAsync(
             AcceptType acceptType,
-            Func<IRestRequest> createBackendRequestFunc,
+            Func<RestRequest> createBackendRequestFunc,
             Action<HttpStatusCode> handleNotOkResponseAction,
             ProblemDetailsHelper problemDetailsHelper,
             ICollection<KeyValuePair<string, string>>? headersToForward = null,
@@ -92,7 +92,7 @@ namespace Common.Infrastructure.Controllers
                 headersToForward,
                 cancellationToken);
 
-        protected static IRestRequest CreateBackendRequestWithJsonBody<TRequest>(string path, TRequest body, Method method)
+        protected static RestRequest CreateBackendRequestWithJsonBody<TRequest>(string path, TRequest body, Method method)
         {
             var request = new RestRequest(path)
                 .AddParameter("application/json; charset=utf-8", JsonConvert.SerializeObject(body), ParameterType.RequestBody);

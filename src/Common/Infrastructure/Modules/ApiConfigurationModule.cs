@@ -86,7 +86,7 @@ namespace Common.Infrastructure.Modules
                     return restClient;
                 })
                 .Keyed<TraceRestClient>(name)
-                .Keyed<IRestClient>(name);
+                .Keyed<RestClient>(name);
         }
 
         private static void RegisterHealthClient(
@@ -108,7 +108,7 @@ namespace Common.Infrastructure.Modules
             builder
                 .Register(context => new TraceRestClient(context.ResolveNamed<RestClient>(healthServiceName), serviceName))
                 .Keyed<TraceRestClient>(healthServiceName)
-                .Keyed<IRestClient>(healthServiceName);
+                .Keyed<RestClient>(healthServiceName);
         }
 
         private static void RegisterApiCacheToggle(string name, bool toggleValue, ContainerBuilder builder)

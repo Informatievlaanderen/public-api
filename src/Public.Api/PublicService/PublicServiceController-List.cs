@@ -58,7 +58,7 @@ namespace Public.Api.PublicService
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
             const Taal taal = Taal.NL;
 
-            IRestRequest BackendRequest() => CreateBackendListRequest(
+            RestRequest BackendRequest() => CreateBackendListRequest(
                 offset,
                 limit,
                 taal,
@@ -82,7 +82,7 @@ namespace Public.Api.PublicService
             return new BackendResponseResult(value);
         }
 
-        private static IRestRequest CreateBackendListRequest(
+        private static RestRequest CreateBackendListRequest(
             int? offset,
             int? limit,
             Taal language,

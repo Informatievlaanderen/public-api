@@ -6,7 +6,7 @@ namespace Public.Api.Infrastructure
 
     public static class AddJsonBodyOrEmptyExtension
     {
-        public static IRestRequest AddJsonBodyOrEmpty(this RestRequest request, object body)
+        public static RestRequest AddJsonBodyOrEmpty(this RestRequest request, object body)
         {
             if (body == null)
             {

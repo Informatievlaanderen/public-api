@@ -53,7 +53,7 @@ namespace Public.Api.Municipality.Oslo
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            IRestRequest BackendRequest() => CreateBackendCountRequest();
+            RestRequest BackendRequest() => CreateBackendCountRequest();
 
             return new BackendResponseResult(
                 await GetFromBackendAsync(
@@ -63,6 +63,6 @@ namespace Public.Api.Municipality.Oslo
                     cancellationToken));
         }
 
-        private static IRestRequest CreateBackendCountRequest() => new RestRequest("gemeenten/totaal-aantal");
+        private static RestRequest CreateBackendCountRequest() => new RestRequest("gemeenten/totaal-aantal");
     }
 }

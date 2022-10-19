@@ -25,7 +25,7 @@ namespace Public.Api.Address
         protected override string GoneExceptionMessage => "Verwijderd adres.";
 
         public AddressController(
-            [KeyFilter(RegistryKeys.Address)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Address)] RestClient restClient,
             [KeyFilter(RegistryKeys.Address)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<AddressController> logger)

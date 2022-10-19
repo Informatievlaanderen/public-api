@@ -16,7 +16,7 @@ namespace Public.Api.Road.Changes
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
-            IRestRequest BackendRequest() => CreateBackendContentRequest(id);
+            RestRequest BackendRequest() => CreateBackendContentRequest(id);
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
@@ -27,7 +27,7 @@ namespace Public.Api.Road.Changes
             return new BackendResponseResult(response);
         }
 
-        private static IRestRequest CreateBackendContentRequest(long? id) => new RestRequest("changefeed/entry/{id}/content")
+        private static RestRequest CreateBackendContentRequest(long? id) => new RestRequest("changefeed/entry/{id}/content")
                 .AddParameter(nameof(id), id, ParameterType.UrlSegment);
     }
 }

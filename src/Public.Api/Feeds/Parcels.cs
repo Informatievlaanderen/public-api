@@ -57,7 +57,7 @@ namespace Public.Api.Feeds
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultFeedCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> GetParcelsFeed(
                  [FromServices] IActionContextAccessor actionContextAccessor,
-                 [FromServices] IIndex<string, Lazy<IRestClient>> restClients,
+                 [FromServices] IIndex<string, Lazy<RestClient>> restClients,
                  [FromServices] IOptions<ParcelOptions> responseOptions,
                  [FromQuery] long? from,
                  [FromQuery] int? limit,
@@ -67,7 +67,7 @@ namespace Public.Api.Feeds
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            IRestRequest BackendRequest() => CreateBackendSyndicationRequest(
+            RestRequest BackendRequest() => CreateBackendSyndicationRequest(
                 "percelen",
                 from,
                 limit,

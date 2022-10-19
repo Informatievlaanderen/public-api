@@ -67,7 +67,7 @@ namespace Public.Api.StreetName.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            IRestRequest BackendRequest() => CreateBackendPutRequest(objectId, ifMatch);
+            RestRequest BackendRequest() => CreateBackendPutRequest(objectId, ifMatch);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,
@@ -81,7 +81,7 @@ namespace Public.Api.StreetName.BackOffice
 
         private static RestRequest CreateBackendPutRequest(int objectId, string? ifMatch)
         {
-            var request = new RestRequest(ApproveStreetNameRoute, Method.POST);
+            var request = new RestRequest(ApproveStreetNameRoute, Method.Post);
             request.AddParameter("objectId", objectId, ParameterType.UrlSegment);
 
             if (ifMatch is not null)

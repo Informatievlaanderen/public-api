@@ -27,7 +27,7 @@ namespace Public.Api.Road.Downloads
         protected override string GoneExceptionMessage => "Verwijderde download.";
 
         public DownloadController(
-            [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Road)] RestClient restClient,
             [KeyFilter(RegistryKeys.Road)] HttpClient httpClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,

@@ -73,7 +73,7 @@ namespace Public.Api.Municipality
 
             var isFlemishRegion = GetIsFlemishRegionQueryParameter();
 
-            IRestRequest BackendRequest() => CreateBackendListRequest(
+            RestRequest BackendRequest() => CreateBackendListRequest(
                 offset,
                 limit,
                 taal,
@@ -113,7 +113,7 @@ namespace Public.Api.Municipality
             return isFlemishRegion;
         }
 
-        private static IRestRequest CreateBackendListRequest(int? offset,
+        private static RestRequest CreateBackendListRequest(int? offset,
             int? limit,
             Taal language,
             string municipalityName,

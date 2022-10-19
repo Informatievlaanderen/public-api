@@ -29,7 +29,7 @@ namespace Public.Api.Road.Uploads
         protected override string GoneExceptionMessage => "Verwijderde upload.";
 
         public UploadController(
-            [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Road)] RestClient restClient,
             [KeyFilter(RegistryKeys.Road)] HttpClient httpClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,

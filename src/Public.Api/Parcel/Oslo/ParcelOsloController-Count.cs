@@ -53,7 +53,7 @@ namespace Public.Api.Parcel.Oslo
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            IRestRequest BackendRequest() => CreateBackendCountRequest();
+            RestRequest BackendRequest() => CreateBackendCountRequest();
 
             return new BackendResponseResult(
                 await GetFromBackendAsync(
@@ -63,6 +63,6 @@ namespace Public.Api.Parcel.Oslo
                     cancellationToken));
         }
 
-        private static IRestRequest CreateBackendCountRequest() => new RestRequest("percelen/totaal-aantal");
+        private static RestRequest CreateBackendCountRequest() => new RestRequest("percelen/totaal-aantal");
     }
 }

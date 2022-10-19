@@ -2,7 +2,7 @@ framework: net6.0
 source https://api.nuget.org/v3/index.json
 
 // PRODUCTION STUFF
-nuget RestSharp 106.11.7
+nuget RestSharp 108.0.2
 nuget Marvin.Cache.Headers 6.1.0
 nuget StackExchange.Redis 2.5.43
 nuget AWSSDK.S3 3.7.8.13

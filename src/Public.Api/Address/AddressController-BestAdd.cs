@@ -24,7 +24,7 @@ namespace Public.Api.Address
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            IRestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
+            RestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
 
             var value = await GetFromBackendAsync(
                 contentFormat.ContentType,
@@ -35,7 +35,7 @@ namespace Public.Api.Address
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        private static IRestRequest CreateBackendSearchBestAddRequest(BosaAddressRequest searchBody)
-            => new RestRequest("adressen/bosa", Method.POST).AddJsonBodyOrEmpty(searchBody);
+        private static RestRequest CreateBackendSearchBestAddRequest(BosaAddressRequest searchBody)
+            => new RestRequest("adressen/bosa", Method.Post).AddJsonBodyOrEmpty(searchBody);
     }
 }

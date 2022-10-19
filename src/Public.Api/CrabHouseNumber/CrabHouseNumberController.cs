@@ -26,7 +26,7 @@ namespace Public.Api.CrabHouseNumber
         protected override string GoneExceptionMessage => "Verwijderd adres.";
 
         public CrabHouseNumberController(
-            [KeyFilter(RegistryKeys.Address)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Address)] RestClient restClient,
             [KeyFilter(RegistryKeys.Address)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<CrabHouseNumberController> logger)
