@@ -32,7 +32,7 @@ namespace Public.Api.Status.Clients
             return default;
         }
 
-        protected abstract IRestRequest CreateStatusRequest();
+        protected abstract RestRequest CreateStatusRequest();
         protected abstract TStatus Map(TRestResponse response);
     }
 }

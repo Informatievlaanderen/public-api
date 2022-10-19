@@ -37,7 +37,7 @@ namespace Public.Api.Feeds
         private static ContentFormat DetermineFormat(ActionContext context)
             => ContentFormat.For(EndpointType.Sync, context);
 
-        private static IRestRequest CreateBackendSyndicationRequest(
+        private static RestRequest CreateBackendSyndicationRequest(
             string resourcename,
             long? from,
             int? limit,

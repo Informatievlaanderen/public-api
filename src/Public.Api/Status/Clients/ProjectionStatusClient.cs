@@ -11,7 +11,7 @@ namespace Public.Api.Status.Clients
         public ProjectionStatusClient(string registry, TraceRestClient restClient)
             : base(registry, restClient) { }
 
-        protected override IRestRequest CreateStatusRequest()
+        protected override RestRequest CreateStatusRequest()
             => new RestRequest("projections");
 
         protected override RegistryProjectionStatusResponse Map(ProjectionsStatusList response)

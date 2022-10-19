@@ -115,7 +115,7 @@ namespace Public.Api.Infrastructure.Modules
             builder
                 .Register(context => new TraceRestClient(context.ResolveNamed<RestClient>(key), _serviceName))
                 .Keyed<TraceRestClient>(key)
-                .Keyed<IRestClient>(key)
+                .Keyed<RestClient>(key)
                 .OnlyIf(IsNotRegistered<TraceRestClient>(key));
         }
 

@@ -17,7 +17,7 @@ namespace Public.Api.Road.Extracts
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
-            IRestRequest BackendRequest() => CreateBackendDownloadRequestByContour(body);
+            RestRequest BackendRequest() => CreateBackendDownloadRequestByContour(body);
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
@@ -29,8 +29,8 @@ namespace Public.Api.Road.Extracts
             return new BackendResponseResult(response);
         }
 
-        private static IRestRequest CreateBackendDownloadRequestByContour(DownloadExtractByContourRequestBody body) =>
-            new RestRequest("extracts/downloadrequests/bycontour", Method.POST)
+        private static RestRequest CreateBackendDownloadRequestByContour(DownloadExtractByContourRequestBody body) =>
+            new RestRequest("extracts/downloadrequests/bycontour", Method.Post)
             .AddJsonBodyOrEmpty(body);
     }
 }

@@ -25,7 +25,7 @@ namespace Public.Api.PublicService
         protected override string GoneExceptionMessage => "Verwijderde dienstverlening.";
 
         public PublicServiceController(
-            [KeyFilter(Registry)] IRestClient restClient,
+            [KeyFilter(Registry)] RestClient restClient,
             [KeyFilter(Registry)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<PublicServiceController> logger)

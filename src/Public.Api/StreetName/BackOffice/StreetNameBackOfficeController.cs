@@ -26,7 +26,7 @@ namespace Public.Api.StreetName.BackOffice
         protected override string GoneExceptionMessage => "Verwijderde straatnaam.";
 
         public StreetNameBackOfficeController(
-            [KeyFilter(RegistryKeys.StreetNameBackOffice)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.StreetNameBackOffice)] RestClient restClient,
             [KeyFilter(RegistryKeys.StreetNameBackOffice)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<StreetNameBackOfficeController> logger)

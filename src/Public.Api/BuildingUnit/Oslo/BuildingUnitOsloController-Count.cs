@@ -57,7 +57,7 @@ namespace Public.Api.BuildingUnit.Oslo
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            IRestRequest BackendRequest() => CreateBackendCountRequest(adresObjectId);
+            RestRequest BackendRequest() => CreateBackendCountRequest(adresObjectId);
 
             return new BackendResponseResult(
                 await GetFromBackendAsync(
@@ -67,7 +67,7 @@ namespace Public.Api.BuildingUnit.Oslo
                     cancellationToken));
         }
 
-        private static IRestRequest CreateBackendCountRequest(int? addressId)
+        private static RestRequest CreateBackendCountRequest(int? addressId)
         {
             var filter = new BuildingUnitFilter
             {

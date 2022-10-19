@@ -25,7 +25,7 @@ namespace Public.Api.Address.Oslo
         protected override string GoneExceptionMessage => "Verwijderd adres.";
 
         public AddressOsloController(
-            [KeyFilter(RegistryKeys.AddressV2)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.AddressV2)] RestClient restClient,
             [KeyFilter(RegistryKeys.AddressV2)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<AddressOsloController> logger)

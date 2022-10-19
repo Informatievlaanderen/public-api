@@ -61,7 +61,7 @@ namespace Public.Api.CrabHouseNumber
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            IRestRequest BackendRequest() => CreateBackendListRequest(
+            RestRequest BackendRequest() => CreateBackendListRequest(
                 offset,
                 limit,
                 sort,
@@ -85,7 +85,7 @@ namespace Public.Api.CrabHouseNumber
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.CrabHuisnummersVolgendeUrl);
         }
 
-        private static IRestRequest CreateBackendListRequest(
+        private static RestRequest CreateBackendListRequest(
             int? offset,
             int? limit,
             string sort,

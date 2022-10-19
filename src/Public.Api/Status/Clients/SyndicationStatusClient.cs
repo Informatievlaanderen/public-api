@@ -12,7 +12,7 @@ namespace Public.Api.Status.Clients
         public SyndicationStatusClient(string registry, TraceRestClient restClient)
             : base(registry, restClient) { }
 
-        protected override IRestRequest CreateStatusRequest()
+        protected override RestRequest CreateStatusRequest()
             => new RestRequest("syndication");
 
         protected override RegistrySyndicationStatusResponse Map(List<SyndicationStatus> response)

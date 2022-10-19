@@ -73,9 +73,9 @@ namespace Public.Api.Address.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            IRestRequest BackendRequest()
+            RestRequest BackendRequest()
             {
-                var request = new RestRequest(CorrectHouseNumberRoute, Method.POST)
+                var request = new RestRequest(CorrectHouseNumberRoute, Method.Post)
                     .AddParameter(
                         "application/json; charset=utf-8",
                         JsonConvert.SerializeObject(addressCorrectHouseNumberRequest),

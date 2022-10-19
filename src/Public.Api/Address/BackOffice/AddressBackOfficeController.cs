@@ -26,7 +26,7 @@ namespace Public.Api.Address.BackOffice
         protected override string GoneExceptionMessage => "Verwijderd adres.";
 
         public AddressBackOfficeController(
-            [KeyFilter(RegistryKeys.AddressBackOffice)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.AddressBackOffice)] RestClient restClient,
             [KeyFilter(RegistryKeys.AddressBackOffice)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<AddressBackOfficeController> logger)

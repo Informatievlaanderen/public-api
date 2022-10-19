@@ -51,8 +51,8 @@ namespace Common.Infrastructure.Controllers
 
         protected async Task<BackendResponse> GetFromCacheThenFromBackendAsync(
             AcceptType acceptType,
-            IRestClient restClient,
-            Func<IRestRequest> createBackendRequestFunc,
+            RestClient restClient,
+            Func<RestRequest> createBackendRequestFunc,
             string cacheKey,
             Action<HttpStatusCode> handleNotOkResponseAction,
             CancellationToken cancellationToken)
@@ -122,8 +122,8 @@ namespace Common.Infrastructure.Controllers
         }
 
         protected static async Task<BackendResponse> GetFromBackendWithBadRequestAsync(
-            IRestClient restClient,
-            Func<IRestRequest> createBackendRequestFunc,
+            RestClient restClient,
+            Func<RestRequest> createBackendRequestFunc,
             AcceptType acceptType,
             Action<HttpStatusCode> handleNotOkResponseAction,
             ProblemDetailsHelper problemDetailsHelper,
@@ -216,7 +216,7 @@ namespace Common.Infrastructure.Controllers
             throw new ApiException("Fout bij de bron.", (int)response.StatusCode);
         }
 
-        private static string GetPublicContentValue(IRestResponse response, ProblemDetailsHelper helper)
+        private static string GetPublicContentValue(RestResponse response, ProblemDetailsHelper helper)
         {
             var problemDetails = response.GetProblemDetails();
             if (string.IsNullOrWhiteSpace(problemDetails.ProblemTypeUri))
@@ -254,8 +254,8 @@ namespace Common.Infrastructure.Controllers
         }
 
         protected static async Task<BackendResponse> GetFromBackendAsync(
-            IRestClient restClient,
-            Func<IRestRequest> createBackendRequestFunc,
+            RestClient restClient,
+            Func<RestRequest> createBackendRequestFunc,
             AcceptType acceptType,
             Action<HttpStatusCode> handleNotOkResponseAction,
             CancellationToken cancellationToken)
@@ -288,9 +288,9 @@ namespace Common.Infrastructure.Controllers
             throw new ApiProblemDetailsException("Fout bij de bron.", (int)response.StatusCode, response.GetProblemDetails(), response.ErrorException);
         }
 
-        private static async Task<IRestResponse> ExecuteRequestAsync(
-            IRestClient restClient,
-            IRestRequest backendRequest,
+        private static async Task<RestResponse> ExecuteRequestAsync(
+            RestClient restClient,
+            RestRequest backendRequest,
             CancellationToken cancellationToken)
         {
             var response = await restClient.ExecuteAsync(backendRequest, cancellationToken);

@@ -58,10 +58,10 @@ namespace Public.Api.Address.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            IRestRequest BackendRequest() => CreateBackendRequestWithJsonBody(
+            RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(
                 ProposeAddressRoute,
                 addressProposeRequest,
-                Method.POST);
+                Method.Post);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

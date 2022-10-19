@@ -61,7 +61,7 @@ namespace Public.Api.CrabSubaddress
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            IRestRequest BackendRequest() => CreateBackendListRequest(
+            RestRequest BackendRequest() => CreateBackendListRequest(
                 offset,
                 limit,
                 sort,
@@ -85,7 +85,7 @@ namespace Public.Api.CrabSubaddress
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.CrabSubadressenVolgendeUrl);
         }
 
-        private static IRestRequest CreateBackendListRequest(
+        private static RestRequest CreateBackendListRequest(
             int? offset,
             int? limit,
             string sort,

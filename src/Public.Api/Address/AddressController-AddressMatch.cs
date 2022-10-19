@@ -70,7 +70,7 @@ namespace Public.Api.Address
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            IRestRequest BackendRequest() => CreateBackendMatchRequest(
+            RestRequest BackendRequest() => CreateBackendMatchRequest(
                 Taal.NL,
                 busnummer,
                 huisnummer,
@@ -92,7 +92,7 @@ namespace Public.Api.Address
             return BackendListResponseResult.Create(response, Request.Query, string.Empty);
         }
 
-        private static IRestRequest CreateBackendMatchRequest(
+        private static RestRequest CreateBackendMatchRequest(
             Taal language,
             string boxNumber,
             string houseNumber,
