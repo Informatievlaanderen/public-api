@@ -1,3 +1,17 @@
+# [5.42.0](https://github.com/informatievlaanderen/public-api/compare/v5.41.0...v5.42.0) (2022-10-19)
+
+
+### Bug Fixes
+
+* correct api documentation ([b6e68bd](https://github.com/informatievlaanderen/public-api/commit/b6e68bd7f55b902f0bc1c3ffbd55b1a09cc608b6))
+* documentation building and building unit actions ([a8d7954](https://github.com/informatievlaanderen/public-api/commit/a8d795497be47b3a8fb37a8d252f0215d6615ee7))
+
+
+### Features
+
+* correct buildingunit realization ([4290c6e](https://github.com/informatievlaanderen/public-api/commit/4290c6eee86398140e21a918e7a0ff807476af72))
+* correct notrealization buildingunit ([5ac0ba6](https://github.com/informatievlaanderen/public-api/commit/5ac0ba6c3733f6bb0647aabb6a5800e57af65f7d))
+
 # [5.41.0](https://github.com/informatievlaanderen/public-api/compare/v5.40.0...v5.41.0) (2022-10-17)
 
 
