@@ -1,3 +1,10 @@
+## [5.42.1](https://github.com/informatievlaanderen/public-api/compare/v5.42.0...v5.42.1) (2022-10-19)
+
+
+### Bug Fixes
+
+* building 404 description ([0470c0c](https://github.com/informatievlaanderen/public-api/commit/0470c0c89302bb5f76f8e6bc660f5cd9249fbdb6))
+
 # [5.42.0](https://github.com/informatievlaanderen/public-api/compare/v5.41.0...v5.42.0) (2022-10-19)
 
 
