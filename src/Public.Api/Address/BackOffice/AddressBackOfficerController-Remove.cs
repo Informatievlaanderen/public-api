@@ -50,7 +50,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Adres verwijderen uit het adressenregister.")]
+        [SwaggerOperation(Description = "Het adres wordt verwijderd uit het adressenregister. Gekoppelde busnummers met status `voorgesteld`, `inGebruik`, `afgekeurd` en `gehistoreerd` worden mee verwijderd.")]
         [HttpPost(RemoveAddressRoute, Name = nameof(RemoveAddress))]
         public async Task<IActionResult> RemoveAddress(
             [FromRoute] int objectId,

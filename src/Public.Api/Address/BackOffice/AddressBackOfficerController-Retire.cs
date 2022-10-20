@@ -50,7 +50,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Wijzig de adresstatus van `inGebruik` naar `gehistoreerd`.")]
+        [SwaggerOperation(Description = "Wijzig de adresstatus van `inGebruik` naar `gehistoreerd`.Gekoppelde busnummers met status `voorgesteld` worden `afgekeurd` en gekoppelde busnummers met status `inGebruik` worden `gehistoreerd`.")]
         [HttpPost(RetireRoute, Name = nameof(RetireAddress))]
         public async Task<IActionResult> RetireAddress(
             [FromRoute] int objectId,

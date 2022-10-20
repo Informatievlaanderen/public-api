@@ -50,7 +50,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Wijzig officieelToegekend van `false` naar `true`.")]
+        [SwaggerOperation(Description = "Wijzig officieelToegekend van een adres van `false` naar `true`. Gekoppelde busnummers wijzigen niet mee van status.")]
         [HttpPost(RegularizeRoute, Name = nameof(RegularizeAddress))]
         public async Task<IActionResult> RegularizeAddress(
             [FromRoute] int objectId,

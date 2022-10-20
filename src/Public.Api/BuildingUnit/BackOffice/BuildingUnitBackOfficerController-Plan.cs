@@ -42,7 +42,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Voer een nieuwe gebouweenheid in met status `gepland`.")]
+        [SwaggerOperation(Description = "Voer een nieuwe gebouweenheid in met status `gepland` binnen een gebouw met status `gepland` of `gerealiseerd`. Er wordt automatisch een gemeenschappelijkDeel aangemaakt vanaf dat er 2 gebouweenheden met status `gepland` of `gerealiseerd` aan een gebouw gekoppeld zijn. De status van het gemeenschappelijKDeel is `gepland` wanneer het gebouw status `gepland` is. De status van het gemeenschappelijkDeel is `gerealiseerd` wanneer het gebouw status `gerealiseerd` is.")]
         [HttpPost("gebouweenheden/acties/plannen", Name = nameof(PlanBuildingUnit))]
         public async Task<IActionResult> PlanBuildingUnit(
             [FromBody] PlanBuildingUnitRequest planBuildingUnitRequest,
