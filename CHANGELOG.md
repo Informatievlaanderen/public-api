@@ -1,3 +1,12 @@
+## [5.42.2](https://github.com/informatievlaanderen/public-api/compare/v5.42.1...v5.42.2) (2022-10-20)
+
+
+### Bug Fixes
+
+* remove PublicService ([07cb19d](https://github.com/informatievlaanderen/public-api/commit/07cb19d245f69275d0ac72836664f34f33d5420c))
+* remove PublicService from appsettings.json ([689f0b5](https://github.com/informatievlaanderen/public-api/commit/689f0b5c2c8ee53be65589fabc035704048c4172))
+* upgrade RestSharp due to CVE-2021-27293 ([4de75e2](https://github.com/informatievlaanderen/public-api/commit/4de75e28fbab810eb22b9fb034709a9054af698b))
+
 ## [5.42.1](https://github.com/informatievlaanderen/public-api/compare/v5.42.0...v5.42.1) (2022-10-19)
 
 
