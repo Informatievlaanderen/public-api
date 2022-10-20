@@ -48,7 +48,7 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Correctie van de straatnaamstatus van `gehistoreerd` naar `inGebruik`.")]
+        [SwaggerOperation(Description = "Correctie van de straatnaamstatus van `gehistoreerd` naar `inGebruik`. Gekoppelde adressen corrigeren niet mee van status.")]
         [HttpPost("straatnamen/{objectId}/acties/corrigeren/opheffing", Name = nameof(CorrectStreetNameRetirement))]
         public async Task<IActionResult> CorrectStreetNameRetirement(
             [FromRoute] int objectId,

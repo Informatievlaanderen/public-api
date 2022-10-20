@@ -50,7 +50,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Correctie van de adresstatus van `gehistoreerd` naar `inGebruik`.")]
+        [SwaggerOperation(Description = "Correctie van de adresstatus van `gehistoreerd` naar `inGebruik`. Gekoppelde busnummers corrigeren niet mee van status.")]
         [HttpPost(CorrectRetirementRoute, Name = nameof(CorrectAddressRetirement))]
         public async Task<IActionResult> CorrectAddressRetirement(
             [FromRoute] int objectId,

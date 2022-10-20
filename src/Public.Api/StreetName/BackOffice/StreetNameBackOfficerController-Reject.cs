@@ -48,7 +48,7 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Wijzig de straatnaamstatus van `voorgesteld` naar `afgekeurd`.")]
+        [SwaggerOperation(Description = "Wijzig de straatnaamstatus van `voorgesteld` naar `afgekeurd`. Gekoppelde adressen wijzigen niet mee van status.")]
         [HttpPost("straatnamen/{objectId}/acties/afkeuren", Name = nameof(RejectStreetName))]
         public async Task<IActionResult> RejectStreetName(
             [FromRoute] int objectId,

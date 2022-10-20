@@ -44,7 +44,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Voer een nieuw adres in met status `voorgesteld`.")]
+        [SwaggerOperation(Description = "Voer een nieuw adres in met status `voorgesteld` binnen een straatnaam met status `voorgesteld` of `inGebruik`.")]
         [HttpPost(ProposeAddressRoute, Name = nameof(ProposeAddress))]
         public async Task<IActionResult> ProposeAddress(
             [FromBody] AddressProposeRequest addressProposeRequest,

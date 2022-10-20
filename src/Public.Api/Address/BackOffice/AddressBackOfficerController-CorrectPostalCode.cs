@@ -54,7 +54,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(AddressChangePositionRequest), typeof(AddressChangePositionRequestExamples))]
-        [SwaggerOperation(Description = "Correctie van de postinfoId van een adres.")]
+        [SwaggerOperation(Description = "Correctie van de postinfoId van een adres. Gekoppelde busnummers worden ook gecorrigeerd naar het nieuwe postinfoId. Het postinfoId moet in de gekoppelde gemeente van het adres liggen.")]
         [HttpPost(CorrectPostalCodeRoute, Name = nameof(CorrectAddressPostalCode))]
         public async Task<IActionResult> CorrectAddressPostalCode(
             [FromRoute] int objectId,

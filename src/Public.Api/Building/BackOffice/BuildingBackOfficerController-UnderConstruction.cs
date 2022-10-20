@@ -48,7 +48,7 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Wijzig de gebouwstatus van `gepland` naar `inAanbouw`.")]
+        [SwaggerOperation(Description = "Wijzig de gebouwstatus van `gepland` naar `inAanbouw`. Gekoppelde gebouweenheden wijzigen niet mee van status.")]
         [HttpPost("gebouwen/{objectId}/acties/inaanbouwplaatsen", Name = nameof(BuildingUnderConstruction))]
         public async Task<IActionResult> BuildingUnderConstruction(
             [FromRoute] int objectId,
