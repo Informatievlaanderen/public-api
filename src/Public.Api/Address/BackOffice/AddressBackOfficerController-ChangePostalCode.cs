@@ -75,15 +75,8 @@ namespace Public.Api.Address.BackOffice
 
             RestRequest BackendRequest()
             {
-                var request = new RestRequest(ChangePostalCodeRoute, Method.Post)
-                    .AddParameter(
-                        "application/json; charset=utf-8",
-                        JsonConvert.SerializeObject(addressChangePostalCodeRequest),
-                        ParameterType.RequestBody)
-                    .AddParameter(
-                        "objectId",
-                        objectId,
-                        ParameterType.UrlSegment);
+                var request = CreateBackendRequestWithJsonBody(ChangePostalCodeRoute, addressChangePostalCodeRequest, Method.Post)
+                    .AddParameter("objectId", objectId, ParameterType.UrlSegment);
 
                 if (ifMatch is not null)
                 {

@@ -25,7 +25,7 @@ namespace Public.Api.Road.Changes
         protected override string GoneExceptionMessage => "Verwijderde activiteit.";
 
         public ChangeFeedController(
-            [KeyFilter(RegistryKeys.Road)] RestClient restClient,
+            [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<ChangeFeedController> logger)

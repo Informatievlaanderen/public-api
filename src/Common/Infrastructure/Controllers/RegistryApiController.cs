@@ -20,7 +20,7 @@ namespace Common.Infrastructure.Controllers
 
     public abstract class RegistryApiController<T> : ApiController<T>
     {
-        private readonly RestClient _restClient;
+        private readonly IRestClient _restClient;
 
         private readonly IFeatureToggle _cacheToggle;
 
@@ -32,7 +32,7 @@ namespace Common.Infrastructure.Controllers
         protected const int DefaultCountCaching = 0;
 
         protected RegistryApiController(
-            RestClient restClient,
+            IRestClient restClient,
             IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<T> logger) : base(redis, logger)
@@ -93,9 +93,9 @@ namespace Common.Infrastructure.Controllers
                 cancellationToken);
 
         protected static RestRequest CreateBackendRequestWithJsonBody<TRequest>(string path, TRequest body, Method method)
+            where TRequest : class
         {
-            var request = new RestRequest(path)
-                .AddParameter("application/json; charset=utf-8", JsonConvert.SerializeObject(body), ParameterType.RequestBody);
+            var request = new RestRequest(path).AddJsonBody(body);
             request.Method = method;
             return request;
         }

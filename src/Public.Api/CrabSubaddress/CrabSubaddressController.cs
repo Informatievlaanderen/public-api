@@ -26,7 +26,7 @@ namespace Public.Api.CrabSubaddress
         protected override string GoneExceptionMessage => "Verwijderd adres.";
 
         public CrabSubaddressController(
-            [KeyFilter(RegistryKeys.Address)] RestClient restClient,
+            [KeyFilter(RegistryKeys.Address)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Address)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<CrabSubaddressController> logger)

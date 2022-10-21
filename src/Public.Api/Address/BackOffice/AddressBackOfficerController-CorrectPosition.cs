@@ -74,15 +74,8 @@ namespace Public.Api.Address.BackOffice
 
             RestRequest BackendRequest()
             {
-                var request = new RestRequest(CorrectPositionRoute, Method.Post)
-                    .AddParameter(
-                        "application/json; charset=utf-8",
-                        JsonConvert.SerializeObject(addressCorrectPositionRequest),
-                        ParameterType.RequestBody)
-                    .AddParameter(
-                        "objectId",
-                        objectId,
-                        ParameterType.UrlSegment);
+                var request = CreateBackendRequestWithJsonBody(CorrectPositionRoute, addressCorrectPositionRequest, Method.Post)
+                    .AddParameter("objectId", objectId, ParameterType.UrlSegment);
 
                 if (ifMatch is not null)
                 {

@@ -25,7 +25,7 @@ namespace Public.Api.Parcel.Oslo
         protected override string GoneExceptionMessage => "Verwijderd perceel.";
 
         public ParcelOsloController(
-            [KeyFilter(RegistryKeys.ParcelV2)] RestClient restClient,
+            [KeyFilter(RegistryKeys.ParcelV2)] IRestClient restClient,
             [KeyFilter(RegistryKeys.ParcelV2)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<ParcelOsloController> logger)

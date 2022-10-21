@@ -25,7 +25,7 @@ namespace Public.Api.Municipality.Oslo
         protected override string GoneExceptionMessage => "Verwijderde gemeente.";
 
         public MunicipalityOsloController(
-            [KeyFilter(RegistryKeys.MunicipalityV2)] RestClient restClient,
+            [KeyFilter(RegistryKeys.MunicipalityV2)] IRestClient restClient,
             [KeyFilter(RegistryKeys.MunicipalityV2)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<MunicipalityOsloController> logger)
