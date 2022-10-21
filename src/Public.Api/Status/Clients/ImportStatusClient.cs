@@ -12,7 +12,7 @@ namespace Public.Api.Status.Clients
         public ImportStatusClient(string registry, TraceRestClient restClient)
             : base(registry, restClient) { }
 
-        protected override RestRequest CreateStatusRequest()
+        protected override IRestRequest CreateStatusRequest()
             => new RestRequest("crabimport/status");
 
         protected override IEnumerable<RegistryImportStatus> Map(ImportStatusList response)

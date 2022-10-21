@@ -48,7 +48,7 @@ namespace Public.Api.Municipality
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendCountRequest();
+            IRestRequest BackendRequest() => CreateBackendCountRequest();
 
             return new BackendResponseResult(
                 await GetFromBackendAsync(
@@ -58,6 +58,6 @@ namespace Public.Api.Municipality
                     cancellationToken));
         }
 
-        private static RestRequest CreateBackendCountRequest() => new RestRequest("gemeenten/totaal-aantal");
+        private static IRestRequest CreateBackendCountRequest() => new RestRequest("gemeenten/totaal-aantal");
     }
 }

@@ -72,9 +72,9 @@ namespace Public.Api.StreetName.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest()
+            IRestRequest BackendRequest()
             {
-                var request = new RestRequest(CorrectStreetNameRoute, Method.Post)
+                var request = new RestRequest(CorrectStreetNameRoute, Method.POST)
                     .AddParameter("application/json; charset=utf-8",
                         JsonConvert.SerializeObject(streetNameCorrectNamesRequest),
                         ParameterType.RequestBody);

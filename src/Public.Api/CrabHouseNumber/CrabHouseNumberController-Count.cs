@@ -46,7 +46,7 @@ namespace Public.Api.CrabHouseNumber
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendCountRequest();
+            IRestRequest BackendRequest() => CreateBackendCountRequest();
 
             return new BackendResponseResult(
                 await GetFromBackendAsync(
@@ -56,7 +56,7 @@ namespace Public.Api.CrabHouseNumber
                     cancellationToken));
         }
 
-        private static RestRequest CreateBackendCountRequest()
+        private static IRestRequest CreateBackendCountRequest()
         {
             return new RestRequest("crabhuisnummers/totaal-aantal");
         }

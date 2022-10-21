@@ -73,9 +73,9 @@ namespace Public.Api.Address.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest()
+            IRestRequest BackendRequest()
             {
-                var request = new RestRequest(ChangePostalCodeRoute, Method.Post)
+                var request = new RestRequest(ChangePostalCodeRoute, Method.POST)
                     .AddParameter(
                         "application/json; charset=utf-8",
                         JsonConvert.SerializeObject(addressChangePostalCodeRequest),

@@ -25,7 +25,7 @@ namespace Public.Api.Road.Information
         protected override string GoneExceptionMessage => "Verwijderde informatie.";
 
         public InformationController(
-            [KeyFilter(RegistryKeys.Road)] RestClient restClient,
+            [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<InformationController> logger)

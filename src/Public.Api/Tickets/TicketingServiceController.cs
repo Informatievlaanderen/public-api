@@ -27,7 +27,7 @@ namespace Public.Api.Tickets
         protected override string GoneExceptionMessage => "Verwijderd ticket.";
 
         public TicketingServiceController(
-            [KeyFilter(RegistryKeys.TicketingService)] RestClient restClient,
+            [KeyFilter(RegistryKeys.TicketingService)] IRestClient restClient,
             [KeyFilter(RegistryKeys.TicketingService)] IFeatureToggle cacheToggle,
             TicketingToggle ticketingToggle,
             ConnectionMultiplexerProvider redis,

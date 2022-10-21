@@ -67,9 +67,9 @@ namespace Public.Api.Address.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest()
+            IRestRequest BackendRequest()
             {
-                var request = new RestRequest(RetireRoute, Method.Post);
+                var request = new RestRequest(RetireRoute, Method.POST);
                 request.AddParameter("objectId", objectId, ParameterType.UrlSegment);
 
                 if (ifMatch is not null)

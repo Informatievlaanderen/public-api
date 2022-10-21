@@ -47,7 +47,7 @@ namespace Public.Api.Infrastructure.Version
             ConcurrentDictionary<string, string> versions,
             CancellationToken cancellationToken)
         {
-            var healthClient = scope.ResolveNamed<RestClient>($"Health-{registry}");
+            var healthClient = scope.ResolveNamed<IRestClient>($"Health-{registry}");
             var healthResponse = await healthClient.ExecuteAsync(new RestRequest(), cancellationToken);
 
             var downstreamVersion = healthResponse

@@ -24,7 +24,7 @@ namespace Public.Api.StreetName
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
+            IRestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
 
             var value = await GetFromBackendAsync(
                 contentFormat.ContentType,
@@ -35,7 +35,7 @@ namespace Public.Api.StreetName
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        private static RestRequest CreateBackendSearchBestAddRequest(BosaStreetNameRequest searchBody)
-            => new RestRequest("straatnamen/bosa", Method.Post).AddJsonBodyOrEmpty(searchBody);
+        private static IRestRequest CreateBackendSearchBestAddRequest(BosaStreetNameRequest searchBody)
+            => new RestRequest("straatnamen/bosa", Method.POST).AddJsonBodyOrEmpty(searchBody);
     }
 }

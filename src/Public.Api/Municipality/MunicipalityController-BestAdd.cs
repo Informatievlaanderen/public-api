@@ -24,7 +24,7 @@ namespace Public.Api.Municipality
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
+            IRestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
 
             var value = await GetFromBackendAsync(
                 contentFormat.ContentType,
@@ -35,7 +35,7 @@ namespace Public.Api.Municipality
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        private static RestRequest CreateBackendSearchBestAddRequest(BosaMunicipalityRequest searchBody)
-            => new RestRequest("gemeenten/bosa", Method.Post).AddJsonBodyOrEmpty(searchBody);
+        private static IRestRequest CreateBackendSearchBestAddRequest(BosaMunicipalityRequest searchBody)
+            => new RestRequest("gemeenten/bosa", Method.POST).AddJsonBodyOrEmpty(searchBody);
     }
 }

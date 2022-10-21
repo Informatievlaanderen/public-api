@@ -51,7 +51,7 @@ namespace Public.Api.BuildingUnit
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendCountRequest(adresObjectId);
+            IRestRequest BackendRequest() => CreateBackendCountRequest(adresObjectId);
 
             return new BackendResponseResult(
                 await GetFromBackendAsync(
@@ -61,7 +61,7 @@ namespace Public.Api.BuildingUnit
                     cancellationToken));
         }
 
-        private static RestRequest CreateBackendCountRequest(int? addressId)
+        private static IRestRequest CreateBackendCountRequest(int? addressId)
         {
             var filter = new BuildingUnitFilter
             {

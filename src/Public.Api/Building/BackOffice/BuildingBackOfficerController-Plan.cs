@@ -56,10 +56,10 @@ namespace Public.Api.Building.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(
+            IRestRequest BackendRequest() => CreateBackendRequestWithJsonBody(
                 "gebouwen/acties/plannen",
                 planBuildingRequest,
-                Method.Post);
+                Method.POST);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

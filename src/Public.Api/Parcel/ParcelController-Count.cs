@@ -48,7 +48,7 @@ namespace Public.Api.Parcel
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendCountRequest();
+            IRestRequest BackendRequest() => CreateBackendCountRequest();
 
             return new BackendResponseResult(
                 await GetFromBackendAsync(
@@ -58,6 +58,6 @@ namespace Public.Api.Parcel
                     cancellationToken));
         }
 
-        private static RestRequest CreateBackendCountRequest() => new RestRequest("percelen/totaal-aantal");
+        private static IRestRequest CreateBackendCountRequest() => new RestRequest("percelen/totaal-aantal");
     }
 }

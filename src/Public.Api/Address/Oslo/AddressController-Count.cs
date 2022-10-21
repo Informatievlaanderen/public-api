@@ -66,7 +66,7 @@ namespace Public.Api.Address.Oslo
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendCountRequest(
+            IRestRequest BackendRequest() => CreateBackendCountRequest(
                 busnummer,
                 huisnummer,
                 postcode,
@@ -82,7 +82,7 @@ namespace Public.Api.Address.Oslo
                     cancellationToken));
         }
 
-        private static RestRequest CreateBackendCountRequest(
+        private static IRestRequest CreateBackendCountRequest(
             string boxNumber,
             string houseNumber,
             int? postalCode,

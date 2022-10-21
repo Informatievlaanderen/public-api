@@ -25,7 +25,7 @@ namespace Public.Api.Building
         protected override string GoneExceptionMessage => "Verwijderd gebouw.";
 
         public BuildingController(
-            [KeyFilter(RegistryKeys.Building)] RestClient restClient,
+            [KeyFilter(RegistryKeys.Building)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Building)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<BuildingController> logger)

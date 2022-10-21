@@ -15,8 +15,8 @@ namespace Common.Infrastructure
         private const int DefaultLimit = 100;
         private const int MaximumLimit = 10000;
 
-        public static RestRequest AddSorting(
-            this RestRequest request,
+        public static IRestRequest AddSorting(
+            this IRestRequest request,
             string sort,
             Dictionary<string, string> sortMapping)
         {
@@ -28,8 +28,8 @@ namespace Common.Infrastructure
             return request;
         }
 
-        public static RestRequest AddPagination(
-            this RestRequest request,
+        public static IRestRequest AddPagination(
+            this IRestRequest request,
             int? offset,
             int? limit)
         {
@@ -47,8 +47,8 @@ namespace Common.Infrastructure
             return request;
         }
 
-        public static RestRequest AddFiltering(
-            this RestRequest request,
+        public static IRestRequest AddFiltering(
+            this IRestRequest request,
             object filter)
         {
             if (filter != null)

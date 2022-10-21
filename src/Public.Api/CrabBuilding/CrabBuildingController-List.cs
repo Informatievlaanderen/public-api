@@ -64,7 +64,7 @@ namespace Public.Api.CrabBuilding
             if (!terreinObjectId.HasValue && string.IsNullOrEmpty(identificatorTerreinObject))
                 throw new ApiException("Er dient minstens één identificator als input te worden meegegeven.", StatusCodes.Status400BadRequest);
 
-            RestRequest BackendRequest() => CreateBackendListRequest(
+            IRestRequest BackendRequest() => CreateBackendListRequest(
                terreinObjectId,
                identificatorTerreinObject);
 
@@ -86,7 +86,7 @@ namespace Public.Api.CrabBuilding
             return BackendListResponseResult.Create(value, Request.Query, string.Empty);
         }
 
-        private static RestRequest CreateBackendListRequest(
+        private static IRestRequest CreateBackendListRequest(
             int? terrainObjectId,
             string identificatorTerrainObject)
         {

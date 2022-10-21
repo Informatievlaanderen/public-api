@@ -17,7 +17,7 @@ namespace Public.Api.Road.Extracts
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
-            RestRequest BackendRequest() => CreateBackendDownloadRequestByNisCode(body);
+            IRestRequest BackendRequest() => CreateBackendDownloadRequestByNisCode(body);
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
@@ -29,8 +29,8 @@ namespace Public.Api.Road.Extracts
             return new BackendResponseResult(response);
         }
 
-        private static RestRequest CreateBackendDownloadRequestByNisCode(DownloadExtractByNisCodeRequestBody body) =>
-            new RestRequest("extracts/downloadrequests/byniscode", Method.Post)
+        private static IRestRequest CreateBackendDownloadRequestByNisCode(DownloadExtractByNisCodeRequestBody body) =>
+            new RestRequest("extracts/downloadrequests/byniscode", Method.POST)
             .AddJsonBodyOrEmpty(body);
     }
 }

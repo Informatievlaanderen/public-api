@@ -24,7 +24,7 @@ namespace Public.Api.AddressRepresentation
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
+            IRestRequest BackendRequest() => CreateBackendSearchBestAddRequest(searchBody);
 
             var value = await GetFromBackendAsync(
                 contentFormat.ContentType,
@@ -35,7 +35,7 @@ namespace Public.Api.AddressRepresentation
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        private static RestRequest CreateBackendSearchBestAddRequest(BosaAddressRepresentationRequest searchBody)
-            => new RestRequest("adressen/bosa/adresvoorstellingen", Method.Post).AddJsonBodyOrEmpty(searchBody);
+        private static IRestRequest CreateBackendSearchBestAddRequest(BosaAddressRepresentationRequest searchBody)
+            => new RestRequest("adressen/bosa/adresvoorstellingen", Method.POST).AddJsonBodyOrEmpty(searchBody);
     }
 }

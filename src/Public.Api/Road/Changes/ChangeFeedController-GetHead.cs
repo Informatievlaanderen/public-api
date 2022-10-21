@@ -16,7 +16,7 @@ namespace Public.Api.Road.Changes
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
-            RestRequest BackendRequest() => CreateBackendHeadRequest(maxEntryCount);
+            IRestRequest BackendRequest() => CreateBackendHeadRequest(maxEntryCount);
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
@@ -27,7 +27,7 @@ namespace Public.Api.Road.Changes
             return new BackendResponseResult(response);
         }
 
-        private static RestRequest CreateBackendHeadRequest(int? maxEntryCount) => new RestRequest("changefeed/head")
+        private static IRestRequest CreateBackendHeadRequest(int? maxEntryCount) => new RestRequest("changefeed/head")
             .AddParameter(nameof(maxEntryCount), maxEntryCount, ParameterType.QueryString);
     }
 }

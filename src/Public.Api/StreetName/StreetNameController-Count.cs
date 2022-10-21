@@ -51,7 +51,7 @@ namespace Public.Api.StreetName
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendCountRequest(gemeentenaam);
+            IRestRequest BackendRequest() => CreateBackendCountRequest(gemeentenaam);
 
             return new BackendResponseResult(
                 await GetFromBackendAsync(
@@ -61,7 +61,7 @@ namespace Public.Api.StreetName
                     cancellationToken));
         }
 
-        private static RestRequest CreateBackendCountRequest(string municipalityName)
+        private static IRestRequest CreateBackendCountRequest(string municipalityName)
         {
             var filter = new StreetNameFilter
             {

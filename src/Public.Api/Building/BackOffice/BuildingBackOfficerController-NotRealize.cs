@@ -63,9 +63,9 @@ namespace Public.Api.Building.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest()
+            IRestRequest BackendRequest()
             {
-                var request = new RestRequest("gebouwen/{persistentLocalId}/acties/nietrealiseren", Method.Post);
+                var request = new RestRequest("gebouwen/{persistentLocalId}/acties/nietrealiseren", Method.POST);
                 request.AddParameter("persistentLocalId", objectId, ParameterType.UrlSegment);
 
                 if (ifMatch is not null)

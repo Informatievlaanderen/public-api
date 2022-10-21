@@ -12,7 +12,7 @@ namespace Public.Api.Road.Information
         [HttpGet("wegen/informatie", Name = nameof(GetInformation))]
         public async Task<IActionResult> GetInformation(CancellationToken cancellationToken)
         {
-            RestRequest BackendRequest() => CreateBackendInformationRequest();
+            IRestRequest BackendRequest() => CreateBackendInformationRequest();
 
             var response = await GetFromBackendAsync(
                 AcceptType.Json,
@@ -22,6 +22,6 @@ namespace Public.Api.Road.Information
             return new BackendResponseResult(response);
         }
 
-        private static RestRequest CreateBackendInformationRequest() => new RestRequest("information");
+        private static IRestRequest CreateBackendInformationRequest() => new RestRequest("information", Method.GET);
     }
 }

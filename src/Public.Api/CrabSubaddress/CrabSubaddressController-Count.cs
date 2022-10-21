@@ -46,7 +46,7 @@ namespace Public.Api.CrabSubaddress
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendCountRequest();
+            IRestRequest BackendRequest() => CreateBackendCountRequest();
 
             return new BackendResponseResult(
                 await GetFromBackendAsync(
@@ -56,7 +56,7 @@ namespace Public.Api.CrabSubaddress
                     cancellationToken));
         }
 
-        private static RestRequest CreateBackendCountRequest()
+        private static IRestRequest CreateBackendCountRequest()
         {
             return new RestRequest("crabsubadressen/totaal-aantal");
         }

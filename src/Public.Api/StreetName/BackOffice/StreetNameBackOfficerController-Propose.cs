@@ -58,10 +58,10 @@ namespace Public.Api.StreetName.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(
+            IRestRequest BackendRequest() => CreateBackendRequestWithJsonBody(
                 ProposeStreetNameRoute,
                 streetNameProposeRequest,
-                Method.Post);
+                Method.POST);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

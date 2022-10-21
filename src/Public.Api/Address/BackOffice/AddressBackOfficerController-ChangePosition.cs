@@ -74,9 +74,9 @@ namespace Public.Api.Address.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest()
+            IRestRequest BackendRequest()
             {
-                var request = new RestRequest(ChangePositionRoute, Method.Post)
+                var request = new RestRequest(ChangePositionRoute, Method.POST)
                     .AddParameter(
                         "application/json; charset=utf-8",
                         JsonConvert.SerializeObject(addressChangePositionRequest),

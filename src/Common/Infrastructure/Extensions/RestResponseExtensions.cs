@@ -11,12 +11,12 @@ namespace Common.Infrastructure.Extensions
 
     public static class RestResponseExtensions
     {
-        public static ProblemDetails GetProblemDetails(this RestResponse response)
+        public static ProblemDetails GetProblemDetails(this IRestResponse response)
             => response.ContentType.Contains("xml", StringComparison.InvariantCultureIgnoreCase)
                 ? DataContractDeserializeXlmResponse<ProblemDetails>(response)
                 : JsonConvert.DeserializeObject<ProblemDetails>(response.Content);
 
-        private static T DataContractDeserializeXlmResponse<T>(RestResponse restResponse) where T : class, new()
+        private static T DataContractDeserializeXlmResponse<T>(IRestResponse restResponse) where T : class, new()
         {
             try
             {
@@ -30,7 +30,7 @@ namespace Common.Infrastructure.Extensions
             }
         }
 
-        public static IEnumerable<KeyValuePair<string, StringValues>> HeadersToKeyValuePairs(this RestResponse restResponse)
+        public static IEnumerable<KeyValuePair<string, StringValues>> HeadersToKeyValuePairs(this IRestResponse restResponse)
         {
             foreach (var header in restResponse.Headers)
             {
