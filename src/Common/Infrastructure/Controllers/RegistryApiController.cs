@@ -20,7 +20,7 @@ namespace Common.Infrastructure.Controllers
 
     public abstract class RegistryApiController<T> : ApiController<T>
     {
-        private readonly RestClient _restClient;
+        private readonly IRestClient _restClient;
 
         private readonly IFeatureToggle _cacheToggle;
 
@@ -32,7 +32,7 @@ namespace Common.Infrastructure.Controllers
         protected const int DefaultCountCaching = 0;
 
         protected RegistryApiController(
-            RestClient restClient,
+            IRestClient restClient,
             IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<T> logger) : base(redis, logger)

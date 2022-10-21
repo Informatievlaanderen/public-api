@@ -27,7 +27,7 @@ namespace Public.Api.Road.Extracts
         protected override string GoneExceptionMessage => "Verwijderd extract.";
 
         public ExtractController(
-            [KeyFilter(RegistryKeys.Road)] RestClient restClient,
+            [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Road)] HttpClient httpClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,

@@ -25,7 +25,7 @@ namespace Public.Api.Parcel
         protected override string GoneExceptionMessage => "Verwijderd perceel.";
 
         public ParcelController(
-            [KeyFilter(RegistryKeys.Parcel)] RestClient restClient,
+            [KeyFilter(RegistryKeys.Parcel)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Parcel)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<ParcelController> logger)

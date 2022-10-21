@@ -105,17 +105,26 @@ namespace Public.Api.Infrastructure.Modules
             if (string.IsNullOrWhiteSpace(baseUrl))
                 return;
 
-            builder
-                .RegisterType<RestClient>()
-                .WithProperty("BaseUrl", new Uri(baseUrl))
-                .WithProperty("CookieContainer", new CookieContainer())
-                .Keyed<RestClient>(key)
-                .OnlyIf(IsNotRegistered<RestClient>(key));
+            // builder
+            //     .RegisterType<RestClient>()
+            //     .WithProperty("BaseUrl", new Uri(baseUrl))
+            //     .WithProperty("CookieContainer", new CookieContainer())
+            //     .Keyed<RestClient>(key)
+            //     .OnlyIf(IsNotRegistered<RestClient>(key));
 
             builder
-                .Register(context => new TraceRestClient(context.ResolveNamed<RestClient>(key), _serviceName))
+                .Register(context =>
+                {
+                    var restClient = new RestClient(new RestClientOptions(new Uri(baseUrl))
+                    {
+                        CookieContainer = new CookieContainer()
+                    });
+
+                    var traceRestClient = new TraceRestClient(restClient, _serviceName);
+                    return traceRestClient;
+                })
                 .Keyed<TraceRestClient>(key)
-                .Keyed<RestClient>(key)
+                .Keyed<IRestClient>(key)
                 .OnlyIf(IsNotRegistered<TraceRestClient>(key));
         }
 

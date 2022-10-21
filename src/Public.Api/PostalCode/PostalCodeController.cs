@@ -25,7 +25,7 @@ namespace Public.Api.PostalCode
         protected override string GoneExceptionMessage => "Verwijderde postcode.";
 
         public PostalCodeController(
-            [KeyFilter(RegistryKeys.Postal)] RestClient restClient,
+            [KeyFilter(RegistryKeys.Postal)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Postal)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<PostalCodeController> logger)

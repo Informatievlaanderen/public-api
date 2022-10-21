@@ -51,7 +51,7 @@ namespace Common.Infrastructure.Controllers
 
         protected async Task<BackendResponse> GetFromCacheThenFromBackendAsync(
             AcceptType acceptType,
-            RestClient restClient,
+            IRestClient restClient,
             Func<RestRequest> createBackendRequestFunc,
             string cacheKey,
             Action<HttpStatusCode> handleNotOkResponseAction,
@@ -122,7 +122,7 @@ namespace Common.Infrastructure.Controllers
         }
 
         protected static async Task<BackendResponse> GetFromBackendWithBadRequestAsync(
-            RestClient restClient,
+            IRestClient restClient,
             Func<RestRequest> createBackendRequestFunc,
             AcceptType acceptType,
             Action<HttpStatusCode> handleNotOkResponseAction,
@@ -254,7 +254,7 @@ namespace Common.Infrastructure.Controllers
         }
 
         protected static async Task<BackendResponse> GetFromBackendAsync(
-            RestClient restClient,
+            IRestClient restClient,
             Func<RestRequest> createBackendRequestFunc,
             AcceptType acceptType,
             Action<HttpStatusCode> handleNotOkResponseAction,
@@ -289,7 +289,7 @@ namespace Common.Infrastructure.Controllers
         }
 
         private static async Task<RestResponse> ExecuteRequestAsync(
-            RestClient restClient,
+            IRestClient restClient,
             RestRequest backendRequest,
             CancellationToken cancellationToken)
         {

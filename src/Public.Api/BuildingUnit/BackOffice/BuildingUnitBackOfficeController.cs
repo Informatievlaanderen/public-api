@@ -27,7 +27,7 @@ namespace Public.Api.BuildingUnit.BackOffice
 
         public BuildingUnitBackOfficeController(
             [KeyFilter(RegistryKeys.BuildingBackOffice)]
-            RestClient restClient,
+            IRestClient restClient,
             [KeyFilter(RegistryKeys.BuildingBackOffice)]
             IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,

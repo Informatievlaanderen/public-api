@@ -57,7 +57,7 @@ namespace Public.Api.Feeds
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultFeedCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> GetBuildingsFeed(
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IIndex<string, Lazy<RestClient>> restClients,
+            [FromServices] IIndex<string, Lazy<IRestClient>> restClients,
             [FromServices] IOptions<BuildingOptions> responseOptions,
             [FromQuery] long? from,
             [FromQuery] int? limit,

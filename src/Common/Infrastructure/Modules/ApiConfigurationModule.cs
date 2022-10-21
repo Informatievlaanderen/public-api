@@ -72,21 +72,26 @@ namespace Common.Infrastructure.Modules
             string serviceName,
             ContainerBuilder builder)
         {
-            builder
-                .RegisterType<RestClient>()
-                .WithProperty("BaseUrl", new Uri(baseUrl))
-                .WithProperty("CookieContainer", new CookieContainer())
-                .Keyed<RestClient>(name);
+            // builder
+            //     .RegisterType<RestClient>()
+            //     .WithProperty("BaseUrl", new Uri(baseUrl))
+            //     .WithProperty("CookieContainer", new CookieContainer())
+            //     .Keyed<RestClient>(name);
 
             builder
                 .Register(context =>
                 {
-                    var restClient = new TraceRestClient(context.ResolveNamed<RestClient>(name), serviceName);
-                    restClient.UseSerializer<JsonNetSerializer>();
-                    return restClient;
+                    var restClient = new RestClient(new RestClientOptions(new Uri(baseUrl))
+                    {
+                        CookieContainer = new CookieContainer()
+                    });
+
+                    var traceRestClient = new TraceRestClient(restClient, serviceName);
+                    traceRestClient.UseSerializer<JsonNetSerializer>();
+                    return traceRestClient;
                 })
                 .Keyed<TraceRestClient>(name)
-                .Keyed<RestClient>(name);
+                .Keyed<IRestClient>(name);
         }
 
         private static void RegisterHealthClient(
@@ -98,17 +103,29 @@ namespace Common.Infrastructure.Modules
             ContainerBuilder builder)
         {
             var healthServiceName = $"Health-{name}";
-            builder
-                .RegisterType<RestClient>()
-                .WithProperty("BaseUrl", new Uri(baseUrl))
-                .WithProperty("CookieContainer", new CookieContainer())
-                .WithProperty("Authenticator", new HttpBasicAuthenticator(user, password))
-                .Keyed<RestClient>(healthServiceName);
+            // builder
+            //     .RegisterType<RestClient>()
+            //     .WithProperty("BaseUrl", new Uri(baseUrl))
+            //     .WithProperty("CookieContainer", new CookieContainer())
+            //     .WithProperty("Authenticator", new HttpBasicAuthenticator(user, password))
+            //     .Keyed<RestClient>(healthServiceName);
 
             builder
-                .Register(context => new TraceRestClient(context.ResolveNamed<RestClient>(healthServiceName), serviceName))
+                .Register(context =>
+                {
+                    var restClient = new RestClient(
+                            new RestClientOptions(new Uri(baseUrl))
+                            {
+                                CookieContainer = new CookieContainer()
+                            })
+                    {
+                        Authenticator = new HttpBasicAuthenticator(user, password)
+                    };
+
+                    return new TraceRestClient(restClient, serviceName);
+                })
                 .Keyed<TraceRestClient>(healthServiceName)
-                .Keyed<RestClient>(healthServiceName);
+                .Keyed<IRestClient>(healthServiceName);
         }
 
         private static void RegisterApiCacheToggle(string name, bool toggleValue, ContainerBuilder builder)
