@@ -25,7 +25,7 @@ namespace Public.Api.BuildingUnit
         protected override string GoneExceptionMessage => "Verwijderde gebouweenheid.";
 
         public BuildingUnitController(
-            [KeyFilter(RegistryKeys.Building)] RestClient restClient,
+            [KeyFilter(RegistryKeys.Building)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Building)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<BuildingUnitController> logger)

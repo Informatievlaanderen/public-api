@@ -9,6 +9,7 @@ namespace Public.Api.Infrastructure.Version
     using Autofac;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware;
+    using Common.Infrastructure;
     using Common.Infrastructure.Modules;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
@@ -47,7 +48,7 @@ namespace Public.Api.Infrastructure.Version
             ConcurrentDictionary<string, string> versions,
             CancellationToken cancellationToken)
         {
-            var healthClient = scope.ResolveNamed<RestClient>($"Health-{registry}");
+            var healthClient = scope.ResolveNamed<IRestClient>($"Health-{registry}");
             var healthResponse = await healthClient.ExecuteAsync(new RestRequest(), cancellationToken);
 
             var downstreamVersion = healthResponse

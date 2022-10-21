@@ -74,12 +74,8 @@ namespace Public.Api.StreetName.BackOffice
 
             RestRequest BackendRequest()
             {
-                var request = new RestRequest(CorrectStreetNameRoute, Method.Post)
-                    .AddParameter("application/json; charset=utf-8",
-                        JsonConvert.SerializeObject(streetNameCorrectNamesRequest),
-                        ParameterType.RequestBody);
-
-                request.AddParameter("objectId", objectId, ParameterType.UrlSegment);
+                var request = CreateBackendRequestWithJsonBody(CorrectStreetNameRoute, streetNameCorrectNamesRequest, Method.Post)
+                    .AddParameter("objectId", objectId, ParameterType.UrlSegment);
 
                 if (ifMatch is not null)
                 {

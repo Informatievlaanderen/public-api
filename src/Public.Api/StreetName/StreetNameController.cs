@@ -25,7 +25,7 @@ namespace Public.Api.StreetName
         protected override string GoneExceptionMessage => "Verwijderde straatnaam.";
 
         public StreetNameController(
-            [KeyFilter(RegistryKeys.StreetName)] RestClient restClient,
+            [KeyFilter(RegistryKeys.StreetName)] IRestClient restClient,
             [KeyFilter(RegistryKeys.StreetName)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<StreetNameController> logger)
