@@ -5,6 +5,7 @@ namespace Common.Infrastructure.Modules
     using System.Net;
     using System.Net.Http;
     using System.Runtime.Serialization;
+    using System.Text;
     using Autofac;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Configuration;
@@ -72,18 +73,13 @@ namespace Common.Infrastructure.Modules
             string serviceName,
             ContainerBuilder builder)
         {
-            // builder
-            //     .RegisterType<RestClient>()
-            //     .WithProperty("BaseUrl", new Uri(baseUrl))
-            //     .WithProperty("CookieContainer", new CookieContainer())
-            //     .Keyed<RestClient>(name);
-
             builder
                 .Register(context =>
                 {
                     var restClient = new RestClient(new RestClientOptions(new Uri(baseUrl))
                     {
-                        CookieContainer = new CookieContainer()
+                        CookieContainer = new CookieContainer(),
+                        Encoding = Encoding.UTF8
                     });
 
                     var traceRestClient = new TraceRestClient(restClient, serviceName);
@@ -103,12 +99,6 @@ namespace Common.Infrastructure.Modules
             ContainerBuilder builder)
         {
             var healthServiceName = $"Health-{name}";
-            // builder
-            //     .RegisterType<RestClient>()
-            //     .WithProperty("BaseUrl", new Uri(baseUrl))
-            //     .WithProperty("CookieContainer", new CookieContainer())
-            //     .WithProperty("Authenticator", new HttpBasicAuthenticator(user, password))
-            //     .Keyed<RestClient>(healthServiceName);
 
             builder
                 .Register(context =>
@@ -116,7 +106,8 @@ namespace Common.Infrastructure.Modules
                     var restClient = new RestClient(
                             new RestClientOptions(new Uri(baseUrl))
                             {
-                                CookieContainer = new CookieContainer()
+                                CookieContainer = new CookieContainer(),
+                                Encoding = Encoding.UTF8
                             })
                     {
                         Authenticator = new HttpBasicAuthenticator(user, password)

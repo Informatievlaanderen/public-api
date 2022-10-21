@@ -93,9 +93,9 @@ namespace Common.Infrastructure.Controllers
                 cancellationToken);
 
         protected static RestRequest CreateBackendRequestWithJsonBody<TRequest>(string path, TRequest body, Method method)
+            where TRequest : class
         {
-            var request = new RestRequest(path)
-                .AddParameter("application/json; charset=utf-8", JsonConvert.SerializeObject(body), ParameterType.RequestBody);
+            var request = new RestRequest(path).AddJsonBody(body);
             request.Method = method;
             return request;
         }

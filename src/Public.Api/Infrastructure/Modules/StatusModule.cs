@@ -2,6 +2,7 @@ namespace Public.Api.Infrastructure.Modules
 {
     using System;
     using System.Net;
+    using System.Text;
     using Autofac;
     using Autofac.Core;
     using Autofac.Core.Registration;
@@ -105,19 +106,13 @@ namespace Public.Api.Infrastructure.Modules
             if (string.IsNullOrWhiteSpace(baseUrl))
                 return;
 
-            // builder
-            //     .RegisterType<RestClient>()
-            //     .WithProperty("BaseUrl", new Uri(baseUrl))
-            //     .WithProperty("CookieContainer", new CookieContainer())
-            //     .Keyed<RestClient>(key)
-            //     .OnlyIf(IsNotRegistered<RestClient>(key));
-
             builder
                 .Register(context =>
                 {
                     var restClient = new RestClient(new RestClientOptions(new Uri(baseUrl))
                     {
-                        CookieContainer = new CookieContainer()
+                        CookieContainer = new CookieContainer(),
+                        Encoding = Encoding.UTF8
                     });
 
                     var traceRestClient = new TraceRestClient(restClient, _serviceName);
