@@ -1,3 +1,11 @@
+## [5.42.4](https://github.com/informatievlaanderen/public-api/compare/v5.42.3...v5.42.4) (2022-10-24)
+
+
+### Bug Fixes
+
+* address api documentation ([f758398](https://github.com/informatievlaanderen/public-api/commit/f758398265b5c54c55bcb65238e40be9931475b4))
+* registration of restsharp ([c25d7c8](https://github.com/informatievlaanderen/public-api/commit/c25d7c86b32e24d059601351ec509da3b856a55e))
+
 ## [5.42.3](https://github.com/informatievlaanderen/public-api/compare/v5.42.2...v5.42.3) (2022-10-20)
 
 
