@@ -697,8 +697,9 @@ De feed bevat een aantal velden waarin een timestamp staat. Hieronder staat de b
 
             if (isProposeStreetName)
                 text.AppendLine(
-                    $@"## Werking edit API's
+                    $@"## Gebruik van de edit API's
 
+### Werking edit API's
 Informatie over hoe de edit API's van het gebouwen-en adressenregister werken kan gevonden worden op volgende pagina: {siteUrlWithDocs}/editendpointsgrar.
 ");
 
