@@ -1,3 +1,10 @@
+# [5.43.0](https://github.com/informatievlaanderen/public-api/compare/v5.42.4...v5.43.0) (2022-10-26)
+
+
+### Features
+
+* version bump building registry for new events ([8454066](https://github.com/informatievlaanderen/public-api/commit/8454066d0e457c8d1d229d1c337d6906220b7d38))
+
 ## [5.42.4](https://github.com/informatievlaanderen/public-api/compare/v5.42.3...v5.42.4) (2022-10-24)
 
 
