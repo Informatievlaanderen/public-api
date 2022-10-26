@@ -29,7 +29,9 @@ namespace Public.Api.Infrastructure
             context.HttpContext.Response.Headers.Add("x-cached", _response.CameFromCache ? "yes" : "no");
 
             if (!string.IsNullOrWhiteSpace(_response.DownstreamVersion))
+            {
                 context.HttpContext.Response.Headers.Add("x-basisregister-downstream-version", _response.DownstreamVersion);
+            }
 
             if (_response.CameFromCache)
                 context.HttpContext.Response.Headers.Add("x-last-modified", _response.LastModified.ToString("O", CultureInfo.InvariantCulture));
