@@ -1,3 +1,10 @@
+## [5.44.2](https://github.com/informatievlaanderen/public-api/compare/v5.44.1...v5.44.2) (2022-10-26)
+
+
+### Bug Fixes
+
+* docs change title edit api's ([4a741fb](https://github.com/informatievlaanderen/public-api/commit/4a741fbea998892f63a2b09745e3bba5f5955e90))
+
 ## [5.44.1](https://github.com/informatievlaanderen/public-api/compare/v5.44.0...v5.44.1) (2022-10-26)
 
 
