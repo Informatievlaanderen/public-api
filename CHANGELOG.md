@@ -1,3 +1,10 @@
+## [5.44.1](https://github.com/informatievlaanderen/public-api/compare/v5.44.0...v5.44.1) (2022-10-26)
+
+
+### Bug Fixes
+
+* style to trigger build ([db3b2ff](https://github.com/informatievlaanderen/public-api/commit/db3b2ff6105b58de417aa6b76704e5d1bda27b86))
+
 # [5.44.0](https://github.com/informatievlaanderen/public-api/compare/v5.43.0...v5.44.0) (2022-10-26)
 
 
