@@ -11,7 +11,6 @@ namespace Public.Api.Address.BackOffice
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using Newtonsoft.Json;
     using RestSharp;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
@@ -55,8 +54,8 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(AddressCorrectPositionRequest), typeof(AddressCorrectPositionRequestExamples))]
         [SwaggerOperation(Description = "Correctie van de positiespecificatie, positiegeometriemethode of positie van een adres. Gekoppelde busnummers corrigeren niet mee.")]
-        [HttpPost(CorrectPositionRoute, Name = nameof(CorrectAddressPosition))]
-        public async Task<IActionResult> CorrectAddressPosition(
+        [HttpPost(CorrectPositionRoute, Name = nameof(CorrectPositionAddress))]
+        public async Task<IActionResult> CorrectPositionAddress(
             [FromRoute] int objectId,
             [FromBody] AddressCorrectPositionRequest addressCorrectPositionRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,

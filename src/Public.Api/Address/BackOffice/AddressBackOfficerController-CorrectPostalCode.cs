@@ -3,16 +3,15 @@ namespace Public.Api.Address.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using AddressRegistry.Api.BackOffice.Abstractions.Requests;
+    using AddressRegistry.Api.Legacy.Address.Responses;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Infrastructure;
+    using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
-    using AddressRegistry.Api.Legacy.Address.Responses;
-    using Infrastructure.Swagger;
-    using Newtonsoft.Json;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -55,8 +54,8 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(AddressChangePositionRequest), typeof(AddressChangePositionRequestExamples))]
         [SwaggerOperation(Description = "Correctie van de postinfoId van een adres. Gekoppelde busnummers worden ook gecorrigeerd naar het nieuwe postinfoId. Het postinfoId moet in de gekoppelde gemeente van het adres liggen.")]
-        [HttpPost(CorrectPostalCodeRoute, Name = nameof(CorrectAddressPostalCode))]
-        public async Task<IActionResult> CorrectAddressPostalCode(
+        [HttpPost(CorrectPostalCodeRoute, Name = nameof(CorrectPostalCodeAddress))]
+        public async Task<IActionResult> CorrectPostalCodeAddress(
             [FromRoute] int objectId,
             [FromBody] AddressCorrectPostalCodeRequest addressCorrectPostalCodeRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
