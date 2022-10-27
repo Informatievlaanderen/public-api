@@ -18,6 +18,7 @@ namespace Common.Infrastructure.Controllers
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Primitives;
+    using Microsoft.Net.Http.Headers;
     using Newtonsoft.Json;
     using RestSharp;
     using StackExchange.Redis;
@@ -47,6 +48,36 @@ namespace Common.Infrastructure.Controllers
         {
             _redis = redis.GetConnectionMultiplexer();
             _logger = logger;
+        }
+
+        private static void AddHeadersFromCurrentRequest(HttpRequest currentRequest, RestRequest targetRequest)
+        {
+            var copyHeaders = new[] { ApiKeyAuthAttribute.ApiKeyHeaderName, ApiKeyAuthAttribute.ApiTokenHeaderName };
+            var copyParameters = new[] { ApiKeyAuthAttribute.ApiKeyQueryName };
+
+            foreach (var name in copyHeaders)
+            {
+                var value = currentRequest.Headers[name];
+                if (!string.IsNullOrEmpty(value))
+                {
+                    if (!targetRequest.Parameters.Exists(new HeaderParameter(name, value)))
+                    {
+                        targetRequest.AddHeader(name, value);
+                    }
+                }
+            }
+
+            foreach (var name in copyParameters)
+            {
+                if (currentRequest.Query.ContainsKey(name))
+                {
+                    var value = currentRequest.Query[name];
+                    if (!targetRequest.Parameters.Exists(new QueryParameter(name, value)))
+                    {
+                        targetRequest.AddQueryParameter(name, value);
+                    }
+                }
+            }
         }
 
         protected async Task<BackendResponse> GetFromCacheThenFromBackendAsync(
@@ -121,7 +152,18 @@ namespace Common.Infrastructure.Controllers
                 cancellationToken);
         }
 
-        protected static async Task<BackendResponse> GetFromBackendWithBadRequestAsync(
+        protected async Task<BackendResponse> GetFromBackendWithBadRequestAsync(
+            IRestClient restClient,
+            Func<RestRequest> createBackendRequestFunc,
+            AcceptType acceptType,
+            Action<HttpStatusCode> handleNotOkResponseAction,
+            ProblemDetailsHelper problemDetailsHelper,
+            ICollection<KeyValuePair<string, string>>? headersToForward = null,
+            CancellationToken cancellationToken = default)
+            => await GetFromBackendWithBadRequestAsync(Request, restClient, createBackendRequestFunc, acceptType, handleNotOkResponseAction, problemDetailsHelper, headersToForward, cancellationToken);
+
+        private static async Task<BackendResponse> GetFromBackendWithBadRequestAsync(
+            HttpRequest currentRequest,
             IRestClient restClient,
             Func<RestRequest> createBackendRequestFunc,
             AcceptType acceptType,
@@ -134,6 +176,7 @@ namespace Common.Infrastructure.Controllers
 
             var backendRequest = createBackendRequestFunc();
             backendRequest.AddHeader(HeaderNames.Accept, contentType);
+            AddHeadersFromCurrentRequest(currentRequest, backendRequest);
             if (headersToForward != null && headersToForward.Any())
             {
                 backendRequest.AddHeaders(headersToForward);
@@ -252,8 +295,16 @@ namespace Common.Infrastructure.Controllers
                     Encode(problemDetails.ProblemTypeUri),
                     Encode(helper.RewriteExceptionTypeFrom(problemDetails)));
         }
+        protected async Task<BackendResponse> GetFromBackendAsync(
+            IRestClient restClient,
+            Func<RestRequest> createBackendRequestFunc,
+            AcceptType acceptType,
+            Action<HttpStatusCode> handleNotOkResponseAction,
+            CancellationToken cancellationToken)
+            => await GetFromBackendAsync(Request, restClient, createBackendRequestFunc, acceptType, handleNotOkResponseAction, cancellationToken);
 
-        protected static async Task<BackendResponse> GetFromBackendAsync(
+        private static async Task<BackendResponse> GetFromBackendAsync(
+            HttpRequest currentRequest,
             IRestClient restClient,
             Func<RestRequest> createBackendRequestFunc,
             AcceptType acceptType,
@@ -264,18 +315,19 @@ namespace Common.Infrastructure.Controllers
 
             var backendRequest = createBackendRequestFunc();
             backendRequest.AddHeader(HeaderNames.Accept, contentType);
+            AddHeadersFromCurrentRequest(currentRequest, backendRequest);
 
             var response = await ExecuteRequestAsync(restClient, backendRequest, cancellationToken);
 
             if (response.IsSuccessful && response.StatusCode is HttpStatusCode.OK or HttpStatusCode.Created)
             {
                 var downstreamVersion = response
-                    .Headers
+                    .Headers?
                     .FirstOrDefault(x => x.Name.Equals(AddVersionHeaderMiddleware.HeaderName, StringComparison.InvariantCultureIgnoreCase));
 
                 return new BackendResponse(
                     response.Content,
-                    downstreamVersion?.Value.ToString(),
+                    downstreamVersion?.Value?.ToString(),
                     DateTimeOffset.UtcNow,
                     contentType,
                     false,
@@ -296,7 +348,7 @@ namespace Common.Infrastructure.Controllers
             var response = await restClient.ExecuteAsync(backendRequest, cancellationToken);
 
             // Api gateway hard limit: https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html
-            if (response.Content.Length > 10_000_000)
+            if (response.Content?.Length > 10_000_000)
                 throw new ApiException(
                     "Response is te groot, probeer de 'limit' parameter te verkleinen en probeer opnieuw.",
                     StatusCodes.Status500InternalServerError);
