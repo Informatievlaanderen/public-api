@@ -1,3 +1,10 @@
+## [5.44.3](https://github.com/informatievlaanderen/public-api/compare/v5.44.2...v5.44.3) (2022-10-27)
+
+
+### Bug Fixes
+
+* docs building unit correct not-realization ([aee377c](https://github.com/informatievlaanderen/public-api/commit/aee377cc887ae4eb8d22fbf9afa5cbdebc4b5cdb))
+
 ## [5.44.2](https://github.com/informatievlaanderen/public-api/compare/v5.44.1...v5.44.2) (2022-10-26)
 
 
