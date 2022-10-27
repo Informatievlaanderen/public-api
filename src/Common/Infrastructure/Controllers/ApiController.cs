@@ -53,7 +53,6 @@ namespace Common.Infrastructure.Controllers
         private static void AddHeadersFromCurrentRequest(HttpRequest currentRequest, RestRequest targetRequest)
         {
             var copyHeaders = new[] { ApiKeyAuthAttribute.ApiKeyHeaderName, ApiKeyAuthAttribute.ApiTokenHeaderName };
-            var copyParameters = new[] { ApiKeyAuthAttribute.ApiKeyQueryName };
 
             foreach (var name in copyHeaders)
             {
@@ -63,18 +62,6 @@ namespace Common.Infrastructure.Controllers
                     if (!targetRequest.Parameters.Exists(new HeaderParameter(name, value)))
                     {
                         targetRequest.AddHeader(name, value);
-                    }
-                }
-            }
-
-            foreach (var name in copyParameters)
-            {
-                if (currentRequest.Query.ContainsKey(name))
-                {
-                    var value = currentRequest.Query[name];
-                    if (!targetRequest.Parameters.Exists(new QueryParameter(name, value)))
-                    {
-                        targetRequest.AddQueryParameter(name, value);
                     }
                 }
             }
@@ -176,13 +163,12 @@ namespace Common.Infrastructure.Controllers
 
             var backendRequest = createBackendRequestFunc();
             backendRequest.AddHeader(HeaderNames.Accept, contentType);
-            AddHeadersFromCurrentRequest(currentRequest, backendRequest);
             if (headersToForward != null && headersToForward.Any())
             {
                 backendRequest.AddHeaders(headersToForward);
             }
 
-            var response = await ExecuteRequestAsync(restClient, backendRequest, cancellationToken);
+            var response = await ExecuteRequestAsync(currentRequest, restClient, backendRequest, cancellationToken);
 
             var downstreamVersion = response
                 .Headers
@@ -315,9 +301,8 @@ namespace Common.Infrastructure.Controllers
 
             var backendRequest = createBackendRequestFunc();
             backendRequest.AddHeader(HeaderNames.Accept, contentType);
-            AddHeadersFromCurrentRequest(currentRequest, backendRequest);
 
-            var response = await ExecuteRequestAsync(restClient, backendRequest, cancellationToken);
+            var response = await ExecuteRequestAsync(currentRequest, restClient, backendRequest, cancellationToken);
 
             if (response.IsSuccessful && response.StatusCode is HttpStatusCode.OK or HttpStatusCode.Created)
             {
@@ -341,10 +326,13 @@ namespace Common.Infrastructure.Controllers
         }
 
         private static async Task<RestResponse> ExecuteRequestAsync(
+            HttpRequest currentRequest,
             IRestClient restClient,
             RestRequest backendRequest,
             CancellationToken cancellationToken)
         {
+            AddHeadersFromCurrentRequest(currentRequest, backendRequest);
+
             var response = await restClient.ExecuteAsync(backendRequest, cancellationToken);
 
             // Api gateway hard limit: https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html
