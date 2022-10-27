@@ -2,15 +2,15 @@ namespace Public.Api.Address.BackOffice
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using AddressRegistry.Api.Legacy.Address.Responses;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Infrastructure;
+    using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
-    using AddressRegistry.Api.Legacy.Address.Responses;
-    using Infrastructure.Swagger;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -51,8 +51,8 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Correctie van de adresstatus van `afgekeurd` naar `voorgesteld`. Gekoppelde busnummers corrigeren niet mee van status.")]
-        [HttpPost(CorrectRejectionRoute, Name = nameof(CorrectAddressRejection))]
-        public async Task<IActionResult> CorrectAddressRejection(
+        [HttpPost(CorrectRejectionRoute, Name = nameof(CorrectRejectionAddress))]
+        public async Task<IActionResult> CorrectRejectionAddress(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,

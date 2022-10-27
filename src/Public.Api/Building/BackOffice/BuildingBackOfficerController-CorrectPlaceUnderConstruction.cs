@@ -49,8 +49,8 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Correctie van de gebouwstatus van `inAanbouw` naar `gepland`. Gekoppelde gebouweenheden corrigeren niet mee van status.")]
-        [HttpPost("gebouwen/{objectId}/acties/corrigeren/inaanbouwplaatsing", Name = nameof(CorrectBuildingPlaceUnderConstruction))]
-        public async Task<IActionResult> CorrectBuildingPlaceUnderConstruction(
+        [HttpPost("gebouwen/{objectId}/acties/corrigeren/inaanbouwplaatsing", Name = nameof(CorrectBuildingUnderConstruction))]
+        public async Task<IActionResult> CorrectBuildingUnderConstruction(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,

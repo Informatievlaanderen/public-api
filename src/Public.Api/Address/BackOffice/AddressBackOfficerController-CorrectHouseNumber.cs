@@ -4,16 +4,15 @@ namespace Public.Api.Address.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using AddressRegistry.Api.BackOffice.Abstractions.Requests;
+    using AddressRegistry.Api.Legacy.Address.Responses;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Infrastructure;
+    using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
-    using AddressRegistry.Api.Legacy.Address.Responses;
-    using Infrastructure.Swagger;
-    using Newtonsoft.Json;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -56,8 +55,8 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(AddressChangePositionRequest), typeof(AddressChangePositionRequestExamples))]
         [SwaggerOperation(Description = "Correctie van het huisnummer van een adres. Gekoppelde busnummers worden ook gecorrigeerd naar het nieuwe huisnummer.")]
-        [HttpPost(CorrectHouseNumberRoute, Name = nameof(CorrectAddressHouseNumber))]
-        public async Task<IActionResult> CorrectAddressHouseNumber(
+        [HttpPost(CorrectHouseNumberRoute, Name = nameof(CorrectHouseNumberAddress))]
+        public async Task<IActionResult> CorrectHouseNumberAddress(
             [FromRoute] int objectId,
             [FromBody] AddressCorrectHouseNumberRequest addressCorrectHouseNumberRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
