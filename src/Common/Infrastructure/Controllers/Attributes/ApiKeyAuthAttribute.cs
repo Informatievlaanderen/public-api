@@ -16,9 +16,9 @@ namespace Common.Infrastructure.Controllers.Attributes
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class ApiKeyAuthAttribute : Attribute, IAsyncActionFilter
     {
-        private const string ApiKeyHeaderName = "x-api-key";
-        private const string ApiKeyQueryName = "apikey";
-        private const string ApiTokenHeaderName = "x-api-token";
+        public const string ApiKeyHeaderName = "x-api-key";
+        public const string ApiKeyQueryName = "apikey";
+        public const string ApiTokenHeaderName = "x-api-token";
 
         private readonly string _requiredAccess;
 
