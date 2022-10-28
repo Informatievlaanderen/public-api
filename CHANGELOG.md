@@ -1,3 +1,16 @@
+# [5.45.0](https://github.com/informatievlaanderen/public-api/compare/v5.44.3...v5.45.0) (2022-10-28)
+
+
+### Bug Fixes
+
+* send x-api-token to backend ([ddf7a37](https://github.com/informatievlaanderen/public-api/commit/ddf7a37be4d295a4a3ecb71afde76f9f9c1a15a7))
+* use togglenames as action names ([c7ad3c0](https://github.com/informatievlaanderen/public-api/commit/c7ad3c0c50411c8c9eeada6344894d0a768070ac))
+
+
+### Features
+
+* forward x-api-key/x-api-token header and apikey query param to new requests ([3261160](https://github.com/informatievlaanderen/public-api/commit/3261160a2da8e9fbd2c66ae0645dd909b8cf3dab))
+
 ## [5.44.3](https://github.com/informatievlaanderen/public-api/compare/v5.44.2...v5.44.3) (2022-10-27)
 
 
