@@ -88,7 +88,7 @@ jobs:
 
     - name: Test
       shell: bash
-      run: dotnet dotcover test --dcReportType=HTML --nologo --no-build Public.sln
+      run: dotnet test --nologo --no-build Public.sln
 
     - name: Sonar end build & analyze
       env:
