@@ -17,13 +17,15 @@ namespace Public.Api.BuildingUnit.BackOffice
 
     public partial class BuildingUnitBackOfficeController
     {
+        public const string BuildingUnitRetireRoute = "gebouweenheden/{objectId}/acties/opheffing";
+
         /// <summary>
-        /// Corrigeer de niet realisering van een gebouweenheid.
+        /// Hef een gebouweenheid op.
         /// </summary>
         /// <param name="objectId">Identificator van de gebouweenheid.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
-        /// <param name="correctBuildingUnitNotRealizationToggle"></param>
+        /// <param name="retireBuildingUnitToggle"></param>
         /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van de gebouweenheid (optioneel).</param>
         /// <param name="cancellationToken"></param>
         /// <response code="202">Als het ticket succesvol is aangemaakt.</response>
@@ -34,7 +36,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         /// <returns></returns>
-        [ApiOrder(ApiOrder.BuildingUnit.Edit + 6)]
+        [ApiOrder(ApiOrder.BuildingUnit.Edit + 4)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -48,27 +50,25 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Correctie van de gebouweenheidstatus van `nietGerealiseerd` naar `gepland`. Er wordt automatisch een gemeenschappelijkDeel aangemaakt vanaf dat er 2 gebouweenheden met status `gepland` of `gerealiseerd` aan een gebouw gekoppeld zijn. De status van het gemeenschappelijKDeel is `gepland` wanneer het gebouw status `gepland` is. De status van het gemeenschappelijkDeel is `gerealiseerd` wanneer het gebouw status `gerealiseerd` is.")]
-        [HttpPost("gebouweenheden/{objectId}/acties/corrigeren/nietrealisering", Name = nameof(CorrectBuildingUnitNotRealization))]
-        public async Task<IActionResult> CorrectBuildingUnitNotRealization(
+        [SwaggerOperation(Description = "Wijzig de gebouweenheidstatus van `gerealiseerd` naar `gehistoreerd`.")]
+        [HttpPost(BuildingUnitRetireRoute, Name = nameof(RetireBuildingUnit))]
+        public async Task<IActionResult> RetireBuildingUnit(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] CorrectBuildingUnitNotRealizationToggle correctBuildingUnitNotRealizationToggle,
+            [FromServices] RetireBuildingUnitToggle retireBuildingUnitToggle,
             [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
             CancellationToken cancellationToken = default)
         {
-            if (!correctBuildingUnitNotRealizationToggle.FeatureEnabled)
-            {
+            if (!retireBuildingUnitToggle.FeatureEnabled)
                 return NotFound();
-            }
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest()
             {
-                var request = new RestRequest("gebouweenheden/{persistentLocalId}/acties/corrigeren/nietrealisering", Method.Post);
-                request.AddParameter("persistentLocalId", objectId, ParameterType.UrlSegment);
+                var request = new RestRequest(BuildingUnitRetireRoute, Method.Post);
+                request.AddParameter("objectId", objectId, ParameterType.UrlSegment);
 
                 if (ifMatch is not null)
                 {
