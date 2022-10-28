@@ -9,9 +9,9 @@ namespace Public.Api.BuildingUnit
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using RestSharp;
 
     [ApiVisible]
     [ApiVersion(Version.Current)]
@@ -25,11 +25,12 @@ namespace Public.Api.BuildingUnit
         protected override string GoneExceptionMessage => "Verwijderde gebouweenheid.";
 
         public BuildingUnitController(
+            IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.Building)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Building)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<BuildingUnitController> logger)
-            : base(restClient, cacheToggle, redis, logger) { }
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
         private static ContentFormat DetermineFormat(ActionContext context)
             => ContentFormat.For(EndpointType.Legacy, context);

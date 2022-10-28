@@ -9,6 +9,7 @@ namespace Public.Api.Parcel
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
@@ -25,11 +26,12 @@ namespace Public.Api.Parcel
         protected override string GoneExceptionMessage => "Verwijderd perceel.";
 
         public ParcelController(
+            IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.Parcel)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Parcel)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<ParcelController> logger)
-            : base(restClient, cacheToggle, redis, logger) { }
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
         private static ContentFormat DetermineFormat(ActionContext context)
             => ContentFormat.For(EndpointType.Legacy, context);

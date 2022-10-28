@@ -40,44 +40,17 @@ namespace Common.Infrastructure.Controllers
         private const string SetByRegistryKey = "setByRegistry";
 
         private readonly IConnectionMultiplexer _redis;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<T> _logger;
 
         protected ApiController(
+            IHttpContextAccessor httpContextAccessor,
             ConnectionMultiplexerProvider redis,
             ILogger<T> logger)
         {
             _redis = redis.GetConnectionMultiplexer();
+            _httpContextAccessor = httpContextAccessor;
             _logger = logger;
-        }
-
-        private static void AddHeadersFromCurrentRequest(HttpRequest currentRequest, RestRequest targetRequest)
-        {
-            var copyHeaders = new[] { ApiKeyAuthAttribute.ApiKeyHeaderName, ApiKeyAuthAttribute.ApiTokenHeaderName };
-            var copyParameters = new[] { ApiKeyAuthAttribute.ApiKeyQueryName };
-
-            foreach (var name in copyHeaders)
-            {
-                var value = currentRequest.Headers[name];
-                if (!string.IsNullOrEmpty(value))
-                {
-                    if (!targetRequest.Parameters.Exists(new HeaderParameter(name, value)))
-                    {
-                        targetRequest.AddHeader(name, value);
-                    }
-                }
-            }
-
-            foreach (var name in copyParameters)
-            {
-                if (currentRequest.Query.ContainsKey(name))
-                {
-                    var value = currentRequest.Query[name];
-                    if (!targetRequest.Parameters.Exists(new QueryParameter(name, value)))
-                    {
-                        targetRequest.AddQueryParameter(name, value);
-                    }
-                }
-            }
         }
 
         protected async Task<BackendResponse> GetFromCacheThenFromBackendAsync(
@@ -160,23 +133,11 @@ namespace Common.Infrastructure.Controllers
             ProblemDetailsHelper problemDetailsHelper,
             ICollection<KeyValuePair<string, string>>? headersToForward = null,
             CancellationToken cancellationToken = default)
-            => await GetFromBackendWithBadRequestAsync(Request, restClient, createBackendRequestFunc, acceptType, handleNotOkResponseAction, problemDetailsHelper, headersToForward, cancellationToken);
-
-        private static async Task<BackendResponse> GetFromBackendWithBadRequestAsync(
-            HttpRequest currentRequest,
-            IRestClient restClient,
-            Func<RestRequest> createBackendRequestFunc,
-            AcceptType acceptType,
-            Action<HttpStatusCode> handleNotOkResponseAction,
-            ProblemDetailsHelper problemDetailsHelper,
-            ICollection<KeyValuePair<string, string>>? headersToForward = null,
-            CancellationToken cancellationToken = default)
         {
             var contentType = acceptType.ToMimeTypeString();
 
             var backendRequest = createBackendRequestFunc();
             backendRequest.AddHeader(HeaderNames.Accept, contentType);
-            AddHeadersFromCurrentRequest(currentRequest, backendRequest);
             if (headersToForward != null && headersToForward.Any())
             {
                 backendRequest.AddHeaders(headersToForward);
@@ -217,7 +178,7 @@ namespace Common.Infrastructure.Controllers
             throw new ApiException("Fout bij de bron.", (int)response.StatusCode, response.ErrorException);
         }
 
-        protected static async Task<IBackendResponse> GetFromBackendWithBadRequestAsync(
+        protected async Task<IBackendResponse> GetFromBackendWithBadRequestAsync(
             HttpClient httpClient,
             Func<HttpRequestMessage> createBackendRequestFunc,
             Action<HttpStatusCode> handleNotOkResponseAction,
@@ -259,7 +220,7 @@ namespace Common.Infrastructure.Controllers
             throw new ApiException("Fout bij de bron.", (int)response.StatusCode);
         }
 
-        private static string GetPublicContentValue(RestResponse response, ProblemDetailsHelper helper)
+        private string GetPublicContentValue(RestResponse response, ProblemDetailsHelper helper)
         {
             var problemDetails = response.GetProblemDetails();
             if (string.IsNullOrWhiteSpace(problemDetails.ProblemTypeUri))
@@ -295,16 +256,8 @@ namespace Common.Infrastructure.Controllers
                     Encode(problemDetails.ProblemTypeUri),
                     Encode(helper.RewriteExceptionTypeFrom(problemDetails)));
         }
-        protected async Task<BackendResponse> GetFromBackendAsync(
-            IRestClient restClient,
-            Func<RestRequest> createBackendRequestFunc,
-            AcceptType acceptType,
-            Action<HttpStatusCode> handleNotOkResponseAction,
-            CancellationToken cancellationToken)
-            => await GetFromBackendAsync(Request, restClient, createBackendRequestFunc, acceptType, handleNotOkResponseAction, cancellationToken);
 
-        private static async Task<BackendResponse> GetFromBackendAsync(
-            HttpRequest currentRequest,
+        protected async Task<BackendResponse> GetFromBackendAsync(
             IRestClient restClient,
             Func<RestRequest> createBackendRequestFunc,
             AcceptType acceptType,
@@ -315,7 +268,6 @@ namespace Common.Infrastructure.Controllers
 
             var backendRequest = createBackendRequestFunc();
             backendRequest.AddHeader(HeaderNames.Accept, contentType);
-            AddHeadersFromCurrentRequest(currentRequest, backendRequest);
 
             var response = await ExecuteRequestAsync(restClient, backendRequest, cancellationToken);
 
@@ -340,20 +292,37 @@ namespace Common.Infrastructure.Controllers
             throw new ApiProblemDetailsException("Fout bij de bron.", (int)response.StatusCode, response.GetProblemDetails(), response.ErrorException);
         }
 
-        private static async Task<RestResponse> ExecuteRequestAsync(
+        private async Task<RestResponse> ExecuteRequestAsync(
             IRestClient restClient,
             RestRequest backendRequest,
             CancellationToken cancellationToken)
         {
+            AddApiKeyTokenHeaderFromRequest(_httpContextAccessor.HttpContext?.Request, backendRequest);
             var response = await restClient.ExecuteAsync(backendRequest, cancellationToken);
 
             // Api gateway hard limit: https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html
             if (response.Content?.Length > 10_000_000)
-                throw new ApiException(
-                    "Response is te groot, probeer de 'limit' parameter te verkleinen en probeer opnieuw.",
-                    StatusCodes.Status500InternalServerError);
+            {
+                throw new ApiException("Response is te groot, probeer de 'limit' parameter te verkleinen en probeer opnieuw.", StatusCodes.Status500InternalServerError);
+            }
 
             return response;
+        }
+
+        private static void AddApiKeyTokenHeaderFromRequest(HttpRequest? currentRequest, RestRequest targetRequest)
+        {
+            if (currentRequest is null)
+            {
+                return;
+            }
+
+            var copyHeaders = new[] { ApiKeyAuthAttribute.ApiTokenHeaderName };
+            var headersToCopy = currentRequest.Headers.Where(x => copyHeaders.Contains(x.Key));
+
+            foreach (var (key, value) in headersToCopy)
+            {
+                targetRequest.AddHeader(key, value);
+            }
         }
     }
 }

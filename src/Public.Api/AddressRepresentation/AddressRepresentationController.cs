@@ -9,6 +9,7 @@ namespace Public.Api.AddressRepresentation
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
@@ -25,11 +26,12 @@ namespace Public.Api.AddressRepresentation
         protected override string GoneExceptionMessage => "Verwijderd adres.";
 
         public AddressRepresentationController(
+            IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.Address)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Address)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<AddressRepresentationController> logger)
-            : base(restClient, cacheToggle, redis, logger) { }
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
         private static ContentFormat DetermineFormat(ActionContext context)
             => ContentFormat.For(EndpointType.Legacy, context);

@@ -6,11 +6,11 @@ namespace Public.Api.Tickets
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
-    using RestSharp;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
     using Version = Infrastructure.Version.Version;
 
     [ApiVisible]
@@ -27,12 +27,13 @@ namespace Public.Api.Tickets
         protected override string GoneExceptionMessage => "Verwijderd ticket.";
 
         public TicketingServiceController(
+            IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.TicketingService)] IRestClient restClient,
             [KeyFilter(RegistryKeys.TicketingService)] IFeatureToggle cacheToggle,
             TicketingToggle ticketingToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<TicketingServiceController> logger)
-            : base(restClient, cacheToggle, redis, logger)
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle)
         {
             _ticketingToggle = ticketingToggle;
         }

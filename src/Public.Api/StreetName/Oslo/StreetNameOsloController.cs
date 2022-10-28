@@ -9,9 +9,9 @@ namespace Public.Api.StreetName.Oslo
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using RestSharp;
 
     [ApiVisible]
     [ApiVersion(Version.V2)]
@@ -25,11 +25,12 @@ namespace Public.Api.StreetName.Oslo
         protected override string GoneExceptionMessage => "Verwijderde straatnaam.";
 
         public StreetNameOsloController(
+            IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.StreetNameV2)] IRestClient restClient,
             [KeyFilter(RegistryKeys.StreetNameV2)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<StreetNameOsloController> logger)
-            : base(restClient, cacheToggle, redis, logger) { }
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
         private static ContentFormat DetermineFormat(ActionContext context)
             => ContentFormat.For(EndpointType.Oslo, context);

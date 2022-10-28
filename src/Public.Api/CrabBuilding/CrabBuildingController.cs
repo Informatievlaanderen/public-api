@@ -9,6 +9,7 @@ namespace Public.Api.CrabBuilding
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
@@ -26,11 +27,12 @@ namespace Public.Api.CrabBuilding
         protected override string GoneExceptionMessage => "Verwijderd gebouw.";
 
         public CrabBuildingController(
+            IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.Building)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Building)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<CrabBuildingController> logger)
-            : base(restClient, cacheToggle, redis, logger) { }
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
         private static ContentFormat DetermineFormat(ActionContext context)
             => ContentFormat.For(EndpointType.Legacy, context);

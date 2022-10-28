@@ -9,6 +9,7 @@ namespace Public.Api.PostalCode
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
@@ -25,11 +26,12 @@ namespace Public.Api.PostalCode
         protected override string GoneExceptionMessage => "Verwijderde postcode.";
 
         public PostalCodeController(
+            IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.Postal)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Postal)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<PostalCodeController> logger)
-            : base(restClient, cacheToggle, redis, logger) { }
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
         private static ContentFormat DetermineFormat(ActionContext context)
             => ContentFormat.For(EndpointType.Legacy, context);

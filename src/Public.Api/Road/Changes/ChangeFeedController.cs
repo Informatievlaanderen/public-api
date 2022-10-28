@@ -9,6 +9,7 @@ namespace Public.Api.Road.Changes
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
@@ -25,10 +26,11 @@ namespace Public.Api.Road.Changes
         protected override string GoneExceptionMessage => "Verwijderde activiteit.";
 
         public ChangeFeedController(
+            IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<ChangeFeedController> logger)
-            : base(restClient, cacheToggle, redis, logger) { }
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
     }
 }

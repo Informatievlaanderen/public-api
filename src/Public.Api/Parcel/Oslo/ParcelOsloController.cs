@@ -9,6 +9,7 @@ namespace Public.Api.Parcel.Oslo
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
@@ -25,11 +26,12 @@ namespace Public.Api.Parcel.Oslo
         protected override string GoneExceptionMessage => "Verwijderd perceel.";
 
         public ParcelOsloController(
+            IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.ParcelV2)] IRestClient restClient,
             [KeyFilter(RegistryKeys.ParcelV2)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<ParcelOsloController> logger)
-            : base(restClient, cacheToggle, redis, logger) { }
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
         private static ContentFormat DetermineFormat(ActionContext context)
             => ContentFormat.For(EndpointType.Oslo, context);

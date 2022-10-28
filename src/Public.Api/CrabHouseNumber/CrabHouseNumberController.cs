@@ -9,9 +9,9 @@ namespace Public.Api.CrabHouseNumber
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using RestSharp;
 
     [ApiVisible]
     [ApiVersion(Version.Current)]
@@ -26,11 +26,12 @@ namespace Public.Api.CrabHouseNumber
         protected override string GoneExceptionMessage => "Verwijderd adres.";
 
         public CrabHouseNumberController(
+            IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.Address)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Address)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<CrabHouseNumberController> logger)
-            : base(restClient, cacheToggle, redis, logger) { }
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
         private static ContentFormat DetermineFormat(ActionContext context)
             => ContentFormat.For(EndpointType.Legacy, context);
