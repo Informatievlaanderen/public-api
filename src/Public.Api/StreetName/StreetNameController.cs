@@ -9,6 +9,7 @@ namespace Public.Api.StreetName
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
@@ -25,11 +26,12 @@ namespace Public.Api.StreetName
         protected override string GoneExceptionMessage => "Verwijderde straatnaam.";
 
         public StreetNameController(
+            IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.StreetName)] IRestClient restClient,
             [KeyFilter(RegistryKeys.StreetName)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<StreetNameController> logger)
-            : base(restClient, cacheToggle, redis, logger) { }
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
         private static ContentFormat DetermineFormat(ActionContext context)
             => ContentFormat.For(EndpointType.Legacy, context);

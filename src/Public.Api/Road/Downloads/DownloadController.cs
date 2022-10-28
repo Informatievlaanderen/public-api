@@ -10,9 +10,9 @@ namespace Public.Api.Road.Downloads
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using RestSharp;
 
     [ApiVersion(Version.Current)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
@@ -27,12 +27,13 @@ namespace Public.Api.Road.Downloads
         protected override string GoneExceptionMessage => "Verwijderde download.";
 
         public DownloadController(
+            IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Road)] HttpClient httpClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<DownloadController> logger)
-            : base(restClient, cacheToggle, redis, logger)
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle)
         {
             _httpClient = httpClient;
         }

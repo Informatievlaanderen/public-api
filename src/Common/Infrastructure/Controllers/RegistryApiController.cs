@@ -9,13 +9,12 @@ namespace Common.Infrastructure.Controllers
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using ProblemDetailsException;
     using FeatureToggle;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Primitives;
-    using Newtonsoft.Json;
+    using ProblemDetailsException;
     using RestSharp;
 
     public abstract class RegistryApiController<T> : ApiController<T>
@@ -32,10 +31,11 @@ namespace Common.Infrastructure.Controllers
         protected const int DefaultCountCaching = 0;
 
         protected RegistryApiController(
-            IRestClient restClient,
-            IFeatureToggle cacheToggle,
+            IHttpContextAccessor httpContextAccessor,
             ConnectionMultiplexerProvider redis,
-            ILogger<T> logger) : base(redis, logger)
+            ILogger<T> logger,
+            IRestClient restClient,
+            IFeatureToggle cacheToggle) : base(httpContextAccessor, redis, logger)
         {
             _restClient = restClient;
             _cacheToggle = cacheToggle;

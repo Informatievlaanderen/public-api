@@ -10,9 +10,9 @@ namespace Public.Api.Road.Extracts
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using RestSharp;
 
     [ApiVersion(Version.Current)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
@@ -27,12 +27,13 @@ namespace Public.Api.Road.Extracts
         protected override string GoneExceptionMessage => "Verwijderd extract.";
 
         public ExtractController(
+            IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Road)] HttpClient httpClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<ExtractController> logger)
-            : base(restClient, cacheToggle, redis, logger)
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle)
         {
             _httpClient = httpClient;
         }

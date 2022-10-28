@@ -36,10 +36,11 @@ namespace Public.Api.Extract
         private const int NoCaching = 0;
 
         public ExtractController(
+            IHttpContextAccessor httpContextAccessor,
             ConnectionMultiplexerProvider redis,
             ILogger<ExtractController> logger,
             ExtractDownloads extractDownloads)
-            : base(redis, logger)
+            : base(httpContextAccessor, redis, logger)
             => _extractDownloads = extractDownloads;
 
         /// <summary>Download het meest recente extract.</summary>

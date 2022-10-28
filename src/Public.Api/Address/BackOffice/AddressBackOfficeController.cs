@@ -8,6 +8,7 @@ namespace Public.Api.Address.BackOffice
     using FeatureToggle;
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
@@ -29,8 +30,9 @@ namespace Public.Api.Address.BackOffice
             [KeyFilter(RegistryKeys.AddressBackOffice)] IRestClient restClient,
             [KeyFilter(RegistryKeys.AddressBackOffice)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
+            IHttpContextAccessor httpContextAccessor,
             ILogger<AddressBackOfficeController> logger)
-            : base(restClient, cacheToggle, redis, logger) { }
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
         private static ContentFormat DetermineFormat(ActionContext context)
             => ContentFormat.For(EndpointType.BackOffice, context);

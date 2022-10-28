@@ -9,6 +9,7 @@ namespace Public.Api.BuildingUnit.Oslo
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
@@ -25,11 +26,12 @@ namespace Public.Api.BuildingUnit.Oslo
         protected override string GoneExceptionMessage => "Verwijderde gebouweenheid.";
 
         public BuildingUnitOsloController(
+            IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.BuildingV2)] IRestClient restClient,
             [KeyFilter(RegistryKeys.BuildingV2)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<BuildingUnitOsloController> logger)
-            : base(restClient, cacheToggle, redis, logger) { }
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
         private static ContentFormat DetermineFormat(ActionContext context)
             => ContentFormat.For(EndpointType.Oslo, context);

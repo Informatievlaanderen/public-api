@@ -30,9 +30,10 @@ namespace Public.Api.Feeds
         private const int NoPaging = 0;
 
         public FeedController(
+            IHttpContextAccessor httpContextAccessor,
             ConnectionMultiplexerProvider redis,
             ILogger<FeedController> logger)
-            : base(redis, logger) { }
+            : base(httpContextAccessor, redis, logger) { }
 
         private static ContentFormat DetermineFormat(ActionContext context)
             => ContentFormat.For(EndpointType.Sync, context);

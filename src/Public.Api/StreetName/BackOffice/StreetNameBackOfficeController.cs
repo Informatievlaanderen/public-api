@@ -8,9 +8,9 @@ namespace Public.Api.StreetName.BackOffice
     using FeatureToggle;
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using RestSharp;
     using Version = Infrastructure.Version.Version;
 
     [ApiVisible]
@@ -26,11 +26,12 @@ namespace Public.Api.StreetName.BackOffice
         protected override string GoneExceptionMessage => "Verwijderde straatnaam.";
 
         public StreetNameBackOfficeController(
+            IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.StreetNameBackOffice)] IRestClient restClient,
             [KeyFilter(RegistryKeys.StreetNameBackOffice)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<StreetNameBackOfficeController> logger)
-            : base(restClient, cacheToggle, redis, logger) { }
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
         private static ContentFormat DetermineFormat(ActionContext? context)
             => ContentFormat.For(EndpointType.BackOffice, context);

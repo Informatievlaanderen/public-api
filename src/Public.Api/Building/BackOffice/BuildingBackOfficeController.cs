@@ -9,6 +9,7 @@ namespace Public.Api.Building.BackOffice
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
@@ -26,13 +27,14 @@ namespace Public.Api.Building.BackOffice
         protected override string GoneExceptionMessage => "Verwijderd gebouw.";
 
         public BuildingBackOfficeController(
+            IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.BuildingBackOffice)]
             IRestClient restClient,
             [KeyFilter(RegistryKeys.BuildingBackOffice)]
             IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<BuildingBackOfficeController> logger)
-            : base(restClient, cacheToggle, redis, logger)
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle)
         { }
 
         private static ContentFormat DetermineFormat(ActionContext context)

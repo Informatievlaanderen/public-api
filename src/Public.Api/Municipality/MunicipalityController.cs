@@ -9,6 +9,7 @@ namespace Public.Api.Municipality
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using RestSharp;
@@ -26,11 +27,12 @@ namespace Public.Api.Municipality
         protected override string GoneExceptionMessage => "Verwijderde gemeente.";
 
         public MunicipalityController(
+            IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.Municipality)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Municipality)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<MunicipalityController> logger)
-            : base(restClient, cacheToggle, redis, logger) { }
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
         private static ContentFormat DetermineFormat(ActionContext context)
             => ContentFormat.For(EndpointType.Legacy, context);
