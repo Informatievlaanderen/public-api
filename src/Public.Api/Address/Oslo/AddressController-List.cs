@@ -39,6 +39,7 @@ namespace Public.Api.Address.Oslo
         /// Filter op de status van het adres (exact) (optioneel).<br/>
         /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"` `"afgekeurd"`
         /// </param>
+        /// <param name="straatnaamObjectId">Filter op de objectidentificator van de gekoppelde straatnaam (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
@@ -75,6 +76,7 @@ namespace Public.Api.Address.Oslo
             [FromQuery] string busnummer,
             [FromQuery] string niscode,
             [FromQuery] string status,
+            [FromQuery] int? straatnaamObjectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptionsV2> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -99,7 +101,8 @@ namespace Public.Api.Address.Oslo
                 straatnaam,
                 homoniemToevoeging,
                 niscode,
-                status);
+                status,
+                straatnaamObjectId);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"oslo/address-list:{taal}");
 
@@ -130,18 +133,20 @@ namespace Public.Api.Address.Oslo
             string streetName,
             string homonymAddition,
             string niscode,
-            string status)
+            string status,
+            int? streetNameId)
         {
             var filter = new AddressFilter
             {
                 BoxNumber = boxNumber,
                 HouseNumber = houseNumber,
-                PostalCode = postalCode?.ToString(),
+                PostalCode = postalCode?.ToString() ?? string.Empty,
                 MunicipalityName = municipalityName,
                 StreetName = streetName,
                 HomonymAddition = homonymAddition,
                 NisCode = niscode,
-                Status = status
+                Status = status,
+                StreetNameId = streetNameId?.ToString()
             };
 
             // id, postcode, huisnummer, busnummer
