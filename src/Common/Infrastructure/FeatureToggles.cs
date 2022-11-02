@@ -226,6 +226,13 @@ namespace Common.Infrastructure
         public CorrectBuildingNotRealizationToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class ChangeBuildingOutlineToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public ChangeBuildingOutlineToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class DemolishBuildingToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
@@ -287,6 +294,20 @@ namespace Common.Infrastructure
         public bool FeatureEnabled { get; }
 
         public RetireBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class CorrectBuildingUnitRetirementToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public CorrectBuildingUnitRetirementToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class CorrectBuildingUnitPositionToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public CorrectBuildingUnitPositionToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
     public class AttachAddressBuildingUnitToggle : IFeatureToggle
