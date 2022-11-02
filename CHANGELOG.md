@@ -1,3 +1,17 @@
+# [5.46.0](https://github.com/informatievlaanderen/public-api/compare/v5.45.0...v5.46.0) (2022-11-02)
+
+
+### Bug Fixes
+
+* enable pr's & coverage ([0e4fa6f](https://github.com/informatievlaanderen/public-api/commit/0e4fa6f55ca02ea6d1d57287706a0e6f71bbe365))
+* no coverage :-( ([5b69f18](https://github.com/informatievlaanderen/public-api/commit/5b69f1864320f2bb97e69e5c8d7fdf678a4966f5))
+
+
+### Features
+
+* add straatnaamobjectid filter on address list ([671bb60](https://github.com/informatievlaanderen/public-api/commit/671bb607c1fa35886fe4d2d95fb3db97b4d56244))
+* retire buildingunit ([5e560ea](https://github.com/informatievlaanderen/public-api/commit/5e560ea3707304e7293d1c41494e3aac7ea9fdaa))
+
 # [5.45.0](https://github.com/informatievlaanderen/public-api/compare/v5.44.3...v5.45.0) (2022-10-28)
 
 
