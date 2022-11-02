@@ -38,6 +38,7 @@ namespace Public.Api.Infrastructure.Configuration
         public bool CorrectBuildingRealization { get; set; }
         public bool NotRealizeBuilding { get; set; }
         public bool CorrectBuildingNotRealization { get; set; }
+        public bool ChangeBuildingOutline { get; set; }
         public bool DemolishBuilding { get; set; }
         public bool ChangeGeometryBuilding { get; set; }
         public bool CorrectGeometryBuilding { get; set; }
@@ -48,12 +49,14 @@ namespace Public.Api.Infrastructure.Configuration
         public bool NotRealizeBuildingUnit { get; set; }
         public bool CorrectBuildingUnitNotRealization { get; set; }
         public bool RetireBuildingUnit { get; set; }
+        public bool CorrectBuildingUnitRetirement { get; set; }
         public bool AttachAddressBuildingUnit { get; set; }
         public bool DetachAddressBuildingUnit { get; set; }
         public bool RegularizeBuildingUnit { get; set; }
         public bool DeregulateBuildingUnit { get; set; }
         public bool ChangeFunctionBuildingUnit { get; set; }
         public bool CorrectFunctionBuildingUnit { get; set; }
+        public bool CorrectBuildingUnitPosition { get; set; }
 
         public bool AttachAddressParcel { get; set; }
         public bool DetachAddressParcel { get; set; }

@@ -168,13 +168,13 @@ NUGET
       Fake.IO.FileSystem (>= 5.22)
       Fake.JavaScript.Npm (>= 5.22)
       Newtonsoft.Json (>= 13.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions (3.39) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions (3.40) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 18.1.1)
       MediatR.Contracts (>= 1.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy.Abstractions (3.39) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy.Abstractions (3.40) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 18.1.1)
       MediatR.Contracts (>= 1.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo.Abstractions (3.39) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo.Abstractions (3.40) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 18.1.1)
       MediatR.Contracts (>= 1.0.1)
     Be.Vlaanderen.Basisregisters.CommandHandling (7.0)
