@@ -1,3 +1,10 @@
+## [5.47.2](https://github.com/informatievlaanderen/public-api/compare/v5.47.1...v5.47.2) (2022-11-03)
+
+
+### Bug Fixes
+
+* update ci & test branch protection ([403296d](https://github.com/informatievlaanderen/public-api/commit/403296d2ee60fcc712a01f19423488c93c4b9c48))
+
 ## [5.47.1](https://github.com/informatievlaanderen/public-api/compare/v5.47.0...v5.47.1) (2022-11-03)
 
 
