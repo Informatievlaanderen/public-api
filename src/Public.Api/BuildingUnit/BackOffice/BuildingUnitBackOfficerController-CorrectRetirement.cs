@@ -50,7 +50,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Correctie van de gebouweenheidstatus van `gehistoreerd` naar `gerealiseerd`.")]
+        [SwaggerOperation(Description = "Correctie van de gebouweenheidstatus van `gehistoreerd` naar `gerealiseerd` binnen een gebouw met status `gerealiseerd`.")]
         [HttpPost(CorrectBuildingUnitRetirementRoute, Name = nameof(CorrectBuildingUnitRetirement))]
         public async Task<IActionResult> CorrectBuildingUnitRetirement(
             [FromRoute] int objectId,
