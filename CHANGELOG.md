@@ -1,3 +1,16 @@
+# [5.47.0](https://github.com/informatievlaanderen/public-api/compare/v5.46.0...v5.47.0) (2022-11-03)
+
+
+### Bug Fixes
+
+* add nuget to dependabot ([2247a80](https://github.com/informatievlaanderen/public-api/commit/2247a8023b14e4e66ef0edeb7e07b8125acb5ffc))
+* use VBR_SONAR_TOKEN ([ecee01f](https://github.com/informatievlaanderen/public-api/commit/ecee01f60e9e2e6688d6dcea941b6065de2f0a35))
+
+
+### Features
+
+* add routes buildingregistry (correct) retire bu & correct position bu & change building geometry ([aa7a40b](https://github.com/informatievlaanderen/public-api/commit/aa7a40b651261f9176bc2773e89a1b4d7a76a39e))
+
 # [5.46.0](https://github.com/informatievlaanderen/public-api/compare/v5.45.0...v5.46.0) (2022-11-02)
 
 
