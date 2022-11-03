@@ -1,3 +1,10 @@
+## [5.47.1](https://github.com/informatievlaanderen/public-api/compare/v5.47.0...v5.47.1) (2022-11-03)
+
+
+### Bug Fixes
+
+* correct retirement docs ([7b16ce6](https://github.com/informatievlaanderen/public-api/commit/7b16ce662c0c0f4861bee8945b0693be21b45276))
+
 # [5.47.0](https://github.com/informatievlaanderen/public-api/compare/v5.46.0...v5.47.0) (2022-11-03)
 
 
