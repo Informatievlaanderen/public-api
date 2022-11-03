@@ -17,7 +17,7 @@ namespace Public.Api.BuildingUnit.BackOffice
 
     public partial class BuildingUnitBackOfficeController
     {
-        public const string BuildingUnitRetireRoute = "gebouweenheden/{objectId}/acties/opheffing";
+        public const string BuildingUnitRetireRoute = "gebouweenheden/{objectId}/acties/opheffen";
 
         /// <summary>
         /// Hef een gebouweenheid op.
@@ -61,7 +61,9 @@ namespace Public.Api.BuildingUnit.BackOffice
             CancellationToken cancellationToken = default)
         {
             if (!retireBuildingUnitToggle.FeatureEnabled)
+            {
                 return NotFound();
+            }
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
