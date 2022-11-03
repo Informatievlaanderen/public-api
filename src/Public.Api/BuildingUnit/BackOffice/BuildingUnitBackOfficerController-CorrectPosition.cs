@@ -18,7 +18,7 @@ namespace Public.Api.BuildingUnit.BackOffice
 
     public partial class BuildingUnitBackOfficeController
     {
-        public const string CorrectPositionRoute = "gebouweenheden/{objectId}/acties/corrigeren/positie";
+        public const string CorrectBuildingUnitPositionRoute = "gebouweenheden/{objectId}/acties/corrigeren/positie";
 
         /// <summary>
         /// Corrigeer de positie van een gebouweenheid.
@@ -53,8 +53,8 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Corrigeer de positiegeometriemethode of positie van een gebouweenheid.")]
-        [HttpPost(CorrectPositionRoute, Name = nameof(CorrectPosition))]
-        public async Task<IActionResult> CorrectPosition(
+        [HttpPost(CorrectBuildingUnitPositionRoute, Name = nameof(CorrectBuildingUnitPosition))]
+        public async Task<IActionResult> CorrectBuildingUnitPosition(
             [FromRoute] int objectId,
             [FromBody] CorrectBuildingUnitPositionRequest correctBuildingUnitPositionRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -70,7 +70,7 @@ namespace Public.Api.BuildingUnit.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(CorrectPositionRoute, correctBuildingUnitPositionRequest, Method.Post)
+            RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(CorrectBuildingUnitPositionRoute, correctBuildingUnitPositionRequest, Method.Post)
                 .AddParameter("objectId", objectId, ParameterType.UrlSegment);
 
             var value = await GetFromBackendWithBadRequestAsync(
