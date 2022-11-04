@@ -6,6 +6,7 @@ namespace Public.Api.Building.BackOffice
     using BuildingRegistry.Api.BackOffice.Abstractions.Building.Requests;
     using BuildingRegistry.Api.Legacy.Abstractions.Building.Responses;
     using Common.Infrastructure;
+    using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
@@ -71,7 +72,8 @@ namespace Public.Api.Building.BackOffice
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest () => CreateBackendRequestWithJsonBody(CorrectBuildingGeometryOutlineRoute, changeBuildingOutlineRequest, Method.Post)
-                .AddParameter("objectId", objectId, ParameterType.UrlSegment);
+                .AddParameter("objectId", objectId, ParameterType.UrlSegment)
+                .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,
