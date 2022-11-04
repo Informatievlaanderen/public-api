@@ -10,6 +10,7 @@ namespace Public.Api.Address.BackOffice
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
     using AddressRegistry.Api.Legacy.Address.Responses;
+    using Common.Infrastructure.Extensions;
     using Infrastructure.Swagger;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
@@ -67,18 +68,9 @@ namespace Public.Api.Address.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest()
-            {
-                var request = new RestRequest(RejectRoute, Method.Post);
-                request.AddParameter("objectId", objectId, ParameterType.UrlSegment);
-
-                if (ifMatch is not null)
-                {
-                    request.AddHeader(HeaderNames.IfMatch, ifMatch);
-                }
-
-                return request;
-            }
+            RestRequest BackendRequest() => new RestRequest(RejectRoute, Method.Post)
+                .AddParameter("objectId", objectId, ParameterType.UrlSegment)
+                .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

@@ -17,6 +17,8 @@ namespace Public.Api.Building.BackOffice
 
     public partial class BuildingBackOfficeController
     {
+        public const string PlanBuildingRoute = "gebouwen/acties/plannen";
+
         /// <summary>
         /// Plan een gebouw in.
         /// </summary>
@@ -43,7 +45,7 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Voer een nieuw geschetst gebouw in met status `gepland`.")]
-        [HttpPost("gebouwen/acties/plannen", Name = nameof(PlanBuilding))]
+        [HttpPost(PlanBuildingRoute, Name = nameof(PlanBuilding))]
         public async Task<IActionResult> PlanBuilding(
                     [FromBody] PlanBuildingRequest planBuildingRequest,
                     [FromServices] IActionContextAccessor actionContextAccessor,
@@ -52,14 +54,14 @@ namespace Public.Api.Building.BackOffice
                     CancellationToken cancellationToken = default)
         {
             if (!planBuildingToggle.FeatureEnabled)
+            {
                 return NotFound();
+            }
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(
-                "gebouwen/acties/plannen",
-                planBuildingRequest,
-                Method.Post);
+            RestRequest BackendRequest() =>
+                CreateBackendRequestWithJsonBody(PlanBuildingRoute, planBuildingRequest, Method.Post);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

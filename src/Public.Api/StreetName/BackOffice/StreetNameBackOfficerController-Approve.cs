@@ -4,6 +4,7 @@ namespace Public.Api.StreetName.BackOffice
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
+    using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
@@ -67,7 +68,10 @@ namespace Public.Api.StreetName.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendPutRequest(objectId, ifMatch);
+            RestRequest BackendRequest() =>
+                new RestRequest(ApproveStreetNameRoute, Method.Post)
+                    .AddParameter("objectId", objectId, ParameterType.UrlSegment)
+                    .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,
@@ -77,19 +81,6 @@ namespace Public.Api.StreetName.BackOffice
                     cancellationToken: cancellationToken);
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
-        }
-
-        private static RestRequest CreateBackendPutRequest(int objectId, string? ifMatch)
-        {
-            var request = new RestRequest(ApproveStreetNameRoute, Method.Post);
-            request.AddParameter("objectId", objectId, ParameterType.UrlSegment);
-
-            if (ifMatch is not null)
-            {
-                request.AddHeader(HeaderNames.IfMatch, ifMatch);
-            }
-
-            return request;
         }
     }
 }

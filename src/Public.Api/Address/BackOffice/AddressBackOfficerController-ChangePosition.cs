@@ -12,8 +12,8 @@ namespace Public.Api.Address.BackOffice
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
     using AddressRegistry.Api.Legacy.Address.Responses;
+    using Common.Infrastructure.Extensions;
     using Infrastructure.Swagger;
-    using Newtonsoft.Json;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -74,18 +74,9 @@ namespace Public.Api.Address.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest()
-            {
-                var request = CreateBackendRequestWithJsonBody(ChangePositionRoute, addressChangePositionRequest, Method.Post)
-                    .AddParameter("objectId", objectId, ParameterType.UrlSegment);
-
-                if (ifMatch is not null)
-                {
-                    request.AddHeader(HeaderNames.IfMatch, ifMatch);
-                }
-
-                return request;
-            }
+            RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(ChangePositionRoute, addressChangePositionRequest, Method.Post)
+                    .AddParameter("objectId", objectId, ParameterType.UrlSegment)
+                    .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

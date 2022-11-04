@@ -5,6 +5,7 @@ namespace Public.Api.BuildingUnit.BackOffice
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using BuildingRegistry.Api.Legacy.Abstractions.BuildingUnit.Responses;
     using Common.Infrastructure;
+    using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
@@ -17,6 +18,8 @@ namespace Public.Api.BuildingUnit.BackOffice
 
     public partial class BuildingUnitBackOfficeController
     {
+        public const string NotRealizeBuildingUnitRoute = "gebouweenheden/{objectId}/acties/nietrealiseren";
+
         /// <summary>
         /// Realiseer een gebouweenheid niet.
         /// </summary>
@@ -49,7 +52,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Wijzig de gebouweenheidsstatus van `gepland` naar `nietGerealiseerd`. Het gemeenschappelijkDeel wordt automatisch `gehistoreerd` wanneer status `gerealiseerd` is en `nietGerealiseerd` wanneer status `gepland` is van zodra er in een gebouw minder dan 2 gebouweenheden aanwezig zijn.")]
-        [HttpPost("gebouweenheden/{objectId}/acties/nietrealiseren", Name = nameof(NotRealizeBuildingUnit))]
+        [HttpPost(NotRealizeBuildingUnitRoute, Name = nameof(NotRealizeBuildingUnit))]
         public async Task<IActionResult> NotRealizeBuildingUnit(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -59,22 +62,15 @@ namespace Public.Api.BuildingUnit.BackOffice
             CancellationToken cancellationToken = default)
         {
             if (!notRealizeBuildingUnitToggle.FeatureEnabled)
+            {
                 return NotFound();
+            }
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest()
-            {
-                var request = new RestRequest("gebouweenheden/{persistentLocalId}/acties/nietrealiseren", Method.Post);
-                request.AddParameter("persistentLocalId", objectId, ParameterType.UrlSegment);
-
-                if (ifMatch is not null)
-                {
-                    request.AddHeader(HeaderNames.IfMatch, ifMatch);
-                }
-
-                return request;
-            }
+            RestRequest BackendRequest() => new RestRequest(NotRealizeBuildingUnitRoute, Method.Post)
+                .AddParameter("objectId", objectId, ParameterType.UrlSegment)
+                .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

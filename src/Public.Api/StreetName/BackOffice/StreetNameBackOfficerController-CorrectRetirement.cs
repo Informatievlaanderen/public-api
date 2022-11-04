@@ -4,6 +4,7 @@ namespace Public.Api.StreetName.BackOffice
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
+    using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
@@ -17,6 +18,8 @@ namespace Public.Api.StreetName.BackOffice
 
     public partial class StreetNameBackOfficeController
     {
+        public const string CorrectStreetNameRetirementRoute = "straatnamen/{objectId}/acties/corrigeren/opheffing";
+
         /// <summary>
         /// Corrigeer de opheffing van een straatnaam.
         /// </summary>
@@ -49,7 +52,7 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Correctie van de straatnaamstatus van `gehistoreerd` naar `inGebruik`. Gekoppelde adressen corrigeren niet mee van status.")]
-        [HttpPost("straatnamen/{objectId}/acties/corrigeren/opheffing", Name = nameof(CorrectStreetNameRetirement))]
+        [HttpPost(CorrectStreetNameRetirementRoute, Name = nameof(CorrectStreetNameRetirement))]
         public async Task<IActionResult> CorrectStreetNameRetirement(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -65,18 +68,9 @@ namespace Public.Api.StreetName.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest()
-            {
-                var request = new RestRequest("straatnamen/{persistentLocalId}/acties/corrigeren/opheffing", Method.Post);
-                request.AddParameter("persistentLocalId", objectId, ParameterType.UrlSegment);
-
-                if (ifMatch is not null)
-                {
-                    request.AddHeader(HeaderNames.IfMatch, ifMatch);
-                }
-
-                return request;
-            }
+            RestRequest BackendRequest() => new RestRequest(CorrectStreetNameRetirementRoute, Method.Post)
+                    .AddParameter("objectId", objectId, ParameterType.UrlSegment)
+                    .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,
