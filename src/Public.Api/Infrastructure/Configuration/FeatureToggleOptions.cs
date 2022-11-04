@@ -38,7 +38,7 @@ namespace Public.Api.Infrastructure.Configuration
         public bool CorrectBuildingRealization { get; set; }
         public bool NotRealizeBuilding { get; set; }
         public bool CorrectBuildingNotRealization { get; set; }
-        public bool ChangeBuildingOutline { get; set; }
+        public bool ChangeBuildingGeometryOutline { get; set; }
         public bool DemolishBuilding { get; set; }
         public bool ChangeGeometryBuilding { get; set; }
         public bool CorrectGeometryBuilding { get; set; }
