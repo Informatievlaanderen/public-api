@@ -1,3 +1,12 @@
+## [5.47.3](https://github.com/informatievlaanderen/public-api/compare/v5.47.2...v5.47.3) (2022-11-04)
+
+
+### Bug Fixes
+
+* add if-match header to request ([de60142](https://github.com/informatievlaanderen/public-api/commit/de601428b34370831832c0e6cad16a88c969d27e))
+* title correct position ([bbf5045](https://github.com/informatievlaanderen/public-api/commit/bbf5045b3cc20378ee1fcbdf87872dbbf5fe7191))
+* toggle and titles ([4f9b309](https://github.com/informatievlaanderen/public-api/commit/4f9b30957935ecefba94e1fb33b7ee25d4de56fb))
+
 ## [5.47.2](https://github.com/informatievlaanderen/public-api/compare/v5.47.1...v5.47.2) (2022-11-03)
 
 
