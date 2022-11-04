@@ -17,6 +17,8 @@ namespace Public.Api.BuildingUnit.BackOffice
 
     public partial class BuildingUnitBackOfficeController
     {
+        public const string PlanBuildingUnitRoute = "gebouweenheden/acties/plannen";
+
         /// <summary>
         /// Plan een gebouweenheid in.
         /// </summary>
@@ -43,7 +45,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Voer een nieuwe gebouweenheid in met status `gepland` binnen een gebouw met status `gepland` of `gerealiseerd`. Er wordt automatisch een gemeenschappelijkDeel aangemaakt vanaf dat er 2 gebouweenheden met status `gepland` of `gerealiseerd` aan een gebouw gekoppeld zijn. De status van het gemeenschappelijKDeel is `gepland` wanneer het gebouw status `gepland` is. De status van het gemeenschappelijkDeel is `gerealiseerd` wanneer het gebouw status `gerealiseerd` is.")]
-        [HttpPost("gebouweenheden/acties/plannen", Name = nameof(PlanBuildingUnit))]
+        [HttpPost(PlanBuildingUnitRoute, Name = nameof(PlanBuildingUnit))]
         public async Task<IActionResult> PlanBuildingUnit(
             [FromBody] PlanBuildingUnitRequest planBuildingUnitRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -52,14 +54,14 @@ namespace Public.Api.BuildingUnit.BackOffice
             CancellationToken cancellationToken = default)
         {
             if (!planBuildingUnitToggle.FeatureEnabled)
+            {
                 return NotFound();
-
+            }
+            
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(
-                "gebouweenheden/acties/plannen",
-                planBuildingUnitRequest,
-                Method.Post);
+            RestRequest BackendRequest() =>
+                CreateBackendRequestWithJsonBody(PlanBuildingUnitRoute, planBuildingUnitRequest, Method.Post);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

@@ -54,7 +54,9 @@ namespace Public.Api.StreetName.BackOffice
             CancellationToken cancellationToken = default)
         {
             if (!proposeStreetNameToggle.FeatureEnabled)
+            {
                 return NotFound();
+            }
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 

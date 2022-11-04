@@ -5,6 +5,7 @@ namespace Public.Api.Building.BackOffice
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using BuildingRegistry.Api.Legacy.Abstractions.Building.Responses;
     using Common.Infrastructure;
+    using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
@@ -17,6 +18,8 @@ namespace Public.Api.Building.BackOffice
 
     public partial class BuildingBackOfficeController
     {
+        public const string CorrectBuildingNotRealizationRoute = "gebouwen/{objectId}/acties/corrigeren/nietrealisering";
+
         /// <summary>
         /// Corrigeer de niet realisering van een gebouw.
         /// </summary>
@@ -49,7 +52,7 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Correctie van de gebouwstatus van `nietGerealiseerd` naar `gepland`. Gekoppelde gebouweenheden corrigeren niet mee van status.")]
-        [HttpPost("gebouwen/{objectId}/acties/corrigeren/nietrealisering", Name = nameof(CorrectBuildingNotRealization))]
+        [HttpPost(CorrectBuildingNotRealizationRoute, Name = nameof(CorrectBuildingNotRealization))]
         public async Task<IActionResult> CorrectBuildingNotRealization(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -65,18 +68,9 @@ namespace Public.Api.Building.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest()
-            {
-                var request = new RestRequest("gebouwen/{persistentLocalId}/acties/corrigeren/nietrealisering", Method.Post);
-                request.AddParameter("persistentLocalId", objectId, ParameterType.UrlSegment);
-
-                if (ifMatch is not null)
-                {
-                    request.AddHeader(HeaderNames.IfMatch, ifMatch);
-                }
-
-                return request;
-            }
+            RestRequest BackendRequest() => new RestRequest(CorrectBuildingNotRealizationRoute, Method.Post)
+                .AddParameter("objectId", objectId, ParameterType.UrlSegment)
+                .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

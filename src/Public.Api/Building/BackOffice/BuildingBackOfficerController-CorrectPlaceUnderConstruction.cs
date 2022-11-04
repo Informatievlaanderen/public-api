@@ -5,6 +5,7 @@ namespace Public.Api.Building.BackOffice
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using BuildingRegistry.Api.Legacy.Abstractions.Building.Responses;
     using Common.Infrastructure;
+    using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
@@ -17,13 +18,15 @@ namespace Public.Api.Building.BackOffice
 
     public partial class BuildingBackOfficeController
     {
+        public const string CorrectBuildingUnderConstructionRoute = "gebouwen/{objectId}/acties/corrigeren/inaanbouwplaatsing";
+
         /// <summary>
         /// Corrigeer de in aanbouw plaatsing van een gebouw.
         /// </summary>
         /// <param name="objectId">Identificator van het gebouw.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
-        /// <param name="CorrectbuildingUnderConstructionToggle"></param>
+        /// <param name="correctBuildingUnderConstructionToggle"></param>
         /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van het gebouw (optioneel).</param>
         /// <param name="cancellationToken"></param>
         /// <response code="202">Als het ticket succesvol is aangemaakt.</response>
@@ -49,32 +52,25 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Correctie van de gebouwstatus van `inAanbouw` naar `gepland`. Gekoppelde gebouweenheden corrigeren niet mee van status.")]
-        [HttpPost("gebouwen/{objectId}/acties/corrigeren/inaanbouwplaatsing", Name = nameof(CorrectBuildingUnderConstruction))]
+        [HttpPost(CorrectBuildingUnderConstructionRoute, Name = nameof(CorrectBuildingUnderConstruction))]
         public async Task<IActionResult> CorrectBuildingUnderConstruction(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] CorrectBuildingUnderConstructionToggle CorrectbuildingUnderConstructionToggle,
+            [FromServices] CorrectBuildingUnderConstructionToggle correctBuildingUnderConstructionToggle,
             [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
             CancellationToken cancellationToken = default)
         {
-            if (!CorrectbuildingUnderConstructionToggle.FeatureEnabled)
+            if (!correctBuildingUnderConstructionToggle.FeatureEnabled)
+            {
                 return NotFound();
+            }
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest()
-            {
-                var request = new RestRequest("gebouwen/{persistentLocalId}/acties/corrigeren/inaanbouwplaatsing", Method.Post);
-                request.AddParameter("persistentLocalId", objectId, ParameterType.UrlSegment);
-
-                if (ifMatch is not null)
-                {
-                    request.AddHeader(HeaderNames.IfMatch, ifMatch);
-                }
-
-                return request;
-            }
+            RestRequest BackendRequest() => new RestRequest(CorrectBuildingUnderConstructionRoute, Method.Post)
+                .AddParameter("objectId", objectId, ParameterType.UrlSegment)
+                .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

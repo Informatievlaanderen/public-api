@@ -6,6 +6,7 @@ namespace Public.Api.Address.BackOffice
     using AddressRegistry.Api.Legacy.Address.Responses;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
+    using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
@@ -71,25 +72,17 @@ namespace Public.Api.Address.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest()
-            {
-                var request = CreateBackendRequestWithJsonBody(CorrectPositionRoute, addressCorrectPositionRequest, Method.Post)
-                    .AddParameter("objectId", objectId, ParameterType.UrlSegment);
-
-                if (ifMatch is not null)
-                {
-                    request.AddHeader(HeaderNames.IfMatch, ifMatch);
-                }
-
-                return request;
-            }
+            RestRequest BackendRequest() =>
+                CreateBackendRequestWithJsonBody(CorrectPositionRoute, addressCorrectPositionRequest, Method.Post)
+                    .AddParameter("objectId", objectId, ParameterType.UrlSegment)
+                    .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
 
             var value = await GetFromBackendWithBadRequestAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    CreateDefaultHandleBadRequest(),
-                    problemDetailsHelper,
-                    cancellationToken: cancellationToken);
+                contentFormat.ContentType,
+                BackendRequest,
+                CreateDefaultHandleBadRequest(),
+                problemDetailsHelper,
+                cancellationToken: cancellationToken);
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
         }

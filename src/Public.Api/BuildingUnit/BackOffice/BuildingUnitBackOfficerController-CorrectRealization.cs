@@ -5,6 +5,7 @@ namespace Public.Api.BuildingUnit.BackOffice
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using BuildingRegistry.Api.Legacy.Abstractions.BuildingUnit.Responses;
     using Common.Infrastructure;
+    using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
@@ -17,6 +18,8 @@ namespace Public.Api.BuildingUnit.BackOffice
 
     public partial class BuildingUnitBackOfficeController
     {
+        public const string CorrectBuildingUnitRealizationRoute = "gebouweenheden/{objectId}/acties/corrigeren/realisering";
+
         /// <summary>
         /// Corrigeer de realisering van een gebouweenheid.
         /// </summary>
@@ -49,7 +52,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Correctie van de gebouweenheidstatus van `gerealiseerd` naar `gepland`.")]
-        [HttpPost("gebouweenheden/{objectId}/acties/corrigeren/realisering", Name = nameof(CorrectBuildingUnitRealization))]
+        [HttpPost(CorrectBuildingUnitRealizationRoute, Name = nameof(CorrectBuildingUnitRealization))]
         public async Task<IActionResult> CorrectBuildingUnitRealization(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -59,24 +62,18 @@ namespace Public.Api.BuildingUnit.BackOffice
             CancellationToken cancellationToken = default)
         {
             if (!correctBuildingUnitRealizationToggle.FeatureEnabled)
+            {
                 return NotFound();
+            }
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest()
-            {
-                var request = new RestRequest("gebouweenheden/{persistentLocalId}/acties/corrigeren/realisering", Method.Post);
-                request.AddParameter("persistentLocalId", objectId, ParameterType.UrlSegment);
+            RestRequest BackendRequest() =>
+                new RestRequest(CorrectBuildingUnitRealizationRoute, Method.Post)
+                    .AddParameter("objectId", objectId, ParameterType.UrlSegment)
+                    .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
 
-                if (ifMatch is not null)
-                {
-                    request.AddHeader(HeaderNames.IfMatch, ifMatch);
-                }
-
-                return request;
-            }
-
-            var value = await GetFromBackendWithBadRequestAsync(
+                var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,
                     BackendRequest,
                     CreateDefaultHandleBadRequest(),

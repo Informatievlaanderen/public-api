@@ -5,6 +5,7 @@ namespace Public.Api.BuildingUnit.BackOffice
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using BuildingRegistry.Api.Legacy.Abstractions.BuildingUnit.Responses;
     using Common.Infrastructure;
+    using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
@@ -67,18 +68,9 @@ namespace Public.Api.BuildingUnit.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest()
-            {
-                var request = new RestRequest(BuildingUnitRetireRoute, Method.Post);
-                request.AddParameter("objectId", objectId, ParameterType.UrlSegment);
-
-                if (ifMatch is not null)
-                {
-                    request.AddHeader(HeaderNames.IfMatch, ifMatch);
-                }
-
-                return request;
-            }
+            RestRequest BackendRequest() => new RestRequest(BuildingUnitRetireRoute, Method.Post)
+                .AddParameter("objectId", objectId, ParameterType.UrlSegment)
+                .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,
