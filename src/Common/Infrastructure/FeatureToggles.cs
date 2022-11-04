@@ -226,11 +226,11 @@ namespace Common.Infrastructure
         public CorrectBuildingNotRealizationToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class ChangeBuildingOutlineToggle : IFeatureToggle
+    public class ChangeBuildingGeometryOutlineToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public ChangeBuildingOutlineToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public ChangeBuildingGeometryOutlineToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
     public class DemolishBuildingToggle : IFeatureToggle

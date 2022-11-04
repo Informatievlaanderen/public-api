@@ -21,7 +21,7 @@ namespace Public.Api.Building.BackOffice
         public const string CorrectBuildingGeometryOutlineRoute = "gebouwen/{objectId}/acties/wijzigen/schetsgeometriepolygoon";
 
         /// <summary>
-        /// Wijzig geometrie van een geschetst gebouw.
+        /// Wijzig de geometrie van een geschetst gebouw.
         /// </summary>
         /// <param name="objectId">Identificator van het gebouw.</param>
         /// <param name="changeBuildingOutlineRequest"></param>
@@ -59,11 +59,11 @@ namespace Public.Api.Building.BackOffice
             [FromBody] ChangeBuildingOutlineRequest changeBuildingOutlineRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] ChangeBuildingOutlineToggle changeBuildingOutlineToggle,
+            [FromServices] ChangeBuildingGeometryOutlineToggle changeBuildingGeometryOutlineToggle,
             [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
             CancellationToken cancellationToken = default)
         {
-            if (!changeBuildingOutlineToggle.FeatureEnabled)
+            if (!changeBuildingGeometryOutlineToggle.FeatureEnabled)
             {
                 return NotFound();
             }
