@@ -53,7 +53,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Corrigeer de positiegeometriemethode of positie van een gebouweenheid.")]
+        [SwaggerOperation(Description = "Correctie van de positiegeometriemethode of positie van een gebouweenheid.")]
         [HttpPost(CorrectBuildingUnitPositionRoute, Name = nameof(CorrectBuildingUnitPosition))]
         public async Task<IActionResult> CorrectBuildingUnitPosition(
             [FromRoute] int objectId,
