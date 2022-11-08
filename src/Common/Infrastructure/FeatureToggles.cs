@@ -310,6 +310,13 @@ namespace Common.Infrastructure
         public CorrectBuildingUnitPositionToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class RemoveBuildingUnitToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RemoveBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class AttachAddressBuildingUnitToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
