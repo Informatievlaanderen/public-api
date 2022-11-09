@@ -1,3 +1,10 @@
+# [5.48.0](https://github.com/informatievlaanderen/public-api/compare/v5.47.3...v5.48.0) (2022-11-09)
+
+
+### Features
+
+* add remove bu ([d65806c](https://github.com/informatievlaanderen/public-api/commit/d65806c02a34e709d243d0334ab6f55cf5946786))
+
 ## [5.47.3](https://github.com/informatievlaanderen/public-api/compare/v5.47.2...v5.47.3) (2022-11-04)
 
 
