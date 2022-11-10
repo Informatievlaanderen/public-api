@@ -13,14 +13,14 @@ namespace Public.Api.Road.Uploads
     {
         [HttpPost("wegen/upload")]
         [RequestFormLimits(MultipartBodyLengthLimit = int.MaxValue, ValueLengthLimit = int.MaxValue)]
-        public async Task<IActionResult> Post(
+        public async Task<IActionResult> PostUploadAfterFeatureCompare(
             IFormFile archive,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken)
         {
             var response = await GetFromBackendWithBadRequestAsync(
                 _httpClient,
-                () => CreateBackendUploadRequest(archive),
+                () => CreateBackendUploadAfterFeatureCompareRequest(archive),
                 CreateDefaultHandleBadRequest(),
                 problemDetailsHelper,
                 cancellationToken
@@ -29,7 +29,7 @@ namespace Public.Api.Road.Uploads
             return response.ToActionResult();
         }
 
-        private static HttpRequestMessage CreateBackendUploadRequest(IFormFile archive) =>
+        private static HttpRequestMessage CreateBackendUploadAfterFeatureCompareRequest(IFormFile archive) =>
             new HttpRequestMessage(HttpMethod.Post, "upload")
             {
                 Content = new StreamContent(archive.OpenReadStream()),

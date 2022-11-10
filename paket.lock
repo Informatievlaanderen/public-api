@@ -15,8 +15,8 @@ NUGET
     AWSSDK.Core (3.7.12.13)
     AWSSDK.DynamoDBv2 (3.7.3.60)
       AWSSDK.Core (>= 3.7.12.12 < 4.0)
-    AWSSDK.S3 (3.7.8.13)
-      AWSSDK.Core (>= 3.7.10.1 < 4.0)
+    AWSSDK.S3 (3.7.8.14)
+      AWSSDK.Core (>= 3.7.10.2 < 4.0)
     Azure.Core (1.25)
       Microsoft.Bcl.AsyncInterfaces (>= 1.1.1)
       System.Diagnostics.DiagnosticSource (>= 4.6)
@@ -154,10 +154,10 @@ NUGET
     Be.Vlaanderen.Basisregisters.Aws.DistributedMutex (3.0)
       AWSSDK.DynamoDBv2 (>= 3.7.3.14)
       Microsoft.Extensions.Logging (>= 6.0)
-    Be.Vlaanderen.Basisregisters.BlobStore (2.2.12) - copy_content_to_output_dir: always
-      AWSSDK.S3 (>= 3.7.0.31)
-      Microsoft.Data.SqlClient (>= 2.1.3)
-      System.Collections.Immutable (>= 5.0)
+    Be.Vlaanderen.Basisregisters.BlobStore (3.0) - copy_content_to_output_dir: always
+      AWSSDK.S3 (>= 3.7.8.14)
+      Microsoft.Data.SqlClient (>= 4.1)
+      System.Collections.Immutable (>= 6.0)
     Be.Vlaanderen.Basisregisters.Build.Pipeline (6.0.5)
       Fake.Core.Environment (>= 5.22)
       Fake.Core.Process (>= 5.22)
@@ -288,9 +288,9 @@ NUGET
       Be.Vlaanderen.Basisregisters.EventHandling (>= 4.0)
       SqlStreamStore (>= 1.2)
     Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice (2.1.1) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (3.2.6) - copy_content_to_output_dir: always
-      Be.Vlaanderen.Basisregisters.BlobStore (>= 2.2.12)
-      Microsoft.IO.RecyclableMemoryStream (>= 1.4)
+    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (3.17.1) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.BlobStore (>= 3.0)
+      Microsoft.IO.RecyclableMemoryStream (>= 2.2.1)
     Be.Vlaanderen.Basisregisters.Sqs (1.1.7)
       MediatR (>= 10.0.1)
     Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions (3.12.5) - copy_content_to_output_dir: always
@@ -656,7 +656,7 @@ NUGET
       Microsoft.CSharp (>= 4.5)
       Microsoft.IdentityModel.Logging (>= 6.22)
       System.Security.Cryptography.Cng (>= 4.5)
-    Microsoft.IO.RecyclableMemoryStream (2.2) - copy_content_to_output_dir: always
+    Microsoft.IO.RecyclableMemoryStream (2.2.1) - copy_content_to_output_dir: always
     Microsoft.Net.Http.Headers (2.2.8)
       Microsoft.Extensions.Primitives (>= 2.2)
       System.Buffers (>= 4.5)
