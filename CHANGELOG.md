@@ -1,3 +1,10 @@
+## [5.48.1](https://github.com/informatievlaanderen/public-api/compare/v5.48.0...v5.48.1) (2022-11-10)
+
+
+### Bug Fixes
+
+* spelling of positieGeometrieMethode in docs ([70a2e29](https://github.com/informatievlaanderen/public-api/commit/70a2e29780ee5abd4f7ba132a913a3ba3820ff24))
+
 # [5.48.0](https://github.com/informatievlaanderen/public-api/compare/v5.47.3...v5.48.0) (2022-11-09)
 
 
