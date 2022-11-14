@@ -18,15 +18,15 @@ namespace Public.Api.BuildingUnit.BackOffice
 
     public partial class BuildingUnitBackOfficeController
     {
-        public const string CorrectBuildingUnitRetirementRoute = "gebouweenheden/{objectId}/acties/corrigeren/opheffing";
+        public const string DeregulateBuildingUnitRoute = "gebouweenheden/{objectId}/acties/deregulariseren";
 
         /// <summary>
-        /// Corrigeer de opheffing van een gebouweenheid.
+        /// Deregulariseer een gebouweenheid.
         /// </summary>
         /// <param name="objectId">Identificator van de gebouweenheid.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
-        /// <param name="correctBuildingUnitRetirementToggle"></param>
+        /// <param name="deregulateBuildingUnitToggle"></param>
         /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van de gebouweenheid (optioneel).</param>
         /// <param name="cancellationToken"></param>
         /// <response code="202">Als het ticket succesvol is aangemaakt.</response>
@@ -37,7 +37,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         /// <returns></returns>
-        [ApiOrder(ApiOrder.BuildingUnit.Edit + 9)]
+        [ApiOrder(ApiOrder.BuildingUnit.Edit + 6)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -51,24 +51,24 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Correctie van de gebouweenheidstatus van `gehistoreerd` naar `gerealiseerd` binnen een gebouw met status `gerealiseerd`.")]
-        [HttpPost(CorrectBuildingUnitRetirementRoute, Name = nameof(CorrectBuildingUnitRetirement))]
-        public async Task<IActionResult> CorrectBuildingUnitRetirement(
+        [SwaggerOperation(Description = "Wijzig afwijkingvastgesteld van 'false' naar 'true'.")]
+        [HttpPost(DeregulateBuildingUnitRoute, Name = nameof(DeregulateBuildingUnit))]
+        public async Task<IActionResult> DeregulateBuildingUnit(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] CorrectBuildingUnitRetirementToggle correctBuildingUnitRetirementToggle,
+            [FromServices] DeregulateBuildingUnitToggle deregulateBuildingUnitToggle,
             [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
             CancellationToken cancellationToken = default)
         {
-            if (!correctBuildingUnitRetirementToggle.FeatureEnabled)
+            if (!deregulateBuildingUnitToggle.FeatureEnabled)
             {
                 return NotFound();
             }
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => new RestRequest(CorrectBuildingUnitRetirementRoute, Method.Post)
+            RestRequest BackendRequest() => new RestRequest(DeregulateBuildingUnitRoute, Method.Post)
                 .AddParameter("objectId", objectId, ParameterType.UrlSegment)
                 .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
 
