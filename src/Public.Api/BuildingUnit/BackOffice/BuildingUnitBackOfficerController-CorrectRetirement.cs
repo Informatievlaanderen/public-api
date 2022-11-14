@@ -37,7 +37,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         /// <returns></returns>
-        [ApiOrder(ApiOrder.BuildingUnit.Edit + 9)]
+        [ApiOrder(ApiOrder.BuildingUnit.Edit + 10)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
