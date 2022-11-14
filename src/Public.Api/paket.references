@@ -18,6 +18,7 @@ Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo
 Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice
 Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api
+Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions
 
 Be.Vlaanderen.Basisregisters.GrAr.Common
 Be.Vlaanderen.Basisregisters.GrAr.Legacy
