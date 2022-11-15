@@ -1,3 +1,15 @@
+# [5.50.0](https://github.com/informatievlaanderen/public-api/compare/v5.49.0...v5.50.0) (2022-11-15)
+
+
+### Bug Fixes
+
+* sub title correct retirement bu ([bf6a118](https://github.com/informatievlaanderen/public-api/commit/bf6a118babccc9ab5b1c7c5c62c4ce37e7e18b15))
+
+
+### Features
+
+* update version building registry ([3bb7cea](https://github.com/informatievlaanderen/public-api/commit/3bb7cea13fccfbe1ed8d301bd82f11eb6826b7f3))
+
 # [5.49.0](https://github.com/informatievlaanderen/public-api/compare/v5.48.1...v5.49.0) (2022-11-15)
 
 
