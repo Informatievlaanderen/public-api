@@ -1,3 +1,18 @@
+# [5.49.0](https://github.com/informatievlaanderen/public-api/compare/v5.48.1...v5.49.0) (2022-11-15)
+
+
+### Bug Fixes
+
+* RoadRegistry changes by Jan Lesage ([a87e3fc](https://github.com/informatievlaanderen/public-api/commit/a87e3fcd7b3a0ee40b6f78ee61bb9e6200cda798))
+* System.IO.FileNotFoundExceptions ([909b677](https://github.com/informatievlaanderen/public-api/commit/909b67723fd6a2cf378ec07c6738a7f2a4a1a572))
+
+
+### Features
+
+* deregulate building unit ([49e3b81](https://github.com/informatievlaanderen/public-api/commit/49e3b81022b28656384d0f2111baca040eacbcb2))
+* regularize building unit ([74d24b7](https://github.com/informatievlaanderen/public-api/commit/74d24b7d206b762881849376c4a2e6b6d3e0bbb4))
+* version bump building registry to include new events ([0f654a2](https://github.com/informatievlaanderen/public-api/commit/0f654a2636d6d72755163a51a138f9b7b3379fd1))
+
 ## [5.48.1](https://github.com/informatievlaanderen/public-api/compare/v5.48.0...v5.48.1) (2022-11-10)
 
 
