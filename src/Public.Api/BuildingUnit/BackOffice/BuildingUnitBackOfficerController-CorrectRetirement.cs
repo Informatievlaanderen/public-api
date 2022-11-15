@@ -51,7 +51,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Correctie van de gebouweenheidstatus van `gehistoreerd` naar `gerealiseerd` binnen een gebouw met status `gerealiseerd`.")]
+        [SwaggerOperation(Description = "Correctie van de gebouweenheidstatus van `gehistoreerd` naar `gerealiseerd` binnen een gebouw met status `gerealiseerd`. Er wordt automatisch een gemeenschappelijkDeel aangemaakt vanaf dat er 2 gebouweenheden met status `gepland` of `gerealiseerd` aan een gebouw gekoppeld zijn. De status van het gemeenschappelijkDeel is `gerealiseerd`.")]
         [HttpPost(CorrectBuildingUnitRetirementRoute, Name = nameof(CorrectBuildingUnitRetirement))]
         public async Task<IActionResult> CorrectBuildingUnitRetirement(
             [FromRoute] int objectId,
