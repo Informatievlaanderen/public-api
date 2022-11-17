@@ -1,3 +1,10 @@
+## [5.50.3](https://github.com/informatievlaanderen/public-api/compare/v5.50.2...v5.50.3) (2022-11-17)
+
+
+### Bug Fixes
+
+* change subtitle of BU actions ([2cc6a5a](https://github.com/informatievlaanderen/public-api/commit/2cc6a5a240ba27d0568b38e9b70d2cc12e3e3ef2))
+
 ## [5.50.2](https://github.com/informatievlaanderen/public-api/compare/v5.50.1...v5.50.2) (2022-11-17)
 
 
