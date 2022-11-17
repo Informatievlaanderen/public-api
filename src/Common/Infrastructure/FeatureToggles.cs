@@ -345,11 +345,11 @@ namespace Common.Infrastructure
         public DeregulateBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class ChangeFunctionBuildingUnitToggle : IFeatureToggle
+    public class ChangeBuildingUnitFunctionToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public ChangeFunctionBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public ChangeBuildingUnitFunctionToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
     public class CorrectFunctionBuildingUnitToggle : IFeatureToggle

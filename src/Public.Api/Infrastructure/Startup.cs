@@ -355,7 +355,7 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new DetachAddressBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.DetachAddressBuildingUnit))
                 .AddSingleton(c => new RegularizeBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RegularizeBuildingUnit))
                 .AddSingleton(c => new DeregulateBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.DeregulateBuildingUnit))
-                .AddSingleton(c => new ChangeFunctionBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangeFunctionBuildingUnit))
+                .AddSingleton(c => new ChangeBuildingUnitFunctionToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangeBuildingUnitFunction))
                 .AddSingleton(c => new CorrectFunctionBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectFunctionBuildingUnit))
                 .AddSingleton(c => new CorrectBuildingUnitPositionToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingUnitPosition))
                 .AddSingleton(c => new RemoveBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RemoveBuildingUnit))
