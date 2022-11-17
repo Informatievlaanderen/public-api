@@ -28,7 +28,7 @@ namespace Public.Api.Building.BackOffice
         /// <param name="changeBuildingOutlineRequest"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
-        /// <param name="changeBuildingOutlineToggle"></param>
+        /// <param name="changeBuildingGeometryOutlineToggle"></param>
         /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van het gebouw (optioneel).</param>
         /// <param name="cancellationToken"></param>
         /// <response code="202">Als het ticket succesvol is aangemaakt.</response>
@@ -54,8 +54,8 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Wijzig de geometrie van een geschetst gebouw. De gekoppelde gebouweenheden moeten in deze nieuwe geometrie liggen.")]
-        [HttpPost(CorrectBuildingGeometryOutlineRoute, Name = nameof(ChangeBuildingOutline))]
-        public async Task<IActionResult> ChangeBuildingOutline(
+        [HttpPost(CorrectBuildingGeometryOutlineRoute, Name = nameof(ChangeBuildingGeometryOutline))]
+        public async Task<IActionResult> ChangeBuildingGeometryOutline(
             [FromRoute] int objectId,
             [FromBody] ChangeBuildingOutlineRequest changeBuildingOutlineRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
