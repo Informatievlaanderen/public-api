@@ -51,7 +51,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Wijzig afwijkingvastgesteld van 'false' naar 'true'.")]
+        [SwaggerOperation(Description = "Wijzig afwijkingVastgesteld van `false` naar `true`.")]
         [HttpPost(DeregulateBuildingUnitRoute, Name = nameof(DeregulateBuildingUnit))]
         public async Task<IActionResult> DeregulateBuildingUnit(
             [FromRoute] int objectId,
