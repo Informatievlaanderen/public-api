@@ -1,3 +1,10 @@
+## [5.50.1](https://github.com/informatievlaanderen/public-api/compare/v5.50.0...v5.50.1) (2022-11-17)
+
+
+### Bug Fixes
+
+* hide change building outline ([000e6b6](https://github.com/informatievlaanderen/public-api/commit/000e6b619da314db25d6dc51fd1c40a3a1f575ca))
+
 # [5.50.0](https://github.com/informatievlaanderen/public-api/compare/v5.49.0...v5.50.0) (2022-11-15)
 
 
