@@ -1,3 +1,10 @@
+## [5.50.2](https://github.com/informatievlaanderen/public-api/compare/v5.50.1...v5.50.2) (2022-11-17)
+
+
+### Bug Fixes
+
+* subtitles regularize and deregulate api actions ([#594](https://github.com/informatievlaanderen/public-api/issues/594)) ([1b1b832](https://github.com/informatievlaanderen/public-api/commit/1b1b83248896b5f83f14d5c30cfdbf3e63bb2447))
+
 ## [5.50.1](https://github.com/informatievlaanderen/public-api/compare/v5.50.0...v5.50.1) (2022-11-17)
 
 
