@@ -51,7 +51,9 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Correctie van de gebouweenheidstatus van `nietGerealiseerd` naar `gepland`. Er wordt automatisch een gemeenschappelijkDeel aangemaakt vanaf dat er 2 gebouweenheden met status `gepland` of `gerealiseerd` aan een gebouw gekoppeld zijn. De status van het gemeenschappelijKDeel is `gepland` wanneer het gebouw status `gepland` is. De status van het gemeenschappelijkDeel is `gerealiseerd` wanneer het gebouw status `gerealiseerd` is.")]
+        [SwaggerOperation(Description = "Correctie van de gebouweenheidstatus van `nietGerealiseerd` naar `gepland`. Er wordt automatisch een gemeenschappelijkDeel aangemaakt vanaf dat er 2 gebouweenheden met status `gepland` of `gerealiseerd` aan een gebouw gekoppeld zijn. De status van het gemeenschappelijKDeel is `gepland` wanneer het gebouw status `gepland` is. De status van het gemeenschappelijkDeel is `gerealiseerd` wanneer het gebouw status `gerealiseerd` is. <br>" +
+                                        "Wanneer de geometrie van een gebouw gewijzigd is na de niet realisering van een gebouweenheid en hierdoor de positie van de gebouweenheid buiten de nieuwe geometrie ligt dan wijzigt bij de correctie van de niet realisering de positie van de gebouweenheid  naar de centroïde van de gebouw geometrie. <br>" +
+                                        "Wanneer de positieGeometrieMethode `aangeduidDoorBeheerder` is dan wijzigt dit automatisch naar `afgeleidVanObject`.")]
         [HttpPost(CorrectBuildingUnitNotRealizationRequest, Name = nameof(CorrectBuildingUnitNotRealization))]
         public async Task<IActionResult> CorrectBuildingUnitNotRealization(
             [FromRoute] int objectId,
