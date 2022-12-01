@@ -1,3 +1,10 @@
+# [5.51.0](https://github.com/informatievlaanderen/public-api/compare/v5.50.4...v5.51.0) (2022-12-01)
+
+
+### Features
+
+* extend common building unit docs ([6b6abfc](https://github.com/informatievlaanderen/public-api/commit/6b6abfcbeace28d582d0eefc739db796fcac6700))
+
 ## [5.50.4](https://github.com/informatievlaanderen/public-api/compare/v5.50.3...v5.50.4) (2022-11-18)
 
 ## [5.50.3](https://github.com/informatievlaanderen/public-api/compare/v5.50.2...v5.50.3) (2022-11-17)
