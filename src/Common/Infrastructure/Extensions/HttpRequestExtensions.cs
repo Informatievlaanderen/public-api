@@ -3,6 +3,7 @@ namespace Common.Infrastructure.Extensions
     using Be.Vlaanderen.Basisregisters.Api;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using System;
 
     public static class HttpRequestExtensions
     {
@@ -36,6 +37,20 @@ namespace Common.Infrastructure.Extensions
             // convert Atom to Xml to support problem-details
             if (request.GetTypedHeaders().Contains(AcceptType.Atom))
                 request.SetAcceptType(AcceptType.Xml);
+        }
+
+        public static string GetPathAfterSection(this HttpRequest request, string section)
+        {
+            ArgumentNullException.ThrowIfNull(section);
+
+            var rootUrlPart = $"/{section.Trim('/')}/";
+            var index = request.Path.Value?.IndexOf(rootUrlPart) ?? -1;
+            if (index == -1)
+            {
+                throw new InvalidOperationException($"Part '{rootUrlPart}' expected in url.");
+            }
+
+            return request.Path.Value.Substring(index + rootUrlPart.Length);
         }
     }
 }

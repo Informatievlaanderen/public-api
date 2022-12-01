@@ -316,7 +316,7 @@ namespace Common.Infrastructure.Controllers
                 return;
             }
 
-            var copyHeaders = new[] { ApiKeyAuthAttribute.ApiTokenHeaderName };
+            var copyHeaders = new[] { ApiKeyAuthAttribute.ApiTokenHeaderName, ApiKeyAuthAttribute.ApiKeyHeaderName };
             var headersToCopy = currentRequest.Headers.Where(x => copyHeaders.Contains(x.Key));
 
             foreach (var (key, value) in headersToCopy)
