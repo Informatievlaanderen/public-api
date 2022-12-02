@@ -50,7 +50,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.AggregateSource (7.0)
       Be.Vlaanderen.Basisregisters.EventHandling (>= 4.0)
       SqlStreamStore (>= 1.2)
-    Be.Vlaanderen.Basisregisters.Api (18.2.1)
+    Be.Vlaanderen.Basisregisters.Api (18.3)
       Autofac (>= 6.3)
       Autofac.Extensions.DependencyInjection (>= 7.2)
       Be.Vlaanderen.Basisregisters.AggregateSource (>= 6.2.2)
@@ -261,9 +261,12 @@ NUGET
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.0)
     Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo (4.1.8) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.0)
-    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (4.6) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions (4.6.1) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.Api (>= 18.3)
+      MediatR.Contracts (>= 1.0.1)
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (4.6.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.34)
-    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo (4.6) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo (4.6.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.34)
     Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (3.2) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo (3.2) - copy_content_to_output_dir: always
