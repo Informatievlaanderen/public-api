@@ -148,6 +148,8 @@ namespace Public.Api.Infrastructure
                             typeof(BuildingRegistry.Api.BackOffice.Abstractions.Building.Responses.PlanBuildingResponse).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(RoadRegistry.BackOffice.Api.Startup).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(RoadRegistry.BackOffice.Abstractions.EndpointRequest).GetTypeInfo().Assembly.GetName().Name,
                             typeof(PublicServiceRegistry.Api.Backoffice.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(Be.Vlaanderen.Basisregisters.GrAr.Common.NodaHelpers).GetTypeInfo().Assembly.GetName().Name,
                             typeof(Be.Vlaanderen.Basisregisters.GrAr.Edit.GmlConstants).GetTypeInfo().Assembly.GetName().Name,
@@ -304,6 +306,7 @@ namespace Public.Api.Infrastructure
                 .ConfigureRegistryOptions<BuildingOptionsV2>(_configuration.GetSection("ApiConfiguration:BuildingRegistryV2"))
                 .ConfigureRegistryOptions<ParcelOptions>(_configuration.GetSection("ApiConfiguration:ParcelRegistry"))
                 .ConfigureRegistryOptions<ParcelOptionsV2>(_configuration.GetSection("ApiConfiguration:ParcelRegistryV2"))
+                .ConfigureRegistryOptions<RoadRegistryOptions>(_configuration.GetSection("ApiConfiguration:RoadRegistry"))
                 .Configure<FeatureToggleOptions>(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey))
                 .Configure<ExcludedRouteModelOptions>(_configuration.GetSection("ExcludedRoutes"))
                 .AddSingleton(c => new FeedsVisibleToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsFeedsVisible))
