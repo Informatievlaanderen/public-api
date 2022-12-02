@@ -14,15 +14,17 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
+[ApiVisible]
 [ApiVersion(Version.Current)]
 [AdvertiseApiVersions(Version.CurrentAdvertised)]
 [ApiRoute("")]
-[ApiExplorerSettings(GroupName = "Wegsegmenten")]
+[ApiExplorerSettings(GroupName = "Wegen")]
+[ApiProduces(EndpointType.BackOffice)]
 [ApiOrder(ApiOrder.Road.RoadUpload)]
 [ApiKeyAuth("Road")]
 public partial class RoadSegmentsController : RegistryApiController<RoadSegmentsController>
 {
-    protected const string EndPointRoot = "wegen";
+    protected const string RootEndPoint = "wegen";
 
     public RoadSegmentsController(
         IHttpContextAccessor httpContextAccessor,

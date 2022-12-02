@@ -1,6 +1,5 @@
 namespace Public.Api.Road.RoadSegments;
 
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Be.Vlaanderen.Basisregisters.Api.Exceptions;
@@ -10,24 +9,37 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using RestSharp;
-using RoadRegistry.BackOffice.Api.RoadSegments;
+using Swashbuckle.AspNetCore.Filters;
 
 public partial class RoadSegmentsController
 {
-    [HttpPost(EndPointRoot + "/wegsegmenten/{id}/acties/straatnaamkoppelen", Name = nameof(PostLinkStreetName))]
+    [HttpPost(RootEndPoint + "/wegsegmenten/{id}/acties/straatnaamkoppelen", Name = nameof(PostLinkStreetName))]
+    //[ProducesResponseType(typeof(StreetNameListResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+    [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
+    [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
+    //[SwaggerResponseExample(StatusCodes.Status200OK, typeof(PostLinkStreetNameResponseExamples))]
+    [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
+    [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
+    [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
     public async Task<IActionResult> PostLinkStreetName(
         [FromRoute] string id,
-        [FromBody] PostLinkStreetNameParameters request,
+        [FromBody] RoadRegistry.BackOffice.Api.RoadSegments.RoadSegmentsController.PostLinkStreetNameParameters request,
         [FromServices] IActionContextAccessor actionContextAccessor,
         [FromServices] ProblemDetailsHelper problemDetailsHelper,
         CancellationToken cancellationToken)
     {
         var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-        RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(
-            Request.GetPathAfterSection(EndPointRoot),
-            request,
-            Method.Post);
+        RestRequest BackendRequest()
+        {
+            return CreateBackendRequestWithJsonBody(
+                Request.GetPathAfterRoutePart(RootEndPoint),
+                request,
+                Method.Post);
+        }
 
         var value = await GetFromBackendWithBadRequestAsync(
             contentFormat.ContentType,

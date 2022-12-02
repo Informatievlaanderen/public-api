@@ -39,11 +39,11 @@ namespace Common.Infrastructure.Extensions
                 request.SetAcceptType(AcceptType.Xml);
         }
 
-        public static string GetPathAfterSection(this HttpRequest request, string section)
+        public static string GetPathAfterRoutePart(this HttpRequest request, string routePart)
         {
-            ArgumentNullException.ThrowIfNull(section);
+            ArgumentNullException.ThrowIfNull(routePart);
 
-            var rootUrlPart = $"/{section.Trim('/')}/";
+            var rootUrlPart = $"/{routePart.Trim('/')}/";
             var index = request.Path.Value?.IndexOf(rootUrlPart) ?? -1;
             if (index == -1)
             {
