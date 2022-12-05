@@ -1,6 +1,7 @@
 namespace Common.Infrastructure.Extensions
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
@@ -13,6 +14,7 @@ namespace Common.Infrastructure.Extensions
 
     public static class AcceptTypeExtensions
     {
+        private static readonly List<string> DefaultBrowserAcceptTypes = new List<string> { "text/html", "application/xhtml+xml" };
         private static ApiException InvalidAcceptType => new ApiException("Ongeldig formaat.", StatusCodes.Status406NotAcceptable);
 
         public static string ToMimeTypeString(this AcceptType acceptType)
@@ -46,7 +48,9 @@ namespace Common.Infrastructure.Extensions
             var acceptHeaders = requestHeaders.Accept;
 
             if (acceptHeaders == null || acceptHeaders.Count == 0)
+            {
                 return AcceptType.Json;
+            }
 
             var headersByQuality = acceptHeaders
                 .OrderByDescending(header => header, MediaTypeHeaderValueComparer.QualityComparer)
@@ -55,26 +59,39 @@ namespace Common.Infrastructure.Extensions
             foreach (var headerValue in headersByQuality)
             {
                 if (headerValue.Contains(AcceptTypes.Atom))
+                {
                     return AcceptType.Atom;
+                }
 
                 if (headerValue.Contains(AcceptTypes.Xml))
+                {
                     return AcceptType.Xml;
+                }
 
                 if (headerValue.Contains(AcceptTypes.JsonProblem))
+                {
                     return AcceptType.JsonProblem;
+                }
 
                 if (headerValue.Contains(AcceptTypes.JsonLd))
+                {
                     return AcceptType.JsonLd;
+                }
 
                 if (headerValue.Contains(AcceptTypes.Json))
+                {
                     return AcceptType.Json;
+                }
 
-                if (headerValue.Contains(AcceptTypes.Any))
+                if (headerValue.Contains(AcceptTypes.Any)
+                    || DefaultBrowserAcceptTypes.Any(acceptType => headerValue.Contains(acceptType)))
                 {
                     // We like to default to json,
                     // but we need to pick something the controller actually produces
-                    if (!(actionDescriptor is ControllerActionDescriptor controllerActionDescriptor))
+                    if (actionDescriptor is not ControllerActionDescriptor controllerActionDescriptor)
+                    {
                         return AcceptType.Json;
+                    }
 
                     var producesAttribute = controllerActionDescriptor
                         .ControllerTypeInfo
@@ -83,7 +100,9 @@ namespace Common.Infrastructure.Extensions
                         .SingleOrDefault();
 
                     if (producesAttribute == null)
+                    {
                         return AcceptType.Json;
+                    }
 
                     foreach (var possibleContentType in producesAttribute.ContentTypes)
                     {
