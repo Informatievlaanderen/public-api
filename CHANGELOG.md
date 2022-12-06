@@ -1,3 +1,11 @@
+# [5.52.0](https://github.com/informatievlaanderen/public-api/compare/v5.51.0...v5.52.0) (2022-12-06)
+
+
+### Features
+
+* add addressobjectid filter to parcel lists ([d7f1165](https://github.com/informatievlaanderen/public-api/commit/d7f1165ca608191d5717ff037ae8832edc2a8a59))
+* treat default browser accept type as Any ([3b88259](https://github.com/informatievlaanderen/public-api/commit/3b882596adca168fd37ed0c36d0fc2304c91b6b0))
+
 # [5.51.0](https://github.com/informatievlaanderen/public-api/compare/v5.50.4...v5.51.0) (2022-12-01)
 
 
