@@ -1,3 +1,10 @@
+# [5.53.0](https://github.com/informatievlaanderen/public-api/compare/v5.52.0...v5.53.0) (2022-12-06)
+
+
+### Features
+
+* add attach/dettach address ([71985d0](https://github.com/informatievlaanderen/public-api/commit/71985d06fb82a53ab7190cb3c5cf008554e38875))
+
 # [5.52.0](https://github.com/informatievlaanderen/public-api/compare/v5.51.0...v5.52.0) (2022-12-06)
 
 
