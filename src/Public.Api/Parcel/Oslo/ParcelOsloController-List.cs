@@ -32,6 +32,7 @@ namespace Public.Api.Parcel.Oslo
         /// Filter op de status van het perceel (exact) (optioneel).<br/>
         /// `"gerealiseerd"` `"gehistoreerd"`
         /// </param>
+        /// <param name="adresObjectId">Filter op de objectidentificator van het gekoppelde adres (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
@@ -61,6 +62,7 @@ namespace Public.Api.Parcel.Oslo
             [FromQuery] int? limit,
             [FromQuery] string sort,
             [FromQuery] string status,
+            [FromQuery] int? adresObjectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<ParcelOptionsV2> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -78,7 +80,8 @@ namespace Public.Api.Parcel.Oslo
                 limit,
                 taal,
                 sort,
-                status);
+                status,
+                adresObjectId);
 
             var cacheKey = CreateCacheKeyForRequestQuery($"oslo/parcel-list:{taal}");
 
@@ -102,10 +105,12 @@ namespace Public.Api.Parcel.Oslo
             int? limit,
             Taal language,
             string sort,
-            string status)
+            string status,
+            int? addressObjectId)
         {
             var filter = new ParcelFilter
             {
+                AddressId = addressObjectId.ToString() ?? string.Empty,
                 Status = status
             };
 
