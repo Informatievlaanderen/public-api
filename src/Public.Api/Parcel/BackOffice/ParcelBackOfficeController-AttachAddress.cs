@@ -52,7 +52,7 @@ namespace Public.Api.Parcel.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerRequestExample(typeof(AttachAddressRequest), typeof(AttachAddressRequest))]
+        [SwaggerRequestExample(typeof(AttachAddressRequest), typeof(AttachAddressRequestExamples))]
         [SwaggerOperation(Description = "Toevoegen van een adreskoppeling aan een perceelsobject.")]
         [HttpPost(AttachAddressParcelRoute, Name = nameof(AttachAddress))]
         public async Task<IActionResult> AttachAddress(
