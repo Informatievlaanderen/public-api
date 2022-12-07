@@ -3,30 +3,33 @@ namespace Public.Api.Road.RoadSegments;
 using System.Threading;
 using System.Threading.Tasks;
 using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-using Common.Infrastructure.Extensions;
 using Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using RestSharp;
+using RoadRegistry.BackOffice.Abstractions.RoadSegments;
+using RoadRegistry.BackOffice.Api.RoadSegments;
 using Swashbuckle.AspNetCore.Filters;
 
 public partial class RoadSegmentsController
 {
-    [HttpPost(RootEndPoint + "/wegsegmenten/{id}/acties/straatnaamkoppelen", Name = nameof(PostLinkStreetName))]
-    //[ProducesResponseType(typeof(StreetNameListResponse), StatusCodes.Status200OK)]
+    public const string LinkStreetNameRoute = "wegsegmenten/{id}/acties/straatnaamkoppelen";
+
+    [HttpPost(LinkStreetNameRoute, Name = nameof(PostLinkStreetName))]
+    [ProducesResponseType(typeof(LinkStreetNameResponse), StatusCodes.Status202Accepted)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
     [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-    //[SwaggerResponseExample(StatusCodes.Status200OK, typeof(PostLinkStreetNameResponseExamples))]
+    [SwaggerResponseExample(StatusCodes.Status200OK, typeof(LinkStreetNameResponseExamples))]
     [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
     [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
     [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
     public async Task<IActionResult> PostLinkStreetName(
         [FromRoute] string id,
-        [FromBody] RoadRegistry.BackOffice.Api.RoadSegments.RoadSegmentsController.PostLinkStreetNameParameters request,
+        [FromBody] PostLinkStreetNameParameters request,
         [FromServices] IActionContextAccessor actionContextAccessor,
         [FromServices] ProblemDetailsHelper problemDetailsHelper,
         CancellationToken cancellationToken)
@@ -36,9 +39,10 @@ public partial class RoadSegmentsController
         RestRequest BackendRequest()
         {
             return CreateBackendRequestWithJsonBody(
-                Request.GetPathAfterRoutePart(RootEndPoint),
-                request,
-                Method.Post);
+                    LinkStreetNameRoute,
+                    request,
+                    Method.Post)
+                .AddParameter(nameof(id), id);
         }
 
         var value = await GetFromBackendWithBadRequestAsync(

@@ -1,6 +1,5 @@
 namespace Public.Api.Road.RoadSegments;
 
-using System.Net.Http;
 using Autofac.Features.AttributeFilters;
 using Be.Vlaanderen.Basisregisters.Api;
 using Common.Infrastructure;
@@ -18,14 +17,12 @@ using Microsoft.Extensions.Logging;
 [ApiVersion(Version.Current)]
 [AdvertiseApiVersions(Version.CurrentAdvertised)]
 [ApiRoute("")]
-[ApiExplorerSettings(GroupName = "Wegen")]
+[ApiExplorerSettings(GroupName = "Wegsegmenten")]
 [ApiProduces(EndpointType.BackOffice)]
 [ApiOrder(ApiOrder.Road.RoadUpload)]
 [ApiKeyAuth("Road")]
 public partial class RoadSegmentsController : RegistryApiController<RoadSegmentsController>
 {
-    protected const string RootEndPoint = "wegen";
-
     public RoadSegmentsController(
         IHttpContextAccessor httpContextAccessor,
         [KeyFilter(RegistryKeys.Road)] IRestClient restClient,

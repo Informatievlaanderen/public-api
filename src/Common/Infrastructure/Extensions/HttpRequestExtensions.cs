@@ -38,19 +38,5 @@ namespace Common.Infrastructure.Extensions
             if (request.GetTypedHeaders().Contains(AcceptType.Atom))
                 request.SetAcceptType(AcceptType.Xml);
         }
-
-        public static string GetPathAfterRoutePart(this HttpRequest request, string routePart)
-        {
-            ArgumentNullException.ThrowIfNull(routePart);
-
-            var rootUrlPart = $"/{routePart.Trim('/')}/";
-            var index = request.Path.Value?.IndexOf(rootUrlPart) ?? -1;
-            if (index == -1)
-            {
-                throw new InvalidOperationException($"Part '{rootUrlPart}' expected in url.");
-            }
-
-            return request.Path.Value.Substring(index + rootUrlPart.Length);
-        }
     }
 }
