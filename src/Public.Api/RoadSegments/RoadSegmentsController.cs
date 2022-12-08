@@ -1,4 +1,4 @@
-namespace Public.Api.Road.RoadSegments;
+namespace Public.Api.RoadSegments;
 
 using Autofac.Features.AttributeFilters;
 using Be.Vlaanderen.Basisregisters.Api;
@@ -37,5 +37,7 @@ public partial class RoadSegmentsController : RegistryApiController<RoadSegments
     protected override string GoneExceptionMessage => "Verwijderde wegsegment.";
 
     private static ContentFormat DetermineFormat(ActionContext? context)
-        => ContentFormat.For(EndpointType.BackOffice, context);
+    {
+        return ContentFormat.For(EndpointType.BackOffice, context);
+    }
 }

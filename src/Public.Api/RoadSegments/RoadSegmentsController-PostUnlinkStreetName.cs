@@ -1,4 +1,4 @@
-namespace Public.Api.Road.RoadSegments;
+namespace Public.Api.RoadSegments;
 
 using System.Threading;
 using System.Threading.Tasks;
