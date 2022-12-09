@@ -18,6 +18,7 @@ using Microsoft.Extensions.Logging;
 [AdvertiseApiVersions(Version.CurrentAdvertised)]
 [ApiRoute("")]
 [ApiExplorerSettings(GroupName = "Wegsegmenten")]
+[ApiConsumes(EndpointType.BackOffice)]
 [ApiProduces(EndpointType.BackOffice)]
 [ApiOrder(ApiOrder.Road.RoadUpload)]
 [ApiKeyAuth("Road")]

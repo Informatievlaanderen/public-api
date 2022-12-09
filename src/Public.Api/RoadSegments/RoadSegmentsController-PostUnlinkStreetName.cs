@@ -11,6 +11,7 @@ using RestSharp;
 using RoadRegistry.BackOffice.Abstractions.RoadSegments;
 using RoadRegistry.BackOffice.Api.RoadSegments;
 using Swashbuckle.AspNetCore.Filters;
+using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
 public partial class RoadSegmentsController
 {
