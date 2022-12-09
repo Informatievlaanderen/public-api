@@ -34,8 +34,8 @@ public partial class RoadSegmentsController : RegistryApiController<RoadSegments
     {
     }
 
-    protected override string NotFoundExceptionMessage => "Onbestaande wegsegment.";
-    protected override string GoneExceptionMessage => "Verwijderde wegsegment.";
+    protected override string NotFoundExceptionMessage => "Onbestaand wegsegment.";
+    protected override string GoneExceptionMessage => "Verwijderd wegsegment.";
 
     private static ContentFormat DetermineFormat(ActionContext? context)
     {
