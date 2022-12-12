@@ -1,3 +1,10 @@
+## [5.54.2](https://github.com/informatievlaanderen/public-api/compare/v5.54.1...v5.54.2) (2022-12-12)
+
+
+### Bug Fixes
+
+* attach/detach parcel endpoints ([1bafde5](https://github.com/informatievlaanderen/public-api/commit/1bafde50a716a32e87c2d521cd18ec37c7dd0081))
+
 ## [5.54.1](https://github.com/informatievlaanderen/public-api/compare/v5.54.0...v5.54.1) (2022-12-12)
 
 
