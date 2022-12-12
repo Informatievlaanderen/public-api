@@ -3,6 +3,7 @@ namespace Public.Api.Parcel.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.GrAr.Common;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
@@ -19,12 +20,12 @@ namespace Public.Api.Parcel.BackOffice
 
     public partial class ParcelBackOfficeController
     {
-        public const string AttachAddressParcelRoute = "percelen/{objectId}/acties/adreskoppelen";
+        public const string AttachAddressParcelRoute = "percelen/{caPaKey}/acties/adreskoppelen";
 
         /// <summary>
         /// Koppel een perceel aan een adres
         /// </summary>
-        /// <param name="objectId">Identificator van het perceel.</param>
+        /// <param name="caPaKey">Identificator van het perceel.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van het perceel (optioneel).</param>
@@ -57,7 +58,7 @@ namespace Public.Api.Parcel.BackOffice
         [HttpPost(AttachAddressParcelRoute, Name = nameof(AttachAddressParcel))]
         public async Task<IActionResult> AttachAddressParcel(
             [FromBody] AttachAddressRequest request,
-            [FromRoute] int objectId,
+            [FromRoute] string caPaKey,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] AttachAddressParcelToggle toggle,
@@ -72,7 +73,7 @@ namespace Public.Api.Parcel.BackOffice
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(AttachAddressParcelRoute, request, Method.Post)
-                .AddParameter("objectId", objectId, ParameterType.UrlSegment)
+                .AddParameter("caPaKey", caPaKey, ParameterType.UrlSegment)
                 .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
 
             var value = await GetFromBackendWithBadRequestAsync(
