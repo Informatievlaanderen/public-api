@@ -1,3 +1,10 @@
+## [5.54.1](https://github.com/informatievlaanderen/public-api/compare/v5.54.0...v5.54.1) (2022-12-12)
+
+
+### Bug Fixes
+
+* hide docs parcel toggles ([ad0e1c6](https://github.com/informatievlaanderen/public-api/commit/ad0e1c6b2ad4a039a8f1e1c15fb9e5de2046c64e))
+
 # [5.54.0](https://github.com/informatievlaanderen/public-api/compare/v5.53.1...v5.54.0) (2022-12-07)
 
 
