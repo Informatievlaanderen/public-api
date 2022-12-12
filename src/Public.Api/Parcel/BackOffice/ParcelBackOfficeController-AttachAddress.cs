@@ -54,8 +54,8 @@ namespace Public.Api.Parcel.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(AttachAddressRequest), typeof(AttachAddressRequestExamples))]
         [SwaggerOperation(Description = "Toevoegen van een adreskoppeling aan een perceelsobject.")]
-        [HttpPost(AttachAddressParcelRoute, Name = nameof(AttachAddress))]
-        public async Task<IActionResult> AttachAddress(
+        [HttpPost(AttachAddressParcelRoute, Name = nameof(AttachAddressParcel))]
+        public async Task<IActionResult> AttachAddressParcel(
             [FromBody] AttachAddressRequest request,
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
