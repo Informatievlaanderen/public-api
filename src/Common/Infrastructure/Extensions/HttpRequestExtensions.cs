@@ -3,8 +3,7 @@ namespace Common.Infrastructure.Extensions
     using Be.Vlaanderen.Basisregisters.Api;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using System;
-
+    
     public static class HttpRequestExtensions
     {
         public static string GetValueFromRouteData(this ActionContext context, string key)

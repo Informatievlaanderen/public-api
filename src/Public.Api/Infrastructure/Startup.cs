@@ -148,6 +148,7 @@ namespace Public.Api.Infrastructure
                             typeof(BuildingRegistry.Api.BackOffice.Abstractions.Building.Responses.PlanBuildingResponse).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(PublicServiceRegistry.Api.Backoffice.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(RoadRegistry.BackOffice.Api.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(RoadRegistry.BackOffice.Abstractions.EndpointRequest).GetTypeInfo().Assembly.GetName().Name,
                             typeof(Be.Vlaanderen.Basisregisters.GrAr.Common.NodaHelpers).GetTypeInfo().Assembly.GetName().Name,
