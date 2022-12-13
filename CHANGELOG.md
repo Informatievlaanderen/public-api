@@ -1,3 +1,48 @@
+## [5.54.2](https://github.com/informatievlaanderen/public-api/compare/v5.54.1...v5.54.2) (2022-12-12)
+
+
+### Bug Fixes
+
+* attach/detach parcel endpoints ([1bafde5](https://github.com/informatievlaanderen/public-api/commit/1bafde50a716a32e87c2d521cd18ec37c7dd0081))
+
+## [5.54.1](https://github.com/informatievlaanderen/public-api/compare/v5.54.0...v5.54.1) (2022-12-12)
+
+
+### Bug Fixes
+
+* hide docs parcel toggles ([ad0e1c6](https://github.com/informatievlaanderen/public-api/commit/ad0e1c6b2ad4a039a8f1e1c15fb9e5de2046c64e))
+
+# [5.54.0](https://github.com/informatievlaanderen/public-api/compare/v5.53.1...v5.54.0) (2022-12-07)
+
+
+### Features
+
+* bump parcel + fix attach/detach examples ([5094b02](https://github.com/informatievlaanderen/public-api/commit/5094b02d7627154a296292050e2d39174e2f3db5))
+
+## [5.53.1](https://github.com/informatievlaanderen/public-api/compare/v5.53.0...v5.53.1) (2022-12-07)
+
+# [5.53.0](https://github.com/informatievlaanderen/public-api/compare/v5.52.0...v5.53.0) (2022-12-06)
+
+
+### Features
+
+* add attach/dettach address ([71985d0](https://github.com/informatievlaanderen/public-api/commit/71985d06fb82a53ab7190cb3c5cf008554e38875))
+
+# [5.52.0](https://github.com/informatievlaanderen/public-api/compare/v5.51.0...v5.52.0) (2022-12-06)
+
+
+### Features
+
+* add addressobjectid filter to parcel lists ([d7f1165](https://github.com/informatievlaanderen/public-api/commit/d7f1165ca608191d5717ff037ae8832edc2a8a59))
+* treat default browser accept type as Any ([3b88259](https://github.com/informatievlaanderen/public-api/commit/3b882596adca168fd37ed0c36d0fc2304c91b6b0))
+
+# [5.51.0](https://github.com/informatievlaanderen/public-api/compare/v5.50.4...v5.51.0) (2022-12-01)
+
+
+### Features
+
+* extend common building unit docs ([6b6abfc](https://github.com/informatievlaanderen/public-api/commit/6b6abfcbeace28d582d0eefc739db796fcac6700))
+
 ## [5.50.4](https://github.com/informatievlaanderen/public-api/compare/v5.50.3...v5.50.4) (2022-11-18)
 
 ## [5.50.3](https://github.com/informatievlaanderen/public-api/compare/v5.50.2...v5.50.3) (2022-11-17)

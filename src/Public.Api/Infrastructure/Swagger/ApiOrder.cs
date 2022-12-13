@@ -59,6 +59,7 @@ namespace Public.Api.Infrastructure.Swagger
             public const int Base = BuildingUnit.Base + 100;
             public const int V1 = Base + 10;
             public const int V2 = Base + 20;
+            public const int Edit = Base + 30;
         }
 
         public static class PublicService

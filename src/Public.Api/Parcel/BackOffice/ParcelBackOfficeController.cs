@@ -1,4 +1,4 @@
-namespace Public.Api.Address.BackOffice
+namespace Public.Api.Parcel.BackOffice
 {
     using Autofac.Features.AttributeFilters;
     using Be.Vlaanderen.Basisregisters.Api;
@@ -11,27 +11,26 @@ namespace Public.Api.Address.BackOffice
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using RestSharp;
     using Version = Infrastructure.Version.Version;
 
     [ApiVisible]
     [ApiVersion(Version.V2)]
     [AdvertiseApiVersions(Version.V2)]
     [ApiRoute("")]
-    [ApiExplorerSettings(GroupName = "Adressen")]
+    [ApiExplorerSettings(GroupName = "Percelen")]
     [ApiConsumes(EndpointType.BackOffice)]
     [ApiProduces(EndpointType.BackOffice)]
-    public partial class AddressBackOfficeController : RegistryApiController<AddressBackOfficeController>
+    public partial class ParcelBackOfficeController : RegistryApiController<ParcelBackOfficeController>
     {
-        protected override string NotFoundExceptionMessage => "Onbestaand adres.";
-        protected override string GoneExceptionMessage => "Verwijderd adres.";
+        protected override string NotFoundExceptionMessage => "Onbestaand perceel.";
+        protected override string GoneExceptionMessage => "Verwijderd perceel.";
 
-        public AddressBackOfficeController(
-            [KeyFilter(RegistryKeys.AddressBackOffice)] IRestClient restClient,
-            [KeyFilter(RegistryKeys.AddressBackOffice)] IFeatureToggle cacheToggle,
+        public ParcelBackOfficeController(
+            [KeyFilter(RegistryKeys.ParcelBackOffice)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.ParcelBackOffice)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             IHttpContextAccessor httpContextAccessor,
-            ILogger<AddressBackOfficeController> logger)
+            ILogger<ParcelBackOfficeController> logger)
             : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
         private static ContentFormat DetermineFormat(ActionContext context)
