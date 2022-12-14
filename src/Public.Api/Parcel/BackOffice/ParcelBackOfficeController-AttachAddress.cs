@@ -20,12 +20,13 @@ namespace Public.Api.Parcel.BackOffice
 
     public partial class ParcelBackOfficeController
     {
-        public const string AttachAddressParcelRoute = "percelen/{caPaKey}/acties/adreskoppelen";
+        public const string AttachAddressParcelRoute = "percelen/{objectId}/acties/adreskoppelen";
 
         /// <summary>
-        /// Koppel een perceel aan een adres
+        /// Koppel een adres aan een perceel.
         /// </summary>
-        /// <param name="caPaKey">Identificator van het perceel.</param>
+        /// <param name="objectId">Objectidentificator van het perceel (CaPaKey waarbij forward slash `/` vervangen werd door koppelteken `-`).</param>
+        /// <param name="request"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van het perceel (optioneel).</param>
@@ -33,7 +34,7 @@ namespace Public.Api.Parcel.BackOffice
         /// <param name="cancellationToken"></param>
         /// <response code="202">Als het ticket succesvol is aangemaakt.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
-        /// <response code="404">Als het adres niet gevonden kan worden.</response>
+        /// <response code="404">Als het perceel niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
@@ -58,7 +59,7 @@ namespace Public.Api.Parcel.BackOffice
         [HttpPost(AttachAddressParcelRoute, Name = nameof(AttachAddressParcel))]
         public async Task<IActionResult> AttachAddressParcel(
             [FromBody] AttachAddressRequest request,
-            [FromRoute] string caPaKey,
+            [FromRoute] string objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] AttachAddressParcelToggle toggle,
@@ -73,7 +74,7 @@ namespace Public.Api.Parcel.BackOffice
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(AttachAddressParcelRoute, request, Method.Post)
-                .AddParameter("caPaKey", caPaKey, ParameterType.UrlSegment)
+                .AddParameter("objectId", objectId, ParameterType.UrlSegment)
                 .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
 
             var value = await GetFromBackendWithBadRequestAsync(
