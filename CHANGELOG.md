@@ -1,3 +1,10 @@
+## [5.54.3](https://github.com/informatievlaanderen/public-api/compare/v5.54.2...v5.54.3) (2022-12-15)
+
+
+### Bug Fixes
+
+* documentation parcel ([da1d38f](https://github.com/informatievlaanderen/public-api/commit/da1d38f8af686490189b8e81caa165af9899c971))
+
 ## [5.54.2](https://github.com/informatievlaanderen/public-api/compare/v5.54.1...v5.54.2) (2022-12-12)
 
 
