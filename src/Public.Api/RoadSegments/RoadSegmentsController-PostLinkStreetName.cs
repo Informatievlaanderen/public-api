@@ -59,7 +59,7 @@ public partial class RoadSegmentsController
                     LinkStreetNameRoute,
                     request,
                     Method.Post)
-                .AddParameter(nameof(id), id);
+                .AddParameter(nameof(id), id, ParameterType.UrlSegment);
         }
 
         var value = await GetFromBackendWithBadRequestAsync(
