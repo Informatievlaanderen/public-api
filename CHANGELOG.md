@@ -1,3 +1,10 @@
+## [5.54.4](https://github.com/informatievlaanderen/public-api/compare/v5.54.3...v5.54.4) (2022-12-16)
+
+
+### Bug Fixes
+
+* return correct parcel etag ([477e99d](https://github.com/informatievlaanderen/public-api/commit/477e99d0def32b19ed6884c2305b4a14858804e4))
+
 ## [5.54.3](https://github.com/informatievlaanderen/public-api/compare/v5.54.2...v5.54.3) (2022-12-15)
 
 
