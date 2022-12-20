@@ -54,7 +54,7 @@ namespace Public.Api.Infrastructure.Configuration
         public bool DetachAddressBuildingUnit { get; set; }
         public bool RegularizeBuildingUnit { get; set; }
         public bool DeregulateBuildingUnit { get; set; }
-        public bool ChangeFunctionBuildingUnit { get; set; }
+        public bool ChangeBuildingUnitFunction { get; set; }
         public bool CorrectFunctionBuildingUnit { get; set; }
         public bool CorrectBuildingUnitPosition { get; set; }
         public bool RemoveBuildingUnit { get; set; }
