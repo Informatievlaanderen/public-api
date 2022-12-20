@@ -1,3 +1,11 @@
+# [5.55.0](https://github.com/informatievlaanderen/public-api/compare/v5.54.5...v5.55.0) (2022-12-20)
+
+
+### Features
+
+* attach address to building unit ([792009c](https://github.com/informatievlaanderen/public-api/commit/792009c5918fdf3bee18935f0c4898711344998c))
+* detach address from building unit ([6693c00](https://github.com/informatievlaanderen/public-api/commit/6693c006e3aa417ebf4c7b501c6898ef71fda99c))
+
 ## [5.54.5](https://github.com/informatievlaanderen/public-api/compare/v5.54.4...v5.54.5) (2022-12-19)
 
 ## [5.54.4](https://github.com/informatievlaanderen/public-api/compare/v5.54.3...v5.54.4) (2022-12-16)
