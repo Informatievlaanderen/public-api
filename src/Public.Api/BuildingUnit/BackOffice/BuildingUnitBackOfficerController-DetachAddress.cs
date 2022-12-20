@@ -19,16 +19,16 @@ namespace Public.Api.BuildingUnit.BackOffice
 
     public partial class BuildingUnitBackOfficeController
     {
-        public const string AttachAddressBuildingUnitRoute = "gebouweenheden/{objectId}/acties/adreskoppelen";
+        public const string DetachAddressBuildingUnitRoute = "gebouweenheden/{objectId}/acties/adresontkoppelen";
 
         /// <summary>
-        /// Koppel een adres aan een gebouweenheid.
+        /// Ontkoppel een adres van een gebouweenheid.
         /// </summary>
         /// <param name="objectId">Identificator van de gebouweenheid.</param>
-        /// <param name="attachAddressToBuildingUnitRequest"></param>
+        /// <param name="detachAddressFromBuildingUnitRequest"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
-        /// <param name="attachAddressToBuildingUnitRequestToggle"></param>
+        /// <param name="detachAddressBuildingUnitToggle"></param>
         /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van de gebouweenheid (optioneel).</param>
         /// <param name="cancellationToken"></param>
         /// <response code="202">Als het ticket succesvol is aangemaakt.</response>
@@ -39,7 +39,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         /// <returns></returns>
-        [ApiOrder(ApiOrder.BuildingUnit.Edit + 12)]
+        [ApiOrder(ApiOrder.BuildingUnit.Edit + 13)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -48,24 +48,24 @@ namespace Public.Api.BuildingUnit.BackOffice
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string", "De URL van het aangemaakte ticket.")]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-        [SwaggerRequestExample(typeof(AttachAddressToBuildingUnitRequestExamples), typeof(AttachAddressToBuildingUnitRequestExamples))]
+        [SwaggerRequestExample(typeof(DetachAddressFromBuildingUnitRequestExamples), typeof(DetachAddressFromBuildingUnitRequestExamples))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(BuildingUnitNotFoundResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Koppel een adresId met status `voorgesteld` of `inGebruik` aan een gebouweenheid met status `gepland` of `gerealiseerd`.")]
-        [HttpPost(AttachAddressBuildingUnitRoute, Name = nameof(AttachAddressBuildingUnit))]
-        public async Task<IActionResult> AttachAddressBuildingUnit(
+        [SwaggerOperation(Description = "Ontkoppel een adresId van een gebouweenheid.")]
+        [HttpPost(DetachAddressBuildingUnitRoute, Name = nameof(DetachAddressBuildingUnit))]
+        public async Task<IActionResult> DetachAddressBuildingUnit(
             [FromRoute] int objectId,
-            [FromBody] AttachAddressToBuildingUnitRequest attachAddressToBuildingUnitRequest,
+            [FromBody] DetachAddressFromBuildingUnitRequest detachAddressFromBuildingUnitRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] AttachAddressBuildingUnitToggle attachAddressToBuildingUnitRequestToggle,
+            [FromServices] DetachAddressBuildingUnitToggle detachAddressBuildingUnitToggle,
             [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
             CancellationToken cancellationToken = default)
         {
-            if (!attachAddressToBuildingUnitRequestToggle.FeatureEnabled)
+            if (!detachAddressBuildingUnitToggle.FeatureEnabled)
             {
                 return NotFound();
             }
@@ -73,7 +73,7 @@ namespace Public.Api.BuildingUnit.BackOffice
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() =>
-                CreateBackendRequestWithJsonBody(AttachAddressBuildingUnitRoute, attachAddressToBuildingUnitRequest, Method.Post)
+                CreateBackendRequestWithJsonBody(DetachAddressBuildingUnitRoute, detachAddressFromBuildingUnitRequest, Method.Post)
                 .AddParameter("objectId", objectId, ParameterType.UrlSegment)
                 .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
 
