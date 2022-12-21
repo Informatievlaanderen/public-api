@@ -1,3 +1,10 @@
+# [5.56.0](https://github.com/informatievlaanderen/public-api/compare/v5.55.0...v5.56.0) (2022-12-21)
+
+
+### Features
+
+* add v2 to feeds ([06b77ce](https://github.com/informatievlaanderen/public-api/commit/06b77ce6f4e93ede371819e2adac70a76061189f))
+
 # [5.55.0](https://github.com/informatievlaanderen/public-api/compare/v5.54.5...v5.55.0) (2022-12-20)
 
 
