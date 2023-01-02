@@ -342,6 +342,7 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new CorrectBuildingNotRealizationToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingNotRealization))
                 .AddSingleton(c => new ChangeBuildingGeometryOutlineToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangeBuildingGeometryOutline))
                 .AddSingleton(c => new DemolishBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.DemolishBuilding))
+                .AddSingleton(c => new RemoveBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RemoveBuilding))
                 .AddSingleton(c => new ChangeGeometryBuilding(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangeGeometryBuilding))
                 .AddSingleton(c => new CorrectGeometryBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectGeometryBuilding))
 

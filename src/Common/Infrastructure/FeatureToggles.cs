@@ -233,6 +233,13 @@ namespace Common.Infrastructure
         public ChangeBuildingGeometryOutlineToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class RemoveBuildingToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RemoveBuildingToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class DemolishBuildingToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
