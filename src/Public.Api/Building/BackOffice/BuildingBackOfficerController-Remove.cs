@@ -3,7 +3,6 @@ namespace Public.Api.Building.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using BuildingRegistry.Api.BackOffice.Abstractions.Building.Requests;
     using BuildingRegistry.Api.Legacy.Abstractions.Building.Responses;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
@@ -19,16 +18,15 @@ namespace Public.Api.Building.BackOffice
 
     public partial class BuildingBackOfficeController
     {
-        public const string CorrectBuildingGeometryOutlineRoute = "gebouwen/{objectId}/acties/wijzigen/schetsgeometriepolygoon";
+        public const string RemoveBuildingRoute = "gebouwen/{objectId}/acties/verwijderen";
 
         /// <summary>
-        /// Wijzig de geometrie van een geschetst gebouw.
+        /// Verwijder een gebouw.
         /// </summary>
         /// <param name="objectId">Identificator van het gebouw.</param>
-        /// <param name="changeBuildingOutlineRequest"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
-        /// <param name="changeBuildingGeometryOutlineToggle"></param>
+        /// <param name="removeBuildingToggle"></param>
         /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van het gebouw (optioneel).</param>
         /// <param name="cancellationToken"></param>
         /// <response code="202">Als het ticket succesvol is aangemaakt.</response>
@@ -39,7 +37,7 @@ namespace Public.Api.Building.BackOffice
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         /// <returns></returns>
-        [ApiOrder(ApiOrder.Building.Edit + 9)]
+        [ApiOrder(ApiOrder.Building.Edit + 8)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -53,34 +51,33 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Wijzig de geometrie van een geschetst gebouw. De gekoppelde gebouweenheden moeten in deze nieuwe geometrie liggen.")]
-        [HttpPost(CorrectBuildingGeometryOutlineRoute, Name = nameof(ChangeBuildingGeometryOutline))]
-        public async Task<IActionResult> ChangeBuildingGeometryOutline(
+        [SwaggerOperation(Description = "Het gebouw wordt verwijderd uit het gebouwenregister. Gekoppelde gebouweenheden worden mee verwijderd.")]
+        [HttpPost(RemoveBuildingRoute, Name = nameof(RemoveBuilding))]
+        public async Task<IActionResult> RemoveBuilding(
             [FromRoute] int objectId,
-            [FromBody] ChangeBuildingOutlineRequest changeBuildingOutlineRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] ChangeBuildingGeometryOutlineToggle changeBuildingGeometryOutlineToggle,
+            [FromServices] RemoveBuildingToggle removeBuildingToggle,
             [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
             CancellationToken cancellationToken = default)
         {
-            if (!changeBuildingGeometryOutlineToggle.FeatureEnabled)
+            if (!removeBuildingToggle.FeatureEnabled)
             {
                 return NotFound();
             }
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest () => CreateBackendRequestWithJsonBody(CorrectBuildingGeometryOutlineRoute, changeBuildingOutlineRequest, Method.Post)
+            RestRequest BackendRequest() => new RestRequest(RemoveBuildingRoute, Method.Post)
                 .AddParameter("objectId", objectId, ParameterType.UrlSegment)
                 .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
 
             var value = await GetFromBackendWithBadRequestAsync(
-                contentFormat.ContentType,
-                BackendRequest,
-                CreateDefaultHandleBadRequest(),
-                problemDetailsHelper,
-                cancellationToken: cancellationToken);
+                    contentFormat.ContentType,
+                    BackendRequest,
+                    CreateDefaultHandleBadRequest(),
+                    problemDetailsHelper,
+                    cancellationToken: cancellationToken);
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
         }
