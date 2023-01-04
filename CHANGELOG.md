@@ -1,3 +1,10 @@
+# [5.57.0](https://github.com/informatievlaanderen/public-api/compare/v5.56.0...v5.57.0) (2023-01-04)
+
+
+### Features
+
+* remove building ([b1e2f7c](https://github.com/informatievlaanderen/public-api/commit/b1e2f7ca1a2627b38838d9890da8141611102865))
+
 # [5.56.0](https://github.com/informatievlaanderen/public-api/compare/v5.55.0...v5.56.0) (2022-12-21)
 
 
