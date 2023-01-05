@@ -19,5 +19,18 @@ namespace Public.Api.Infrastructure
 
             return new BackendListResponseResult(response);
         }
+
+        public static BackendListResponseResult Create(
+            BackendResponse response,
+            IQueryCollection requestQuery,
+            string nextPageUrlTemplate,
+            string replaceNextPageUrlBase)
+        {
+            var nonPagedQueryCollection = new NonPagedQueryCollection(requestQuery);
+
+            response.UpdateNextPageUrlWithQueryParameters(nonPagedQueryCollection, nextPageUrlTemplate, replaceNextPageUrlBase);
+
+            return new BackendListResponseResult(response);
+        }
     }
 }
