@@ -80,7 +80,11 @@ namespace Public.Api.Feeds
                 HandleBadRequest,
                 cancellationToken);
 
-            return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.Syndication.NextUri);
+            return BackendListResponseResult.Create(
+                value,
+                Request.Query,
+                responseOptions.Value.Syndication.NextUri,
+                responseOptions.Value.Syndication.GetNextUri(actionContextAccessor));
         }
     }
 }
