@@ -61,6 +61,14 @@ namespace Common.Infrastructure
 
             if (string.IsNullOrWhiteSpace(parameters))
             {
+                if (!string.IsNullOrEmpty(replaceNextPageUrlBase))
+                {
+                    var uri = new Uri(nextPageUrlTemplate);
+                    var newUri = new Uri(replaceNextPageUrlBase);
+
+                    Content = Content.Replace(uri.AbsolutePath, newUri.AbsolutePath);
+                }
+
                 return;
             }
 
