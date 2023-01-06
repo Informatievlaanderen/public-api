@@ -1,3 +1,10 @@
+## [5.57.2](https://github.com/informatievlaanderen/public-api/compare/v5.57.1...v5.57.2) (2023-01-06)
+
+
+### Bug Fixes
+
+* v2 feeds urls ([7540ee1](https://github.com/informatievlaanderen/public-api/commit/7540ee1246feb69197414bef78efbef1fa78dbff))
+
 ## [5.57.1](https://github.com/informatievlaanderen/public-api/compare/v5.57.0...v5.57.1) (2023-01-05)
 
 
