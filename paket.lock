@@ -261,13 +261,13 @@ NUGET
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.0)
     Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo (4.1.8) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.0)
-    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions (4.7.4) - copy_content_to_output_dir: always
-      Be.Vlaanderen.Basisregisters.Api (>= 18.3)
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions (4.10) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.Api (>= 18.3.1)
       MediatR.Contracts (>= 1.0.1)
-    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (4.7.4) - copy_content_to_output_dir: always
-      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.34)
-    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo (4.7.4) - copy_content_to_output_dir: always
-      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.34)
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (4.10) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.42)
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo (4.10) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.42)
     Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (3.2) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo (3.2) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.ProblemDetails (8.0.1)
