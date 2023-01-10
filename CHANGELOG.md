@@ -1,3 +1,50 @@
+## [5.57.3](https://github.com/informatievlaanderen/public-api/compare/v5.57.2...v5.57.3) (2023-01-10)
+
+## [5.57.2](https://github.com/informatievlaanderen/public-api/compare/v5.57.1...v5.57.2) (2023-01-06)
+
+
+### Bug Fixes
+
+* v2 feeds urls ([7540ee1](https://github.com/informatievlaanderen/public-api/commit/7540ee1246feb69197414bef78efbef1fa78dbff))
+
+## [5.57.1](https://github.com/informatievlaanderen/public-api/compare/v5.57.0...v5.57.1) (2023-01-05)
+
+
+### Bug Fixes
+
+* use v2 in feeds next url ([7b28193](https://github.com/informatievlaanderen/public-api/commit/7b28193e924718632c52eec0317dcbf381086500))
+
+# [5.57.0](https://github.com/informatievlaanderen/public-api/compare/v5.56.0...v5.57.0) (2023-01-04)
+
+
+### Features
+
+* remove building ([b1e2f7c](https://github.com/informatievlaanderen/public-api/commit/b1e2f7ca1a2627b38838d9890da8141611102865))
+
+# [5.56.0](https://github.com/informatievlaanderen/public-api/compare/v5.55.0...v5.56.0) (2022-12-21)
+
+
+### Features
+
+* add v2 to feeds ([06b77ce](https://github.com/informatievlaanderen/public-api/commit/06b77ce6f4e93ede371819e2adac70a76061189f))
+
+# [5.55.0](https://github.com/informatievlaanderen/public-api/compare/v5.54.5...v5.55.0) (2022-12-20)
+
+
+### Features
+
+* attach address to building unit ([792009c](https://github.com/informatievlaanderen/public-api/commit/792009c5918fdf3bee18935f0c4898711344998c))
+* detach address from building unit ([6693c00](https://github.com/informatievlaanderen/public-api/commit/6693c006e3aa417ebf4c7b501c6898ef71fda99c))
+
+## [5.54.5](https://github.com/informatievlaanderen/public-api/compare/v5.54.4...v5.54.5) (2022-12-19)
+
+## [5.54.4](https://github.com/informatievlaanderen/public-api/compare/v5.54.3...v5.54.4) (2022-12-16)
+
+
+### Bug Fixes
+
+* return correct parcel etag ([477e99d](https://github.com/informatievlaanderen/public-api/commit/477e99d0def32b19ed6884c2305b4a14858804e4))
+
 ## [5.54.3](https://github.com/informatievlaanderen/public-api/compare/v5.54.2...v5.54.3) (2022-12-15)
 
 

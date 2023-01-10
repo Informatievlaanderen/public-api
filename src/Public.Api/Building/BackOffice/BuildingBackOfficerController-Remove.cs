@@ -1,8 +1,9 @@
-namespace Public.Api.Parcel.BackOffice
+namespace Public.Api.Building.BackOffice
 {
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using BuildingRegistry.Api.Legacy.Abstractions.Building.Responses;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
@@ -10,35 +11,33 @@ namespace Public.Api.Parcel.BackOffice
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using ParcelRegistry.Api.BackOffice.Abstractions.Requests;
-    using ParcelRegistry.Api.Legacy.Parcel.Responses;
     using RestSharp;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
-    public partial class ParcelBackOfficeController
+    public partial class BuildingBackOfficeController
     {
-        public const string DetachAddressParcelRoute = "percelen/{objectId}/acties/adresontkoppelen";
+        public const string RemoveBuildingRoute = "gebouwen/{objectId}/acties/verwijderen";
 
         /// <summary>
-        /// Ontkoppel een adres van een perceel.
+        /// Verwijder een geschetst gebouw.
         /// </summary>
-        /// <param name="objectId">Objectidentificator van het perceel (CaPaKey waarbij forward slash `/` vervangen werd door koppelteken `-`).</param>
+        /// <param name="objectId">Identificator van het gebouw.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
-        /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van het perceel (optioneel).</param>
-        /// <param name="toggle"></param>
+        /// <param name="removeBuildingToggle"></param>
+        /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van het gebouw (optioneel).</param>
         /// <param name="cancellationToken"></param>
         /// <response code="202">Als het ticket succesvol is aangemaakt.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
-        /// <response code="404">Als het perceel niet gevonden kan worden.</response>
+        /// <response code="404">Als het gebouw niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         /// <returns></returns>
-        [ApiOrder(ApiOrder.Parcel.Edit + 2)]
+        [ApiOrder(ApiOrder.Building.Edit + 8)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -48,30 +47,28 @@ namespace Public.Api.Parcel.BackOffice
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string", "De URL van het aangemaakte ticket.")]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(ParcelNotFoundResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(BuildingNotFoundResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerRequestExample(typeof(DetachAddressRequest), typeof(DetachAddressRequestExamples))]
-        [SwaggerOperation(Description = "Ontkoppel een adresId van een perceel.")]
-        [HttpPost(DetachAddressParcelRoute, Name = nameof(DetachAddressParcel))]
-        public async Task<IActionResult> DetachAddressParcel(
-            [FromBody] DetachAddressRequest request,
-            [FromRoute] string objectId,
+        [SwaggerOperation(Description = "Het geschetst gebouw wordt verwijderd uit het gebouwenregister. Gekoppelde gebouweenheden met status `gepland`, `gerealiseerd` en `gehistoreerd` worden mee verwijderd.")]
+        [HttpPost(RemoveBuildingRoute, Name = nameof(RemoveBuilding))]
+        public async Task<IActionResult> RemoveBuilding(
+            [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] DetachAddressParcelToggle toggle,
+            [FromServices] RemoveBuildingToggle removeBuildingToggle,
             [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
             CancellationToken cancellationToken = default)
         {
-            if (!toggle.FeatureEnabled)
+            if (!removeBuildingToggle.FeatureEnabled)
             {
                 return NotFound();
             }
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(DetachAddressParcelRoute, request, Method.Post)
+            RestRequest BackendRequest() => new RestRequest(RemoveBuildingRoute, Method.Post)
                 .AddParameter("objectId", objectId, ParameterType.UrlSegment)
                 .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
 

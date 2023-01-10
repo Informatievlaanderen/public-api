@@ -21,7 +21,9 @@ namespace Common.Infrastructure
         public HttpStatusCode StatusCode { get; }
 
         private bool IsXmlContent => ContentType.Contains("xml", StringComparison.OrdinalIgnoreCase);
+
         private bool IsAtomContent => Content.Contains("<feed xmlns=\"http://www.w3.org/2005/Atom\">", StringComparison.OrdinalIgnoreCase);
+
         private bool IsProblemDetail => ContentType.Contains("problem", StringComparison.OrdinalIgnoreCase);
 
         public BackendResponse(string content,
@@ -41,7 +43,10 @@ namespace Common.Infrastructure
             StatusCode = statusCode;
         }
 
-        public void UpdateNextPageUrlWithQueryParameters(NonPagedQueryCollection requestQuery, string nextPageUrlTemplate)
+        public void UpdateNextPageUrlWithQueryParameters(
+            NonPagedQueryCollection requestQuery,
+            string nextPageUrlTemplate,
+            string replaceNextPageUrlBase = "")
         {
             if (string.IsNullOrWhiteSpace(nextPageUrlTemplate) || IsProblemDetail)
             {
@@ -56,14 +61,38 @@ namespace Common.Infrastructure
 
             if (string.IsNullOrWhiteSpace(parameters))
             {
+                if (!string.IsNullOrEmpty(replaceNextPageUrlBase))
+                {
+                    var uri = new Uri(nextPageUrlTemplate);
+                    var newUri = new Uri(replaceNextPageUrlBase);
+
+                    Content = Content.Replace(uri.AbsolutePath, newUri.AbsolutePath);
+                }
+
                 return;
             }
 
-            Content = Regex.Replace(
-                Content,
-                GetNextPagePattern(nextPageUrlTemplate),
-                $"$1$2{parameters}$3",
-                RegexOptions.IgnoreCase);
+            if (string.IsNullOrEmpty(replaceNextPageUrlBase))
+            {
+                Content = Regex.Replace(
+                    Content,
+                    GetNextPagePattern(nextPageUrlTemplate),
+                    $"$1$2{parameters}$3",
+                    RegexOptions.IgnoreCase);
+            }
+            else
+            {
+                var uri = new Uri(nextPageUrlTemplate);
+                var newUri = new Uri(replaceNextPageUrlBase);
+
+                Content =
+                    Regex.Replace(
+                        Content,
+                        GetNextPagePattern(nextPageUrlTemplate),
+                        $"$1$2{parameters}$3",
+                        RegexOptions.IgnoreCase)
+                    .Replace(uri.AbsolutePath, newUri.AbsolutePath);
+            }
         }
 
         private bool ParameterIsAllowed(KeyValuePair<string, StringValues> parameter)
@@ -84,16 +113,18 @@ namespace Common.Infrastructure
         private string GetNextPagePattern(string nextPageUrlTemplate)
         {
             var templateParts = nextPageUrlTemplate
-                    .Format(Pattern.NumberPatternPlaceholder, Pattern.NumberPatternPlaceholder)
-                    .Split('?');
+                .Format(Pattern.NumberPatternPlaceholder, Pattern.NumberPatternPlaceholder)
+                .Split('?');
 
             if (templateParts.Length > 2)
             {
-                throw new ArgumentException($"Argument '{nameof(nextPageUrlTemplate)}' has an invalid format. Multiple '?' where found in '{nextPageUrlTemplate}'");
+                throw new ArgumentException(
+                    $"Argument '{nameof(nextPageUrlTemplate)}' has an invalid format. Multiple '?' where found in '{nextPageUrlTemplate}'");
             }
 
             var url = new Pattern(templateParts[0], EscapeForContentType);
-            var query = new Pattern(templateParts.Length > 1 ? "?" + templateParts[1] : string.Empty, EscapeForContentType);
+            var query = new Pattern(templateParts.Length > 1 ? "?" + templateParts[1] : string.Empty,
+                EscapeForContentType);
 
             if (IsAtomContent)
             {
@@ -119,7 +150,8 @@ namespace Common.Infrastructure
 
             public Pattern(string patternValue, Func<string, string> escapeForContentType)
             {
-                _escapeForContentType = escapeForContentType ?? throw new ArgumentNullException(nameof(escapeForContentType));
+                _escapeForContentType =
+                    escapeForContentType ?? throw new ArgumentNullException(nameof(escapeForContentType));
                 _escapedPattern = BuildPattern(patternValue);
             }
 
