@@ -53,7 +53,7 @@ namespace Public.Api.Parcel.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(DetachAddressRequest), typeof(DetachAddressRequestExamples))]
-        [SwaggerOperation(Description = "Ontkoppel een adresId van een perceel.")]
+        [SwaggerOperation(Description = "Verwijderen van een adreskoppeling op een perceelsobject.")]
         [HttpPost(DetachAddressParcelRoute, Name = nameof(DetachAddressParcel))]
         public async Task<IActionResult> DetachAddressParcel(
             [FromBody] DetachAddressRequest request,

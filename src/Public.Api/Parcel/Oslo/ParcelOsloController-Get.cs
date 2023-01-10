@@ -75,7 +75,7 @@ namespace Public.Api.Parcel.Oslo
                     CreateDefaultHandleBadRequest(),
                     cancellationToken));
 
-            return new BackendResponseResult(value, BackendResponseResultOptions.ForRead());
+            return new BackendResponseResult(value);
         }
 
         private static RestRequest CreateBackendDetailRequest(string capaKey)

@@ -16,7 +16,6 @@ namespace Public.Api.Feeds
 
     [ApiVisible]
     [ApiVersion(Version.Current)]
-    [ApiVersion(Version.V2)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("feeds")]
     [ApiExplorerSettings(GroupName = FeedsGroupName)]
