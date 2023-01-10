@@ -40,8 +40,8 @@ nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            4.7.4  c
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo              4.7.4  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions       4.7.4  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice 2.1.1  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api          3.28.0 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions 3.28.0 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api          3.31.0 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions 3.31.0 copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 6.0.5
 
@@ -73,3 +73,12 @@ nuget FluentAssertions 6.5.1
 // BUILD STUFF
 nuget SourceLink.Embed.AllSourceFiles 2.8.3 copy_local: true
 nuget SourceLink.Copy.PdbFiles 2.8.3 copy_local: true
+
+nuget Microsoft.Build 17.3.2
+nuget Microsoft.Build.Framework 17.3.2
+
+nuget NuGet.Versioning 6.3.1
+nuget Nuget.Common 6.3.1
+nuget NuGet.Configuration 6.3.1
+nuget NuGet.Packaging 6.3.1
+nuget NuGet.Protocol 6.3.1

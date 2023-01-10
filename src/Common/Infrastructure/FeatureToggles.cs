@@ -428,4 +428,25 @@ namespace Common.Infrastructure
 
         public TicketingToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
+
+    public class RoadSegmentLinkStreetNameToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RoadSegmentLinkStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class RoadSegmentUnlinkStreetNameToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RoadSegmentUnlinkStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class GetRoadSegmentToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public GetRoadSegmentToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
 }
