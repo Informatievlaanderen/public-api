@@ -345,6 +345,13 @@ namespace Common.Infrastructure
         public RegularizeBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class CorrectBuildingUnitRegularizationToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public CorrectBuildingUnitRegularizationToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class DeregulateBuildingUnitToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
