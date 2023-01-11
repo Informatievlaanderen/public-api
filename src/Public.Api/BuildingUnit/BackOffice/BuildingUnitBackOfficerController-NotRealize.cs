@@ -51,7 +51,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Wijzig de gebouweenheidsstatus van `gepland` naar `nietGerealiseerd`. Het gemeenschappelijkDeel wordt automatisch `gehistoreerd` wanneer status `gerealiseerd` is en `nietGerealiseerd` wanneer status `gepland` is van zodra er in een gebouw minder dan 2 geplande of gerealiseerde gebouweenheden aanwezig zijn.")]
+        [SwaggerOperation(Description = "Wijzig de gebouweenheidsstatus van `gepland` naar `nietGerealiseerd`. Het gemeenschappelijkDeel wordt automatisch `gehistoreerd` wanneer status `gerealiseerd` is en `nietGerealiseerd` wanneer status `gepland` is van zodra er in een gebouw minder dan 2 geplande of gerealiseerde gebouweenheden aanwezig zijn. Als er een adres gekoppeld is aan de gebouweenheid, wordt deze koppeling verwijderd.")]
         [HttpPost(NotRealizeBuildingUnitRoute, Name = nameof(NotRealizeBuildingUnit))]
         public async Task<IActionResult> NotRealizeBuildingUnit(
             [FromRoute] int objectId,
