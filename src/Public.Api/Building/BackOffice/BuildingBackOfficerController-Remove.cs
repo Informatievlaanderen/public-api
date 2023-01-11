@@ -51,7 +51,7 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Het geschetst gebouw wordt verwijderd uit het gebouwenregister. Gekoppelde gebouweenheden met status `gepland`, `gerealiseerd` en `gehistoreerd` worden mee verwijderd.")]
+        [SwaggerOperation(Description = "Het geschetst gebouw wordt verwijderd uit het gebouwenregister. Gekoppelde gebouweenheden met status `gepland`, `gerealiseerd` en `gehistoreerd` worden mee verwijderd. Als er aan deze gekoppelde gebouweenheden adressen zijn gekoppeld, worden deze koppelingen verwijderd.")]
         [HttpPost(RemoveBuildingRoute, Name = nameof(RemoveBuilding))]
         public async Task<IActionResult> RemoveBuilding(
             [FromRoute] int objectId,

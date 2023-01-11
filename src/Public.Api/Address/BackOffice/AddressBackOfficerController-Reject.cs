@@ -51,7 +51,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(Description = "Wijzig de adresstatus van `voorgesteld` naar `afgekeurd`. Gekoppelde busnummers met status `voorgesteld` worden `afgekeurd`.")]
+        [SwaggerOperation(Description = "Wijzig de adresstatus van `voorgesteld` naar `afgekeurd`. Gekoppelde busnummers met status `voorgesteld` worden `afgekeurd`. Als er een gebouweenheid of perceel gekoppeld is aan het adres, wordt deze koppeling verwijderd.")]
         [HttpPost(RejectRoute, Name = nameof(RejectAddress))]
         public async Task<IActionResult> RejectAddress(
             [FromRoute] int objectId,
