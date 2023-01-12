@@ -4,6 +4,7 @@ namespace Public.Api.Infrastructure.ProblemDetailsExceptionMapping
     using System.Text.RegularExpressions;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using BuildingRegistry.Api.Legacy.Abstractions.Infrastructure.Grb.Wfs;
+    using Microsoft.AspNetCore.Http;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public class GrbWfsExceptionMapping : ApiProblemDetailsExceptionMapping
@@ -19,14 +20,17 @@ namespace Public.Api.Infrastructure.ProblemDetailsExceptionMapping
             return new Regex(typeUriPattern).IsMatch(exception?.Details?.ProblemTypeUri ?? string.Empty);
         }
 
-        public override ProblemDetails MapException(ApiProblemDetailsException exception, ProblemDetailsHelper problemDetailsHelper)
+        public override ProblemDetails MapException(
+            HttpContext httpContext,
+            ApiProblemDetailsException exception,
+            ProblemDetailsHelper problemDetailsHelper)
             => new ProblemDetails
             {
                 HttpStatus = exception.StatusCode,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = "Probleem bij het contacteren van de GRB WFS-service.",
                 ProblemTypeUri = problemDetailsHelper.GetExceptionTypeUriFor<GrbWfsException>(),
-                ProblemInstanceUri = $"{problemDetailsHelper.GetInstanceBaseUri()}/{ProblemDetails.GetProblemNumber()}"
+                ProblemInstanceUri = $"{problemDetailsHelper.GetInstanceBaseUri(httpContext)}/{ProblemDetails.GetProblemNumber()}"
             };
     }
 }

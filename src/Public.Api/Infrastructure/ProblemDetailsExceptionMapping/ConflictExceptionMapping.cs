@@ -11,6 +11,7 @@ public class ConflictExceptionMapping : ApiProblemDetailsExceptionMapping
         => exception.GetType() == typeof(ConflictException);
 
     public override ProblemDetails MapException(
+        HttpContext httpContext,
         ApiProblemDetailsException exception,
         ProblemDetailsHelper problemDetailsHelper)
     {
@@ -21,7 +22,7 @@ public class ConflictExceptionMapping : ApiProblemDetailsExceptionMapping
             Title = ProblemDetails.DefaultTitle,
             Detail = "Er is een conflict met de laatste versie van deze resource.",
             ProblemTypeUri = $"urn:be.vlaanderen.basisregisters.api:{registryName}:conflict",
-            ProblemInstanceUri = $"{problemDetailsHelper.GetInstanceBaseUri()}/{ProblemDetails.GetProblemNumber()}"
+            ProblemInstanceUri = $"{problemDetailsHelper.GetInstanceBaseUri(httpContext)}/{ProblemDetails.GetProblemNumber()}"
         };
     }
 }

@@ -15,7 +15,8 @@ namespace Public.Api.Infrastructure
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Swagger;
-    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
+    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Microsoft;
+    using Be.Vlaanderen.Basisregisters.DependencyInjection;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Extensions;
@@ -383,11 +384,12 @@ namespace Public.Api.Infrastructure
 
             containerBuilder
                 .RegisterModule(new ApiConfigurationModule(_configuration))
-                .RegisterModule(new DataDogModule(_configuration))
                 .RegisterModule(new RedisModule(_configuration))
                 .RegisterModule(new ExtractDownloadModule(_configuration, _marketingVersion))
                 .RegisterModule(new StatusModule(_configuration))
                 .RegisterModule(new InfoModule(_configuration));
+
+            services.RegisterModule(new DataDogModule(_configuration));
 
             containerBuilder.Populate(services);
 

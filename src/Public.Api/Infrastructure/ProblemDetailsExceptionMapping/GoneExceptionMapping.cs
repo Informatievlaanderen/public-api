@@ -10,7 +10,10 @@ namespace Public.Api.Infrastructure.ProblemDetailsExceptionMappings
         public override bool HandlesException(ApiProblemDetailsException exception)
             => exception.GetType() == typeof(GoneException);
 
-        public override ProblemDetails MapException(ApiProblemDetailsException exception, ProblemDetailsHelper problemDetailsHelper)
+        public override ProblemDetails MapException(
+            HttpContext httpContext,
+            ApiProblemDetailsException exception,
+            ProblemDetailsHelper problemDetailsHelper)
         {
             var registryName = ((GoneException) exception).RegistryName;
             return new ProblemDetails
@@ -19,7 +22,7 @@ namespace Public.Api.Infrastructure.ProblemDetailsExceptionMappings
                 HttpStatus = StatusCodes.Status410Gone,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = exception?.Message,
-                ProblemInstanceUri = $"{problemDetailsHelper.GetInstanceBaseUri()}/{ProblemDetails.GetProblemNumber()}"
+                ProblemInstanceUri = $"{problemDetailsHelper.GetInstanceBaseUri(httpContext)}/{ProblemDetails.GetProblemNumber()}"
             };
         }
     }
