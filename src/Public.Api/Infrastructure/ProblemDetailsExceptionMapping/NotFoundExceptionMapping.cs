@@ -10,7 +10,9 @@ namespace Public.Api.Infrastructure.ProblemDetailsExceptionMappings
         public override bool HandlesException(ApiProblemDetailsException exception)
             => exception.GetType() == typeof(NotFoundException);
 
-        public override ProblemDetails MapException(ApiProblemDetailsException exception,
+        public override ProblemDetails MapException(
+            HttpContext httpContext,
+            ApiProblemDetailsException exception,
             ProblemDetailsHelper problemDetailsHelper)
         {
             var registryName = ((NotFoundException) exception).RegistryName;
@@ -20,7 +22,7 @@ namespace Public.Api.Infrastructure.ProblemDetailsExceptionMappings
                 HttpStatus = StatusCodes.Status404NotFound,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = exception?.Message,
-                ProblemInstanceUri = $"{problemDetailsHelper.GetInstanceBaseUri()}/{ProblemDetails.GetProblemNumber()}"
+                ProblemInstanceUri = $"{problemDetailsHelper.GetInstanceBaseUri(httpContext)}/{ProblemDetails.GetProblemNumber()}"
             };
         }
     }

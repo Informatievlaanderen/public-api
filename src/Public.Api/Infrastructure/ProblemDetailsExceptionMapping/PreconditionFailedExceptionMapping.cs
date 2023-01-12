@@ -2,7 +2,6 @@ namespace Public.Api.Infrastructure.ProblemDetailsExceptionMappings
 {
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.BasicApiProblem;
-    using Common;
     using Common.ProblemDetailsException;
     using Microsoft.AspNetCore.Http;
 
@@ -12,6 +11,7 @@ namespace Public.Api.Infrastructure.ProblemDetailsExceptionMappings
             => exception.GetType() == typeof(PreconditionFailedException);
 
         public override ProblemDetails MapException(
+            HttpContext httpContext,
             ApiProblemDetailsException exception,
             ProblemDetailsHelper problemDetailsHelper)
         {
@@ -22,7 +22,7 @@ namespace Public.Api.Infrastructure.ProblemDetailsExceptionMappings
                 Title = ProblemDetails.DefaultTitle,
                 Detail = "De If-Match header komt niet overeen met de laatst gekende ETag.",
                 ProblemTypeUri = $"urn:be.vlaanderen.basisregisters.api:{registryName}:precondition-failed",
-                ProblemInstanceUri = $"{problemDetailsHelper.GetInstanceBaseUri()}/{ProblemDetails.GetProblemNumber()}"
+                ProblemInstanceUri = $"{problemDetailsHelper.GetInstanceBaseUri(httpContext)}/{ProblemDetails.GetProblemNumber()}"
             };
         }
     }
