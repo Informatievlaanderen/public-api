@@ -1,3 +1,10 @@
+# [5.58.0](https://github.com/informatievlaanderen/public-api/compare/v5.57.6...v5.58.0) (2023-01-12)
+
+
+### Features
+
+* update Be.Vlaanderen.Basisregisters.Api to 19.0.0 ([a342f8d](https://github.com/informatievlaanderen/public-api/commit/a342f8dbaba07816f71a07fa6153134636de15b0))
+
 ## [5.57.6](https://github.com/informatievlaanderen/public-api/compare/v5.57.5...v5.57.6) (2023-01-11)
 
 ## [5.57.5](https://github.com/informatievlaanderen/public-api/compare/v5.57.4...v5.57.5) (2023-01-10)
