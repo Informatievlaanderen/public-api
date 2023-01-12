@@ -72,5 +72,9 @@ namespace Public.Api.Infrastructure.Configuration
         public bool IsStreetNameOsloApiEnabled { get; set; }
 
         public bool Ticketing { get; set; }
+
+        public bool RoadSegmentLinkStreetName { get; set; }
+        public bool RoadSegmentUnlinkStreetName { get; set; }
+        public bool RoadSegmentGet { get; set; }
     }
 }

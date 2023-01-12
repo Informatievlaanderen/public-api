@@ -31,8 +31,7 @@ namespace Public.Api.Infrastructure
             if (ToggleTicketing(action, ns))
                 return;
 
-            action.ApiExplorer.IsVisible =  !_features.ContainsKey(action.ActionName) ||
-                                            (_features.ContainsKey(action.ActionName) && _features[action.ActionName]);
+            action.ApiExplorer.IsVisible = FeatureIsEnabled(GetPossibleFeatureToggleKeys(action));
         }
 
         private bool ToggleOslo(ActionModel action, string[] ns)
@@ -43,8 +42,7 @@ namespace Public.Api.Infrastructure
             }
 
             var featureName = $"Is{ns[2]}OsloApiEnabled";
-            action.ApiExplorer.IsVisible = !_features.ContainsKey(featureName) ||
-                                           (_features.ContainsKey(featureName) && _features[featureName]);
+            action.ApiExplorer.IsVisible = FeatureIsEnabled(featureName);
             return true;
         }
 
@@ -56,9 +54,24 @@ namespace Public.Api.Infrastructure
             }
 
             const string featureName = "Ticketing";
-            action.ApiExplorer.IsVisible = !_features.ContainsKey(featureName) ||
-                                           (_features.ContainsKey(featureName) && _features[featureName]);
+            action.ApiExplorer.IsVisible = FeatureIsEnabled(featureName);
             return true;
+        }
+
+        private bool FeatureIsEnabled(string key)
+        {
+            return !_features.ContainsKey(key) ||
+                   (_features.ContainsKey(key) && _features[key]);
+        }
+        private bool FeatureIsEnabled(IEnumerable<string> keys)
+        {
+            return keys.All(FeatureIsEnabled);
+        }
+
+        private IEnumerable<string> GetPossibleFeatureToggleKeys(ActionModel action)
+        {
+            yield return action.ActionName;
+            yield return $"{action.Controller.ControllerName}{action.ActionName}";
         }
     }
 }

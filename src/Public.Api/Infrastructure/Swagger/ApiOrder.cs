@@ -74,9 +74,10 @@ namespace Public.Api.Infrastructure.Swagger
         {
             public const int ChangeFeed = TicketingService + 100;
             public const int Download = ChangeFeed + 10;
-            public const int RoadExtract = ChangeFeed + 20;
-            public const int Information = ChangeFeed + 30;
-            public const int RoadUpload = ChangeFeed + 40;
+            public const int RoadExtract = Download + 10;
+            public const int Information = RoadExtract + 10;
+            public const int RoadUpload = Information + 10;
+            public const int RoadSegment = RoadUpload + 10;
         }
 
         public const int Extract = Road.ChangeFeed + 100;

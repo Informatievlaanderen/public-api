@@ -12,8 +12,7 @@ namespace Public.Api.Road.Changes
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using RestSharp;
-
+    
     [ApiVersion(Version.Current)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
