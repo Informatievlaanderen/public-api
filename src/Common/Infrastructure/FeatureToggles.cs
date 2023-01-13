@@ -177,6 +177,20 @@ namespace Common.Infrastructure
         public CorrectRetirementAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class CorrectRegularizationAddressToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public CorrectRegularizationAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class CorrectDeregulationAddressToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public CorrectDeregulationAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class PlanBuildingToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }

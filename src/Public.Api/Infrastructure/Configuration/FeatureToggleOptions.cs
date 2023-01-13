@@ -30,6 +30,8 @@ namespace Public.Api.Infrastructure.Configuration
         public bool CorrectApprovalAddress { get; set; }
         public bool CorrectRejectionAddress { get; set; }
         public bool CorrectRetirementAddress { get; set; }
+        public bool CorrectRegularizationAddress { get; set; }
+        public bool CorrectDeregulationAddress { get; set; }
 
         public bool PlanBuilding { get; set; }
         public bool BuildingUnderConstruction { get; set; }
