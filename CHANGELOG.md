@@ -1,3 +1,11 @@
+# [5.59.0](https://github.com/informatievlaanderen/public-api/compare/v5.58.0...v5.59.0) (2023-01-13)
+
+
+### Features
+
+* Add road segments link/unlink street name ([42ffb78](https://github.com/informatievlaanderen/public-api/commit/42ffb78d77f95ec906496ec19e71bd4d676c5ea4))
+* correct regularization bu ([d6d5d14](https://github.com/informatievlaanderen/public-api/commit/d6d5d1455faee78a9babd23975533007c6b9c492))
+
 # [5.58.0](https://github.com/informatievlaanderen/public-api/compare/v5.57.6...v5.58.0) (2023-01-12)
 
 
