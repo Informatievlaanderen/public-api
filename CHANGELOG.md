@@ -1,3 +1,11 @@
+# [5.60.0](https://github.com/informatievlaanderen/public-api/compare/v5.59.0...v5.60.0) (2023-01-13)
+
+
+### Features
+
+* add correct address regularization/deregulation ([ce9e64d](https://github.com/informatievlaanderen/public-api/commit/ce9e64da1aab6172947074962708496feee17e08))
+* correct bu deregulation ([15b53d1](https://github.com/informatievlaanderen/public-api/commit/15b53d17ea1412e2f2381ccbf9a498dc7a00e7d9))
+
 # [5.59.0](https://github.com/informatievlaanderen/public-api/compare/v5.58.0...v5.59.0) (2023-01-13)
 
 
