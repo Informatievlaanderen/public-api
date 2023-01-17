@@ -3,8 +3,7 @@ namespace Public.Api.Address
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Legacy.Address.Query;
-    using AddressRegistry.Api.Legacy.Address.Responses;
+    using AddressRegistry.Api.Legacy.Address.List;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Common.Infrastructure;

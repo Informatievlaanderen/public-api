@@ -2,7 +2,7 @@ namespace Public.Api.CrabHouseNumber
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Legacy.Address.Responses;
+    using AddressRegistry.Api.Legacy.Address.Count;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Common.Infrastructure;
