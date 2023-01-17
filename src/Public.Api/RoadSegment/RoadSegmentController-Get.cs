@@ -71,6 +71,6 @@ public partial class RoadSegmentController
             cancellationToken: cancellationToken
         );
 
-        return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
+        return new BackendResponseResult(value, BackendResponseResultOptions.ForRead());
     }
 }
