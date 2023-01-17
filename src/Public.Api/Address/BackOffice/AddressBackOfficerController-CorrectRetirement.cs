@@ -2,7 +2,7 @@ namespace Public.Api.Address.BackOffice
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Legacy.Address.Responses;
+    using AddressRegistry.Api.Legacy.Address.Detail;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;

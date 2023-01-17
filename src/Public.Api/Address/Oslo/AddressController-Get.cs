@@ -2,7 +2,7 @@ namespace Public.Api.Address.Oslo
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Oslo.Address.Responses;
+    using AddressRegistry.Api.Oslo.Address.Detail;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
@@ -36,7 +36,7 @@ namespace Public.Api.Address.Oslo
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("adressen/{objectId}", Name = nameof(GetAddressV2))]
         [ApiOrder(ApiOrder.Address.V2 + 1)]
-        [ProducesResponseType(typeof(AddressOsloResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AddressDetailOsloResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -45,7 +45,7 @@ namespace Public.Api.Address.Oslo
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AddressOsloResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AddressDetailOsloResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(AddressNotFoundResponseExamples))]

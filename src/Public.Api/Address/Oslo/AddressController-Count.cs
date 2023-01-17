@@ -2,8 +2,8 @@ namespace Public.Api.Address.Oslo
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Oslo.Address.Query;
-    using AddressRegistry.Api.Oslo.Address.Responses;
+    using AddressRegistry.Api.Oslo.Address.List;
+    using AddressRegistry.Api.Oslo.Address.Count;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Common.Infrastructure;

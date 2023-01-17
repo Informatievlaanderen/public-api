@@ -1,6 +1,8 @@
 namespace Public.Api.Address
 {
-    using AddressRegistry.Api.Legacy.Address.Responses;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using AddressRegistry.Api.Legacy.Address.Detail;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
@@ -12,8 +14,6 @@ namespace Public.Api.Address
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
-    using System.Threading;
-    using System.Threading.Tasks;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class AddressController
@@ -35,7 +35,7 @@ namespace Public.Api.Address
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("adressen/{objectId}", Name = nameof(GetAddress))]
         [ApiOrder(ApiOrder.Address.V1 + 1)]
-        [ProducesResponseType(typeof(AddressResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AddressDetailResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]

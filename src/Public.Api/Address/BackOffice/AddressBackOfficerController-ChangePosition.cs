@@ -11,7 +11,7 @@ namespace Public.Api.Address.BackOffice
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
-    using AddressRegistry.Api.Legacy.Address.Responses;
+    using AddressRegistry.Api.Legacy.Address.Detail;
     using Common.Infrastructure.Extensions;
     using Infrastructure.Swagger;
     using Swashbuckle.AspNetCore.Annotations;

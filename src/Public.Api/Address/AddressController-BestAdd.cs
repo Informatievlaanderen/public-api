@@ -2,7 +2,7 @@ namespace Public.Api.Address
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Legacy.Address.Requests;
+    using AddressRegistry.Api.Legacy.Address.Bosa;
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
@@ -19,7 +19,7 @@ namespace Public.Api.Address
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromBody] BosaAddressRequest searchBody,
+            [FromBody] AddressBosaRequest searchBody,
             CancellationToken cancellationToken = default)
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
@@ -35,7 +35,7 @@ namespace Public.Api.Address
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        private static RestRequest CreateBackendSearchBestAddRequest(BosaAddressRequest searchBody)
+        private static RestRequest CreateBackendSearchBestAddRequest(AddressBosaRequest searchBody)
             => new RestRequest("adressen/bosa", Method.Post).AddJsonBodyOrEmpty(searchBody);
     }
 }
