@@ -293,11 +293,11 @@ NUGET
       Be.Vlaanderen.Basisregisters.EventHandling (>= 4.0)
       SqlStreamStore (>= 1.2)
     Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice (2.1.1) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions (3.31) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions (3.32.3) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.BlobStore (>= 3.0)
       MediatR.Contracts (>= 1.0.1)
       Microsoft.Net.Http.Headers (>= 2.2.8)
-    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (3.31) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (3.32.3) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.BlobStore (>= 3.0)
       Microsoft.IO.RecyclableMemoryStream (>= 2.2.1)
     Be.Vlaanderen.Basisregisters.Sqs (1.1.7)
