@@ -1,3 +1,11 @@
+## [5.60.2](https://github.com/informatievlaanderen/public-api/compare/v5.60.1...v5.60.2) (2023-01-18)
+
+
+### Bug Fixes
+
+* bump address packages ([cf374bf](https://github.com/informatievlaanderen/public-api/commit/cf374bf0c53d83c047359cea1ce547f02a39e85d))
+* reorder correct regularization / deregulation ([7e5db9c](https://github.com/informatievlaanderen/public-api/commit/7e5db9cc4c04856d607987e2e6b794721d8aefb7))
+
 ## [5.60.1](https://github.com/informatievlaanderen/public-api/compare/v5.60.0...v5.60.1) (2023-01-17)
 
 
