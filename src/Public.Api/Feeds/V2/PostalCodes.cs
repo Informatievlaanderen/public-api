@@ -1,4 +1,4 @@
-namespace Public.Api.Feeds
+namespace Public.Api.Feeds.V2
 {
     using System;
     using System.Threading;
@@ -6,22 +6,22 @@ namespace Public.Api.Feeds
     using Autofac.Features.Indexed;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
-    using Infrastructure;
-    using Infrastructure.Configuration;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
     using PostalRegistry.Api.Legacy.PostalInformation.Responses;
+    using Public.Api.Infrastructure;
+    using Public.Api.Infrastructure.Configuration;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
-    public partial class FeedController
+    public partial class FeedV2Controller
     {
         /// <summary>
-        /// Vraag een lijst met wijzigingen op postinfo op in het XML of Atom formaat (v1).
+        /// Vraag een lijst met wijzigingen op postinfo op in het XML of Atom formaat (v2).
         /// </summary>
         /// <param name="actionContextAccessor"></param>
         /// <param name="restClients"></param>
@@ -38,7 +38,7 @@ namespace Public.Api.Feeds
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("postinfo", Name = nameof(GetPostalCodesFeed))]
+        [HttpGet("postinfo", Name = nameof(GetPostalCodesFeedV2))]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
@@ -55,7 +55,7 @@ namespace Public.Api.Feeds
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultFeedCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> GetPostalCodesFeed(
+        public async Task<IActionResult> GetPostalCodesFeedV2(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IIndex<string, Lazy<IRestClient>> restClients,
             [FromServices] IOptions<PostalOptions> responseOptions,

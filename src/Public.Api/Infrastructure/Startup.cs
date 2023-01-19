@@ -24,6 +24,7 @@ namespace Public.Api.Infrastructure
     using Configuration;
     using Extract;
     using Feeds;
+    using Feeds.V2;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -422,6 +423,10 @@ namespace Public.Api.Infrastructure
 
             containerBuilder
                 .RegisterType<FeedController>()
+                .WithAttributeFiltering();
+
+            containerBuilder
+                .RegisterType<FeedV2Controller>()
                 .WithAttributeFiltering();
 
             containerBuilder
