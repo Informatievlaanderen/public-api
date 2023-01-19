@@ -21,7 +21,7 @@ namespace Public.Api.Feeds
     public partial class FeedController
     {
         /// <summary>
-        /// Vraag een lijst met wijzigingen op adressen op in het XML of Atom formaat.
+        /// Vraag een lijst met wijzigingen op adressen op in het XML of Atom formaat (v1).
         /// </summary>
         /// <param name="actionContextAccessor"></param>
         /// <param name="restClients"></param>

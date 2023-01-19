@@ -1,4 +1,4 @@
-namespace Public.Api.Feeds
+namespace Public.Api.Feeds.V2
 {
     using System.Net;
     using Be.Vlaanderen.Basisregisters.Api;
@@ -15,24 +15,23 @@ namespace Public.Api.Feeds
     using RestSharp;
 
     [ApiVisible]
-    [ApiVersion(Version.Current)]
-    [AdvertiseApiVersions(Version.CurrentAdvertised)]
+    [ApiVersion(Version.V2)]
     [ApiRoute("feeds")]
     [ApiExplorerSettings(GroupName = FeedsGroupName)]
     [ApiOrder(ApiOrder.Feeds)]
     [ApiProduces(EndpointType.Sync)]
     [ApiKeyAuth("Sync")]
-    public partial class FeedController : ApiController<FeedController>
+    public partial class FeedV2Controller : ApiController<FeedV2Controller>
     {
         public const string FeedsGroupName = "Feeds";
 
         protected const int DefaultFeedCaching = 0;
         private const int NoPaging = 0;
 
-        public FeedController(
+        public FeedV2Controller(
             IHttpContextAccessor httpContextAccessor,
             ConnectionMultiplexerProvider redis,
-            ILogger<FeedController> logger)
+            ILogger<FeedV2Controller> logger)
             : base(httpContextAccessor, redis, logger) { }
 
         private static ContentFormat DetermineFormat(ActionContext context)
