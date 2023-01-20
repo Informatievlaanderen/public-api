@@ -1,3 +1,10 @@
+# [5.61.0](https://github.com/informatievlaanderen/public-api/compare/v5.60.3...v5.61.0) (2023-01-20)
+
+
+### Features
+
+* pass through Authorization header ([4ce3b5a](https://github.com/informatievlaanderen/public-api/commit/4ce3b5a0f1132518e222e593cf2c5344e9639ced))
+
 ## [5.60.3](https://github.com/informatievlaanderen/public-api/compare/v5.60.2...v5.60.3) (2023-01-19)
 
 ## [5.60.2](https://github.com/informatievlaanderen/public-api/compare/v5.60.1...v5.60.2) (2023-01-18)
