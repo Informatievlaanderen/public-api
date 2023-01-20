@@ -5,6 +5,7 @@ namespace Public.Api.Building.BackOffice
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using BuildingRegistry.Api.BackOffice.Abstractions.Building.Requests;
     using Common.Infrastructure;
+    using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
@@ -61,7 +62,7 @@ namespace Public.Api.Building.BackOffice
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() =>
-                CreateBackendRequestWithJsonBody(PlanBuildingRoute, planBuildingRequest, Method.Post);
+                CreateBackendRequestWithJsonBody(PlanBuildingRoute, planBuildingRequest, Method.Post).AddHeaderAuthorization(actionContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

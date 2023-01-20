@@ -4,6 +4,7 @@ namespace Public.Api.StreetName.BackOffice
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
+    using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
@@ -63,7 +64,7 @@ namespace Public.Api.StreetName.BackOffice
             RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(
                 ProposeStreetNameRoute,
                 streetNameProposeRequest,
-                Method.Post);
+                Method.Post).AddHeaderAuthorization(actionContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

@@ -72,7 +72,8 @@ namespace Public.Api.BuildingUnit.BackOffice
 
             RestRequest BackendRequest() => new RestRequest(CorrectBuildingUnitRetirementRoute, Method.Post)
                 .AddParameter("objectId", objectId, ParameterType.UrlSegment)
-                .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
+                .AddHeaderIfMatch(ifMatch)
+                .AddHeaderAuthorization(actionContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

@@ -21,7 +21,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         public const string CorrectBuildingUnitDeregulationRoute = "gebouweenheden/{objectId}/acties/corrigeren/deregularisatie";
 
         /// <summary>
-        /// Corrigeer de deregularisatie van een gebouweenheid. 
+        /// Corrigeer de deregularisatie van een gebouweenheid.
         /// </summary>
         /// <param name="objectId">Identificator van de gebouweenheid.</param>
         /// <param name="actionContextAccessor"></param>
@@ -70,7 +70,8 @@ namespace Public.Api.BuildingUnit.BackOffice
 
             RestRequest BackendRequest() => new RestRequest(CorrectBuildingUnitDeregulationRoute, Method.Post)
                 .AddParameter("objectId", objectId, ParameterType.UrlSegment)
-                .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
+                .AddHeaderIfMatch(ifMatch)
+                .AddHeaderAuthorization(actionContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

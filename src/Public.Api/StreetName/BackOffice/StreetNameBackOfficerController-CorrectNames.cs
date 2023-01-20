@@ -75,7 +75,8 @@ namespace Public.Api.StreetName.BackOffice
             RestRequest BackendRequest() =>
                 CreateBackendRequestWithJsonBody(CorrectStreetNameRoute, streetNameCorrectNamesRequest, Method.Post)
                     .AddParameter("objectId", objectId, ParameterType.UrlSegment)
-                    .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
+                    .AddHeaderIfMatch(ifMatch)
+                    .AddHeaderAuthorization(actionContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,
