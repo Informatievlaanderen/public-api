@@ -59,6 +59,7 @@ namespace Public.Api.StreetName.BackOffice
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] ApproveStreetNameToggle approveStreetNameToggle,
             [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
+            [FromHeader(Name = HeaderNames.Authorization)] string? authorization,
             CancellationToken cancellationToken = default)
         {
             if (!approveStreetNameToggle.FeatureEnabled)
@@ -71,7 +72,8 @@ namespace Public.Api.StreetName.BackOffice
             RestRequest BackendRequest() =>
                 new RestRequest(ApproveStreetNameRoute, Method.Post)
                     .AddParameter("objectId", objectId, ParameterType.UrlSegment)
-                    .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
+                    .AddHeaderIfMatch(ifMatch)
+                    .AddHeaderAuthorization(actionContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

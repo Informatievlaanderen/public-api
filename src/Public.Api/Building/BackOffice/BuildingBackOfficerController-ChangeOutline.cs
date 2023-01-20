@@ -73,7 +73,8 @@ namespace Public.Api.Building.BackOffice
 
             RestRequest BackendRequest () => CreateBackendRequestWithJsonBody(CorrectBuildingGeometryOutlineRoute, changeBuildingOutlineRequest, Method.Post)
                 .AddParameter("objectId", objectId, ParameterType.UrlSegment)
-                .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
+                .AddHeaderIfMatch(ifMatch)
+                .AddHeaderAuthorization(actionContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,

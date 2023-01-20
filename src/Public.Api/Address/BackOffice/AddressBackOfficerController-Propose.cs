@@ -5,6 +5,7 @@ namespace Public.Api.Address.BackOffice
     using AddressRegistry.Api.BackOffice.Abstractions.Requests;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
+    using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
@@ -61,7 +62,7 @@ namespace Public.Api.Address.BackOffice
             RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(
                 ProposeAddressRoute,
                 addressProposeRequest,
-                Method.Post);
+                Method.Post).AddHeaderAuthorization(actionContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

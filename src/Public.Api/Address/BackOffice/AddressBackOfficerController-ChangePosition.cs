@@ -76,7 +76,8 @@ namespace Public.Api.Address.BackOffice
 
             RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(ChangePositionRoute, addressChangePositionRequest, Method.Post)
                     .AddParameter("objectId", objectId, ParameterType.UrlSegment)
-                    .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
+                    .AddHeaderIfMatch(ifMatch)
+                    .AddHeaderAuthorization(actionContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

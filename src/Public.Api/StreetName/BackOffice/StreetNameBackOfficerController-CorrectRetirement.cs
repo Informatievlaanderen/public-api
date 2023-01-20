@@ -70,7 +70,8 @@ namespace Public.Api.StreetName.BackOffice
 
             RestRequest BackendRequest() => new RestRequest(CorrectStreetNameRetirementRoute, Method.Post)
                     .AddParameter("objectId", objectId, ParameterType.UrlSegment)
-                    .AddHeaderIfMatch(HeaderNames.IfMatch, ifMatch);
+                    .AddHeaderIfMatch(ifMatch)
+                    .AddHeaderAuthorization(actionContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,
