@@ -12,6 +12,7 @@ namespace Common.Infrastructure.Controllers.Attributes
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Primitives;
     using Newtonsoft.Json;
+    using ProblemDetailsException;
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class ApiKeyAuthAttribute : Attribute, IAsyncActionFilter
@@ -149,7 +150,7 @@ namespace Common.Infrastructure.Controllers.Attributes
 
             context.SetContentFormatAcceptType();
 
-            throw new ApiException(message, StatusCodes.Status401Unauthorized);
+            throw new ApiKeyException(message);
         }
     }
 }

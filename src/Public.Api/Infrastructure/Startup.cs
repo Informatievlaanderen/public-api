@@ -548,7 +548,8 @@ namespace Public.Api.Infrastructure
                             new PreconditionFailedExceptionMapping(),
                             new ConflictExceptionMapping(),
                             new UnauthorizedExceptionMapping(),
-                            new ForbiddenExceptionMapping()
+                            new ForbiddenExceptionMapping(),
+                            new ApiKeyExceptionMapping()
                         }
                     },
                     MiddlewareHooks =
