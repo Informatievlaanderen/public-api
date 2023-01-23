@@ -1,3 +1,10 @@
+## [5.61.3](https://github.com/informatievlaanderen/public-api/compare/v5.61.2...v5.61.3) (2023-01-23)
+
+
+### Bug Fixes
+
+* feeds problem details type to api:unauthorized when no api key ([ac18236](https://github.com/informatievlaanderen/public-api/commit/ac1823623ea93edccad27310596867b2f07f8cf4))
+
 ## [5.61.2](https://github.com/informatievlaanderen/public-api/compare/v5.61.1...v5.61.2) (2023-01-23)
 
 ## [5.61.1](https://github.com/informatievlaanderen/public-api/compare/v5.61.0...v5.61.1) (2023-01-23)
