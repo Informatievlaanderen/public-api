@@ -170,6 +170,12 @@ namespace Common.Infrastructure.Controllers
 
                 case HttpStatusCode.Conflict:
                     throw new ConflictException("Conflict", registryName);
+
+                case HttpStatusCode.Unauthorized:
+                    throw new UnauthorizedException(registryName);
+
+                case HttpStatusCode.Forbidden:
+                    throw new ForbiddenException(registryName);
             }
         }
     }
