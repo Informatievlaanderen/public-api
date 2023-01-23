@@ -1,3 +1,10 @@
+## [5.61.1](https://github.com/informatievlaanderen/public-api/compare/v5.61.0...v5.61.1) (2023-01-23)
+
+
+### Bug Fixes
+
+* correct show/hide correct docs ([8912a54](https://github.com/informatievlaanderen/public-api/commit/8912a54ed328c8ca8fb3bc1b56a2e529394911d9))
+
 # [5.61.0](https://github.com/informatievlaanderen/public-api/compare/v5.60.3...v5.61.0) (2023-01-20)
 
 
