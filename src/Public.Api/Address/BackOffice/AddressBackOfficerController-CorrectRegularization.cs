@@ -52,8 +52,8 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Corrigeer officieelToegekend van een adres van `true` naar `false`. Wanneer de status van het adres `voorgesteld` is, zal de status wijzigen naar `inGebruik`. Gekoppelde busnummers wijzigen niet mee van status.")]
-        [HttpPost(CorrectRegularizationRoute, Name = nameof(CorrectAddressRegularization))]
-        public async Task<IActionResult> CorrectAddressRegularization(
+        [HttpPost(CorrectRegularizationRoute, Name = nameof(CorrectRegularizationAddress))]
+        public async Task<IActionResult> CorrectRegularizationAddress(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,

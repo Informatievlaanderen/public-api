@@ -52,8 +52,8 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(Description = "Corrigeer officieelToegekend van een adres van `false` naar `true`. Gekoppelde busnummers worden niet mee gecorrigeerd.")]
-        [HttpPost(CorrectDeregulationRoute, Name = nameof(CorrectAddressDeregulation))]
-        public async Task<IActionResult> CorrectAddressDeregulation(
+        [HttpPost(CorrectDeregulationRoute, Name = nameof(CorrectDeregulationAddress))]
+        public async Task<IActionResult> CorrectDeregulationAddress(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
