@@ -5,7 +5,6 @@ namespace Public.Api.StreetName.BackOffice
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
-    using Common.ProblemDetailsException;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
@@ -44,7 +43,7 @@ namespace Public.Api.StreetName.BackOffice
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerRequestExample(typeof(StreetNameProposeRequest), typeof(StreetNameProposeRequestExamples))]
+        [SwaggerRequestExample(typeof(ProposeStreetNameRequest), typeof(StreetNameProposeRequestExamples))]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string", "De URL van het aangemaakte ticket.")]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
@@ -55,7 +54,7 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerOperation(Description = "Voer een nieuwe straatnaam in met status `voorgesteld` binnen een gemeente met status `voorgesteld` of `inGebruik`.")]
         [HttpPost(ProposeStreetNameRoute, Name = nameof(ProposeStreetName))]
         public async Task<IActionResult> ProposeStreetName(
-            [FromBody] StreetNameProposeRequest streetNameProposeRequest,
+            [FromBody] ProposeStreetNameRequest streetNameProposeRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] ProposeStreetNameToggle proposeStreetNameToggle,

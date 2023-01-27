@@ -1,8 +1,5 @@
 namespace Public.Api.Feeds
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Autofac.Features.Indexed;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
@@ -14,8 +11,11 @@ namespace Public.Api.Feeds
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
     using RestSharp;
-    using StreetNameRegistry.Api.Legacy.StreetName.Responses;
     using Swashbuckle.AspNetCore.Filters;
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using StreetNameRegistry.Api.Legacy.StreetName.Sync;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class FeedController

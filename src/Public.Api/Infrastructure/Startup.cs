@@ -141,7 +141,7 @@ namespace Public.Api.Infrastructure
                             typeof(PostalRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(StreetNameRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(StreetNameRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(StreetNameRegistry.Api.BackOffice.Abstractions.Requests.StreetNameProposeRequest).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(StreetNameRegistry.Api.BackOffice.Abstractions.Requests.ProposeStreetNameRequest).GetTypeInfo().Assembly.GetName().Name,
                             typeof(AddressRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(AddressRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(AddressRegistry.Api.BackOffice.Abstractions.Requests.AddressApproveRequest).GetTypeInfo().Assembly.GetName().Name,

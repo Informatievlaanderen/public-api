@@ -12,8 +12,8 @@ namespace Public.Api.Feeds.V2
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
-    using Public.Api.Infrastructure;
-    using Public.Api.Infrastructure.Configuration;
+    using Infrastructure;
+    using Infrastructure.Configuration;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
