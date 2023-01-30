@@ -9,7 +9,7 @@ namespace Public.Api.StreetName
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
     using RestSharp;
-    using StreetNameRegistry.Api.Legacy.StreetName.Requests;
+    using StreetNameRegistry.Api.Legacy.StreetName.Bosa;
 
     public partial class StreetNameController
     {

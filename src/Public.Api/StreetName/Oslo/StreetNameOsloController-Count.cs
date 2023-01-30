@@ -12,8 +12,8 @@ namespace Public.Api.StreetName.Oslo
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
+    using StreetNameRegistry.Api.Legacy.StreetName.Count;
     using StreetNameRegistry.Api.Legacy.StreetName.Query;
-    using StreetNameRegistry.Api.Legacy.StreetName.Responses;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 

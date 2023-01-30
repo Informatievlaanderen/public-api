@@ -12,7 +12,7 @@ namespace Public.Api.StreetName.BackOffice
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
     using StreetNameRegistry.Api.BackOffice.Abstractions.Requests;
-    using StreetNameRegistry.Api.Legacy.StreetName.Responses;
+    using StreetNameRegistry.Api.Legacy.StreetName.Detail;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -59,12 +59,12 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerRequestExample(typeof(StreetNameCorrectNamesRequest), typeof(StreetNameCorrectNamesRequestExamples))]
+        [SwaggerRequestExample(typeof(CorrectStreetNameNamesRequest), typeof(StreetNameCorrectNamesRequestExamples))]
         [SwaggerOperation(Description = "Correctie van de straatnaam van een straatnaam met status `voorgesteld` of `inGebruik`.")]
         [HttpPost(CorrectStreetNameRoute, Name = nameof(CorrectStreetNameNames))]
         public async Task<IActionResult> CorrectStreetNameNames(
             [FromRoute] int objectId,
-            [FromBody] StreetNameCorrectNamesRequest streetNameCorrectNamesRequest,
+            [FromBody] CorrectStreetNameNamesRequest streetNameCorrectNamesRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] CorrectStreetNameNamesToggle correctStreetNameNamesToggle,

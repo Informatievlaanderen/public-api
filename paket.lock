@@ -306,13 +306,15 @@ NUGET
       Microsoft.IO.RecyclableMemoryStream (>= 2.2.1)
     Be.Vlaanderen.Basisregisters.Sqs (1.1.7)
       MediatR (>= 10.0.1)
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions (3.12.5) - copy_content_to_output_dir: always
-      Be.Vlaanderen.Basisregisters.Api (>= 18.2.1)
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions (3.19) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.Api (>= 19.0.1)
       MediatR.Contracts (>= 1.0.1)
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (3.12.5) - copy_content_to_output_dir: always
-      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.32)
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo (3.12.5) - copy_content_to_output_dir: always
-      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.32)
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (3.19) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.46)
+      MediatR.Contracts (>= 1.0.1)
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo (3.19) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.46)
+      MediatR.Contracts (>= 1.0.1)
     Be.Vlaanderen.Basisregisters.TicketingService.Abstractions (1.7.11)
     Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (3.0)
     Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor (3.0)

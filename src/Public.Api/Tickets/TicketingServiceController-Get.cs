@@ -12,7 +12,6 @@ namespace Public.Api.Tickets
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
-    using StreetNameRegistry.Api.BackOffice.Abstractions.Response;
     using Swashbuckle.AspNetCore.Filters;
     using TicketingService.Abstractions;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;

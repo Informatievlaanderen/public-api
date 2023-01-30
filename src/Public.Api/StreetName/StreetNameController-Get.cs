@@ -12,7 +12,7 @@ namespace Public.Api.StreetName
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
-    using StreetNameRegistry.Api.Legacy.StreetName.Responses;
+    using StreetNameRegistry.Api.Legacy.StreetName.Detail;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 

@@ -6,15 +6,15 @@ namespace Public.Api.Feeds.V2
     using Autofac.Features.Indexed;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
+    using Infrastructure;
+    using Infrastructure.Configuration;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
-    using Public.Api.Infrastructure;
-    using Public.Api.Infrastructure.Configuration;
     using RestSharp;
-    using StreetNameRegistry.Api.Legacy.StreetName.Responses;
+    using StreetNameRegistry.Api.Legacy.StreetName.Sync;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
