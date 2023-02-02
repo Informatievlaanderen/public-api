@@ -26,7 +26,7 @@ namespace Public.Api.Address.BackOffice
         /// Corrigeer het busnummer van een adres.
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
-        /// <param name="addressCorrectBoxNumberRequest"></param>
+        /// <param name="correctAddressBoxNumberRequest"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="correctBoxNumberToggle"></param>
@@ -60,12 +60,12 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerRequestExample(typeof(AddressChangePositionRequest), typeof(AddressChangePositionRequestExamples))]
+        [SwaggerRequestExample(typeof(CorrectAddressBoxNumberRequest), typeof(CorrectAddressBoxNumberRequestExamples))]
         [SwaggerOperation(Description = "Correctie van het busnummer van een adres.")]
         [HttpPost(CorrectBoxNumberRoute, Name = nameof(CorrectBoxNumberAddress))]
         public async Task<IActionResult> CorrectBoxNumberAddress(
             [FromRoute] int objectId,
-            [FromBody] AddressCorrectBoxNumberRequest addressCorrectBoxNumberRequest,
+            [FromBody] CorrectAddressBoxNumberRequest correctAddressBoxNumberRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] CorrectBoxNumberAddress correctBoxNumberToggle,
@@ -80,7 +80,7 @@ namespace Public.Api.Address.BackOffice
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() =>
-                CreateBackendRequestWithJsonBody(CorrectBoxNumberRoute, addressCorrectBoxNumberRequest, Method.Post)
+                CreateBackendRequestWithJsonBody(CorrectBoxNumberRoute, correctAddressBoxNumberRequest, Method.Post)
                     .AddParameter("objectId", objectId, ParameterType.UrlSegment)
                     .AddHeaderIfMatch(ifMatch)
                     .AddHeaderAuthorization(actionContextAccessor);

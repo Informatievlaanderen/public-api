@@ -25,7 +25,7 @@ namespace Public.Api.Address.BackOffice
         /// Corrigeer de adrespositie van een adres.
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
-        /// <param name="addressCorrectPositionRequest"></param>
+        /// <param name="correctAddressPositionRequest"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="correctPositionAddressToggleToggle"></param>
@@ -59,12 +59,12 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerRequestExample(typeof(AddressCorrectPositionRequest), typeof(AddressCorrectPositionRequestExamples))]
+        [SwaggerRequestExample(typeof(CorrectAddressPositionRequest), typeof(CorrectAddressPositionRequestExamples))]
         [SwaggerOperation(Description = "Correctie van de positiespecificatie, positiegeometriemethode of positie van een adres. Gekoppelde busnummers corrigeren niet mee.")]
         [HttpPost(CorrectPositionRoute, Name = nameof(CorrectPositionAddress))]
         public async Task<IActionResult> CorrectPositionAddress(
             [FromRoute] int objectId,
-            [FromBody] AddressCorrectPositionRequest addressCorrectPositionRequest,
+            [FromBody] CorrectAddressPositionRequest correctAddressPositionRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] CorrectPositionAddressToggle correctPositionAddressToggleToggle,
@@ -79,7 +79,7 @@ namespace Public.Api.Address.BackOffice
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() =>
-                CreateBackendRequestWithJsonBody(CorrectPositionRoute, addressCorrectPositionRequest, Method.Post)
+                CreateBackendRequestWithJsonBody(CorrectPositionRoute, correctAddressPositionRequest, Method.Post)
                     .AddParameter("objectId", objectId, ParameterType.UrlSegment)
                     .AddHeaderIfMatch(ifMatch)
                     .AddHeaderAuthorization(actionContextAccessor);

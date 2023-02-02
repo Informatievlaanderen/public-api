@@ -23,7 +23,7 @@ namespace Public.Api.Address.BackOffice
         /// <summary>
         /// Stel een adres voor.
         /// </summary>
-        /// <param name="addressProposeRequest"></param>
+        /// <param name="proposeAddressRequest"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="proposeAddressToggle"></param>
@@ -45,16 +45,16 @@ namespace Public.Api.Address.BackOffice
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string", "De URL van het aangemaakte ticket.")]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-        [SwaggerRequestExample(typeof(AddressProposeRequest), typeof(AddressProposeRequestExamples))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedOAuthResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenOAuthResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        [SwaggerRequestExample(typeof(ProposeAddressRequest), typeof(ProposeAddressRequestExamples))]
         [SwaggerOperation(Description = "Voer een nieuw adres in met status `voorgesteld` binnen een straatnaam met status `voorgesteld` of `inGebruik`.")]
         [HttpPost(ProposeAddressRoute, Name = nameof(ProposeAddress))]
         public async Task<IActionResult> ProposeAddress(
-            [FromBody] AddressProposeRequest addressProposeRequest,
+            [FromBody] ProposeAddressRequest proposeAddressRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] ProposeAddressToggle proposeAddressToggle,
@@ -67,7 +67,7 @@ namespace Public.Api.Address.BackOffice
 
             RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(
                 ProposeAddressRoute,
-                addressProposeRequest,
+                proposeAddressRequest,
                 Method.Post).AddHeaderAuthorization(actionContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(

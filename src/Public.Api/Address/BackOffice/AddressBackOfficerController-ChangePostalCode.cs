@@ -26,7 +26,7 @@ namespace Public.Api.Address.BackOffice
         /// Wijzig de postcode van een adres.
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
-        /// <param name="addressChangePostalCodeRequest"></param>
+        /// <param name="changeAddressPostalCodeRequest"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="changePostalCodeAddressToggle"></param>
@@ -60,12 +60,12 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerRequestExample(typeof(AddressChangePositionRequest), typeof(AddressChangePositionRequestExamples))]
+        [SwaggerRequestExample(typeof(ChangeAddressPostalCodeRequest), typeof(ChangeAddressPostalCodeRequestExamples))]
         [SwaggerOperation(Description = "Wijzig de postinfoId van een adres. Gekoppelde busnummers worden ook gewijzigd naar het nieuwe postinfoId. Het postinfoId mag buiten de gekoppelde gemeente van het adres liggen.")]
         [HttpPost(ChangePostalCodeRoute, Name = nameof(ChangePostalCodeAddress))]
         public async Task<IActionResult> ChangePostalCodeAddress(
             [FromRoute] int objectId,
-            [FromBody] AddressChangePostalCodeRequest addressChangePostalCodeRequest,
+            [FromBody] ChangeAddressPostalCodeRequest changeAddressPostalCodeRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] ChangePostalCodeAddress changePostalCodeAddressToggle,
@@ -80,7 +80,7 @@ namespace Public.Api.Address.BackOffice
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() =>
-                CreateBackendRequestWithJsonBody(ChangePostalCodeRoute, addressChangePostalCodeRequest, Method.Post)
+                CreateBackendRequestWithJsonBody(ChangePostalCodeRoute, changeAddressPostalCodeRequest, Method.Post)
                     .AddParameter("objectId", objectId, ParameterType.UrlSegment)
                     .AddHeaderIfMatch(ifMatch)
                     .AddHeaderAuthorization(actionContextAccessor);
