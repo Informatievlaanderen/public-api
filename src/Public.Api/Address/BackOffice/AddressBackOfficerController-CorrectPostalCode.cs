@@ -25,7 +25,7 @@ namespace Public.Api.Address.BackOffice
         /// Corrigeer de postcode van een adres.
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
-        /// <param name="addressCorrectPostalCodeRequest"></param>
+        /// <param name="correctAddressPostalCodeRequest"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="changePostalCodeAddressToggle"></param>
@@ -59,12 +59,12 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerRequestExample(typeof(AddressChangePositionRequest), typeof(AddressChangePositionRequestExamples))]
+        [SwaggerRequestExample(typeof(CorrectAddressPostalCodeRequest), typeof(CorrectAddressPostalCodeRequestExamples))]
         [SwaggerOperation(Description = "Correctie van de postinfoId van een adres. Gekoppelde busnummers worden ook gecorrigeerd naar het nieuwe postinfoId. Het postinfoId moet in de gekoppelde gemeente van het adres liggen.")]
         [HttpPost(CorrectPostalCodeRoute, Name = nameof(CorrectPostalCodeAddress))]
         public async Task<IActionResult> CorrectPostalCodeAddress(
             [FromRoute] int objectId,
-            [FromBody] AddressCorrectPostalCodeRequest addressCorrectPostalCodeRequest,
+            [FromBody] CorrectAddressPostalCodeRequest correctAddressPostalCodeRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] CorrectPostalCodeAddress changePostalCodeAddressToggle,
@@ -79,7 +79,7 @@ namespace Public.Api.Address.BackOffice
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() =>
-                CreateBackendRequestWithJsonBody(CorrectPostalCodeRoute, addressCorrectPostalCodeRequest, Method.Post)
+                CreateBackendRequestWithJsonBody(CorrectPostalCodeRoute, correctAddressPostalCodeRequest, Method.Post)
                     .AddParameter("objectId", objectId, ParameterType.UrlSegment)
                     .AddHeaderIfMatch(ifMatch)
                     .AddHeaderAuthorization(actionContextAccessor);
