@@ -1,3 +1,12 @@
+## [5.61.6](https://github.com/informatievlaanderen/public-api/compare/v5.61.5...v5.61.6) (2023-02-06)
+
+
+### Bug Fixes
+
+* add roadregistry assembly to be registered for examplesproviders ([b7f0532](https://github.com/informatievlaanderen/public-api/commit/b7f05328bd057cc43e8d42cf9ccad23e7848baab))
+* road-registry update packages ([7a11755](https://github.com/informatievlaanderen/public-api/commit/7a117559440d87920a2bfc0d193f9529dfbd41b7))
+* update road-registry packages ([6553608](https://github.com/informatievlaanderen/public-api/commit/6553608a7098bba0e44bb70ddc05e3adbc0245aa))
+
 ## [5.61.5](https://github.com/informatievlaanderen/public-api/compare/v5.61.4...v5.61.5) (2023-02-02)
 
 ## [5.61.4](https://github.com/informatievlaanderen/public-api/compare/v5.61.3...v5.61.4) (2023-01-30)
