@@ -410,7 +410,9 @@ namespace Public.Api.Infrastructure
                     AppDomain
                         .CurrentDomain
                         .GetAssemblies()
-                        .Where(x => (x.FullName ?? string.Empty).Contains("Registry.Api") || (x.FullName ?? string.Empty).Contains("Be.Vlaanderen.Basisregisters.Api"))
+                        .Where(x => (x.FullName ?? string.Empty).Contains("Registry.Api")
+                                    || (x.FullName ?? string.Empty).Contains("RoadRegistry")
+                                    || (x.FullName ?? string.Empty).Contains("Be.Vlaanderen.Basisregisters.Api"))
                         .ToArray())
                 .AsClosedTypesOf(typeof(IExamplesProvider<>))
                 .AsImplementedInterfaces()
