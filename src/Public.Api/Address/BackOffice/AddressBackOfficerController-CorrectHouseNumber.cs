@@ -26,7 +26,7 @@ namespace Public.Api.Address.BackOffice
         /// Corrigeer het huisnummer van een adres.
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
-        /// <param name="addressCorrectHouseNumberRequest"></param>
+        /// <param name="correctAddressHouseNumberRequest"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="changeHouseNumberAddressToggle"></param>
@@ -60,12 +60,12 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerRequestExample(typeof(AddressChangePositionRequest), typeof(AddressChangePositionRequestExamples))]
+        [SwaggerRequestExample(typeof(CorrectAddressHouseNumberRequest), typeof(CorrectAddressHouseNumberRequestExamples))]
         [SwaggerOperation(Description = "Correctie van het huisnummer van een adres. Gekoppelde busnummers worden ook gecorrigeerd naar het nieuwe huisnummer.")]
         [HttpPost(CorrectHouseNumberRoute, Name = nameof(CorrectHouseNumberAddress))]
         public async Task<IActionResult> CorrectHouseNumberAddress(
             [FromRoute] int objectId,
-            [FromBody] AddressCorrectHouseNumberRequest addressCorrectHouseNumberRequest,
+            [FromBody] CorrectAddressHouseNumberRequest correctAddressHouseNumberRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] CorrectHouseNumberAddress changeHouseNumberAddressToggle,
@@ -80,7 +80,7 @@ namespace Public.Api.Address.BackOffice
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() =>
-                CreateBackendRequestWithJsonBody(CorrectHouseNumberRoute, addressCorrectHouseNumberRequest, Method.Post)
+                CreateBackendRequestWithJsonBody(CorrectHouseNumberRoute, correctAddressHouseNumberRequest, Method.Post)
                 .AddParameter("objectId", objectId, ParameterType.UrlSegment)
                 .AddHeaderIfMatch(ifMatch)
                 .AddHeaderAuthorization(actionContextAccessor);

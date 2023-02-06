@@ -26,7 +26,7 @@ namespace Public.Api.Address.BackOffice
         /// Wijzig de adrespositie van een adres.
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
-        /// <param name="addressChangePositionRequest"></param>
+        /// <param name="changeAddressPositionRequest"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="changePositionAddressToggle"></param>
@@ -61,12 +61,12 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerRequestExample(typeof(AddressChangePositionRequest), typeof(AddressChangePositionRequestExamples))]
+        [SwaggerRequestExample(typeof(ChangeAddressPositionRequest), typeof(ChangeAddressPositionRequestExamples))]
         [SwaggerOperation(Description = "Wijzig de positiespecificatie, positiegeometriemethode of positie van een adres.")]
         [HttpPost(ChangePositionRoute, Name = nameof(ChangeAddressPosition))]
         public async Task<IActionResult> ChangeAddressPosition(
             [FromRoute] int objectId,
-            [FromBody] AddressChangePositionRequest addressChangePositionRequest,
+            [FromBody] ChangeAddressPositionRequest changeAddressPositionRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] ChangePositionAddress changePositionAddressToggle,
@@ -80,7 +80,7 @@ namespace Public.Api.Address.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(ChangePositionRoute, addressChangePositionRequest, Method.Post)
+            RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(ChangePositionRoute, changeAddressPositionRequest, Method.Post)
                     .AddParameter("objectId", objectId, ParameterType.UrlSegment)
                     .AddHeaderIfMatch(ifMatch)
                     .AddHeaderAuthorization(actionContextAccessor);

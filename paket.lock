@@ -33,13 +33,13 @@ NUGET
       System.Security.Cryptography.ProtectedData (>= 4.7)
       System.Text.Json (>= 4.7.2)
       System.Threading.Tasks.Extensions (>= 4.5.4)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions (3.71) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions (3.73.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 19.0.1)
       MediatR.Contracts (>= 1.0.1)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (3.71) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (3.73.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.45.1)
       MediatR.Contracts (>= 1.0.1)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo (3.71) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo (3.73.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 17.45.1)
       MediatR.Contracts (>= 1.0.1)
     Be.Vlaanderen.Basisregisters.AggregateSource (7.1.4)
