@@ -89,19 +89,11 @@ namespace Public.Api.StreetName.Oslo
                 niscode,
                 status);
 
-            var cacheKey = CreateCacheKeyForRequestQuery($"oslo/streetname-list:{taal}");
-            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
-                ? GetFromCacheThenFromBackendAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    cacheKey,
-                    CreateDefaultHandleBadRequest(),
-                    cancellationToken)
-                : GetFromBackendAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    CreateDefaultHandleBadRequest(),
-                    cancellationToken));
+            var value = await GetFromBackendAsync(
+                contentFormat.ContentType,
+                BackendRequest,
+                CreateDefaultHandleBadRequest(),
+                cancellationToken);
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }

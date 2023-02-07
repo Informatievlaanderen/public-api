@@ -74,13 +74,6 @@ namespace Public.Api.Building
                 sort,
                 status);
 
-            // As long as we do not control WFS, buildings cannot be cached
-            //var cacheKey = CreateCacheKeyForRequestQuery($"legacy/building-list:{taal}");
-
-            //var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
-            //    ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)
-            //    : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken));
-
             var value = await GetFromBackendAsync(
                 contentFormat.ContentType,
                 BackendRequest,
