@@ -731,7 +731,7 @@ namespace Marvin.Cache.Headers.Extensions
         {
             if (httpContext.Items.ContainsKey(ContextItemsValidationModelOptions))
             {
-                return httpContext.Items[ContextItemsExpirationModelOptions] as ValidationModelOptions ?? @default;
+                return httpContext.Items[ContextItemsValidationModelOptions] as ValidationModelOptions ?? @default;
             }
 
             return @default;

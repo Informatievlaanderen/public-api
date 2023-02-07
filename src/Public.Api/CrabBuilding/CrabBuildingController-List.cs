@@ -68,20 +68,11 @@ namespace Public.Api.CrabBuilding
                terreinObjectId,
                identificatorTerreinObject);
 
-            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/crabgebouwen-list:{Taal.NL}");
-
-            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
-                ? GetFromCacheThenFromBackendAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    cacheKey,
-                    CreateDefaultHandleBadRequest(),
-                    cancellationToken)
-                : GetFromBackendAsync(
+            var value = await GetFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,
                     CreateDefaultHandleBadRequest(),
-                    cancellationToken));
+                    cancellationToken);
 
             return BackendListResponseResult.Create(value, Request.Query, string.Empty);
         }
