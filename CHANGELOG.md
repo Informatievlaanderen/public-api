@@ -1,3 +1,10 @@
+## [5.61.8](https://github.com/informatievlaanderen/public-api/compare/v5.61.7...v5.61.8) (2023-02-10)
+
+
+### Bug Fixes
+
+* exclude recently added road registry from event markdown generation ([76edb53](https://github.com/informatievlaanderen/public-api/commit/76edb531e18593ad29f79b88d9b79f441b44329e))
+
 ## [5.61.7](https://github.com/informatievlaanderen/public-api/compare/v5.61.6...v5.61.7) (2023-02-10)
 
 
