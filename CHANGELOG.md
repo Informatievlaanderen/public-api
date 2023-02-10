@@ -1,3 +1,10 @@
+## [5.61.7](https://github.com/informatievlaanderen/public-api/compare/v5.61.6...v5.61.7) (2023-02-10)
+
+
+### Bug Fixes
+
+* gawr-4382 & cleanup lists ([13b76ca](https://github.com/informatievlaanderen/public-api/commit/13b76ca7a6442d80806b20d62517bc6b02978a8b))
+
 ## [5.61.6](https://github.com/informatievlaanderen/public-api/compare/v5.61.5...v5.61.6) (2023-02-06)
 
 
