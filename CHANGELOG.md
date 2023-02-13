@@ -1,3 +1,10 @@
+## [5.61.9](https://github.com/informatievlaanderen/public-api/compare/v5.61.8...v5.61.9) (2023-02-13)
+
+
+### Bug Fixes
+
+* bump nodatime in paket.lock ([3637bf7](https://github.com/informatievlaanderen/public-api/commit/3637bf722adf2a5ef986660c60d2ae9f1b8abe35))
+
 ## [5.61.8](https://github.com/informatievlaanderen/public-api/compare/v5.61.7...v5.61.8) (2023-02-10)
 
 
