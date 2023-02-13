@@ -733,7 +733,7 @@ NUGET
       Newtonsoft.Json (>= 9.0.1)
       NJsonSchema (>= 10.7.2)
       NJsonSchema.CodeGeneration (>= 10.7.2)
-    NodaTime (3.1)
+    NodaTime (3.1.6)
       System.Runtime.CompilerServices.Unsafe (>= 4.7.1)
     NodaTime.Serialization.JsonNet (3.0)
       Newtonsoft.Json (>= 12.0.1)
