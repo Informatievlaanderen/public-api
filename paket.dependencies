@@ -27,9 +27,9 @@ nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      4.1.8  c
 nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo        4.1.8  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            3.2.0  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo              3.2.0  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        3.19.0  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo          3.19.0  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions    3.19.0  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        3.21.0  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo          3.21.0  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions    3.21.0  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy.Abstractions          3.58.0  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo.Abstractions            3.58.0  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions      3.58.0  copy_content_to_output_dir: always
@@ -47,11 +47,11 @@ nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 6.0.5
 
 nuget Be.Vlaanderen.Basisregisters.Api 19.0.1
 
-nuget Be.Vlaanderen.Basisregisters.GrAr.Common 17.46.0
-nuget Be.Vlaanderen.Basisregisters.GrAr.Edit 17.46.0
-nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 17.46.0
-nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 17.46.0
-nuget Be.Vlaanderen.Basisregisters.GrAr.Import 17.46.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Common 18.1.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Edit 18.1.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 18.1.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 18.1.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Import 18.1.0
 
 nuget Be.Vlaanderen.Basisregisters.EventHandling 4.2.3
 nuget Be.Vlaanderen.Basisregisters.ProblemDetails 8.0.1

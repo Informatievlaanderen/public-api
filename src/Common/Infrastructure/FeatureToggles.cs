@@ -51,6 +51,13 @@ namespace Common.Infrastructure
         public CorrectStreetNameNamesToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class CorrectStreetNameHomonymAdditionsToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public CorrectStreetNameHomonymAdditionsToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class CorrectStreetNameApprovalToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }

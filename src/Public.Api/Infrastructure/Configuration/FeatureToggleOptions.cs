@@ -11,6 +11,8 @@ namespace Public.Api.Infrastructure.Configuration
         public bool RetireStreetName { get; set; }
         public bool CorrectStreetNameRetirement { get; set; }
         public bool CorrectStreetNameNames { get; set; }
+
+        public bool CorrectStreetNameHomonymAdditions { get; set; }
         public bool CorrectStreetNameApproval { get; set; }
         public bool CorrectStreetNameRejection { get; set; }
 
