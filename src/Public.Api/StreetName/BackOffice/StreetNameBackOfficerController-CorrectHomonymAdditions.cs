@@ -61,8 +61,8 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(CorrectStreetNameNamesRequest), typeof(StreetNameCorrectNamesRequestExamples))]
         [SwaggerOperation(Description = "Correctie or verwijdering van de homoniemtoevoegingen van een straatnaam met status `voorgesteld` of `inGebruik`.")]
-        [HttpPost(CorrectStreetNameHomonymAdditionsRoute, Name = nameof(CorrectHomonymAdditions))]
-        public async Task<IActionResult> CorrectHomonymAdditions(
+        [HttpPost(CorrectStreetNameHomonymAdditionsRoute, Name = nameof(CorrectStreetNameHomonymAdditions))]
+        public async Task<IActionResult> CorrectStreetNameHomonymAdditions(
             [FromRoute] int objectId,
             [FromBody] CorrectStreetNameHomonymAdditionsRequest request,
             [FromServices] IActionContextAccessor actionContextAccessor,
