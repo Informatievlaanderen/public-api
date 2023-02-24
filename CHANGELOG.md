@@ -1,3 +1,15 @@
+# [5.62.0](https://github.com/informatievlaanderen/public-api/compare/v5.61.10...v5.62.0) (2023-02-24)
+
+
+### Bug Fixes
+
+* rename correct homonymadditions method ([0fdf0a1](https://github.com/informatievlaanderen/public-api/commit/0fdf0a18a92e13452f8e10b4adf23f16a7a80c5d))
+
+
+### Features
+
+* add streetname correct homonymadditions ([6c2b991](https://github.com/informatievlaanderen/public-api/commit/6c2b991ac71605ac42d5c88ba978577626c932ed))
+
 ## [5.61.10](https://github.com/informatievlaanderen/public-api/compare/v5.61.9...v5.61.10) (2023-02-20)
 
 ## [5.61.9](https://github.com/informatievlaanderen/public-api/compare/v5.61.8...v5.61.9) (2023-02-13)
