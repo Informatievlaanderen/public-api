@@ -114,7 +114,7 @@ namespace Public.Api.Tickets
         public ProblemDetails GetExamples()
             => new ProblemDetails
             {
-                ProblemTypeUri = "urn:be.vlaanderen.basisregisters.api:ticket:not-found",
+                ProblemTypeUri = "urn:be.vlaanderen.basisregisters.api:ticketingservice:not-found",
                 HttpStatus = StatusCodes.Status404NotFound,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = "Onbestaand ticket.",
