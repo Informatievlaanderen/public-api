@@ -29,6 +29,7 @@ namespace Public.Api.PostalCode.Oslo
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
         /// <param name="sort">Optionele sortering van het resultaat (postcode).</param>
         /// <param name="gemeentenaam">Filter op de gemeentenaam van de postcode (exact) (optioneel).</param>
+        /// <param name="postnaam">Filter op de postnaam van de postcode (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
@@ -57,6 +58,7 @@ namespace Public.Api.PostalCode.Oslo
             [FromQuery] int? limit,
             [FromQuery] string sort,
             [FromQuery] string gemeentenaam,
+            [FromQuery] string postnaam,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<PostalOptionsV2> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -74,7 +76,8 @@ namespace Public.Api.PostalCode.Oslo
                 limit,
                 taal,
                 sort,
-                gemeentenaam);
+                gemeentenaam,
+                postnaam);
 
             var value = await GetFromBackendAsync(
                 contentFormat.ContentType,
@@ -90,11 +93,13 @@ namespace Public.Api.PostalCode.Oslo
             int? limit,
             Taal language,
             string sort,
-            string municipalityName)
+            string municipalityName,
+            string postnaam)
         {
             var filter = new PostalInformationFilter
             {
-                MunicipalityName = municipalityName
+                MunicipalityName = municipalityName,
+                PostalName = postnaam
             };
 
             // postcode
