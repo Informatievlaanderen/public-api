@@ -25,8 +25,8 @@ nuget Swashbuckle.AspNetCore.SwaggerUI 6.2.3
 // VBR STUFF
 nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      4.1.8  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo        4.1.8  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            3.2.0  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo              3.2.0  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            3.5.0  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo              3.5.0  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        3.21.0  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo          3.21.0  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions    3.21.0  copy_content_to_output_dir: always
