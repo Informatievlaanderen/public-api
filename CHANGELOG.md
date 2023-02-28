@@ -1,3 +1,10 @@
+# [5.63.0](https://github.com/informatievlaanderen/public-api/compare/v5.62.1...v5.63.0) (2023-02-28)
+
+
+### Features
+
+* add postname to postinfo filtering ([b37d251](https://github.com/informatievlaanderen/public-api/commit/b37d251f3f38986d567040e82bf11462467b0473))
+
 ## [5.62.1](https://github.com/informatievlaanderen/public-api/compare/v5.62.0...v5.62.1) (2023-02-27)
 
 # [5.62.0](https://github.com/informatievlaanderen/public-api/compare/v5.61.10...v5.62.0) (2023-02-24)
