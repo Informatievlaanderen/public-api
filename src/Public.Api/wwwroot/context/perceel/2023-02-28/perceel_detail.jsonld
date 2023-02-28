@@ -1,0 +1,36 @@
+{
+   "@context":
+    {"@base": "https://basisregisters.vlaanderen.be/implementatiemodel/gebouwenregister",
+    "@vocab": "#",
+    "identificator": "@nest",
+    "id": "@id",
+    "versieId": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#versieIdentificator",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "naamruimte": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#naamruimte",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "objectId": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#lokaleIdentificator",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "perceelStatus": {
+      "@id": "https://basisregisters.vlaanderen.be/implementatiemodel/gebouwenregister#Perceel%3Astatus",
+      "@type": "@id",
+      "@context": {
+        "@base": "https://data.vlaanderen.be/doc/concept/perceelstatus/"
+      }
+    },
+    "adressen": {
+      "@id": "https://basisregisters.vlaanderen.be/implementatiemodel/gebouwenregister#Adresseerbaar%20Object",
+      "@type": "@id",
+      "@context": {
+        "objectId": "@id",
+        "detail": "http://www.iana.org/assignments/relation/self",
+        "@base": "https://data.vlaanderen.be/id/adres/"
+      }
+    }
+  }
+}
