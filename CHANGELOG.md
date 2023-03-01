@@ -1,3 +1,10 @@
+## [5.64.1](https://github.com/informatievlaanderen/public-api/compare/v5.64.0...v5.64.1) (2023-03-01)
+
+
+### Bug Fixes
+
+* correct jsonld files ([3a6e159](https://github.com/informatievlaanderen/public-api/commit/3a6e15927a5c0ce8758352fd45220fd6ab273963))
+
 # [5.64.0](https://github.com/informatievlaanderen/public-api/compare/v5.63.0...v5.64.0) (2023-02-28)
 
 
