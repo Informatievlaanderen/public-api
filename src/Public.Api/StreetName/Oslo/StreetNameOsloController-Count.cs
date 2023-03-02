@@ -12,8 +12,8 @@ namespace Public.Api.StreetName.Oslo
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
-    using StreetNameRegistry.Api.Legacy.StreetName.Count;
-    using StreetNameRegistry.Api.Legacy.StreetName.Query;
+    using StreetNameRegistry.Api.Oslo.StreetName.Count;
+    using StreetNameRegistry.Api.Oslo.StreetName.Query;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
@@ -40,8 +40,8 @@ namespace Public.Api.StreetName.Oslo
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(TotalCountResponseExample))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultCountCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> CountStreetNamesV2(

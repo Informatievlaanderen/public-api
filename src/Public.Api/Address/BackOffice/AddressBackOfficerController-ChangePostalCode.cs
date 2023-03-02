@@ -1,10 +1,9 @@
-
 namespace Public.Api.Address.BackOffice
 {
     using System.Threading;
     using System.Threading.Tasks;
     using AddressRegistry.Api.BackOffice.Abstractions.Requests;
-    using AddressRegistry.Api.Legacy.Address.Detail;
+    using AddressRegistry.Api.Oslo.Address.Detail;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
@@ -51,17 +50,20 @@ namespace Public.Api.Address.BackOffice
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status412PreconditionFailed)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string", "De URL van het aangemaakte ticket.")]
-        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedOAuthResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenOAuthResponseExamples))]
+        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string",
+            "De URL van het aangemaakte ticket.")]
+        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string",
+            "Correlatie identificator van de response.")]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedOAuthResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenOAuthResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(AddressNotFoundResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerRequestExample(typeof(ChangeAddressPostalCodeRequest), typeof(ChangeAddressPostalCodeRequestExamples))]
-        [SwaggerOperation(Description = "Wijzig de postinfoId van een adres. Gekoppelde busnummers worden ook gewijzigd naar het nieuwe postinfoId. Het postinfoId mag buiten de gekoppelde gemeente van het adres liggen.")]
+        [SwaggerOperation(Description =
+            "Wijzig de postinfoId van een adres. Gekoppelde busnummers worden ook gewijzigd naar het nieuwe postinfoId. Het postinfoId mag buiten de gekoppelde gemeente van het adres liggen.")]
         [HttpPost(ChangePostalCodeRoute, Name = nameof(ChangePostalCodeAddress))]
         public async Task<IActionResult> ChangePostalCodeAddress(
             [FromRoute] int objectId,
@@ -69,7 +71,8 @@ namespace Public.Api.Address.BackOffice
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] ChangePostalCodeAddress changePostalCodeAddressToggle,
-            [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
+            [FromHeader(Name = HeaderNames.IfMatch)]
+            string? ifMatch,
             CancellationToken cancellationToken = default)
         {
             if (!changePostalCodeAddressToggle.FeatureEnabled)
@@ -86,11 +89,11 @@ namespace Public.Api.Address.BackOffice
                     .AddHeaderAuthorization(actionContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    CreateDefaultHandleBadRequest(),
-                    problemDetailsHelper,
-                    cancellationToken: cancellationToken);
+                contentFormat.ContentType,
+                BackendRequest,
+                CreateDefaultHandleBadRequest(),
+                problemDetailsHelper,
+                cancellationToken: cancellationToken);
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
         }

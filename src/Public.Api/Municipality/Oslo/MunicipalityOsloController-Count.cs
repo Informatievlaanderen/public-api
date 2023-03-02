@@ -11,7 +11,7 @@ namespace Public.Api.Municipality.Oslo
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using MunicipalityRegistry.Api.Legacy.Municipality.Responses;
+    using MunicipalityRegistry.Api.Oslo.Municipality.Responses;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -38,8 +38,8 @@ namespace Public.Api.Municipality.Oslo
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(TotalCountResponseExample))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultCountCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> CountMunicipalitiesV2(
