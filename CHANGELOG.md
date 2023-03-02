@@ -1,3 +1,10 @@
+## [5.65.1](https://github.com/informatievlaanderen/public-api/compare/v5.65.0...v5.65.1) (2023-03-02)
+
+
+### Bug Fixes
+
+* register api examples ([9013277](https://github.com/informatievlaanderen/public-api/commit/9013277a782a619792696107572f992e38e4eef1))
+
 # [5.65.0](https://github.com/informatievlaanderen/public-api/compare/v5.64.1...v5.65.0) (2023-03-02)
 
 
