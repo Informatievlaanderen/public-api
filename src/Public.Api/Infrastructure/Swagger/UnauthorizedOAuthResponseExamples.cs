@@ -7,15 +7,19 @@
 
     public class UnauthorizedOAuthResponseExamples : IExamplesProvider<ProblemDetails>
     {
+        protected string ApiVersion { get; }
+
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ProblemDetailsHelper _problemDetailsHelper;
 
         public UnauthorizedOAuthResponseExamples(
             IHttpContextAccessor httpContextAccessor,
-            ProblemDetailsHelper problemDetailsHelper)
+            ProblemDetailsHelper problemDetailsHelper,
+            string apiVersion = "v1")
         {
             _httpContextAccessor = httpContextAccessor;
             _problemDetailsHelper = problemDetailsHelper;
+            ApiVersion = apiVersion;
         }
 
         public ProblemDetails GetExamples() =>
@@ -25,7 +29,16 @@
                 HttpStatus = StatusCodes.Status401Unauthorized,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = "U bent niet geauthenticeerd om deze actie uit te voeren.",
-                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext)
+                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext, ApiVersion)
             };
+    }
+
+    public class UnauthorizedOAuthResponseExamplesV2 : UnauthorizedOAuthResponseExamples
+    {
+        public UnauthorizedOAuthResponseExamplesV2(
+            IHttpContextAccessor httpContextAccessor,
+            ProblemDetailsHelper problemDetailsHelper) : base(httpContextAccessor, problemDetailsHelper, "v2")
+        {
+        }
     }
 }

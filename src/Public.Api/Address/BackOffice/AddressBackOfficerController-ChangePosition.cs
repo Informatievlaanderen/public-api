@@ -1,4 +1,3 @@
-
 namespace Public.Api.Address.BackOffice
 {
     using System.Threading;
@@ -11,7 +10,7 @@ namespace Public.Api.Address.BackOffice
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
-    using AddressRegistry.Api.Legacy.Address.Detail;
+    using AddressRegistry.Api.Oslo.Address.Detail;
     using Common.Infrastructure.Extensions;
     using Infrastructure.Swagger;
     using Swashbuckle.AspNetCore.Annotations;
@@ -52,15 +51,17 @@ namespace Public.Api.Address.BackOffice
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status412PreconditionFailed)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string", "De URL van het aangemaakte ticket.")]
-        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedOAuthResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenOAuthResponseExamples))]
+        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string",
+            "De URL van het aangemaakte ticket.")]
+        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string",
+            "Correlatie identificator van de response.")]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedOAuthResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenOAuthResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(AddressNotFoundResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerRequestExample(typeof(ChangeAddressPositionRequest), typeof(ChangeAddressPositionRequestExamples))]
         [SwaggerOperation(Description = "Wijzig de positiespecificatie, positiegeometriemethode of positie van een adres.")]
         [HttpPost(ChangePositionRoute, Name = nameof(ChangeAddressPosition))]
@@ -70,7 +71,8 @@ namespace Public.Api.Address.BackOffice
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] ChangePositionAddress changePositionAddressToggle,
-            [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
+            [FromHeader(Name = HeaderNames.IfMatch)]
+            string? ifMatch,
             CancellationToken cancellationToken = default)
         {
             if (!changePositionAddressToggle.FeatureEnabled)
@@ -80,17 +82,18 @@ namespace Public.Api.Address.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => CreateBackendRequestWithJsonBody(ChangePositionRoute, changeAddressPositionRequest, Method.Post)
+            RestRequest BackendRequest() =>
+                CreateBackendRequestWithJsonBody(ChangePositionRoute, changeAddressPositionRequest, Method.Post)
                     .AddParameter("objectId", objectId, ParameterType.UrlSegment)
                     .AddHeaderIfMatch(ifMatch)
                     .AddHeaderAuthorization(actionContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    CreateDefaultHandleBadRequest(),
-                    problemDetailsHelper,
-                    cancellationToken: cancellationToken);
+                contentFormat.ContentType,
+                BackendRequest,
+                CreateDefaultHandleBadRequest(),
+                problemDetailsHelper,
+                cancellationToken: cancellationToken);
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
         }

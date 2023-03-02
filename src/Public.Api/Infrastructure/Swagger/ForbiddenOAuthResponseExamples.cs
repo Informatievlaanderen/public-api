@@ -7,15 +7,18 @@
 
     public class ForbiddenOAuthResponseExamples : IExamplesProvider<ProblemDetails>
     {
+        protected string ApiVersion { get; }
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ProblemDetailsHelper _problemDetailsHelper;
 
         public ForbiddenOAuthResponseExamples(
             IHttpContextAccessor httpContextAccessor,
-            ProblemDetailsHelper problemDetailsHelper)
+            ProblemDetailsHelper problemDetailsHelper,
+            string apiVersion = "v1")
         {
             _httpContextAccessor = httpContextAccessor;
             _problemDetailsHelper = problemDetailsHelper;
+            ApiVersion = apiVersion;
         }
 
         public ProblemDetails GetExamples() =>
@@ -27,5 +30,14 @@
                 Detail = "U beschikt niet over de correcte rechten om deze actie uit te voeren.",
                 ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext)
             };
+    }
+
+    public class ForbiddenOAuthResponseExamplesV2 : ForbiddenOAuthResponseExamples
+    {
+        public ForbiddenOAuthResponseExamplesV2(
+            IHttpContextAccessor httpContextAccessor,
+            ProblemDetailsHelper problemDetailsHelper) : base(httpContextAccessor, problemDetailsHelper, "v2")
+        {
+        }
     }
 }
