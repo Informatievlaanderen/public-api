@@ -1,3 +1,11 @@
+# [5.65.0](https://github.com/informatievlaanderen/public-api/compare/v5.64.1...v5.65.0) (2023-03-02)
+
+
+### Features
+
+* V2 response examples ([99a94bc](https://github.com/informatievlaanderen/public-api/commit/99a94bc769a906578bc9c45d274bd5df3950fc35))
+* version bump api and registries ([951a5e2](https://github.com/informatievlaanderen/public-api/commit/951a5e2499043b7cbbe0b422da3250abe2630e7a))
+
 ## [5.64.1](https://github.com/informatievlaanderen/public-api/compare/v5.64.0...v5.64.1) (2023-03-01)
 
 
