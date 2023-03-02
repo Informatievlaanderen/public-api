@@ -3,9 +3,9 @@ namespace Public.Api.Infrastructure.ProblemDetailsExceptionMapping
     using System;
     using System.Text.RegularExpressions;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using BuildingRegistry.Api.Legacy.Abstractions.Infrastructure.Grb.Wfs;
+    using Be.Vlaanderen.Basisregisters.BasicApiProblem;
+    using BuildingRegistry.Api.Legacy.Infrastructure.Grb.Wfs;
     using Microsoft.AspNetCore.Http;
-    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public class GrbWfsExceptionMapping : ApiProblemDetailsExceptionMapping
     {

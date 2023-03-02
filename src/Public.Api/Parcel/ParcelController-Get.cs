@@ -10,7 +10,7 @@ namespace Public.Api.Parcel
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using ParcelRegistry.Api.Legacy.Parcel.Responses;
+    using ParcelRegistry.Api.Legacy.Parcel.Detail;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -32,7 +32,7 @@ namespace Public.Api.Parcel
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("percelen/{objectId}", Name = nameof(GetParcel))]
         [ApiOrder(ApiOrder.Parcel.V1 + 1)]
-        [ProducesResponseType(typeof(ParcelResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ParcelDetailResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status410Gone)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]

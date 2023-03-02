@@ -5,8 +5,8 @@ namespace Public.Api.Building
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
-    using BuildingRegistry.Api.Legacy.Abstractions.Building.Query;
-    using BuildingRegistry.Api.Legacy.Abstractions.Building.Responses;
+    using BuildingRegistry.Api.Legacy.Building.List;
+    using BuildingRegistry.Api.Legacy.Building.Query;
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;

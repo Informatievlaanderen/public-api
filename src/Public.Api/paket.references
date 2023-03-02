@@ -10,8 +10,8 @@ Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions
 Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo
 Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions
-Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy.Abstractions
-Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo.Abstractions
+Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy
+Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo
 Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions
 Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo
