@@ -13,7 +13,7 @@ namespace Public.Api.Feeds
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
-    using ParcelRegistry.Api.Legacy.Parcel.Responses;
+    using ParcelRegistry.Api.Legacy.Parcel.Sync;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;

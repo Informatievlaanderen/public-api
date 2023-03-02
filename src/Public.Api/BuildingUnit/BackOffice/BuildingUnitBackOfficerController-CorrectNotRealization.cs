@@ -3,7 +3,7 @@ namespace Public.Api.BuildingUnit.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using BuildingRegistry.Api.Legacy.Abstractions.BuildingUnit.Responses;
+    using BuildingRegistry.Api.Oslo.BuildingUnit.Detail;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
     using Infrastructure;

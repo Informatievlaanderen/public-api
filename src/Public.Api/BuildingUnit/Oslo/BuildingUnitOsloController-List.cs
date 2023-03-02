@@ -5,10 +5,9 @@ namespace Public.Api.BuildingUnit.Oslo
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
-    using BuildingRegistry.Api.Oslo.Abstractions.BuildingUnit.Query;
-    using BuildingRegistry.Api.Oslo.Abstractions.BuildingUnit.Responses;
+    using BuildingRegistry.Api.Oslo.BuildingUnit.List;
+    using BuildingRegistry.Api.Oslo.BuildingUnit.Query;
     using Common.Infrastructure;
-    using Common.Infrastructure.Controllers;
     using Infrastructure;
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
@@ -57,7 +56,7 @@ namespace Public.Api.BuildingUnit.Oslo
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
-        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = RegistryApiController<BuildingUnitOsloController>.DefaultListCaching, NoStore = true, NoTransform = true)]
+        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ListBuildingUnitsV2(
             [FromQuery] int? offset,
             [FromQuery] int? limit,

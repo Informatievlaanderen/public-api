@@ -10,7 +10,7 @@ namespace Public.Api.Parcel.Oslo
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using ParcelRegistry.Api.Oslo.Parcel.Responses;
+    using ParcelRegistry.Api.Oslo.Parcel.Detail;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -33,7 +33,7 @@ namespace Public.Api.Parcel.Oslo
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("percelen/{objectId}", Name = nameof(GetParcelV2))]
         [ApiOrder(ApiOrder.Parcel.V2 + 1)]
-        [ProducesResponseType(typeof(ParcelOsloResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ParcelDetailOsloResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status410Gone)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]

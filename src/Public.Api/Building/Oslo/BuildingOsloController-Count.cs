@@ -4,9 +4,8 @@ namespace Public.Api.Building.Oslo
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
-    using BuildingRegistry.Api.Oslo.Abstractions.Infrastructure;
+    using BuildingRegistry.Api.Oslo.Infrastructure;
     using Common.Infrastructure;
-    using Common.Infrastructure.Controllers;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Marvin.Cache.Headers;
@@ -41,7 +40,7 @@ namespace Public.Api.Building.Oslo
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
-        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = RegistryApiController<BuildingOsloController>.DefaultCountCaching, NoStore = true, NoTransform = true)]
+        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultCountCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> CountBuildingsV2(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -51,7 +50,7 @@ namespace Public.Api.Building.Oslo
             if (!featureToggle.FeatureEnabled)
                 return NotFound();
 
-            var contentFormat = BuildingOsloController.DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendCountRequest();
 

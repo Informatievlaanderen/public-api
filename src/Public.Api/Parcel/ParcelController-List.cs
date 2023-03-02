@@ -14,8 +14,7 @@ namespace Public.Api.Parcel
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
-    using ParcelRegistry.Api.Legacy.Parcel.Query;
-    using ParcelRegistry.Api.Legacy.Parcel.Responses;
+    using ParcelRegistry.Api.Legacy.Parcel.List;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
