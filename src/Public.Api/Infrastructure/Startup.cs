@@ -13,6 +13,7 @@ namespace Public.Api.Infrastructure
     using Autofac.Extensions.DependencyInjection;
     using Autofac.Features.AttributeFilters;
     using Be.Vlaanderen.Basisregisters.Api;
+    using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Swagger;
     using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Microsoft;
@@ -406,18 +407,7 @@ namespace Public.Api.Infrastructure
 
             containerBuilder.Populate(services);
 
-            containerBuilder
-                .RegisterAssemblyTypes(
-                    AppDomain
-                        .CurrentDomain
-                        .GetAssemblies()
-                        .Where(x => (x.FullName ?? string.Empty).Contains("Registry.Api")
-                                    || (x.FullName ?? string.Empty).Contains("RoadRegistry")
-                                    || (x.FullName ?? string.Empty).Contains("Be.Vlaanderen.Basisregisters.Api"))
-                        .ToArray())
-                .AsClosedTypesOf(typeof(IExamplesProvider<>))
-                .AsImplementedInterfaces()
-                .AsSelf();
+            RegisterExamples(containerBuilder);
 
             containerBuilder
                 .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
@@ -446,6 +436,111 @@ namespace Public.Api.Infrastructure
             _applicationContainer = containerBuilder.Build();
 
             return new AutofacServiceProvider(_applicationContainer);
+        }
+
+        private static void RegisterExamples(ContainerBuilder containerBuilder)
+        {
+            containerBuilder
+                .RegisterAssemblyTypes(
+                    AppDomain
+                        .CurrentDomain
+                        .GetAssemblies()
+                        .Where(x => (x.FullName ?? string.Empty).Contains("Registry.Api")
+                                    || (x.FullName ?? string.Empty).Contains("RoadRegistry")
+                                    // We are explicitly registering the IExamplesProvider<> types from Be.Vlaanderen.Basisregisters.Api
+                                    // because some providers inherit from each other which causes the wrong implementation to be resolved,
+                                    // e.g. BadRequestResponseExamples as BadRequestResponseExamplesV2
+                                    // || (x.FullName ?? string.Empty).Contains("Be.Vlaanderen.Basisregisters.Api")
+                                    )
+                        .ToArray())
+                .AsClosedTypesOf(typeof(IExamplesProvider<>))
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<NotModifiedResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<BadRequestResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<BadRequestResponseExamplesV2>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<ConflictResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<ConflictResponseExamplesV2>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<ForbiddenResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<ForbiddenResponseExamplesV2>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<InternalServerErrorResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<InternalServerErrorResponseExamplesV2>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<NotAcceptableResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<PreconditionFailedResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<PreconditionFailedResponseExamplesV2>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<TooManyRequestsResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<TooManyRequestsResponseExamplesV2>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<UnauthorizedResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<UnauthorizedResponseExamplesV2>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<ValidationErrorResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
         }
 
         public void Configure(
