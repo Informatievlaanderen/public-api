@@ -28,7 +28,7 @@
                 HttpStatus = StatusCodes.Status403Forbidden,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = "U beschikt niet over de correcte rechten om deze actie uit te voeren.",
-                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext)
+                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext, ApiVersion)
             };
     }
 
