@@ -27,6 +27,7 @@ namespace Public.Api.Infrastructure
     using Feeds;
     using Feeds.V2;
     using Marvin.Cache.Headers;
+    using Microsoft.AspNetCore.Authorization.Infrastructure;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -215,7 +216,7 @@ namespace Public.Api.Infrastructure
                             builder.ConfigureApplicationPartManager(apm =>
                             {
                                 var parts = apm.ApplicationParts;
-                                var unneededParts = parts.Where(part => part.Name.Contains("Registry.Api")).ToArray();
+                                var unneededParts = parts.Where(part => AssemblyNameIsRegistryAssembly(part.Name)).ToArray();
 
                                 foreach (var unneededPart in unneededParts)
                                 {
@@ -226,7 +227,7 @@ namespace Public.Api.Infrastructure
                         AfterMvc = builder => builder.Services.Configure<ApiBehaviorOptions>(options =>
                         {
                             options.SuppressInferBindingSourcesForParameters = true;
-
+                            
                             options.InvalidModelStateResponseFactory = actionContext =>
                             {
                                 //actionContext.SetContentFormatAcceptType(); //TODO: WHY?
@@ -446,8 +447,7 @@ namespace Public.Api.Infrastructure
                     AppDomain
                         .CurrentDomain
                         .GetAssemblies()
-                        .Where(x => (x.FullName ?? string.Empty).Contains("Registry.Api")
-                                    || (x.FullName ?? string.Empty).Contains("RoadRegistry")
+                        .Where(x => AssemblyNameIsRegistryAssembly(x.FullName)
                                     // We are explicitly registering the IExamplesProvider<> types from Be.Vlaanderen.Basisregisters.Api
                                     // because some providers inherit from each other which causes the wrong implementation to be resolved,
                                     // e.g. BadRequestResponseExamples as BadRequestResponseExamplesV2
@@ -663,6 +663,11 @@ namespace Public.Api.Infrastructure
                     FileProvider = new PhysicalFileProvider(Path.Combine(env.WebRootPath, "context")),
                     RequestPath = "/context"
                 });
+        }
+
+        private static bool AssemblyNameIsRegistryAssembly(string? name)
+        {
+            return name != null && (name.Contains("Registry.Api") || name.Contains("RoadRegistry"));
         }
 
         private string GetApiLeadingText(ApiVersionDescription description, bool isFeedsVisibleToggle, bool isProposeStreetName)
