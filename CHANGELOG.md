@@ -1,3 +1,11 @@
+## [5.65.2](https://github.com/informatievlaanderen/public-api/compare/v5.65.1...v5.65.2) (2023-03-06)
+
+
+### Bug Fixes
+
+* bump roadregistry ([bcb956b](https://github.com/informatievlaanderen/public-api/commit/bcb956b66a03a4fd914811b30aa6aaf4a16f7873))
+* subtitle reject streetname ([e41ec0e](https://github.com/informatievlaanderen/public-api/commit/e41ec0ebde39fa852096c76692f7b41d4f8c0bfc))
+
 ## [5.65.1](https://github.com/informatievlaanderen/public-api/compare/v5.65.0...v5.65.1) (2023-03-02)
 
 
