@@ -1,6 +1,9 @@
 RESTRICTION: == net6.0
 NUGET
   remote: https://api.nuget.org/v3/index.json
+    AspNetCore.HealthChecks.SqlServer (6.0.2) - copy_content_to_output_dir: always
+      Microsoft.Data.SqlClient (>= 3.0.1)
+      Microsoft.Extensions.Diagnostics.HealthChecks (>= 6.0)
     Autofac (6.4)
       System.Diagnostics.DiagnosticSource (>= 4.7.1)
     Autofac.Extensions.DependencyInjection (8.0)
@@ -12,12 +15,12 @@ NUGET
     AutoFixture.Xunit2 (4.17)
       AutoFixture (>= 4.17)
       xunit.extensibility.core (>= 2.2 < 3.0)
-    AWSSDK.Core (3.7.12.13)
-    AWSSDK.DynamoDBv2 (3.7.3.60)
+    AWSSDK.Core (3.7.105.13)
+    AWSSDK.DynamoDBv2 (3.7.3.60) - copy_content_to_output_dir: always
       AWSSDK.Core (>= 3.7.12.12 < 4.0)
     AWSSDK.S3 (3.7.8.14)
       AWSSDK.Core (>= 3.7.10.2 < 4.0)
-    Azure.Core (1.25)
+    Azure.Core (1.25) - copy_content_to_output_dir: always
       Microsoft.Bcl.AsyncInterfaces (>= 1.1.1)
       System.Diagnostics.DiagnosticSource (>= 4.6)
       System.Memory.Data (>= 1.0.2)
@@ -25,7 +28,7 @@ NUGET
       System.Text.Encodings.Web (>= 4.7.2)
       System.Text.Json (>= 4.7.2)
       System.Threading.Tasks.Extensions (>= 4.5.4)
-    Azure.Identity (1.6)
+    Azure.Identity (1.6) - copy_content_to_output_dir: always
       Azure.Core (>= 1.24)
       Microsoft.Identity.Client (>= 4.39)
       Microsoft.Identity.Client.Extensions.Msal (>= 2.19.3)
@@ -155,7 +158,7 @@ NUGET
       NSwag.CodeGeneration.CSharp (>= 13.15.10)
       NSwag.CodeGeneration.TypeScript (>= 13.15.10)
       Swashbuckle.AspNetCore (6.2.3)
-    Be.Vlaanderen.Basisregisters.Aws.DistributedMutex (3.0)
+    Be.Vlaanderen.Basisregisters.Aws.DistributedMutex (3.0.2) - copy_content_to_output_dir: always
       AWSSDK.DynamoDBv2 (>= 3.7.3.14)
       Microsoft.Extensions.Logging (>= 6.0)
     Be.Vlaanderen.Basisregisters.BlobStore (3.0) - copy_content_to_output_dir: always
@@ -204,6 +207,10 @@ NUGET
     Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore (5.0.3)
       Be.Vlaanderen.Basisregisters.DataDog.Tracing (5.0.3)
       Serilog (>= 2.10)
+    Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac (5.0.3) - copy_content_to_output_dir: always
+      Autofac.Extensions.DependencyInjection (>= 7.2)
+      Be.Vlaanderen.Basisregisters.DataDog.Tracing (5.0.3)
+      Microsoft.Extensions.Configuration (>= 6.0.1)
     Be.Vlaanderen.Basisregisters.DataDog.Tracing.Microsoft (5.0.3)
       Be.Vlaanderen.Basisregisters.DataDog.Tracing (5.0.3)
       Be.Vlaanderen.Basisregisters.DependencyInjection (>= 1.0.3)
@@ -292,13 +299,23 @@ NUGET
       Be.Vlaanderen.Basisregisters.EventHandling (>= 4.2.2)
       SqlStreamStore (>= 1.2)
     Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice (2.1.1) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions (3.34) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions (3.36.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.BlobStore (>= 3.0)
-      MediatR.Contracts (>= 1.0.1)
+      MediatR.Contracts (>= 2.0.1)
       Microsoft.Net.Http.Headers (>= 2.2.8)
-    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (3.34) - copy_content_to_output_dir: always
-      Be.Vlaanderen.Basisregisters.BlobStore (>= 3.0)
-      Microsoft.IO.RecyclableMemoryStream (>= 2.2.1)
+    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (3.36.1) - copy_content_to_output_dir: always
+      AspNetCore.HealthChecks.SqlServer (>= 6.0.2)
+      AWSSDK.Core (>= 3.7.100)
+      Be.Vlaanderen.Basisregisters.Api (>= 19.1)
+      Be.Vlaanderen.Basisregisters.Aws.DistributedMutex (>= 3.0.2)
+      Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac (>= 5.0.3)
+      Be.Vlaanderen.Basisregisters.GrAr.Provenance (>= 18.1.1)
+      Be.Vlaanderen.Basisregisters.Shaperon (>= 9.0.1)
+      MediatR (>= 12.0.1)
+      Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite (>= 6.0.10)
+      RestSharp (>= 108.0.2)
+      Serilog.Sinks.Seq (>= 5.2.1)
+    Be.Vlaanderen.Basisregisters.Shaperon (9.0.1) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.Sqs (1.3.1)
       MediatR (>= 12.0.1)
     Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions (3.22.1) - copy_content_to_output_dir: always
@@ -449,10 +466,10 @@ NUGET
     MailKit (3.3)
       MimeKit (>= 3.3)
     Marvin.Cache.Headers (6.1)
-    MediatR (12.0.1)
+    MediatR (12.0.1) - copy_content_to_output_dir: always
       MediatR.Contracts (>= 2.0.1 < 3.0)
       Microsoft.Extensions.DependencyInjection.Abstractions (>= 6.0)
-    MediatR.Contracts (2.0.1)
+    MediatR.Contracts (2.0.1) - copy_content_to_output_dir: always
     Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore (6.0.7)
       Microsoft.EntityFrameworkCore.Relational (>= 6.0.7)
     Microsoft.AspNetCore.Hosting.Abstractions (2.2)
@@ -483,7 +500,7 @@ NUGET
     Microsoft.AspNetCore.Mvc.Versioning (5.0)
     Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer (5.0)
       Microsoft.AspNetCore.Mvc.Versioning (>= 5.0)
-    Microsoft.Bcl.AsyncInterfaces (6.0)
+    Microsoft.Bcl.AsyncInterfaces (6.0) - copy_content_to_output_dir: always
     Microsoft.Build (17.3.2)
       Microsoft.Build.Framework (>= 17.3.2)
       Microsoft.NET.StringTools (>= 17.3.2)
@@ -518,12 +535,13 @@ NUGET
       System.Configuration.ConfigurationManager (>= 4.7)
     Microsoft.CodeCoverage (17.2)
     Microsoft.CSharp (4.7)
-    Microsoft.Data.SqlClient (4.1)
-      Azure.Identity (>= 1.3)
-      Microsoft.Data.SqlClient.SNI.runtime (>= 4.0)
-      Microsoft.Identity.Client (>= 4.22)
-      Microsoft.IdentityModel.JsonWebTokens (>= 6.8)
-      Microsoft.IdentityModel.Protocols.OpenIdConnect (>= 6.8)
+    Microsoft.Data.SqlClient (5.0.1) - copy_content_to_output_dir: always
+      Azure.Identity (>= 1.6)
+      Microsoft.Data.SqlClient.SNI.runtime (>= 5.0.1)
+      Microsoft.Identity.Client (>= 4.45)
+      Microsoft.IdentityModel.JsonWebTokens (>= 6.21)
+      Microsoft.IdentityModel.Protocols.OpenIdConnect (>= 6.21)
+      Microsoft.SqlServer.Server (>= 1.0)
       Microsoft.Win32.Registry (>= 5.0)
       System.Buffers (>= 4.5.1)
       System.Configuration.ConfigurationManager (>= 5.0)
@@ -535,23 +553,27 @@ NUGET
       System.Security.Principal.Windows (>= 5.0)
       System.Text.Encoding.CodePages (>= 5.0)
       System.Text.Encodings.Web (>= 4.7.2)
-    Microsoft.Data.SqlClient.SNI.runtime (4.0)
-    Microsoft.EntityFrameworkCore (7.0)
-      Microsoft.EntityFrameworkCore.Abstractions (>= 7.0)
-      Microsoft.EntityFrameworkCore.Analyzers (>= 7.0)
+    Microsoft.Data.SqlClient.SNI.runtime (5.1) - copy_content_to_output_dir: always
+    Microsoft.EntityFrameworkCore (7.0.3)
+      Microsoft.EntityFrameworkCore.Abstractions (>= 7.0.3)
+      Microsoft.EntityFrameworkCore.Analyzers (>= 7.0.3)
       Microsoft.Extensions.Caching.Memory (>= 7.0)
       Microsoft.Extensions.DependencyInjection (>= 7.0)
       Microsoft.Extensions.Logging (>= 7.0)
-    Microsoft.EntityFrameworkCore.Abstractions (7.0)
-    Microsoft.EntityFrameworkCore.Analyzers (7.0)
-    Microsoft.EntityFrameworkCore.InMemory (6.0.10)
-      Microsoft.EntityFrameworkCore (>= 6.0.10)
-    Microsoft.EntityFrameworkCore.Relational (6.0.7)
-      Microsoft.EntityFrameworkCore (>= 6.0.7)
-      Microsoft.Extensions.Configuration.Abstractions (>= 6.0)
-    Microsoft.EntityFrameworkCore.SqlServer (6.0.7)
-      Microsoft.Data.SqlClient (>= 2.1.4)
-      Microsoft.EntityFrameworkCore.Relational (>= 6.0.7)
+    Microsoft.EntityFrameworkCore.Abstractions (7.0.3)
+    Microsoft.EntityFrameworkCore.Analyzers (7.0.3)
+    Microsoft.EntityFrameworkCore.InMemory (7.0.3)
+      Microsoft.EntityFrameworkCore (>= 7.0.3)
+    Microsoft.EntityFrameworkCore.Relational (7.0.3) - copy_content_to_output_dir: always
+      Microsoft.EntityFrameworkCore (>= 7.0.3)
+      Microsoft.Extensions.Configuration.Abstractions (>= 7.0)
+    Microsoft.EntityFrameworkCore.SqlServer (7.0.3) - copy_content_to_output_dir: always
+      Microsoft.Data.SqlClient (>= 5.0.1)
+      Microsoft.EntityFrameworkCore.Relational (>= 7.0.3)
+    Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite (6.0.14) - copy_content_to_output_dir: always
+      Microsoft.EntityFrameworkCore.SqlServer (>= 6.0.14)
+      NetTopologySuite (>= 2.3)
+      NetTopologySuite.IO.SqlServerBytes (>= 2.0)
     Microsoft.Extensions.ApiDescription.Server (6.0.7)
     Microsoft.Extensions.Caching.Abstractions (7.0)
       Microsoft.Extensions.Primitives (>= 7.0)
@@ -564,8 +586,8 @@ NUGET
     Microsoft.Extensions.Configuration (6.0.1)
       Microsoft.Extensions.Configuration.Abstractions (>= 6.0)
       Microsoft.Extensions.Primitives (>= 6.0)
-    Microsoft.Extensions.Configuration.Abstractions (6.0)
-      Microsoft.Extensions.Primitives (>= 6.0)
+    Microsoft.Extensions.Configuration.Abstractions (7.0)
+      Microsoft.Extensions.Primitives (>= 7.0)
     Microsoft.Extensions.Configuration.Binder (6.0)
       Microsoft.Extensions.Configuration.Abstractions (>= 6.0)
     Microsoft.Extensions.Configuration.CommandLine (6.0)
@@ -641,28 +663,27 @@ NUGET
       Microsoft.Extensions.Primitives (>= 6.0)
     Microsoft.Extensions.Primitives (7.0)
       System.Runtime.CompilerServices.Unsafe (>= 6.0)
-    Microsoft.Identity.Client (4.45)
+    Microsoft.Identity.Client (4.45) - copy_content_to_output_dir: always
       Microsoft.IdentityModel.Abstractions (>= 6.18)
-    Microsoft.Identity.Client.Extensions.Msal (2.22)
+    Microsoft.Identity.Client.Extensions.Msal (2.22) - copy_content_to_output_dir: always
       Microsoft.Identity.Client (>= 4.45)
       System.IO.FileSystem.AccessControl (>= 5.0)
       System.Security.Cryptography.ProtectedData (>= 4.5)
     Microsoft.IdentityModel.Abstractions (6.22)
-    Microsoft.IdentityModel.JsonWebTokens (6.22)
+    Microsoft.IdentityModel.JsonWebTokens (6.22) - copy_content_to_output_dir: always
       Microsoft.IdentityModel.Tokens (>= 6.22)
     Microsoft.IdentityModel.Logging (6.22)
       Microsoft.IdentityModel.Abstractions (>= 6.22)
-    Microsoft.IdentityModel.Protocols (6.22)
+    Microsoft.IdentityModel.Protocols (6.22) - copy_content_to_output_dir: always
       Microsoft.IdentityModel.Logging (>= 6.22)
       Microsoft.IdentityModel.Tokens (>= 6.22)
-    Microsoft.IdentityModel.Protocols.OpenIdConnect (6.22)
+    Microsoft.IdentityModel.Protocols.OpenIdConnect (6.22) - copy_content_to_output_dir: always
       Microsoft.IdentityModel.Protocols (>= 6.22)
       System.IdentityModel.Tokens.Jwt (>= 6.22)
     Microsoft.IdentityModel.Tokens (6.22)
       Microsoft.CSharp (>= 4.5)
       Microsoft.IdentityModel.Logging (>= 6.22)
       System.Security.Cryptography.Cng (>= 4.5)
-    Microsoft.IO.RecyclableMemoryStream (2.2.1) - copy_content_to_output_dir: always
     Microsoft.Net.Http.Headers (2.2.8) - copy_content_to_output_dir: always
       Microsoft.Extensions.Primitives (>= 2.2)
       System.Buffers (>= 4.5)
@@ -675,6 +696,7 @@ NUGET
     Microsoft.NETCore.Platforms (6.0.5)
     Microsoft.NETCore.Targets (5.0)
     Microsoft.OpenApi (1.3.2)
+    Microsoft.SqlServer.Server (1.0) - copy_content_to_output_dir: always
     Microsoft.SyndicationFeed.ReaderWriter (1.0.2)
       System.Globalization (>= 4.3)
       System.Linq (>= 4.3)
@@ -691,7 +713,7 @@ NUGET
       Microsoft.AspNetCore.Http.Abstractions (>= 2.2)
       Microsoft.AspNetCore.Http.Extensions (>= 2.2)
       Microsoft.Extensions.FileProviders.Physical (>= 2.2)
-    Microsoft.Win32.Registry (5.0)
+    Microsoft.Win32.Registry (5.0) - copy_content_to_output_dir: always
       System.Security.AccessControl (>= 5.0)
       System.Security.Principal.Windows (>= 5.0)
     Microsoft.Win32.SystemEvents (6.0.1)
@@ -710,6 +732,8 @@ NUGET
       Microsoft.NETCore.Platforms (>= 1.1)
     NetTopologySuite (2.4)
       System.Memory (>= 4.5.3)
+    NetTopologySuite.IO.SqlServerBytes (2.1) - copy_content_to_output_dir: always
+      NetTopologySuite (>= 2.0 < 3.0.0-A)
     Newtonsoft.Json (13.0.1)
     Newtonsoft.Json.Bson (1.0.2)
       Newtonsoft.Json (>= 12.0.1)
@@ -772,7 +796,7 @@ NUGET
     Scrutor (4.2)
       Microsoft.Extensions.DependencyInjection.Abstractions (>= 6.0)
       Microsoft.Extensions.DependencyModel (>= 6.0)
-    Serilog (2.11)
+    Serilog (2.12) - copy_content_to_output_dir: always
     Serilog.Enrichers.Environment (2.2)
       Serilog (>= 2.3)
     Serilog.Enrichers.Thread (3.1)
@@ -797,8 +821,13 @@ NUGET
       System.Threading (>= 4.3)
     Serilog.Sinks.File (5.0)
       Serilog (>= 2.10)
-    Serilog.Sinks.PeriodicBatching (2.3.1)
+    Serilog.Sinks.PeriodicBatching (3.1) - copy_content_to_output_dir: always
       Serilog (>= 2.0)
+    Serilog.Sinks.Seq (5.2.2) - copy_content_to_output_dir: always
+      Serilog (>= 2.12)
+      Serilog.Formatting.Compact (>= 1.1)
+      Serilog.Sinks.File (>= 5.0)
+      Serilog.Sinks.PeriodicBatching (>= 3.1)
     SourceLink.Copy.PdbFiles (2.8.3) - copy_local: true
     SourceLink.Embed.AllSourceFiles (2.8.3) - copy_local: true
     SqlStreamStore (1.2)
@@ -856,7 +885,7 @@ NUGET
       Microsoft.NETCore.Platforms (>= 1.1)
       Microsoft.NETCore.Targets (>= 1.1)
       System.Runtime (>= 4.3)
-    System.Diagnostics.DiagnosticSource (6.0)
+    System.Diagnostics.DiagnosticSource (6.0) - copy_content_to_output_dir: always
       System.Runtime.CompilerServices.Unsafe (>= 6.0)
     System.Diagnostics.PerformanceCounter (6.0.1)
       System.Configuration.ConfigurationManager (>= 6.0)
@@ -867,7 +896,7 @@ NUGET
       Microsoft.NETCore.Platforms (>= 1.1)
       Microsoft.NETCore.Targets (>= 1.1)
       System.Runtime (>= 4.3)
-    System.IdentityModel.Tokens.Jwt (6.22)
+    System.IdentityModel.Tokens.Jwt (6.22) - copy_content_to_output_dir: always
       Microsoft.IdentityModel.JsonWebTokens (>= 6.22)
       Microsoft.IdentityModel.Tokens (>= 6.22)
     System.IO (4.3)
@@ -885,7 +914,7 @@ NUGET
       System.Runtime.Handles (>= 4.3)
       System.Text.Encoding (>= 4.3)
       System.Threading.Tasks (>= 4.3)
-    System.IO.FileSystem.AccessControl (5.0)
+    System.IO.FileSystem.AccessControl (5.0) - copy_content_to_output_dir: always
       System.Security.AccessControl (>= 5.0)
       System.Security.Principal.Windows (>= 5.0)
     System.IO.FileSystem.Primitives (4.3)
@@ -898,9 +927,9 @@ NUGET
       System.Runtime (>= 4.3)
       System.Runtime.Extensions (>= 4.3)
     System.Memory (4.5.5)
-    System.Memory.Data (6.0)
+    System.Memory.Data (6.0) - copy_content_to_output_dir: always
       System.Text.Json (>= 6.0)
-    System.Numerics.Vectors (4.5)
+    System.Numerics.Vectors (4.5) - copy_content_to_output_dir: always
     System.Reactive (5.0)
     System.Reflection (4.3)
       Microsoft.NETCore.Platforms (>= 1.1)
@@ -927,7 +956,7 @@ NUGET
     System.Runtime (4.3.1)
       Microsoft.NETCore.Platforms (>= 1.1.1)
       Microsoft.NETCore.Targets (>= 1.1.3)
-    System.Runtime.Caching (6.0)
+    System.Runtime.Caching (6.0) - copy_content_to_output_dir: always
       System.Configuration.ConfigurationManager (>= 6.0)
     System.Runtime.CompilerServices.Unsafe (6.0)
     System.Runtime.Extensions (4.3.1)
@@ -957,7 +986,7 @@ NUGET
     System.Security.Permissions (6.0)
       System.Security.AccessControl (>= 6.0)
       System.Windows.Extensions (>= 6.0)
-    System.Security.Principal.Windows (5.0)
+    System.Security.Principal.Windows (5.0) - copy_content_to_output_dir: always
     System.Text.Encoding (4.3)
       Microsoft.NETCore.Platforms (>= 1.1)
       Microsoft.NETCore.Targets (>= 1.1)
