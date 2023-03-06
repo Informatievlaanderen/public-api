@@ -1,3 +1,10 @@
+## [5.66.1](https://github.com/informatievlaanderen/public-api/compare/v5.66.0...v5.66.1) (2023-03-06)
+
+
+### Bug Fixes
+
+* exclude road-registry backoffice endpoints from being registered ([#678](https://github.com/informatievlaanderen/public-api/issues/678)) ([5bc921d](https://github.com/informatievlaanderen/public-api/commit/5bc921d4e24f473896c378c78292fb1ef7373031))
+
 # [5.66.0](https://github.com/informatievlaanderen/public-api/compare/v5.65.2...v5.66.0) (2023-03-06)
 
 
