@@ -1,3 +1,10 @@
+# [5.66.0](https://github.com/informatievlaanderen/public-api/compare/v5.65.2...v5.66.0) (2023-03-06)
+
+
+### Features
+
+* remove streetname ([c89fbb9](https://github.com/informatievlaanderen/public-api/commit/c89fbb98b0d7f264cd14037aa888b5fce3c0f945))
+
 ## [5.65.2](https://github.com/informatievlaanderen/public-api/compare/v5.65.1...v5.65.2) (2023-03-06)
 
 
