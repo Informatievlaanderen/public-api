@@ -118,7 +118,7 @@ namespace Public.Api.Tickets
                 HttpStatus = StatusCodes.Status404NotFound,
                 Title = ProblemDetails.DefaultTitle,
                 Detail = "Onbestaand ticket.",
-                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext)
+                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext, "v2")
             };
     }
 }
