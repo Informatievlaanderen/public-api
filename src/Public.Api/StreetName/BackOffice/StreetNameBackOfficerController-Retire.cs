@@ -29,7 +29,7 @@ namespace Public.Api.StreetName.BackOffice
         /// <param name="retireStreetNameToggle"></param>
         /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van de straatnaam (optioneel).</param>
         /// <param name="cancellationToken"></param>
-        /// <response code="202">Als het ticket succesvol is aangemaakt..</response>
+        /// <response code="202">Als het ticket succesvol is aangemaakt.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="401">Als u niet geauthenticeerd bent om deze actie uit te voeren.</response>
         /// <response code="403">Als u niet beschikt over de correcte rechten om deze actie uit te voeren.</response>

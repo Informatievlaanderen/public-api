@@ -18,15 +18,15 @@ namespace Public.Api.StreetName.BackOffice
 
     public partial class StreetNameBackOfficeController
     {
-        public const string CorrectStreetNameRejectionRoute = "straatnamen/{objectId}/acties/corrigeren/afkeuring";
+        public const string RemoveStreetNameRoute = "straatnamen/{objectId}/acties/verwijderen";
 
         /// <summary>
-        /// Corrigeer de afkeuring van een straatnaam.
+        /// Verwijder een straatnaam.
         /// </summary>
         /// <param name="objectId">Identificator van de straatnaam.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
-        /// <param name="correctStreetNameRejectionToggle"></param>
+        /// <param name="retireStreetNameToggle"></param>
         /// <param name="ifMatch">If-Match header met ETag van de laatst gekende versie van de straatnaam (optioneel).</param>
         /// <param name="cancellationToken"></param>
         /// <response code="202">Als het ticket succesvol is aangemaakt.</response>
@@ -39,7 +39,7 @@ namespace Public.Api.StreetName.BackOffice
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         /// <returns></returns>
-        [ApiOrder(ApiOrder.StreetName.Edit + 9)]
+        [ApiOrder(ApiOrder.StreetName.Edit + 5)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
@@ -57,34 +57,34 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Correctie van de straatnaamstatus van `afgekeurd` naar `voorgesteld`. Gekoppelde adressen corrigeren niet mee van status.")]
-        [HttpPost(CorrectStreetNameRejectionRoute, Name = nameof(CorrectStreetNameRejection))]
-        public async Task<IActionResult> CorrectStreetNameRejection(
+        [SwaggerOperation(Description = "De straatnaam wordt verwijderd uit het straatnaamregister. Gekoppelde adressen worden mee verwijderd.")]
+        [HttpPost(RemoveStreetNameRoute, Name = nameof(RemoveStreetName))]
+        public async Task<IActionResult> RemoveStreetName(
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] CorrectStreetNameRejectionToggle correctStreetNameRejectionToggle,
+            [FromServices] RemoveStreetNameToggle retireStreetNameToggle,
             [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
             CancellationToken cancellationToken = default)
         {
-            if (!correctStreetNameRejectionToggle.FeatureEnabled)
+            if (!retireStreetNameToggle.FeatureEnabled)
             {
                 return NotFound();
             }
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => new RestRequest(CorrectStreetNameRejectionRoute, Method.Post)
+            RestRequest BackendRequest() => new RestRequest(RemoveStreetNameRoute, Method.Post)
                 .AddParameter("objectId", objectId, ParameterType.UrlSegment)
                 .AddHeaderIfMatch(ifMatch)
                 .AddHeaderAuthorization(actionContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    CreateDefaultHandleBadRequest(),
-                    problemDetailsHelper,
-                    cancellationToken: cancellationToken);
+                contentFormat.ContentType,
+                BackendRequest,
+                CreateDefaultHandleBadRequest(),
+                problemDetailsHelper,
+                cancellationToken: cancellationToken);
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
         }

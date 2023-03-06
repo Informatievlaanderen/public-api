@@ -9,6 +9,7 @@ namespace Public.Api.Infrastructure.Configuration
         public bool ApproveStreetName { get; set; }
         public bool RejectStreetName { get; set; }
         public bool RetireStreetName { get; set; }
+        public bool RemoveStreetName { get; set; }
         public bool CorrectStreetNameRetirement { get; set; }
         public bool CorrectStreetNameNames { get; set; }
 
