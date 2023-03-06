@@ -147,7 +147,7 @@ namespace Common.Infrastructure.Controllers
 
             var downstreamVersion = response
                 .Headers
-                .FirstOrDefault(x => x.Name.Equals(AddVersionHeaderMiddleware.HeaderName, StringComparison.InvariantCultureIgnoreCase));
+                ?.FirstOrDefault(x => x.Name.Equals(AddVersionHeaderMiddleware.HeaderName, StringComparison.InvariantCultureIgnoreCase));
 
             if (response.StatusCode is HttpStatusCode.BadRequest)
             {
