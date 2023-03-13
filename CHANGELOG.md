@@ -1,3 +1,15 @@
+# [5.67.0](https://github.com/informatievlaanderen/public-api/compare/v5.66.2...v5.67.0) (2023-03-13)
+
+
+### Bug Fixes
+
+* AddressWasRemovedBecauseStreetNameWasRemoved tags ([ec913ac](https://github.com/informatievlaanderen/public-api/commit/ec913ac721c746ef8a33fe9c3abe9a835c5a9d6b))
+
+
+### Features
+
+* add address match v2 ([eeb3147](https://github.com/informatievlaanderen/public-api/commit/eeb31478fef45ddad0a988078750af8df4ef4652))
+
 ## [5.66.2](https://github.com/informatievlaanderen/public-api/compare/v5.66.1...v5.66.2) (2023-03-06)
 
 ## [5.66.1](https://github.com/informatievlaanderen/public-api/compare/v5.66.0...v5.66.1) (2023-03-06)
