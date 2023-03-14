@@ -1,3 +1,10 @@
+## [5.67.1](https://github.com/informatievlaanderen/public-api/compare/v5.67.0...v5.67.1) (2023-03-14)
+
+
+### Bug Fixes
+
+* documentation page ([e121a7a](https://github.com/informatievlaanderen/public-api/commit/e121a7a77dc71d4baf6cb742b683974a4ad34450))
+
 # [5.67.0](https://github.com/informatievlaanderen/public-api/compare/v5.66.2...v5.67.0) (2023-03-13)
 
 
