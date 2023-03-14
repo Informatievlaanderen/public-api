@@ -35,9 +35,9 @@ namespace Public.Api.Address.Oslo
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adresmatch", Name = nameof(AddressMatch))]
+        [HttpGet("adresmatch", Name = nameof(AddressMatchV2))]
         [ApiOrder(ApiOrder.Address.V2 + 4)]
-        [ProducesResponseType(typeof(AddressMatchCollection), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AddressMatchOsloCollection), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
@@ -46,7 +46,7 @@ namespace Public.Api.Address.Oslo
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerOperation(Description = "Van de optionele parameters (2) resp. (1) moet er minstens één ingevuld zijn. <br />Van de optionele parameters (1) resp. (4) mag er maximaal één ingevuld zijn.")]
-        public async Task<IActionResult> AddressMatch(
+        public async Task<IActionResult> AddressMatchV2(
             [FromQuery] string gemeentenaam,
             [FromQuery] string niscode,
             [FromQuery] string postcode,
