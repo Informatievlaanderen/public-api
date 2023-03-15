@@ -1,3 +1,10 @@
+# [5.68.0](https://github.com/informatievlaanderen/public-api/compare/v5.67.2...v5.68.0) (2023-03-15)
+
+
+### Features
+
+* building grb upload ([935b925](https://github.com/informatievlaanderen/public-api/commit/935b9252098c16d1d33e4af99bbe620a5bb34d0e))
+
 ## [5.67.2](https://github.com/informatievlaanderen/public-api/compare/v5.67.1...v5.67.2) (2023-03-14)
 
 ## [5.67.1](https://github.com/informatievlaanderen/public-api/compare/v5.67.0...v5.67.1) (2023-03-14)
