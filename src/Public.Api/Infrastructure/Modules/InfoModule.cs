@@ -31,8 +31,7 @@ namespace Public.Api.Infrastructure.Modules
             RegisterMarkDownGenerator<AddressRegistry.DomainAssemblyMarker>(RegistryKeys.Address);
             RegisterMarkDownGenerator<BuildingRegistry.DomainAssemblyMarker>(RegistryKeys.Building);
             RegisterMarkDownGenerator<ParcelRegistry.DomainAssemblyMarker>(RegistryKeys.Parcel);
-            // TODO: WR debug this
-            //RegisterMarkDownGenerator<RoadRegistry.BackOffice.DomainAssemblyMarker>(RegistryKeys.Road);
+            RegisterMarkDownGenerator<RoadRegistry.BackOffice.DomainAssemblyMarker>(RegistryKeys.Road);
         }
     }
 }
