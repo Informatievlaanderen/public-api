@@ -5,15 +5,18 @@ source https://api.nuget.org/v3/index.json
 nuget RestSharp 108.0.2
 nuget Marvin.Cache.Headers 6.1.0
 nuget StackExchange.Redis 2.5.43
-nuget AWSSDK.S3 3.7.8.14
+nuget AWSSDK.S3 3.7.100
 
 // MISSING ASSEMBLY REFERENCES
-nuget Microsoft.IdentityModel.Tokens 6.22.0
+nuget Microsoft.IdentityModel.Tokens 6.25.1
 nuget IdentityModel 6.0.0
 nuget Be.Vlaanderen.Basisregisters.ProjectionHandling.Runner 11.0.7
 nuget Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore 8.0.0
 nuget Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting 8.0.0
-nuget NetTopologySuite 2.4.0
+nuget NetTopologySuite 2.5.0
+nuget Microsoft.Extensions.Configuration 7.0.0
+nuget Microsoft.Extensions.Configuration.Binder 7.0.0
+nuget Microsoft.Extensions.Options.ConfigurationExtensions 7.0.0
 
 nuget Swashbuckle.AspNetCore 6.2.3
 nuget Swashbuckle.AspNetCore.Filters 6.0.1
@@ -40,8 +43,9 @@ nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            4.14.1  
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo              4.14.1  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions       4.14.1  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice 2.1.1  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api          3.36.1 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions 3.36.1 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice              3.36.5 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api          3.36.5 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions 3.36.5 copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 6.0.5
 
