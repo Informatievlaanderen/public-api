@@ -57,7 +57,7 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "De straatnaam wordt verwijderd uit het straatnaamregister. Gekoppelde adressen worden mee verwijderd.")]
+        [SwaggerOperation(Description = "De straatnaam wordt verwijderd uit het straatnaamregister. Gekoppelde adressen met status `voorgesteld`, `inGebruik`, `afgekeurd` en `gehistoreerd` worden mee verwijderd. Als er een gebouweenheid of perceel gekoppeld is aan het adres, wordt deze koppeling ook verwijderd.")]
         [HttpPost(RemoveStreetNameRoute, Name = nameof(RemoveStreetName))]
         public async Task<IActionResult> RemoveStreetName(
             [FromRoute] int objectId,

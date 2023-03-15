@@ -15,6 +15,7 @@ namespace Public.Api.Infrastructure.Configuration
         public const string Building = "BuildingRegistry";
         public const string BuildingV2 = "BuildingRegistryV2";
         public const string BuildingBackOffice = "BuildingRegistryBackOffice";
+        public const string BuildingGrb = "BuildingRegistryGrb";
         public const string Parcel = "ParcelRegistry";
         public const string ParcelV2 = "ParcelRegistryV2";
         public const string ParcelBackOffice = "ParcelRegistryBackOffice";
