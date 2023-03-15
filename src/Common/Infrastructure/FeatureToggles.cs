@@ -289,6 +289,13 @@ namespace Common.Infrastructure
         public CorrectGeometryBuildingToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class BuildingGrbUploadJobToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public BuildingGrbUploadJobToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class PlanBuildingUnitToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
