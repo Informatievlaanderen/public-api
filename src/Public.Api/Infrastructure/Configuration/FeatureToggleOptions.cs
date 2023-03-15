@@ -48,6 +48,7 @@ namespace Public.Api.Infrastructure.Configuration
         public bool RemoveBuilding { get; set; }
         public bool ChangeGeometryBuilding { get; set; }
         public bool CorrectGeometryBuilding { get; set; }
+        public bool BuildingGrbUploadJob { get; set; }
 
         public bool PlanBuildingUnit { get; set; }
         public bool RealizeBuildingUnit { get; set; }
