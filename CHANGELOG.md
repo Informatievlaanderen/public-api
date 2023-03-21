@@ -1,3 +1,11 @@
+## [5.68.1](https://github.com/informatievlaanderen/public-api/compare/v5.68.0...v5.68.1) (2023-03-21)
+
+
+### Bug Fixes
+
+* bump address packages ([8ac6a77](https://github.com/informatievlaanderen/public-api/commit/8ac6a77827c54345eff7434a8fb0b73a54cbd541))
+* use WR events ([1ca83a6](https://github.com/informatievlaanderen/public-api/commit/1ca83a681abe55ccc6700baa2ee9fbf63d877824))
+
 # [5.68.0](https://github.com/informatievlaanderen/public-api/compare/v5.67.2...v5.68.0) (2023-03-15)
 
 
