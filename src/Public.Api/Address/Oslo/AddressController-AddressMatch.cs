@@ -1,5 +1,6 @@
 namespace Public.Api.Address.Oslo
 {
+    using System.ComponentModel.DataAnnotations;
     using System.Threading;
     using System.Threading.Tasks;
     using AddressRegistry.Api.Oslo.AddressMatch.Responses;
@@ -23,9 +24,9 @@ namespace Public.Api.Address.Oslo
         /// <param name="gemeentenaam">Filter op de gemeentenaam van het adres (1).</param>
         /// <param name="niscode">Filter op de NIS-code van het adres (1).</param>
         /// <param name="postcode">Filter op de postcode van het adres (1).</param>
-        /// <param name="straatnaam">Filter op de straatnaam van het adres (2).</param>
-        /// <param name="huisnummer">Filter op het huisnummer van het adres (1).</param>
-        /// <param name="busnummer">Filter op het busnummer van het adres (4).</param>
+        /// <param name="straatnaam">Filter op de straatnaam van het adres.</param>
+        /// <param name="huisnummer">Filter op het huisnummer van het adres.</param>
+        /// <param name="busnummer">Filter op het busnummer van het adres.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
@@ -45,12 +46,12 @@ namespace Public.Api.Address.Oslo
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Van de optionele parameters (2) resp. (1) moet er minstens één ingevuld zijn. <br />Van de optionele parameters (1) resp. (4) mag er maximaal één ingevuld zijn.")]
+        [SwaggerOperation(Description = "Van de optionele parameters (1) moet er minstens één ingevuld zijn.")]
         public async Task<IActionResult> AddressMatchV2(
             [FromQuery] string gemeentenaam,
             [FromQuery] string niscode,
             [FromQuery] string postcode,
-            [FromQuery] string straatnaam,
+            [FromQuery] [Required] string straatnaam,
             [FromQuery] string huisnummer,
             [FromQuery] string busnummer,
             [FromServices] IActionContextAccessor actionContextAccessor,
