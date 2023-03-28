@@ -1,3 +1,5 @@
+## [5.68.2](https://github.com/informatievlaanderen/public-api/compare/v5.68.1...v5.68.2) (2023-03-28)
+
 ## [5.68.1](https://github.com/informatievlaanderen/public-api/compare/v5.68.0...v5.68.1) (2023-03-21)
 
 
