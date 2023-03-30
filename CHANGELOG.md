@@ -1,3 +1,10 @@
+# [5.69.0](https://github.com/informatievlaanderen/public-api/compare/v5.68.2...v5.69.0) (2023-03-30)
+
+
+### Features
+
+* bump address ([fb71c57](https://github.com/informatievlaanderen/public-api/commit/fb71c57396130ba66e4944669efd879d8104a023))
+
 ## [5.68.2](https://github.com/informatievlaanderen/public-api/compare/v5.68.1...v5.68.2) (2023-03-28)
 
 ## [5.68.1](https://github.com/informatievlaanderen/public-api/compare/v5.68.0...v5.68.1) (2023-03-21)
