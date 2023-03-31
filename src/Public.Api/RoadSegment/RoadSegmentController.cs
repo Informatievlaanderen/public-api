@@ -21,7 +21,6 @@ using Microsoft.Extensions.Logging;
 [ApiConsumes(EndpointType.BackOffice)]
 [ApiProduces(EndpointType.BackOffice)]
 [ApiOrder(ApiOrder.Road.RoadSegment)]
-[ApiKeyAuth("Road")]
 public partial class RoadSegmentController : RegistryApiController<RoadSegmentController>
 {
     public RoadSegmentController(
