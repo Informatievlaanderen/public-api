@@ -1,3 +1,10 @@
+## [5.69.1](https://github.com/informatievlaanderen/public-api/compare/v5.69.0...v5.69.1) (2023-04-03)
+
+
+### Bug Fixes
+
+* WR-561 enable ACM/IDM auth for WR edit endpoints ([dcdc5a1](https://github.com/informatievlaanderen/public-api/commit/dcdc5a16bed8b21dca3f61f3a1ceaf676f632671))
+
 # [5.69.0](https://github.com/informatievlaanderen/public-api/compare/v5.68.2...v5.69.0) (2023-03-30)
 
 
