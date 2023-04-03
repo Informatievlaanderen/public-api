@@ -37,6 +37,13 @@ namespace Common.Infrastructure
         public RetireStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class RemoveStreetNameToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RemoveStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class CorrectStreetNameRetirementToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
@@ -49,6 +56,13 @@ namespace Common.Infrastructure
         public bool FeatureEnabled { get; }
 
         public CorrectStreetNameNamesToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class CorrectStreetNameHomonymAdditionsToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public CorrectStreetNameHomonymAdditionsToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
     public class CorrectStreetNameApprovalToggle : IFeatureToggle
@@ -273,6 +287,13 @@ namespace Common.Infrastructure
         public bool FeatureEnabled { get; }
 
         public CorrectGeometryBuildingToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class BuildingGrbUploadJobToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public BuildingGrbUploadJobToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
     public class PlanBuildingUnitToggle : IFeatureToggle

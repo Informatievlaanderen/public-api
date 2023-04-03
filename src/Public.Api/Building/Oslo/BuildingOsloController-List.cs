@@ -5,8 +5,8 @@ namespace Public.Api.Building.Oslo
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
-    using BuildingRegistry.Api.Oslo.Abstractions.Building.Query;
-    using BuildingRegistry.Api.Oslo.Abstractions.Building.Responses;
+    using BuildingRegistry.Api.Oslo.Building.List;
+    using BuildingRegistry.Api.Oslo.Building.Query;
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
@@ -50,9 +50,9 @@ namespace Public.Api.Building.Oslo
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(BuildingListResponseOsloExamples))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ListBuildingsV2(
@@ -78,13 +78,6 @@ namespace Public.Api.Building.Oslo
                 taal,
                 sort,
                 status);
-
-            // As long as we do not control WFS, buildings cannot be cached
-            //var cacheKey = CreateCacheKeyForRequestQuery($"legacy/building-list:{taal}");
-
-            //var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
-            //    ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)
-            //    : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken));
 
             var value = await GetFromBackendAsync(
                 contentFormat.ContentType,

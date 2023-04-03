@@ -3,7 +3,7 @@ namespace Public.Api.Building
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using BuildingRegistry.Api.Legacy.Abstractions.Building.Responses;
+    using BuildingRegistry.Api.Legacy.Building.Detail;
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Swagger;
@@ -33,7 +33,7 @@ namespace Public.Api.Building
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("gebouwen/{objectId}", Name = nameof(GetBuilding))]
         [ApiOrder(ApiOrder.Building.V1 + 1)]
-        [ProducesResponseType(typeof(BuildingResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BuildingDetailResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status410Gone)]

@@ -5,10 +5,9 @@ namespace Public.Api.BuildingUnit.Oslo
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
-    using BuildingRegistry.Api.Oslo.Abstractions.BuildingUnit.Query;
-    using BuildingRegistry.Api.Oslo.Abstractions.BuildingUnit.Responses;
+    using BuildingRegistry.Api.Oslo.BuildingUnit.List;
+    using BuildingRegistry.Api.Oslo.BuildingUnit.Query;
     using Common.Infrastructure;
-    using Common.Infrastructure.Controllers;
     using Infrastructure;
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
@@ -53,11 +52,11 @@ namespace Public.Api.BuildingUnit.Oslo
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(BuildingUnitListOsloResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
-        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = RegistryApiController<BuildingUnitOsloController>.DefaultListCaching, NoStore = true, NoTransform = true)]
+        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ListBuildingUnitsV2(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
@@ -84,20 +83,11 @@ namespace Public.Api.BuildingUnit.Oslo
                 sort,
                 status);
 
-            var cacheKey = CreateCacheKeyForRequestQuery($"oslo/buildingunit-list:{taal}");
-
-            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
-                ? GetFromCacheThenFromBackendAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    cacheKey,
-                    CreateDefaultHandleBadRequest(),
-                    cancellationToken)
-                : GetFromBackendAsync(
+            var value = await GetFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,
                     CreateDefaultHandleBadRequest(),
-                    cancellationToken));
+                    cancellationToken);
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.GebouweenheidVolgendeUrl);
         }

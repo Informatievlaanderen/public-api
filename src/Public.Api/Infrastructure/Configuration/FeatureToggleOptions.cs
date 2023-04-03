@@ -9,8 +9,11 @@ namespace Public.Api.Infrastructure.Configuration
         public bool ApproveStreetName { get; set; }
         public bool RejectStreetName { get; set; }
         public bool RetireStreetName { get; set; }
+        public bool RemoveStreetName { get; set; }
         public bool CorrectStreetNameRetirement { get; set; }
         public bool CorrectStreetNameNames { get; set; }
+
+        public bool CorrectStreetNameHomonymAdditions { get; set; }
         public bool CorrectStreetNameApproval { get; set; }
         public bool CorrectStreetNameRejection { get; set; }
 
@@ -45,6 +48,7 @@ namespace Public.Api.Infrastructure.Configuration
         public bool RemoveBuilding { get; set; }
         public bool ChangeGeometryBuilding { get; set; }
         public bool CorrectGeometryBuilding { get; set; }
+        public bool BuildingGrbUploadJob { get; set; }
 
         public bool PlanBuildingUnit { get; set; }
         public bool RealizeBuildingUnit { get; set; }

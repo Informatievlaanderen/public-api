@@ -26,6 +26,7 @@ namespace Public.Api.Tickets
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als het ticket gevonden is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
+        /// <response code="404">Als het ticket niet gevonden kan worden.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("tickets/{ticketId}", Name = nameof(GetTicket))]
@@ -36,9 +37,10 @@ namespace Public.Api.Tickets
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(TicketExample))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(TicketNotFoundResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         public async Task<IActionResult> GetTicket(
             [FromRoute] Guid ticketId,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -94,5 +96,29 @@ namespace Public.Api.Tickets
                         "https://api.basisregisters.staging-vlaanderen.be/v2/straatnamen/3016611",
                         "D048BFCE9B392B49C352AE518F6F5393096A80ABC9A6B6DABC7CECC609B76A2264A2003CBB9DDEE44F4AB6AD7EC46960F3907171717C930371B11A3E9D01F970")));
         }
+    }
+
+    public class TicketNotFoundResponseExamples : IExamplesProvider<ProblemDetails>
+    {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ProblemDetailsHelper _problemDetailsHelper;
+
+        public TicketNotFoundResponseExamples(
+            IHttpContextAccessor httpContextAccessor,
+            ProblemDetailsHelper problemDetailsHelper)
+        {
+            _httpContextAccessor = httpContextAccessor;
+            _problemDetailsHelper = problemDetailsHelper;
+        }
+
+        public ProblemDetails GetExamples()
+            => new ProblemDetails
+            {
+                ProblemTypeUri = "urn:be.vlaanderen.basisregisters.api:ticketingservice:not-found",
+                HttpStatus = StatusCodes.Status404NotFound,
+                Title = ProblemDetails.DefaultTitle,
+                Detail = "Onbestaand ticket.",
+                ProblemInstanceUri = _problemDetailsHelper.GetInstanceUri(_httpContextAccessor.HttpContext, "v2")
+            };
     }
 }

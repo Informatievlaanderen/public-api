@@ -150,5 +150,24 @@ namespace Public.Api.Info
             [FromQuery(Name = "tags"), EventTagArrayBinder] IEnumerable<EventTag> eventTags,
             CancellationToken cancellationToken = default)
             => Content(markdownGenerators[RegistryKeys.Parcel].GenerateFor(eventTags));
+
+        /// <summary>
+        /// Vraag de markdown documentatie voor wegen events op.
+        /// </summary>
+        /// <param name="markdownGenerators"></param>
+        /// <param name="eventTags"></param>
+        /// <param name="cancellationToken"></param>
+        /// <response code="200">Als opvragen van de markdown documentatie voor wegen events gelukt is.</response>
+        /// <response code="500">Als er een interne fout is opgetreden.</response>
+        [HttpGet("wegen")]
+        [HttpGet("wegsegmenten")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
+        public IActionResult GetRoadEventsMarkdown(
+            [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
+            [FromQuery(Name = "tags"), EventTagArrayBinder] IEnumerable<EventTag> eventTags,
+            CancellationToken cancellationToken = default)
+            => Content(markdownGenerators[RegistryKeys.Road].GenerateFor(eventTags));
     }
 }

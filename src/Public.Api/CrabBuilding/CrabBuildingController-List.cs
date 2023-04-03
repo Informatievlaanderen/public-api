@@ -3,9 +3,8 @@ namespace Public.Api.CrabBuilding
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
-    using BuildingRegistry.Api.Legacy.Abstractions.Building.Query;
-    using BuildingRegistry.Api.Legacy.Abstractions.Building.Responses;
+    using BuildingRegistry.Api.Legacy.Building.Crab;
+    using BuildingRegistry.Api.Legacy.Building.Query;
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
@@ -68,20 +67,11 @@ namespace Public.Api.CrabBuilding
                terreinObjectId,
                identificatorTerreinObject);
 
-            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/crabgebouwen-list:{Taal.NL}");
-
-            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
-                ? GetFromCacheThenFromBackendAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    cacheKey,
-                    CreateDefaultHandleBadRequest(),
-                    cancellationToken)
-                : GetFromBackendAsync(
+            var value = await GetFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,
                     CreateDefaultHandleBadRequest(),
-                    cancellationToken));
+                    cancellationToken);
 
             return BackendListResponseResult.Create(value, Request.Query, string.Empty);
         }

@@ -13,6 +13,7 @@ namespace Public.Api.Infrastructure
     using Autofac.Extensions.DependencyInjection;
     using Autofac.Features.AttributeFilters;
     using Be.Vlaanderen.Basisregisters.Api;
+    using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Swagger;
     using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Microsoft;
@@ -26,6 +27,7 @@ namespace Public.Api.Infrastructure
     using Feeds;
     using Feeds.V2;
     using Marvin.Cache.Headers;
+    using Microsoft.AspNetCore.Authorization.Infrastructure;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -145,8 +147,8 @@ namespace Public.Api.Infrastructure
                             typeof(AddressRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(AddressRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(AddressRegistry.Api.BackOffice.Abstractions.Requests.ApproveAddressRequest).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(BuildingRegistry.Api.Legacy.Abstractions.Infrastructure.Options.ResponseOptions).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(BuildingRegistry.Api.Oslo.Abstractions.Infrastructure.Options.ResponseOptions).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(BuildingRegistry.Api.Legacy.Infrastructure.Options.ResponseOptions).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(BuildingRegistry.Api.Oslo.Infrastructure.Options.ResponseOptions).GetTypeInfo().Assembly.GetName().Name,
                             typeof(BuildingRegistry.Api.BackOffice.Abstractions.Building.Responses.PlanBuildingResponse).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
@@ -214,7 +216,7 @@ namespace Public.Api.Infrastructure
                             builder.ConfigureApplicationPartManager(apm =>
                             {
                                 var parts = apm.ApplicationParts;
-                                var unneededParts = parts.Where(part => part.Name.Contains("Registry.Api")).ToArray();
+                                var unneededParts = parts.Where(part => AssemblyNameIsRegistryAssembly(part.Name)).ToArray();
 
                                 foreach (var unneededPart in unneededParts)
                                 {
@@ -316,8 +318,10 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new ApproveStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ApproveStreetName))
                 .AddSingleton(c => new RejectStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RejectStreetName))
                 .AddSingleton(c => new RetireStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RetireStreetName))
+                .AddSingleton(c => new RemoveStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RemoveStreetName))
                 .AddSingleton(c => new CorrectStreetNameRetirementToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectStreetNameRetirement))
                 .AddSingleton(c => new CorrectStreetNameNamesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectStreetNameNames))
+                .AddSingleton(c => new CorrectStreetNameHomonymAdditionsToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectStreetNameHomonymAdditions))
                 .AddSingleton(c => new CorrectStreetNameApprovalToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectStreetNameApproval))
                 .AddSingleton(c => new CorrectStreetNameRejectionToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectStreetNameRejection))
                 .AddSingleton(c => new ProposeAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ProposeAddress))
@@ -351,6 +355,7 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new RemoveBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RemoveBuilding))
                 .AddSingleton(c => new ChangeGeometryBuilding(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangeGeometryBuilding))
                 .AddSingleton(c => new CorrectGeometryBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectGeometryBuilding))
+                .AddSingleton(c => new BuildingGrbUploadJobToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.BuildingGrbUploadJob))
 
                 .AddSingleton(c => new PlanBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.PlanBuildingUnit))
                 .AddSingleton(c => new RealizeBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RealizeBuildingUnit))
@@ -405,18 +410,7 @@ namespace Public.Api.Infrastructure
 
             containerBuilder.Populate(services);
 
-            containerBuilder
-                .RegisterAssemblyTypes(
-                    AppDomain
-                        .CurrentDomain
-                        .GetAssemblies()
-                        .Where(x => (x.FullName ?? string.Empty).Contains("Registry.Api")
-                                    || (x.FullName ?? string.Empty).Contains("RoadRegistry")
-                                    || (x.FullName ?? string.Empty).Contains("Be.Vlaanderen.Basisregisters.Api"))
-                        .ToArray())
-                .AsClosedTypesOf(typeof(IExamplesProvider<>))
-                .AsImplementedInterfaces()
-                .AsSelf();
+            RegisterExamples(containerBuilder);
 
             containerBuilder
                 .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
@@ -445,6 +439,110 @@ namespace Public.Api.Infrastructure
             _applicationContainer = containerBuilder.Build();
 
             return new AutofacServiceProvider(_applicationContainer);
+        }
+
+        private static void RegisterExamples(ContainerBuilder containerBuilder)
+        {
+            containerBuilder
+                .RegisterAssemblyTypes(
+                    AppDomain
+                        .CurrentDomain
+                        .GetAssemblies()
+                        .Where(x => AssemblyNameIsRegistryAssembly(x.FullName)
+                                    // We are explicitly registering the IExamplesProvider<> types from Be.Vlaanderen.Basisregisters.Api
+                                    // because some providers inherit from each other which causes the wrong implementation to be resolved,
+                                    // e.g. BadRequestResponseExamples as BadRequestResponseExamplesV2
+                                    // || (x.FullName ?? string.Empty).Contains("Be.Vlaanderen.Basisregisters.Api")
+                                    )
+                        .ToArray())
+                .AsClosedTypesOf(typeof(IExamplesProvider<>))
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<NotModifiedResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<BadRequestResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<BadRequestResponseExamplesV2>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<ConflictResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<ConflictResponseExamplesV2>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<ForbiddenResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<ForbiddenResponseExamplesV2>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<InternalServerErrorResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<InternalServerErrorResponseExamplesV2>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<NotAcceptableResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<PreconditionFailedResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<PreconditionFailedResponseExamplesV2>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<TooManyRequestsResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<TooManyRequestsResponseExamplesV2>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<UnauthorizedResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<UnauthorizedResponseExamplesV2>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            containerBuilder
+                .RegisterType<ValidationErrorResponseExamples>()
+                .AsImplementedInterfaces()
+                .AsSelf();
         }
 
         public void Configure(
@@ -566,6 +664,11 @@ namespace Public.Api.Infrastructure
                     FileProvider = new PhysicalFileProvider(Path.Combine(env.WebRootPath, "context")),
                     RequestPath = "/context"
                 });
+        }
+
+        private static bool AssemblyNameIsRegistryAssembly(string? name)
+        {
+            return name != null && (name.Contains("Registry.Api") || name.Contains("RoadRegistry"));
         }
 
         private string GetApiLeadingText(ApiVersionDescription description, bool isFeedsVisibleToggle, bool isProposeStreetName)

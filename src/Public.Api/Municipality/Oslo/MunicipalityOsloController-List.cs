@@ -53,9 +53,9 @@ namespace Public.Api.Municipality.Oslo
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(MunicipalityListOsloResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ListMunicipalitiesV2(
@@ -89,20 +89,11 @@ namespace Public.Api.Municipality.Oslo
                 status,
                 isFlemishRegion);
 
-            var cacheKey = CreateCacheKeyForRequestQuery($"oslo/municipality-list:{taal}");
-
-            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
-                ? GetFromCacheThenFromBackendAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    cacheKey,
-                    CreateDefaultHandleBadRequest(),
-                    cancellationToken)
-                : GetFromBackendAsync(
+            var value = await GetFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,
                     CreateDefaultHandleBadRequest(),
-                    cancellationToken));
+                    cancellationToken);
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }

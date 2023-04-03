@@ -1,3 +1,152 @@
+## [5.69.1](https://github.com/informatievlaanderen/public-api/compare/v5.69.0...v5.69.1) (2023-04-03)
+
+
+### Bug Fixes
+
+* WR-561 enable ACM/IDM auth for WR edit endpoints ([dcdc5a1](https://github.com/informatievlaanderen/public-api/commit/dcdc5a16bed8b21dca3f61f3a1ceaf676f632671))
+
+# [5.69.0](https://github.com/informatievlaanderen/public-api/compare/v5.68.2...v5.69.0) (2023-03-30)
+
+
+### Features
+
+* bump address ([fb71c57](https://github.com/informatievlaanderen/public-api/commit/fb71c57396130ba66e4944669efd879d8104a023))
+
+## [5.68.2](https://github.com/informatievlaanderen/public-api/compare/v5.68.1...v5.68.2) (2023-03-28)
+
+## [5.68.1](https://github.com/informatievlaanderen/public-api/compare/v5.68.0...v5.68.1) (2023-03-21)
+
+
+### Bug Fixes
+
+* bump address packages ([8ac6a77](https://github.com/informatievlaanderen/public-api/commit/8ac6a77827c54345eff7434a8fb0b73a54cbd541))
+* use WR events ([1ca83a6](https://github.com/informatievlaanderen/public-api/commit/1ca83a681abe55ccc6700baa2ee9fbf63d877824))
+
+# [5.68.0](https://github.com/informatievlaanderen/public-api/compare/v5.67.2...v5.68.0) (2023-03-15)
+
+
+### Features
+
+* building grb upload ([935b925](https://github.com/informatievlaanderen/public-api/commit/935b9252098c16d1d33e4af99bbe620a5bb34d0e))
+
+## [5.67.2](https://github.com/informatievlaanderen/public-api/compare/v5.67.1...v5.67.2) (2023-03-14)
+
+## [5.67.1](https://github.com/informatievlaanderen/public-api/compare/v5.67.0...v5.67.1) (2023-03-14)
+
+
+### Bug Fixes
+
+* documentation page ([e121a7a](https://github.com/informatievlaanderen/public-api/commit/e121a7a77dc71d4baf6cb742b683974a4ad34450))
+
+# [5.67.0](https://github.com/informatievlaanderen/public-api/compare/v5.66.2...v5.67.0) (2023-03-13)
+
+
+### Bug Fixes
+
+* AddressWasRemovedBecauseStreetNameWasRemoved tags ([ec913ac](https://github.com/informatievlaanderen/public-api/commit/ec913ac721c746ef8a33fe9c3abe9a835c5a9d6b))
+
+
+### Features
+
+* add address match v2 ([eeb3147](https://github.com/informatievlaanderen/public-api/commit/eeb31478fef45ddad0a988078750af8df4ef4652))
+
+## [5.66.2](https://github.com/informatievlaanderen/public-api/compare/v5.66.1...v5.66.2) (2023-03-06)
+
+## [5.66.1](https://github.com/informatievlaanderen/public-api/compare/v5.66.0...v5.66.1) (2023-03-06)
+
+
+### Bug Fixes
+
+* exclude road-registry backoffice endpoints from being registered ([#678](https://github.com/informatievlaanderen/public-api/issues/678)) ([5bc921d](https://github.com/informatievlaanderen/public-api/commit/5bc921d4e24f473896c378c78292fb1ef7373031))
+
+# [5.66.0](https://github.com/informatievlaanderen/public-api/compare/v5.65.2...v5.66.0) (2023-03-06)
+
+
+### Features
+
+* remove streetname ([c89fbb9](https://github.com/informatievlaanderen/public-api/commit/c89fbb98b0d7f264cd14037aa888b5fce3c0f945))
+
+## [5.65.2](https://github.com/informatievlaanderen/public-api/compare/v5.65.1...v5.65.2) (2023-03-06)
+
+
+### Bug Fixes
+
+* bump roadregistry ([bcb956b](https://github.com/informatievlaanderen/public-api/commit/bcb956b66a03a4fd914811b30aa6aaf4a16f7873))
+* subtitle reject streetname ([e41ec0e](https://github.com/informatievlaanderen/public-api/commit/e41ec0ebde39fa852096c76692f7b41d4f8c0bfc))
+
+## [5.65.1](https://github.com/informatievlaanderen/public-api/compare/v5.65.0...v5.65.1) (2023-03-02)
+
+
+### Bug Fixes
+
+* register api examples ([9013277](https://github.com/informatievlaanderen/public-api/commit/9013277a782a619792696107572f992e38e4eef1))
+
+# [5.65.0](https://github.com/informatievlaanderen/public-api/compare/v5.64.1...v5.65.0) (2023-03-02)
+
+
+### Features
+
+* V2 response examples ([99a94bc](https://github.com/informatievlaanderen/public-api/commit/99a94bc769a906578bc9c45d274bd5df3950fc35))
+* version bump api and registries ([951a5e2](https://github.com/informatievlaanderen/public-api/commit/951a5e2499043b7cbbe0b422da3250abe2630e7a))
+
+## [5.64.1](https://github.com/informatievlaanderen/public-api/compare/v5.64.0...v5.64.1) (2023-03-01)
+
+
+### Bug Fixes
+
+* correct jsonld files ([3a6e159](https://github.com/informatievlaanderen/public-api/commit/3a6e15927a5c0ce8758352fd45220fd6ab273963))
+
+# [5.64.0](https://github.com/informatievlaanderen/public-api/compare/v5.63.0...v5.64.0) (2023-02-28)
+
+
+### Features
+
+* new jsonld files ([b5fe21a](https://github.com/informatievlaanderen/public-api/commit/b5fe21aecb48ea650a18397b63c889d7d9494e53))
+
+# [5.63.0](https://github.com/informatievlaanderen/public-api/compare/v5.62.1...v5.63.0) (2023-02-28)
+
+
+### Features
+
+* add postname to postinfo filtering ([b37d251](https://github.com/informatievlaanderen/public-api/commit/b37d251f3f38986d567040e82bf11462467b0473))
+
+## [5.62.1](https://github.com/informatievlaanderen/public-api/compare/v5.62.0...v5.62.1) (2023-02-27)
+
+# [5.62.0](https://github.com/informatievlaanderen/public-api/compare/v5.61.10...v5.62.0) (2023-02-24)
+
+
+### Bug Fixes
+
+* rename correct homonymadditions method ([0fdf0a1](https://github.com/informatievlaanderen/public-api/commit/0fdf0a18a92e13452f8e10b4adf23f16a7a80c5d))
+
+
+### Features
+
+* add streetname correct homonymadditions ([6c2b991](https://github.com/informatievlaanderen/public-api/commit/6c2b991ac71605ac42d5c88ba978577626c932ed))
+
+## [5.61.10](https://github.com/informatievlaanderen/public-api/compare/v5.61.9...v5.61.10) (2023-02-20)
+
+## [5.61.9](https://github.com/informatievlaanderen/public-api/compare/v5.61.8...v5.61.9) (2023-02-13)
+
+
+### Bug Fixes
+
+* bump nodatime in paket.lock ([3637bf7](https://github.com/informatievlaanderen/public-api/commit/3637bf722adf2a5ef986660c60d2ae9f1b8abe35))
+
+## [5.61.8](https://github.com/informatievlaanderen/public-api/compare/v5.61.7...v5.61.8) (2023-02-10)
+
+
+### Bug Fixes
+
+* exclude recently added road registry from event markdown generation ([76edb53](https://github.com/informatievlaanderen/public-api/commit/76edb531e18593ad29f79b88d9b79f441b44329e))
+
+## [5.61.7](https://github.com/informatievlaanderen/public-api/compare/v5.61.6...v5.61.7) (2023-02-10)
+
+
+### Bug Fixes
+
+* gawr-4382 & cleanup lists ([13b76ca](https://github.com/informatievlaanderen/public-api/commit/13b76ca7a6442d80806b20d62517bc6b02978a8b))
+
 ## [5.61.6](https://github.com/informatievlaanderen/public-api/compare/v5.61.5...v5.61.6) (2023-02-06)
 
 

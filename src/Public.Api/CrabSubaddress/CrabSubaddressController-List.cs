@@ -67,20 +67,11 @@ namespace Public.Api.CrabSubaddress
                 sort,
                 objectId);
 
-            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/crabsubaddresses-list:{Taal.NL}");
-
-            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
-                ? GetFromCacheThenFromBackendAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    cacheKey,
-                    CreateDefaultHandleBadRequest(),
-                    cancellationToken)
-                : GetFromBackendAsync(
+            var value = await GetFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,
                     CreateDefaultHandleBadRequest(),
-                    cancellationToken));
+                    cancellationToken);
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.CrabSubadressenVolgendeUrl);
         }

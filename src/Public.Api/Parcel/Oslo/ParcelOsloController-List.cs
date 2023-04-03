@@ -14,8 +14,7 @@ namespace Public.Api.Parcel.Oslo
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
-    using ParcelRegistry.Api.Oslo.Parcel.Query;
-    using ParcelRegistry.Api.Oslo.Parcel.Responses;
+    using ParcelRegistry.Api.Oslo.Parcel.List;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -52,9 +51,9 @@ namespace Public.Api.Parcel.Oslo
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(ParcelListOsloResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ListParcelsV2(
@@ -83,20 +82,11 @@ namespace Public.Api.Parcel.Oslo
                 status,
                 adresObjectId);
 
-            var cacheKey = CreateCacheKeyForRequestQuery($"oslo/parcel-list:{taal}");
-
-            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
-                ? GetFromCacheThenFromBackendAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    cacheKey,
-                    CreateDefaultHandleBadRequest(),
-                    cancellationToken)
-                : GetFromBackendAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    CreateDefaultHandleBadRequest(),
-                    cancellationToken));
+            var value = await GetFromBackendAsync(
+                contentFormat.ContentType,
+                BackendRequest,
+                CreateDefaultHandleBadRequest(),
+                cancellationToken);
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }

@@ -5,8 +5,8 @@ namespace Public.Api.BuildingUnit
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
-    using BuildingRegistry.Api.Legacy.Abstractions.BuildingUnit.Query;
-    using BuildingRegistry.Api.Legacy.Abstractions.BuildingUnit.Responses;
+    using BuildingRegistry.Api.Legacy.BuildingUnit.List;
+    using BuildingRegistry.Api.Legacy.BuildingUnit.Query;
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
@@ -78,20 +78,11 @@ namespace Public.Api.BuildingUnit
                 sort,
                 status);
 
-            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/buildingunit-list:{taal}");
-
-            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
-                ? GetFromCacheThenFromBackendAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    cacheKey,
-                    CreateDefaultHandleBadRequest(),
-                    cancellationToken)
-                : GetFromBackendAsync(
+            var value = await GetFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,
                     CreateDefaultHandleBadRequest(),
-                    cancellationToken));
+                    cancellationToken);
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.GebouweenheidVolgendeUrl);
         }

@@ -3,7 +3,7 @@ namespace Public.Api.BuildingUnit.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using BuildingRegistry.Api.Legacy.Abstractions.BuildingUnit.Responses;
+    using BuildingRegistry.Api.Oslo.BuildingUnit.Detail;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
@@ -50,13 +50,13 @@ namespace Public.Api.BuildingUnit.BackOffice
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string", "De URL van het aangemaakte ticket.")]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedOAuthResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenOAuthResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedOAuthResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenOAuthResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(BuildingUnitNotFoundResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerOperation(Description = "Correctie van de gebouweenheidstatus van `nietGerealiseerd` naar `gepland`. Er wordt automatisch een gemeenschappelijkDeel aangemaakt vanaf dat er 2 gebouweenheden met status `gepland` of `gerealiseerd` aan een gebouw gekoppeld zijn. De status van het gemeenschappelijKDeel is `gepland` wanneer het gebouw status `gepland` is. De status van het gemeenschappelijkDeel is `gerealiseerd` wanneer het gebouw status `gerealiseerd` is. <br>" +
                                         "Wanneer de geometrie van een gebouw gewijzigd is na de niet realisering van een gebouweenheid en hierdoor de positie van de gebouweenheid buiten de nieuwe geometrie ligt dan wijzigt bij de correctie van de niet realisering de positie van de gebouweenheid  naar de centroïde van de gebouw geometrie. <br>" +
                                         "Wanneer de positieGeometrieMethode `aangeduidDoorBeheerder` is dan wijzigt dit automatisch naar `afgeleidVanObject`.")]

@@ -5,8 +5,8 @@ namespace Public.Api.Building
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
-    using BuildingRegistry.Api.Legacy.Abstractions.Building.Query;
-    using BuildingRegistry.Api.Legacy.Abstractions.Building.Responses;
+    using BuildingRegistry.Api.Legacy.Building.List;
+    using BuildingRegistry.Api.Legacy.Building.Query;
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
@@ -73,13 +73,6 @@ namespace Public.Api.Building
                 taal,
                 sort,
                 status);
-
-            // As long as we do not control WFS, buildings cannot be cached
-            //var cacheKey = CreateCacheKeyForRequestQuery($"legacy/building-list:{taal}");
-
-            //var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
-            //    ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)
-            //    : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken));
 
             var value = await GetFromBackendAsync(
                 contentFormat.ContentType,

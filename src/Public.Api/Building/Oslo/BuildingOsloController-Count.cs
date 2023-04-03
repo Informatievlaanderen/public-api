@@ -4,9 +4,8 @@ namespace Public.Api.Building.Oslo
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
-    using BuildingRegistry.Api.Oslo.Abstractions.Infrastructure;
+    using BuildingRegistry.Api.Oslo.Infrastructure;
     using Common.Infrastructure;
-    using Common.Infrastructure.Controllers;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Marvin.Cache.Headers;
@@ -38,10 +37,10 @@ namespace Public.Api.Building.Oslo
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(TotalCountOsloResponseExample))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
-        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = RegistryApiController<BuildingOsloController>.DefaultCountCaching, NoStore = true, NoTransform = true)]
+        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultCountCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> CountBuildingsV2(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -51,7 +50,7 @@ namespace Public.Api.Building.Oslo
             if (!featureToggle.FeatureEnabled)
                 return NotFound();
 
-            var contentFormat = BuildingOsloController.DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendCountRequest();
 

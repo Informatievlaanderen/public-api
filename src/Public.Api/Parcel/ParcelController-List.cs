@@ -14,8 +14,7 @@ namespace Public.Api.Parcel
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
-    using ParcelRegistry.Api.Legacy.Parcel.Query;
-    using ParcelRegistry.Api.Legacy.Parcel.Responses;
+    using ParcelRegistry.Api.Legacy.Parcel.List;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -78,20 +77,11 @@ namespace Public.Api.Parcel
                 status,
                 adresObjectId);
 
-            var cacheKey = CreateCacheKeyForRequestQuery($"legacy/parcel-list:{taal}");
-
-            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
-                ? GetFromCacheThenFromBackendAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    cacheKey,
-                    CreateDefaultHandleBadRequest(),
-                    cancellationToken)
-                : GetFromBackendAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    CreateDefaultHandleBadRequest(),
-                    cancellationToken));
+            var value = await GetFromBackendAsync(
+                contentFormat.ContentType,
+                BackendRequest,
+                CreateDefaultHandleBadRequest(),
+                cancellationToken);
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }

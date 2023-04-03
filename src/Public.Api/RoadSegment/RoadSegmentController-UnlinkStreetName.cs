@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Be.Vlaanderen.Basisregisters.Api.Exceptions;
 using Common.Infrastructure;
+using Common.Infrastructure.Extensions;
 using Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -70,7 +71,8 @@ public partial class RoadSegmentController
                     UnlinkStreetNameRoute,
                     request,
                     Method.Post)
-                .AddParameter(nameof(id), id, ParameterType.UrlSegment);
+                .AddParameter(nameof(id), id, ParameterType.UrlSegment)
+                .AddHeaderAuthorization(actionContextAccessor);
         }
 
         var value = await GetFromBackendWithBadRequestAsync(

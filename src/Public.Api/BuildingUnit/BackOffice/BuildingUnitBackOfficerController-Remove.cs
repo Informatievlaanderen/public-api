@@ -3,7 +3,7 @@ namespace Public.Api.BuildingUnit.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using BuildingRegistry.Api.Legacy.Abstractions.BuildingUnit.Responses;
+    using BuildingRegistry.Api.Oslo.BuildingUnit.Detail;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
@@ -49,13 +49,13 @@ namespace Public.Api.BuildingUnit.BackOffice
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string", "De URL van het aangemaakte ticket.")]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedOAuthResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenOAuthResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedOAuthResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenOAuthResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(BuildingUnitNotFoundResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerOperation(Description = "De gebouweenheid wordt verwijderd uit het gebouwenregister. Het gemeenschappelijkDeel wordt automatisch gehistoreerd wanneer status `gerealiseerd` is en `nietGerealiseerd` wanneer status `gepland` is van zodra er in een gebouw minder dan 2 gebouweenheden aanwezig zijn. Wanneer alle andere gebouweenheden verwijderd zijn en het gemeenschappelijkDeel is het laatste dat overblijft met status `gehistoreerd` of `nietGerealiseerd` dan wordt dit gemeenschappelijkDeel automatisch verwijderd. Als er een adres gekoppeld is aan de gebouweenheid, wordt deze koppeling verwijderd.")]
         [HttpPost(RemoveBuildingUnitRoute, Name = nameof(RemoveBuildingUnit))]
         public async Task<IActionResult> RemoveBuildingUnit(
