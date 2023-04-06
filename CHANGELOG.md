@@ -1,3 +1,10 @@
+# [5.70.0](https://github.com/informatievlaanderen/public-api/compare/v5.69.1...v5.70.0) (2023-04-06)
+
+
+### Features
+
+* add streetname/address extract ([537d7c3](https://github.com/informatievlaanderen/public-api/commit/537d7c38337799ef37d70a8841c33f467a38c2cb))
+
 ## [5.69.1](https://github.com/informatievlaanderen/public-api/compare/v5.69.0...v5.69.1) (2023-04-03)
 
 
