@@ -57,7 +57,7 @@ namespace Public.Api.Extract
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(ExtractNotFoundResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         public async Task<IActionResult> DownloadLatestExtract(CancellationToken cancellationToken = default)
-            => await _extractDownloads.RedirectToMostRecent(cancellationToken);
+            => await _extractDownloads.RedirectFullExtractToMostRecent(cancellationToken);
 
         /// <summary>Download het extract voor de gevraagde datum.</summary>
         /// <param name="extractDate">yyyy-MM-dd</param>
@@ -78,11 +78,43 @@ namespace Public.Api.Extract
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         public async Task<IActionResult> DownloadExtractForDate(string extractDate, CancellationToken cancellationToken = default)
             => DateTime.TryParseExact(extractDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var date)
-                ? await _extractDownloads.RedirectTo(date, cancellationToken)
+                ? await _extractDownloads.RedirectFullExtractTo(date, cancellationToken)
                 : throw new ValidationException(new List<ValidationFailure>
                 {
                     new ValidationFailure("extractDate", "Ongeldige datum.")
                 });
+
+        /// <summary>Download het meest recente straatnamen extract.</summary>
+        /// <param name="cancellationToken"></param>
+        /// <response code="302">Als de straatnamen extract download gevonden is.</response>
+        /// <response code="404">Als er geen extract download gevonden kan worden.</response>
+        /// <response code="500">Als er een interne fout is opgetreden.</response>
+        [HttpGet("extract/straatnamen", Name = nameof(DownloadLatestStreetNameExtract))]
+        [HttpCacheExpiration(MaxAge = NoCaching)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status302Found)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        [SwaggerResponseExample(StatusCodes.Status302Found, typeof(ExtractRedirectResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(ExtractNotFoundResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        public async Task<IActionResult> DownloadLatestStreetNameExtract(CancellationToken cancellationToken = default)
+            => await _extractDownloads.RedirectStreetNameExtractToMostRecent(cancellationToken);
+
+        /// <summary>Download het meest recente adressen extract.</summary>
+        /// <param name="cancellationToken"></param>
+        /// <response code="302">Als de adressen extract download gevonden is.</response>
+        /// <response code="404">Als er geen extract download gevonden kan worden.</response>
+        /// <response code="500">Als er een interne fout is opgetreden.</response>
+        [HttpGet("extract/adressen", Name = nameof(DownloadLatestAddressExtract))]
+        [HttpCacheExpiration(MaxAge = NoCaching)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status302Found)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        [SwaggerResponseExample(StatusCodes.Status302Found, typeof(ExtractRedirectResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(ExtractNotFoundResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        public async Task<IActionResult> DownloadLatestAddressExtract(CancellationToken cancellationToken = default)
+            => await _extractDownloads.RedirectAddressExtractToMostRecent(cancellationToken);
     }
 
     public class ExtractRedirectResponseExamples : IExamplesProvider<object>
