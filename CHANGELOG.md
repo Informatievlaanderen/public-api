@@ -1,3 +1,10 @@
+# [5.71.0](https://github.com/informatievlaanderen/public-api/compare/v5.70.1...v5.71.0) (2023-04-11)
+
+
+### Features
+
+* readdress streetname addresses ([69d6ca8](https://github.com/informatievlaanderen/public-api/commit/69d6ca83577dad1c28b408b4cc9383c7154ccc8f))
+
 ## [5.70.1](https://github.com/informatievlaanderen/public-api/compare/v5.70.0...v5.70.1) (2023-04-11)
 
 # [5.70.0](https://github.com/informatievlaanderen/public-api/compare/v5.69.1...v5.70.0) (2023-04-06)
