@@ -43,9 +43,9 @@ nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            4.14.1  
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo              4.14.1  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions       4.14.1  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice 2.1.1  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice              3.36.5 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api          3.36.5 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions 3.36.5 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice              3.38.7 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api          3.38.7 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions 3.38.7 copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 6.0.5
 
