@@ -115,6 +115,22 @@ namespace Public.Api.Extract
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         public async Task<IActionResult> DownloadLatestAddressExtract(CancellationToken cancellationToken = default)
             => await _extractDownloads.RedirectAddressExtractToMostRecent(cancellationToken);
+
+        /// <summary>Download het meest recente adres koppelingen extract.</summary>
+        /// <param name="cancellationToken"></param>
+        /// <response code="302">Als de adres koppelingen extract download gevonden is.</response>
+        /// <response code="404">Als er geen extract download gevonden kan worden.</response>
+        /// <response code="500">Als er een interne fout is opgetreden.</response>
+        [HttpGet("extract/adreskoppelingen", Name = nameof(DownloadLatestAddressLinksExtract))]
+        [HttpCacheExpiration(MaxAge = NoCaching)]
+        [ProducesResponseType(typeof(void), StatusCodes.Status302Found)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        [SwaggerResponseExample(StatusCodes.Status302Found, typeof(ExtractRedirectResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(ExtractNotFoundResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
+        public async Task<IActionResult> DownloadLatestAddressLinksExtract(CancellationToken cancellationToken = default)
+            => await _extractDownloads.RedirectAddressLinksExtractToMostRecent(cancellationToken);
     }
 
     public class ExtractRedirectResponseExamples : IExamplesProvider<object>
