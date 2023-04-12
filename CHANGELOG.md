@@ -1,3 +1,10 @@
+## [5.71.1](https://github.com/informatievlaanderen/public-api/compare/v5.71.0...v5.71.1) (2023-04-12)
+
+
+### Bug Fixes
+
+* only expose edit contract GebouweenheidFunctie NietGekend ([d405ad1](https://github.com/informatievlaanderen/public-api/commit/d405ad1e1178e750e7f93a93ccdceb651da070d9))
+
 # [5.71.0](https://github.com/informatievlaanderen/public-api/compare/v5.70.1...v5.71.0) (2023-04-11)
 
 
