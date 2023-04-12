@@ -38,6 +38,9 @@ namespace Public.Api.Extract
         public async Task<IActionResult> RedirectAddressExtractToMostRecent(CancellationToken cancellationToken)
             => await RedirectToMostRecent(_config.AddressBundleName, cancellationToken);
 
+        public async Task<IActionResult> RedirectAddressLinksExtractToMostRecent(CancellationToken cancellationToken)
+            => await RedirectToMostRecent(_config.AddressLinksBundleName, cancellationToken);
+
         public async Task<IActionResult> RedirectFullExtractToMostRecent(CancellationToken cancellationToken)
             => await RedirectToMostRecent(_config.BundleName, cancellationToken);
 
