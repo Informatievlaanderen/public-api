@@ -1,3 +1,10 @@
+# [5.72.0](https://github.com/informatievlaanderen/public-api/compare/v5.71.1...v5.72.0) (2023-04-12)
+
+
+### Features
+
+* add addresslinks extract ([2b8852c](https://github.com/informatievlaanderen/public-api/commit/2b8852c8685d9864b624274efe521c8ea3442f0c))
+
 ## [5.71.1](https://github.com/informatievlaanderen/public-api/compare/v5.71.0...v5.71.1) (2023-04-12)
 
 
