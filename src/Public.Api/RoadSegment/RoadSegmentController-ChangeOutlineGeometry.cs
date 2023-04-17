@@ -51,7 +51,7 @@ public partial class RoadSegmentController
     [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
     [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
     [SwaggerRequestExample(typeof(PostChangeOutlineGeometryParameters), typeof(PostChangeOutlineGeometryParametersExamples))]
-    [SwaggerOperation(OperationId = nameof(ChangeOutlineGeometry), Description = "Wijzig de geometrie van een ingeschetst wegsegment.")]
+    [SwaggerOperation(OperationId = nameof(ChangeOutlineGeometry), Description = "Wijzig de geometrie van een wegsegment met geometriemethode 'ingeschetst'.")]
     public async Task<IActionResult> ChangeOutlineGeometry(
         [FromRoute] string id,
         [FromBody] PostChangeOutlineGeometryParameters request,

@@ -18,7 +18,7 @@ using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetai
 
 public partial class RoadSegmentController
 {
-    private const string ChangeAttributesRoute = "wegsegmenten/acties/attributenwijzigen";
+    private const string ChangeAttributesRoute = "wegsegmenten/acties/wijzigen/attributen";
 
     /// <summary>
     ///     Attribuutwaarde van status, toegangsbeperking, wegklasse, wegbeheerder en wegcategorie van wegsegmenten wijzigen.

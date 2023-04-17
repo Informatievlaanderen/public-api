@@ -21,7 +21,7 @@ public partial class RoadSegmentController
     private const string DeleteOutlineRoute = "wegsegmenten/{id}/acties/verwijderen/schets";
 
     /// <summary>
-    ///     Verwijder een ingeschetst wegsegment
+    ///     Verwijder een ingeschetst wegsegment.
     /// </summary>
     /// <param name="id">Identificator van het wegsegment.</param>
     /// <param name="actionContextAccessor"></param>
@@ -48,7 +48,7 @@ public partial class RoadSegmentController
     [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
     [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
     [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-    [SwaggerOperation(OperationId = nameof(DeleteOutline), Description = "Verwijder een ingeschetst wegsegment.")]
+    [SwaggerOperation(OperationId = nameof(DeleteOutline), Description = "Verwijder een wegsegment met geometriemethode 'ingeschetst'.")]
     public async Task<IActionResult> DeleteOutline(
         [FromRoute] string id,
         [FromServices] IActionContextAccessor actionContextAccessor,

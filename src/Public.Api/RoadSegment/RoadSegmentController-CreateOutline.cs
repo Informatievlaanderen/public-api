@@ -18,10 +18,10 @@ using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetai
 
 public partial class RoadSegmentController
 {
-    private const string CreateOutlineRoute = "wegsegmenten/{id}/acties/schetsen";
+    private const string CreateOutlineRoute = "wegsegmenten/acties/schetsen";
 
     /// <summary>
-    ///     Maak een schets van een wegsegment
+    ///     Schets een wegsegment.
     /// </summary>
     /// <param name="request"></param>
     /// <param name="actionContextAccessor"></param>
@@ -46,7 +46,7 @@ public partial class RoadSegmentController
     [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
     [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
     [SwaggerRequestExample(typeof(PostRoadSegmentOutlineParameters), typeof(PostRoadSegmentOutlineParametersExamples))]
-    [SwaggerOperation(OperationId = nameof(CreateOutline), Description = "Nieuw wegsegment schetsen.")]
+    [SwaggerOperation(OperationId = nameof(CreateOutline), Description = "Voeg een nieuw wegsegment toe aan het Wegenregister met geometriemethode 'ingeschetst'.")]
     public async Task<IActionResult> CreateOutline(
         [FromBody] PostRoadSegmentOutlineParameters request,
         [FromServices] IActionContextAccessor actionContextAccessor,
