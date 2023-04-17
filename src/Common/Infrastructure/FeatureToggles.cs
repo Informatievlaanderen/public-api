@@ -205,6 +205,13 @@ namespace Common.Infrastructure
         public CorrectDeregulationAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class ReaddressStreetNameAddressesToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public ReaddressStreetNameAddressesToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class PlanBuildingToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }

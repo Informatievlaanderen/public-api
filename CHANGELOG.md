@@ -1,3 +1,26 @@
+# [5.72.0](https://github.com/informatievlaanderen/public-api/compare/v5.71.1...v5.72.0) (2023-04-12)
+
+
+### Features
+
+* add addresslinks extract ([2b8852c](https://github.com/informatievlaanderen/public-api/commit/2b8852c8685d9864b624274efe521c8ea3442f0c))
+
+## [5.71.1](https://github.com/informatievlaanderen/public-api/compare/v5.71.0...v5.71.1) (2023-04-12)
+
+
+### Bug Fixes
+
+* only expose edit contract GebouweenheidFunctie NietGekend ([d405ad1](https://github.com/informatievlaanderen/public-api/commit/d405ad1e1178e750e7f93a93ccdceb651da070d9))
+
+# [5.71.0](https://github.com/informatievlaanderen/public-api/compare/v5.70.1...v5.71.0) (2023-04-11)
+
+
+### Features
+
+* readdress streetname addresses ([69d6ca8](https://github.com/informatievlaanderen/public-api/commit/69d6ca83577dad1c28b408b4cc9383c7154ccc8f))
+
+## [5.70.1](https://github.com/informatievlaanderen/public-api/compare/v5.70.0...v5.70.1) (2023-04-11)
+
 # [5.70.0](https://github.com/informatievlaanderen/public-api/compare/v5.69.1...v5.70.0) (2023-04-06)
 
 

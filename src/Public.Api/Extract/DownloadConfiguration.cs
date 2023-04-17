@@ -7,6 +7,7 @@ namespace Public.Api.Extract
         public string BundleName { get; set; }
         public string StreetNameBundleName { get; set; }
         public string AddressBundleName { get; set; }
+        public string AddressLinksBundleName { get; set; }
         public int ExpiresInSeconds { get; set; }
     }
 }
