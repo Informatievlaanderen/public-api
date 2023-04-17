@@ -485,6 +485,34 @@ namespace Common.Infrastructure
         public TicketingToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class RoadSegmentChangeAttributesToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RoadSegmentChangeAttributesToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class RoadSegmentChangeOutlineGeometryToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RoadSegmentChangeOutlineGeometryToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class RoadSegmentCreateOutlineToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RoadSegmentCreateOutlineToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
+    public class RoadSegmentDeleteOutlineToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RoadSegmentDeleteOutlineToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class RoadSegmentLinkStreetNameToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
@@ -498,6 +526,7 @@ namespace Common.Infrastructure
 
         public RoadSegmentUnlinkStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
+
 
     public class RoadSegmentGetToggle : IFeatureToggle
     {

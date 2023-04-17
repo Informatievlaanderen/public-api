@@ -49,7 +49,7 @@
     <Content Include="appsettings.json" CopyToOutputDirectory="Always" />
     <Content Include="appsettings.*.json" CopyToOutputDirectory="Always" />
     <None Remove="appsettings - Copy.json" />
-    <None Remove="appsettings.laptop.json" />
+    <None Remove="appsettings.development.json" />
     <Content Include="init.sh" CopyToOutputDirectory="Always" />
   </ItemGroup>
   <ItemGroup>

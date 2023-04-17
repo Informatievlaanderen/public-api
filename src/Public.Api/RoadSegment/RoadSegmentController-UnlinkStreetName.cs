@@ -17,7 +17,7 @@ using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetai
 
 public partial class RoadSegmentController
 {
-    public const string UnlinkStreetNameRoute = "wegsegmenten/{id}/acties/straatnaamontkoppelen";
+    private const string UnlinkStreetNameRoute = "wegsegmenten/{id}/acties/straatnaamontkoppelen";
 
     /// <summary>
     ///     Ontkoppel een straatnaam van een wegsegment.

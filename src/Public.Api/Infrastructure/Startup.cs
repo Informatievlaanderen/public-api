@@ -388,6 +388,10 @@ namespace Public.Api.Infrastructure
 
                 .AddSingleton(c => new TicketingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.Ticketing))
 
+                .AddSingleton(c => new RoadSegmentChangeAttributesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RoadSegmentChangeAttributes))
+                .AddSingleton(c => new RoadSegmentChangeOutlineGeometryToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RoadSegmentChangeOutlineGeometry))
+                .AddSingleton(c => new RoadSegmentCreateOutlineToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RoadSegmentCreateOutline))
+                .AddSingleton(c => new RoadSegmentDeleteOutlineToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RoadSegmentDeleteOutline))
                 .AddSingleton(c => new RoadSegmentLinkStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RoadSegmentLinkStreetName))
                 .AddSingleton(c => new RoadSegmentUnlinkStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RoadSegmentUnlinkStreetName))
                 .AddSingleton(c => new RoadSegmentGetToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RoadSegmentGet))

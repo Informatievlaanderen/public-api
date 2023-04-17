@@ -16,7 +16,7 @@ using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetai
 
 public partial class RoadSegmentController
 {
-    public const string GetRoadSegmentRoute = "wegsegmenten/{id}";
+    private const string GetRoadSegmentRoute = "wegsegmenten/{id}";
 
     /// <summary>
     /// Vraag een wegsegment op.
