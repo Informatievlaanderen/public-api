@@ -43,9 +43,9 @@ nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            4.17.1  
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo              4.17.1  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions       4.17.1  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice 2.1.1  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice              3.39.1 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api          3.39.1 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions 3.39.1 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice              3.39.2 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api          3.39.2 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions 3.39.2 copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 6.0.5
 
@@ -60,9 +60,9 @@ nuget Be.Vlaanderen.Basisregisters.GrAr.Import 18.9.6
 nuget Be.Vlaanderen.Basisregisters.EventHandling 4.2.3
 nuget Be.Vlaanderen.Basisregisters.ProblemDetails 8.0.1
 
-nuget Be.Vlaanderen.Basisregisters.Sqs 2.0.3
+nuget Be.Vlaanderen.Basisregisters.Sqs 2.1.3
 
-nuget Be.Vlaanderen.Basisregisters.TicketingService.Abstractions 1.8.1
+nuget Be.Vlaanderen.Basisregisters.TicketingService.Abstractions 1.9.2
 
 // TEST STUFF
 nuget Microsoft.NET.Test.Sdk 17.1.0
