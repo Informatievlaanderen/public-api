@@ -182,11 +182,11 @@ NUGET
       Fake.IO.FileSystem (>= 5.22)
       Fake.JavaScript.Npm (>= 5.22)
       Newtonsoft.Json (>= 13.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions (3.70.1) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions (3.71) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 20.0)
       MediatR.Contracts (>= 2.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (3.70.1) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo (3.70.1) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (3.71) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo (3.71) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.CommandHandling (8.0)
     Be.Vlaanderen.Basisregisters.CommandHandling.Idempotency (8.0)
       Be.Vlaanderen.Basisregisters.Converters.Timestamp (>= 3.0)
@@ -361,13 +361,13 @@ NUGET
     Be.Vlaanderen.Basisregisters.Shaperon.Geometries (9.0.1) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.Sqs (2.0.3)
       MediatR (>= 12.0.1)
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions (3.25.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions (3.26.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 20.0)
       MediatR.Contracts (>= 2.0.1)
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (3.25.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (3.26.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 18.4)
       MediatR.Contracts (>= 2.0.1)
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo (3.25.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo (3.26.1) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 18.4)
       MediatR.Contracts (>= 2.0.1)
     Be.Vlaanderen.Basisregisters.TicketingService.Abstractions (1.8.1)
