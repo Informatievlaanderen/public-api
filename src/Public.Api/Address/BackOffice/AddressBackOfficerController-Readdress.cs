@@ -36,7 +36,7 @@ namespace Public.Api.Address.BackOffice
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         /// <returns></returns>
-        [ApiOrder(ApiOrder.Address.Edit + 22)]
+        [ApiOrder(ApiOrder.Address.Edit + 8)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
@@ -52,8 +52,8 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerRequestExample(typeof(ProposeAddressRequest), typeof(ProposeAddressRequestExamples))]
         [SwaggerOperation(Description = "De adressen worden in bulk hernummerd binnen dezelfde of andere straatnaam. Gekoppelde adresseerbare gebouweenheden en percelen, adrespositie en status worden van het oude adres overgenomen.")]
-        [HttpPost(ReaddressStreetNameAddressesRoute, Name = nameof(ReadressAddresses))]
-        public async Task<IActionResult> ReadressAddresses(
+        [HttpPost(ReaddressStreetNameAddressesRoute, Name = nameof(ReaddressStreetNameAddresses))]
+        public async Task<IActionResult> ReaddressStreetNameAddresses(
             [FromBody] ReaddressRequest readdressRequest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
