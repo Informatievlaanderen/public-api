@@ -50,7 +50,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenOAuthResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerRequestExample(typeof(ProposeAddressRequest), typeof(ProposeAddressRequestExamples))]
+        [SwaggerRequestExample(typeof(ProposeAddressRequest), typeof(ReaddressRequestExamples))]
         [SwaggerOperation(Description = "De adressen worden in bulk hernummerd binnen dezelfde of andere straatnaam. Gekoppelde adresseerbare gebouweenheden en percelen, adrespositie en status worden van het oude adres overgenomen.")]
         [HttpPost(ReaddressStreetNameAddressesRoute, Name = nameof(ReaddressStreetNameAddresses))]
         public async Task<IActionResult> ReaddressStreetNameAddresses(
