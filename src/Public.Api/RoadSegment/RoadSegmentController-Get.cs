@@ -4,14 +4,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using Be.Vlaanderen.Basisregisters.Api.Exceptions;
 using Common.Infrastructure;
+using Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Infrastructure;
 using RestSharp;
 using RoadRegistry.BackOffice.Api.RoadSegments;
-using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.Annotations;
+using Swashbuckle.AspNetCore.Filters;
 using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
 public partial class RoadSegmentController
@@ -19,7 +19,7 @@ public partial class RoadSegmentController
     private const string GetRoadSegmentRoute = "wegsegmenten/{id}";
 
     /// <summary>
-    /// Vraag een wegsegment op.
+    ///     Vraag een wegsegment op.
     /// </summary>
     /// <param name="id">De identificator van het wegsegment.</param>
     /// <param name="actionContextAccessor"></param>
