@@ -4,6 +4,7 @@ namespace Public.Api.RoadSegment
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
+    using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -16,35 +17,42 @@ namespace Public.Api.RoadSegment
 
     public partial class RoadSegmentController
     {
-        private const string GetRoadSegmentRoute = "wegsegmenten/{id}";
+        private const string DeleteRoadSegmentOutlineRoute = "wegsegmenten/{id}/acties/verwijderen/schets";
 
         /// <summary>
-        ///     Vraag een wegsegment op.
+        ///     Verwijder een ingeschetst wegsegment.
         /// </summary>
-        /// <param name="id">De identificator van het wegsegment.</param>
+        /// <param name="id">Identificator van het wegsegment.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als het wegsegment gevonden is.</response>
-        /// <response code="404">Als het wegsegment niet gevonden kan worden.</response>
+        /// <response code="202">Als het ingeschetst wegsegment gevonden is.</response>
+        /// <response code="400">Als uw verzoek foutieve data bevat.</response>
+        /// <response code="404">Als het ingeschetst wegsegment niet gevonden kan worden.</response>
+        /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet(GetRoadSegmentRoute, Name = nameof(GetRoadSegment))]
-        [ProducesResponseType(typeof(GetRoadSegmentResponse), StatusCodes.Status200OK)]
+        [HttpPost(DeleteRoadSegmentOutlineRoute, Name = nameof(DeleteRoadSegmentOutline))]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status412PreconditionFailed)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(GetRoadSegmentResponseResponseExamples))]
+        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "ETag", "string", "De ETag van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(RoadSegmentNotFoundResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(OperationId = nameof(GetRoadSegment))]
-        public async Task<IActionResult> GetRoadSegment(
-            [FromRoute] int id,
+        [SwaggerOperation(OperationId = nameof(DeleteRoadSegmentOutline), Description = "Verwijder een wegsegment met geometriemethode 'ingeschetst'.")]
+        public async Task<IActionResult> DeleteRoadSegmentOutline(
+            [FromRoute] string id,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] GetRoadSegmentToggle featureToggle,
+            [FromServices] DeleteRoadSegmentOutlineToggle featureToggle,
             CancellationToken cancellationToken)
         {
             if (!featureToggle.FeatureEnabled)
@@ -54,14 +62,17 @@ namespace Public.Api.RoadSegment
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
+
             RestRequest BackendRequest()
             {
-                return new RestRequest(GetRoadSegmentRoute)
+                return new RestRequest(DeleteRoadSegmentOutlineRoute)
                     {
-                        Method = Method.Get
+                        Method = Method.Post
                     }
-                    .AddParameter(nameof(id), id, ParameterType.UrlSegment);
+                    .AddParameter(nameof(id), id, ParameterType.UrlSegment)
+                    .AddHeaderAuthorization(actionContextAccessor);
             }
+
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,
@@ -71,7 +82,7 @@ namespace Public.Api.RoadSegment
                 cancellationToken: cancellationToken
             );
 
-            return new BackendResponseResult(value, BackendResponseResultOptions.ForRead());
+            return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
         }
     }
 }
