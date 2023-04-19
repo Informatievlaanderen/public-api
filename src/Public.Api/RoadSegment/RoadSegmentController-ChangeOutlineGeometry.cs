@@ -18,7 +18,7 @@ namespace Public.Api.RoadSegment
 
     public partial class RoadSegmentController
     {
-        private const string ChangeOutlineGeometryRoute = "wegsegmenten/{id}/acties/wijzigen/schetsgeometrie";
+        private const string ChangeRoadSegmentOutlineGeometryRoute = "wegsegmenten/{id}/acties/wijzigen/schetsgeometrie";
 
         /// <summary>
         ///     Wijzig de geometrie van een ingeschetst wegsegment.
@@ -35,7 +35,7 @@ namespace Public.Api.RoadSegment
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpPost(ChangeOutlineGeometryRoute, Name = nameof(ChangeOutlineGeometry))]
+        [HttpPost(ChangeRoadSegmentOutlineGeometryRoute, Name = nameof(ChangeRoadSegmentOutlineGeometry))]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -50,13 +50,13 @@ namespace Public.Api.RoadSegment
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(PostChangeOutlineGeometryParameters), typeof(PostChangeOutlineGeometryParametersExamples))]
-        [SwaggerOperation(OperationId = nameof(ChangeOutlineGeometry), Description = "Wijzig de geometrie van een wegsegment met geometriemethode 'ingeschetst'.")]
-        public async Task<IActionResult> ChangeOutlineGeometry(
+        [SwaggerOperation(OperationId = nameof(ChangeRoadSegmentOutlineGeometry), Description = "Wijzig de geometrie van een wegsegment met geometriemethode 'ingeschetst'.")]
+        public async Task<IActionResult> ChangeRoadSegmentOutlineGeometry(
             [FromRoute] string id,
             [FromBody] PostChangeOutlineGeometryParameters request,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] RoadSegmentChangeOutlineGeometryToggle featureToggle,
+            [FromServices] ChangeRoadSegmentOutlineGeometryToggle featureToggle,
             CancellationToken cancellationToken)
         {
             if (!featureToggle.FeatureEnabled)
@@ -69,7 +69,7 @@ namespace Public.Api.RoadSegment
             RestRequest BackendRequest()
             {
                 return CreateBackendRequestWithJsonBody(
-                        ChangeOutlineGeometryRoute,
+                        ChangeRoadSegmentOutlineGeometryRoute,
                         request,
                         Method.Post)
                     .AddParameter(nameof(id), id, ParameterType.UrlSegment)

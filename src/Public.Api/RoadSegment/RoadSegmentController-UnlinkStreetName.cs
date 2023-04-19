@@ -17,7 +17,7 @@ namespace Public.Api.RoadSegment
 
     public partial class RoadSegmentController
     {
-        private const string UnlinkStreetNameRoute = "wegsegmenten/{id}/acties/straatnaamontkoppelen";
+        private const string UnlinkRoadSegmentStreetNameRoute = "wegsegmenten/{id}/acties/straatnaamontkoppelen";
 
         /// <summary>
         ///     Ontkoppel een straatnaam van een wegsegment.
@@ -34,7 +34,7 @@ namespace Public.Api.RoadSegment
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpPost(UnlinkStreetNameRoute, Name = nameof(UnlinkStreetName))]
+        [HttpPost(UnlinkRoadSegmentStreetNameRoute, Name = nameof(UnlinkRoadSegmentStreetName))]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -49,13 +49,13 @@ namespace Public.Api.RoadSegment
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(PostUnlinkStreetNameParameters), typeof(PostUnlinkStreetNameParametersExamples))]
-        [SwaggerOperation(OperationId = nameof(UnlinkStreetName), Description = "Ontkoppel een linker- en/of rechterstraatnaam van een wegsegment waaraan momenteel een linker- en/of rechterstraatnaam gekoppeld is.")]
-        public async Task<IActionResult> UnlinkStreetName(
+        [SwaggerOperation(OperationId = nameof(UnlinkRoadSegmentStreetName), Description = "Ontkoppel een linker- en/of rechterstraatnaam van een wegsegment waaraan momenteel een linker- en/of rechterstraatnaam gekoppeld is.")]
+        public async Task<IActionResult> UnlinkRoadSegmentStreetName(
             [FromRoute] string id,
             [FromBody] PostUnlinkStreetNameParameters request,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] RoadSegmentUnlinkStreetNameToggle featureToggle,
+            [FromServices] UnlinkRoadSegmentStreetNameToggle featureToggle,
             CancellationToken cancellationToken)
         {
             if (!featureToggle.FeatureEnabled)
@@ -68,7 +68,7 @@ namespace Public.Api.RoadSegment
             RestRequest BackendRequest()
             {
                 return CreateBackendRequestWithJsonBody(
-                        UnlinkStreetNameRoute,
+                        UnlinkRoadSegmentStreetNameRoute,
                         request,
                         Method.Post)
                     .AddParameter(nameof(id), id, ParameterType.UrlSegment)

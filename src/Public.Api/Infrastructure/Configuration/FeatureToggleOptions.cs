@@ -82,12 +82,12 @@ namespace Public.Api.Infrastructure.Configuration
 
         public bool Ticketing { get; set; }
 
-        public bool RoadSegmentChangeAttributes { get; set; }
-        public bool RoadSegmentChangeOutlineGeometry { get; set; }
-        public bool RoadSegmentCreateOutline { get; set; }
-        public bool RoadSegmentDeleteOutline { get; set; }
-        public bool RoadSegmentLinkStreetName { get; set; }
-        public bool RoadSegmentUnlinkStreetName { get; set; }
-        public bool RoadSegmentGet { get; set; }
+        public bool ChangeRoadSegmentAttributes { get; set; }
+        public bool ChangeRoadSegmentOutlineGeometry { get; set; }
+        public bool CreateRoadSegmentOutline { get; set; }
+        public bool DeleteRoadSegmentOutline { get; set; }
+        public bool LinkRoadSegmentStreetName { get; set; }
+        public bool UnlinkRoadSegmentStreetName { get; set; }
+        public bool GetRoadSegment { get; set; }
     }
 }

@@ -492,53 +492,53 @@ namespace Common.Infrastructure
         public TicketingToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class RoadSegmentChangeAttributesToggle : IFeatureToggle
+    public class ChangeRoadSegmentAttributesToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public RoadSegmentChangeAttributesToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public ChangeRoadSegmentAttributesToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class RoadSegmentChangeOutlineGeometryToggle : IFeatureToggle
+    public class ChangeRoadSegmentOutlineGeometryToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public RoadSegmentChangeOutlineGeometryToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public ChangeRoadSegmentOutlineGeometryToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class RoadSegmentCreateOutlineToggle : IFeatureToggle
+    public class CreateRoadSegmentOutlineToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public RoadSegmentCreateOutlineToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public CreateRoadSegmentOutlineToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class RoadSegmentDeleteOutlineToggle : IFeatureToggle
+    public class DeleteRoadSegmentOutlineToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public RoadSegmentDeleteOutlineToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public DeleteRoadSegmentOutlineToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class RoadSegmentLinkStreetNameToggle : IFeatureToggle
+    public class LinkRoadSegmentStreetNameToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public RoadSegmentLinkStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public LinkRoadSegmentStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
-    public class RoadSegmentUnlinkStreetNameToggle : IFeatureToggle
+    public class UnlinkRoadSegmentStreetNameToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public RoadSegmentUnlinkStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public UnlinkRoadSegmentStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
 
-    public class RoadSegmentGetToggle : IFeatureToggle
+    public class GetRoadSegmentToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
-        public RoadSegmentGetToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+        public GetRoadSegmentToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 }

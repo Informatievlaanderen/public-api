@@ -17,7 +17,7 @@ namespace Public.Api.RoadSegment
 
     public partial class RoadSegmentController
     {
-        private const string LinkStreetNameRoute = "wegsegmenten/{id}/acties/straatnaamkoppelen";
+        private const string LinkRoadSegmentStreetNameRoute = "wegsegmenten/{id}/acties/straatnaamkoppelen";
 
         /// <summary>
         ///     Koppel een straatnaam aan een wegsegment.
@@ -34,7 +34,7 @@ namespace Public.Api.RoadSegment
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpPost(LinkStreetNameRoute, Name = nameof(LinkStreetName))]
+        [HttpPost(LinkRoadSegmentStreetNameRoute, Name = nameof(LinkRoadSegmentStreetName))]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -49,13 +49,13 @@ namespace Public.Api.RoadSegment
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(PostLinkStreetNameParameters), typeof(PostLinkStreetNameParametersExamples))]
-        [SwaggerOperation(OperationId = nameof(LinkStreetName), Description = "Koppel een linker- en/of rechterstraatnaam met status `voorgesteld` of `inGebruik` aan een wegsegment waaraan momenteel geen linker- en/of rechterstraatnaam gekoppeld werd.")]
-        public async Task<IActionResult> LinkStreetName(
+        [SwaggerOperation(OperationId = nameof(LinkRoadSegmentStreetName), Description = "Koppel een linker- en/of rechterstraatnaam met status `voorgesteld` of `inGebruik` aan een wegsegment waaraan momenteel geen linker- en/of rechterstraatnaam gekoppeld werd.")]
+        public async Task<IActionResult> LinkRoadSegmentStreetName(
             [FromRoute] string id,
             [FromBody] PostLinkStreetNameParameters request,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] RoadSegmentLinkStreetNameToggle featureToggle,
+            [FromServices] LinkRoadSegmentStreetNameToggle featureToggle,
             CancellationToken cancellationToken)
         {
             if (!featureToggle.FeatureEnabled)
@@ -68,7 +68,7 @@ namespace Public.Api.RoadSegment
             RestRequest BackendRequest()
             {
                 return CreateBackendRequestWithJsonBody(
-                        LinkStreetNameRoute,
+                        LinkRoadSegmentStreetNameRoute,
                         request,
                         Method.Post)
                     .AddParameter(nameof(id), id, ParameterType.UrlSegment)

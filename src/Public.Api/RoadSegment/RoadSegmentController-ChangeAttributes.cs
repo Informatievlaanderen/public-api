@@ -18,7 +18,7 @@ namespace Public.Api.RoadSegment
 
     public partial class RoadSegmentController
     {
-        private const string ChangeAttributesRoute = "wegsegmenten/acties/wijzigen/attributen";
+        private const string ChangeRoadSegmentAttributesRoute = "wegsegmenten/acties/wijzigen/attributen";
 
         /// <summary>
         ///     Attribuutwaarde van status, toegangsbeperking, wegklasse, wegbeheerder en wegcategorie van wegsegmenten wijzigen.
@@ -34,7 +34,7 @@ namespace Public.Api.RoadSegment
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpPost(ChangeAttributesRoute, Name = nameof(ChangeAttributes))]
+        [HttpPost(ChangeRoadSegmentAttributesRoute, Name = nameof(ChangeRoadSegmentAttributes))]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -49,12 +49,12 @@ namespace Public.Api.RoadSegment
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(ChangeRoadSegmentAttributesParameters), typeof(ChangeRoadSegmentAttributesParametersExamples))]
-        [SwaggerOperation(OperationId = nameof(ChangeAttributes), Description = "Attributen wijzigen van een wegsegment: status, toegangsbeperking, wegklasse, wegbeheerder en wegcategorie.")]
-        public async Task<IActionResult> ChangeAttributes(
+        [SwaggerOperation(OperationId = nameof(ChangeRoadSegmentAttributes), Description = "Attributen wijzigen van een wegsegment: status, toegangsbeperking, wegklasse, wegbeheerder en wegcategorie.")]
+        public async Task<IActionResult> ChangeRoadSegmentAttributes(
             [FromBody] ChangeRoadSegmentAttributesParameters request,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] RoadSegmentChangeAttributesToggle featureToggle,
+            [FromServices] ChangeRoadSegmentAttributesToggle featureToggle,
             CancellationToken cancellationToken)
         {
             if (!featureToggle.FeatureEnabled)
@@ -67,7 +67,7 @@ namespace Public.Api.RoadSegment
             RestRequest BackendRequest()
             {
                 return CreateBackendRequestWithJsonBody(
-                        ChangeAttributesRoute,
+                        ChangeRoadSegmentAttributesRoute,
                         request,
                         Method.Post)
                     .AddHeaderAuthorization(actionContextAccessor);

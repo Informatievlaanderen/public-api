@@ -17,7 +17,7 @@ namespace Public.Api.RoadSegment
 
     public partial class RoadSegmentController
     {
-        private const string CreateOutlineRoute = "wegsegmenten/acties/schetsen";
+        private const string CreateRoadSegmentOutlineRoute = "wegsegmenten/acties/schetsen";
 
         /// <summary>
         ///     Schets een wegsegment.
@@ -32,7 +32,7 @@ namespace Public.Api.RoadSegment
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpPost(CreateOutlineRoute, Name = nameof(CreateOutlineRoute))]
+        [HttpPost(CreateRoadSegmentOutlineRoute, Name = nameof(CreateRoadSegmentOutlineRoute))]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status412PreconditionFailed)]
@@ -45,12 +45,12 @@ namespace Public.Api.RoadSegment
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(PostRoadSegmentOutlineParameters), typeof(PostRoadSegmentOutlineParametersExamples))]
-        [SwaggerOperation(OperationId = nameof(CreateOutline), Description = "Voeg een nieuw wegsegment toe aan het Wegenregister met geometriemethode 'ingeschetst'.")]
-        public async Task<IActionResult> CreateOutline(
+        [SwaggerOperation(OperationId = nameof(CreateRoadSegmentOutline), Description = "Voeg een nieuw wegsegment toe aan het Wegenregister met geometriemethode 'ingeschetst'.")]
+        public async Task<IActionResult> CreateRoadSegmentOutline(
             [FromBody] PostRoadSegmentOutlineParameters request,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] RoadSegmentCreateOutlineToggle featureToggle,
+            [FromServices] CreateRoadSegmentOutlineToggle featureToggle,
             CancellationToken cancellationToken = default)
         {
             if (!featureToggle.FeatureEnabled)
@@ -63,7 +63,7 @@ namespace Public.Api.RoadSegment
             RestRequest BackendRequest()
             {
                 return CreateBackendRequestWithJsonBody(
-                        CreateOutlineRoute,
+                        CreateRoadSegmentOutlineRoute,
                         request,
                         Method.Post)
                     .AddHeaderAuthorization(actionContextAccessor);

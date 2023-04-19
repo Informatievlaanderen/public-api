@@ -389,13 +389,13 @@ namespace Public.Api.Infrastructure
 
                 .AddSingleton(c => new TicketingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.Ticketing))
 
-                .AddSingleton(c => new RoadSegmentChangeAttributesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RoadSegmentChangeAttributes))
-                .AddSingleton(c => new RoadSegmentChangeOutlineGeometryToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RoadSegmentChangeOutlineGeometry))
-                .AddSingleton(c => new RoadSegmentCreateOutlineToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RoadSegmentCreateOutline))
-                .AddSingleton(c => new RoadSegmentDeleteOutlineToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RoadSegmentDeleteOutline))
-                .AddSingleton(c => new RoadSegmentLinkStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RoadSegmentLinkStreetName))
-                .AddSingleton(c => new RoadSegmentUnlinkStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RoadSegmentUnlinkStreetName))
-                .AddSingleton(c => new RoadSegmentGetToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RoadSegmentGet))
+                .AddSingleton(c => new ChangeRoadSegmentAttributesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangeRoadSegmentAttributes))
+                .AddSingleton(c => new ChangeRoadSegmentOutlineGeometryToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangeRoadSegmentOutlineGeometry))
+                .AddSingleton(c => new CreateRoadSegmentOutlineToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CreateRoadSegmentOutline))
+                .AddSingleton(c => new DeleteRoadSegmentOutlineToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.DeleteRoadSegmentOutline))
+                .AddSingleton(c => new LinkRoadSegmentStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.LinkRoadSegmentStreetName))
+                .AddSingleton(c => new UnlinkRoadSegmentStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.UnlinkRoadSegmentStreetName))
+                .AddSingleton(c => new GetRoadSegmentToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.GetRoadSegment))
                 ;
 
             services
