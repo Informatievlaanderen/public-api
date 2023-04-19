@@ -1,3 +1,10 @@
+# [5.73.0](https://github.com/informatievlaanderen/public-api/compare/v5.72.1...v5.73.0) (2023-04-19)
+
+
+### Features
+
+* add endpoints for create, delete, change geometry for road segment outlines + change attributes endpoint ([c734546](https://github.com/informatievlaanderen/public-api/commit/c734546fa7a7cdcecd679617dabcf63ee97d4792))
+
 ## [5.72.1](https://github.com/informatievlaanderen/public-api/compare/v5.72.0...v5.72.1) (2023-04-19)
 
 
