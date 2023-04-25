@@ -118,7 +118,10 @@ namespace Public.Api.Infrastructure
                         {
                             Version = _marketingVersion,
                             Title = "Basisregisters Vlaanderen API",
-                            Description = GetApiLeadingText(description, Convert.ToBoolean(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey)["IsFeedsVisible"]),Convert.ToBoolean(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey)["ProposeStreetName"])),
+                            Description = GetApiLeadingText(
+                                provider.ApiVersionDescriptions.FirstOrDefault(x => !x.IsDeprecated),
+                                Convert.ToBoolean(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey)["IsFeedsVisible"]),
+                                Convert.ToBoolean(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey)["ProposeStreetName"])),
                             Contact = _contact,
                             License = new OpenApiLicense
                             {
@@ -680,15 +683,15 @@ namespace Public.Api.Infrastructure
         {
             var text = new StringBuilder(1000);
 
-            var baseUrlWithGroupName = BaseUrl.Combine(description.GroupName);
+            // Todo: below should be used once we deprecate v1.
+            // var baseUrlWithGroupName = BaseUrl.Combine(description.GroupName);
+            var baseUrlWithGroupName = BaseUrl.Combine("v2");
             var siteUrlWithDocs = SiteUrl.Combine("documentatie");
 
 text.Append(
 $@"# Introductie
 
 Welkom bij de REST API van Basisregisters Vlaanderen!
-
-Momenteel leest u de documentatie voor versie {_marketingVersion} van de Basisregisters Vlaanderen API{string.Format(description.IsDeprecated ? ", **deze API versie is niet meer ondersteund**." : ".")}
 
 [REST](http://en.wikipedia.org/wiki/REST_API) is een webserviceprotocol dat zich leent tot snelle ontwikkeling door het gebruik van HTTP- en JSON-technologie.
 
@@ -724,10 +727,10 @@ Iedereen    | {_configuration["BaseUrl"]} |
 
 De read endpoints zijn anoniem raadpleegbaar echter is er een beperking aanwezig op het aantal verzoeken dat u tegelijkertijd kan versturen naar deze endpoints. Wanneer u een API key meegeeft dan zal u meer requests kunnen versturen.
 
-Om dus optimaal gebruik te maken van de endpoints vraagt u best een API key aan. Dit kan door uw gegevens in volgende link achter te laten: [Vraag hier uw API key aan](https://dynamicforms.crmiv.vlaanderen.be/DynamicForms/Page/Show/CfDJ8M4Eu9v84l9JmW3p7WGylS-u2ToCLC5KvqQZmZ4G99X5TBULO4n0LCDpm7870eDUOk90hogqVcE7BCVQf2u_4WlsZ7B8friBrkyuAqmXYpIX_BzvQVVo8eUZyNd-njc33Y-Z-B87y03Y2Jgukp2AN5U93jT1Xv2l0afgvenLD9k0fasSMJkt4uNzKmlr_gILGrOy%2FJSqnRom_MLu0h7sALJ8uNvPywCMsZ1zy5Lal4h63?path=APIKey-aanvraag). U kan deze API key op 2 manieren meegeven:
+Om dus optimaal gebruik te maken van de endpoints vraagt u best een API key aan. Dit kan door uw gegevens in volgende link achter te laten: [Vraag hier uw API key aan](https://dynamicforms.crmiv.vlaanderen.be/DynamicForms/Page/Show/CfDJ8M4Eu9v84l9JmW3p7WGylS-u2ToCLC5KvqQZmZ4G99X5TBULO4n0LCDpm7870eDUOk90hogqVcE7BCVQf2u_4WlsZ7B8friBrkyuAqmXYpIX_BzvQVVo8eUZyNd-njc33Y-Z-B87y03Y2Jgukp2AN5U93jT1Xv2l0afgvenLD9k0fasSMJkt4uNzKmlr_gILGrOy%2FJSqnRom_MLu0h7sALJ8uNvPywCMsZ1zy5Lal4h63?path=APIKey-aanvraag). U kan deze API key op 2 manieren meegeven:
 
 * Via de header x-api-key.
-* In de URL. Bijvoorbeeld: {baseUrlWithGroupName}/adressen?apikey={{apikey}} waarbij {{apikey}} vervangen wordt door de unieke code van uw API key.
+* In de URL. Bijvoorbeeld: {baseUrlWithGroupName}/adressen?apikey={{apikey}} waarbij {{apikey}} vervangen wordt door de unieke code van uw API key.
 
 ### V1 vs v2
 
