@@ -16,47 +16,6 @@
             "@id": "https://data.vlaanderen.be/ns/generiek#lokaleIdentificator",
             "@type": "http://www.w3.org/2001/XMLSchema#string"
         },
-        "adresStatus": {
-            "@id": "https://data.vlaanderen.be/ns/adres#Adres.status",
-            "@type": "@id",
-            "@context": {
-                "@base": "https://data.vlaanderen.be/id/concept/adresstatus/"
-            }
-        },
-        "huisnummer": {
-            "@id": "https://data.vlaanderen.be/ns/adres#huisnummer",
-            "@type": "http://www.w3.org/2001/XMLSchema#string"
-        },
-        "busnummer": {
-            "@id": "https://data.vlaanderen.be/ns/adres#Adresvoorstelling.busnummer",
-            "@type": "http://www.w3.org/2001/XMLSchema#string"
-        },
-        "officieelToegekend": {
-            "@id": "https://data.vlaanderen.be/ns/adres#officieelToegekend",
-            "@type": "http://www.w3.org/2001/XMLSchema#boolean"
-        },
-        "postinfo": {
-            "@id": "https://data.vlaanderen.be/ns/adres#heeftPostinfo",
-            "@type": "@id",
-            "@context": {
-                "@base": "https://data.vlaanderen.be/id/postinfo/",
-                "objectId": "@id",
-                "detail": "http://www.iana.org/assignments/relation/self"
-            }
-        },
-        "volledigAdres": {
-            "@id": "https://data.vlaanderen.be/ns/adres#isVerrijktMet",
-            "@type": "@id",
-            "@context": {
-                "geografischeNaam": {
-                    "@id": "https://data.vlaanderen.be/ns/adres#volledigAdres",
-                    "@context": {
-                        "spelling": "@value",
-                        "taal": "@language"
-                    }
-                }
-            }
-        },
         "gemeente": {
             "@id": "https://data.vlaanderen.be/ns/adres#heeftGemeentenaam",
             "@type": "@id",
@@ -78,6 +37,15 @@
                 }
             }
         },
+        "postinfo": {
+            "@id": "https://data.vlaanderen.be/ns/adres#heeftPostinfo",
+            "@type": "@id",
+            "@context": {
+                "@base": "https://data.vlaanderen.be/id/postinfo/",
+                "objectId": "@id",
+                "detail": "http://www.iana.org/assignments/relation/self"
+            }
+        },
         "straatnaam": {
             "@id": "https://data.vlaanderen.be/ns/adres#heeftStraatnaam",
             "@type": "@id",
@@ -95,6 +63,27 @@
                                 "taal": "@language"
                             }
                         }
+                    }
+                }
+            }
+        },
+        "huisnummer": {
+            "@id": "https://data.vlaanderen.be/ns/adres#huisnummer",
+            "@type": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "busnummer": {
+            "@id": "https://data.vlaanderen.be/ns/adres#Adresvoorstelling.busnummer",
+            "@type": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "volledigAdres": {
+            "@id": "https://data.vlaanderen.be/ns/adres#isVerrijktMet",
+            "@type": "@id",
+            "@context": {
+                "geografischeNaam": {
+                    "@id": "https://data.vlaanderen.be/ns/adres#volledigAdres",
+                    "@context": {
+                        "spelling": "@value",
+                        "taal": "@language"
                     }
                 }
             }
@@ -129,6 +118,18 @@
                     }
                 }
             }
-        }
-    }
+        },
+        "adresStatus": {
+            "@id": "https://data.vlaanderen.be/ns/adres#Adres.status",
+            "@type": "@id",
+            "@context": {
+                "@base": "https://data.vlaanderen.be/id/concept/adresstatus/"
+            }
+        },
+        "officieelToegekend": {
+            "@id": "https://data.vlaanderen.be/ns/adres#officieelToegekend",
+            "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+        },
+		"adresMatches": "@graph"
+	}
 }
