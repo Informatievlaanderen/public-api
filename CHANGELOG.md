@@ -1,3 +1,12 @@
+## [5.73.1](https://github.com/informatievlaanderen/public-api/compare/v5.73.0...v5.73.1) (2023-04-25)
+
+
+### Bug Fixes
+
+* correct brackets in adres_lijst.jsonld ([92cfff4](https://github.com/informatievlaanderen/public-api/commit/92cfff4433a9d18d4aef1f6f61256edf1ba20b8a))
+* correct readdress request property descriptions ([9b3b20f](https://github.com/informatievlaanderen/public-api/commit/9b3b20f89729a257303712c504b46f51ba3cc2fa))
+* replace adresmatch.jsonld ([761690e](https://github.com/informatievlaanderen/public-api/commit/761690eab1d3de0c2b4712abdc07e01ebbf5bab4))
+
 # [5.73.0](https://github.com/informatievlaanderen/public-api/compare/v5.72.1...v5.73.0) (2023-04-19)
 
 
