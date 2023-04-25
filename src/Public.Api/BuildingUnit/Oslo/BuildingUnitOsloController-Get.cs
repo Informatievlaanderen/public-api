@@ -28,6 +28,7 @@ namespace Public.Api.BuildingUnit.Oslo
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de gebouweenheid gevonden is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
+        /// <response code="403">Als u niet beschikt over de correcte rechten om deze actie uit te voeren.</response>
         /// <response code="404">Als de gebouweenheid niet gevonden kan worden.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="410">Als de gebouweenheid verwijderd is.</response>
@@ -37,6 +38,7 @@ namespace Public.Api.BuildingUnit.Oslo
         [ApiOrder(ApiOrder.BuildingUnit.V2 + 1)]
         [ProducesResponseType(typeof(BuildingUnitOsloResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status410Gone)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
@@ -45,6 +47,7 @@ namespace Public.Api.BuildingUnit.Oslo
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(BuildingUnitOsloResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(BuildingUnitNotFoundResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(BuildingUnitGoneResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]

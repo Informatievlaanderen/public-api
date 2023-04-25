@@ -34,7 +34,7 @@ namespace Public.Api.Feeds.V2
         /// <response code="200">Als de opvraging van een lijst met wijzigingen op adressen gelukt is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="401">Als er geen API key is meegegeven.</response>
-        /// <response code="403">Als u niet de correcte rechten heeft.</response>
+        /// <response code="403">Als u niet beschikt over de correcte rechten om deze actie uit te voeren.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
