@@ -37,7 +37,7 @@ namespace Public.Api.BuildingUnit.Oslo
         [HttpGet("gebouweenheden/{objectId}", Name = nameof(GetBuildingUnitV2))]
         [ApiOrder(ApiOrder.BuildingUnit.V2 + 1)]
         [ProducesResponseType(typeof(BuildingUnitOsloResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status410Gone)]

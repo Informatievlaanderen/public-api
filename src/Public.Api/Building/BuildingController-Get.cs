@@ -35,7 +35,7 @@ namespace Public.Api.Building
         [HttpGet("gebouwen/{objectId}", Name = nameof(GetBuilding))]
         [ApiOrder(ApiOrder.Building.V1 + 1)]
         [ProducesResponseType(typeof(BuildingDetailResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status410Gone)]

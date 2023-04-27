@@ -45,7 +45,7 @@ namespace Public.Api.Address
         [HttpGet("adresmatch", Name = nameof(AddressMatch))]
         [ApiOrder(ApiOrder.Address.V1 + 4)]
         [ProducesResponseType(typeof(AddressMatchCollection), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]

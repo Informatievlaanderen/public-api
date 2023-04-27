@@ -36,7 +36,7 @@ namespace Public.Api.RoadSegment
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpPost(LinkRoadSegmentStreetNameRoute, Name = nameof(LinkRoadSegmentStreetName))]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status412PreconditionFailed)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
