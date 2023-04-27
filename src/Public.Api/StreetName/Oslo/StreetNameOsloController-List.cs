@@ -49,7 +49,7 @@ namespace Public.Api.StreetName.Oslo
         [HttpGet("straatnamen", Name = nameof(ListStreetNamesV2))]
         [ApiOrder(ApiOrder.StreetName.V2 + 2)]
         [ProducesResponseType(typeof(StreetNameListOsloResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]

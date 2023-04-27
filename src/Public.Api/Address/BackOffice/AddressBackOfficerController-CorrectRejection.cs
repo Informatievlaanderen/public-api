@@ -41,7 +41,7 @@ namespace Public.Api.Address.BackOffice
         /// <returns></returns>
         [ApiOrder(ApiOrder.Address.Edit + 14)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]

@@ -52,7 +52,7 @@ namespace Public.Api.Address
         [HttpGet("adressen", Name = nameof(ListAddresses))]
         [ApiOrder(ApiOrder.Address.V1 + 2)]
         [ProducesResponseType(typeof(AddressListResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]

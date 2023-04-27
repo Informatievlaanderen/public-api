@@ -29,7 +29,7 @@ namespace Public.Api.Tickets
         [ApiKeyAuth("tickets")]
         [ApiOrder(ApiOrder.TicketingService + 2)]
         [ProducesResponseType(typeof(IEnumerable<Ticket>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(Ticket))]

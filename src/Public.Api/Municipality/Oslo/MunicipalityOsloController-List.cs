@@ -48,7 +48,7 @@ namespace Public.Api.Municipality.Oslo
         [ApiOrder(ApiOrder.Municipality.V2 + 2)]
         [HttpGet("gemeenten", Name = nameof(ListMunicipalitiesV2))]
         [ProducesResponseType(typeof(MunicipalityListOsloResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
