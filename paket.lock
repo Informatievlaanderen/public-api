@@ -289,7 +289,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 18.9.2)
     Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (3.7.2) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo (3.7.2) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.ProblemDetails (8.0.1)
+    Be.Vlaanderen.Basisregisters.ProblemDetails (8.0.3)
       System.Reflection.Metadata (>= 6.0.1)
     Be.Vlaanderen.Basisregisters.ProjectionHandling.Connector (11.0.7)
       Microsoft.EntityFrameworkCore (>= 6.0.3)

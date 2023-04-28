@@ -35,7 +35,7 @@ namespace Public.Api.Building
         [HttpGet("gebouwen/{objectId}/referenties", Name = nameof(GetBuildingReferences))]
         [ApiOrder(ApiOrder.Building.V1 + 4)]
         [ProducesResponseType(typeof(BuildingDetailReferencesResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status410Gone)]
