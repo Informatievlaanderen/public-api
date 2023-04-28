@@ -39,7 +39,7 @@ namespace Public.Api.CrabBuilding
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("crabgebouwen", Name = nameof(ListCrabBuildings))]
         [ProducesResponseType(typeof(BuildingCrabMappingResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]

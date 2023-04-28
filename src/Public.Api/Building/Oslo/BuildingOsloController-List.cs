@@ -45,7 +45,7 @@ namespace Public.Api.Building.Oslo
         [HttpGet("gebouwen", Name = nameof(ListBuildingsV2))]
         [ApiOrder(ApiOrder.Building.V2 + 2)]
         [ProducesResponseType(typeof(BuildingListOsloResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]

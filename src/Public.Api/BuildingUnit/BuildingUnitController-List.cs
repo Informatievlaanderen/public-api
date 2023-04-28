@@ -46,7 +46,7 @@ namespace Public.Api.BuildingUnit
         [HttpGet("gebouweenheden", Name = nameof(ListBuildingUnits))]
         [ApiOrder(ApiOrder.BuildingUnit.V1 + 2)]
         [ProducesResponseType(typeof(BuildingUnitListResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
