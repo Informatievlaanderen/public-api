@@ -1,3 +1,10 @@
+## [5.73.2](https://github.com/informatievlaanderen/public-api/compare/v5.73.1...v5.73.2) (2023-04-28)
+
+
+### Bug Fixes
+
+* swagger validation problem details ([87bedf3](https://github.com/informatievlaanderen/public-api/commit/87bedf3f9209393a4b396c56079f6801dd504750))
+
 ## [5.73.1](https://github.com/informatievlaanderen/public-api/compare/v5.73.0...v5.73.1) (2023-04-25)
 
 
