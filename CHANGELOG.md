@@ -1,3 +1,10 @@
+## [5.73.5](https://github.com/informatievlaanderen/public-api/compare/v5.73.4...v5.73.5) (2023-05-03)
+
+
+### Bug Fixes
+
+* validation errors property name ([4b0843f](https://github.com/informatievlaanderen/public-api/commit/4b0843f66e0d395036afdb6bca6f3583da2c8249))
+
 ## [5.73.4](https://github.com/informatievlaanderen/public-api/compare/v5.73.3...v5.73.4) (2023-05-03)
 
 
