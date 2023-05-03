@@ -1,3 +1,10 @@
+## [5.73.4](https://github.com/informatievlaanderen/public-api/compare/v5.73.3...v5.73.4) (2023-05-03)
+
+
+### Bug Fixes
+
+* bump registry and problem details packages ([7a9bbd2](https://github.com/informatievlaanderen/public-api/commit/7a9bbd20e13eb454e27e3ace17cf9b0e33259811))
+
 ## [5.73.3](https://github.com/informatievlaanderen/public-api/compare/v5.73.2...v5.73.3) (2023-04-28)
 
 
