@@ -1,3 +1,10 @@
+# [5.74.0](https://github.com/informatievlaanderen/public-api/compare/v5.73.7...v5.74.0) (2023-05-15)
+
+
+### Features
+
+* add NewPrd to CI ([facea96](https://github.com/informatievlaanderen/public-api/commit/facea96ba319af89c9dcfa910e05d0cd18e90c20))
+
 ## [5.73.7](https://github.com/informatievlaanderen/public-api/compare/v5.73.6...v5.73.7) (2023-05-10)
 
 ## [5.73.6](https://github.com/informatievlaanderen/public-api/compare/v5.73.5...v5.73.6) (2023-05-08)
