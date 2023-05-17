@@ -1,15 +1,13 @@
 namespace Public.Api.Road.Information
 {
-    using System.Net.Http;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
     using RestSharp;
-    using RoadRegistry.BackOffice.Api.Extracts;
     using RoadRegistry.BackOffice.Api.Information;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class InformationController
     {

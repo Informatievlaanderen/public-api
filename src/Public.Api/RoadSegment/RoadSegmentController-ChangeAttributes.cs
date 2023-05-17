@@ -2,6 +2,7 @@ namespace Public.Api.RoadSegment
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Be.Vlaanderen.Basisregisters.AcmIdm;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
@@ -49,7 +50,11 @@ namespace Public.Api.RoadSegment
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(ChangeRoadSegmentAttributesParameters), typeof(ChangeRoadSegmentAttributesParametersExamples))]
-        [SwaggerOperation(OperationId = nameof(ChangeRoadSegmentAttributes), Description = "Wijzig een attribuutwaarde voor één of meerdere wegsegmenten.")]
+        [SwaggerAuthorizeOperation(
+            OperationId = nameof(ChangeRoadSegmentAttributes),
+            Description = "Wijzig een attribuutwaarde voor één of meerdere wegsegmenten.",
+            Authorize = Scopes.DvWrAttribuutWaardenBeheer
+        )]
         public async Task<IActionResult> ChangeRoadSegmentAttributes(
             [FromBody] ChangeRoadSegmentAttributesParameters request,
             [FromServices] IActionContextAccessor actionContextAccessor,

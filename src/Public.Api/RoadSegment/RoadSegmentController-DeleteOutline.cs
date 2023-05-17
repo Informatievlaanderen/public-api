@@ -2,6 +2,7 @@ namespace Public.Api.RoadSegment
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Be.Vlaanderen.Basisregisters.AcmIdm;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
@@ -47,7 +48,11 @@ namespace Public.Api.RoadSegment
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(OperationId = nameof(DeleteRoadSegmentOutline), Description = "Verwijder een wegsegment met geometriemethode 'ingeschetst'.")]
+        [SwaggerAuthorizeOperation(
+            OperationId = nameof(DeleteRoadSegmentOutline),
+            Description = "Verwijder een wegsegment met geometriemethode 'ingeschetst'.",
+            Authorize = Scopes.DvWrGeschetsteWegBeheer
+        )]
         public async Task<IActionResult> DeleteRoadSegmentOutline(
             [FromRoute] string id,
             [FromServices] IActionContextAccessor actionContextAccessor,

@@ -2,6 +2,7 @@ namespace Public.Api.RoadSegment
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Be.Vlaanderen.Basisregisters.AcmIdm;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
@@ -50,7 +51,11 @@ namespace Public.Api.RoadSegment
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(PostChangeOutlineGeometryParameters), typeof(PostChangeOutlineGeometryParametersExamples))]
-        [SwaggerOperation(OperationId = nameof(ChangeRoadSegmentOutlineGeometry), Description = "Wijzig de geometrie van een wegsegment met geometriemethode 'ingeschetst'.")]
+        [SwaggerAuthorizeOperation(
+            OperationId = nameof(ChangeRoadSegmentOutlineGeometry),
+            Description = "Wijzig de geometrie van een wegsegment met geometriemethode 'ingeschetst'.",
+            Authorize = Scopes.DvWrGeschetsteWegBeheer
+        )]
         public async Task<IActionResult> ChangeRoadSegmentOutlineGeometry(
             [FromRoute] string id,
             [FromBody] PostChangeOutlineGeometryParameters request,
