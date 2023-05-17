@@ -1,3 +1,11 @@
+## [5.74.1](https://github.com/informatievlaanderen/public-api/compare/v5.74.0...v5.74.1) (2023-05-17)
+
+
+### Bug Fixes
+
+* Added authorize scopes for road segment endpoints ([9e3a5bd](https://github.com/informatievlaanderen/public-api/commit/9e3a5bd801a04917f31196e41ae7baefcdf9bcf1))
+* Update packages and documentation for RR ([3b38c7b](https://github.com/informatievlaanderen/public-api/commit/3b38c7b391d27077790c103c3d4006f1a336ecdf))
+
 # [5.74.0](https://github.com/informatievlaanderen/public-api/compare/v5.73.7...v5.74.0) (2023-05-15)
 
 
