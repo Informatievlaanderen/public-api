@@ -21,7 +21,7 @@ namespace Public.Api.RoadSegment
         private const string ChangeRoadSegmentAttributesRoute = "wegsegmenten/acties/wijzigen/attributen";
 
         /// <summary>
-        ///     Attribuutwaarde van status, toegangsbeperking, wegklasse, wegbeheerder en wegcategorie van wegsegmenten wijzigen.
+        ///     Wijzig een attribuutwaarde voor één of meerdere wegsegmenten.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="actionContextAccessor"></param>
@@ -49,7 +49,7 @@ namespace Public.Api.RoadSegment
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(ChangeRoadSegmentAttributesParameters), typeof(ChangeRoadSegmentAttributesParametersExamples))]
-        [SwaggerOperation(OperationId = nameof(ChangeRoadSegmentAttributes), Description = "Attributen wijzigen van een wegsegment: status, toegangsbeperking, wegklasse, wegbeheerder en wegcategorie.")]
+        [SwaggerOperation(OperationId = nameof(ChangeRoadSegmentAttributes), Description = "Wijzig een attribuutwaarde voor één of meerdere wegsegmenten.")]
         public async Task<IActionResult> ChangeRoadSegmentAttributes(
             [FromBody] ChangeRoadSegmentAttributesParameters request,
             [FromServices] IActionContextAccessor actionContextAccessor,
