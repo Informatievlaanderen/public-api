@@ -2,8 +2,10 @@ namespace Public.Api.RoadSegment
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Be.Vlaanderen.Basisregisters.AcmIdm;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
+    using Common.Infrastructure.Controllers.Attributes;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
@@ -49,7 +51,11 @@ namespace Public.Api.RoadSegment
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(PostLinkStreetNameParameters), typeof(PostLinkStreetNameParametersExamples))]
-        [SwaggerOperation(OperationId = nameof(LinkRoadSegmentStreetName), Description = "Koppel een linker- en/of rechterstraatnaam met status `voorgesteld` of `inGebruik` aan een wegsegment waaraan momenteel geen linker- en/of rechterstraatnaam gekoppeld werd.")]
+        [SwaggerAuthorizeOperation(
+            OperationId = nameof(LinkRoadSegmentStreetName),
+            Description = "Koppel een linker- en/of rechterstraatnaam met status `voorgesteld` of `inGebruik` aan een wegsegment waaraan momenteel geen linker- en/of rechterstraatnaam gekoppeld werd.",
+            Authorize = Scopes.DvWrAttribuutWaardenBeheer
+        )]
         public async Task<IActionResult> LinkRoadSegmentStreetName(
             [FromRoute] string id,
             [FromBody] PostLinkStreetNameParameters request,

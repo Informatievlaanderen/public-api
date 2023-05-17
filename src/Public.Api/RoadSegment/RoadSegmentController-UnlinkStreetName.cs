@@ -2,6 +2,7 @@ namespace Public.Api.RoadSegment
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Be.Vlaanderen.Basisregisters.AcmIdm;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
@@ -49,7 +50,11 @@ namespace Public.Api.RoadSegment
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerRequestExample(typeof(PostUnlinkStreetNameParameters), typeof(PostUnlinkStreetNameParametersExamples))]
-        [SwaggerOperation(OperationId = nameof(UnlinkRoadSegmentStreetName), Description = "Ontkoppel een linker- en/of rechterstraatnaam van een wegsegment waaraan momenteel een linker- en/of rechterstraatnaam gekoppeld is.")]
+        [SwaggerAuthorizeOperation(
+            OperationId = nameof(UnlinkRoadSegmentStreetName),
+            Description = "Ontkoppel een linker- en/of rechterstraatnaam van een wegsegment waaraan momenteel een linker- en/of rechterstraatnaam gekoppeld is.",
+            Authorize = Scopes.DvWrAttribuutWaardenBeheer
+        )]
         public async Task<IActionResult> UnlinkRoadSegmentStreetName(
             [FromRoute] string id,
             [FromBody] PostUnlinkStreetNameParameters request,
