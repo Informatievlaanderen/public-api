@@ -20,6 +20,7 @@ namespace Public.Api.Infrastructure
     using Be.Vlaanderen.Basisregisters.DependencyInjection;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
+    using Common.Infrastructure.Controllers.Attributes;
     using Common.Infrastructure.Extensions;
     using Common.Infrastructure.Modules;
     using Configuration;
@@ -103,9 +104,9 @@ namespace Public.Api.Infrastructure
                         Origins = _configuration
                             .GetSection("Cors")
                             .GetChildren()
-                            .Select(c => c.Value)
+                            .Select(c => c.Value!)
                             .ToArray(),
-                        Headers = new[] {"x-api-key"}
+                        Headers = new[] {ApiKeyAuthAttribute.ApiKeyHeaderName}
                     },
                     Server =
                     {
