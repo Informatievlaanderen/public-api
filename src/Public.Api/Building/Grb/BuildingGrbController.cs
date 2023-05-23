@@ -7,11 +7,13 @@ namespace Public.Api.Building.Grb
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
     using Infrastructure.Configuration;
+    using Infrastructure.Swagger;
     using Infrastructure.Version;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
 
+    [ApiVisible(false)]
     [ApiVersion(Version.V2)]
     [AdvertiseApiVersions(Version.V2)]
     [ApiRoute("")]
