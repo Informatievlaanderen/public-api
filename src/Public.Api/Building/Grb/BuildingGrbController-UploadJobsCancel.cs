@@ -1,5 +1,6 @@
 namespace Public.Api.Building.Grb
 {
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
@@ -18,11 +19,12 @@ namespace Public.Api.Building.Grb
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpPost("gebouwen/uploads/jobs", Name = nameof(BuildingGrbUploadJob))]
-        public async Task<IActionResult> BuildingGrbUploadJob(
+        [HttpDelete("gebouwen/uploads/jobs/{objectId}", Name = nameof(BuildingGrbUploadJobsCancel))]
+        public async Task<IActionResult> BuildingGrbUploadJobsCancel(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] BuildingGrbUploadJobToggle buildingGrbUploadJobToggle,
+            [FromRoute] Guid objectId,
             CancellationToken cancellationToken = default)
         {
             if (!buildingGrbUploadJobToggle.FeatureEnabled)
@@ -32,7 +34,8 @@ namespace Public.Api.Building.Grb
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => new RestRequest("/uploads/jobs", Method.Post)
+            RestRequest BackendRequest() => new RestRequest("uploads/jobs/{objectId}", Method.Delete)
+                .AddParameter("objectId", objectId, ParameterType.UrlSegment)
                 .AddHeaderAuthorization(actionContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
@@ -44,5 +47,6 @@ namespace Public.Api.Building.Grb
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
         }
+
     }
 }
