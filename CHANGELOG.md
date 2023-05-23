@@ -1,3 +1,15 @@
+# [5.75.0](https://github.com/informatievlaanderen/public-api/compare/v5.74.1...v5.75.0) (2023-05-23)
+
+
+### Bug Fixes
+
+* use constant for headername ([3c7aa90](https://github.com/informatievlaanderen/public-api/commit/3c7aa90df3b499cbbca2a2ba68c5fe4ef75333ba))
+
+
+### Features
+
+* add building grb uploads ([3de518b](https://github.com/informatievlaanderen/public-api/commit/3de518bc26b188b0f9bd178ac6035b13f3a90d4a))
+
 ## [5.74.1](https://github.com/informatievlaanderen/public-api/compare/v5.74.0...v5.74.1) (2023-05-17)
 
 
