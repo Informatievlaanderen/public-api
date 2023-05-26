@@ -1,3 +1,10 @@
+## [5.75.1](https://github.com/informatievlaanderen/public-api/compare/v5.75.0...v5.75.1) (2023-05-26)
+
+
+### Bug Fixes
+
+* remove ‘Gebruik van de read API’s’ en ‘Gebruik van de feed API’s’ from introduction ([daee038](https://github.com/informatievlaanderen/public-api/commit/daee0388de18f64630e5314bd586fc37de1f4022))
+
 # [5.75.0](https://github.com/informatievlaanderen/public-api/compare/v5.74.1...v5.75.0) (2023-05-23)
 
 
