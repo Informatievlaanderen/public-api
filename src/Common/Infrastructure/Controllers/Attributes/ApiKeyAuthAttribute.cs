@@ -6,7 +6,9 @@ namespace Common.Infrastructure.Controllers.Attributes
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Extensions;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc.Controllers;
     using Microsoft.AspNetCore.Mvc.Filters;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -132,6 +134,15 @@ namespace Common.Infrastructure.Controllers.Attributes
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
+            var allowAnonymous = context.ActionDescriptor is ControllerActionDescriptor controllerActionDescriptor
+                                 && controllerActionDescriptor.MethodInfo.CustomAttributes
+                                     .Any(x => x.AttributeType == typeof(AllowAnonymousAttribute));
+            if (allowAnonymous)
+            {
+                await next();
+                return;
+            }
+
             if (context.HttpContext.Request.Headers.ContainsKey(ApiTokenHeaderName))
             {
                 await OnActionExecutionApiTokenAsync(context, next);
