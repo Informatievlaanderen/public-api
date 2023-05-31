@@ -1,5 +1,9 @@
 namespace Common.Infrastructure.Controllers.Attributes
 {
+    using System;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
     using Extensions;
     using Microsoft.AspNetCore.Mvc.Filters;
     using Microsoft.Extensions.Configuration;
@@ -7,10 +11,6 @@ namespace Common.Infrastructure.Controllers.Attributes
     using Microsoft.Extensions.Primitives;
     using Newtonsoft.Json;
     using ProblemDetailsException;
-    using System;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class ApiKeyAuthAttribute : Attribute, IAsyncActionFilter
