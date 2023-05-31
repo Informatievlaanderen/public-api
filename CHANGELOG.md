@@ -1,3 +1,16 @@
+# [5.76.0](https://github.com/informatievlaanderen/public-api/compare/v5.75.2...v5.76.0) (2023-05-31)
+
+
+### Bug Fixes
+
+* geojson endpoints allow anonymous ([8e90c52](https://github.com/informatievlaanderen/public-api/commit/8e90c5206aae06bb3386f0b05c7c87b8246e41ab))
+* remove AllowAnonymousAttribute ([644c47d](https://github.com/informatievlaanderen/public-api/commit/644c47df7db252158afa0469f1ede6b11fc0b3bf))
+
+
+### Features
+
+* WR-258 add extract geojson endpoints ([3da00e1](https://github.com/informatievlaanderen/public-api/commit/3da00e176e1fb352b01b24e31d14271c635576e4))
+
 ## [5.75.2](https://github.com/informatievlaanderen/public-api/compare/v5.75.1...v5.75.2) (2023-05-30)
 
 
