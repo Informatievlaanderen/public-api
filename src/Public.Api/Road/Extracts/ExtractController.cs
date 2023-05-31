@@ -19,7 +19,6 @@ namespace Public.Api.Road.Extracts
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Extract")]
     [ApiOrder(ApiOrder.Road.RoadExtract)]
-    [ApiKeyAuth("Road")]
     public partial class ExtractController : RegistryApiController<ExtractController>
     {
         private readonly HttpClient _httpClient;

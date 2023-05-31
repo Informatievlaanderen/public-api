@@ -5,12 +5,14 @@ namespace Public.Api.Road.Extracts
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
+    using Common.Infrastructure.Controllers.Attributes;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
     public partial class ExtractController
     {
+        [ApiKeyAuth("Road")]
         [HttpPost("wegen/extract/download/{downloadId}/uploads/feature-compare")]
         public async Task<ActionResult> PostFeatureCompareUpload(
             [FromRoute]string downloadId,
