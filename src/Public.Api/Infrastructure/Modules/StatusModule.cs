@@ -20,7 +20,8 @@ namespace Public.Api.Infrastructure.Modules
         public StatusModule(IConfiguration configuration)
         {
             _serviceName = configuration["DataDog:ServiceName"];
-            _apiStatusConfigurations = new NamedConfigurations<ApiStatusConfiguration>(configuration, "ApiConfiguration");
+            _apiStatusConfigurations =
+                new NamedConfigurations<ApiStatusConfiguration>(configuration, "ApiConfiguration");
         }
 
         protected override void Load(ContainerBuilder builder)
@@ -31,6 +32,8 @@ namespace Public.Api.Infrastructure.Modules
                 RegisterProjectionStatusClient(key, value.ProjectionsUrl, builder);
                 RegisterCacheStatusClient(key, value.ProjectionsUrl, builder);
                 RegisterSyndicationStatusClient(key, value.ProjectionsUrl, builder);
+                RegisterProducerStatusClient(key, value.ProducerUrl, builder);
+                RegisterProducerSnapshotOsloStatusClient(key, value.ProducerSnapshotOsloUrl, builder);
             }
         }
 
@@ -95,6 +98,38 @@ namespace Public.Api.Infrastructure.Modules
 
             builder
                 .Register(context => new SyndicationStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
+                .AsSelf();
+        }
+
+        private void RegisterProducerStatusClient(
+            string name,
+            string baseUrl,
+            ContainerBuilder builder)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                return;
+
+            var key = $"Producer-{name}";
+            RegisterKeyedRestClient(baseUrl, key, builder);
+
+            builder
+                .Register(context => new ProducerStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
+                .AsSelf();
+        }
+
+        private void RegisterProducerSnapshotOsloStatusClient(
+            string name,
+            string baseUrl,
+            ContainerBuilder builder)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                return;
+
+            var key = $"ProducerSnapshotOslo-{name}";
+            RegisterKeyedRestClient(baseUrl, key, builder);
+
+            builder
+                .Register(context => new ProducerSnapshotOsloStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
                 .AsSelf();
         }
 

@@ -1,6 +1,7 @@
 namespace Public.Api.Status
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
@@ -101,6 +102,43 @@ namespace Public.Api.Status
             var syndicationStatuses = SyndicationStatusResponse.From(keyValuePairs);
 
             return Ok(syndicationStatuses);
+        }
+
+        /// <summary>
+        /// Vraag de status van de producers op.
+        /// </summary>
+        /// <param name="clients"></param>
+        /// <param name="cancellationToken"></param>
+        /// <response code="200">Als opvragen van de status van de producers gelukt is.</response>
+        /// <response code="500">Als er een interne fout is opgetreden.</response>
+        [HttpGet("producer")]
+        [ProducesResponseType(typeof(ProjectionStatusResponse), StatusCodes.Status200OK)]
+        [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
+        public async Task<IActionResult> GetProducerStatus(
+            [FromServices] IEnumerable<ProducerStatusClient> producerClients,
+            [FromServices] IEnumerable<ProducerSnapshotOsloStatusClient> snapshotClients,
+            CancellationToken cancellationToken = default)
+        {
+            var keyValuePairsProducer =
+                (await producerClients.GetStatuses(cancellationToken)).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            var keyValuePairsSnapshot = await snapshotClients.GetStatuses(cancellationToken);
+
+            foreach (var (key, value) in keyValuePairsSnapshot)
+            {
+                if (keyValuePairsProducer.ContainsKey(key))
+                {
+                    keyValuePairsProducer[key].Projections =
+                        keyValuePairsProducer[key].Projections.Concat(value.Projections);
+                }
+                else
+                {
+                    keyValuePairsProducer.Add(key, value);
+                }
+            }
+
+            var projectionStatuses = ProjectionStatusResponse.From(keyValuePairsProducer);
+
+            return Ok(projectionStatuses);
         }
     }
 }
