@@ -1,3 +1,10 @@
+## [5.75.2](https://github.com/informatievlaanderen/public-api/compare/v5.75.1...v5.75.2) (2023-05-30)
+
+
+### Bug Fixes
+
+* remove foutmeldingen page from technische-info page gawr-4911 ([0f269d4](https://github.com/informatievlaanderen/public-api/commit/0f269d4a4f3cd9c04fd4befacd99f79100449aa4))
+
 ## [5.75.1](https://github.com/informatievlaanderen/public-api/compare/v5.75.0...v5.75.1) (2023-05-26)
 
 
