@@ -4,6 +4,7 @@ namespace Public.Api.Road.Extracts
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.Infrastructure.Controllers.Attributes;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
     using RestSharp;
@@ -11,6 +12,7 @@ namespace Public.Api.Road.Extracts
 
     public partial class ExtractController
     {
+        [ApiKeyAuth("Road")]
         [HttpPost("wegen/extract/downloadaanvragen/percontour")]
         public async Task<ActionResult> PostDownloadRequestByContour(
             [FromBody] DownloadExtractByContourRequestBody body,

@@ -4,11 +4,13 @@ namespace Public.Api.Road.Extracts
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.Infrastructure.Controllers.Attributes;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
 
     public partial class ExtractController
     {
+        [ApiKeyAuth("Road")]
         [HttpPost("wegen/extract/download/{downloadId}")]
         public async Task<ActionResult> PostDownloadRequest(
             [FromRoute]string downloadId,
