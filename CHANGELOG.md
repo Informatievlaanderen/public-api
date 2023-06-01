@@ -1,3 +1,10 @@
+# [5.77.0](https://github.com/informatievlaanderen/public-api/compare/v5.76.0...v5.77.0) (2023-06-01)
+
+
+### Features
+
+* add producer status for statuspage ([e61f20e](https://github.com/informatievlaanderen/public-api/commit/e61f20e11281191f73f81725a18a23167dd42bfb))
+
 # [5.76.0](https://github.com/informatievlaanderen/public-api/compare/v5.75.2...v5.76.0) (2023-05-31)
 
 
