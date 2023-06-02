@@ -125,10 +125,23 @@ namespace Public.Api.Status
 
             foreach (var (key, value) in keyValuePairsSnapshot)
             {
+                if (keyValuePairsProducer.ContainsKey(key) &&
+                    keyValuePairsProducer[key] is null && value is null)
+                {
+                    continue;
+                }
+
                 if (keyValuePairsProducer.ContainsKey(key))
                 {
-                    keyValuePairsProducer[key].Projections =
-                        keyValuePairsProducer[key].Projections.Concat(value.Projections);
+                    if (keyValuePairsProducer[key] is null && value is not null)
+                    {
+                        keyValuePairsProducer[key] = value;
+                    }
+                    else
+                    {
+                        keyValuePairsProducer[key].Projections =
+                            keyValuePairsProducer[key].Projections.Concat(value.Projections);
+                    }
                 }
                 else
                 {

@@ -7,12 +7,12 @@ namespace Public.Api.Status.Clients
 
     public static class ClientsExtensions
     {
-        public static async Task<IEnumerable<KeyValuePair<string,T>>> GetStatuses<T>(
+        public static async Task<IEnumerable<KeyValuePair<string,T?>>> GetStatuses<T>(
             this IEnumerable<IStatusClient<T>> clients,
             CancellationToken cancellationToken)
             => await Task.WhenAll(
                     clients
                         .AsParallel()
-                        .Select(async client => new KeyValuePair<string,T>(client.Registry, await client.GetStatus(cancellationToken))));
+                        .Select(async client => new KeyValuePair<string,T?>(client.Registry, await client.GetStatus(cancellationToken))));
     }
 }
