@@ -1,3 +1,10 @@
+## [5.77.1](https://github.com/informatievlaanderen/public-api/compare/v5.77.0...v5.77.1) (2023-06-02)
+
+
+### Bug Fixes
+
+* add produce urls ([#737](https://github.com/informatievlaanderen/public-api/issues/737)) ([342ef96](https://github.com/informatievlaanderen/public-api/commit/342ef960a7513f76c07fca4abddaae93766a67de))
+
 # [5.77.0](https://github.com/informatievlaanderen/public-api/compare/v5.76.0...v5.77.0) (2023-06-01)
 
 
