@@ -12,7 +12,6 @@ namespace Public.Api.RoadSegment
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
     using RoadRegistry.BackOffice.Api.RoadSegments;
-    using RoadRegistry.BackOffice.Api.RoadSegments.Parameters;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
