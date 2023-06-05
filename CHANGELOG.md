@@ -1,3 +1,10 @@
+## [5.77.3](https://github.com/informatievlaanderen/public-api/compare/v5.77.2...v5.77.3) (2023-06-05)
+
+
+### Bug Fixes
+
+* WR-725 WR-726 update WR documentation ([16badec](https://github.com/informatievlaanderen/public-api/commit/16badecd97e2922a21007d8cae9af0655cf9a5f5))
+
 ## [5.77.2](https://github.com/informatievlaanderen/public-api/compare/v5.77.1...v5.77.2) (2023-06-02)
 
 
