@@ -49,6 +49,7 @@ namespace Public.Api.Infrastructure
     using ProblemDetailsExceptionMappings;
     using Redis;
     using Road.Downloads;
+    using RoadRegistry.BackOffice.Api.Infrastructure.SchemaFilters;
     using Swagger;
     using Swashbuckle.AspNetCore.Filters;
     using Version;
@@ -158,7 +159,7 @@ namespace Public.Api.Infrastructure
                             typeof(ParcelRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.BackOffice.Abstractions.Requests.AttachAddressRequest).GetTypeInfo().Assembly.GetName().Name,
                             typeof(PublicServiceRegistry.Api.Backoffice.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(RoadRegistry.BackOffice.Api.Startup).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(RoadRegistry.BackOffice.Api.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(RoadRegistry.BackOffice.Abstractions.EndpointRequest).GetTypeInfo().Assembly.GetName().Name,
                             typeof(Be.Vlaanderen.Basisregisters.GrAr.Common.NodaHelpers).GetTypeInfo().Assembly.GetName().Name,
                             typeof(Be.Vlaanderen.Basisregisters.GrAr.Edit.GmlConstants).GetTypeInfo().Assembly.GetName().Name,
@@ -178,6 +179,18 @@ namespace Public.Api.Infrastructure
                                 x.OperationFilter<XApiFilter>();
                                 x.EnableAnnotations();
                                 x.CustomSchemaIds(type => SwashbuckleSchemaHelper.GetSchemaId(type));
+
+                                //TODO-rik with the next WR release this will be wrapped in a WR extension method
+                                x.SchemaFilter<OutlinedRoadSegmentMorphologySchemaFilter>();
+                                x.SchemaFilter<OutlinedRoadSegmentStatusSchemaFilter>();
+                                x.SchemaFilter<OutlinedRoadSegmentSurfaceTypeSchemaFilter>();
+                                x.SchemaFilter<RoadSegmentAccessRestrictionSchemaFilter>();
+                                x.SchemaFilter<RoadSegmentCategorySchemaFilter>();
+                                x.SchemaFilter<RoadSegmentGeometryDrawMethodSchemaFilter>();
+                                x.SchemaFilter<RoadSegmentLaneDirectionSchemaFilter>();
+                                x.SchemaFilter<RoadSegmentMorphologySchemaFilter>();
+                                x.SchemaFilter<RoadSegmentStatusSchemaFilter>();
+                                x.SchemaFilter<RoadSegmentSurfaceTypeSchemaFilter>();
                             }
                         }
                     },
