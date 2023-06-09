@@ -34,6 +34,7 @@ namespace Public.Api.Infrastructure.Modules
                 RegisterSyndicationStatusClient(key, value.ProjectionsUrl, builder);
                 RegisterProducerStatusClient(key, value.ProducerUrl, builder);
                 RegisterProducerSnapshotOsloStatusClient(key, value.ProducerSnapshotOsloUrl, builder);
+                RegisterConsumerStatusClient(key, value.ProjectionsUrl, builder);
             }
         }
 
@@ -130,6 +131,22 @@ namespace Public.Api.Infrastructure.Modules
 
             builder
                 .Register(context => new ProducerSnapshotOsloStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
+                .AsSelf();
+        }
+
+        private void RegisterConsumerStatusClient(
+            string name,
+            string baseUrl,
+            ContainerBuilder builder)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                return;
+
+            var key = $"Consumer-{name}";
+            RegisterKeyedRestClient(baseUrl, key, builder);
+
+            builder
+                .Register(context => new ConsumerStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
                 .AsSelf();
         }
 

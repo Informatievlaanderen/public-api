@@ -153,5 +153,25 @@ namespace Public.Api.Status
 
             return Ok(projectionStatuses);
         }
+
+        /// <summary>
+        /// Vraag de status van consumer op.
+        /// </summary>
+        /// <param name="clients"></param>
+        /// <param name="cancellationToken"></param>
+        /// <response code="200">Als opvragen van de status van de consumer gelukt is.</response>
+        /// <response code="500">Als er een interne fout is opgetreden.</response>
+        [HttpGet("consumer")]
+        [ProducesResponseType(typeof(ConsumerStatusResponse), StatusCodes.Status200OK)]
+        [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
+        public async Task<IActionResult> GetConsumerStatus(
+            [FromServices] IEnumerable<ConsumerStatusClient> clients,
+            CancellationToken cancellationToken = default)
+        {
+            var keyValuePairs = await clients.GetStatuses(cancellationToken);
+            var consumerStatusResponses = ConsumerStatusResponse.From(keyValuePairs);
+
+            return Ok(consumerStatusResponses);
+        }
     }
 }
