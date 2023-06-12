@@ -6,6 +6,7 @@ namespace Public.Api.Building.Grb
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
+    using Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -44,10 +45,15 @@ namespace Public.Api.Building.Grb
                 problemDetailsHelper,
                 cancellationToken: cancellationToken);
 
-            var preSignedUrlResponse =
-                Newtonsoft.Json.JsonConvert.DeserializeObject<DownloadJobResultsPreSignedUrlResponse>(value.Content);
+            if ((int)value.StatusCode >= 200 && (int)value.StatusCode <= 299)
+            {
+                var preSignedUrlResponse =
+                    Newtonsoft.Json.JsonConvert.DeserializeObject<DownloadJobResultsPreSignedUrlResponse>(value.Content);
 
-            return new RedirectResult(preSignedUrlResponse.GetUrl, false);
+                return new RedirectResult(preSignedUrlResponse.GetUrl, false);
+            }
+
+            return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
         }
     }
 
