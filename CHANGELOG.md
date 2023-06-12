@@ -1,3 +1,15 @@
+# [5.78.0](https://github.com/informatievlaanderen/public-api/compare/v5.77.3...v5.78.0) (2023-06-12)
+
+
+### Bug Fixes
+
+* return badrequest when no job records yet available ([ff7cebc](https://github.com/informatievlaanderen/public-api/commit/ff7cebced2a0978e6f5de242723329fffaf0642e))
+
+
+### Features
+
+* add grb upload job actions ([fbb6bb8](https://github.com/informatievlaanderen/public-api/commit/fbb6bb83a83421b06362ba79b0f1c641a82d1130))
+
 ## [5.77.3](https://github.com/informatievlaanderen/public-api/compare/v5.77.2...v5.77.3) (2023-06-05)
 
 
