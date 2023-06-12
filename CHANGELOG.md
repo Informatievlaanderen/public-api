@@ -1,3 +1,10 @@
+## [5.78.1](https://github.com/informatievlaanderen/public-api/compare/v5.78.0...v5.78.1) (2023-06-12)
+
+
+### Bug Fixes
+
+* temporarly don't load roadregistry event info - GAWR-4958 ([258be8b](https://github.com/informatievlaanderen/public-api/commit/258be8bca486fb3338a4f042ea2140eae6f90a9e))
+
 # [5.78.0](https://github.com/informatievlaanderen/public-api/compare/v5.77.3...v5.78.0) (2023-06-12)
 
 
