@@ -1,3 +1,10 @@
+## [5.78.2](https://github.com/informatievlaanderen/public-api/compare/v5.78.1...v5.78.2) (2023-06-13)
+
+
+### Bug Fixes
+
+* WR update packages ([cc0e47e](https://github.com/informatievlaanderen/public-api/commit/cc0e47ed1159a2df88e0f384d221cce0af04f956))
+
 ## [5.78.1](https://github.com/informatievlaanderen/public-api/compare/v5.78.0...v5.78.1) (2023-06-12)
 
 
