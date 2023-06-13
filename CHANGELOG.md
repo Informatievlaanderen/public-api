@@ -1,3 +1,10 @@
+# [5.79.0](https://github.com/informatievlaanderen/public-api/compare/v5.78.2...v5.79.0) (2023-06-13)
+
+
+### Features
+
+* add status controller consumer ([aeebc50](https://github.com/informatievlaanderen/public-api/commit/aeebc502e0c6c25caa4848d7763ccf5221a71eaa))
+
 ## [5.78.2](https://github.com/informatievlaanderen/public-api/compare/v5.78.1...v5.78.2) (2023-06-13)
 
 
