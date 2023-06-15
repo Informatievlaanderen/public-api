@@ -30,7 +30,6 @@ namespace Public.Api.Address.Oslo
         /// <param name="busnummer">Filter op het busnummer van het adres (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
-        /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van het totaal aantal adressen gelukt is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
@@ -61,12 +60,8 @@ namespace Public.Api.Address.Oslo
             [FromQuery] string busnummer,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromServices] IsAddressOsloApiEnabledToggle featureToggle,
             CancellationToken cancellationToken = default)
         {
-            if (!featureToggle.FeatureEnabled)
-                return NotFound();
-
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendCountRequest(

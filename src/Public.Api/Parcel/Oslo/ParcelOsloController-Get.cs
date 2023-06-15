@@ -23,7 +23,6 @@ namespace Public.Api.Parcel.Oslo
         /// <param name="objectId">Objectidentificator van het perceel (CaPaKey waarbij forward slash `/` vervangen werd door koppelteken `-`).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
-        /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als het perceel gevonden is.</response>
         /// <response code="403">Als u niet beschikt over de correcte rechten om deze actie uit te voeren.</response>
@@ -53,12 +52,8 @@ namespace Public.Api.Parcel.Oslo
             [FromRoute] string objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromServices] IsParcelOsloApiEnabledToggle featureToggle,
             CancellationToken cancellationToken = default)
         {
-            if (!featureToggle.FeatureEnabled)
-                return NotFound();
-
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);

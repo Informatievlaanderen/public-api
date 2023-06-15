@@ -24,7 +24,6 @@ namespace Public.Api.Municipality.Oslo
         /// <param name="objectId">Identificator van de gemeente.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
-        /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de gemeente gevonden is.</response>
         /// <response code="304">Als de gemeente niet gewijzigd is ten opzicht van uw verzoek.</response>
@@ -57,12 +56,8 @@ namespace Public.Api.Municipality.Oslo
             [FromRoute] int objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromServices] IsMunicipalityOsloApiEnabledToggle featureToggle,
             CancellationToken cancellationToken = default)
         {
-            if (!featureToggle.FeatureEnabled)
-                return NotFound();
-
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
