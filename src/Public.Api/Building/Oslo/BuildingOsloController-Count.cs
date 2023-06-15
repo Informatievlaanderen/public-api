@@ -22,7 +22,6 @@ namespace Public.Api.Building.Oslo
         /// </summary>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
-        /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van het totaal aantal gebouwen gelukt is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
@@ -47,12 +46,8 @@ namespace Public.Api.Building.Oslo
         public async Task<IActionResult> CountBuildingsV2(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromServices] IsBuildingOsloApiEnabledToggle featureToggle,
             CancellationToken cancellationToken = default)
         {
-            if (!featureToggle.FeatureEnabled)
-                return NotFound();
-
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendCountRequest();

@@ -26,7 +26,6 @@ namespace Public.Api.BuildingUnit.Oslo
         /// <param name="adresObjectId">Optionele objectidentificator van het gekoppelde adres.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
-        /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van het totaal aantal gebouweenheden gelukt is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
@@ -52,12 +51,8 @@ namespace Public.Api.BuildingUnit.Oslo
             [FromQuery] int? adresObjectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromServices] IsBuildingUnitOsloApiEnabledToggle featureToggle,
             CancellationToken cancellationToken = default)
         {
-            if (!featureToggle.FeatureEnabled)
-                return NotFound();
-
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendCountRequest(adresObjectId);
