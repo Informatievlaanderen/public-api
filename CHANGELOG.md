@@ -1,3 +1,10 @@
+## [5.79.2](https://github.com/informatievlaanderen/public-api/compare/v5.79.1...v5.79.2) (2023-06-20)
+
+
+### Bug Fixes
+
+* WR-698 update WR ([#748](https://github.com/informatievlaanderen/public-api/issues/748)) ([1d1e2dd](https://github.com/informatievlaanderen/public-api/commit/1d1e2ddc721205831378fb711e5067c2c58651c4))
+
 ## [5.79.1](https://github.com/informatievlaanderen/public-api/compare/v5.79.0...v5.79.1) (2023-06-16)
 
 # [5.79.0](https://github.com/informatievlaanderen/public-api/compare/v5.78.2...v5.79.0) (2023-06-13)
