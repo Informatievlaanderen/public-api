@@ -319,7 +319,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.EventHandling (>= 4.2.2)
       SqlStreamStore (>= 1.2)
     Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice (2.1.1) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice (3.48) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice (3.50) - copy_content_to_output_dir: always
       Amazon.Lambda.Core (>= 2.1)
       AWSSDK.DynamoDBv2 (>= 3.7.103.2)
       Be.Vlaanderen.Basisregisters.AggregateSource (>= 8.0)
@@ -350,11 +350,11 @@ NUGET
       Polly (>= 7.2.3)
       SqlStreamStore (>= 1.2)
       System.IdentityModel.Tokens.Jwt (>= 6.24)
-    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions (3.48) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions (3.50) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.BlobStore (>= 3.0)
       MediatR.Contracts (>= 2.0.1)
       Microsoft.Net.Http.Headers (>= 2.2.8)
-    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (3.48) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (3.50) - copy_content_to_output_dir: always
       AspNetCore.HealthChecks.SqlServer (>= 6.0.2)
       AWSSDK.Core (>= 3.7.106.34)
       Be.Vlaanderen.Basisregisters.Api (>= 20.0.1)
