@@ -11,7 +11,9 @@ namespace Public.Api.Tickets
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.Extensions.Options;
     using RestSharp;
+    using StreetNameRegistry.Api.Oslo.Abstractions.Infrastructure.Options;
     using Swashbuckle.AspNetCore.Filters;
     using TicketingService.Abstractions;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -79,6 +81,13 @@ namespace Public.Api.Tickets
 
     public class TicketExample : IExamplesProvider<Ticket>
     {
+        private readonly ResponseOptions _responseOptions;
+
+        public TicketExample(IOptions<ResponseOptions> responseOptions)
+        {
+            _responseOptions = responseOptions.Value;
+        }
+
         public Ticket GetExamples()
         {
             return new Ticket(
@@ -92,8 +101,7 @@ namespace Public.Api.Tickets
                     { "AggregateId", Guid.NewGuid().ToString("D") }
                 },
                 new TicketResult(
-                    new ETagResponse(
-                        "https://api.basisregisters.staging-vlaanderen.be/v2/straatnamen/3016611",
+                    new ETagResponse($"{string.Format(_responseOptions.DetailUrl, "3016611")}",
                         "D048BFCE9B392B49C352AE518F6F5393096A80ABC9A6B6DABC7CECC609B76A2264A2003CBB9DDEE44F4AB6AD7EC46960F3907171717C930371B11A3E9D01F970")));
         }
     }
