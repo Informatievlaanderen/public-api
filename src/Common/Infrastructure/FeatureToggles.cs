@@ -219,6 +219,13 @@ namespace Common.Infrastructure
         public PlanBuildingToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class MergeBuildingToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public MergeBuildingToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class BuildingUnderConstructionToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }

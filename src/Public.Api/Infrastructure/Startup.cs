@@ -362,6 +362,7 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new ReaddressStreetNameAddressesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ReaddressStreetNameAddresses))
 
                 .AddSingleton(c => new PlanBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.PlanBuilding))
+                .AddSingleton(c => new MergeBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.MergeBuilding))
                 .AddSingleton(c => new BuildingUnderConstructionToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.BuildingUnderConstruction))
                 .AddSingleton(c => new CorrectBuildingUnderConstructionToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingUnderConstruction))
                 .AddSingleton(c => new RealizeBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RealizeBuilding))

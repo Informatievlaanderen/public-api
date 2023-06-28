@@ -38,6 +38,7 @@ namespace Public.Api.Infrastructure.Configuration
         public bool ReaddressStreetNameAddresses { get; set; }
 
         public bool PlanBuilding { get; set; }
+        public bool MergeBuilding { get; set; }
         public bool BuildingUnderConstruction { get; set; }
         public bool CorrectBuildingUnderConstruction { get; set; }
         public bool RealizeBuilding { get; set; }
