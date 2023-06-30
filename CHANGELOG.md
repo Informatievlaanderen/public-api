@@ -1,3 +1,11 @@
+# [5.80.0](https://github.com/informatievlaanderen/public-api/compare/v5.79.3...v5.80.0) (2023-06-30)
+
+
+### Features
+
+* add merge building + expand order range ([dd76dae](https://github.com/informatievlaanderen/public-api/commit/dd76dae8833038cfc08c9c770bddf039d3d34819))
+* WR-689 add security endpoints ([f089e34](https://github.com/informatievlaanderen/public-api/commit/f089e349e395b41c303410ea2a067612f465205d))
+
 ## [5.79.3](https://github.com/informatievlaanderen/public-api/compare/v5.79.2...v5.79.3) (2023-06-27)
 
 ## [5.79.2](https://github.com/informatievlaanderen/public-api/compare/v5.79.1...v5.79.2) (2023-06-20)
