@@ -49,11 +49,10 @@ namespace Public.Api.Infrastructure
     using ProblemDetailsExceptionMappings;
     using Redis;
     using Road.Downloads;
-    using RoadRegistry.BackOffice.Api.Infrastructure.SchemaFilters;
     using Swagger;
     using Swashbuckle.AspNetCore.Filters;
     using Version;
-
+    
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup
     {
@@ -179,18 +178,8 @@ namespace Public.Api.Infrastructure
                                 x.OperationFilter<XApiFilter>();
                                 x.EnableAnnotations();
                                 x.CustomSchemaIds(type => SwashbuckleSchemaHelper.GetSchemaId(type));
-
-                                //TODO-rik with the next WR release this will be wrapped in a WR extension method
-                                x.SchemaFilter<OutlinedRoadSegmentMorphologySchemaFilter>();
-                                x.SchemaFilter<OutlinedRoadSegmentStatusSchemaFilter>();
-                                x.SchemaFilter<OutlinedRoadSegmentSurfaceTypeSchemaFilter>();
-                                x.SchemaFilter<RoadSegmentAccessRestrictionSchemaFilter>();
-                                x.SchemaFilter<RoadSegmentCategorySchemaFilter>();
-                                x.SchemaFilter<RoadSegmentGeometryDrawMethodSchemaFilter>();
-                                x.SchemaFilter<RoadSegmentLaneDirectionSchemaFilter>();
-                                x.SchemaFilter<RoadSegmentMorphologySchemaFilter>();
-                                x.SchemaFilter<RoadSegmentStatusSchemaFilter>();
-                                x.SchemaFilter<RoadSegmentSurfaceTypeSchemaFilter>();
+                                
+                                RoadRegistry.BackOffice.Api.Infrastructure.Extensions.SwaggerExtensions.AddRoadRegistrySchemaFilters(x);
                             }
                         }
                     },
