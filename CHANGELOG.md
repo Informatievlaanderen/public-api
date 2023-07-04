@@ -1,3 +1,10 @@
+## [5.80.1](https://github.com/informatievlaanderen/public-api/compare/v5.80.0...v5.80.1) (2023-07-04)
+
+
+### Bug Fixes
+
+* WR security endpoints ([350946c](https://github.com/informatievlaanderen/public-api/commit/350946cfa28f19c46da04ee49111491eb13d686a))
+
 # [5.80.0](https://github.com/informatievlaanderen/public-api/compare/v5.79.3...v5.80.0) (2023-06-30)
 
 
