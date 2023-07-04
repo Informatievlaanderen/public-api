@@ -6,27 +6,40 @@ namespace Public.Api.Road.Security
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using RestSharp;
 
     public partial class SecurityController
     {
         [HttpGet("wegen/security/exchange", Name = nameof(ExchangeCode))]
         public async Task<IActionResult> ExchangeCode(
+            string code,
+            string verifier,
+            string? redirectUri,
+            [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken)
         {
-            var response = await GetFromBackendWithBadRequestAsync(
-                _httpClient,
-                () => CreateBackendExchangeCodeRequest(),
+            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+
+            RestRequest BackendRequest()
+            {
+                return new RestRequest("security/exchange")
+                    .AddParameter("code", code)
+                    .AddParameter("verifier", verifier)
+                    .AddParameter("redirectUri", redirectUri)
+                    ;
+            }
+
+            var value = await GetFromBackendWithBadRequestAsync(
+                contentFormat.ContentType,
+                BackendRequest,
                 CreateDefaultHandleBadRequest(),
                 problemDetailsHelper,
-                cancellationToken
+                cancellationToken: cancellationToken
             );
 
-            return response.ToActionResult();
+            return new BackendResponseResult(value, BackendResponseResultOptions.ForRead());
         }
-
-        private static HttpRequestMessage CreateBackendExchangeCodeRequest() =>
-            new HttpRequestMessage(HttpMethod.Get, "security/exchange");
-
     }
 }
