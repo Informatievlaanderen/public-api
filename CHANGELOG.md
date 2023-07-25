@@ -1,3 +1,10 @@
+## [5.80.3](https://github.com/informatievlaanderen/public-api/compare/v5.80.2...v5.80.3) (2023-07-25)
+
+
+### Bug Fixes
+
+* bump building ([074a716](https://github.com/informatievlaanderen/public-api/commit/074a716f0dfff8769737a99c07161676a5610329))
+
 ## [5.80.2](https://github.com/informatievlaanderen/public-api/compare/v5.80.1...v5.80.2) (2023-07-17)
 
 
