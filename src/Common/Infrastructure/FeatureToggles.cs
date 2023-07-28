@@ -457,6 +457,13 @@ namespace Common.Infrastructure
         public ChangeRoadSegmentAttributesToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class ChangeRoadSegmentDynamicAttributesToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public ChangeRoadSegmentDynamicAttributesToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class ChangeRoadSegmentOutlineGeometryToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }

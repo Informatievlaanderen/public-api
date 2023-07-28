@@ -12,17 +12,17 @@ namespace Public.Api.RoadSegment
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
     using RoadRegistry.BackOffice.Api.RoadSegments;
-    using RoadRegistry.BackOffice.Api.RoadSegments.ChangeAttributes;
+    using RoadRegistry.BackOffice.Api.RoadSegments.ChangeDynamicAttributes;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class RoadSegmentController
     {
-        private const string ChangeRoadSegmentAttributesRoute = "wegsegmenten/acties/wijzigen/attributen";
+        private const string ChangeRoadSegmentDynamicAttributesRoute = "wegsegmenten/acties/wijzigen/dynamischeattributen";
 
         /// <summary>
-        ///     Wijzig een attribuutwaarde voor één of meerdere wegsegmenten.
+        ///     Wijzig een dynamisch attribuut voor één of meerdere wegsegmenten.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="actionContextAccessor"></param>
@@ -35,7 +35,7 @@ namespace Public.Api.RoadSegment
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpPost(ChangeRoadSegmentAttributesRoute, Name = nameof(ChangeRoadSegmentAttributes))]
+        [HttpPost(ChangeRoadSegmentDynamicAttributesRoute, Name = nameof(ChangeRoadSegmentDynamicAttributes))]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -49,17 +49,17 @@ namespace Public.Api.RoadSegment
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerRequestExample(typeof(ChangeRoadSegmentAttributesParameters), typeof(ChangeRoadSegmentAttributesParametersExamples))]
+        [SwaggerRequestExample(typeof(ChangeRoadSegmentDynamicAttributesParameters), typeof(ChangeRoadSegmentsDynamicAttributesParametersExamples))]
         [SwaggerAuthorizeOperation(
-            OperationId = nameof(ChangeRoadSegmentAttributes),
-            Description = "Attributen wijzigen van een wegsegment: status, toegangsbeperking, wegklasse, wegbeheerder en wegcategorie.",
+            OperationId = nameof(ChangeRoadSegmentDynamicAttributes),
+            Description = "Dynamische attributen wijzigen van een wegsegment: wegverharding, wegbreedte en aantal rijstroken.",
             Authorize = Scopes.DvWrAttribuutWaardenBeheer
         )]
-        public async Task<IActionResult> ChangeRoadSegmentAttributes(
-            [FromBody] ChangeRoadSegmentAttributesParameters request,
+        public async Task<IActionResult> ChangeRoadSegmentDynamicAttributes(
+            [FromBody] ChangeRoadSegmentDynamicAttributesParameters request,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] ChangeRoadSegmentAttributesToggle featureToggle,
+            [FromServices] ChangeRoadSegmentDynamicAttributesToggle featureToggle,
             CancellationToken cancellationToken)
         {
             if (!featureToggle.FeatureEnabled)
@@ -72,7 +72,7 @@ namespace Public.Api.RoadSegment
             RestRequest BackendRequest()
             {
                 return CreateBackendRequestWithJsonBody(
-                        ChangeRoadSegmentAttributesRoute,
+                        ChangeRoadSegmentDynamicAttributesRoute,
                         request,
                         Method.Post)
                     .AddHeaderAuthorization(actionContextAccessor);
