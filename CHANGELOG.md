@@ -1,3 +1,10 @@
+# [5.81.0](https://github.com/informatievlaanderen/public-api/compare/v5.80.3...v5.81.0) (2023-07-28)
+
+
+### Features
+
+* WR-703 add roadsegments change dynamicattributes endpoint ([#762](https://github.com/informatievlaanderen/public-api/issues/762)) ([54df44d](https://github.com/informatievlaanderen/public-api/commit/54df44d62782ced30b54210161791e2bf580c4d5))
+
 ## [5.80.3](https://github.com/informatievlaanderen/public-api/compare/v5.80.2...v5.80.3) (2023-07-25)
 
 
