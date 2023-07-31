@@ -19,7 +19,7 @@ namespace Public.Api.Road.Uploads
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Upload")]
     [ApiOrder(ApiOrder.Road.RoadUpload)]
-    [ApiKeyAuth("Road")]
+    [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
     public partial class UploadController : RegistryApiController<UploadController>
     {
         private readonly HttpClient _httpClient;

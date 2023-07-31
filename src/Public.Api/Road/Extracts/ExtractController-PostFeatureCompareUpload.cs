@@ -12,7 +12,7 @@ namespace Public.Api.Road.Extracts
 
     public partial class ExtractController
     {
-        [ApiKeyAuth("Road")]
+        [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
         [HttpPost("wegen/extract/download/{downloadId}/uploads/feature-compare")]
         public async Task<ActionResult> PostFeatureCompareUpload(
             [FromRoute]string downloadId,

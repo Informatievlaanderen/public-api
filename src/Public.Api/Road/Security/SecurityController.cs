@@ -1,6 +1,5 @@
 namespace Public.Api.Road.Security
 {
-    using System.Net.Http;
     using Autofac.Features.AttributeFilters;
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;

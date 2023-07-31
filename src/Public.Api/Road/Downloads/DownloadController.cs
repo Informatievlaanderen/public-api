@@ -19,7 +19,7 @@ namespace Public.Api.Road.Downloads
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Download")]
     [ApiOrder(ApiOrder.Road.Download)]
-    [ApiKeyAuth("Road")]
+    [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
     public partial class DownloadController : RegistryApiController<DownloadController>
     {
         private readonly HttpClient _httpClient;
