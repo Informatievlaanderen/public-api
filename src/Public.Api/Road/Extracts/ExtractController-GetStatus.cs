@@ -11,7 +11,7 @@ namespace Public.Api.Road.Extracts
 
     public partial class ExtractController
     {
-        [ApiKeyAuth("Road")]
+        [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
         [HttpGet("wegen/extract/upload/{uploadId}/status")]
         public async Task<ActionResult> GetStatus(
             [FromRoute]string uploadId,

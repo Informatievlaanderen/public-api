@@ -4,7 +4,6 @@ namespace Public.Api.Road.Information
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
-    using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
@@ -18,7 +17,6 @@ namespace Public.Api.Road.Information
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Informatie")]
     [ApiOrder(ApiOrder.Road.Information)]
-    [ApiKeyAuth("Road")]
     public partial class InformationController : RegistryApiController<InformationController>
     {
         protected override string NotFoundExceptionMessage => "Onbestaande informatie.";

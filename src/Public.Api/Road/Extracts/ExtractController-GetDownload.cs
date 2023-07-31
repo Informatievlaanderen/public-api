@@ -10,7 +10,7 @@ namespace Public.Api.Road.Extracts
 
     public partial class ExtractController
     {
-        [ApiKeyAuth("Road")]
+        [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
         [HttpPost("wegen/extract/download/{downloadId}")]
         public async Task<ActionResult> PostDownloadRequest(
             [FromRoute]string downloadId,

@@ -21,8 +21,9 @@ namespace Common.Infrastructure.Controllers.Attributes
 
         private readonly string _requiredAccess;
 
-        public ApiKeyAuthAttribute(string requiredAccess)
-            => _requiredAccess = requiredAccess;
+        public bool AllowAuthorizationHeader { get; set; }
+
+        public ApiKeyAuthAttribute(string requiredAccess) => _requiredAccess = requiredAccess;
 
         public Task OnActionExecutionApiKeyAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
@@ -130,6 +131,12 @@ namespace Common.Infrastructure.Controllers.Attributes
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
+            if (AllowAuthorizationHeader && context.HttpContext.Request.Headers.Authorization.Any())
+            {
+                await next();
+                return;
+            }
+
             if (context.HttpContext.Request.Headers.ContainsKey(ApiTokenHeaderName))
             {
                 await OnActionExecutionApiTokenAsync(context, next);

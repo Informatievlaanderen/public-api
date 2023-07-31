@@ -3,6 +3,7 @@ namespace Public.Api.Road.Security
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.Infrastructure.Controllers.Attributes;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ namespace Public.Api.Road.Security
     public partial class SecurityController
     {
         [HttpGet("wegen/security/user", Name = nameof(GetUser))]
+        [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
         public async Task<IActionResult> GetUser(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
