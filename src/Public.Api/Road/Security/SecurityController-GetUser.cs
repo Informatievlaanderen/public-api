@@ -3,6 +3,7 @@ namespace Public.Api.Road.Security
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -20,7 +21,8 @@ namespace Public.Api.Road.Security
 
             RestRequest BackendRequest()
             {
-                return new RestRequest("security/user");
+                return new RestRequest("security/user")
+                    .AddHeaderAuthorization(actionContextAccessor); ;
             }
 
             var value = await GetFromBackendWithBadRequestAsync(
