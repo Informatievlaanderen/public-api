@@ -1,3 +1,10 @@
+## [5.81.1](https://github.com/informatievlaanderen/public-api/compare/v5.81.0...v5.81.1) (2023-07-31)
+
+
+### Bug Fixes
+
+* WR-689 forward Authorization header to backoffice ([8d0b85e](https://github.com/informatievlaanderen/public-api/commit/8d0b85e52f0fb9de443918f9480c6b852737819b))
+
 # [5.81.0](https://github.com/informatievlaanderen/public-api/compare/v5.80.3...v5.81.0) (2023-07-28)
 
 
