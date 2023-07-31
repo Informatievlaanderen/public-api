@@ -22,7 +22,7 @@ namespace Public.Api.Road.Security
             RestRequest BackendRequest()
             {
                 return new RestRequest("security/user")
-                    .AddHeaderAuthorization(actionContextAccessor); ;
+                    .AddHeaderAuthorization(actionContextAccessor);
             }
 
             var value = await GetFromBackendWithBadRequestAsync(
