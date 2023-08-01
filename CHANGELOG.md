@@ -1,3 +1,10 @@
+## [5.81.2](https://github.com/informatievlaanderen/public-api/compare/v5.81.1...v5.81.2) (2023-08-01)
+
+
+### Bug Fixes
+
+* WR-689 ApiKey header work simultaneously with Authorization header ([961e98e](https://github.com/informatievlaanderen/public-api/commit/961e98e27b8e005d6e9f5cfaee7bd66c3cb7c42e))
+
 ## [5.81.1](https://github.com/informatievlaanderen/public-api/compare/v5.81.0...v5.81.1) (2023-07-31)
 
 
