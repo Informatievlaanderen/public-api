@@ -52,7 +52,7 @@ namespace Public.Api.Infrastructure
     using Swagger;
     using Swashbuckle.AspNetCore.Filters;
     using Version;
-    
+
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup
     {
@@ -178,7 +178,7 @@ namespace Public.Api.Infrastructure
                                 x.OperationFilter<XApiFilter>();
                                 x.EnableAnnotations();
                                 x.CustomSchemaIds(type => SwashbuckleSchemaHelper.GetSchemaId(type));
-                                
+
                                 RoadRegistry.BackOffice.Api.Infrastructure.Extensions.SwaggerExtensions.AddRoadRegistrySchemaFilters(x);
                             }
                         }
@@ -701,15 +701,7 @@ Doelpubliek | REST basis-URL                                                    
 Iedereen    | {_configuration["BaseUrl"]} |
 
 ");
-
-            if (isProposeStreetName)
-                text.AppendLine(
-                    $@"## Gebruik van de edit API's
-
-### Werking edit API's
-Informatie over hoe de edit API's van het gebouwen-en adressenregister werken kan gevonden worden op volgende pagina: {siteUrlWithDocs}/editendpointsgrar.
-");
-            return text.ToString();
+return text.ToString();
         }
     }
 }
