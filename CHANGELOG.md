@@ -1,3 +1,15 @@
+# [5.82.0](https://github.com/informatievlaanderen/public-api/compare/v5.81.2...v5.82.0) (2023-08-08)
+
+
+### Bug Fixes
+
+* remove section 'Gebruik van api's' ([d758a2e](https://github.com/informatievlaanderen/public-api/commit/d758a2e0858fa81231f909f1425af71e0dc6471e))
+
+
+### Features
+
+* WR-753 add endpoint "get road organizations" + sort WR endpoints ([#766](https://github.com/informatievlaanderen/public-api/issues/766)) ([3f8c2da](https://github.com/informatievlaanderen/public-api/commit/3f8c2dad94046c7662646330b80a57ef436ab1e1))
+
 ## [5.81.2](https://github.com/informatievlaanderen/public-api/compare/v5.81.1...v5.81.2) (2023-08-01)
 
 
