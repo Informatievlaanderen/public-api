@@ -91,5 +91,6 @@ namespace Public.Api.Infrastructure.Configuration
         public bool LinkRoadSegmentStreetName { get; set; }
         public bool UnlinkRoadSegmentStreetName { get; set; }
         public bool GetRoadSegment { get; set; }
+        public bool GetRoadOrganizations { get; set; }
     }
 }

@@ -498,12 +498,18 @@ namespace Common.Infrastructure
 
         public UnlinkRoadSegmentStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
-
-
+    
     public class GetRoadSegmentToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
         public GetRoadSegmentToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+    
+    public class GetRoadOrganizationsToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public GetRoadOrganizationsToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 }

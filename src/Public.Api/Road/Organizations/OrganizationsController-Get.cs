@@ -1,4 +1,4 @@
-namespace Public.Api.RoadSegment
+namespace Public.Api.Road.Organizations
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -10,43 +10,38 @@ namespace Public.Api.RoadSegment
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
-    using RoadRegistry.BackOffice.Api.RoadSegments;
+    using RoadRegistry.BackOffice.Api.Organizations;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
-    public partial class RoadSegmentController
+    public partial class OrganizationsController
     {
-        private const string GetRoadSegmentRoute = "wegsegmenten/{id}";
+        private const string GetOrganizationsRoute = "wegen/organisaties";
 
         /// <summary>
-        ///     Vraag een wegsegment op.
+        ///     Vraag een lijst met organisaties op.
         /// </summary>
-        /// <param name="id">De identificator van het wegsegment.</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als het wegsegment gevonden is.</response>
-        /// <response code="404">Als het wegsegment niet gevonden kan worden.</response>
+        /// <response code="200">Als de opvraging van een lijst met organisaties gelukt is.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet(GetRoadSegmentRoute, Name = nameof(GetRoadSegment))]
+        [HttpGet(GetOrganizationsRoute, Name = nameof(Get))]
         [ApiOrder(ApiOrder.Road.RoadSegment + 1)]
-        [ProducesResponseType(typeof(GetRoadSegmentResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(GetOrganizationsResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(GetRoadSegmentResponseResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(RoadSegmentNotFoundResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(GetOrganizationsResponseResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerOperation(OperationId = nameof(GetRoadSegment))]
-        public async Task<IActionResult> GetRoadSegment(
-            [FromRoute] int id,
+        [SwaggerOperation(OperationId = nameof(Get))]
+        public async Task<IActionResult> Get(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] GetRoadSegmentToggle featureToggle,
+            [FromServices] GetRoadOrganizationsToggle featureToggle,
             CancellationToken cancellationToken)
         {
             if (!featureToggle.FeatureEnabled)
@@ -58,11 +53,7 @@ namespace Public.Api.RoadSegment
 
             RestRequest BackendRequest()
             {
-                return new RestRequest(GetRoadSegmentRoute)
-                    {
-                        Method = Method.Get
-                    }
-                    .AddParameter(nameof(id), id, ParameterType.UrlSegment);
+                return new RestRequest("organizations");
             }
 
             var value = await GetFromBackendWithBadRequestAsync(

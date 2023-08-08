@@ -11,6 +11,7 @@ namespace Public.Api.RoadSegment
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Public.Api.Infrastructure.Swagger;
     using RestSharp;
     using RoadRegistry.BackOffice.Api.RoadSegments;
     using Swashbuckle.AspNetCore.Annotations;
@@ -37,6 +38,7 @@ namespace Public.Api.RoadSegment
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpPost(LinkRoadSegmentStreetNameRoute, Name = nameof(LinkRoadSegmentStreetName))]
+        [ApiOrder(ApiOrder.Road.RoadSegment + 8)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
