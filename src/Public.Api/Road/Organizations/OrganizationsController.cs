@@ -1,4 +1,4 @@
-namespace Public.Api.RoadSegment
+namespace Public.Api.Road.Organizations
 {
     using Autofac.Features.AttributeFilters;
     using Be.Vlaanderen.Basisregisters.Api;
@@ -21,20 +21,20 @@ namespace Public.Api.RoadSegment
     [ApiConsumes(EndpointType.BackOffice)]
     [ApiProduces(EndpointType.BackOffice)]
     [ApiOrder(ApiOrder.Road.RoadSegment)]
-    public partial class RoadSegmentController : RegistryApiController<RoadSegmentController>
+    public partial class OrganizationsController : RegistryApiController<OrganizationsController>
     {
-        public RoadSegmentController(
+        protected override string NotFoundExceptionMessage => "Onbestaande organisatie.";
+        protected override string GoneExceptionMessage => "Verwijderde organisatie.";
+
+        public OrganizationsController(
             IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
-            ILogger<RoadSegmentController> logger)
+            ILogger<OrganizationsController> logger)
             : base(httpContextAccessor, redis, logger, restClient, cacheToggle)
         {
         }
-
-        protected override string NotFoundExceptionMessage => "Onbestaand wegsegment.";
-        protected override string GoneExceptionMessage => "Verwijderd wegsegment.";
 
         private static ContentFormat DetermineFormat(ActionContext? context)
         {
