@@ -30,7 +30,7 @@ namespace Public.Api.Road.Organizations
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet(GetOrganizationsRoute, Name = nameof(Get))]
-        [ApiOrder(ApiOrder.Road.RoadSegment + 1)]
+        [ApiOrder(ApiOrder.Road.Organization + 1)]
         [ProducesResponseType(typeof(GetOrganizationsResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]

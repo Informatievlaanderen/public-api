@@ -17,7 +17,7 @@ namespace Public.Api.Road.Organizations
     [ApiVersion(Version.Current)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
-    [ApiExplorerSettings(GroupName = "Wegsegmenten")]
+    [ApiExplorerSettings(GroupName = "Wegen")]
     [ApiConsumes(EndpointType.BackOffice)]
     [ApiProduces(EndpointType.BackOffice)]
     [ApiOrder(ApiOrder.Road.RoadSegment)]
