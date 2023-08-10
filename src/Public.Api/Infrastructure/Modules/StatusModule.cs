@@ -35,6 +35,7 @@ namespace Public.Api.Infrastructure.Modules
                 RegisterProducerStatusClient(key, value.ProducerUrl, builder);
                 RegisterProducerSnapshotOsloStatusClient(key, value.ProducerSnapshotOsloUrl, builder);
                 RegisterConsumerStatusClient(key, value.ProjectionsUrl, builder);
+                RegisterImporterGrbStatusClient(key, value.ImporterGrbUrl, builder);
             }
         }
 
@@ -147,6 +148,22 @@ namespace Public.Api.Infrastructure.Modules
 
             builder
                 .Register(context => new ConsumerStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
+                .AsSelf();
+        }
+
+        private void RegisterImporterGrbStatusClient(
+            string name,
+            string baseUrl,
+            ContainerBuilder builder)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                return;
+
+            var key = $"ImporterGrb-{name}";
+            RegisterKeyedRestClient(baseUrl, key, builder);
+
+            builder
+                .Register(context => new ImporterGrbStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
                 .AsSelf();
         }
 

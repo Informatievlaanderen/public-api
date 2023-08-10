@@ -173,5 +173,25 @@ namespace Public.Api.Status
 
             return Ok(consumerStatusResponses);
         }
+
+        /// <summary>
+        /// Vraag de status van parcel importer grb op.
+        /// </summary>
+        /// <param name="clients"></param>
+        /// <param name="cancellationToken"></param>
+        /// <response code="200">Als opvragen van de status van de importer grb gelukt is.</response>
+        /// <response code="500">Als er een interne fout is opgetreden.</response>
+        [HttpGet("importergrb")]
+        [ProducesResponseType(typeof(ImportStatusResponse), StatusCodes.Status200OK)]
+        [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
+        public async Task<IActionResult> GetImporterGrbStatus(
+            [FromServices] IEnumerable<ImporterGrbStatusClient> clients,
+            CancellationToken cancellationToken = default)
+        {
+            var keyValuePairs = await clients.GetStatuses(cancellationToken);
+            var importStatuses = ImportStatusResponse.From(keyValuePairs);
+
+            return Ok(importStatuses);
+        }
     }
 }
