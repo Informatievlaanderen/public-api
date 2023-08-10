@@ -1,3 +1,10 @@
+# [5.83.0](https://github.com/informatievlaanderen/public-api/compare/v5.82.0...v5.83.0) (2023-08-10)
+
+
+### Features
+
+* add status for importer grb ([2926533](https://github.com/informatievlaanderen/public-api/commit/2926533508c1a94e8b3d28b8aa94fc566e12edd5))
+
 # [5.82.0](https://github.com/informatievlaanderen/public-api/compare/v5.81.2...v5.82.0) (2023-08-08)
 
 
