@@ -44,13 +44,13 @@ NUGET
       Be.Vlaanderen.Basisregisters.NisCodeService.Proxy.HttpProxy (1.0.10)
       IdentityModel.AspNetCore.OAuth2Introspection (6.1)
       Microsoft.AspNetCore.Authentication.JwtBearer (6.0.11)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions (3.95.8) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions (3.99.10) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 20.0)
       MediatR.Contracts (>= 2.0.1)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (3.95.8) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (3.99.10) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 19.0)
       MediatR.Contracts (>= 2.0.1)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo (3.95.8) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo (3.99.10) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 19.0)
       MediatR.Contracts (>= 2.0.1)
     Be.Vlaanderen.Basisregisters.AggregateSource (8.0)
@@ -187,11 +187,11 @@ NUGET
       Fake.IO.FileSystem (>= 5.22)
       Fake.JavaScript.Npm (>= 5.22)
       Newtonsoft.Json (>= 13.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions (3.83.4) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions (3.85) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 20.0)
       MediatR.Contracts (>= 2.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (3.83.4) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo (3.83.4) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (3.85) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo (3.85) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.CommandHandling (8.0)
     Be.Vlaanderen.Basisregisters.CommandHandling.Idempotency (8.0)
       Be.Vlaanderen.Basisregisters.Converters.Timestamp (>= 3.0)
@@ -247,12 +247,14 @@ NUGET
       Autofac.Extensions.DependencyInjection (>= 7.2)
       Be.Vlaanderen.Basisregisters.EventHandling (4.2.3)
     Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic (3.0.1)
-    Be.Vlaanderen.Basisregisters.GrAr.Common (19.1)
+    Be.Vlaanderen.Basisregisters.GrAr.Common (20.3.1)
       Be.Vlaanderen.Basisregisters.AggregateSource (>= 8.0)
-      NodaTime (>= 3.0.10)
-    Be.Vlaanderen.Basisregisters.GrAr.Edit (19.1)
+      Be.Vlaanderen.Basisregisters.CommandHandling (>= 8.0)
       NetTopologySuite (>= 2.4)
-    Be.Vlaanderen.Basisregisters.GrAr.Import (19.1)
+      NodaTime (>= 3.0.10)
+    Be.Vlaanderen.Basisregisters.GrAr.Edit (20.3.1)
+      NetTopologySuite (>= 2.4)
+    Be.Vlaanderen.Basisregisters.GrAr.Import (20.3.1)
       Autofac (>= 6.3)
       Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore (>= 8.0)
       Be.Vlaanderen.Basisregisters.CommandHandling (>= 8.0)
@@ -268,34 +270,35 @@ NUGET
       Serilog.Extensions.Logging (>= 3.1)
       Serilog.Sinks.Email (>= 2.4)
       System.Threading.Tasks.Dataflow (>= 6.0)
-    Be.Vlaanderen.Basisregisters.GrAr.Legacy (19.1)
+    Be.Vlaanderen.Basisregisters.GrAr.Legacy (20.3.1)
+      Be.Vlaanderen.Basisregisters.GrAr.Common (20.3.1)
       Be.Vlaanderen.Basisregisters.Utilities.Rfc3339DateTimeOffset (>= 3.0)
       Newtonsoft.Json (>= 13.0.1)
-    Be.Vlaanderen.Basisregisters.GrAr.Provenance (19.1)
+    Be.Vlaanderen.Basisregisters.GrAr.Provenance (20.3.1)
       Be.Vlaanderen.Basisregisters.CommandHandling (>= 8.0)
       Be.Vlaanderen.Basisregisters.Crab (>= 3.0)
-      Be.Vlaanderen.Basisregisters.GrAr.Common (19.1)
+      Be.Vlaanderen.Basisregisters.GrAr.Common (20.3.1)
       Microsoft.CSharp (>= 4.7)
     Be.Vlaanderen.Basisregisters.MessageHandling.AwsSqs.Simple (4.9.1) - copy_content_to_output_dir: always
       AWSSDK.Core (>= 3.7.106.8)
       AWSSDK.SQS (>= 3.7.100.101)
       Microsoft.Extensions.Logging (>= 6.0)
     Be.Vlaanderen.Basisregisters.Middleware.AddProblemJsonHeader (2.0)
-    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (4.4.3) - copy_content_to_output_dir: always
-      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 18.1.1)
-    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo (4.4.3) - copy_content_to_output_dir: always
-      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 18.1.1)
+    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy (4.5.6) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 19.0)
+    Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo (4.5.6) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 19.0)
     Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions (1.0.10)
       Microsoft.Extensions.Logging.Abstractions (>= 6.0.3)
     Be.Vlaanderen.Basisregisters.NisCodeService.Proxy.HttpProxy (1.0.10)
       Microsoft.Extensions.Logging.Abstractions (>= 6.0.3)
-    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions (4.18.1) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions (4.31.4) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 20.0)
       MediatR.Contracts (>= 2.0.1)
-    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (4.18.1) - copy_content_to_output_dir: always
-      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 18.9.7)
-    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo (4.18.1) - copy_content_to_output_dir: always
-      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 18.9.7)
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (4.31.4) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 20.3.1)
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo (4.31.4) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 20.3.1)
     Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (3.7.2) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo (3.7.2) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.ProblemDetails (8.0.6)
@@ -369,14 +372,14 @@ NUGET
     Be.Vlaanderen.Basisregisters.Shaperon.Geometries (9.0.1) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.Sqs (2.1.3)
       MediatR (>= 12.0.1)
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions (3.27.3) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions (3.31.6) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 20.0)
       MediatR.Contracts (>= 2.0.1)
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (3.27.3) - copy_content_to_output_dir: always
-      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 18.4)
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy (3.31.6) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 19.0)
       MediatR.Contracts (>= 2.0.1)
-    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo (3.27.3) - copy_content_to_output_dir: always
-      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 18.4)
+    Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo (3.31.6) - copy_content_to_output_dir: always
+      Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 19.0)
       MediatR.Contracts (>= 2.0.1)
     Be.Vlaanderen.Basisregisters.TicketingService.Abstractions (1.9.2)
     Be.Vlaanderen.Basisregisters.Utilities.HashCodeCalculator (3.0)
