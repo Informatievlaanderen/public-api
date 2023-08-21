@@ -1,3 +1,10 @@
+## [5.84.1](https://github.com/informatievlaanderen/public-api/compare/v5.84.0...v5.84.1) (2023-08-21)
+
+
+### Bug Fixes
+
+* grb job records route ([8e15063](https://github.com/informatievlaanderen/public-api/commit/8e1506315fcd07bfae06339be3e91e83d114947d))
+
 # [5.84.0](https://github.com/informatievlaanderen/public-api/compare/v5.83.0...v5.84.0) (2023-08-21)
 
 
