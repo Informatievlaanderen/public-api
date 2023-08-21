@@ -1,3 +1,10 @@
+# [5.84.0](https://github.com/informatievlaanderen/public-api/compare/v5.83.0...v5.84.0) (2023-08-21)
+
+
+### Features
+
+* bump grar registry libs ([7f47c49](https://github.com/informatievlaanderen/public-api/commit/7f47c49059f53ec40134522694c020188a64b49f))
+
 # [5.83.0](https://github.com/informatievlaanderen/public-api/compare/v5.82.0...v5.83.0) (2023-08-10)
 
 
