@@ -19,7 +19,7 @@ namespace Public.Api.Building.Grb
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpGet("gebouwen/uploads/jobs/{objectId}/records", Name = nameof(BuildingGrbUploadJobsResults))]
+        [HttpGet("gebouwen/uploads/jobs/{objectId}/jobrecords", Name = nameof(BuildingGrbUploadJobsResults))]
         public async Task<IActionResult> BuildingGrbUploadJobsRecords(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
@@ -34,7 +34,7 @@ namespace Public.Api.Building.Grb
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            RestRequest BackendRequest() => new RestRequest("uploads/jobs/{objectId}/records", Method.Get)
+            RestRequest BackendRequest() => new RestRequest("uploads/jobs/{objectId}/jobrecords", Method.Get)
                 .AddParameter("objectId", objectId, ParameterType.UrlSegment)
                 .AddHeaderAuthorization(actionContextAccessor);
 
