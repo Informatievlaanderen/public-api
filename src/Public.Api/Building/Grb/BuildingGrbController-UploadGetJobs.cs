@@ -18,7 +18,7 @@ namespace Public.Api.Building.Grb
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpGet("gebouwen/uploads/jobs", Name = nameof(BuildingGrbUploadGetActiveJobs))]
+        [HttpGet("gebouwen/uploads/jobs", Name = nameof(BuildingGrbUploadGetJobs))]
         public async Task<IActionResult> BuildingGrbUploadGetJobs(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
