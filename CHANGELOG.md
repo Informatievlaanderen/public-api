@@ -1,3 +1,10 @@
+## [5.84.2](https://github.com/informatievlaanderen/public-api/compare/v5.84.1...v5.84.2) (2023-09-01)
+
+
+### Bug Fixes
+
+* attribute routes ([ad63479](https://github.com/informatievlaanderen/public-api/commit/ad6347910904326db50f2f382b39d8b741e3cc54))
+
 ## [5.84.1](https://github.com/informatievlaanderen/public-api/compare/v5.84.0...v5.84.1) (2023-08-21)
 
 
