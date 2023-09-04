@@ -38,9 +38,9 @@ nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstraction
 nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          3.85.0  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo            3.85.0  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions      3.85.0  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           3.99.10 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo             3.99.10 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions       3.99.10 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           3.101.8 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo             3.101.8 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions       3.101.8 copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            4.31.4  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo              4.31.4  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions       4.31.4  copy_content_to_output_dir: always
