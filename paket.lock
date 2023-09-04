@@ -44,13 +44,13 @@ NUGET
       Be.Vlaanderen.Basisregisters.NisCodeService.Proxy.HttpProxy (1.0.10)
       IdentityModel.AspNetCore.OAuth2Introspection (6.1)
       Microsoft.AspNetCore.Authentication.JwtBearer (6.0.11)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions (3.99.10) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions (3.101.8) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 20.0)
       MediatR.Contracts (>= 2.0.1)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (3.99.10) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy (3.101.8) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 19.0)
       MediatR.Contracts (>= 2.0.1)
-    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo (3.99.10) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo (3.101.8) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 19.0)
       MediatR.Contracts (>= 2.0.1)
     Be.Vlaanderen.Basisregisters.AggregateSource (8.0)
