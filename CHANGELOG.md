@@ -1,3 +1,10 @@
+## [5.84.3](https://github.com/informatievlaanderen/public-api/compare/v5.84.2...v5.84.3) (2023-09-04)
+
+
+### Bug Fixes
+
+* nullref producer status ([8647f60](https://github.com/informatievlaanderen/public-api/commit/8647f602addc225c38653566daad090835fe6a04))
+
 ## [5.84.2](https://github.com/informatievlaanderen/public-api/compare/v5.84.1...v5.84.2) (2023-09-01)
 
 
