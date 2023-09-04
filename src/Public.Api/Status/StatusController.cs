@@ -1,5 +1,6 @@
 namespace Public.Api.Status
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
@@ -8,12 +9,12 @@ namespace Public.Api.Status
     using Clients;
     using Common.Infrastructure.Controllers;
     using Infrastructure.Swagger;
-    using Infrastructure.Version;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Responses;
     using AcceptTypes = Be.Vlaanderen.Basisregisters.Api.AcceptTypes;
+    using Version = Infrastructure.Version.Version;
 
     [ApiVersion(Version.Current)]
     [ApiVersion(Version.V2)]
@@ -125,27 +126,41 @@ namespace Public.Api.Status
 
             foreach (var (key, value) in keyValuePairsSnapshot)
             {
-                if (keyValuePairsProducer.ContainsKey(key) &&
-                    keyValuePairsProducer[key] is null && value is null)
+                try
                 {
-                    continue;
-                }
-
-                if (keyValuePairsProducer.ContainsKey(key))
-                {
-                    if (keyValuePairsProducer[key] is null && value is not null)
+                    if (keyValuePairsProducer.ContainsKey(key) &&
+                        keyValuePairsProducer[key] is null && value is null)
                     {
-                        keyValuePairsProducer[key] = value;
+                        continue;
+                    }
+
+                    if (keyValuePairsProducer.ContainsKey(key))
+                    {
+                        if (keyValuePairsProducer[key] is null && value is not null)
+                        {
+                            keyValuePairsProducer[key] = value;
+                        }
+                        else
+                        {
+                            keyValuePairsProducer[key].Projections =
+                                keyValuePairsProducer[key].Projections.Concat(value.Projections);
+                        }
                     }
                     else
                     {
-                        keyValuePairsProducer[key].Projections =
-                            keyValuePairsProducer[key].Projections.Concat(value.Projections);
+                        keyValuePairsProducer.Add(key, value);
                     }
                 }
-                else
+                catch (Exception)
                 {
-                    keyValuePairsProducer.Add(key, value);
+                    if (keyValuePairsProducer.ContainsKey(key))
+                    {
+                        keyValuePairsProducer[key] = null;
+                    }
+                    else
+                    {
+                        keyValuePairsProducer.Add(key, null);
+                    }
                 }
             }
 
