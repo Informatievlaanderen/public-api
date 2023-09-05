@@ -21,7 +21,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         public const string CorrectBuildingUnitNotRealizationRequest = "gebouweenheden/{objectId}/acties/corrigeren/nietrealisering";
 
         /// <summary>
-        /// Corrigeer de niet realisering van een gebouweenheid.
+        /// Corrigeer de niet realisering van een gebouweenheid (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de gebouweenheid.</param>
         /// <param name="actionContextAccessor"></param>

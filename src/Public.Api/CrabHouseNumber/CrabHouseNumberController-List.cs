@@ -21,7 +21,7 @@ namespace Public.Api.CrabHouseNumber
     public partial class CrabHouseNumberController
     {
         /// <summary>
-        /// Vraag een lijst met CRAB huisnummers op.
+        /// Vraag een lijst met CRAB huisnummers op (v1).
         /// </summary>
         /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>

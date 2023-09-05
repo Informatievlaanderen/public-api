@@ -22,7 +22,7 @@ namespace Public.Api.Parcel.BackOffice
         public const string DetachAddressParcelRoute = "percelen/{objectId}/acties/adresontkoppelen";
 
         /// <summary>
-        /// Ontkoppel een adres van een perceel.
+        /// Ontkoppel een adres van een perceel (v2).
         /// </summary>
         /// <param name="objectId">Objectidentificator van het perceel (CaPaKey waarbij forward slash `/` vervangen werd door koppelteken `-`).</param>
         /// <param name="actionContextAccessor"></param>

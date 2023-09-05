@@ -21,7 +21,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         public const string CorrectBuildingUnitDeregulationRoute = "gebouweenheden/{objectId}/acties/corrigeren/deregularisatie";
 
         /// <summary>
-        /// Corrigeer de deregularisatie van een gebouweenheid.
+        /// Corrigeer de deregularisatie van een gebouweenheid (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de gebouweenheid.</param>
         /// <param name="actionContextAccessor"></param>

@@ -22,7 +22,7 @@ namespace Public.Api.RoadSegment
         private const string DeleteRoadSegmentOutlineRoute = "wegsegmenten/{id}/acties/verwijderen/schets";
 
         /// <summary>
-        ///     Verwijder een ingeschetst wegsegment.
+        ///     Verwijder een ingeschetst wegsegment (v1).
         /// </summary>
         /// <param name="id">Identificator van het wegsegment.</param>
         /// <param name="actionContextAccessor"></param>

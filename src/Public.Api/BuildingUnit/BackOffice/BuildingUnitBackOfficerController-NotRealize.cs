@@ -21,7 +21,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         public const string NotRealizeBuildingUnitRoute = "gebouweenheden/{objectId}/acties/nietrealiseren";
 
         /// <summary>
-        /// Realiseer een gebouweenheid niet.
+        /// Realiseer een gebouweenheid niet (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de gebouweenheid.</param>
         /// <param name="actionContextAccessor"></param>

@@ -22,7 +22,7 @@ namespace Public.Api.Address.BackOffice
         public const string CorrectBoxNumberRoute = "adressen/{objectId}/acties/corrigeren/busnummer";
 
         /// <summary>
-        /// Corrigeer het busnummer van een adres.
+        /// Corrigeer het busnummer van een adres (v2).
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
         /// <param name="correctAddressBoxNumberRequest"></param>

@@ -21,7 +21,7 @@ namespace Public.Api.StreetName.BackOffice
         public const string ProposeStreetNameRoute = "straatnamen/acties/voorstellen";
 
         /// <summary>
-        /// Stel een straatnaam voor.
+        /// Stel een straatnaam voor (v2).
         /// </summary>
         /// <param name="streetNameProposeRequest"></param>
         /// <param name="actionContextAccessor"></param>

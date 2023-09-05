@@ -21,7 +21,7 @@ namespace Public.Api.Building.BackOffice
         public const string CorrectBuildingUnderConstructionRoute = "gebouwen/{objectId}/acties/corrigeren/inaanbouwplaatsing";
 
         /// <summary>
-        /// Corrigeer de in aanbouw plaatsing van een gebouw.
+        /// Corrigeer de in aanbouw plaatsing van een gebouw (v2).
         /// </summary>
         /// <param name="objectId">Identificator van het gebouw.</param>
         /// <param name="actionContextAccessor"></param>

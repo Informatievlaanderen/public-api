@@ -22,7 +22,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         public const string CorrectBuildingUnitPositionRoute = "gebouweenheden/{objectId}/acties/corrigeren/positie";
 
         /// <summary>
-        /// Corrigeer de positie van een gebouweenheid.
+        /// Corrigeer de positie van een gebouweenheid (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de gebouweenheid.</param>
         /// <param name="correctBuildingUnitPositionRequest"></param>

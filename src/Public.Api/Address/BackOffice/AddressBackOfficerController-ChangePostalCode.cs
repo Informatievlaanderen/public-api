@@ -22,7 +22,7 @@ namespace Public.Api.Address.BackOffice
         public const string ChangePostalCodeRoute = "adressen/{objectId}/acties/wijzigen/postcode";
 
         /// <summary>
-        /// Wijzig de postcode van een adres.
+        /// Wijzig de postcode van een adres (v2).
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
         /// <param name="changeAddressPostalCodeRequest"></param>

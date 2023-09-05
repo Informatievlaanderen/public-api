@@ -21,7 +21,7 @@ namespace Public.Api.Address.BackOffice
         public const string ReaddressStreetNameAddressesRoute = "adressen/acties/heradresseren";
 
         /// <summary>
-        /// Heradresseren van adressen binnen éénzelfde straatnaam of naar een andere straatnaam.
+        /// Heradresseren van adressen binnen éénzelfde straatnaam of naar een andere straatnaam (v2).
         /// </summary>
         /// <param name="readdressRequest"></param>
         /// <param name="actionContextAccessor"></param>

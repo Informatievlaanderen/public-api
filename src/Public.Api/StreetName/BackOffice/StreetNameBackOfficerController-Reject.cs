@@ -21,7 +21,7 @@ namespace Public.Api.StreetName.BackOffice
         public const string RejectStreetNameRoute = "straatnamen/{objectId}/acties/afkeuren";
 
         /// <summary>
-        /// Keur een straatnaam af.
+        /// Keur een straatnaam af (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de straatnaam.</param>
         /// <param name="actionContextAccessor"></param>

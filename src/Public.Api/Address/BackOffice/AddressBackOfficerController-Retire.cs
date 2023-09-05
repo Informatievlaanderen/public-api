@@ -21,7 +21,7 @@ namespace Public.Api.Address.BackOffice
         public const string RetireRoute = "adressen/{objectId}/acties/opheffen";
 
         /// <summary>
-        /// Hef een adres op.
+        /// Hef een adres op (v2).
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
         /// <param name="actionContextAccessor"></param>

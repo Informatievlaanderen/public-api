@@ -22,7 +22,7 @@ namespace Public.Api.RoadSegment
         private const string CreateRoadSegmentOutlineRoute = "wegsegmenten/acties/schetsen";
 
         /// <summary>
-        ///     Schets een wegsegment.
+        ///     Schets een wegsegment (v1).
         /// </summary>
         /// <param name="request"></param>
         /// <param name="actionContextAccessor"></param>

@@ -21,7 +21,7 @@ namespace Public.Api.Address.BackOffice
         public const string RejectRoute = "adressen/{objectId}/acties/afkeuren";
 
         /// <summary>
-        /// Keur een adres af.
+        /// Keur een adres af (v2).
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
         /// <param name="actionContextAccessor"></param>

@@ -22,7 +22,7 @@ namespace Public.Api.Address.BackOffice
         public const string CorrectPostalCodeRoute = "adressen/{objectId}/acties/corrigeren/postcode";
 
         /// <summary>
-        /// Corrigeer de postcode van een adres.
+        /// Corrigeer de postcode van een adres (v2).
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
         /// <param name="correctAddressPostalCodeRequest"></param>

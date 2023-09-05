@@ -23,7 +23,7 @@ namespace Public.Api.RoadSegment
         private const string ChangeRoadSegmentAttributesRoute = "wegsegmenten/acties/wijzigen/attributen";
 
         /// <summary>
-        ///     Wijzig een attribuutwaarde voor één of meerdere wegsegmenten.
+        ///     Wijzig een attribuutwaarde voor één of meerdere wegsegmenten (v1).
         /// </summary>
         /// <param name="request"></param>
         /// <param name="actionContextAccessor"></param>

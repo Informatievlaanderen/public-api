@@ -22,7 +22,7 @@ namespace Public.Api.Building.BackOffice
         public const string CorrectBuildingGeometryOutlineRoute = "gebouwen/{objectId}/acties/wijzigen/schetsgeometriepolygoon";
 
         /// <summary>
-        /// Wijzig de geometrie van een geschetst gebouw.
+        /// Wijzig de geometrie van een geschetst gebouw (v2).
         /// </summary>
         /// <param name="objectId">Identificator van het gebouw.</param>
         /// <param name="changeBuildingOutlineRequest"></param>

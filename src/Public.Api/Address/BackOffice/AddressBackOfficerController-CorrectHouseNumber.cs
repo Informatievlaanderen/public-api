@@ -23,7 +23,7 @@ namespace Public.Api.Address.BackOffice
         public const string CorrectHouseNumberRoute = "adressen/{objectId}/acties/corrigeren/huisnummer";
 
         /// <summary>
-        /// Corrigeer het huisnummer van een adres.
+        /// Corrigeer het huisnummer van een adres (v2).
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
         /// <param name="correctAddressHouseNumberRequest"></param>

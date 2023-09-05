@@ -21,7 +21,7 @@ namespace Public.Api.Address.BackOffice
         public const string ApproveAddressRoute = "adressen/{objectId}/acties/goedkeuren";
 
         /// <summary>
-        /// Keur een adres goed.
+        /// Keur een adres goed (v2).
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
         /// <param name="actionContextAccessor"></param>

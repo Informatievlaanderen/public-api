@@ -21,7 +21,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         public const string RemoveBuildingUnitRoute = "gebouweenheden/{objectId}/acties/verwijderen";
 
         /// <summary>
-        /// Verwijder een gebouweenheid.
+        /// Verwijder een gebouweenheid (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de gebouweenheid.</param>
         /// <param name="actionContextAccessor"></param>

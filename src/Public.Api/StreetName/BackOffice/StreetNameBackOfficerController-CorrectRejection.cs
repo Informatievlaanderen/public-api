@@ -21,7 +21,7 @@ namespace Public.Api.StreetName.BackOffice
         public const string CorrectStreetNameRejectionRoute = "straatnamen/{objectId}/acties/corrigeren/afkeuring";
 
         /// <summary>
-        /// Corrigeer de afkeuring van een straatnaam.
+        /// Corrigeer de afkeuring van een straatnaam  (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de straatnaam.</param>
         /// <param name="actionContextAccessor"></param>

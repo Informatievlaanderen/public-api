@@ -21,7 +21,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         public const string CorrectBuildingUnitRetirementRoute = "gebouweenheden/{objectId}/acties/corrigeren/opheffing";
 
         /// <summary>
-        /// Corrigeer de opheffing van een gebouweenheid.
+        /// Corrigeer de opheffing van een gebouweenheid (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de gebouweenheid.</param>
         /// <param name="actionContextAccessor"></param>

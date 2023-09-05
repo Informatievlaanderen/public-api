@@ -22,7 +22,7 @@ namespace Public.Api.Address.BackOffice
         public const string ChangePositionRoute = "adressen/{objectId}/acties/wijzigen/adrespositie";
 
         /// <summary>
-        /// Wijzig de adrespositie van een adres.
+        /// Wijzig de adrespositie van een adres (v2).
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
         /// <param name="changeAddressPositionRequest"></param>

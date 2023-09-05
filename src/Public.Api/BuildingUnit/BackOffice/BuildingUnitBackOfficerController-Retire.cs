@@ -21,7 +21,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         public const string BuildingUnitRetireRoute = "gebouweenheden/{objectId}/acties/opheffen";
 
         /// <summary>
-        /// Hef een gebouweenheid op.
+        /// Hef een gebouweenheid op (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de gebouweenheid.</param>
         /// <param name="actionContextAccessor"></param>

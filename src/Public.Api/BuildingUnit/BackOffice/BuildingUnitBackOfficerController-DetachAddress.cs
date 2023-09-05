@@ -22,7 +22,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         public const string DetachAddressBuildingUnitRoute = "gebouweenheden/{objectId}/acties/adresontkoppelen";
 
         /// <summary>
-        /// Ontkoppel een adres van een gebouweenheid.
+        /// Ontkoppel een adres van een gebouweenheid (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de gebouweenheid.</param>
         /// <param name="detachAddressFromBuildingUnitRequest"></param>
