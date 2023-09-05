@@ -1,3 +1,10 @@
+# [5.85.0](https://github.com/informatievlaanderen/public-api/compare/v5.84.3...v5.85.0) (2023-09-05)
+
+
+### Features
+
+* specify the version of endpoint for documentation ([75ae190](https://github.com/informatievlaanderen/public-api/commit/75ae190c3bf92c76e707d3cb09ad2fcd8dd6212f))
+
 ## [5.84.3](https://github.com/informatievlaanderen/public-api/compare/v5.84.2...v5.84.3) (2023-09-04)
 
 
