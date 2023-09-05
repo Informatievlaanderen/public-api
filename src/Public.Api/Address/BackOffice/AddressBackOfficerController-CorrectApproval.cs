@@ -21,7 +21,7 @@ namespace Public.Api.Address.BackOffice
         public const string CorrectApprovalRoute = "adressen/{objectId}/acties/corrigeren/goedkeuring";
 
         /// <summary>
-        /// Corrigeer de goedkeuring van een adres.
+        /// Corrigeer de goedkeuring van een adres (v2).
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
         /// <param name="actionContextAccessor"></param>

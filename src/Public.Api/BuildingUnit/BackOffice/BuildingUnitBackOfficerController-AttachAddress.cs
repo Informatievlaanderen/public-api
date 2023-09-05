@@ -22,7 +22,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         public const string AttachAddressBuildingUnitRoute = "gebouweenheden/{objectId}/acties/adreskoppelen";
 
         /// <summary>
-        /// Koppel een adres aan een gebouweenheid.
+        /// Koppel een adres aan een gebouweenheid  (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de gebouweenheid.</param>
         /// <param name="attachAddressToBuildingUnitRequest"></param>

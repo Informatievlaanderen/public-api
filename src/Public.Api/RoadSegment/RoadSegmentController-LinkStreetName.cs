@@ -23,7 +23,7 @@ namespace Public.Api.RoadSegment
         private const string LinkRoadSegmentStreetNameRoute = "wegsegmenten/{id}/acties/straatnaamkoppelen";
 
         /// <summary>
-        ///     Koppel een straatnaam aan een wegsegment.
+        ///     Koppel een straatnaam aan een wegsegment (v1).
         /// </summary>
         /// <param name="id">Identificator van het wegsegment.</param>
         /// <param name="request"></param>

@@ -21,7 +21,7 @@ namespace Public.Api.StreetName.BackOffice
         public const string CorrectStreetNameRetirementRoute = "straatnamen/{objectId}/acties/corrigeren/opheffing";
 
         /// <summary>
-        /// Corrigeer de opheffing van een straatnaam.
+        /// Corrigeer de opheffing van een straatnaam  (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de straatnaam.</param>
         /// <param name="actionContextAccessor"></param>

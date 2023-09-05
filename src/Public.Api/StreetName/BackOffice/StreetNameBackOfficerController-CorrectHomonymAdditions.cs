@@ -22,7 +22,7 @@ namespace Public.Api.StreetName.BackOffice
         public const string CorrectStreetNameHomonymAdditionsRoute = "straatnamen/{objectId}/acties/corrigeren/homoniemtoevoeging";
 
         /// <summary>
-        /// Corrigeer de homoniemtoevoeging van een straatnaam.
+        /// Corrigeer de homoniemtoevoeging van een straatnaam (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de straatnaam.</param>
         /// <param name="request"></param>

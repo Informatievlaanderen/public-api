@@ -21,7 +21,7 @@ namespace Public.Api.StreetName.BackOffice
         public const string RemoveStreetNameRoute = "straatnamen/{objectId}/acties/verwijderen";
 
         /// <summary>
-        /// Verwijder een straatnaam.
+        /// Verwijder een straatnaam  (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de straatnaam.</param>
         /// <param name="actionContextAccessor"></param>

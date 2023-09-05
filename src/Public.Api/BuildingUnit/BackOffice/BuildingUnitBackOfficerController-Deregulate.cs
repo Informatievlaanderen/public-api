@@ -21,7 +21,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         public const string DeregulateBuildingUnitRoute = "gebouweenheden/{objectId}/acties/deregulariseren";
 
         /// <summary>
-        /// Deregulariseer een gebouweenheid.
+        /// Deregulariseer een gebouweenheid (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de gebouweenheid.</param>
         /// <param name="actionContextAccessor"></param>

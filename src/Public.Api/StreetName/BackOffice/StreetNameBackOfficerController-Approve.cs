@@ -21,7 +21,7 @@ namespace Public.Api.StreetName.BackOffice
         public const string ApproveStreetNameRoute = "straatnamen/{objectId}/acties/goedkeuren";
 
         /// <summary>
-        /// Keur een straatnaam goed.
+        /// Keur een straatnaam goed (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de straatnaam.</param>
         /// <param name="actionContextAccessor"></param>

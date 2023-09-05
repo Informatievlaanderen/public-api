@@ -22,7 +22,7 @@ namespace Public.Api.RoadSegment
         private const string UnlinkRoadSegmentStreetNameRoute = "wegsegmenten/{id}/acties/straatnaamontkoppelen";
 
         /// <summary>
-        ///     Ontkoppel een straatnaam van een wegsegment.
+        ///     Ontkoppel een straatnaam van een wegsegment (v1).
         /// </summary>
         /// <param name="id">Identificator van het wegsegment.</param>
         /// <param name="request"></param>

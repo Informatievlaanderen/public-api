@@ -21,7 +21,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         public const string CorrectBuildingUnitRealizationRoute = "gebouweenheden/{objectId}/acties/corrigeren/realisering";
 
         /// <summary>
-        /// Corrigeer de realisering van een gebouweenheid.
+        /// Corrigeer de realisering van een gebouweenheid (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de gebouweenheid.</param>
         /// <param name="actionContextAccessor"></param>

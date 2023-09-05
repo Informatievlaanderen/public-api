@@ -21,7 +21,7 @@ namespace Public.Api.Address.BackOffice
         public const string DeregulateRoute = "adressen/{objectId}/acties/deregulariseren";
 
         /// <summary>
-        /// Deregulariseer een adres.
+        /// Deregulariseer een adres (v2).
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
         /// <param name="actionContextAccessor"></param>

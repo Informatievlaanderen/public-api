@@ -20,7 +20,7 @@ namespace Public.Api.CrabBuilding
     public partial class CrabBuildingController
     {
         /// <summary>
-        /// Vraag een lijst met CRAB gebouwen op die voldoen aan de filterparameters.
+        /// Vraag een lijst met CRAB gebouwen op die voldoen aan de filterparameters (v1).
         /// </summary>
         /// <param name="terreinObjectId">Filter op de CRAB-TerreinObjectId van het gebouw (exact).</param>
         /// <param name="identificatorTerreinObject">

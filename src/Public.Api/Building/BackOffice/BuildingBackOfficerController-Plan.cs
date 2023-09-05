@@ -21,7 +21,7 @@ namespace Public.Api.Building.BackOffice
         public const string PlanBuildingRoute = "gebouwen/acties/plannen";
 
         /// <summary>
-        /// Plan een gebouw in.
+        /// Plan een gebouw in (v2).
         /// </summary>
         /// <param name="planBuildingRequest"></param>
         /// <param name="actionContextAccessor"></param>

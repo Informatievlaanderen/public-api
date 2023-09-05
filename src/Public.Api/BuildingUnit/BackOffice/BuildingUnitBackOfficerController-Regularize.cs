@@ -21,7 +21,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         public const string RegularizeBuildingUnitRoute = "gebouweenheden/{objectId}/acties/regulariseren";
 
         /// <summary>
-        /// Regulariseer een gebouweenheid.
+        /// Regulariseer een gebouweenheid (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de gebouweenheid.</param>
         /// <param name="actionContextAccessor"></param>

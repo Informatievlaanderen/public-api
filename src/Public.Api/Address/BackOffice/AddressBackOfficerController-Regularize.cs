@@ -21,7 +21,7 @@ namespace Public.Api.Address.BackOffice
         public const string RegularizeRoute = "adressen/{objectId}/acties/regulariseren";
 
         /// <summary>
-        /// Regulariseer een adres.
+        /// Regulariseer een adres (v2).
         /// </summary>
         /// <param name="objectId">Identificator van het adres.</param>
         /// <param name="actionContextAccessor"></param>

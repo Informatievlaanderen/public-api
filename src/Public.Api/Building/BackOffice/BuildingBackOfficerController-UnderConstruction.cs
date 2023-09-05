@@ -21,7 +21,7 @@ namespace Public.Api.Building.BackOffice
         public const string BuildingUnderConstructionRoute = "gebouwen/{objectId}/acties/inaanbouwplaatsen";
 
         /// <summary>
-        /// Plaats een gebouw in aanbouw.
+        /// Plaats een gebouw in aanbouw (v2).
         /// </summary>
         /// <param name="objectId">Identificator van het gebouw.</param>
         /// <param name="actionContextAccessor"></param>

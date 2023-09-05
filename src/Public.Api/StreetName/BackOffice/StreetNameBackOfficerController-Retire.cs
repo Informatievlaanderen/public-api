@@ -21,7 +21,7 @@ namespace Public.Api.StreetName.BackOffice
         public const string RetireStreetNameRoute = "straatnamen/{objectId}/acties/opheffen";
 
         /// <summary>
-        /// Hef een straatnaam op.
+        /// Hef een straatnaam op (v2).
         /// </summary>
         /// <param name="objectId">Identificator van de straatnaam.</param>
         /// <param name="actionContextAccessor"></param>

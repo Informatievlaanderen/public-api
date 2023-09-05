@@ -21,7 +21,7 @@ namespace Public.Api.Building.BackOffice
         public const string CorrectBuildingNotRealizationRoute = "gebouwen/{objectId}/acties/corrigeren/nietrealisering";
 
         /// <summary>
-        /// Corrigeer de niet realisering van een gebouw.
+        /// Corrigeer de niet realisering van een gebouw (v2).
         /// </summary>
         /// <param name="objectId">Identificator van het gebouw.</param>
         /// <param name="actionContextAccessor"></param>

@@ -21,7 +21,7 @@ namespace Public.Api.Address.BackOffice
         public const string ProposeAddressRoute = "adressen/acties/voorstellen";
 
         /// <summary>
-        /// Stel een adres voor.
+        /// Stel een adres voor (v2).
         /// </summary>
         /// <param name="proposeAddressRequest"></param>
         /// <param name="actionContextAccessor"></param>

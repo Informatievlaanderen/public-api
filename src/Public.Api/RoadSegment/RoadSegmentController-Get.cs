@@ -20,7 +20,7 @@ namespace Public.Api.RoadSegment
         private const string GetRoadSegmentRoute = "wegsegmenten/{id}";
 
         /// <summary>
-        ///     Vraag een wegsegment op.
+        ///     Vraag een wegsegment op (v1).
         /// </summary>
         /// <param name="id">De identificator van het wegsegment.</param>
         /// <param name="actionContextAccessor"></param>

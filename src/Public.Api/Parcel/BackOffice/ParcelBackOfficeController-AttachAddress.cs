@@ -22,7 +22,7 @@ namespace Public.Api.Parcel.BackOffice
         public const string AttachAddressParcelRoute = "percelen/{objectId}/acties/adreskoppelen";
 
         /// <summary>
-        /// Koppel een adres aan een perceel.
+        /// Koppel een adres aan een perceel (v2).
         /// </summary>
         /// <param name="objectId">Objectidentificator van het perceel (CaPaKey waarbij forward slash `/` vervangen werd door koppelteken `-`).</param>
         /// <param name="request"></param>

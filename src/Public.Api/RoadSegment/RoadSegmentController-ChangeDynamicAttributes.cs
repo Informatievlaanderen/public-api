@@ -23,7 +23,7 @@ namespace Public.Api.RoadSegment
         private const string ChangeRoadSegmentDynamicAttributesRoute = "wegsegmenten/acties/wijzigen/dynamischeattributen";
 
         /// <summary>
-        ///     Wijzig een dynamisch attribuut voor één of meerdere wegsegmenten.
+        ///     Wijzig een dynamisch attribuut voor één of meerdere wegsegmenten (v1).
         /// </summary>
         /// <param name="request"></param>
         /// <param name="actionContextAccessor"></param>
