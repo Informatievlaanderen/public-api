@@ -292,12 +292,12 @@ NUGET
       Microsoft.Extensions.Logging.Abstractions (>= 6.0.3)
     Be.Vlaanderen.Basisregisters.NisCodeService.Proxy.HttpProxy (1.0.10)
       Microsoft.Extensions.Logging.Abstractions (>= 6.0.3)
-    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions (4.31.4) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions (4.31.11) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 20.0)
       MediatR.Contracts (>= 2.0.1)
-    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (4.31.4) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy (4.31.11) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 20.3.1)
-    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo (4.31.4) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo (4.31.11) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 20.3.1)
     Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (3.7.2) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo (3.7.2) - copy_content_to_output_dir: always
