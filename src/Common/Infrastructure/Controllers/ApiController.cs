@@ -264,10 +264,8 @@ namespace Common.Infrastructure.Controllers
             Action<HttpStatusCode> handleNotOkResponseAction,
             CancellationToken cancellationToken)
         {
-            var contentType = acceptType.ToMimeTypeString();
-
             var backendRequest = createBackendRequestFunc();
-            backendRequest.AddHeader(HeaderNames.Accept, contentType);
+            backendRequest.AddHeader(HeaderNames.Accept, acceptType.ToMimeTypeString());
 
             var response = await ExecuteRequestAsync(restClient, backendRequest, cancellationToken);
 
@@ -281,7 +279,7 @@ namespace Common.Infrastructure.Controllers
                     response.Content,
                     downstreamVersion?.Value?.ToString(),
                     DateTimeOffset.UtcNow,
-                    contentType,
+                    response.ContentType,
                     false,
                     response.HeadersToKeyValuePairs(),
                     response.StatusCode);
