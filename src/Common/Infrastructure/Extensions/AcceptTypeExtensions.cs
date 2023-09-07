@@ -23,6 +23,7 @@ namespace Common.Infrastructure.Extensions
             {
                 AcceptType.Json => AcceptTypes.Json,
                 AcceptType.JsonLd => AcceptTypes.JsonLd,
+                AcceptType.Ld => AcceptTypes.JsonLd,
                 AcceptType.Xml => AcceptTypes.Xml,
                 AcceptType.Atom => AcceptTypes.Atom,
                 _ => throw new ArgumentOutOfRangeException(nameof(acceptType), acceptType, null)
@@ -35,6 +36,7 @@ namespace Common.Infrastructure.Extensions
             {
                 AcceptType.Json => AcceptTypes.JsonProblem,
                 AcceptType.JsonLd => AcceptTypes.JsonProblem,
+                AcceptType.Ld => AcceptTypes.JsonProblem,
                 AcceptType.Xml => AcceptTypes.XmlProblem,
                 AcceptType.Atom => AcceptTypes.XmlProblem,
                 _ => throw new ArgumentOutOfRangeException(nameof(acceptType), acceptType, null)
@@ -83,6 +85,11 @@ namespace Common.Infrastructure.Extensions
                     return AcceptType.Json;
                 }
 
+                if (headerValue.Contains(AcceptTypes.Ld))
+                {
+                    return AcceptType.Ld;
+                }
+
                 if (headerValue.Contains(AcceptTypes.Any)
                     || DefaultBrowserAcceptTypes.Any(acceptType => headerValue.Contains(acceptType)))
                 {
@@ -119,6 +126,9 @@ namespace Common.Infrastructure.Extensions
 
                             case AcceptTypes.Json:
                                 return AcceptType.Json;
+
+                            case AcceptTypes.Ld:
+                                return AcceptType.Ld;
                         }
                     }
 

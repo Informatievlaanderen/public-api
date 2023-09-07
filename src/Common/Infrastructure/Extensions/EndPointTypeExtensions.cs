@@ -32,6 +32,38 @@ namespace Common.Infrastructure.Extensions
                 EndpointType.Oslo
                     => new []
                     {
+                        AcceptType.JsonLd,
+                        AcceptType.Json,
+                        AcceptType.Ld
+                    },
+                _ => new[] { AcceptType.Json }
+            };
+        }
+
+        public static IEnumerable<AcceptType> GetResponseTypes(this EndpointType endpointType)
+        {
+            return endpointType switch
+            {
+                EndpointType.Legacy
+                => new[]
+                {
+                    AcceptType.Json,
+                    AcceptType.Xml
+                },
+                EndpointType.Sync
+                => new[]
+                {
+                    AcceptType.Atom,
+                    AcceptType.Xml
+                },
+                EndpointType.BackOffice
+                    => new []
+                    {
+                        AcceptType.Json
+                    },
+                EndpointType.Oslo
+                    => new []
+                    {
                         AcceptType.JsonLd
                     },
                 _ => new[] { AcceptType.Json }
@@ -43,7 +75,7 @@ namespace Common.Infrastructure.Extensions
         public static MediaTypeCollection Produces(this EndpointType endpointType)
         {
             return endpointType
-                .GetAcceptedTypes()
+                .GetResponseTypes()
                 .SelectMany(type =>
                     new []
                     {
