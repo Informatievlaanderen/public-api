@@ -1,3 +1,10 @@
+## [5.85.2](https://github.com/informatievlaanderen/public-api/compare/v5.85.1...v5.85.2) (2023-09-13)
+
+
+### Bug Fixes
+
+* accept json for v2 endpoints GAWR-5081 ([013956a](https://github.com/informatievlaanderen/public-api/commit/013956af035a59df828421f16ede91a5ebaff7e9))
+
 ## [5.85.1](https://github.com/informatievlaanderen/public-api/compare/v5.85.0...v5.85.1) (2023-09-06)
 
 # [5.85.0](https://github.com/informatievlaanderen/public-api/compare/v5.84.3...v5.85.0) (2023-09-05)
