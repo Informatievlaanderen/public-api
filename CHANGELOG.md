@@ -1,3 +1,10 @@
+## [5.85.4](https://github.com/informatievlaanderen/public-api/compare/v5.85.3...v5.85.4) (2023-09-15)
+
+
+### Bug Fixes
+
+* add response contenttype logic to getFromBackend methods ([e53c715](https://github.com/informatievlaanderen/public-api/commit/e53c7155fd3193e5315db5dd89bb7ad63d7a0f80))
+
 ## [5.85.3](https://github.com/informatievlaanderen/public-api/compare/v5.85.2...v5.85.3) (2023-09-15)
 
 
