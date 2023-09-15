@@ -167,7 +167,7 @@ namespace Common.Infrastructure.Controllers
                     response.Content,
                     downstreamVersion?.Value.ToString(),
                     DateTimeOffset.UtcNow,
-                    response.ContentType,
+                    response.ContentType == AcceptTypes.JsonLd ? response.ContentType : acceptType.ToMimeTypeString(),
                     false,
                     response.HeadersToKeyValuePairs(),
                     response.StatusCode);
@@ -275,11 +275,16 @@ namespace Common.Infrastructure.Controllers
                     .Headers?
                     .FirstOrDefault(x => x.Name.Equals(AddVersionHeaderMiddleware.HeaderName, StringComparison.InvariantCultureIgnoreCase));
 
+                //if application json ld
+                    // contenttype json ld
+                // else
+                   // accepttype.tomimestring
+
                 return new BackendResponse(
                     response.Content,
                     downstreamVersion?.Value?.ToString(),
                     DateTimeOffset.UtcNow,
-                    response.ContentType,
+                    response.ContentType == AcceptTypes.JsonLd ? response.ContentType : acceptType.ToMimeTypeString(),
                     false,
                     response.HeadersToKeyValuePairs(),
                     response.StatusCode);
