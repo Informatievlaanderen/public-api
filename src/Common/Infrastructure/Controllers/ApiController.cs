@@ -167,7 +167,7 @@ namespace Common.Infrastructure.Controllers
                     response.Content,
                     downstreamVersion?.Value.ToString(),
                     DateTimeOffset.UtcNow,
-                    contentType,
+                    response.ContentType,
                     false,
                     response.HeadersToKeyValuePairs(),
                     response.StatusCode);
