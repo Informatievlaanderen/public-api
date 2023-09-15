@@ -1,3 +1,10 @@
+## [5.85.3](https://github.com/informatievlaanderen/public-api/compare/v5.85.2...v5.85.3) (2023-09-15)
+
+
+### Bug Fixes
+
+* return backoffice response contenttype ([8d33239](https://github.com/informatievlaanderen/public-api/commit/8d332393323e393250dc7c7449468ba3742fde89))
+
 ## [5.85.2](https://github.com/informatievlaanderen/public-api/compare/v5.85.1...v5.85.2) (2023-09-13)
 
 
