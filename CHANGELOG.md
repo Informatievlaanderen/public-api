@@ -1,3 +1,10 @@
+## [5.85.5](https://github.com/informatievlaanderen/public-api/compare/v5.85.4...v5.85.5) (2023-09-19)
+
+
+### Bug Fixes
+
+* WR-756 update RR packages ([c16e8a6](https://github.com/informatievlaanderen/public-api/commit/c16e8a6ea3b3e8bbed2ef1aa712784db82fe32ef))
+
 ## [5.85.4](https://github.com/informatievlaanderen/public-api/compare/v5.85.3...v5.85.4) (2023-09-15)
 
 
