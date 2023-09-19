@@ -1,18 +1,17 @@
 namespace Public.Api.Road.Organizations
 {
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
     using RoadRegistry.BackOffice.Api.Organizations;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
+    using System.Threading;
+    using System.Threading.Tasks;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class OrganizationsController
@@ -22,7 +21,6 @@ namespace Public.Api.Road.Organizations
         /// <summary>
         ///     Vraag een lijst met organisaties op.
         /// </summary>
-        /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
@@ -39,7 +37,6 @@ namespace Public.Api.Road.Organizations
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
         [SwaggerOperation(OperationId = nameof(Get))]
         public async Task<IActionResult> Get(
-            [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] GetRoadOrganizationsToggle featureToggle,
             CancellationToken cancellationToken)
@@ -49,12 +46,10 @@ namespace Public.Api.Road.Organizations
                 return NotFound();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat();
 
-            RestRequest BackendRequest()
-            {
-                return new RestRequest("organizations");
-            }
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Get, "organizations");
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,

@@ -15,9 +15,12 @@ namespace Public.Api.Road.Extracts
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Get, "extracts/transactionzones.geojson");
+
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
-                CreateBackendGetTransactionZonesGeoJsonRequest,
+                BackendRequest,
                 CreateDefaultHandleBadRequest(),
                 problemDetailsHelper,
                 cancellationToken: cancellationToken);
@@ -29,8 +32,5 @@ namespace Public.Api.Road.Extracts
 
             return response.ToActionResult(options);
         }
-
-        private static RestRequest CreateBackendGetTransactionZonesGeoJsonRequest() =>
-            new RestRequest("extracts/transactionzones.geojson");
     }
 }

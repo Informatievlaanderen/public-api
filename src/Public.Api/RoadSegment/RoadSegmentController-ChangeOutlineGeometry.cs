@@ -1,20 +1,19 @@
 namespace Public.Api.RoadSegment
 {
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.AcmIdm;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
-    using Common.Infrastructure.Extensions;
     using Infrastructure;
+    using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using Public.Api.Infrastructure.Swagger;
     using RestSharp;
     using RoadRegistry.BackOffice.Api.RoadSegments;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
+    using System.Threading;
+    using System.Threading.Tasks;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class RoadSegmentController
@@ -70,18 +69,13 @@ namespace Public.Api.RoadSegment
                 return NotFound();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat();
 
-            RestRequest BackendRequest()
-            {
-                return CreateBackendRequestWithJsonBody(
-                        ChangeRoadSegmentOutlineGeometryRoute,
-                        request,
-                        Method.Post)
-                    .AddParameter(nameof(id), id, ParameterType.UrlSegment)
-                    .AddHeaderAuthorization(actionContextAccessor);
-            }
-
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Post, ChangeRoadSegmentOutlineGeometryRoute)
+                    .AddJsonBody(request)
+                    .AddParameter(nameof(id), id, ParameterType.UrlSegment);
+            
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,
                 BackendRequest,

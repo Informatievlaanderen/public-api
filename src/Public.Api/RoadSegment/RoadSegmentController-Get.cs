@@ -1,18 +1,17 @@
 namespace Public.Api.RoadSegment
 {
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
     using RoadRegistry.BackOffice.Api.RoadSegments;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
+    using System.Threading;
+    using System.Threading.Tasks;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class RoadSegmentController
@@ -23,7 +22,6 @@ namespace Public.Api.RoadSegment
         ///     Vraag een wegsegment op (v1).
         /// </summary>
         /// <param name="id">De identificator van het wegsegment.</param>
-        /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
@@ -44,7 +42,6 @@ namespace Public.Api.RoadSegment
         [SwaggerOperation(OperationId = nameof(GetRoadSegment))]
         public async Task<IActionResult> GetRoadSegment(
             [FromRoute] int id,
-            [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] GetRoadSegmentToggle featureToggle,
             CancellationToken cancellationToken)
@@ -54,17 +51,12 @@ namespace Public.Api.RoadSegment
                 return NotFound();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat();
 
-            RestRequest BackendRequest()
-            {
-                return new RestRequest(GetRoadSegmentRoute)
-                    {
-                        Method = Method.Get
-                    }
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Get, GetRoadSegmentRoute)
                     .AddParameter(nameof(id), id, ParameterType.UrlSegment);
-            }
-
+            
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,
                 BackendRequest,

@@ -1,10 +1,8 @@
 namespace Public.Api.Road.Downloads
 {
-    using System.Net.Http;
     using Autofac.Features.AttributeFilters;
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
-    using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
     using Infrastructure.Configuration;
@@ -12,7 +10,9 @@ namespace Public.Api.Road.Downloads
     using Infrastructure.Version;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
+    using System.Net.Http;
 
     [ApiVersion(Version.Current)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
@@ -20,7 +20,7 @@ namespace Public.Api.Road.Downloads
     [ApiExplorerSettings(GroupName = "Download")]
     [ApiOrder(ApiOrder.Road.Download)]
     [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
-    public partial class DownloadController : RegistryApiController<DownloadController>
+    public partial class DownloadController : RoadRegistryApiController<DownloadController>
     {
         private readonly HttpClient _httpClient;
         protected override string NotFoundExceptionMessage => "Onbestaande download.";
@@ -28,12 +28,13 @@ namespace Public.Api.Road.Downloads
 
         public DownloadController(
             IHttpContextAccessor httpContextAccessor,
+            IActionContextAccessor actionContextAccessor,
             [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
             [KeyFilter(RegistryKeys.Road)] HttpClient httpClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<DownloadController> logger)
-            : base(httpContextAccessor, redis, logger, restClient, cacheToggle)
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle, actionContextAccessor)
         {
             _httpClient = httpClient;
         }

@@ -1,12 +1,11 @@
 namespace Public.Api.Road.Downloads
 {
-    using System.Net.Http;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Net.Http.Headers;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class DownloadController
     {
@@ -15,9 +14,12 @@ namespace Public.Api.Road.Downloads
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
+            HttpRequestMessage BackendRequest() =>
+                CreateBackendHttpRequestMessage(HttpMethod.Get, "download/for-editor");
+
             var response = await GetFromBackendWithBadRequestAsync(
                 _httpClient,
-                CreateBackendDownloadForEditorRequest,
+                BackendRequest,
                 CreateDefaultHandleBadRequest(),
                 problemDetailsHelper,
                 cancellationToken
@@ -25,7 +27,5 @@ namespace Public.Api.Road.Downloads
 
             return response.ToActionResult();
         }
-
-        private static HttpRequestMessage CreateBackendDownloadForEditorRequest() => new HttpRequestMessage(HttpMethod.Get, "download/for-editor");
     }
 }

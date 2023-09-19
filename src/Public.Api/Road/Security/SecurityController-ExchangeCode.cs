@@ -1,13 +1,11 @@
 namespace Public.Api.Road.Security
 {
-    using System.Net.Http;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class SecurityController
     {
@@ -16,20 +14,16 @@ namespace Public.Api.Road.Security
             string code,
             string verifier,
             string? redirectUri,
-            [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken)
         {
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat();
 
-            RestRequest BackendRequest()
-            {
-                return new RestRequest("security/exchange")
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Get, "security/exchange")
                     .AddParameter("code", code)
                     .AddParameter("verifier", verifier)
-                    .AddParameter("redirectUri", redirectUri)
-                    ;
-            }
+                    .AddParameter("redirectUri", redirectUri);
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,
