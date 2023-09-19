@@ -1,3 +1,10 @@
+## [5.85.6](https://github.com/informatievlaanderen/public-api/compare/v5.85.5...v5.85.6) (2023-09-19)
+
+
+### Bug Fixes
+
+* WR-689 always pass auth header for road-registry + cleanup ([3665a40](https://github.com/informatievlaanderen/public-api/commit/3665a403836300bafeaea7562a05f68a65b096a5))
+
 ## [5.85.5](https://github.com/informatievlaanderen/public-api/compare/v5.85.4...v5.85.5) (2023-09-19)
 
 
