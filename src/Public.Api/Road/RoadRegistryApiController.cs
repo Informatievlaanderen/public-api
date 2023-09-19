@@ -29,10 +29,7 @@ namespace Public.Api.Road
 
         protected RestRequest CreateBackendRestRequest(Method method, string path)
         {
-            return new RestRequest(path)
-                {
-                    Method = method
-                }
+            return new RestRequest(path, method)
                 .AddHeaderAuthorization(ActionContextAccessor);
         }
 
