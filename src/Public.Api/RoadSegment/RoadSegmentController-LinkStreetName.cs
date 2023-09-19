@@ -1,21 +1,18 @@
 namespace Public.Api.RoadSegment
 {
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.AcmIdm;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
-    using Common.Infrastructure.Controllers.Attributes;
-    using Common.Infrastructure.Extensions;
     using Infrastructure;
+    using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using Public.Api.Infrastructure.Swagger;
     using RestSharp;
     using RoadRegistry.BackOffice.Api.RoadSegments;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
+    using System.Threading;
+    using System.Threading.Tasks;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class RoadSegmentController
@@ -27,7 +24,6 @@ namespace Public.Api.RoadSegment
         /// </summary>
         /// <param name="id">Identificator van het wegsegment.</param>
         /// <param name="request"></param>
-        /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
@@ -61,7 +57,6 @@ namespace Public.Api.RoadSegment
         public async Task<IActionResult> LinkRoadSegmentStreetName(
             [FromRoute] string id,
             [FromBody] PostLinkStreetNameParameters request,
-            [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] LinkRoadSegmentStreetNameToggle featureToggle,
             CancellationToken cancellationToken)
@@ -71,18 +66,13 @@ namespace Public.Api.RoadSegment
                 return NotFound();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat();
 
-            RestRequest BackendRequest()
-            {
-                return CreateBackendRequestWithJsonBody(
-                        LinkRoadSegmentStreetNameRoute,
-                        request,
-                        Method.Post)
-                    .AddParameter(nameof(id), id, ParameterType.UrlSegment)
-                    .AddHeaderAuthorization(actionContextAccessor);
-            }
-
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Post, LinkRoadSegmentStreetNameRoute)
+                    .AddJsonBody(request)
+                    .AddParameter(nameof(id), id, ParameterType.UrlSegment);
+            
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,
                 BackendRequest,

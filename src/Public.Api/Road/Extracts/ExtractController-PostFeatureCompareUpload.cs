@@ -1,14 +1,14 @@
 namespace Public.Api.Road.Extracts
 {
-    using System.Net.Http;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers.Attributes;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class ExtractController
     {
@@ -20,9 +20,18 @@ namespace Public.Api.Road.Extracts
             IFormFile archive,
             CancellationToken cancellationToken = default)
         {
+            HttpRequestMessage BackendRequest()
+            {
+                var request = CreateBackendHttpRequestMessage(HttpMethod.Post, $"extracts/download/{downloadId}/uploads/feature-compare");
+                request.Content = new StreamContent(archive.OpenReadStream());
+                request.Headers.Add(HeaderNames.ContentDisposition, archive.ContentDisposition);
+                request.Headers.Add(HeaderNames.ContentType, archive.ContentType);
+                return request;
+            }
+
             var response = await GetFromBackendWithBadRequestAsync(
                 _httpClient,
-                () => CreateBackendFeatureCompareUploadRequest(downloadId, archive),
+                BackendRequest,
                 CreateDefaultHandleBadRequest(),
                 problemDetailsHelper,
                 cancellationToken
@@ -30,17 +39,5 @@ namespace Public.Api.Road.Extracts
 
             return response.ToActionResult();
         }
-
-        private static HttpRequestMessage CreateBackendFeatureCompareUploadRequest(
-            string downloadId,
-            IFormFile archive) => new HttpRequestMessage(HttpMethod.Post, $"extracts/download/{downloadId}/uploads/feature-compare")
-        {
-            Content = new StreamContent(archive.OpenReadStream()),
-            Headers =
-            {
-                {HeaderNames.ContentDisposition, archive.ContentDisposition},
-                {HeaderNames.ContentType, archive.ContentType}
-            }
-        };
     }
 }

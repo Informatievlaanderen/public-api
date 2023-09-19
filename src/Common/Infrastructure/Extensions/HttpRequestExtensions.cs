@@ -3,6 +3,10 @@ namespace Common.Infrastructure.Extensions
     using Be.Vlaanderen.Basisregisters.Api;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
 
     public static class HttpRequestExtensions
     {
@@ -36,6 +40,17 @@ namespace Common.Infrastructure.Extensions
             // convert Atom to Xml to support problem-details
             if (request.GetTypedHeaders().Contains(AcceptType.Atom))
                 request.SetAcceptType(AcceptType.Xml);
+        }
+
+        public static HttpRequestMessage AddHeaderAuthorization(this HttpRequestMessage request, IActionContextAccessor actionContextAccessor)
+        {
+            if (actionContextAccessor.ActionContext.HttpContext.Request.Headers.Authorization.Any())
+            {
+                var authHeaderValueParts = actionContextAccessor.ActionContext.HttpContext.Request.Headers.Authorization.First()!.Split(" ");
+                request.Headers.Authorization = new AuthenticationHeaderValue(authHeaderValueParts[0], string.Join(" ", authHeaderValueParts.Skip(1)));
+            }
+
+            return request;
         }
     }
 }

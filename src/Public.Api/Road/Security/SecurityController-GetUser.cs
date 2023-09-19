@@ -1,31 +1,25 @@
 namespace Public.Api.Road.Security
 {
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure.Controllers.Attributes;
-    using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class SecurityController
     {
         [HttpGet("wegen/security/user", Name = nameof(GetUser))]
         [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
         public async Task<IActionResult> GetUser(
-            [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken)
         {
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat();
 
-            RestRequest BackendRequest()
-            {
-                return new RestRequest("security/user")
-                    .AddHeaderAuthorization(actionContextAccessor);
-            }
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Get, "security/user");
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,

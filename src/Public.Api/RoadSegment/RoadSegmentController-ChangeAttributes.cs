@@ -1,21 +1,19 @@
 namespace Public.Api.RoadSegment
 {
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.AcmIdm;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
-    using Common.Infrastructure.Extensions;
     using Infrastructure;
+    using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using Public.Api.Infrastructure.Swagger;
     using RestSharp;
     using RoadRegistry.BackOffice.Api.RoadSegments;
     using RoadRegistry.BackOffice.Api.RoadSegments.ChangeAttributes;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
+    using System.Threading;
+    using System.Threading.Tasks;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class RoadSegmentController
@@ -26,7 +24,6 @@ namespace Public.Api.RoadSegment
         ///     Wijzig een attribuutwaarde voor één of meerdere wegsegmenten (v1).
         /// </summary>
         /// <param name="request"></param>
-        /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
@@ -59,7 +56,6 @@ namespace Public.Api.RoadSegment
         )]
         public async Task<IActionResult> ChangeRoadSegmentAttributes(
             [FromBody] ChangeRoadSegmentAttributesParameters request,
-            [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] ChangeRoadSegmentAttributesToggle featureToggle,
             CancellationToken cancellationToken)
@@ -69,16 +65,11 @@ namespace Public.Api.RoadSegment
                 return NotFound();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat();
 
-            RestRequest BackendRequest()
-            {
-                return CreateBackendRequestWithJsonBody(
-                        ChangeRoadSegmentAttributesRoute,
-                        request,
-                        Method.Post)
-                    .AddHeaderAuthorization(actionContextAccessor);
-            }
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Post, ChangeRoadSegmentAttributesRoute)
+                    .AddJsonBody(request);
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,

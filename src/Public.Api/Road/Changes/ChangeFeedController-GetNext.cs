@@ -1,12 +1,12 @@
 namespace Public.Api.Road.Changes
 {
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
     using RestSharp;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class ChangeFeedController
     {
@@ -17,7 +17,10 @@ namespace Public.Api.Road.Changes
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
-            RestRequest BackendRequest() => CreateBackendNextRequest(maxEntryCount, afterEntry);
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Get, "changefeed/next")
+                    .AddParameter(nameof(maxEntryCount), maxEntryCount, ParameterType.QueryString)
+                    .AddParameter(nameof(afterEntry), afterEntry, ParameterType.QueryString);
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
@@ -27,9 +30,5 @@ namespace Public.Api.Road.Changes
                 cancellationToken: cancellationToken);
             return new BackendResponseResult(response);
         }
-
-        private static RestRequest CreateBackendNextRequest(int? maxEntryCount, long? afterEntry) => new RestRequest("changefeed/next")
-            .AddParameter(nameof(maxEntryCount), maxEntryCount, ParameterType.QueryString)
-            .AddParameter(nameof(afterEntry), afterEntry, ParameterType.QueryString);
     }
 }

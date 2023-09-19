@@ -1,11 +1,11 @@
 namespace Public.Api.Road.Uploads
 {
-    using System.Net.Http;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class UploadController
     {
@@ -15,9 +15,12 @@ namespace Public.Api.Road.Uploads
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken)
         {
+            HttpRequestMessage BackendRequest() =>
+                CreateBackendHttpRequestMessage(HttpMethod.Get, $"upload/{identifier}");
+
             var response = await GetFromBackendWithBadRequestAsync(
                 _httpClient,
-                () => CreateBackendGetUploadRequest(identifier),
+                BackendRequest,
                 CreateDefaultHandleBadRequest(),
                 problemDetailsHelper,
                 cancellationToken
@@ -25,9 +28,5 @@ namespace Public.Api.Road.Uploads
 
             return response.ToActionResult();
         }
-
-        private static HttpRequestMessage CreateBackendGetUploadRequest(string identifier) =>
-            new HttpRequestMessage(HttpMethod.Get, $"upload/{identifier}");
-
     }
 }

@@ -1,13 +1,13 @@
 namespace Public.Api.Road.Uploads
 {
-    using System.Net.Http;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class UploadController
     {
@@ -18,9 +18,18 @@ namespace Public.Api.Road.Uploads
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken)
         {
+            HttpRequestMessage BackendRequest()
+            {
+                var request = CreateBackendHttpRequestMessage(HttpMethod.Post, "upload/fc");
+                request.Content = new StreamContent(archive.OpenReadStream());
+                request.Headers.Add(HeaderNames.ContentDisposition, archive.ContentDisposition);
+                request.Headers.Add(HeaderNames.ContentType, archive.ContentType);
+                return request;
+            }
+
             var response = await GetFromBackendWithBadRequestAsync(
                 _httpClient,
-                () => CreateBackendUploadBeforeFeatureCompareRequest(archive),
+                BackendRequest,
                 CreateDefaultHandleBadRequest(),
                 problemDetailsHelper,
                 cancellationToken
@@ -28,16 +37,5 @@ namespace Public.Api.Road.Uploads
 
             return response.ToActionResult();
         }
-
-        private static HttpRequestMessage CreateBackendUploadBeforeFeatureCompareRequest(IFormFile archive) =>
-            new HttpRequestMessage(HttpMethod.Post, "upload/fc")
-            {
-                Content = new StreamContent(archive.OpenReadStream()),
-                Headers =
-                {
-                    {HeaderNames.ContentDisposition, archive.ContentDisposition},
-                    {HeaderNames.ContentType, archive.ContentType}
-                }
-            };
     }
 }

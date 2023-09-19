@@ -1,12 +1,12 @@
 namespace Public.Api.Road.Extracts
 {
-    using System.Net.Http;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure.Controllers.Attributes;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class ExtractController
     {
@@ -19,7 +19,7 @@ namespace Public.Api.Road.Extracts
         {
             var response = await GetFromBackendWithBadRequestAsync(
                 _httpClient,
-                () => CreateBackendDownloadRequest(downloadId),
+                () => CreateBackendHttpRequestMessage(HttpMethod.Get, $"extracts/download/{downloadId}"),
                 CreateDefaultHandleBadRequest(),
                 problemDetailsHelper,
                 cancellationToken
@@ -27,7 +27,5 @@ namespace Public.Api.Road.Extracts
 
             return response.ToActionResult();
         }
-
-        private static HttpRequestMessage CreateBackendDownloadRequest(string downloadId) => new HttpRequestMessage(HttpMethod.Get, $"extracts/download/{downloadId}");
     }
 }

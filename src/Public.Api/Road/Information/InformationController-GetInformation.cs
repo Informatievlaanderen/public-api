@@ -1,11 +1,11 @@
 namespace Public.Api.Road.Information
 {
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
     using RestSharp;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class InformationController
     {
@@ -13,7 +13,7 @@ namespace Public.Api.Road.Information
         public async Task<IActionResult> GetInformation(CancellationToken cancellationToken)
         {
             RestRequest BackendRequest() =>
-                new RestRequest("information");
+                CreateBackendRestRequest(Method.Get, "information");
 
             var response = await GetFromBackendAsync(
                 AcceptType.Json,

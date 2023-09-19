@@ -1,7 +1,5 @@
 namespace Public.Api.Road.Extracts
 {
-    using System.Threading;
-    using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure.Controllers.Attributes;
@@ -9,6 +7,8 @@ namespace Public.Api.Road.Extracts
     using Microsoft.AspNetCore.Mvc;
     using RestSharp;
     using RoadRegistry.BackOffice.Api.Extracts;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public partial class ExtractController
     {
@@ -19,7 +19,9 @@ namespace Public.Api.Road.Extracts
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
-            RestRequest BackendRequest() => CreateBackendDownloadRequestByFile(body);
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Post, "extracts/downloadrequests/byfile")
+                    .AddJsonBodyOrEmpty(body);
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
@@ -30,9 +32,5 @@ namespace Public.Api.Road.Extracts
 
             return new BackendResponseResult(response);
         }
-
-        private static RestRequest CreateBackendDownloadRequestByFile(DownloadExtractByFileRequestBody body) =>
-            new RestRequest("extracts/downloadrequests/byfile", Method.Post)
-            .AddJsonBodyOrEmpty(body);
     }
 }
