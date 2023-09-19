@@ -14,9 +14,12 @@ namespace Public.Api.Road.Downloads
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
+            HttpRequestMessage BackendRequest() =>
+                CreateBackendHttpRequestMessage(HttpMethod.Get, "download/for-editor");
+
             var response = await GetFromBackendWithBadRequestAsync(
                 _httpClient,
-                () => CreateBackendHttpRequestMessage(HttpMethod.Get, "download/for-editor"),
+                BackendRequest,
                 CreateDefaultHandleBadRequest(),
                 problemDetailsHelper,
                 cancellationToken
