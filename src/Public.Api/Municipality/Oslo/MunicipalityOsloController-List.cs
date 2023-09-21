@@ -1,5 +1,6 @@
 namespace Public.Api.Municipality.Oslo
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
@@ -34,6 +35,9 @@ namespace Public.Api.Municipality.Oslo
         /// Filter op de status van de gemeente (exact) (optioneel). <br />
         /// `"inGebruik"` `"gehistoreerd"` `"voorgesteld"`
         /// </param>
+        /// <param name="gewest">Filter op het gewest van de gemeente (exact) (optioneel). <br />
+        /// `"vlaams"`
+        /// </param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
@@ -66,6 +70,7 @@ namespace Public.Api.Municipality.Oslo
             [FromQuery] string sort,
             [FromQuery] string gemeentenaam,
             [FromQuery] string status,
+            [FromQuery] string gewest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<MunicipalityOptionsV2> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -74,7 +79,7 @@ namespace Public.Api.Municipality.Oslo
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
             const Taal taal = Taal.NL;
 
-            var isFlemishRegion = GetIsFlemishRegionQueryParameter();
+            var isFlemishRegion = GetIsFlemishRegionQueryParameter(gewest);
 
             RestRequest BackendRequest() => CreateBackendListRequest(
                 offset,
@@ -94,7 +99,7 @@ namespace Public.Api.Municipality.Oslo
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        private bool GetIsFlemishRegionQueryParameter()
+        private bool GetIsFlemishRegionQueryParameter(string gewest)
         {
             var isFlemishRegion = false;
             var isFlemishRegionParameterName = "isFlemishRegion";
@@ -103,7 +108,7 @@ namespace Public.Api.Municipality.Oslo
                 bool.TryParse(Request.Query[isFlemishRegionParameterName].First(), out isFlemishRegion);
             }
 
-            return isFlemishRegion;
+            return isFlemishRegion || gewest.Equals("vlaams", StringComparison.OrdinalIgnoreCase);;
         }
 
         private static RestRequest CreateBackendListRequest(int? offset,
