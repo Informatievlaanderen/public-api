@@ -1,3 +1,10 @@
+# [5.87.0](https://github.com/informatievlaanderen/public-api/compare/v5.86.0...v5.87.0) (2023-09-21)
+
+
+### Features
+
+* municipality list filter on region v2 ([00a0d7c](https://github.com/informatievlaanderen/public-api/commit/00a0d7cb2ec4d7f82e19da377d645a39d3fdbe99))
+
 # [5.86.0](https://github.com/informatievlaanderen/public-api/compare/v5.85.6...v5.86.0) (2023-09-20)
 
 
