@@ -1,3 +1,10 @@
+## [5.87.1](https://github.com/informatievlaanderen/public-api/compare/v5.87.0...v5.87.1) (2023-09-22)
+
+
+### Bug Fixes
+
+* filtering flemish region on municipality list ([478c68e](https://github.com/informatievlaanderen/public-api/commit/478c68eaf976ebf9b39b29f466e719cd42488ee5))
+
 # [5.87.0](https://github.com/informatievlaanderen/public-api/compare/v5.86.0...v5.87.0) (2023-09-21)
 
 
