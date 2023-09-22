@@ -103,7 +103,7 @@ namespace Public.Api.Municipality
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        private bool GetIsFlemishRegionQueryParameter(string gewest)
+        private bool GetIsFlemishRegionQueryParameter(string? gewest)
         {
             var isFlemishRegion = false;
             var paramName = "isFlemishRegion";
@@ -113,7 +113,7 @@ namespace Public.Api.Municipality
                 bool.TryParse(Request.Query[paramName].First(), out isFlemishRegion);
             }
 
-            return isFlemishRegion || gewest.Equals("vlaams", StringComparison.OrdinalIgnoreCase);
+            return isFlemishRegion || (gewest?.Equals("vlaams", StringComparison.OrdinalIgnoreCase) ?? false);
         }
 
         private static RestRequest CreateBackendListRequest(int? offset,
