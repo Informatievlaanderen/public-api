@@ -1,5 +1,6 @@
 namespace Public.Api.StreetName
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -35,6 +36,9 @@ namespace Public.Api.StreetName
         /// Filter op de status van de straatnaam (exact) (optioneel). <br />
         /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"` `"afgekeurd"`
         /// </param>
+        /// <param name="gewest">Filter op het gewest van de straatnaam (exact) (optioneel). <br />
+        /// `"vlaams"`
+        /// </param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
@@ -69,6 +73,7 @@ namespace Public.Api.StreetName
             [FromQuery] string gemeentenaam,
             [FromQuery] string niscode,
             [FromQuery] string status,
+            [FromQuery] string gewest,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<StreetNameOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -85,7 +90,8 @@ namespace Public.Api.StreetName
                 straatnaam,
                 gemeentenaam,
                 niscode,
-                status);
+                status,
+                gewest);
 
             var value = await GetFromBackendAsync(
                     contentFormat.ContentType,
@@ -96,21 +102,24 @@ namespace Public.Api.StreetName
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        private static RestRequest CreateBackendListRequest(int? offset,
+        private static RestRequest CreateBackendListRequest(
+            int? offset,
             int? limit,
             Taal language,
             string sort,
             string streetNameName,
             string municipalityName,
             string nisCode,
-            string status)
+            string status,
+            string? gewest)
         {
             var filter = new StreetNameFilter
             {
                 StreetNameName = streetNameName,
                 MunicipalityName = municipalityName,
                 NisCode = nisCode,
-                Status = status
+                Status = status,
+                IsInFlemishRegion = gewest?.Equals("vlaams", StringComparison.OrdinalIgnoreCase)
             };
 
             // id, naam-nl, naam-fr, naam-de, naam-en
