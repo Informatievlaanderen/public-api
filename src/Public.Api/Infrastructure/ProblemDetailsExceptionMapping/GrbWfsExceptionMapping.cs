@@ -4,7 +4,7 @@ namespace Public.Api.Infrastructure.ProblemDetailsExceptionMapping
     using System.Text.RegularExpressions;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.BasicApiProblem;
-    using BuildingRegistry.Api.Legacy.Infrastructure.Grb.Wfs;
+    using BuildingRegistry.Api.Oslo.Infrastructure.ParcelMatching.Wfs;
     using Microsoft.AspNetCore.Http;
 
     public class GrbWfsExceptionMapping : ApiProblemDetailsExceptionMapping
