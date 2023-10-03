@@ -1,3 +1,10 @@
+# [5.88.0](https://github.com/informatievlaanderen/public-api/compare/v5.87.1...v5.88.0) (2023-10-03)
+
+
+### Features
+
+* add status to building bu detail in read api ([d060e17](https://github.com/informatievlaanderen/public-api/commit/d060e171272a04bfc215e7bacc5b27d64b47277c))
+
 ## [5.87.1](https://github.com/informatievlaanderen/public-api/compare/v5.87.0...v5.87.1) (2023-09-22)
 
 
