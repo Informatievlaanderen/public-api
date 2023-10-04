@@ -1,3 +1,10 @@
+# [5.89.0](https://github.com/informatievlaanderen/public-api/compare/v5.88.1...v5.89.0) (2023-10-04)
+
+
+### Features
+
+* add building filter on building units list ([daf2353](https://github.com/informatievlaanderen/public-api/commit/daf2353ca1f35f35bd3efd259e5d7425785e25e9))
+
 ## [5.88.1](https://github.com/informatievlaanderen/public-api/compare/v5.88.0...v5.88.1) (2023-10-04)
 
 
