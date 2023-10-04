@@ -54,6 +54,13 @@ nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 6.0.5
 nuget Be.Vlaanderen.Basisregisters.AcmIdm 1.3.6
 nuget Be.Vlaanderen.Basisregisters.Api 20.1.0
 
+// DataDog To Remove after testing
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing 5.1.0
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore 5.1.0
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Microsoft 5.1.0
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql 5.1.0
+nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore 5.1.0
+
 nuget Be.Vlaanderen.Basisregisters.GrAr.Common 20.5.0
 nuget Be.Vlaanderen.Basisregisters.GrAr.Edit 20.5.0
 nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 20.5.0
