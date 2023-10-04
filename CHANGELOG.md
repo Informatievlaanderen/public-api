@@ -1,3 +1,10 @@
+## [5.88.1](https://github.com/informatievlaanderen/public-api/compare/v5.88.0...v5.88.1) (2023-10-04)
+
+
+### Bug Fixes
+
+* bump datadog only ([691b19b](https://github.com/informatievlaanderen/public-api/commit/691b19bbb2f120c572c178660a69423be93e931f))
+
 # [5.88.0](https://github.com/informatievlaanderen/public-api/compare/v5.87.1...v5.88.0) (2023-10-03)
 
 
