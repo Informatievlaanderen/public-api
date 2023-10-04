@@ -28,6 +28,7 @@ namespace Public.Api.BuildingUnit
         /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
         /// <param name="sort">Optionele sortering van het resultaat (id).</param>
+        /// <param name="gebouwObjectId">Filter op de objectidentificator van het gekoppelde gebouw (exact) (optioneel).</param>
         /// <param name="adresObjectId">Filter op de objectidentificator van het gekoppelde adres (exact) (optioneel).</param>
         /// <param name="status">
         /// Filter op de status van de gebouweenheid (exact).<br/>
@@ -63,6 +64,7 @@ namespace Public.Api.BuildingUnit
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
+            [FromQuery] int? gebouwObjectId,
             [FromQuery] int? adresObjectId,
             [FromQuery] string status,
             [FromServices] IActionContextAccessor actionContextAccessor,
@@ -77,6 +79,7 @@ namespace Public.Api.BuildingUnit
                 offset,
                 limit,
                 taal,
+                gebouwObjectId,
                 adresObjectId,
                 sort,
                 status);
@@ -94,12 +97,14 @@ namespace Public.Api.BuildingUnit
             int? offset,
             int? limit,
             Taal language,
+            int? gebouwId,
             int? addressId,
             string sort,
             string status)
         {
             var filter = new BuildingUnitFilter
             {
+                BuildingPersistentLocalId = gebouwId,
                 AddressPersistentLocalId = addressId?.ToString(),
                 Status = status
             };
