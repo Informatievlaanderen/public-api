@@ -1,3 +1,10 @@
+## [5.89.1](https://github.com/informatievlaanderen/public-api/compare/v5.89.0...v5.89.1) (2023-10-05)
+
+
+### Bug Fixes
+
+* GebouwDetailGebouweenheid Status should be enum ([9474ca6](https://github.com/informatievlaanderen/public-api/commit/9474ca6a7251ba7878af86680443c1b7a2c03640))
+
 # [5.89.0](https://github.com/informatievlaanderen/public-api/compare/v5.88.1...v5.89.0) (2023-10-04)
 
 
