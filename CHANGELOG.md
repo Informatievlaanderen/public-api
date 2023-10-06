@@ -1,3 +1,10 @@
+# [5.90.0](https://github.com/informatievlaanderen/public-api/compare/v5.89.1...v5.90.0) (2023-10-06)
+
+
+### Features
+
+* add function filter on list buildingunits ([7b1932c](https://github.com/informatievlaanderen/public-api/commit/7b1932c7eddde6b5739af8071f0bf50313ed29f6))
+
 ## [5.89.1](https://github.com/informatievlaanderen/public-api/compare/v5.89.0...v5.89.1) (2023-10-05)
 
 
