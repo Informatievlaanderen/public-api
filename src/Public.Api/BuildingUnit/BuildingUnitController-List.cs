@@ -34,6 +34,7 @@ namespace Public.Api.BuildingUnit
         /// Filter op de status van de gebouweenheid (exact).<br/>
         /// `"gepland"` `"gerealiseerd"` `"gehistoreerd"` `"nietGerealiseerd"`
         /// </param>
+        /// <param name="functie">Filter op de functie van een gebouweenheid (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
@@ -67,6 +68,7 @@ namespace Public.Api.BuildingUnit
             [FromQuery] int? gebouwObjectId,
             [FromQuery] int? adresObjectId,
             [FromQuery] string status,
+            [FromQuery] string? functie,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<BuildingOptions> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -81,6 +83,7 @@ namespace Public.Api.BuildingUnit
                 taal,
                 gebouwObjectId,
                 adresObjectId,
+                functie,
                 sort,
                 status);
 
@@ -99,6 +102,7 @@ namespace Public.Api.BuildingUnit
             Taal language,
             int? gebouwId,
             int? addressId,
+            string? functie,
             string sort,
             string status)
         {
@@ -106,7 +110,8 @@ namespace Public.Api.BuildingUnit
             {
                 BuildingPersistentLocalId = gebouwId,
                 AddressPersistentLocalId = addressId?.ToString(),
-                Status = status
+                Status = status,
+                Functie = functie
             };
 
             var sortMapping = new Dictionary<string, string>
