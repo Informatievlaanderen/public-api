@@ -30,6 +30,7 @@ namespace Public.Api.PostalCode.Oslo
         /// <param name="sort">Optionele sortering van het resultaat (postcode).</param>
         /// <param name="gemeentenaam">Filter op de gemeentenaam van de postcode (exact) (optioneel).</param>
         /// <param name="postnaam">Filter op de postnaam van de postcode (exact) (optioneel).</param>
+        /// <param name="nuts3">Filter op de NUTS3 classificatie gebruikt door Eurostat (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
@@ -61,6 +62,7 @@ namespace Public.Api.PostalCode.Oslo
             [FromQuery] string sort,
             [FromQuery] string gemeentenaam,
             [FromQuery] string postnaam,
+            [FromQuery] string? nuts3,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<PostalOptionsV2> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -75,7 +77,8 @@ namespace Public.Api.PostalCode.Oslo
                 taal,
                 sort,
                 gemeentenaam,
-                postnaam);
+                postnaam,
+                nuts3);
 
             var value = await GetFromBackendAsync(
                 contentFormat.ContentType,
@@ -86,18 +89,19 @@ namespace Public.Api.PostalCode.Oslo
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        private static RestRequest CreateBackendListRequest(
-            int? offset,
+        private static RestRequest CreateBackendListRequest(int? offset,
             int? limit,
             Taal language,
             string sort,
             string municipalityName,
-            string postnaam)
+            string postnaam,
+            string? nuts3)
         {
             var filter = new PostalInformationFilter
             {
                 MunicipalityName = municipalityName,
-                PostalName = postnaam
+                PostalName = postnaam,
+                Nuts3Code = nuts3
             };
 
             // postcode

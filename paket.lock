@@ -299,8 +299,8 @@ NUGET
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 20.3.1)
     Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo (4.31.11) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 20.3.1)
-    Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (3.7.2) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo (3.7.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy (3.10.1) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo (3.10.1) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.ProblemDetails (8.0.6)
       System.Reflection.Metadata (>= 6.0.1)
     Be.Vlaanderen.Basisregisters.ProjectionHandling.Connector (11.0.7)
