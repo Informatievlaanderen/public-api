@@ -31,6 +31,7 @@ namespace Public.Api.StreetName.Oslo
         /// <param name="straatnaam">Filter op de naam van de straatnaam (exact) (optioneel).</param>
         /// <param name="gemeentenaam">Filter op de gemeentenaam van de straatnaam (exact) (optioneel).</param>
         /// <param name="niscode">Filter op de NIS-code van de straatnaam (exact) (optioneel).</param>
+        /// <param name="postcode">Filter op de postcode van de straatnaam (exact) (optioneel).</param>
         /// <param name="status">
         /// Filter op de status van de straatnaam (exact) (optioneel). <br />
         /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"` `"afgekeurd"`
@@ -68,6 +69,7 @@ namespace Public.Api.StreetName.Oslo
             [FromQuery] string straatnaam,
             [FromQuery] string gemeentenaam,
             [FromQuery] string niscode,
+            [FromQuery] string postcode,
             [FromQuery] string status,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<StreetNameOptionsV2> responseOptions,
@@ -85,6 +87,7 @@ namespace Public.Api.StreetName.Oslo
                 straatnaam,
                 gemeentenaam,
                 niscode,
+                postcode,
                 status);
 
             var value = await GetFromBackendAsync(
@@ -103,6 +106,7 @@ namespace Public.Api.StreetName.Oslo
             string streetNameName,
             string municipalityName,
             string nisCode,
+            string postcode,
             string status)
         {
             var filter = new StreetNameFilter
@@ -110,7 +114,8 @@ namespace Public.Api.StreetName.Oslo
                 StreetNameName = streetNameName,
                 MunicipalityName = municipalityName,
                 NisCode = nisCode,
-                Status = status
+                Status = status,
+                PostalCode = postcode
             };
 
             // id, naam-nl, naam-fr, naam-de, naam-en
