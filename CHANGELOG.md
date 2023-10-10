@@ -1,3 +1,10 @@
+# [5.91.0](https://github.com/informatievlaanderen/public-api/compare/v5.90.0...v5.91.0) (2023-10-10)
+
+
+### Features
+
+* add NUTS3 to postal ([c026822](https://github.com/informatievlaanderen/public-api/commit/c026822fbcebcb53f8017e6bc9e8a80c344a1caf))
+
 # [5.90.0](https://github.com/informatievlaanderen/public-api/compare/v5.89.1...v5.90.0) (2023-10-06)
 
 
