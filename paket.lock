@@ -166,7 +166,7 @@ NUGET
       NSwag.CodeGeneration.CSharp (>= 13.15.10)
       NSwag.CodeGeneration.TypeScript (>= 13.15.10)
       Swashbuckle.AspNetCore (6.2.3)
-    Be.Vlaanderen.Basisregisters.Aws.DistributedMutex (3.0.3) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.Aws.DistributedMutex (3.0.4) - copy_content_to_output_dir: always
       AWSSDK.DynamoDBv2 (>= 3.7.102.15)
       Microsoft.Extensions.Logging (>= 6.0)
     Be.Vlaanderen.Basisregisters.Aws.DistributedS3Cache (1.0.5) - copy_content_to_output_dir: always
@@ -322,7 +322,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.EventHandling (>= 4.2.2)
       SqlStreamStore (>= 1.2)
     Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice (2.1.1) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice (3.59.5) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice (3.60.4) - copy_content_to_output_dir: always
       Amazon.Lambda.Core (>= 2.1)
       AWSSDK.DynamoDBv2 (>= 3.7.103.2)
       Be.Vlaanderen.Basisregisters.AggregateSource (>= 8.0)
@@ -338,30 +338,30 @@ NUGET
       FeatureToggle.Common (>= 4.0.2)
       FluentValidation (>= 11.5.2)
       MediatR (>= 12.0.1)
-      MessagePack (>= 2.5.108)
+      MessagePack (>= 2.4.35)
       Microsoft.Extensions.Configuration (>= 7.0)
       Microsoft.Extensions.Configuration.Abstractions (>= 7.0)
       Microsoft.Extensions.Configuration.Binder (>= 7.0.4)
       Microsoft.Extensions.Logging.Abstractions (>= 7.0)
       Microsoft.Extensions.Logging.Console (>= 7.0)
-      Microsoft.IdentityModel.Abstractions (>= 6.25.1)
-      Microsoft.IdentityModel.JsonWebTokens (>= 6.25.1)
-      Microsoft.IdentityModel.Logging (>= 6.25.1)
-      Microsoft.IdentityModel.Tokens (>= 6.25.1)
+      Microsoft.IdentityModel.Abstractions (>= 6.24)
+      Microsoft.IdentityModel.JsonWebTokens (>= 6.24)
+      Microsoft.IdentityModel.Logging (>= 6.24)
+      Microsoft.IdentityModel.Tokens (>= 6.24)
       Microsoft.IO.RecyclableMemoryStream (>= 2.2.1)
       NetTopologySuite (>= 2.5)
       Polly (>= 7.2.3)
       SqlStreamStore (>= 1.2)
       System.IdentityModel.Tokens.Jwt (>= 6.24)
-    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions (3.59.5) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions (3.60.4) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.BlobStore (>= 3.0)
       MediatR.Contracts (>= 2.0.1)
       Microsoft.Net.Http.Headers (>= 2.2.8)
-    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (3.59.5) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (3.60.4) - copy_content_to_output_dir: always
       AspNetCore.HealthChecks.SqlServer (>= 6.0.2)
       AWSSDK.Core (>= 3.7.107.6)
       Be.Vlaanderen.Basisregisters.Api (>= 20.0.1)
-      Be.Vlaanderen.Basisregisters.Aws.DistributedMutex (>= 3.0.3)
+      Be.Vlaanderen.Basisregisters.Aws.DistributedMutex (>= 3.0.4)
       Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac (>= 5.0.3)
       Be.Vlaanderen.Basisregisters.GrAr.Provenance (>= 19.1)
       Be.Vlaanderen.Basisregisters.Shaperon (>= 9.0.1)
@@ -752,7 +752,7 @@ NUGET
       Microsoft.Identity.Client (>= 4.45)
       System.IO.FileSystem.AccessControl (>= 5.0)
       System.Security.Cryptography.ProtectedData (>= 4.5)
-    Microsoft.IdentityModel.Abstractions (6.27) - copy_content_to_output_dir: always
+    Microsoft.IdentityModel.Abstractions (6.27)
     Microsoft.IdentityModel.JsonWebTokens (6.25.1) - copy_content_to_output_dir: always
       Microsoft.IdentityModel.Tokens (>= 6.25.1)
       System.Text.Encoding (>= 4.3)
