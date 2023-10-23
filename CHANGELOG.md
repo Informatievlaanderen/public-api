@@ -1,3 +1,10 @@
+## [5.91.3](https://github.com/informatievlaanderen/public-api/compare/v5.91.2...v5.91.3) (2023-10-23)
+
+
+### Bug Fixes
+
+* WR-875 update road-registry ([#795](https://github.com/informatievlaanderen/public-api/issues/795)) ([bc09063](https://github.com/informatievlaanderen/public-api/commit/bc09063c4bf31cd2270a5b82816fc969b7d9c77f))
+
 ## [5.91.2](https://github.com/informatievlaanderen/public-api/compare/v5.91.1...v5.91.2) (2023-10-19)
 
 ## [5.91.1](https://github.com/informatievlaanderen/public-api/compare/v5.91.0...v5.91.1) (2023-10-17)
