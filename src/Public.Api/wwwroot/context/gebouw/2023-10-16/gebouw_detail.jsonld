@@ -1,6 +1,6 @@
 {
-   "@context":
-    {"@base": "https://basisregisters.vlaanderen.be/implementatiemodel/gebouwenregister",
+  "@context": {
+    "@base": "https://basisregisters.vlaanderen.be/implementatiemodel/gebouwenregister",
     "@vocab": "#",
     "identificator": "@nest",
     "id": "@id",
@@ -28,48 +28,49 @@
       "@type": "@id",
       "@context": {
         "objectId": "@id",
-		"status": {
-			"@id": "https://data.vlaanderen.be/ns/gebouw#Gebouweenheid.status",
-			"@type": "@id",
-			"@context": {
-			"@base": "https://data.vlaanderen.be/doc/concept/gebouweenheidstatus/"
-		},
-        "detail": "http://www.iana.org/assignments/relation/self",
-        "@base": "https://data.vlaanderen.be/id/gebouweenheid/"
-      }
-    },
-    "percelen": {
-      "@id": "https://data.vlaanderen.be/ns/gebouw#ligtOp",
-      "@type": "@id",
-      "@context": {
-        "objectId": "@id",
-         "detail": "http://www.iana.org/assignments/relation/self",
-        "@base": "https://data.vlaanderen.be/id/perceel/"
-      }
-    },
-    "gebouwPolygoon": {
-      "@id": "https://data.vlaanderen.be/ns/gebouw#Gebouw.geometrie",
-      "@type": "@id",
-      "@context": {
-        "geometrieMethode": {
-          "@id": "https://data.vlaanderen.be/ns/gebouw#methode",
+        "status": {
+          "@id": "https://data.vlaanderen.be/ns/gebouw#Gebouweenheid.status",
           "@type": "@id",
           "@context": {
-            "@base": "https://data.vlaanderen.be/doc/concept/2Dgeometriemethode/"
+            "@base": "https://data.vlaanderen.be/doc/concept/gebouweenheidstatus/"
+          },
+          "detail": "http://www.iana.org/assignments/relation/self",
+          "@base": "https://data.vlaanderen.be/id/gebouweenheid/"
+        }
+      },
+      "percelen": {
+        "@id": "https://data.vlaanderen.be/ns/gebouw#ligtOp",
+        "@type": "@id",
+        "@context": {
+          "objectId": "@id",
+          "detail": "http://www.iana.org/assignments/relation/self",
+          "@base": "https://data.vlaanderen.be/id/perceel/"
+        }
+      },
+      "gebouwPolygoon": {
+        "@id": "https://data.vlaanderen.be/ns/gebouw#Gebouw.geometrie",
+        "@type": "@id",
+        "@context": {
+          "geometrieMethode": {
+            "@id": "https://data.vlaanderen.be/ns/gebouw#methode",
+            "@type": "@id",
+            "@context": {
+              "@base": "https://data.vlaanderen.be/doc/concept/2Dgeometriemethode/"
+            }
+          },
+          "geometrie": {
+            "@id": "https://data.vlaanderen.be/ns/gebouw#Gebouw.geometrie",
+            "@context": {
+              "gml": {
+                "@id": "http://www.opengis.net/ont/geosparql#asGML",
+                "@type": "http://www.opengis.net/ont/geosparql#gmlLiteral"
+              },
+              "type": "@type",
+              "@vocab": "http://www.opengis.net/ont/sf#"
+            }
           }
-        },
-        "geometrie": {
-          "@id": "https://data.vlaanderen.be/ns/gebouw#Gebouw.geometrie",
-          "@context": {
-            "gml": {
-              "@id": "http://www.opengis.net/ont/geosparql#asGML",
-              "@type": "http://www.opengis.net/ont/geosparql#gmlLiteral"
-            },
-            "type": "@type",
-            "@vocab": "http://www.opengis.net/ont/sf#"
-                      }
-                     }
-                     }
-                     }
-}
+        }
+      }
+    }
+  }
 }
