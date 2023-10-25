@@ -177,7 +177,8 @@ namespace Public.Api.Infrastructure
                                 x.OperationFilter<ProblemDetailsOperationFilter>();
                                 x.OperationFilter<XApiFilter>();
                                 x.EnableAnnotations();
-                                x.CustomSchemaIds(type => SwashbuckleSchemaHelper.GetSchemaId(type));
+                                x.CustomSchemaIds(type => RoadRegistry.BackOffice.Api.Infrastructure.SwashbuckleHelpers.GetCustomSchemaId(type)
+                                                          ?? SwashbuckleSchemaHelper.GetSchemaId(type));
 
                                 RoadRegistry.BackOffice.Api.Infrastructure.Extensions.SwaggerExtensions.AddRoadRegistrySchemaFilters(x);
                             }
