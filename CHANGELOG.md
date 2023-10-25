@@ -1,3 +1,10 @@
+## [5.91.4](https://github.com/informatievlaanderen/public-api/compare/v5.91.3...v5.91.4) (2023-10-25)
+
+
+### Bug Fixes
+
+* update gebouw jsonld ([e707871](https://github.com/informatievlaanderen/public-api/commit/e7078717b900043557a8c009ff00de8cd5d7705b))
+
 ## [5.91.3](https://github.com/informatievlaanderen/public-api/compare/v5.91.2...v5.91.3) (2023-10-23)
 
 
