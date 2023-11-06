@@ -1,3 +1,10 @@
+## [5.91.6](https://github.com/informatievlaanderen/public-api/compare/v5.91.5...v5.91.6) (2023-11-06)
+
+
+### Bug Fixes
+
+* typo in body type of road-registry ChangeDynamicAttributes ([#797](https://github.com/informatievlaanderen/public-api/issues/797)) ([bc25e73](https://github.com/informatievlaanderen/public-api/commit/bc25e73e8fd80e93617cc0793187452887daf410))
+
 ## [5.91.5](https://github.com/informatievlaanderen/public-api/compare/v5.91.4...v5.91.5) (2023-10-25)
 
 
