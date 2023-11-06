@@ -48,14 +48,14 @@ namespace Public.Api.RoadSegment
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamples))]
-        [SwaggerRequestExample(typeof(ChangeRoadSegmentDynamicAttributesParameters), typeof(ChangeRoadSegmentsDynamicAttributesParametersExamples))]
+        [SwaggerRequestExample(typeof(ChangeRoadSegmentsDynamicAttributesParameters), typeof(ChangeRoadSegmentsDynamicAttributesParametersExamples))]
         [SwaggerAuthorizeOperation(
             OperationId = nameof(ChangeRoadSegmentDynamicAttributes),
             Description = "Dynamische attributen wijzigen van een wegsegment: wegverharding, wegbreedte en aantal rijstroken.",
             Authorize = Scopes.DvWrAttribuutWaardenBeheer
         )]
         public async Task<IActionResult> ChangeRoadSegmentDynamicAttributes(
-            [FromBody] ChangeRoadSegmentDynamicAttributesParameters request,
+            [FromBody] ChangeRoadSegmentsDynamicAttributesParameters request,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] ChangeRoadSegmentDynamicAttributesToggle featureToggle,
             CancellationToken cancellationToken)
