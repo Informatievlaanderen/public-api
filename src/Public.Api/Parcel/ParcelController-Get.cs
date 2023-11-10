@@ -40,7 +40,8 @@ namespace Public.Api.Parcel
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string",
+            "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(ParcelResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(ParcelNotFoundResponseExamples))]
@@ -51,27 +52,19 @@ namespace Public.Api.Parcel
         public async Task<IActionResult> GetParcel(
             [FromRoute] string objectId,
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
+            [FromHeader(Name = HeaderNames.IfNoneMatch)]
+            string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
-            var cacheKey = $"legacy/parcel:{objectId}";
-
-            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
-                ? GetFromCacheThenFromBackendAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    cacheKey,
-                    CreateDefaultHandleBadRequest(),
-                    cancellationToken)
-                : GetFromBackendAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    CreateDefaultHandleBadRequest(),
-                    cancellationToken));
+            var value = await GetFromBackendAsync(
+                contentFormat.ContentType,
+                BackendRequest,
+                CreateDefaultHandleBadRequest(),
+                cancellationToken);
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForRead());
         }

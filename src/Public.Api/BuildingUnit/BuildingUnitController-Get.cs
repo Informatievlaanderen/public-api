@@ -14,6 +14,7 @@ namespace Public.Api.BuildingUnit
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
+    using ValidationProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails;
 
     public partial class BuildingUnitController
     {
@@ -35,7 +36,7 @@ namespace Public.Api.BuildingUnit
         [HttpGet("gebouweenheden/{objectId}", Name = nameof(GetBuildingUnit))]
         [ApiOrder(ApiOrder.BuildingUnit.V1 + 1)]
         [ProducesResponseType(typeof(BuildingUnitResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status410Gone)]
@@ -61,20 +62,11 @@ namespace Public.Api.BuildingUnit
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
-            var cacheKey = $"legacy/buildingunit:{objectId}";
-
-            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
-                ? GetFromCacheThenFromBackendAsync(
-                    contentFormat.ContentType,
-                    BackendRequest,
-                    cacheKey,
-                    CreateDefaultHandleBadRequest(),
-                    cancellationToken)
-                : GetFromBackendAsync(
+            var value = await GetFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,
                     CreateDefaultHandleBadRequest(),
-                    cancellationToken));
+                    cancellationToken);
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForRead());
         }
