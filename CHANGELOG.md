@@ -1,3 +1,10 @@
+## [5.91.7](https://github.com/informatievlaanderen/public-api/compare/v5.91.6...v5.91.7) (2023-11-10)
+
+
+### Bug Fixes
+
+* remove cache check from v1 ([63af5cb](https://github.com/informatievlaanderen/public-api/commit/63af5cb7dcf5eda1d0bb6f6880710778379f7f14))
+
 ## [5.91.6](https://github.com/informatievlaanderen/public-api/compare/v5.91.5...v5.91.6) (2023-11-06)
 
 
