@@ -1,3 +1,10 @@
+# [5.92.0](https://github.com/informatievlaanderen/public-api/compare/v5.91.7...v5.92.0) (2023-11-22)
+
+
+### Features
+
+* add capakey to buildinglist ([9b39e2a](https://github.com/informatievlaanderen/public-api/commit/9b39e2af181657b0b04efa3cb7ab47c292db1d22))
+
 ## [5.91.7](https://github.com/informatievlaanderen/public-api/compare/v5.91.6...v5.91.7) (2023-11-10)
 
 
