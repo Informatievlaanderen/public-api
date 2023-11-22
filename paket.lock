@@ -187,11 +187,11 @@ NUGET
       Fake.IO.FileSystem (>= 5.22)
       Fake.JavaScript.Npm (>= 5.22)
       Newtonsoft.Json (>= 13.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions (3.92) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions (3.96.2) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 20.0)
       MediatR.Contracts (>= 2.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (3.92) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo (3.92) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (3.96.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo (3.96.2) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.CommandHandling (8.0)
     Be.Vlaanderen.Basisregisters.CommandHandling.Idempotency (8.0)
       Be.Vlaanderen.Basisregisters.Converters.Timestamp (>= 3.0)

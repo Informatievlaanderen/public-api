@@ -1,6 +1,7 @@
 namespace Public.Api.Building.Oslo
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
@@ -17,6 +18,7 @@ namespace Public.Api.Building.Oslo
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
     using RestSharp;
+    using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
@@ -70,12 +72,19 @@ namespace Public.Api.Building.Oslo
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
             const Taal taal = Taal.NL;
 
+            string? caPaKey = null;
+            if (Request.Query.ContainsKey("caPaKey"))
+            {
+                caPaKey = Request.Query["caPaKey"].First();
+            }
+
             RestRequest BackendRequest() => CreateBackendListRequest(
                 offset,
                 limit,
                 taal,
                 sort,
-                status);
+                status,
+                caPaKey);
 
             var value = await GetFromBackendAsync(
                 contentFormat.ContentType,
@@ -91,11 +100,13 @@ namespace Public.Api.Building.Oslo
             int? limit,
             Taal language,
             string sort,
-            string status)
+            string status,
+            string? caPaKey)
         {
             var filter = new BuildingFilter
             {
-                Status = status
+                Status = status,
+                CaPaKey = caPaKey
             };
 
             var sortMapping = new Dictionary<string, string>
