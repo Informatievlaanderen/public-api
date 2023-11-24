@@ -33,6 +33,7 @@ namespace Public.Api.Building.Oslo
         /// <param name="status">Filter op de status van het gebouw (exact) (optioneel).<br/>
         /// `"gepland"` `"inAanbouw"` `"gerealiseerd"` `"gehistoreerd"` `"nietGerealiseerd"`
         /// </param>
+        /// <param name="caPaKey">Filter op de objectidentificator van het gekoppelde perceel (exact) (optioneel) (CaPaKey waarbij forward slash `/` vervangen werd door koppelteken `-`).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
@@ -64,6 +65,7 @@ namespace Public.Api.Building.Oslo
             [FromQuery] int? limit,
             [FromQuery] string sort,
             [FromQuery] string status,
+            [FromQuery] string? caPaKey,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<BuildingOptionsV2> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -71,12 +73,6 @@ namespace Public.Api.Building.Oslo
         {
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
             const Taal taal = Taal.NL;
-
-            string? caPaKey = null;
-            if (Request.Query.ContainsKey("caPaKey"))
-            {
-                caPaKey = Request.Query["caPaKey"].First();
-            }
 
             RestRequest BackendRequest() => CreateBackendListRequest(
                 offset,
