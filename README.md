@@ -1,4 +1,4 @@
-# Public Api [![Build Status](https://github.com/Informatievlaanderen/public-api/workflows/CI/badge.svg)](https://github.com/Informatievlaanderen/public-api/actions)
+# Public Api [![Build Status](https://github.com/Informatievlaanderen/public-api/workflows/Build/badge.svg)](https://github.com/Informatievlaanderen/public-api/actions)
 
 ## Goal
 
