@@ -325,6 +325,7 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new ApproveStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ApproveStreetName))
                 .AddSingleton(c => new RejectStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RejectStreetName))
                 .AddSingleton(c => new RetireStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RetireStreetName))
+                .AddSingleton(c => new RenameStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RenameStreetName))
                 .AddSingleton(c => new RemoveStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RemoveStreetName))
                 .AddSingleton(c => new CorrectStreetNameRetirementToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectStreetNameRetirement))
                 .AddSingleton(c => new CorrectStreetNameNamesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectStreetNameNames))

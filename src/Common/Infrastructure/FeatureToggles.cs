@@ -37,6 +37,13 @@ namespace Common.Infrastructure
         public RetireStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class RenameStreetNameToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public RenameStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class RemoveStreetNameToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
@@ -498,14 +505,14 @@ namespace Common.Infrastructure
 
         public UnlinkRoadSegmentStreetNameToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
-    
+
     public class GetRoadSegmentToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
 
         public GetRoadSegmentToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
-    
+
     public class GetRoadOrganizationsToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }
