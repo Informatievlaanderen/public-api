@@ -1,3 +1,10 @@
+# [5.93.0](https://github.com/informatievlaanderen/public-api/compare/v5.92.1...v5.93.0) (2023-11-29)
+
+
+### Features
+
+* add rename streetname ([ae352c7](https://github.com/informatievlaanderen/public-api/commit/ae352c717a4fa961685f1d83e93cccf93e79e0e8))
+
 ## [5.92.1](https://github.com/informatievlaanderen/public-api/compare/v5.92.0...v5.92.1) (2023-11-27)
 
 # [5.92.0](https://github.com/informatievlaanderen/public-api/compare/v5.91.7...v5.92.0) (2023-11-22)
