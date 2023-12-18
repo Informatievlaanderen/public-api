@@ -27,7 +27,7 @@ namespace Public.Api.Municipality
         /// <summary>
         /// Vraag een lijst met gemeenten op (v1).
         /// </summary>
-        /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel).</param>
+        /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel). De offset is echter beperkt tot 1000000, indien meer data dient ingelezen te worden is het gebruik van extra filters aangewezen op de service of verwijzen we naar de downloadproducten van GRAR.</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
         /// <param name="sort">Optionele sortering van het resultaat (niscode, naam, naam-nl, naam-fr, naam-de, naam-en).</param>
         /// <param name="gemeentenaam">Filter op de gemeentenaam van de gemeente (exact) (optioneel).</param>
