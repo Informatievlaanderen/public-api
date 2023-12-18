@@ -662,6 +662,7 @@ namespace Public.Api.Infrastructure
                     },
                     MiddlewareHooks =
                     {
+                        AfterApiExceptionHandler = x => x.UseMiddleware<OffsetValidationMiddleware>(),
                         AfterResponseCompression = x => x.UseConditionalHttpCacheHeaders()
                     }
                 })
