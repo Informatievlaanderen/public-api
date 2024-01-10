@@ -1,3 +1,10 @@
+## [5.93.1](https://github.com/informatievlaanderen/public-api/compare/v5.93.0...v5.93.1) (2024-01-10)
+
+
+### Bug Fixes
+
+* add offset validation ([b0fe14f](https://github.com/informatievlaanderen/public-api/commit/b0fe14f52069da67b26f0bae4cff1b510845b651))
+
 # [5.93.0](https://github.com/informatievlaanderen/public-api/compare/v5.92.1...v5.93.0) (2023-11-29)
 
 
