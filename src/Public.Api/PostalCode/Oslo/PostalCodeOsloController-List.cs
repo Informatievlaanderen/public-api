@@ -25,7 +25,7 @@ namespace Public.Api.PostalCode.Oslo
         /// <summary>
         /// Vraag een lijst met postinfo over postcodes op (v2).
         /// </summary>
-        /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt (optioneel). De offset is echter beperkt tot 1000000, indien meer data dient ingelezen te worden is het gebruik van extra filters aangewezen op de service of verwijzen we naar de downloadproducten van GRAR.</param>
+        /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt. De offset is echter beperkt tot 1000000, indien meer data dient ingelezen te worden is het gebruik van extra filters aangewezen op de service of verwijzen we naar de <a href="https://basisregisters.vlaanderen.be/producten/grar" target="_blank" >downloadproducten van het gebouwen- en adressenregister</a> (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
         /// <param name="sort">Optionele sortering van het resultaat (postcode).</param>
         /// <param name="gemeentenaam">Filter op de gemeentenaam van de postcode (exact) (optioneel).</param>
