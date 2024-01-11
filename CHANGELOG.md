@@ -1,3 +1,10 @@
+## [5.93.2](https://github.com/informatievlaanderen/public-api/compare/v5.93.1...v5.93.2) (2024-01-11)
+
+
+### Bug Fixes
+
+* offset text ([55e6956](https://github.com/informatievlaanderen/public-api/commit/55e695628da5afe70b72a98cc3a794e547f45aa4))
+
 ## [5.93.1](https://github.com/informatievlaanderen/public-api/compare/v5.93.0...v5.93.1) (2024-01-10)
 
 
