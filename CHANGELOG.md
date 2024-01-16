@@ -1,3 +1,10 @@
+## [5.93.3](https://github.com/informatievlaanderen/public-api/compare/v5.93.2...v5.93.3) (2024-01-16)
+
+
+### Bug Fixes
+
+* update streetname packages events docs ([274adff](https://github.com/informatievlaanderen/public-api/commit/274adff51e91ade6f3a4aee7b5fd115787d52409))
+
 ## [5.93.2](https://github.com/informatievlaanderen/public-api/compare/v5.93.1...v5.93.2) (2024-01-11)
 
 
