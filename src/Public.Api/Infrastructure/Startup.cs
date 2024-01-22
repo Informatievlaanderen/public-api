@@ -399,6 +399,8 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new UnlinkRoadSegmentStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.UnlinkRoadSegmentStreetName))
                 .AddSingleton(c => new GetRoadSegmentToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.GetRoadSegment))
                 .AddSingleton(c => new GetRoadOrganizationsToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.GetRoadOrganizations))
+
+                .AddSingleton(c => new GetSuspiciousCasesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.GetSuspiciousCases))
                 ;
 
             services

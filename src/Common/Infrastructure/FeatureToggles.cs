@@ -519,4 +519,11 @@ namespace Common.Infrastructure
 
         public GetRoadOrganizationsToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
+
+    public class GetSuspiciousCasesToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public GetSuspiciousCasesToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
 }
