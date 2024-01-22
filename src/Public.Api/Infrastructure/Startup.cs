@@ -9,6 +9,7 @@ namespace Public.Api.Infrastructure
     using System.Reflection;
     using System.Security.Cryptography;
     using System.Text;
+    using AddressRegistry.Api.BackOffice.Abstractions.Requests;
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
     using Autofac.Features.AttributeFilters;
@@ -18,17 +19,22 @@ namespace Public.Api.Infrastructure
     using Be.Vlaanderen.Basisregisters.AspNetCore.Swagger;
     using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Microsoft;
     using Be.Vlaanderen.Basisregisters.DependencyInjection;
+    using Be.Vlaanderen.Basisregisters.GrAr.Common;
+    using Be.Vlaanderen.Basisregisters.GrAr.Edit;
+    using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using Be.Vlaanderen.Basisregisters.GrAr.Provenance;
+    using Be.Vlaanderen.Basisregisters.Utilities;
+    using BuildingRegistry.Api.BackOffice.Abstractions.Building.Responses;
+    using BuildingRegistry.Api.Legacy.Infrastructure.Options;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
-    using Common.Infrastructure.Extensions;
     using Common.Infrastructure.Modules;
     using Configuration;
     using Extract;
     using Feeds;
     using Feeds.V2;
     using Marvin.Cache.Headers;
-    using Microsoft.AspNetCore.Authorization.Infrastructure;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -45,13 +51,21 @@ namespace Public.Api.Infrastructure
     using Microsoft.Extensions.Options;
     using Microsoft.OpenApi.Models;
     using Modules;
+    using ParcelRegistry.Api.BackOffice.Abstractions.Requests;
     using ProblemDetailsExceptionMapping;
     using ProblemDetailsExceptionMappings;
     using Redis;
     using Road.Downloads;
+    using RoadRegistry.BackOffice.Abstractions;
+    using RoadRegistry.BackOffice.Api.Infrastructure;
+    using RoadRegistry.BackOffice.Api.Infrastructure.Extensions;
+    using StreetNameRegistry.Api.BackOffice.Abstractions.Requests;
     using Swagger;
     using Swashbuckle.AspNetCore.Filters;
+    using TicketingService.Abstractions;
     using Version;
+    using HttpRequestExtensions = Common.Infrastructure.Extensions.HttpRequestExtensions;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup
@@ -147,26 +161,27 @@ namespace Public.Api.Infrastructure
                             typeof(PostalRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(StreetNameRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(StreetNameRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(StreetNameRegistry.Api.BackOffice.Abstractions.Requests.ProposeStreetNameRequest).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(ProposeStreetNameRequest).GetTypeInfo().Assembly.GetName().Name,
                             typeof(AddressRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(AddressRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(AddressRegistry.Api.BackOffice.Abstractions.Requests.ApproveAddressRequest).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(BuildingRegistry.Api.Legacy.Infrastructure.Options.ResponseOptions).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(ApproveAddressRequest).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(ResponseOptions).GetTypeInfo().Assembly.GetName().Name,
                             typeof(BuildingRegistry.Api.Oslo.Infrastructure.Options.ResponseOptions).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(BuildingRegistry.Api.BackOffice.Abstractions.Building.Responses.PlanBuildingResponse).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(PlanBuildingResponse).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(ParcelRegistry.Api.BackOffice.Abstractions.Requests.AttachAddressRequest).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(AttachAddressRequest).GetTypeInfo().Assembly.GetName().Name,
                             typeof(PublicServiceRegistry.Api.Backoffice.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(RoadRegistry.BackOffice.Api.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(RoadRegistry.BackOffice.Abstractions.EndpointRequest).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(Be.Vlaanderen.Basisregisters.GrAr.Common.NodaHelpers).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(Be.Vlaanderen.Basisregisters.GrAr.Edit.GmlConstants).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(Be.Vlaanderen.Basisregisters.GrAr.Legacy.Identificator).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(Be.Vlaanderen.Basisregisters.GrAr.Provenance.Provenance).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(Be.Vlaanderen.Basisregisters.Utilities.Rfc3339SerializableDateTimeOffset).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(TicketingService.Abstractions.Ticket).GetTypeInfo().Assembly.GetName().Name
+                            typeof(Basisregisters.IntegrationDb.SuspiciousCases.Api.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(EndpointRequest).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(NodaHelpers).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(GmlConstants).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(Identificator).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(Provenance).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(ProblemDetails).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(Rfc3339SerializableDateTimeOffset).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(Ticket).GetTypeInfo().Assembly.GetName().Name
                         },
 
                         MiddlewareHooks =
@@ -177,10 +192,10 @@ namespace Public.Api.Infrastructure
                                 x.OperationFilter<ProblemDetailsOperationFilter>();
                                 x.OperationFilter<XApiFilter>();
                                 x.EnableAnnotations();
-                                x.CustomSchemaIds(type => RoadRegistry.BackOffice.Api.Infrastructure.SwashbuckleHelpers.GetCustomSchemaId(type)
+                                x.CustomSchemaIds(type => SwashbuckleHelpers.GetCustomSchemaId(type)
                                                           ?? SwashbuckleSchemaHelper.GetSchemaId(type));
 
-                                RoadRegistry.BackOffice.Api.Infrastructure.Extensions.SwaggerExtensions.AddRoadRegistrySchemaFilters(x);
+                                SwaggerExtensions.AddRoadRegistrySchemaFilters(x);
                             }
                         }
                     },
@@ -239,9 +254,8 @@ namespace Public.Api.Infrastructure
                             {
                                 //actionContext.SetContentFormatAcceptType(); //TODO: WHY?
                                 var httpContext = actionContext.HttpContext;
-                                httpContext
-                                    .Request
-                                    .RewriteAcceptTypeForProblemDetail();
+                                HttpRequestExtensions.RewriteAcceptTypeForProblemDetail(httpContext
+                                        .Request);
 
                                 var problemDetailsHelper = httpContext
                                     .RequestServices
@@ -265,9 +279,8 @@ namespace Public.Api.Infrastructure
                         }),
                         ConfigureProblemDetails = cfg => cfg.OnBeforeWriteDetails = (context, _) =>
                         {
-                            context
-                                .Request
-                                .RewriteAcceptTypeForProblemDetail();
+                            HttpRequestExtensions.RewriteAcceptTypeForProblemDetail(context
+                                    .Request);
                         }
                     },
                     ActionModelConventions = { new ApiDocumentationHiddenConvention() }

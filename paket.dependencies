@@ -45,13 +45,14 @@ nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            4.31.11 
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo              4.31.11  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions       4.31.11  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice 2.1.1  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice              3.61.0 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api          3.61.0 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions 3.61.0 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice              3.66.6 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api          3.66.6 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions 3.66.6 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api    1.1.1 copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 6.0.5
 
-nuget Be.Vlaanderen.Basisregisters.AcmIdm 1.3.6
+nuget Be.Vlaanderen.Basisregisters.Auth.AcmIdm 1.5.0
 nuget Be.Vlaanderen.Basisregisters.Api 20.1.0
 
 // DataDog To Remove after testing

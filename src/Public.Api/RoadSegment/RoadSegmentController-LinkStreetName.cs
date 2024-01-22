@@ -1,6 +1,6 @@
 namespace Public.Api.RoadSegment
 {
-    using Be.Vlaanderen.Basisregisters.AcmIdm;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Infrastructure;
@@ -72,7 +72,7 @@ namespace Public.Api.RoadSegment
                 CreateBackendRestRequest(Method.Post, LinkRoadSegmentStreetNameRoute)
                     .AddJsonBody(request)
                     .AddParameter(nameof(id), id, ParameterType.UrlSegment);
-            
+
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,
                 BackendRequest,

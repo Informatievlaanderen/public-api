@@ -1,4 +1,4 @@
-Be.Vlaanderen.Basisregisters.AcmIdm
+Be.Vlaanderen.Basisregisters.Auth.AcmIdm
 Be.Vlaanderen.Basisregisters.Api
 
 Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy
@@ -21,6 +21,7 @@ Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice
 Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice
 Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api
 Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions
+Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api
 
 Be.Vlaanderen.Basisregisters.GrAr.Common
 Be.Vlaanderen.Basisregisters.GrAr.Legacy

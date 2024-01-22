@@ -2,7 +2,7 @@ namespace Public.Api.SuspiciousCases
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Oslo.Address.List;
+    using Basisregisters.IntegrationDb.SuspiciousCases.Api.Detail;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
@@ -40,7 +40,7 @@ namespace Public.Api.SuspiciousCases
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("verdachte-gevallen", Name = nameof(DetailSuspiciousCases))]
         [ApiOrder(ApiOrder.SuspiciousCases + 2)]
-        [ProducesResponseType(typeof(AddressListOsloResponse), StatusCodes.Status200OK)] // TODO:
+        [ProducesResponseType(typeof(SuspiciousCasesDetailResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
@@ -91,7 +91,7 @@ namespace Public.Api.SuspiciousCases
             string nisCode,
             IActionContextAccessor actionContextAccessor)
         {
-            var filter = new AddressFilter //TODO:
+            var filter = new SuspiciousCasesDetailFilter
             {
                 NisCode = nisCode,
             };

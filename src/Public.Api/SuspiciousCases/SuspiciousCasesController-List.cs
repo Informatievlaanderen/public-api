@@ -2,18 +2,16 @@ namespace Public.Api.SuspiciousCases
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Oslo.Address.List;
+    using Basisregisters.IntegrationDb.SuspiciousCases.Api.List;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
-    using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using Microsoft.Extensions.Options;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -36,7 +34,7 @@ namespace Public.Api.SuspiciousCases
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("verdachte-gevallen", Name = nameof(ListSuspiciousCases))]
         [ApiOrder(ApiOrder.SuspiciousCases + 1)]
-        [ProducesResponseType(typeof(AddressListOsloResponse), StatusCodes.Status200OK)] // TODO:
+        [ProducesResponseType(typeof(SuspiciousCasesListResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
@@ -77,7 +75,7 @@ namespace Public.Api.SuspiciousCases
             string nisCode,
             IActionContextAccessor actionContextAccessor)
         {
-            var filter = new AddressFilter
+            var filter = new SuspiciousCasesListFilter
             {
                 NisCode = nisCode,
             };
