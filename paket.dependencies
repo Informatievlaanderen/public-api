@@ -48,6 +48,7 @@ nuget Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice 2.1.1  c
 nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice              3.66.6 copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api          3.66.6 copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions 3.66.6 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions 1.2.2 copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 6.0.5
 
