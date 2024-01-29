@@ -279,8 +279,6 @@ NUGET
       Be.Vlaanderen.Basisregisters.Crab (>= 3.0)
       Be.Vlaanderen.Basisregisters.GrAr.Common (20.6)
       Microsoft.CSharp (>= 4.7)
-    Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions (1.2.2) - copy_content_to_output_dir: always
-      Be.Vlaanderen.Basisregisters.Api (>= 20.0)
     Be.Vlaanderen.Basisregisters.MessageHandling.AwsSqs.Simple (4.9.1) - copy_content_to_output_dir: always
       AWSSDK.Core (>= 3.7.106.8)
       AWSSDK.SQS (>= 3.7.100.101)
