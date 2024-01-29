@@ -21,5 +21,6 @@ namespace Public.Api.Infrastructure.Configuration
         public const string ParcelBackOffice = "ParcelRegistryBackOffice";
         public const string Road = "RoadRegistry";
         public const string TicketingService = "TicketingService";
+        public const string SuspiciousCases = "SuspiciousCases";
     }
 }
