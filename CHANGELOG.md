@@ -1,3 +1,15 @@
+# [5.94.0](https://github.com/informatievlaanderen/public-api/compare/v5.93.3...v5.94.0) (2024-01-29)
+
+
+### Bug Fixes
+
+* change advertised to `2.0` ([a70d0d9](https://github.com/informatievlaanderen/public-api/commit/a70d0d96e5f8b56080462be7dc3ebb81608c6f4f))
+
+
+### Features
+
+* add suspicious cases endpoints ([c04cda5](https://github.com/informatievlaanderen/public-api/commit/c04cda5c1312d9f5d013c8c9e985d7be207309e6))
+
 ## [5.93.3](https://github.com/informatievlaanderen/public-api/compare/v5.93.2...v5.93.3) (2024-01-16)
 
 
