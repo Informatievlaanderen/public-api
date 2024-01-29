@@ -91,8 +91,6 @@ namespace Public.Api.Infrastructure.Swagger
         public const int Status = CrabHouseNumber + 100;
 
         public const int AddressRepresentation = Status + 100;
-
-        public const int SuspiciousCases = AddressRepresentation + 100;
     }
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
@@ -132,7 +130,7 @@ namespace Public.Api.Infrastructure.Swagger
                 .GetCustomAttributes<ApiOrderAttribute>(true)
                 .Select(x => x.Order)
                 .ToList();
-
+            
             return apiGroupNames.Count == 0
                 ? int.MaxValue.ToString()
                 : apiGroupNames.First().ToString();
