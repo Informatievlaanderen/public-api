@@ -1,3 +1,10 @@
+# [5.95.0](https://github.com/informatievlaanderen/public-api/compare/v5.94.1...v5.95.0) (2024-01-30)
+
+
+### Features
+
+* add gewest filter to streetname list GAWR-5205 ([aa7a134](https://github.com/informatievlaanderen/public-api/commit/aa7a134dfae765280ab21537ff70b51dcd732f3c))
+
 ## [5.94.1](https://github.com/informatievlaanderen/public-api/compare/v5.94.0...v5.94.1) (2024-01-30)
 
 
