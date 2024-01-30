@@ -82,17 +82,21 @@ namespace Public.Api.Infrastructure.Swagger
         }
 
         public const int Extract = Road.ChangeFeed + 100;
-        public const int Feeds = Extract + 5;
+        public const int Feeds = Extract + 100;
 
-        public const int CrabHouseNumber = Extract + 100;
+        public static class SuspiciousCases
+        {
+            public const int Base = Feeds + 100;
+            public const int V2 = Base + 10;
+        }
+
+        public const int CrabHouseNumber = SuspiciousCases.V2 + 100;
         public const int CrabSubaddress = CrabHouseNumber + 5;
         public const int CrabBuildings = CrabSubaddress + 5;
 
         public const int Status = CrabHouseNumber + 100;
 
         public const int AddressRepresentation = Status + 100;
-
-        public const int SuspiciousCases = AddressRepresentation + 100;
     }
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
