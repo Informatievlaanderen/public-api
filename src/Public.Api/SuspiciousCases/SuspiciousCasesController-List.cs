@@ -22,7 +22,7 @@
         /// <summary>
         /// Vraag een lijst met verdachte gevallen op.
         /// </summary>
-        /// <param name="nisCode">Filter op de NIS-code van het verdachte geval.</param>
+        /// <param name="niscode">Filter op de NIS-code van het verdachte geval (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="suspiciousCasesToggle"></param>
@@ -35,7 +35,7 @@
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("verdachte-gevallen", Name = nameof(ListSuspiciousCases))]
-        [ApiOrder(ApiOrder.SuspiciousCases + 1)]
+        [ApiOrder(ApiOrder.SuspiciousCases.V2 + 1)]
         [ProducesResponseType(typeof(SuspiciousCasesListResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
@@ -51,7 +51,7 @@
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ListSuspiciousCases(
-            [FromQuery] string nisCode,
+            [FromQuery] string? niscode,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] ListSuspiciousCasesToggle suspiciousCasesToggle,
@@ -65,7 +65,7 @@
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendListRequest(
-                nisCode,
+                niscode,
                 actionContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
@@ -79,7 +79,7 @@
         }
 
         private static RestRequest CreateBackendListRequest(
-            string nisCode,
+            string? nisCode,
             IActionContextAccessor actionContextAccessor)
         {
             var filter = new SuspiciousCasesListFilter

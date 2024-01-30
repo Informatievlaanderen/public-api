@@ -17,7 +17,7 @@
     [ApiVersion(Version.V2)]
     [AdvertiseApiVersions(Version.V2)]
     [ApiRoute("")]
-    [ApiExplorerSettings(GroupName = "VerdachteGevallen")]
+    [ApiExplorerSettings(GroupName = "Verdachte gevallen")]
     [ApiProduces(EndpointType.BackOffice)]
     public partial class SuspiciousCasesController : RegistryApiController<SuspiciousCasesController>
     {
