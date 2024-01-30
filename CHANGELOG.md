@@ -1,3 +1,15 @@
+## [5.94.1](https://github.com/informatievlaanderen/public-api/compare/v5.94.0...v5.94.1) (2024-01-30)
+
+
+### Bug Fixes
+
+* suspicious cases ([ceeca47](https://github.com/informatievlaanderen/public-api/commit/ceeca475b42afbc08f93b904e46de6d0ec3e3adc))
+
+
+### Reverts
+
+* Revert "feat: add suspicious cases endpoints" ([b345065](https://github.com/informatievlaanderen/public-api/commit/b3450650b001563701b910e7d7e23f20ffcee20b))
+
 # [5.94.0](https://github.com/informatievlaanderen/public-api/compare/v5.93.3...v5.94.0) (2024-01-29)
 
 
