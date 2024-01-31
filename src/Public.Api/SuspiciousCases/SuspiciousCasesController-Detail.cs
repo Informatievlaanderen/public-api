@@ -24,10 +24,10 @@
         /// <summary>
         /// Vraag een verdacht geval op.
         /// </summary>
-        /// <param name="type">Het type van het verdachte geval.</param>
+        /// <param name="type">Het type van het verdacht geval.</param>
         /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt. De offset is echter beperkt tot 1000000, indien meer data dient ingelezen te worden is het gebruik van extra filters aangewezen op de service of verwijzen we naar de <a href="https://basisregisters.vlaanderen.be/producten/grar" target="_blank" >downloadproducten van het gebouwen- en adressenregister</a> (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
-        /// <param name="niscode">Filter op de NIS-code van het verdachte geval (exact) (optioneel).</param>
+        /// <param name="niscode">Filter op de NIS-code van het verdacht geval (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="responseOptions"></param>
