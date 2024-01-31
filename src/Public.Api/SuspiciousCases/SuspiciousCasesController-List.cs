@@ -22,7 +22,7 @@
         /// <summary>
         /// Vraag een lijst met verdachte gevallen op.
         /// </summary>
-        /// <param name="niscode">Filter op de NIS-code van het verdachte geval (exact) (optioneel).</param>
+        /// <param name="niscode">Filter op de NIS-code van het verdacht geval (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="suspiciousCasesToggle"></param>
