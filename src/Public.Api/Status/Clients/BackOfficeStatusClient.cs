@@ -23,7 +23,7 @@ namespace Public.Api.Status.Clients
                         new RegistryBackOfficeStatus()
                         {
                             Name = status.ProjectionName,
-                            CurrentPosition = status.CurrentPosition,
+                            CurrentPosition = status.Position,
                             MaxPosition = status.MaxPosition
                         })
             };
