@@ -208,5 +208,25 @@ namespace Public.Api.Status
 
             return Ok(importStatuses);
         }
+
+        /// <summary>
+        /// Vraag de status van de backoffice projecties op.
+        /// </summary>
+        /// <param name="clients"></param>
+        /// <param name="cancellationToken"></param>
+        /// <response code="200">Als opvragen van de status van de backoffice projections gelukt is.</response>
+        /// <response code="500">Als er een interne fout is opgetreden.</response>
+        [HttpGet("backoffice")]
+        [ProducesResponseType(typeof(SyndicationStatusResponse), StatusCodes.Status200OK)]
+        [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
+        public async Task<IActionResult> GetBackOfficeStatus(
+            [FromServices] IEnumerable<BackOfficeStatusClient> clients,
+            CancellationToken cancellationToken = default)
+        {
+            var keyValuePairs = await clients.GetStatuses(cancellationToken);
+            var backOfficeStatusResponses = BackOfficeStatusResponse.From(keyValuePairs);
+
+            return Ok(backOfficeStatusResponses);
+        }
     }
 }
