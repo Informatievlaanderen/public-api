@@ -1,3 +1,15 @@
+# [5.96.0](https://github.com/informatievlaanderen/public-api/compare/v5.95.3...v5.96.0) (2024-02-08)
+
+
+### Bug Fixes
+
+* backoffice projections mapping ([d8a8f8a](https://github.com/informatievlaanderen/public-api/commit/d8a8f8a5153196be94bf9e5263fd2139fb7dd83e))
+
+
+### Features
+
+* add status backoffice projections ([9a2d03a](https://github.com/informatievlaanderen/public-api/commit/9a2d03af52eb0fb9a731f1923c7b1057cc588b2e))
+
 ## [5.95.3](https://github.com/informatievlaanderen/public-api/compare/v5.95.2...v5.95.3) (2024-01-31)
 
 ## [5.95.2](https://github.com/informatievlaanderen/public-api/compare/v5.95.1...v5.95.2) (2024-01-31)
