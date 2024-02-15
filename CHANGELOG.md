@@ -1,3 +1,10 @@
+## [5.96.1](https://github.com/informatievlaanderen/public-api/compare/v5.96.0...v5.96.1) (2024-02-15)
+
+
+### Bug Fixes
+
+* backoffice status name ([92bf0cb](https://github.com/informatievlaanderen/public-api/commit/92bf0cbcf0f755c8f10417a1e333d31f576e3f45))
+
 # [5.96.0](https://github.com/informatievlaanderen/public-api/compare/v5.95.3...v5.96.0) (2024-02-08)
 
 
