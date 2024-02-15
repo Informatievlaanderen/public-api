@@ -22,7 +22,7 @@ namespace Public.Api.Status.Clients
                     .Select(status =>
                         new RegistryBackOfficeStatus()
                         {
-                            Name = status.ProjectionName,
+                            Name = "BackOffice",
                             CurrentPosition = status.Position,
                             MaxPosition = status.MaxPosition
                         })
