@@ -1,3 +1,11 @@
+# [5.97.0](https://github.com/informatievlaanderen/public-api/compare/v5.96.1...v5.97.0) (2024-02-23)
+
+
+### Features
+
+* remove BestAdd endpoints GAWR-4749 ([90a9d3c](https://github.com/informatievlaanderen/public-api/commit/90a9d3c5ec19cdb84bff948464b517bd88681679))
+* WR-940 add filter to ChangeFeed ([1539c5c](https://github.com/informatievlaanderen/public-api/commit/1539c5cf7f3a71ac5835d6aa1332601502677813))
+
 ## [5.96.1](https://github.com/informatievlaanderen/public-api/compare/v5.96.0...v5.96.1) (2024-02-15)
 
 
