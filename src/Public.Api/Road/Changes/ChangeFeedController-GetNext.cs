@@ -14,13 +14,15 @@ namespace Public.Api.Road.Changes
         public async Task<IActionResult> GetNext(
             [FromQuery] long? afterEntry,
             [FromQuery] int? maxEntryCount,
+            [FromQuery] string? filter,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
             RestRequest BackendRequest() =>
                 CreateBackendRestRequest(Method.Get, "changefeed/next")
                     .AddParameter(nameof(maxEntryCount), maxEntryCount, ParameterType.QueryString)
-                    .AddParameter(nameof(afterEntry), afterEntry, ParameterType.QueryString);
+                    .AddParameter(nameof(afterEntry), afterEntry, ParameterType.QueryString)
+                    .AddParameter(nameof(filter), filter, ParameterType.QueryString);
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
