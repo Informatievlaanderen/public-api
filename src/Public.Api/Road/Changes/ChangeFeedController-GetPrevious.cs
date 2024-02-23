@@ -14,13 +14,15 @@ namespace Public.Api.Road.Changes
         public async Task<IActionResult> GetPrevious(
             [FromQuery] long? beforeEntry,
             [FromQuery] int? maxEntryCount,
+            [FromQuery] string? filter,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
             RestRequest BackendRequest() =>
                 CreateBackendRestRequest(Method.Get, "changefeed/previous")
                     .AddParameter(nameof(maxEntryCount), maxEntryCount, ParameterType.QueryString)
-                    .AddParameter(nameof(beforeEntry), beforeEntry, ParameterType.QueryString);
+                    .AddParameter(nameof(beforeEntry), beforeEntry, ParameterType.QueryString)
+                    .AddParameter(nameof(filter), filter, ParameterType.QueryString);
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,

@@ -13,12 +13,14 @@ namespace Public.Api.Road.Changes
         [HttpGet("wegen/activiteit/begin", Name = nameof(GetHead))]
         public async Task<IActionResult> GetHead(
             [FromQuery] int? maxEntryCount,
+            [FromQuery] string? filter,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
             RestRequest BackendRequest() =>
                 CreateBackendRestRequest(Method.Get, "changefeed/head")
-                    .AddParameter(nameof(maxEntryCount), maxEntryCount, ParameterType.QueryString);
+                    .AddParameter(nameof(maxEntryCount), maxEntryCount, ParameterType.QueryString)
+                    .AddParameter(nameof(filter), filter, ParameterType.QueryString);
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
