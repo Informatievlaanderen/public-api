@@ -102,25 +102,27 @@ jobs:
         echo RELEASE_VERSION=$(cat semver) >> $GITHUB_ENV
       shell: bash
         
-    - name: Configure AWS credentials (Test)
+    - name: Configure AWS credentials
       if: env.RELEASE_VERSION != 'none'
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: ${{ secrets.VBR_AWS_ACCESS_KEY_ID_TST }}
-        aws-secret-access-key: ${{ secrets.VBR_AWS_SECRET_ACCESS_KEY_TST }}
+        aws-access-key-id: ${{ secrets.VBR_AWS_ACCESS_KEY_ID_DEVOPS }}
+        aws-secret-access-key: ${{ secrets.VBR_AWS_SECRET_ACCESS_KEY_DEVOPS }}
         aws-region: ${{ secrets.VBR_AWS_REGION_PRD }}
 
-    - name: Login to Amazon ECR (Test)
+    - name: Login to Amazon ECR
       if: env.RELEASE_VERSION != 'none'
       uses: aws-actions/amazon-ecr-login@v1.5.3
 
-    - name: Push to Test
+    - name: Push artifacts to ECR
       if: env.RELEASE_VERSION != 'none'
       shell: bash
       run: |
-        docker push $BUILD_DOCKER_REGISTRY_TST/public-api/api-legacy:$SEMVER
+        docker tag $BUILD_DOCKER_REGISTRY_TST/public-api/api-legacy:$SEMVER $BUILD_DOCKER_REGISTRY/public-api/api-legacy:$SEMVER
+        docker push $BUILD_DOCKER_REGISTRY/public-api/api-legacy:$SEMVER
       env:
         BUILD_DOCKER_REGISTRY_TST: ${{ secrets.VBR_BUILD_DOCKER_REGISTRY_TST }}
+        BUILD_DOCKER_REGISTRY: ${{ secrets.VBR_DEVOPS_DOCKER_REGISTRY }}
         SEMVER: ${{ env.RELEASE_VERSION }}
         WORKSPACE: ${{ github.workspace }}
 
@@ -169,30 +171,6 @@ jobs:
       env:
         BUILD_DOCKER_REGISTRY_TST: ${{ secrets.VBR_BUILD_DOCKER_REGISTRY_TST }}
         BUILD_DOCKER_REGISTRY_NEWPRD: ${{ secrets.VBR_BUILD_DOCKER_REGISTRY_NEWPRD }}
-        SEMVER: ${{ env.RELEASE_VERSION }}
-        WORKSPACE: ${{ github.workspace }}
-
-    - name: Configure AWS credentials (Production)
-      if: env.RELEASE_VERSION != 'none'
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.VBR_AWS_ACCESS_KEY_ID_PRD }}
-        aws-secret-access-key: ${{ secrets.VBR_AWS_SECRET_ACCESS_KEY_PRD }}
-        aws-region: ${{ secrets.VBR_AWS_REGION_PRD }}
-
-    - name: Login to Amazon ECR (Production)
-      if: env.RELEASE_VERSION != 'none'
-      uses: aws-actions/amazon-ecr-login@v1.5.3
-
-    - name: Push to Production
-      if: env.RELEASE_VERSION != 'none'
-      shell: bash
-      run: |
-        docker tag  $BUILD_DOCKER_REGISTRY_TST/public-api/api-legacy:$SEMVER $BUILD_DOCKER_REGISTRY_PRD/public-api/api-legacy:$SEMVER
-        docker push $BUILD_DOCKER_REGISTRY_PRD/public-api/api-legacy:$SEMVER
-      env:
-        BUILD_DOCKER_REGISTRY_TST: ${{ secrets.VBR_BUILD_DOCKER_REGISTRY_TST }}
-        BUILD_DOCKER_REGISTRY_PRD: ${{ secrets.VBR_BUILD_DOCKER_REGISTRY_PRD }}
         SEMVER: ${{ env.RELEASE_VERSION }}
         WORKSPACE: ${{ github.workspace }}
 
