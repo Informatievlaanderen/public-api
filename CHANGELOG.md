@@ -1,3 +1,10 @@
+## [5.97.1](https://github.com/informatievlaanderen/public-api/compare/v5.97.0...v5.97.1) (2024-02-26)
+
+
+### Bug Fixes
+
+* **bump:** fix ci push to new ECR ([01136eb](https://github.com/informatievlaanderen/public-api/commit/01136ebab2b26a729399bc464829fc6460708d80))
+
 # [5.97.0](https://github.com/informatievlaanderen/public-api/compare/v5.96.1...v5.97.0) (2024-02-23)
 
 
