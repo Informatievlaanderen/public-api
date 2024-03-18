@@ -1,3 +1,10 @@
+# [5.98.0](https://github.com/informatievlaanderen/public-api/compare/v5.97.1...v5.98.0) (2024-03-18)
+
+
+### Features
+
+* WR-900 add road jobs endpoints ([5b6e209](https://github.com/informatievlaanderen/public-api/commit/5b6e209584bf4b3be402b22cd77ce2eb33d85e22))
+
 ## [5.97.1](https://github.com/informatievlaanderen/public-api/compare/v5.97.0...v5.97.1) (2024-02-26)
 
 
