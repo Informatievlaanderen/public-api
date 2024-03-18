@@ -38,5 +38,8 @@ namespace Public.Api.Road.Uploads
         {
             _httpClient = httpClient;
         }
+
+        private static ContentFormat DetermineFormat(ActionContext context)
+            => ContentFormat.For(EndpointType.BackOffice, context);
     }
 }

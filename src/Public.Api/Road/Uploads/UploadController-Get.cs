@@ -9,8 +9,8 @@ namespace Public.Api.Road.Uploads
 
     public partial class UploadController
     {
-        [HttpGet("wegen/upload/{identifier}", Name = nameof(GetUpload))]
-        public async Task<IActionResult> GetUpload(
+        [HttpGet("wegen/upload/{identifier}", Name = nameof(RoadGetUpload))]
+        public async Task<IActionResult> RoadGetUpload(
             [FromRoute] string identifier,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken)
