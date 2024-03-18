@@ -93,6 +93,8 @@ namespace Public.Api.Infrastructure.Configuration
         public bool UnlinkRoadSegmentStreetName { get; set; }
         public bool GetRoadSegment { get; set; }
         public bool GetRoadOrganizations { get; set; }
+        public bool RoadJobs { get; set; }
+
         public bool GetSuspiciousCases { get; set; }
     }
 }

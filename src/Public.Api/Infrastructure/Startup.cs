@@ -368,7 +368,7 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new ChangeGeometryBuilding(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangeGeometryBuilding))
                 .AddSingleton(c => new CorrectGeometryBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectGeometryBuilding))
                 .AddSingleton(c => new BuildingGrbUploadJobToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.BuildingGrbUploadJob))
-
+                
                 .AddSingleton(c => new PlanBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.PlanBuildingUnit))
                 .AddSingleton(c => new RealizeBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RealizeBuildingUnit))
                 .AddSingleton(c => new CorrectBuildingUnitRealizationToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingUnitRealization))
@@ -401,6 +401,8 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new UnlinkRoadSegmentStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.UnlinkRoadSegmentStreetName))
                 .AddSingleton(c => new GetRoadSegmentToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.GetRoadSegment))
                 .AddSingleton(c => new GetRoadOrganizationsToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.GetRoadOrganizations))
+                .AddSingleton(c => new RoadJobsToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RoadJobs))
+
                 .AddSingleton(c => new ListSuspiciousCasesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.GetSuspiciousCases))
                 .AddSingleton(c => new DetailSuspiciousCasesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.GetSuspiciousCases));
 
