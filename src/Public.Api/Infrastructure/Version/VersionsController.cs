@@ -40,7 +40,7 @@ namespace Public.Api.Infrastructure.Version
             return Ok(new ApiVersionResponse(version, components));
         }
 
-        private static string FormatVersion(string fourPartVersion) => string.Join(".", fourPartVersion.Split(".").Skip(1));
+        private static string FormatVersion(string fourPartVersion) => string.Join(".", fourPartVersion.Split("."));
 
         private static async Task GetDownstreamVersionAsync(
             string registry,
