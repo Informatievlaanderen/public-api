@@ -29,7 +29,7 @@ namespace Public.Api.Building.Oslo
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("gebouwen/totaal-aantal", Name = nameof(CountBuildingsV2))]
-        [ApiOrder(ApiOrder.Building.V1 + 3)]
+        [ApiOrder(ApiOrder.Building.V2 + 3)]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(TotaalAantalResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]

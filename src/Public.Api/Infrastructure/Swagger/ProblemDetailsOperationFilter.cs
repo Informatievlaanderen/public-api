@@ -40,7 +40,7 @@ namespace Public.Api.Infrastructure.Swagger
                 operation.Parameters = new List<OpenApiParameter>();
 
             if (context.ApiDescription.ActionDescriptor is ControllerActionDescriptor descriptor &&
-                (descriptor.ControllerTypeInfo.Name.Equals(nameof(FeedController)) || descriptor.ControllerTypeInfo.Name.Equals(nameof(FeedV2Controller))))
+                descriptor.ControllerTypeInfo.Name.Equals(nameof(FeedV2Controller)))
             {
                 operation.Parameters.Add(new OpenApiParameter
                 {

@@ -7,7 +7,6 @@ namespace Public.Api.BuildingUnit.Oslo
     using BuildingRegistry.Api.Oslo.BuildingUnit.Query;
     using BuildingRegistry.Api.Oslo.Infrastructure;
     using Common.Infrastructure;
-    using Common.Infrastructure.Controllers;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Marvin.Cache.Headers;
@@ -46,7 +45,7 @@ namespace Public.Api.BuildingUnit.Oslo
         [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
-        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = RegistryApiController<BuildingUnitController>.DefaultCountCaching, NoStore = true, NoTransform = true)]
+        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultCountCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> CountBuildingUnitsV2(
             [FromQuery] int? adresObjectId,
             [FromServices] IActionContextAccessor actionContextAccessor,

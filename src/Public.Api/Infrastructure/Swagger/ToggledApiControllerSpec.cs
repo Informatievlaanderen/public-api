@@ -4,7 +4,7 @@ namespace Public.Api.Infrastructure.Swagger
     using System.Linq;
     using System.Reflection;
     using Common.Infrastructure;
-    using Feeds;
+    using Feeds.V2;
     using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
     [AttributeUsage(AttributeTargets.Class)]
@@ -33,7 +33,7 @@ namespace Public.Api.Infrastructure.Swagger
                 .Select(x => x.Visible)
                 .ToList();
 
-            if (controller.ApiExplorer.GroupName == FeedController.FeedsGroupName)
+            if (controller.ApiExplorer.GroupName == FeedV2Controller.FeedsGroupName)
                 return _feedsVisibleToggle.FeatureEnabled;
 
             return apiVisibility.Count != 0 && apiVisibility.First();

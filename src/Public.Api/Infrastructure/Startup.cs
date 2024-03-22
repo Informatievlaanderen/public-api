@@ -368,7 +368,7 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new ChangeGeometryBuilding(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangeGeometryBuilding))
                 .AddSingleton(c => new CorrectGeometryBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectGeometryBuilding))
                 .AddSingleton(c => new BuildingGrbUploadJobToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.BuildingGrbUploadJob))
-                
+
                 .AddSingleton(c => new PlanBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.PlanBuildingUnit))
                 .AddSingleton(c => new RealizeBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RealizeBuildingUnit))
                 .AddSingleton(c => new CorrectBuildingUnitRealizationToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingUnitRealization))
@@ -430,9 +430,9 @@ namespace Public.Api.Infrastructure
                 .Where(t => t.IsSubClassOfGeneric(typeof(RegistryApiController<>)))
                 .WithAttributeFiltering();
 
-            containerBuilder
-                .RegisterType<FeedController>()
-                .WithAttributeFiltering();
+            // containerBuilder
+            //     .RegisterType<FeedController>()
+            //     .WithAttributeFiltering();
 
             containerBuilder
                 .RegisterType<FeedV2Controller>()

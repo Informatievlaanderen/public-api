@@ -23,7 +23,7 @@ namespace Public.Api.Extract
     using ValidationProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails;
     using Version = Infrastructure.Version.Version;
 
-    [ApiVersion(Version.Current)]
+    //[ApiVersion(Version.Current)]
     [ApiVersion(Version.V2)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
