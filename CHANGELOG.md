@@ -1,3 +1,15 @@
+# [5.99.0](https://github.com/informatievlaanderen/public-api/compare/v5.98.0...v5.99.0) (2024-03-22)
+
+
+### Bug Fixes
+
+* correct versions ([1d0813c](https://github.com/informatievlaanderen/public-api/commit/1d0813cf0aa35535d31de4d41503bea3dd7bd114))
+
+
+### Features
+
+* remove v1 ([25cf26b](https://github.com/informatievlaanderen/public-api/commit/25cf26b9a49d989dc402b789f83a204e186cc5ac))
+
 # [5.98.0](https://github.com/informatievlaanderen/public-api/compare/v5.97.1...v5.98.0) (2024-03-18)
 
 
