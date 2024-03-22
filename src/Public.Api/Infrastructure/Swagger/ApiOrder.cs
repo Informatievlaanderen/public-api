@@ -62,13 +62,7 @@ namespace Public.Api.Infrastructure.Swagger
             public const int Edit = Base + 30;
         }
 
-        public static class PublicService
-        {
-            public const int Base = Parcel.Base + 100;
-            public const int V1 = Base + 10;
-        }
-
-        public const int TicketingService = PublicService.Base + 100;
+        public const int TicketingService = Parcel.Base + 100;
 
         public static class Road
         {

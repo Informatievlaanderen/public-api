@@ -6,6 +6,7 @@ namespace Public.Api.Infrastructure.Version
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
+    using Asp.Versioning;
     using Autofac;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware;

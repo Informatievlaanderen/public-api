@@ -1,8 +1,8 @@
 namespace Public.Api.Infrastructure
 {
     using System.Reflection;
+    using Asp.Versioning;
     using Be.Vlaanderen.Basisregisters.Api;
-    using Common.Infrastructure;
     using Microsoft.AspNetCore.Mvc;
 
     [ApiVersionNeutral]

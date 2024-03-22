@@ -3,6 +3,7 @@ namespace Public.Api.Infrastructure.Swagger
     using System;
     using System.Linq;
     using System.Reflection;
+    using Asp.Versioning.ApplicationModels;
     using Common.Infrastructure;
     using Feeds.V2;
     using Microsoft.AspNetCore.Mvc.ApplicationModels;

@@ -9,14 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
-		build.fsx = build.fsx
 		global.json = global.json
 		package.json = package.json
 		paket.dependencies = paket.dependencies
-		paket.lock = paket.lock
 		README.md = README.md
 		SEMVER.md = SEMVER.md
-		SolutionInfo.cs = SolutionInfo.cs
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Public.Api", "src\Public.Api\Public.Api.csproj", "{AF352523-9574-4B47-9AAE-14296D5673AF}"

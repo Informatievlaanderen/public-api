@@ -79,11 +79,6 @@ namespace Public.Api.Infrastructure.Redis
         private const string ParcelV2CacheKey = ParcelV2CachePrefix + "{0}.{1}";
         private static readonly Regex ParcelV2Regex = new Regex(@"/v2/percelen/(?<id>\d*)(?<format>\.(jsonld))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
-        private const string PublicServicePathPrefix = "/v1/dienstverleningen/";
-        private const string PublicServiceCachePrefix = "legacy/publicservice:";
-        private const string PublicServiceCacheKey = PublicServiceCachePrefix + "{0}.{1}";
-        private static readonly Regex PublicServiceRegex = new Regex(@"/v1/dienstverleningen/(?<id>\d*)(?<format>\.(json|xml))?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
-
         // TODO: Add organisations when the time comes
 
         public static readonly string[] CachePrefixes =
@@ -100,7 +95,6 @@ namespace Public.Api.Infrastructure.Redis
             BuildingUnitCachePrefix.ToLowerInvariant(),
             ParcelCachePrefix.ToLowerInvariant(),
             ParcelV2CachePrefix.ToLowerInvariant(),
-            PublicServiceCachePrefix.ToLowerInvariant()
         };
 
         private static readonly IStoreKeyGenerator DefaultStoreKeyGenerator = new DefaultStoreKeyGenerator();
@@ -172,11 +166,6 @@ namespace Public.Api.Infrastructure.Redis
             if (resourcePath.StartsWith(ParcelV2PathPrefix))
             {
                 return GenerateStoreKey(context, resourcePath, ParcelV2Regex, ParcelV2CacheKey);
-            }
-
-            if (resourcePath.StartsWith(PublicServicePathPrefix))
-            {
-                return GenerateStoreKey(context, resourcePath, PublicServiceRegex, PublicServiceCacheKey);
             }
 
             // TODO: Add organisations when the time comes

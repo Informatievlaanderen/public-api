@@ -9,6 +9,8 @@ namespace Public.Api.Infrastructure
     using System.Reflection;
     using System.Security.Cryptography;
     using System.Text;
+    using Asp.Versioning.ApiExplorer;
+    using Asp.Versioning.ApplicationModels;
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
     using Autofac.Features.AttributeFilters;
@@ -16,8 +18,7 @@ namespace Public.Api.Infrastructure
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Swagger;
-    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Microsoft;
-    using Be.Vlaanderen.Basisregisters.DependencyInjection;
+    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
@@ -157,7 +158,6 @@ namespace Public.Api.Infrastructure
                             typeof(ParcelRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.BackOffice.Abstractions.Requests.AttachAddressRequest).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(PublicServiceRegistry.Api.Backoffice.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(RoadRegistry.BackOffice.Api.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(RoadRegistry.BackOffice.Abstractions.EndpointRequest).GetTypeInfo().Assembly.GetName().Name,
                             typeof(Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions.List.SuspiciousCasesListResponse).GetTypeInfo().Assembly.GetName().Name,
@@ -178,8 +178,8 @@ namespace Public.Api.Infrastructure
                                 x.OperationFilter<ProblemDetailsOperationFilter>();
                                 x.OperationFilter<XApiFilter>();
                                 x.EnableAnnotations();
-                                x.CustomSchemaIds(type => RoadRegistry.BackOffice.Api.Infrastructure.SwashbuckleHelpers.GetCustomSchemaId(type)
-                                                          ?? SwashbuckleSchemaHelper.GetSchemaId(type));
+                                x.CustomSchemaIds(type => RoadRegistry.BackOffice.Api.Infrastructure.SwashbuckleHelpers.GetCustomSchemaId(type) ??
+                                                          SwashbuckleSchemaHelper.GetSchemaId(type));
 
                                 RoadRegistry.BackOffice.Api.Infrastructure.Extensions.SwaggerExtensions.AddRoadRegistrySchemaFilters(x);
                             }
@@ -195,7 +195,8 @@ namespace Public.Api.Infrastructure
                     },
                     MiddlewareHooks =
                     {
-                        FluentValidation = fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>(),
+                        //FluentValidation = fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>(),
+                        EnableFluentValidation = false,
 
                         AfterMvcCore = builder =>
                         {
@@ -419,7 +420,7 @@ namespace Public.Api.Infrastructure
                 .RegisterModule(new StatusModule(_configuration))
                 .RegisterModule(new InfoModule(_configuration));
 
-            services.RegisterModule(new DataDogModule(_configuration));
+            containerBuilder.RegisterModule(new DataDogModule(_configuration));
 
             containerBuilder.Populate(services);
 

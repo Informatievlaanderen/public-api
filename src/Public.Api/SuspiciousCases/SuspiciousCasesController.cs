@@ -1,5 +1,6 @@
 ﻿namespace Public.Api.SuspiciousCases
 {
+    using Asp.Versioning;
     using Autofac.Features.AttributeFilters;
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;

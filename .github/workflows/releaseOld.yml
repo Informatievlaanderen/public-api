@@ -1,0 +1,196 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    if: github.repository_owner == 'Informatievlaanderen'
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      with:
+          persist-credentials: false
+
+    - name: Cache NPM
+      uses: actions/cache@v4
+      env:
+        cache-name: cache-npm
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+
+    - name: Cache Paket
+      uses: actions/cache@v4
+      env:
+        cache-name: cache-paket
+      with:
+        path: packages
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('paket.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+
+    - name: Cache Python
+      uses: actions/cache@v4
+      env:
+        cache-name: cache-pip
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-build-${{ env.cache-name }}
+
+    - name: Parse repository name
+      run: echo REPOSITORY_NAME=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}' | sed -e "s/:refs//") >> $GITHUB_ENV
+      shell: bash
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ vars.VBR_DOTNET_VERSION_8 }}
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Node version
+      shell: bash
+      run: node --version
+
+    - name: .NET version
+      shell: bash
+      run: dotnet --info
+
+    - name: Python version
+      shell: bash
+      run: python --version
+
+    - name: Install NPM dependencies
+      shell: bash
+      run: npm ci
+
+    - name: Install Python dependencies
+      shell: bash
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests markdown argparse
+
+    - name: Run Semantic Release
+      shell: bash
+      run: npx semantic-release
+      env:
+        BUILD_DOCKER_REGISTRY: ${{ secrets.VBR_BUILD_DOCKER_REGISTRY_TST }}
+        GITHUB_TOKEN: ${{ secrets.VBR_GIT_RELEASE_TOKEN }}
+        GIT_COMMIT: ${{ github.sha }}
+        GIT_USERNAME: ${{ secrets.VBR_GIT_USER }}
+        GIT_AUTHOR_NAME: ${{ secrets.VBR_GIT_USER }}
+        GIT_COMMITTER_NAME: ${{ secrets.VBR_GIT_USER }}
+        GIT_EMAIL: ${{ secrets.VBR_GIT_EMAIL }}
+        GIT_AUTHOR_EMAIL: ${{ secrets.VBR_GIT_EMAIL }}
+        GIT_COMMITTER_EMAIL: ${{ secrets.VBR_GIT_EMAIL }}
+
+    - name: Set Release Version
+      run: |
+        [ ! -f semver ] && echo none > semver
+        echo RELEASE_VERSION=$(cat semver) >> $GITHUB_ENV
+      shell: bash
+        
+    - name: Configure AWS credentials
+      if: env.RELEASE_VERSION != 'none'
+      uses: aws-actions/configure-aws-credentials@v4.0.2
+      with:
+        aws-access-key-id: ${{ secrets.VBR_AWS_ACCESS_KEY_ID_DEVOPS }}
+        aws-secret-access-key: ${{ secrets.VBR_AWS_SECRET_ACCESS_KEY_DEVOPS }}
+        aws-region: ${{ secrets.VBR_AWS_REGION_PRD }}
+
+    - name: Login to Amazon ECR
+      if: env.RELEASE_VERSION != 'none'
+      uses: aws-actions/amazon-ecr-login@v2
+
+    - name: Push artifacts to ECR
+      if: env.RELEASE_VERSION != 'none'
+      shell: bash
+      run: |
+        docker push $BUILD_DOCKER_REGISTRY/public-api/api-legacy:$SEMVER
+      env:
+        BUILD_DOCKER_REGISTRY: ${{ secrets.VBR_DEVOPS_DOCKER_REGISTRY }}
+        SEMVER: ${{ env.RELEASE_VERSION }}
+        WORKSPACE: ${{ github.workspace }}
+
+    - name: Configure AWS credentials (Staging)
+      if: env.RELEASE_VERSION != 'none'
+      uses: aws-actions/configure-aws-credentials@v4.0.2
+      with:
+        aws-access-key-id: ${{ secrets.VBR_AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.VBR_AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.VBR_AWS_REGION }}
+
+    - name: Login to Amazon ECR (Staging)
+      if: env.RELEASE_VERSION != 'none'
+      uses: aws-actions/amazon-ecr-login@v2
+
+    - name: Push to Staging
+      if: env.RELEASE_VERSION != 'none'
+      shell: bash
+      run: |
+        docker tag $BUILD_DOCKER_REGISTRY_TST/public-api/api-legacy:$SEMVER $BUILD_DOCKER_REGISTRY/public-api/api-legacy:$SEMVER
+        docker push $BUILD_DOCKER_REGISTRY/public-api/api-legacy:$SEMVER
+      env:
+        BUILD_DOCKER_REGISTRY_TST: ${{ secrets.VBR_DEVOPS_DOCKER_REGISTRY }}
+        BUILD_DOCKER_REGISTRY: ${{ secrets.VBR_BUILD_DOCKER_REGISTRY }}
+        SEMVER: ${{ env.RELEASE_VERSION }}
+        WORKSPACE: ${{ github.workspace }}
+
+    - name: Configure AWS credentials (New Production)
+      if: env.RELEASE_VERSION != 'none'
+      uses: aws-actions/configure-aws-credentials@v4.0.2
+      with:
+        aws-access-key-id: ${{ secrets.VBR_AWS_ACCESS_KEY_ID_NEWPRD }}
+        aws-secret-access-key: ${{ secrets.VBR_AWS_SECRET_ACCESS_KEY_NEWPRD }}
+        aws-region: ${{ secrets.VBR_AWS_REGION_PRD }}
+
+    - name: Login to Amazon ECR (New Production)
+      if: env.RELEASE_VERSION != 'none'
+      uses: aws-actions/amazon-ecr-login@v2
+
+    - name: Push to New Production
+      if: env.RELEASE_VERSION != 'none'
+      shell: bash
+      run: |
+        docker tag  $BUILD_DOCKER_REGISTRY_TST/public-api/api-legacy:$SEMVER $BUILD_DOCKER_REGISTRY_NEWPRD/public-api/api-legacy:$SEMVER
+        docker push $BUILD_DOCKER_REGISTRY_NEWPRD/public-api/api-legacy:$SEMVER
+      env:
+        BUILD_DOCKER_REGISTRY_TST: ${{ secrets.VBR_VBR_DEVOPS_DOCKER_REGISTRY }}
+        BUILD_DOCKER_REGISTRY_NEWPRD: ${{ secrets.VBR_BUILD_DOCKER_REGISTRY_NEWPRD }}
+        SEMVER: ${{ env.RELEASE_VERSION }}
+        WORKSPACE: ${{ github.workspace }}
+
+    - name: Publish to Confluence
+      if: env.RELEASE_VERSION != 'none'
+      shell: bash
+      run: ./packages/Be.Vlaanderen.Basisregisters.Build.Pipeline/Content/ci-confluence.sh
+      env:
+        CONFLUENCE_TITLE: ${{ env.REPOSITORY_NAME }}
+        CONFLUENCE_USERNAME: ${{ secrets.VBR_CONFLUENCE_USER }}
+        CONFLUENCE_PASSWORD: ${{ secrets.VBR_CONFLUENCE_PASSWORD }}
+
+   # - name: Create Jira Release
+   #   if: env.RELEASE_VERSION != 'none'
+   #   shell: bash
+   #   run: ./packages/Be.Vlaanderen.Basisregisters.Build.Pipeline/Content/ci-jira.sh
+   #   env:
+   #     CONFLUENCE_TITLE: ${{ env.REPOSITORY_NAME }}
+   #     CONFLUENCE_USERNAME: ${{ secrets.VBR_CONFLUENCE_USER }}
+   #     CONFLUENCE_PASSWORD: ${{ secrets.VBR_CONFLUENCE_PASSWORD }}
+   #     JIRA_PREFIX: PublicApi
+   #     JIRA_PROJECT: VBR
+   #     JIRA_VERSION: ${{ env.RELEASE_VERSION }}
