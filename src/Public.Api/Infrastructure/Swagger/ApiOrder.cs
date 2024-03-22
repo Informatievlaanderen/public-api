@@ -11,21 +11,21 @@ namespace Public.Api.Infrastructure.Swagger
         public static class Municipality
         {
             public const int Base = 1000;
-            public const int V1 = Base + 10;
+            //public const int V1 = Base + 10;
             public const int V2 = Base + 20;
         }
 
         public static class PostalCode
         {
             public const int Base = Municipality.Base + 100;
-            public const int V1 = Base + 10;
+            //public const int V1 = Base + 10;
             public const int V2 = Base + 20;
         }
 
         public static class StreetName
         {
             public const int Base = PostalCode.Base + 100;
-            public const int V1 = Base + 10;
+            //public const int V1 = Base + 10;
             public const int V2 = Base + 20;
             public const int Edit = Base + 30;
         }
@@ -33,7 +33,7 @@ namespace Public.Api.Infrastructure.Swagger
         public static class Address
         {
             public const int Base = StreetName.Base + 100;
-            public const int V1 = Base + 10;
+            //public const int V1 = Base + 10;
             public const int V2 = Base + 20;
             public const int Edit = Base + 30;
         }
@@ -41,7 +41,7 @@ namespace Public.Api.Infrastructure.Swagger
         public static class Building
         {
             public const int Base = Address.Base + 100;
-            public const int V1 = Base + 10;
+            //public const int V1 = Base + 10;
             public const int V2 = Base + 20;
             public const int Edit = Base + 30;
         }
@@ -49,7 +49,7 @@ namespace Public.Api.Infrastructure.Swagger
         public static class BuildingUnit
         {
             public const int Base = Building.Base + 100;
-            public const int V1 = Base + 10;
+            //public const int V1 = Base + 10;
             public const int V2 = Base + 20;
             public const int Edit = Base + 30;
         }
@@ -57,7 +57,7 @@ namespace Public.Api.Infrastructure.Swagger
         public static class Parcel
         {
             public const int Base = BuildingUnit.Base + 100;
-            public const int V1 = Base + 10;
+            //public const int V1 = Base + 10;
             public const int V2 = Base + 20;
             public const int Edit = Base + 30;
         }

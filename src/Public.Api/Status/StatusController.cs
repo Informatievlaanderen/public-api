@@ -16,7 +16,7 @@ namespace Public.Api.Status
     using AcceptTypes = Be.Vlaanderen.Basisregisters.Api.AcceptTypes;
     using Version = Infrastructure.Version.Version;
 
-    [ApiVersion(Version.Current)]
+   // [ApiVersion(Version.Current)]
     [ApiVersion(Version.V2)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("status")]

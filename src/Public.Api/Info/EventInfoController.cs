@@ -15,7 +15,7 @@ namespace Public.Api.Info
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
-    [ApiVersion(Version.Current)]
+    //[ApiVersion(Version.Current)]
     [ApiVersion(Version.V2)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("info/events")]
@@ -58,7 +58,7 @@ namespace Public.Api.Info
             [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
             [FromQuery(Name = "tags"), EventTagArrayBinder] IEnumerable<EventTag> eventTags,
             CancellationToken cancellationToken = default)
-            => Content(markdownGenerators[RegistryKeys.Municipality].GenerateFor(eventTags));
+            => Content(markdownGenerators[RegistryKeys.MunicipalityV2].GenerateFor(eventTags));
 
         /// <summary>
         /// Vraag de markdown documentatie voor postinfo events op.
@@ -76,7 +76,7 @@ namespace Public.Api.Info
             [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
             [FromQuery(Name = "tags"), EventTagArrayBinder] IEnumerable<EventTag> eventTags,
             CancellationToken cancellationToken = default)
-            => Content(markdownGenerators[RegistryKeys.Postal].GenerateFor(eventTags));
+            => Content(markdownGenerators[RegistryKeys.PostalV2].GenerateFor(eventTags));
 
         /// <summary>
         /// Vraag de markdown documentatie voor straatnamen events op.
@@ -94,7 +94,7 @@ namespace Public.Api.Info
             [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
             [FromQuery(Name = "tags"), EventTagArrayBinder] IEnumerable<EventTag> eventTags,
             CancellationToken cancellationToken = default)
-            => Content(markdownGenerators[RegistryKeys.StreetName].GenerateFor(eventTags));
+            => Content(markdownGenerators[RegistryKeys.StreetNameV2].GenerateFor(eventTags));
 
         /// <summary>
         /// Vraag de markdown documentatie voor adressen events op.
@@ -112,7 +112,7 @@ namespace Public.Api.Info
             [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
             [FromQuery(Name = "tags"), EventTagArrayBinder] IEnumerable<EventTag> eventTags,
             CancellationToken cancellationToken = default)
-            => Content(markdownGenerators[RegistryKeys.Address].GenerateFor(eventTags));
+            => Content(markdownGenerators[RegistryKeys.AddressV2].GenerateFor(eventTags));
 
         /// <summary>
         /// Vraag de markdown documentatie voor gebouwen en gebouweenheden events op.
@@ -131,7 +131,7 @@ namespace Public.Api.Info
             [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
             [FromQuery(Name = "tags"), EventTagArrayBinder] IEnumerable<EventTag> eventTags,
             CancellationToken cancellationToken = default)
-            => Content(markdownGenerators[RegistryKeys.Building].GenerateFor(eventTags));
+            => Content(markdownGenerators[RegistryKeys.BuildingV2].GenerateFor(eventTags));
 
         /// <summary>
         /// Vraag de markdown documentatie voor percelen events op.
@@ -149,7 +149,7 @@ namespace Public.Api.Info
             [FromServices] IIndex<string, IRegistryEventsMarkdownGenerator> markdownGenerators,
             [FromQuery(Name = "tags"), EventTagArrayBinder] IEnumerable<EventTag> eventTags,
             CancellationToken cancellationToken = default)
-            => Content(markdownGenerators[RegistryKeys.Parcel].GenerateFor(eventTags));
+            => Content(markdownGenerators[RegistryKeys.ParcelV2].GenerateFor(eventTags));
 
         /// <summary>
         /// Vraag de markdown documentatie voor wegen events op.
