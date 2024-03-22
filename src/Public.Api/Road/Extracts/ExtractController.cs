@@ -12,6 +12,7 @@ namespace Public.Api.Road.Extracts
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
     using System.Net.Http;
+    using Asp.Versioning;
 
     [ApiVersion(Version.Current)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]

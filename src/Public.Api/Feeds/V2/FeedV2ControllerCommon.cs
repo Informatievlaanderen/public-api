@@ -1,6 +1,7 @@
 namespace Public.Api.Feeds.V2
 {
     using System.Net;
+    using Asp.Versioning;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.Api.Search.Filtering;

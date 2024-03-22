@@ -1,6 +1,7 @@
 namespace Public.Api.ErrorDetail
 {
     using System.Threading;
+    using Asp.Versioning;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure.Controllers;
@@ -10,6 +11,7 @@ namespace Public.Api.ErrorDetail
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     [ApiVersion(Version.Current)]
     [ApiVersion(Version.V2)]

@@ -47,7 +47,7 @@ namespace Public.Api.Infrastructure
             return Task.FromResult(true);
         }
 
-        public Task<IEnumerable<StoreKey>> FindStoreKeysByKeyPartAsync(string valueToMatch, bool ignoreCase)
+        public IAsyncEnumerable<StoreKey> FindStoreKeysByKeyPartAsync(string valueToMatch, bool ignoreCase)
         {
             throw new System.NotImplementedException();
         }

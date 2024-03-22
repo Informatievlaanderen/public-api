@@ -2,6 +2,7 @@ namespace Public.Api.Info
 {
     using System.Collections.Generic;
     using System.Threading;
+    using Asp.Versioning;
     using Autofac.Features.Indexed;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.EventHandling;
@@ -14,6 +15,7 @@ namespace Public.Api.Info
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     //[ApiVersion(Version.Current)]
     [ApiVersion(Version.V2)]

@@ -1,5 +1,6 @@
 namespace Public.Api.Address.BackOffice
 {
+    using Asp.Versioning;
     using Autofac.Features.AttributeFilters;
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
@@ -11,7 +12,6 @@ namespace Public.Api.Address.BackOffice
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using RestSharp;
     using Version = Infrastructure.Version.Version;
 
     [ApiVisible]

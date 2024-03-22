@@ -1,5 +1,6 @@
 namespace Public.Api.BuildingUnit.BackOffice
 {
+    using Asp.Versioning;
     using Autofac.Features.AttributeFilters;
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;

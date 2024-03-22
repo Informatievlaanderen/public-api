@@ -7,12 +7,12 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\net6.0\Public.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\net8.0\Public.Api.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;1591</NoWarn>
-    <DefineConstants>TRACE;DEBUG;NETCOREAPP;NET6_0</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NETCOREAPP;NET8_0</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\net6.0\Public.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\net8.0\Public.Api.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
@@ -32,17 +32,16 @@
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy\content\ParcelRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo\content\ParcelRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions\content\ParcelRegistry.Api.BackOffice.Abstractions.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.PublicServiceRegistry.Api.Backoffice\content\PublicServiceRegistry.Api.Backoffice.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions\content\RoadRegistry.BackOffice.Abstractions.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api\content\RoadRegistry.BackOffice.Api.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions\content\Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions.xml" CopyToOutputDirectory="Always" />
 
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Common\lib\net6.0\Be.Vlaanderen.Basisregisters.GrAr.Common.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Edit\lib\net6.0\Be.Vlaanderen.Basisregisters.GrAr.Edit.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Legacy\lib\net6.0\Be.Vlaanderen.Basisregisters.GrAr.Legacy.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Provenance\lib\net6.0\Be.Vlaanderen.Basisregisters.GrAr.Provenance.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.ProblemDetails\lib\net6.0\Be.Vlaanderen.Basisregisters.ProblemDetails.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.TicketingService.Abstractions\lib\net6.0\TicketingService.Abstractions.xml" CopyToOutputDirectory="Always" />
+    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Common\lib\netstandard2.1\Be.Vlaanderen.Basisregisters.GrAr.Common.xml" CopyToOutputDirectory="Always" />
+    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Edit\lib\netstandard2.1\Be.Vlaanderen.Basisregisters.GrAr.Edit.xml" CopyToOutputDirectory="Always" />
+    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Legacy\lib\netstandard2.1\Be.Vlaanderen.Basisregisters.GrAr.Legacy.xml" CopyToOutputDirectory="Always" />
+    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Provenance\lib\netstandard2.1\Be.Vlaanderen.Basisregisters.GrAr.Provenance.xml" CopyToOutputDirectory="Always" />
+    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.ProblemDetails\lib\net8.0\Be.Vlaanderen.Basisregisters.ProblemDetails.xml" CopyToOutputDirectory="Always" />
+    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.TicketingService.Abstractions\lib\netstandard2.1\TicketingService.Abstractions.xml" CopyToOutputDirectory="Always" />
     <Content Include="Be.Vlaanderen.Basisregisters.Utilities.Rfc3339DateTimeOffset.xml" CopyToOutputDirectory="Always" />
   </ItemGroup>
   <ItemGroup>
@@ -53,9 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\SolutionInfo.cs" Link="Properties\SolutionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Update="wwwroot\**\*.*">
