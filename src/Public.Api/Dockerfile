@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/runtime-deps:8.0.2-bookworm-slim-amd64
+FROM mcr.microsoft.com/dotnet/runtime-deps:8.0.3-bookworm-slim-amd64
 LABEL maintainer "Digitaal Vlaanderen <digitaal.vlaanderen@vlaanderen.be>"
 
 COPY / /app
