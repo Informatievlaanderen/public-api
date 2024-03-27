@@ -60,7 +60,7 @@ jobs:
     if: ${{ (github.repository_owner == 'Informatievlaanderen') && (needs.set-release-version.outputs.version != 'none') }}
     with:
       registry: ${{ vars.VBR_DEVOPS_DOCKER_REGISTRY }}/public-api
-      image-file: public-api-image.tar
+      image-file: api-legacy-image.tar
       image-name: api-legacy
       build-project: Public.Api
       semver: ${{ needs.set-release-version.outputs.version }}
