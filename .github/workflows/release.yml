@@ -208,7 +208,7 @@ jobs:
         uses: actions/download-artifact@v4
         continue-on-error: false
         with:
-          name: public-api-${{ needs.release.outputs.version }}
+          name: api-legacy-${{ needs.release.outputs.version }}
           path: ~/
 
       - name: Load artifact
@@ -217,7 +217,7 @@ jobs:
           echo $IMAGE-image.tar
           docker image load -i ~/$IMAGE-image.tar
         env:
-          IMAGE: public-api
+          IMAGE: api-legacy
 
       - name: Configure AWS credentials
         if: needs.release.outputs.version != 'none'
