@@ -1,3 +1,10 @@
+## [6.0.2](https://github.com/informatievlaanderen/public-api/compare/v6.0.1...v6.0.2) (2024-03-27)
+
+
+### Bug Fixes
+
+* name of image artifact ([43bd80a](https://github.com/informatievlaanderen/public-api/commit/43bd80a2eeab8cb185135741d94631dce4725a91))
+
 ## [6.0.1](https://github.com/informatievlaanderen/public-api/compare/v6.0.0...v6.0.1) (2024-03-27)
 
 
