@@ -1,3 +1,15 @@
+# [6.0.0](https://github.com/informatievlaanderen/public-api/compare/v5.99.0...v6.0.0) (2024-03-27)
+
+
+### Features
+
+* move to dotnet 8.0.2 ([06e4a0a](https://github.com/informatievlaanderen/public-api/commit/06e4a0abc1d7e5b84b852ac174009a4b8316b704))
+
+
+### BREAKING CHANGES
+
+* move to dotnet 8.0.2
+
 # [5.99.0](https://github.com/informatievlaanderen/public-api/compare/v5.98.0...v5.99.0) (2024-03-22)
 
 
