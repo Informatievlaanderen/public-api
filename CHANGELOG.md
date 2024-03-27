@@ -1,3 +1,10 @@
+## [6.0.3](https://github.com/informatievlaanderen/public-api/compare/v6.0.2...v6.0.3) (2024-03-27)
+
+
+### Bug Fixes
+
+* image file name ([9e25efc](https://github.com/informatievlaanderen/public-api/commit/9e25efc16d496183d79c889a79cd9047fd5b9ef9))
+
 ## [6.0.2](https://github.com/informatievlaanderen/public-api/compare/v6.0.1...v6.0.2) (2024-03-27)
 
 
