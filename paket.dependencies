@@ -49,7 +49,7 @@ nuget Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstraction
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 7.2.4
 
 nuget Be.Vlaanderen.Basisregisters.Auth.AcmIdm 2.0.0
-nuget Be.Vlaanderen.Basisregisters.Api 21.1.0
+nuget Be.Vlaanderen.Basisregisters.Api 22.0.0
 
 // DataDog To Remove after testing
 nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing 6.0.0
