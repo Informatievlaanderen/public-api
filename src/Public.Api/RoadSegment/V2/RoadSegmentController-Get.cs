@@ -29,7 +29,7 @@ namespace Public.Api.RoadSegment.V2
         /// <response code="404">Als het wegsegment niet gevonden kan worden.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet(GetRoadSegmentRoute, Name = nameof(GetRoadSegment))]
+        [HttpGet(GetRoadSegmentRoute, Name = nameof(GetRoadSegmentV2))]
         [ApiOrder(ApiOrder.Road.RoadSegment + 1)]
         [ProducesResponseType(typeof(GetRoadSegmentResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -39,8 +39,8 @@ namespace Public.Api.RoadSegment.V2
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(RoadSegmentNotFoundResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(OperationId = nameof(GetRoadSegment))]
-        public async Task<IActionResult> GetRoadSegment(
+        [SwaggerOperation(OperationId = nameof(GetRoadSegmentV2))]
+        public async Task<IActionResult> GetRoadSegmentV2(
             [FromRoute] int id,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] GetRoadSegmentToggle featureToggle,

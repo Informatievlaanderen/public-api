@@ -10,6 +10,7 @@ namespace Public.Api.Road.Uploads.V2
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Public.Api.Infrastructure;
     using RestSharp;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class UploadControllerV2
     {
@@ -18,8 +19,8 @@ namespace Public.Api.Road.Uploads.V2
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpGet("wegen/upload/jobs", Name = nameof(RoadUploadGetJobs))]
-        public async Task<IActionResult> RoadUploadGetJobs(
+        [HttpGet("wegen/upload/jobs", Name = nameof(RoadUploadGetJobsV2))]
+        public async Task<IActionResult> RoadUploadGetJobsV2(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] RoadJobsToggle featureToggle,

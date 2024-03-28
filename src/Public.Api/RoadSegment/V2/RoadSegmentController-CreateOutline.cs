@@ -31,7 +31,7 @@ namespace Public.Api.RoadSegment.V2
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpPost(CreateRoadSegmentOutlineRoute, Name = nameof(CreateRoadSegmentOutlineRoute))]
+        [HttpPost(CreateRoadSegmentOutlineRoute, Name = nameof(CreateRoadSegmentOutlineV2))]
         [ApiOrder(ApiOrder.Road.RoadSegment + 4)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
@@ -46,11 +46,11 @@ namespace Public.Api.RoadSegment.V2
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerRequestExample(typeof(PostRoadSegmentOutlineParameters), typeof(PostRoadSegmentOutlineParametersExamples))]
         [SwaggerAuthorizeOperation(
-            OperationId = nameof(CreateRoadSegmentOutline),
+            OperationId = nameof(CreateRoadSegmentOutlineV2),
             Description = "Voeg een nieuw wegsegment toe aan het Wegenregister met geometriemethode 'ingeschetst'.",
             Authorize = Scopes.DvWrGeschetsteWegBeheer
         )]
-        public async Task<IActionResult> CreateRoadSegmentOutline(
+        public async Task<IActionResult> CreateRoadSegmentOutlineV2(
             [FromBody] PostRoadSegmentOutlineParameters request,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] CreateRoadSegmentOutlineToggle featureToggle,

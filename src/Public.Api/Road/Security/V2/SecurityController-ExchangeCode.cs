@@ -9,8 +9,8 @@ namespace Public.Api.Road.Security.V2
 
     public partial class SecurityControllerV2
     {
-        [HttpGet("wegen/security/exchange", Name = nameof(ExchangeCode))]
-        public async Task<IActionResult> ExchangeCode(
+        [HttpGet("wegen/security/exchange", Name = nameof(ExchangeCodeV2))]
+        public async Task<IActionResult> ExchangeCodeV2(
             string code,
             string verifier,
             string? redirectUri,

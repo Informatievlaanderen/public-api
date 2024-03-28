@@ -32,7 +32,7 @@ namespace Public.Api.RoadSegment.V2
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpPost(DeleteRoadSegmentOutlineRoute, Name = nameof(DeleteRoadSegmentOutline))]
+        [HttpPost(DeleteRoadSegmentOutlineRoute, Name = nameof(DeleteRoadSegmentOutlineV2))]
         [ApiOrder(ApiOrder.Road.RoadSegment + 6)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
@@ -48,11 +48,11 @@ namespace Public.Api.RoadSegment.V2
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerAuthorizeOperation(
-            OperationId = nameof(DeleteRoadSegmentOutline),
+            OperationId = nameof(DeleteRoadSegmentOutlineV2),
             Description = "Verwijder een wegsegment met geometriemethode 'ingeschetst'.",
             Authorize = Scopes.DvWrGeschetsteWegBeheer
         )]
-        public async Task<IActionResult> DeleteRoadSegmentOutline(
+        public async Task<IActionResult> DeleteRoadSegmentOutlineV2(
             [FromRoute] string id,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] DeleteRoadSegmentOutlineToggle featureToggle,

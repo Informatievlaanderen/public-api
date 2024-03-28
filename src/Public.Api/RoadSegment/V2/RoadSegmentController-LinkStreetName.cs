@@ -33,7 +33,7 @@ namespace Public.Api.RoadSegment.V2
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpPost(LinkRoadSegmentStreetNameRoute, Name = nameof(LinkRoadSegmentStreetName))]
+        [HttpPost(LinkRoadSegmentStreetNameRoute, Name = nameof(LinkRoadSegmentStreetNameV2))]
         [ApiOrder(ApiOrder.Road.RoadSegment + 8)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
@@ -50,11 +50,11 @@ namespace Public.Api.RoadSegment.V2
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerRequestExample(typeof(PostLinkStreetNameParameters), typeof(PostLinkStreetNameParametersExamples))]
         [SwaggerAuthorizeOperation(
-            OperationId = nameof(LinkRoadSegmentStreetName),
+            OperationId = nameof(LinkRoadSegmentStreetNameV2),
             Description = "Koppel een linker- en/of rechterstraatnaam met status `voorgesteld` of `inGebruik` aan een wegsegment waaraan momenteel geen linker- en/of rechterstraatnaam gekoppeld werd.",
             Authorize = Scopes.DvWrAttribuutWaardenBeheer
         )]
-        public async Task<IActionResult> LinkRoadSegmentStreetName(
+        public async Task<IActionResult> LinkRoadSegmentStreetNameV2(
             [FromRoute] string id,
             [FromBody] PostLinkStreetNameParameters request,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,

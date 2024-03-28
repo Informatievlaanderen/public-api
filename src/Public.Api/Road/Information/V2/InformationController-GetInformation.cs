@@ -9,8 +9,8 @@ namespace Public.Api.Road.Information.V2
 
     public partial class InformationControllerV2
     {
-        [HttpGet("wegen/informatie", Name = nameof(GetInformation))]
-        public async Task<IActionResult> GetInformation(CancellationToken cancellationToken)
+        [HttpGet("wegen/informatie", Name = nameof(GetInformationV2))]
+        public async Task<IActionResult> GetInformationV2(CancellationToken cancellationToken)
         {
             RestRequest BackendRequest() =>
                 CreateBackendRestRequest(Method.Get, "information");

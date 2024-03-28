@@ -13,7 +13,7 @@ namespace Public.Api.Road.Extracts.V2
     {
         [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
         [HttpGet("wegen/extract/upload/{uploadId}/status")]
-        public async Task<ActionResult> GetStatus(
+        public async Task<ActionResult> GetStatusV2(
             [FromRoute]string uploadId,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)

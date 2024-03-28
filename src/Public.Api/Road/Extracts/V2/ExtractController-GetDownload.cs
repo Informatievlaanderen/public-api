@@ -12,7 +12,7 @@ namespace Public.Api.Road.Extracts.V2
     {
         [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
         [HttpPost("wegen/extract/download/{downloadId}")]
-        public async Task<ActionResult> PostDownloadRequest(
+        public async Task<ActionResult> PostDownloadRequestV2(
             [FromRoute]string downloadId,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)

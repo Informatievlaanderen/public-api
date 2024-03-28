@@ -11,7 +11,7 @@ namespace Public.Api.Road.Extracts.V2
     public partial class ExtractControllerV2
     {
         [HttpGet("wegen/extract/overlappingtransactionzones.geojson")]
-        public async Task<ActionResult> GetOverlappingTransactionZonesGeoJson(
+        public async Task<ActionResult> GetOverlappingTransactionZonesGeoJsonV2(
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {

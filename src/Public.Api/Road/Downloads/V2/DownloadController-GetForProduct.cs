@@ -10,7 +10,7 @@ namespace Public.Api.Road.Downloads.V2
     public partial class DownloadControllerV2
     {
         [HttpGet("wegen/download/voor-product/{datum}")]
-        public async Task<IActionResult> GetForProduct(
+        public async Task<IActionResult> GetForProductV2(
             [FromRoute] string datum,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)

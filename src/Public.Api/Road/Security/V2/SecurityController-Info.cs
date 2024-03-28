@@ -9,8 +9,8 @@ namespace Public.Api.Road.Security.V2
 
     public partial class SecurityControllerV2
     {
-        [HttpGet("wegen/security/info", Name = nameof(Info))]
-        public async Task<IActionResult> Info(
+        [HttpGet("wegen/security/info", Name = nameof(InfoV2))]
+        public async Task<IActionResult> InfoV2(
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken)
         {

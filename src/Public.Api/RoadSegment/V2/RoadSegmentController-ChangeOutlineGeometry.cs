@@ -35,7 +35,7 @@ namespace Public.Api.RoadSegment.V2
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpPost(ChangeRoadSegmentOutlineGeometryRoute, Name = nameof(ChangeRoadSegmentOutlineGeometry))]
+        [HttpPost(ChangeRoadSegmentOutlineGeometryRoute, Name = nameof(ChangeRoadSegmentOutlineGeometryV2))]
         [ApiOrder(ApiOrder.Road.RoadSegment + 5)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
@@ -52,11 +52,11 @@ namespace Public.Api.RoadSegment.V2
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerRequestExample(typeof(PostChangeOutlineGeometryParameters), typeof(PostChangeOutlineGeometryParametersExamples))]
         [SwaggerAuthorizeOperation(
-            OperationId = nameof(ChangeRoadSegmentOutlineGeometry),
+            OperationId = nameof(ChangeRoadSegmentOutlineGeometryV2),
             Description = "Wijzig de geometrie van een wegsegment met geometriemethode 'ingeschetst'.",
             Authorize = Scopes.DvWrGeschetsteWegBeheer
         )]
-        public async Task<IActionResult> ChangeRoadSegmentOutlineGeometry(
+        public async Task<IActionResult> ChangeRoadSegmentOutlineGeometryV2(
             [FromRoute] string id,
             [FromBody] PostChangeOutlineGeometryParameters request,
             [FromServices] IActionContextAccessor actionContextAccessor,

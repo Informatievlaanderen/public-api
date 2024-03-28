@@ -14,7 +14,7 @@ namespace Public.Api.Road.Information.V2
     {
         [HttpPost("wegen/informatie/valideer-wkt")]
         [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
-        public async Task<ActionResult> PostValidateWktContourRequest(
+        public async Task<ActionResult> PostValidateWktContourRequestV2(
             [FromBody] ValidateWktContourRequestBody body,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)

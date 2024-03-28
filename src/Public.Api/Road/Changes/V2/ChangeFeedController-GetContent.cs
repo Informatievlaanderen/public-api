@@ -10,8 +10,8 @@ namespace Public.Api.Road.Changes.V2
 
     public partial class ChangeFeedControllerV2
     {
-        [HttpGet("wegen/activiteit/gebeurtenis/{id}/inhoud", Name = nameof(GetContent))]
-        public async Task<IActionResult> GetContent(
+        [HttpGet("wegen/activiteit/gebeurtenis/{id}/inhoud", Name = nameof(GetContentV2))]
+        public async Task<IActionResult> GetContentV2(
             [FromRoute] long? id,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)

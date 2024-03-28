@@ -33,7 +33,7 @@ namespace Public.Api.RoadSegment.V2
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpPost(ChangeRoadSegmentAttributesRoute, Name = nameof(ChangeRoadSegmentAttributes))]
+        [HttpPost(ChangeRoadSegmentAttributesRoute, Name = nameof(ChangeRoadSegmentAttributesV2))]
         [ApiOrder(ApiOrder.Road.RoadSegment + 2)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
@@ -50,11 +50,11 @@ namespace Public.Api.RoadSegment.V2
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerRequestExample(typeof(ChangeRoadSegmentAttributesParameters), typeof(ChangeRoadSegmentAttributesParametersExamples))]
         [SwaggerAuthorizeOperation(
-            OperationId = nameof(ChangeRoadSegmentAttributes),
+            OperationId = nameof(ChangeRoadSegmentAttributesV2),
             Description = "Attributen wijzigen van een wegsegment: status, toegangsbeperking, wegklasse, wegbeheerder en wegcategorie.",
             Authorize = Scopes.DvWrAttribuutWaardenBeheer
         )]
-        public async Task<IActionResult> ChangeRoadSegmentAttributes(
+        public async Task<IActionResult> ChangeRoadSegmentAttributesV2(
             [FromBody] ChangeRoadSegmentAttributesParameters request,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] ChangeRoadSegmentAttributesToggle featureToggle,

@@ -14,7 +14,7 @@ namespace Public.Api.Road.Extracts.V2
     {
         [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
         [HttpPost("wegen/extract/downloadaanvragen")]
-        public async Task<ActionResult> PostDownloadRequest(
+        public async Task<ActionResult> PostDownloadRequestV2(
             [FromBody]DownloadExtractRequestBody body,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)

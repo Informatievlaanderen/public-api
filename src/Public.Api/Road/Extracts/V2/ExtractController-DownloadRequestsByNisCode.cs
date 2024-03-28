@@ -14,7 +14,7 @@ namespace Public.Api.Road.Extracts.V2
     {
         [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
         [HttpPost("wegen/extract/downloadaanvragen/perniscode")]
-        public async Task<ActionResult> PostDownloadRequestByNisCode(
+        public async Task<ActionResult> PostDownloadRequestByNisCodeV2(
             [FromBody] DownloadExtractByNisCodeRequestBody body,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)

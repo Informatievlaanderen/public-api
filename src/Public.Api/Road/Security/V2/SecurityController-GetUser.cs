@@ -10,9 +10,9 @@ namespace Public.Api.Road.Security.V2
 
     public partial class SecurityControllerV2
     {
-        [HttpGet("wegen/security/user", Name = nameof(GetUser))]
+        [HttpGet("wegen/security/user", Name = nameof(GetUserV2))]
         [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
-        public async Task<IActionResult> GetUser(
+        public async Task<IActionResult> GetUserV2(
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken)
         {

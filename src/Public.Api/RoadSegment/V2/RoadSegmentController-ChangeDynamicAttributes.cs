@@ -33,7 +33,7 @@ namespace Public.Api.RoadSegment.V2
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpPost(ChangeRoadSegmentDynamicAttributesRoute, Name = nameof(ChangeRoadSegmentDynamicAttributes))]
+        [HttpPost(ChangeRoadSegmentDynamicAttributesRoute, Name = nameof(ChangeRoadSegmentDynamicAttributesV2))]
         [ApiOrder(ApiOrder.Road.RoadSegment + 3)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
@@ -50,11 +50,11 @@ namespace Public.Api.RoadSegment.V2
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerRequestExample(typeof(ChangeRoadSegmentsDynamicAttributesParameters), typeof(ChangeRoadSegmentsDynamicAttributesParametersExamples))]
         [SwaggerAuthorizeOperation(
-            OperationId = nameof(ChangeRoadSegmentDynamicAttributes),
+            OperationId = nameof(ChangeRoadSegmentDynamicAttributesV2),
             Description = "Dynamische attributen wijzigen van een wegsegment: wegverharding, wegbreedte en aantal rijstroken.",
             Authorize = Scopes.DvWrAttribuutWaardenBeheer
         )]
-        public async Task<IActionResult> ChangeRoadSegmentDynamicAttributes(
+        public async Task<IActionResult> ChangeRoadSegmentDynamicAttributesV2(
             [FromBody] ChangeRoadSegmentsDynamicAttributesParameters request,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] ChangeRoadSegmentDynamicAttributesToggle featureToggle,

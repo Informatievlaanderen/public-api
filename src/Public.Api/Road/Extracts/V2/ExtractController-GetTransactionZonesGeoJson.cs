@@ -11,7 +11,7 @@ namespace Public.Api.Road.Extracts.V2
     public partial class ExtractControllerV2
     {
         [HttpGet("wegen/extract/transactionzones.geojson")]
-        public async Task<ActionResult> GetTransactionZonesGeoJson(
+        public async Task<ActionResult> GetTransactionZonesGeoJsonV2(
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {

@@ -10,8 +10,8 @@ namespace Public.Api.Road.Changes.V2
 
     public partial class ChangeFeedControllerV2
     {
-        [HttpGet("wegen/activiteit/vorige", Name = nameof(GetPrevious))]
-        public async Task<IActionResult> GetPrevious(
+        [HttpGet("wegen/activiteit/vorige", Name = nameof(GetPreviousV2))]
+        public async Task<IActionResult> GetPreviousV2(
             [FromQuery] long? beforeEntry,
             [FromQuery] int? maxEntryCount,
             [FromQuery] string? filter,

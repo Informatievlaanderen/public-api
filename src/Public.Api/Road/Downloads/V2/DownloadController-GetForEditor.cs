@@ -10,7 +10,7 @@ namespace Public.Api.Road.Downloads.V2
     public partial class DownloadControllerV2
     {
         [HttpGet("wegen/download/voor-editor")]
-        public async Task<IActionResult> GetForEditor(
+        public async Task<IActionResult> GetForEditorV2(
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {

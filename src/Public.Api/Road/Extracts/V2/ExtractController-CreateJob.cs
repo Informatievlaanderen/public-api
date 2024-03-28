@@ -11,6 +11,7 @@ namespace Public.Api.Road.Extracts.V2
     using Public.Api.Infrastructure;
     using RestSharp;
     using RoadRegistry.BackOffice.Abstractions.Jobs;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class ExtractControllerV2
     {
@@ -19,8 +20,8 @@ namespace Public.Api.Road.Extracts.V2
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpPost("wegen/extract/download/{downloadId}/jobs", Name = nameof(RoadExtractCreateJob))]
-        public async Task<IActionResult> RoadExtractCreateJob(
+        [HttpPost("wegen/extract/download/{downloadId}/jobs", Name = nameof(RoadExtractCreateJobV2))]
+        public async Task<IActionResult> RoadExtractCreateJobV2(
             [FromRoute] string downloadId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,

@@ -14,7 +14,7 @@ namespace Public.Api.Road.Extracts.V2
     {
         [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
         [HttpPost("wegen/extract/downloadaanvragen/percontour")]
-        public async Task<ActionResult> PostDownloadRequestByContour(
+        public async Task<ActionResult> PostDownloadRequestByContourV2(
             [FromBody] DownloadExtractByContourRequestBody body,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
