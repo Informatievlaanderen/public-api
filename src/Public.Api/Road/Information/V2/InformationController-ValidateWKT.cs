@@ -1,26 +1,27 @@
-namespace Public.Api.Road.Changes
+namespace Public.Api.Road.Information.V2
 {
-    using Be.Vlaanderen.Basisregisters.Api;
-    using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Infrastructure;
-    using Microsoft.AspNetCore.Mvc;
-    using RestSharp;
-    using Swashbuckle.AspNetCore.Annotations;
     using System.Threading;
     using System.Threading.Tasks;
+    using Be.Vlaanderen.Basisregisters.Api;
+    using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.Infrastructure.Controllers.Attributes;
+    using Microsoft.AspNetCore.Mvc;
+    using Public.Api.Infrastructure;
+    using RestSharp;
+    using RoadRegistry.BackOffice.Api.Information;
 
-    public partial class ChangeFeedController
+    public partial class InformationControllerV2
     {
-        [HttpGet("wegen/activiteit/gebeurtenis/{id}/inhoud", Name = nameof(GetContent))]
-        [SwaggerOperation(OperationId = nameof(GetContent))]
-        public async Task<IActionResult> GetContent(
-            [FromRoute] long? id,
+        [HttpPost("wegen/informatie/valideer-wkt")]
+        [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
+        public async Task<ActionResult> PostValidateWktContourRequestV2(
+            [FromBody] ValidateWktContourRequestBody body,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
             RestRequest BackendRequest() =>
-                CreateBackendRestRequest(Method.Get, "changefeed/entry/{id}/content")
-                    .AddParameter(nameof(id), id, ParameterType.UrlSegment);
+                CreateBackendRestRequest(Method.Post, "information/validate-wkt")
+                    .AddJsonBodyOrEmpty(body);
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
@@ -28,6 +29,7 @@ namespace Public.Api.Road.Changes
                 CreateDefaultHandleBadRequest(),
                 problemDetailsHelper,
                 cancellationToken: cancellationToken);
+
             return new BackendResponseResult(response);
         }
     }

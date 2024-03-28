@@ -182,6 +182,12 @@ namespace Public.Api.Infrastructure
                                                           SwashbuckleSchemaHelper.GetSchemaId(type));
 
                                 RoadRegistry.BackOffice.Api.Infrastructure.Extensions.SwaggerExtensions.AddRoadRegistrySchemaFilters(x);
+
+                                x.ResolveConflictingActions(apiDescriptions =>
+                                {
+                                    //TODO-rik test swagger, conflict actions
+                                    return apiDescriptions.First();
+                                });
                             }
                         }
                     },
