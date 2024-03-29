@@ -1,3 +1,10 @@
+## [6.1.1](https://github.com/informatievlaanderen/public-api/compare/v6.1.0...v6.1.1) (2024-03-29)
+
+
+### Bug Fixes
+
+* buildnumber ([f936205](https://github.com/informatievlaanderen/public-api/commit/f9362059d09f93067e4f16a33db8c5771691e205))
+
 # [6.1.0](https://github.com/informatievlaanderen/public-api/compare/v6.0.3...v6.1.0) (2024-03-29)
 
 
