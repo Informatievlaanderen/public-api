@@ -16,7 +16,7 @@ namespace Public.Api.RoadSegment
     using Road;
 
     [ApiVisible]
-    [ApiVersion(Version.Current)]
+    [ApiVersion(Version.V1)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Wegen")]

@@ -13,7 +13,7 @@ namespace Public.Api.Road.Changes
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
 
-    [ApiVersion(Version.Current)]
+    [ApiVersion(Version.V1)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Activiteit")]
