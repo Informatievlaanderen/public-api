@@ -63,7 +63,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.AggregateSource (9.0.1)
       Be.Vlaanderen.Basisregisters.EventHandling (>= 5.0)
       SqlStreamStore (>= 1.2)
-    Be.Vlaanderen.Basisregisters.Api (21.1)
+    Be.Vlaanderen.Basisregisters.Api (22.0)
       Asp.Versioning.Mvc.ApiExplorer (>= 8.0)
       Autofac (>= 8.0)
       Autofac.Extensions.DependencyInjection (>= 9.0)

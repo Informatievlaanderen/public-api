@@ -15,7 +15,7 @@ namespace Public.Api.Road.Uploads
     using System.Net.Http;
     using Asp.Versioning;
 
-    [ApiVersion(Version.Current)]
+    [ApiVersion(Version.V1)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Upload")]

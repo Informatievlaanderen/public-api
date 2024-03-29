@@ -13,7 +13,7 @@ namespace Public.Api.ErrorDetail
     using Microsoft.Extensions.Configuration;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
-    [ApiVersion(Version.Current)]
+    [ApiVersion(Version.V1)]
     [ApiVersion(Version.V2)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]

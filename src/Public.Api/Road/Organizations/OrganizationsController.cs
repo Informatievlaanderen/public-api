@@ -15,7 +15,7 @@ namespace Public.Api.Road.Organizations
     using Microsoft.Extensions.Logging;
 
     [ApiVisible]
-    [ApiVersion(Version.Current)]
+    [ApiVersion(Version.V1)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Wegen")]
