@@ -625,7 +625,7 @@ namespace Public.Api.Infrastructure
                         ApplicationName = _ => "Basisregisters Vlaanderen",
                         HeaderTitle = groupName => "Basisregisters Vlaanderen",
                         HeaderLink = groupName => _configuration["SiteUrl"],
-                        FooterVersion = $"{version?.Minor}.{version?.Build}.{version?.Revision}",
+                        FooterVersion = $"{version?.Major}.{version?.Minor}.{version?.Build}",
                         HeadContent = _ => @"
                             <style>
                                 input.search-input {
