@@ -5,14 +5,12 @@ namespace Public.Api.Road.Changes
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
     using RestSharp;
-    using Swashbuckle.AspNetCore.Annotations;
     using System.Threading;
     using System.Threading.Tasks;
 
     public partial class ChangeFeedController
     {
         [HttpGet("wegen/activiteit/gebeurtenis/{id}/inhoud", Name = nameof(GetContent))]
-        [SwaggerOperation(OperationId = nameof(GetContent))]
         public async Task<IActionResult> GetContent(
             [FromRoute] long? id,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
