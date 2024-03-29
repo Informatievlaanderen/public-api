@@ -19,7 +19,7 @@ namespace Public.Api.Road.Organizations
         private const string GetOrganizationsRoute = "wegen/organisaties";
 
         /// <summary>
-        ///     Vraag een lijst met organisaties op.
+        ///     Vraag een lijst met organisaties op (v1).
         /// </summary>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="featureToggle"></param>

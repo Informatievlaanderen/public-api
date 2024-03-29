@@ -182,12 +182,6 @@ namespace Public.Api.Infrastructure
                                                           SwashbuckleSchemaHelper.GetSchemaId(type));
 
                                 RoadRegistry.BackOffice.Api.Infrastructure.Extensions.SwaggerExtensions.AddRoadRegistrySchemaFilters(x);
-
-                                x.ResolveConflictingActions(apiDescriptions =>
-                                {
-                                    //TODO-rik test swagger, conflict actions
-                                    return apiDescriptions.First();
-                                });
                             }
                         }
                     },
@@ -209,7 +203,6 @@ namespace Public.Api.Infrastructure
                             builder
                                 .AddMvcOptions(options =>
                                 {
-                                    options.Conventions.Add(new FeatureToggleConvention(_configuration));
                                     //GRAR-1877
                                     options.ModelBindingMessageProvider.SetAttemptedValueIsInvalidAccessor((value,fieldName) => $"De waarde '{value}' is ongeldig voor {fieldName}.");
 
@@ -278,9 +271,13 @@ namespace Public.Api.Infrastructure
                                 .RewriteAcceptTypeForProblemDetail();
                         }
                     },
-                    ActionModelConventions = { new ApiDocumentationHiddenConvention() }
+                    ActionModelConventions =
+                    {
+                        new ApiVisibleActionModelConvention(),
+                        new FeatureToggleConvention(_configuration)
+                    }
                 }
-                    .EnableJsonErrorActionFilterOption())
+                .EnableJsonErrorActionFilterOption())
 
                 .AddHttpClient()
 
@@ -414,8 +411,7 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new DetailSuspiciousCasesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.GetSuspiciousCases));
 
             services
-                .RemoveAll<IApiControllerSpecification>()
-                .TryAddEnumerable(ServiceDescriptor.Transient<IApiControllerSpecification, ToggledApiControllerSpec>());
+                .RemoveAll<IApiControllerSpecification>();
 
             var containerBuilder = new ContainerBuilder();
 
