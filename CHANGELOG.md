@@ -1,3 +1,10 @@
+# [6.1.0](https://github.com/informatievlaanderen/public-api/compare/v6.0.3...v6.1.0) (2024-03-29)
+
+
+### Features
+
+* add road v2 endpoints ([34b2390](https://github.com/informatievlaanderen/public-api/commit/34b23902f7d82f7b503e518f3dbf12ed046c8596))
+
 ## [6.0.3](https://github.com/informatievlaanderen/public-api/compare/v6.0.2...v6.0.3) (2024-03-27)
 
 
