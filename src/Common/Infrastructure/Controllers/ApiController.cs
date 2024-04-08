@@ -39,7 +39,7 @@ namespace Common.Infrastructure.Controllers
         private const string LastModifiedKey = "lastModified";
         private const string SetByRegistryKey = "setByRegistry";
 
-        private readonly IConnectionMultiplexer _redis;
+        private readonly IConnectionMultiplexer? _redis;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<T> _logger;
 
@@ -64,56 +64,29 @@ namespace Common.Infrastructure.Controllers
             if (_redis != null)
             {
                 var key = $"{cacheKey}.{acceptType}".ToLowerInvariant();
+                var cachedResponse = await GetFromCacheAsync(key, acceptType);
 
-                try
+                if (cachedResponse is not null)
                 {
-                    var db = _redis.GetDatabase();
+                    return cachedResponse;
+                }
 
-                    var cachedValues =
-                        await db.HashGetAllAsync(
-                            key,
-                            CommandFlags.PreferReplica);
+                if(acceptType is AcceptType.Json or AcceptType.Ld)
+                {
+                    _logger.LogInformation("Failed to retrieve record {Record} from Redis, trying to retrieve JSON-LD instead.", key);
 
-                    if (cachedValues.Length > 0)
+                    key = $"{cacheKey}.{acceptType}".ToLowerInvariant();
+                    cachedResponse = await GetFromCacheAsync(key, AcceptType.JsonLd);
+
+                    if (cachedResponse is not null)
                     {
-                        var cachedSetByRegistry = cachedValues.First(x => x.Name.Equals(SetByRegistryKey));
-
-                        if (cachedSetByRegistry.Value == true.ToString(CultureInfo.InvariantCulture))
-                        {
-                            var cachedValue = cachedValues.FirstOrDefault(x => x.Name.Equals(ValueKey));
-                            var cachedHeaders = cachedValues.FirstOrDefault(x => x.Name.Equals(HeadersKey));
-                            var cachedLastModified = cachedValues.FirstOrDefault(x => x.Name.Equals(LastModifiedKey));
-                            var cachedETag = cachedValues.FirstOrDefault(x => x.Name.Equals(ETagKey));
-
-                            var headers = JsonConvert.DeserializeObject<Dictionary<string, string[]>>(cachedHeaders.Value) ?? new Dictionary<string, string[]>();
-                            headers.TryGetValue(AddVersionHeaderMiddleware.HeaderName, out var downstreamVersion);
-                            if (cachedETag.Value.HasValue)
-                            {
-                                headers.Add(HeaderNames.ETag, new[] { cachedETag.Value.ToString() });
-                            }
-
-                            return new BackendResponse(
-                                cachedValue.Value,
-                                downstreamVersion?.First(),
-                                DateTimeOffset.ParseExact(
-                                    cachedLastModified.Value,
-                                    "O",
-                                    CultureInfo.InvariantCulture),
-                                acceptType.ToMimeTypeString(),
-                                true,
-                                headers.Select(x => new KeyValuePair<string, StringValues>(x.Key, new StringValues(x.Value))));
-                        }
-
-                        _logger.LogWarning("Failed to retrieve record {Record} from Redis, cached values not set by registry.", key);
-                    }
-                    else
-                    {
-                        _logger.LogWarning("Failed to retrieve record {Record} from Redis, no cached values.", key);
+                        return cachedResponse;
                     }
                 }
-                catch (Exception ex)
+
+                if (cachedResponse is null)
                 {
-                    _logger.LogWarning(ex, "Failed to retrieve record {Record} from Redis.", key);
+                    _logger.LogWarning("Failed to retrieve record {Record} from Redis, no cached values.", key);
                 }
             }
 
@@ -123,6 +96,56 @@ namespace Common.Infrastructure.Controllers
                 acceptType,
                 handleNotOkResponseAction,
                 cancellationToken);
+        }
+
+        private async Task<BackendResponse?> GetFromCacheAsync(string key, AcceptType acceptType)
+        {
+            try
+            {
+                var db = _redis.GetDatabase();
+
+                var cachedValues =
+                    await db.HashGetAllAsync(
+                        key,
+                        CommandFlags.PreferReplica);
+
+                if (cachedValues.Length > 0)
+                {
+                    var cachedSetByRegistry = cachedValues.First(x => x.Name.Equals(SetByRegistryKey));
+
+                    if (cachedSetByRegistry.Value == true.ToString(CultureInfo.InvariantCulture))
+                    {
+                        var cachedValue = cachedValues.FirstOrDefault(x => x.Name.Equals(ValueKey));
+                        var cachedHeaders = cachedValues.FirstOrDefault(x => x.Name.Equals(HeadersKey));
+                        var cachedLastModified = cachedValues.FirstOrDefault(x => x.Name.Equals(LastModifiedKey));
+                        var cachedETag = cachedValues.FirstOrDefault(x => x.Name.Equals(ETagKey));
+
+                        var headers = JsonConvert.DeserializeObject<Dictionary<string, string[]>>(cachedHeaders.Value) ?? new Dictionary<string, string[]>();
+                        headers.TryGetValue(AddVersionHeaderMiddleware.HeaderName, out var downstreamVersion);
+                        if (cachedETag.Value.HasValue)
+                        {
+                            headers.Add(HeaderNames.ETag, new[] { cachedETag.Value.ToString() });
+                        }
+
+                        return new BackendResponse(
+                            cachedValue.Value,
+                            downstreamVersion?.First(),
+                            DateTimeOffset.ParseExact(
+                                cachedLastModified.Value,
+                                "O",
+                                CultureInfo.InvariantCulture),
+                            acceptType.ToMimeTypeString(),
+                            true,
+                            headers.Select(x => new KeyValuePair<string, StringValues>(x.Key, new StringValues(x.Value))));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Failed to retrieve record {Record} from Redis.", key);
+            }
+
+            return null;
         }
 
         protected async Task<BackendResponse> GetFromBackendWithBadRequestAsync(
