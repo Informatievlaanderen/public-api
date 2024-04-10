@@ -13,6 +13,7 @@ namespace Public.Api.Address.Oslo
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using RestSharp;
 
     [ApiVisible]
     [ApiVersion(Version.V2)]
@@ -27,7 +28,7 @@ namespace Public.Api.Address.Oslo
 
         public AddressOsloController(
             IHttpContextAccessor httpContextAccessor,
-            [KeyFilter(RegistryKeys.AddressV2)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.AddressV2)] RestClient restClient,
             [KeyFilter(RegistryKeys.AddressV2)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<AddressOsloController> logger)

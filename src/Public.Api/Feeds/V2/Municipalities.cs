@@ -57,7 +57,7 @@ namespace Public.Api.Feeds.V2
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultFeedCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> GetMunicipalitiesFeedV2(
             [FromServices] IActionContextAccessor actionContextAccessor,
-            [FromServices] IIndex<string, Lazy<IRestClient>> restClients,
+            [FromServices] IIndex<string, Lazy<RestClient>> restClients,
             [FromServices] IOptions<MunicipalityOptions> responseOptions,
             [FromQuery] long? from,
             [FromQuery] int? limit,

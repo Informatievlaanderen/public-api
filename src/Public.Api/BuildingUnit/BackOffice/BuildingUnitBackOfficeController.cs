@@ -13,6 +13,7 @@ namespace Public.Api.BuildingUnit.BackOffice
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using RestSharp;
 
     [ApiVisible]
     [ApiVersion(Version.V2)]
@@ -29,7 +30,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         public BuildingUnitBackOfficeController(
             IHttpContextAccessor httpContextAccessor,
             [KeyFilter(RegistryKeys.BuildingBackOffice)]
-            IRestClient restClient,
+            RestClient restClient,
             [KeyFilter(RegistryKeys.BuildingBackOffice)]
             IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,

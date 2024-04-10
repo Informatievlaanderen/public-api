@@ -2,13 +2,12 @@ namespace Public.Api.Status.Clients
 {
     using System.Linq;
     using BackendResponse;
-    using Common.Infrastructure;
     using Responses;
     using RestSharp;
 
     public class ProducerStatusClient : BaseStatusClient<RegistryProjectionStatusResponse, ProjectionsStatusList>
     {
-        public ProducerStatusClient(string registry, TraceRestClient restClient)
+        public ProducerStatusClient(string registry, RestClient restClient)
             : base(registry, restClient) { }
 
         protected override RestRequest CreateStatusRequest()

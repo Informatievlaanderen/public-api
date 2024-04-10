@@ -7,14 +7,7 @@ nuget Marvin.Cache.Headers 7.1.0
 nuget StackExchange.Redis 2.5.43
 nuget AWSSDK.S3 3.7.307
 
-// MISSING ASSEMBLY REFERENCES
-nuget Microsoft.IdentityModel.Tokens 7.4.1
-nuget IdentityModel 7.0.0-preview.4
-nuget Be.Vlaanderen.Basisregisters.ProjectionHandling.Runner 13.0.0
-nuget Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore 9.0.1
-nuget Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting 9.0.1
-nuget NetTopologySuite 2.5.0
-nuget Microsoft.OpenApi 1.6.14
+nuget Datadog.Trace.Bundle 2.49.0
 
 nuget Swashbuckle.AspNetCore 6.2.3
 nuget Swashbuckle.AspNetCore.Filters 8.0.1
@@ -25,43 +18,37 @@ nuget Swashbuckle.AspNetCore.SwaggerGen 6.2.3
 nuget Swashbuckle.AspNetCore.SwaggerUI 6.2.3
 
 // VBR STUFF
-nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      5.0.2  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo        5.0.2  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            4.0.0  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo              4.0.0  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        4.0.4  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo          4.0.4  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions    4.0.4  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          4.1.4  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo            4.1.4  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions      4.1.4  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           4.0.6 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo             4.0.6 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions       4.0.6 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            5.0.3  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo              5.0.3  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions       5.0.3  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice              4.0.0 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api          4.0.0 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions 4.0.0 copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions 2.0.0 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy      5.0.4  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo        5.0.4  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy            5.0.0  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo              5.0.0  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        4.0.7  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo          4.0.7  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions    4.0.7  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          4.1.10  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo            4.1.10  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions      4.1.10  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           4.0.8 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo             4.0.8 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions       4.0.8 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy            5.0.4  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo              5.0.4  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions       5.0.4  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice              4.0.8 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api          4.0.8 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions 4.0.8 copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions 2.1.0 copy_content_to_output_dir: always
 
-nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 7.2.4
+nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 7.2.5
 
 nuget Be.Vlaanderen.Basisregisters.Auth.AcmIdm 2.0.0
-nuget Be.Vlaanderen.Basisregisters.Api 22.0.0
+nuget Be.Vlaanderen.Basisregisters.Api 23.1.0
 
-// DataDog To Remove after testing
-nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing 6.0.0
-nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.AspNetCore 6.0.0
-nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.Sql 6.0.0
-nuget Be.Vlaanderen.Basisregisters.DataDog.Tracing.SqlStreamStore 6.0.0
-
-nuget Be.Vlaanderen.Basisregisters.GrAr.Common 21.1.0
-nuget Be.Vlaanderen.Basisregisters.GrAr.Edit 21.1.0
-nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 21.1.0
-nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 21.1.0
-nuget Be.Vlaanderen.Basisregisters.GrAr.Import 21.1.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Common 21.2.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Edit 21.2.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Legacy 21.2.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Provenance 21.2.0
+nuget Be.Vlaanderen.Basisregisters.GrAr.Import 21.2.0
 
 nuget Be.Vlaanderen.Basisregisters.EventHandling 5.0.0
 nuget Be.Vlaanderen.Basisregisters.ProblemDetails 9.0.0

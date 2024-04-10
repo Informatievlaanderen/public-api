@@ -1,4 +1,8 @@
+Be.Vlaanderen.Basisregisters.Api
+
 Autofac.Extensions.DependencyInjection
+
+FeatureToggle.Common
 
 RestSharp
 
@@ -11,5 +15,3 @@ Serilog.Extensions.Logging
 Serilog.Sinks.Console
 Serilog.Enrichers.Thread
 Serilog.Enrichers.Environment
-
-Be.Vlaanderen.Basisregisters.Api

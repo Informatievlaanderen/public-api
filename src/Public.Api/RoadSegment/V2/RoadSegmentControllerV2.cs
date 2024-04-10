@@ -6,14 +6,15 @@ namespace Public.Api.RoadSegment.V2
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
+    using Infrastructure.Configuration;
+    using Infrastructure.Swagger;
+    using Infrastructure.Version;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
-    using Public.Api.Infrastructure.Configuration;
-    using Public.Api.Infrastructure.Swagger;
-    using Public.Api.Infrastructure.Version;
-    using Public.Api.Road;
+    using RestSharp;
+    using Road;
 
     [ApiVisible]
     [ApiVersion(Version.V2)]
@@ -28,7 +29,7 @@ namespace Public.Api.RoadSegment.V2
         public RoadSegmentControllerV2(
             IHttpContextAccessor httpContextAccessor,
             IActionContextAccessor actionContextAccessor,
-            [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Road)] RestClient restClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<RoadSegmentControllerV2> logger)

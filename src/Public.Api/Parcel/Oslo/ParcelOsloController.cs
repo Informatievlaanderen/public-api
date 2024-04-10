@@ -13,6 +13,7 @@ namespace Public.Api.Parcel.Oslo
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using RestSharp;
 
     [ApiVisible]
     [ApiVersion(Version.V2)]
@@ -27,7 +28,7 @@ namespace Public.Api.Parcel.Oslo
 
         public ParcelOsloController(
             IHttpContextAccessor httpContextAccessor,
-            [KeyFilter(RegistryKeys.ParcelV2)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.ParcelV2)] RestClient restClient,
             [KeyFilter(RegistryKeys.ParcelV2)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<ParcelOsloController> logger)

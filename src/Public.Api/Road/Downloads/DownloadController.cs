@@ -14,6 +14,7 @@ namespace Public.Api.Road.Downloads
     using Microsoft.Extensions.Logging;
     using System.Net.Http;
     using Asp.Versioning;
+    using RestSharp;
 
     [ApiVersion(Version.V1)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
@@ -30,7 +31,7 @@ namespace Public.Api.Road.Downloads
         public DownloadController(
             IHttpContextAccessor httpContextAccessor,
             IActionContextAccessor actionContextAccessor,
-            [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Road)] RestClient restClient,
             [KeyFilter(RegistryKeys.Road)] HttpClient httpClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,

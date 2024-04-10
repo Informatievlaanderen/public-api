@@ -12,6 +12,7 @@ namespace Public.Api.Tickets
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using RestSharp;
     using Version = Infrastructure.Version.Version;
 
     [ApiVisible]
@@ -29,7 +30,7 @@ namespace Public.Api.Tickets
 
         public TicketingServiceController(
             IHttpContextAccessor httpContextAccessor,
-            [KeyFilter(RegistryKeys.TicketingService)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.TicketingService)] RestClient restClient,
             [KeyFilter(RegistryKeys.TicketingService)] IFeatureToggle cacheToggle,
             TicketingToggle ticketingToggle,
             ConnectionMultiplexerProvider redis,

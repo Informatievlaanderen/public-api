@@ -18,7 +18,7 @@ namespace Public.Api.Road
             IHttpContextAccessor httpContextAccessor,
             ConnectionMultiplexerProvider redis,
             ILogger<TController> logger,
-            IRestClient restClient,
+            RestClient restClient,
             IFeatureToggle cacheToggle,
             IActionContextAccessor actionContextAccessor
         )

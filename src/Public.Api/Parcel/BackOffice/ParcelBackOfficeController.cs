@@ -12,6 +12,7 @@ namespace Public.Api.Parcel.BackOffice
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using RestSharp;
     using Version = Infrastructure.Version.Version;
 
     [ApiVisible]
@@ -27,7 +28,7 @@ namespace Public.Api.Parcel.BackOffice
         protected override string GoneExceptionMessage => "Verwijderd perceel.";
 
         public ParcelBackOfficeController(
-            [KeyFilter(RegistryKeys.ParcelBackOffice)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.ParcelBackOffice)] RestClient restClient,
             [KeyFilter(RegistryKeys.ParcelBackOffice)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             IHttpContextAccessor httpContextAccessor,

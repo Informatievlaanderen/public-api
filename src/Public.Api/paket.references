@@ -39,13 +39,7 @@ Marvin.Cache.Headers
 StackExchange.Redis
 AWSSDK.S3
 
+Datadog.Trace.Bundle
+
 SourceLink.Embed.AllSourceFiles
 SourceLink.Copy.PdbFiles
-
-Microsoft.IdentityModel.Tokens
-Microsoft.OpenApi
-IdentityModel
-Be.Vlaanderen.Basisregisters.ProjectionHandling.Runner
-Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore
-Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting
-NetTopologySuite

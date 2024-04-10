@@ -12,6 +12,7 @@ namespace Public.Api.StreetName.BackOffice
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using RestSharp;
     using Version = Infrastructure.Version.Version;
 
     [ApiVisible]
@@ -28,7 +29,7 @@ namespace Public.Api.StreetName.BackOffice
 
         public StreetNameBackOfficeController(
             IHttpContextAccessor httpContextAccessor,
-            [KeyFilter(RegistryKeys.StreetNameBackOffice)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.StreetNameBackOffice)] RestClient restClient,
             [KeyFilter(RegistryKeys.StreetNameBackOffice)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<StreetNameBackOfficeController> logger)
