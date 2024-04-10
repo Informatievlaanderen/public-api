@@ -12,6 +12,7 @@ namespace Public.Api.Road.Security
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
+    using RestSharp;
 
     [ApiVersion(Version.V1)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
@@ -26,7 +27,7 @@ namespace Public.Api.Road.Security
         public SecurityController(
             IHttpContextAccessor httpContextAccessor,
             IActionContextAccessor actionContextAccessor,
-            [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Road)] RestClient restClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<SecurityController> logger)

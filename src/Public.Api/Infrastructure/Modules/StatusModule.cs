@@ -6,7 +6,6 @@ namespace Public.Api.Infrastructure.Modules
     using Autofac;
     using Autofac.Core;
     using Autofac.Core.Registration;
-    using Common.Infrastructure;
     using Common.Infrastructure.Configuration;
     using Microsoft.Extensions.Configuration;
     using RestSharp;
@@ -15,11 +14,9 @@ namespace Public.Api.Infrastructure.Modules
     public class StatusModule : Module
     {
         private readonly NamedConfigurations<ApiStatusConfiguration> _apiStatusConfigurations;
-        private readonly string _serviceName;
 
         public StatusModule(IConfiguration configuration)
         {
-            _serviceName = configuration["DataDog:ServiceName"];
             _apiStatusConfigurations =
                 new NamedConfigurations<ApiStatusConfiguration>(configuration, "ApiConfiguration");
         }
@@ -52,7 +49,7 @@ namespace Public.Api.Infrastructure.Modules
             RegisterKeyedRestClient(baseUrl, key, builder);
 
             builder
-                .Register(context => new ImportStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
+                .Register(context => new ImportStatusClient(name, context.ResolveNamed<RestClient>(key)))
                 .AsSelf();
         }
 
@@ -68,7 +65,7 @@ namespace Public.Api.Infrastructure.Modules
             RegisterKeyedRestClient(baseUrl, key, builder);
 
             builder
-                .Register(context => new ProjectionStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
+                .Register(context => new ProjectionStatusClient(name, context.ResolveNamed<RestClient>(key)))
                 .AsSelf();
         }
 
@@ -84,7 +81,7 @@ namespace Public.Api.Infrastructure.Modules
             RegisterKeyedRestClient(baseUrl, key, builder);
 
             builder
-                .Register(context => new CacheStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
+                .Register(context => new CacheStatusClient(name, context.ResolveNamed<RestClient>(key)))
                 .AsSelf();
         }
 
@@ -100,7 +97,7 @@ namespace Public.Api.Infrastructure.Modules
             RegisterKeyedRestClient(baseUrl, key, builder);
 
             builder
-                .Register(context => new SyndicationStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
+                .Register(context => new SyndicationStatusClient(name, context.ResolveNamed<RestClient>(key)))
                 .AsSelf();
         }
 
@@ -116,7 +113,7 @@ namespace Public.Api.Infrastructure.Modules
             RegisterKeyedRestClient(baseUrl, key, builder);
 
             builder
-                .Register(context => new ProducerStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
+                .Register(context => new ProducerStatusClient(name, context.ResolveNamed<RestClient>(key)))
                 .AsSelf();
         }
 
@@ -132,7 +129,7 @@ namespace Public.Api.Infrastructure.Modules
             RegisterKeyedRestClient(baseUrl, key, builder);
 
             builder
-                .Register(context => new ProducerSnapshotOsloStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
+                .Register(context => new ProducerSnapshotOsloStatusClient(name, context.ResolveNamed<RestClient>(key)))
                 .AsSelf();
         }
 
@@ -148,7 +145,7 @@ namespace Public.Api.Infrastructure.Modules
             RegisterKeyedRestClient(baseUrl, key, builder);
 
             builder
-                .Register(context => new ConsumerStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
+                .Register(context => new ConsumerStatusClient(name, context.ResolveNamed<RestClient>(key)))
                 .AsSelf();
         }
 
@@ -164,7 +161,7 @@ namespace Public.Api.Infrastructure.Modules
             RegisterKeyedRestClient(baseUrl, key, builder);
 
             builder
-                .Register(context => new ImporterGrbStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
+                .Register(context => new ImporterGrbStatusClient(name, context.ResolveNamed<RestClient>(key)))
                 .AsSelf();
         }
 
@@ -180,7 +177,7 @@ namespace Public.Api.Infrastructure.Modules
             RegisterKeyedRestClient(baseUrl, key, builder);
 
             builder
-                .Register(context => new BackOfficeStatusClient(name, context.ResolveNamed<TraceRestClient>(key)))
+                .Register(context => new BackOfficeStatusClient(name, context.ResolveNamed<RestClient>(key)))
                 .AsSelf();
         }
 
@@ -202,12 +199,10 @@ namespace Public.Api.Infrastructure.Modules
                         Encoding = Encoding.UTF8
                     });
 
-                    var traceRestClient = new TraceRestClient(restClient, _serviceName);
-                    return traceRestClient;
+                    return restClient;
                 })
-                .Keyed<TraceRestClient>(key)
-                .Keyed<IRestClient>(key)
-                .OnlyIf(IsNotRegistered<TraceRestClient>(key));
+                .Keyed<RestClient>(key)
+                .OnlyIf(IsNotRegistered<RestClient>(key));
         }
 
         private static Predicate<IComponentRegistryBuilder> IsNotRegistered<T>(string key)

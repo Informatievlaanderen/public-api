@@ -13,6 +13,7 @@ namespace Public.Api.Municipality.Oslo
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using RestSharp;
 
     [ApiVisible]
     [ApiVersion(Version.V2)]
@@ -27,7 +28,7 @@ namespace Public.Api.Municipality.Oslo
 
         public MunicipalityOsloController(
             IHttpContextAccessor httpContextAccessor,
-            [KeyFilter(RegistryKeys.MunicipalityV2)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.MunicipalityV2)] RestClient restClient,
             [KeyFilter(RegistryKeys.MunicipalityV2)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<MunicipalityOsloController> logger)

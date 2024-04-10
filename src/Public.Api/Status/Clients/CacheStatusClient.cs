@@ -3,13 +3,12 @@ namespace Public.Api.Status.Clients
     using System.Collections.Generic;
     using System.Linq;
     using BackendResponse;
-    using Common.Infrastructure;
     using Responses;
     using RestSharp;
 
     public class CacheStatusClient : BaseStatusClient<IEnumerable<RegistryCacheStatus>, CacheStatusList>
     {
-        public CacheStatusClient(string registry, TraceRestClient restClient)
+        public CacheStatusClient(string registry, RestClient restClient)
             : base(registry, restClient) { }
 
         protected override RestRequest CreateStatusRequest()

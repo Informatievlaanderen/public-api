@@ -3,13 +3,12 @@ namespace Public.Api.Status.Clients
     using System.Collections.Generic;
     using System.Linq;
     using BackendResponse;
-    using Common.Infrastructure;
     using Responses;
     using RestSharp;
 
     public class ImportStatusClient : BaseStatusClient<IEnumerable<RegistryImportStatus>, ImportStatusList>
     {
-        public ImportStatusClient(string registry, TraceRestClient restClient)
+        public ImportStatusClient(string registry, RestClient restClient)
             : base(registry, restClient) { }
 
         protected override RestRequest CreateStatusRequest()

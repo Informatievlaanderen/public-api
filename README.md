@@ -111,6 +111,7 @@ The new version 1.2 of the European Union Public Licence (EUPL) is published in 
 * [FeatureToggle](https://github.com/jason-roberts/FeatureToggle/blob/master/LICENSE.txt) - _Simple, reliable feature toggles in .NET_ - [Apache License 2.0](https://choosealicense.com/licenses/apache-2.0/)
 * [Marvin.Cache.Headers](https://github.com/KevinDockx/HttpCacheHeaders/blob/master/LICENSE) - _ASP.NET Core middleware that adds HttpCache headers to responses (Cache-Control, Expires, ETag, Last-Modified), and implements cache expiration & validation models._ - [MIT](https://choosealicense.com/licenses/mit/)
 * [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis/blob/master/LICENSE) - _General purpose redis client_ - [MIT](https://choosealicense.com/licenses/mit/)
+* [DataDog](https://github.com/DataDog/dd-trace-dotnet) - _.NET Client Library for Datadog APM_ - [Apache License 2.0](https://choosealicense.com/licenses/apache-2.0/)
 
 ### Tooling
 
@@ -134,7 +135,6 @@ The new version 1.2 of the European Union Public Licence (EUPL) is published in 
 ### Flemish Government Libraries
 
 * [Be.Vlaanderen.Basisregisters.Build.Pipeline](https://github.com/informatievlaanderen/build-pipeline/blob/master/LICENSE) - _Contains generic files for all Basisregisters Vlaanderen pipelines._ - [MIT](https://choosealicense.com/licenses/mit/)
-* [Be.Vlaanderen.Basisregisters.DataDog](https://github.com/informatievlaanderen/datadog-tracing/blob/master/LICENSE) - _A C# Implementation of Data Dog Tracing._ - [MIT](https://choosealicense.com/licenses/mit/)
 
 ### Flemish Government Applications
 

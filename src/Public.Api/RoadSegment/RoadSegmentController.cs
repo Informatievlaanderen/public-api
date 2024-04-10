@@ -13,6 +13,7 @@ namespace Public.Api.RoadSegment
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
+    using RestSharp;
     using Road;
 
     [ApiVisible]
@@ -28,7 +29,7 @@ namespace Public.Api.RoadSegment
         public RoadSegmentController(
             IHttpContextAccessor httpContextAccessor,
             IActionContextAccessor actionContextAccessor,
-            [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Road)] RestClient restClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<RoadSegmentController> logger)

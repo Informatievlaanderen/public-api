@@ -13,6 +13,7 @@
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
     using Infrastructure.Version;
+    using RestSharp;
 
     [ApiVisible]
     [ApiVersion(Version.V2)]
@@ -24,7 +25,7 @@
     {
         public SuspiciousCasesController(
             IHttpContextAccessor httpContextAccessor,
-            [KeyFilter(RegistryKeys.SuspiciousCases)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.SuspiciousCases)] RestClient restClient,
             [KeyFilter(RegistryKeys.SuspiciousCases)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<SuspiciousCasesController> logger)

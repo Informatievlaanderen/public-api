@@ -13,6 +13,7 @@ namespace Public.Api.Building.Grb
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using RestSharp;
 
     [ApiVisible(false)]
     [ApiVersion(Version.V2)]
@@ -27,7 +28,7 @@ namespace Public.Api.Building.Grb
 
         public BuildingGrbController(
             IHttpContextAccessor httpContextAccessor,
-            [KeyFilter(RegistryKeys.BuildingGrb)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.BuildingGrb)] RestClient restClient,
             [KeyFilter(RegistryKeys.BuildingGrb)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<BuildingGrbController> logger)

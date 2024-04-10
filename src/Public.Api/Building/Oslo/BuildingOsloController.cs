@@ -13,6 +13,7 @@ namespace Public.Api.Building.Oslo
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using RestSharp;
 
     [ApiVisible]
     [ApiVersion(Version.V2)]
@@ -27,7 +28,7 @@ namespace Public.Api.Building.Oslo
 
         public BuildingOsloController(
             IHttpContextAccessor httpContextAccessor,
-            [KeyFilter(RegistryKeys.BuildingV2)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.BuildingV2)] RestClient restClient,
             [KeyFilter(RegistryKeys.BuildingV2)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<Oslo.BuildingOsloController> logger)

@@ -3,13 +3,12 @@ namespace Public.Api.Status.Clients
     using System.Collections.Generic;
     using System.Linq;
     using BackendResponse;
-    using Common.Infrastructure;
     using Responses;
     using RestSharp;
 
     public class SyndicationStatusClient : BaseStatusClient<RegistrySyndicationStatusResponse, List<SyndicationStatus>>
     {
-        public SyndicationStatusClient(string registry, TraceRestClient restClient)
+        public SyndicationStatusClient(string registry, RestClient restClient)
             : base(registry, restClient) { }
 
         protected override RestRequest CreateStatusRequest()

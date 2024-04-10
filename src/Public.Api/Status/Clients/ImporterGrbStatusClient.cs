@@ -2,13 +2,12 @@ namespace Public.Api.Status.Clients
 {
     using System.Collections.Generic;
     using BackendResponse;
-    using Common.Infrastructure;
     using Responses;
     using RestSharp;
 
     public class ImporterGrbStatusClient : BaseStatusClient<IEnumerable<RegistryImportStatus>, ImportStatus>
     {
-        public ImporterGrbStatusClient(string registry, TraceRestClient restClient)
+        public ImporterGrbStatusClient(string registry, RestClient restClient)
             : base(registry, restClient) { }
 
         protected override RestRequest CreateStatusRequest()

@@ -13,6 +13,7 @@ namespace Public.Api.PostalCode.Oslo
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using RestSharp;
 
     [ApiVisible]
     [ApiVersion(Version.V2)]
@@ -27,7 +28,7 @@ namespace Public.Api.PostalCode.Oslo
 
         public PostalCodeOsloController(
             IHttpContextAccessor httpContextAccessor,
-            [KeyFilter(RegistryKeys.PostalV2)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.PostalV2)] RestClient restClient,
             [KeyFilter(RegistryKeys.PostalV2)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<PostalCodeOsloController> logger)

@@ -13,6 +13,7 @@ namespace Public.Api.Road.Organizations.V2
     using Public.Api.Infrastructure.Configuration;
     using Public.Api.Infrastructure.Swagger;
     using Public.Api.Infrastructure.Version;
+    using RestSharp;
 
     [ApiVisible]
     [ApiVersion(Version.V2)]
@@ -30,7 +31,7 @@ namespace Public.Api.Road.Organizations.V2
         public OrganizationsControllerV2(
             IHttpContextAccessor httpContextAccessor,
             IActionContextAccessor actionContextAccessor,
-            [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Road)] RestClient restClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<OrganizationsControllerV2> logger)

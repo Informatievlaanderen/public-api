@@ -4,20 +4,19 @@ namespace Public.Api.Status.Clients
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
-    using Common.Infrastructure;
     using RestSharp;
 
     public  abstract class BaseStatusClient<TStatus, TRestResponse> : IStatusClient<TStatus>
     {
-        private readonly TraceRestClient _restClient;
+        private readonly RestClient _restClient;
 
         public string Registry { get; }
 
-        protected BaseStatusClient(string registry, TraceRestClient restClient)
+        protected BaseStatusClient(string registry, RestClient restClient)
         {
             if (string.IsNullOrWhiteSpace(registry))
                 throw new ArgumentNullException(nameof(registry));
-                
+
             Registry = registry;
             _restClient = restClient ?? throw new ArgumentNullException(nameof(restClient));
         }

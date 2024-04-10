@@ -5,36 +5,38 @@ namespace Public.Api.Infrastructure
     using System.Globalization;
     using System.IO;
     using System.Linq;
-    using System.Numerics;
     using System.Reflection;
     using System.Security.Cryptography;
     using System.Text;
+    using AddressRegistry.Api.BackOffice.Abstractions.Requests;
     using Asp.Versioning.ApiExplorer;
     using Asp.Versioning.ApplicationModels;
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
     using Autofac.Features.AttributeFilters;
+    using Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions.List;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Swagger;
-    using Be.Vlaanderen.Basisregisters.DataDog.Tracing.Autofac;
+    using Be.Vlaanderen.Basisregisters.GrAr.Common;
+    using Be.Vlaanderen.Basisregisters.GrAr.Edit;
+    using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using Be.Vlaanderen.Basisregisters.GrAr.Provenance;
+    using Be.Vlaanderen.Basisregisters.Utilities;
+    using BuildingRegistry.Api.BackOffice.Abstractions.Building.Responses;
+    using BuildingRegistry.Api.Legacy.Infrastructure.Options;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
-    using Common.Infrastructure.Extensions;
     using Common.Infrastructure.Modules;
     using Configuration;
     using Extract;
-    using Feeds;
     using Feeds.V2;
     using Marvin.Cache.Headers;
-    using Microsoft.AspNetCore.Authorization.Infrastructure;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.ApiExplorer;
-    using Microsoft.AspNetCore.Mvc.ApplicationModels;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.AspNetCore.StaticFiles;
     using Microsoft.Extensions.Configuration;
@@ -46,13 +48,21 @@ namespace Public.Api.Infrastructure
     using Microsoft.Extensions.Options;
     using Microsoft.OpenApi.Models;
     using Modules;
+    using ParcelRegistry.Api.BackOffice.Abstractions.Requests;
     using ProblemDetailsExceptionMapping;
     using ProblemDetailsExceptionMappings;
     using Redis;
     using Road.Downloads;
+    using RoadRegistry.BackOffice.Abstractions;
+    using RoadRegistry.BackOffice.Api.Infrastructure;
+    using RoadRegistry.BackOffice.Api.Infrastructure.Extensions;
+    using StreetNameRegistry.Api.BackOffice.Abstractions.Requests;
     using Swagger;
     using Swashbuckle.AspNetCore.Filters;
+    using TicketingService.Abstractions;
     using Version;
+    using HttpRequestExtensions = Common.Infrastructure.Extensions.HttpRequestExtensions;
+    using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup
@@ -148,26 +158,26 @@ namespace Public.Api.Infrastructure
                             typeof(PostalRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(StreetNameRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(StreetNameRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(StreetNameRegistry.Api.BackOffice.Abstractions.Requests.ProposeStreetNameRequest).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(ProposeStreetNameRequest).GetTypeInfo().Assembly.GetName().Name,
                             typeof(AddressRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(AddressRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(AddressRegistry.Api.BackOffice.Abstractions.Requests.ApproveAddressRequest).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(BuildingRegistry.Api.Legacy.Infrastructure.Options.ResponseOptions).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(ApproveAddressRequest).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(ResponseOptions).GetTypeInfo().Assembly.GetName().Name,
                             typeof(BuildingRegistry.Api.Oslo.Infrastructure.Options.ResponseOptions).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(BuildingRegistry.Api.BackOffice.Abstractions.Building.Responses.PlanBuildingResponse).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(PlanBuildingResponse).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(ParcelRegistry.Api.BackOffice.Abstractions.Requests.AttachAddressRequest).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(AttachAddressRequest).GetTypeInfo().Assembly.GetName().Name,
                             typeof(RoadRegistry.BackOffice.Api.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(RoadRegistry.BackOffice.Abstractions.EndpointRequest).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions.List.SuspiciousCasesListResponse).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(Be.Vlaanderen.Basisregisters.GrAr.Common.NodaHelpers).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(Be.Vlaanderen.Basisregisters.GrAr.Edit.GmlConstants).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(Be.Vlaanderen.Basisregisters.GrAr.Legacy.Identificator).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(Be.Vlaanderen.Basisregisters.GrAr.Provenance.Provenance).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(Be.Vlaanderen.Basisregisters.Utilities.Rfc3339SerializableDateTimeOffset).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(TicketingService.Abstractions.Ticket).GetTypeInfo().Assembly.GetName().Name
+                            typeof(EndpointRequest).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(SuspiciousCasesListResponse).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(NodaHelpers).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(GmlConstants).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(Identificator).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(Provenance).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(ProblemDetails).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(Rfc3339SerializableDateTimeOffset).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(Ticket).GetTypeInfo().Assembly.GetName().Name
                         },
 
                         MiddlewareHooks =
@@ -178,10 +188,10 @@ namespace Public.Api.Infrastructure
                                 x.OperationFilter<ProblemDetailsOperationFilter>();
                                 x.OperationFilter<XApiFilter>();
                                 x.EnableAnnotations();
-                                x.CustomSchemaIds(type => RoadRegistry.BackOffice.Api.Infrastructure.SwashbuckleHelpers.GetCustomSchemaId(type) ??
+                                x.CustomSchemaIds(type => SwashbuckleHelpers.GetCustomSchemaId(type) ??
                                                           SwashbuckleSchemaHelper.GetSchemaId(type));
 
-                                RoadRegistry.BackOffice.Api.Infrastructure.Extensions.SwaggerExtensions.AddRoadRegistrySchemaFilters(x);
+                                SwaggerExtensions.AddRoadRegistrySchemaFilters(x);
                             }
                         }
                     },
@@ -240,9 +250,8 @@ namespace Public.Api.Infrastructure
                             {
                                 //actionContext.SetContentFormatAcceptType(); //TODO: WHY?
                                 var httpContext = actionContext.HttpContext;
-                                httpContext
-                                    .Request
-                                    .RewriteAcceptTypeForProblemDetail();
+                                HttpRequestExtensions.RewriteAcceptTypeForProblemDetail(httpContext
+                                        .Request);
 
                                 var problemDetailsHelper = httpContext
                                     .RequestServices
@@ -266,9 +275,8 @@ namespace Public.Api.Infrastructure
                         }),
                         ConfigureProblemDetails = cfg => cfg.OnBeforeWriteDetails = (context, _) =>
                         {
-                            context
-                                .Request
-                                .RewriteAcceptTypeForProblemDetail();
+                            HttpRequestExtensions.RewriteAcceptTypeForProblemDetail(context
+                                    .Request);
                         }
                     },
                     ActionModelConventions =
@@ -422,8 +430,6 @@ namespace Public.Api.Infrastructure
                 .RegisterModule(new StatusModule(_configuration))
                 .RegisterModule(new InfoModule(_configuration));
 
-            containerBuilder.RegisterModule(new DataDogModule(_configuration));
-
             containerBuilder.Populate(services);
 
             RegisterExamples(containerBuilder);
@@ -567,45 +573,11 @@ namespace Public.Api.Infrastructure
             IWebHostEnvironment env,
             IHostApplicationLifetime appLifetime,
             ILoggerFactory loggerFactory,
-            IApiVersionDescriptionProvider apiVersionProvider,
-            ApiDataDogToggle datadogToggle,
-            ApiDebugDataDogToggle debugDataDogToggle)
+            IApiVersionDescriptionProvider apiVersionProvider)
         {
             var version = Assembly.GetEntryAssembly()?.GetName().Version;
 
             app
-                .UseDataDog<Startup>(new DataDogOptions
-                {
-                    Common =
-                    {
-                        ServiceProvider = serviceProvider,
-                        LoggerFactory = loggerFactory
-                    },
-                    Toggles =
-                    {
-                        Enable = datadogToggle,
-                        Debug = debugDataDogToggle
-                    },
-                    Tracing =
-                    {
-                        ServiceName = _configuration["DataDog:ServiceName"],
-                        TraceIdHeaderName = "X-Amzn-Trace-Id",
-                        TraceIdGenerator = traceHeader =>
-                        {
-                            var awsTraceId = traceHeader
-                                .ToString()
-                                .Replace("\"", string.Empty)
-                                .Replace("Root=", string.Empty);
-
-                            var traceIdHash = Sha1.ComputeHash(Encoding.UTF8.GetBytes(awsTraceId));
-                            var traceIdHex = BitConverter.ToString(traceIdHash).Replace("-", string.Empty);
-                            var traceIdNumber = BigInteger.Parse(traceIdHex, NumberStyles.HexNumber);
-                            var traceId = (long)BigInteger.Remainder(traceIdNumber, new BigInteger(Math.Pow(10, 14)));
-                            return Math.Abs(traceId);
-                        }
-                    }
-                })
-
                 .UseDefaultForApi(new StartupUseOptions
                 {
                     Common =

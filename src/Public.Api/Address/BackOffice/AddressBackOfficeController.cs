@@ -12,6 +12,7 @@ namespace Public.Api.Address.BackOffice
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using RestSharp;
     using Version = Infrastructure.Version.Version;
 
     [ApiVisible]
@@ -27,7 +28,7 @@ namespace Public.Api.Address.BackOffice
         protected override string GoneExceptionMessage => "Verwijderd adres.";
 
         public AddressBackOfficeController(
-            [KeyFilter(RegistryKeys.AddressBackOffice)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.AddressBackOffice)] RestClient restClient,
             [KeyFilter(RegistryKeys.AddressBackOffice)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             IHttpContextAccessor httpContextAccessor,

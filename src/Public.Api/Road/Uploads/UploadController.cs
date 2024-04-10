@@ -1,5 +1,7 @@
 namespace Public.Api.Road.Uploads
 {
+    using System.Net.Http;
+    using Asp.Versioning;
     using Autofac.Features.AttributeFilters;
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
@@ -12,8 +14,7 @@ namespace Public.Api.Road.Uploads
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
-    using System.Net.Http;
-    using Asp.Versioning;
+    using RestSharp;
 
     [ApiVersion(Version.V1)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
@@ -30,7 +31,7 @@ namespace Public.Api.Road.Uploads
         public UploadController(
             IHttpContextAccessor httpContextAccessor,
             IActionContextAccessor actionContextAccessor,
-            [KeyFilter(RegistryKeys.Road)] IRestClient restClient,
+            [KeyFilter(RegistryKeys.Road)] RestClient restClient,
             [KeyFilter(RegistryKeys.Road)] HttpClient httpClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
