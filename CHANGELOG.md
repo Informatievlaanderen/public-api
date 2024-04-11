@@ -1,3 +1,10 @@
+## [6.1.3](https://github.com/informatievlaanderen/public-api/compare/v6.1.2...v6.1.3) (2024-04-11)
+
+
+### Bug Fixes
+
+* **cache:** search jsonld when json not found ([2e1b738](https://github.com/informatievlaanderen/public-api/commit/2e1b73849ad4aaa626c51ec8b6e0c123aa29a136))
+
 ## [6.1.2](https://github.com/informatievlaanderen/public-api/compare/v6.1.1...v6.1.2) (2024-03-29)
 
 ## [6.1.1](https://github.com/informatievlaanderen/public-api/compare/v6.1.0...v6.1.1) (2024-03-29)
