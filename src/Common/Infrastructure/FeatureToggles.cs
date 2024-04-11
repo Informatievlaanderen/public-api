@@ -436,6 +436,13 @@ namespace Common.Infrastructure
         public CorrectFunctionBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class MoveBuildingUnitToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public MoveBuildingUnitToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class AttachAddressParcelToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }

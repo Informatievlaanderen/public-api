@@ -179,11 +179,11 @@ NUGET
       Microsoft.Data.SqlClient (>= 5.2)
       System.Collections.Immutable (>= 8.0)
     Be.Vlaanderen.Basisregisters.Build.Pipeline (7.2.5)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions (4.1.10) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions (4.2) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 23.1)
       MediatR.Contracts (>= 2.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (4.1.10) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo (4.1.10) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (4.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo (4.2) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.CommandHandling (9.0.1)
     Be.Vlaanderen.Basisregisters.CommandHandling.Idempotency (9.0.1)
       Be.Vlaanderen.Basisregisters.CommandHandling (9.0.1)
