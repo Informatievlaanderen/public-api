@@ -1,3 +1,10 @@
+## [6.2.1](https://github.com/informatievlaanderen/public-api/compare/v6.2.0...v6.2.1) (2024-04-12)
+
+
+### Bug Fixes
+
+* GAWR-5493 add State filter to status projection/producer endpoints ([9b583f8](https://github.com/informatievlaanderen/public-api/commit/9b583f84da67dfa6fb4f027e550bd68141d44d31))
+
 # [6.2.0](https://github.com/informatievlaanderen/public-api/compare/v6.1.3...v6.2.0) (2024-04-12)
 
 
