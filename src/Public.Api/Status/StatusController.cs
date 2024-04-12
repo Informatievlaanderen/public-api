@@ -58,10 +58,21 @@ namespace Public.Api.Status
         [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
         public async Task<IActionResult> GetProjectionStatus(
             [FromServices] IEnumerable<ProjectionStatusClient> clients,
+            [FromQuery] string? state = null,
             CancellationToken cancellationToken = default)
         {
             var keyValuePairs = await clients.GetStatuses(cancellationToken);
             var projectionStatuses = ProjectionStatusResponse.From(keyValuePairs);
+            
+            if (state is not null)
+            {
+                foreach (var projectionStatus in projectionStatuses
+                             .Where(x => x.Value?.Projections is not null))
+                {
+                    projectionStatus.Value.Projections = projectionStatus.Value.Projections
+                        .Where(x => string.Equals(x.State, state, StringComparison.InvariantCultureIgnoreCase));
+                }
+            }
 
             return Ok(projectionStatuses);
         }
@@ -119,6 +130,7 @@ namespace Public.Api.Status
         public async Task<IActionResult> GetProducerStatus(
             [FromServices] IEnumerable<ProducerStatusClient> producerClients,
             [FromServices] IEnumerable<ProducerSnapshotOsloStatusClient> snapshotClients,
+            [FromQuery] string? state = null,
             CancellationToken cancellationToken = default)
         {
             var keyValuePairsProducer =
@@ -166,6 +178,16 @@ namespace Public.Api.Status
             }
 
             var projectionStatuses = ProjectionStatusResponse.From(keyValuePairsProducer);
+            
+            if (state is not null)
+            {
+                foreach (var projectionStatus in projectionStatuses
+                             .Where(x => x.Value?.Projections is not null))
+                {
+                    projectionStatus.Value.Projections = projectionStatus.Value.Projections
+                        .Where(x => string.Equals(x.State, state, StringComparison.InvariantCultureIgnoreCase));
+                }
+            }
 
             return Ok(projectionStatuses);
         }
