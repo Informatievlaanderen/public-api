@@ -1,3 +1,10 @@
+# [6.2.0](https://github.com/informatievlaanderen/public-api/compare/v6.1.3...v6.2.0) (2024-04-12)
+
+
+### Features
+
+* move building unit ([fc416d9](https://github.com/informatievlaanderen/public-api/commit/fc416d9ea59282c364ad0f590c32753da30e08d1))
+
 ## [6.1.3](https://github.com/informatievlaanderen/public-api/compare/v6.1.2...v6.1.3) (2024-04-11)
 
 
