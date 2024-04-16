@@ -1,5 +1,6 @@
 Be.Vlaanderen.Basisregisters.Auth.AcmIdm
 Be.Vlaanderen.Basisregisters.Api
+Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting
 
 Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo

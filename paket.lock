@@ -57,6 +57,8 @@ NUGET
       Be.Vlaanderen.Basisregisters.Utilities.ToStringBuilder (>= 4.0)
       Newtonsoft.Json (>= 13.0.3)
       NodaTime (>= 3.1.11)
+    Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting (9.0.1)
+      Be.Vlaanderen.Basisregisters.AggregateSource (9.0.1)
     Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore (9.0.1)
       Be.Vlaanderen.Basisregisters.AggregateSource (9.0.1)
       Be.Vlaanderen.Basisregisters.EventHandling (>= 5.0)
@@ -179,11 +181,11 @@ NUGET
       Microsoft.Data.SqlClient (>= 5.2)
       System.Collections.Immutable (>= 8.0)
     Be.Vlaanderen.Basisregisters.Build.Pipeline (7.2.5)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions (4.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions (4.2.2) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.Api (>= 23.1)
       MediatR.Contracts (>= 2.0.1)
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (4.2) - copy_content_to_output_dir: always
-    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo (4.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy (4.2.2) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo (4.2.2) - copy_content_to_output_dir: always
     Be.Vlaanderen.Basisregisters.CommandHandling (9.0.1)
     Be.Vlaanderen.Basisregisters.CommandHandling.Idempotency (9.0.1)
       Be.Vlaanderen.Basisregisters.CommandHandling (9.0.1)
