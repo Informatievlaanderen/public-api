@@ -25,9 +25,9 @@ nuget Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo              5.0.0  c
 nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy        4.0.7  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo          4.0.7  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions    4.0.7  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          4.2.0  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo            4.2.0  copy_content_to_output_dir: always
-nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions      4.2.0  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy          4.2.2  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo            4.2.2  copy_content_to_output_dir: always
+nuget Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions      4.2.2  copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy           4.0.8 copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo             4.0.8 copy_content_to_output_dir: always
 nuget Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions       4.0.8 copy_content_to_output_dir: always
@@ -40,6 +40,8 @@ nuget Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions 4.0.8 co
 nuget Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions 2.1.0 copy_content_to_output_dir: always
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 7.2.5
+
+nuget Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting 9.0.1
 
 nuget Be.Vlaanderen.Basisregisters.Auth.AcmIdm 2.0.0
 nuget Be.Vlaanderen.Basisregisters.Api 23.1.0
