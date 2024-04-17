@@ -1,3 +1,10 @@
+## [6.2.2](https://github.com/informatievlaanderen/public-api/compare/v6.2.1...v6.2.2) (2024-04-17)
+
+
+### Bug Fixes
+
+* bump buildingunit contract + fix events ([95e636b](https://github.com/informatievlaanderen/public-api/commit/95e636be3490bd5976596a582fa5d4d7cabe9ba2))
+
 ## [6.2.1](https://github.com/informatievlaanderen/public-api/compare/v6.2.0...v6.2.1) (2024-04-12)
 
 
