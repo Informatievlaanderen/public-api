@@ -1,3 +1,11 @@
+## [6.2.3](https://github.com/informatievlaanderen/public-api/compare/v6.2.2...v6.2.3) (2024-05-07)
+
+
+### Bug Fixes
+
+* context municipality urls ([09ef0b3](https://github.com/informatievlaanderen/public-api/commit/09ef0b3692c34c4f83c0935157694b2b3447d16b))
+* context urls municipality ([782e7d7](https://github.com/informatievlaanderen/public-api/commit/782e7d794fc9347dded4e05645fd1a4d2a62c4b7))
+
 ## [6.2.2](https://github.com/informatievlaanderen/public-api/compare/v6.2.1...v6.2.2) (2024-04-17)
 
 
