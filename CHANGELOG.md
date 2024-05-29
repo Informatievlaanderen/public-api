@@ -1,3 +1,10 @@
+# [6.3.0](https://github.com/informatievlaanderen/public-api/compare/v6.2.3...v6.3.0) (2024-05-29)
+
+
+### Features
+
+* add correct address removal ([6c3f731](https://github.com/informatievlaanderen/public-api/commit/6c3f731f00be332c52b8ca76aefdc67e48a46d03))
+
 ## [6.2.3](https://github.com/informatievlaanderen/public-api/compare/v6.2.2...v6.2.3) (2024-05-07)
 
 
