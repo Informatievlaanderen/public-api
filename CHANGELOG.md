@@ -1,3 +1,10 @@
+## [6.3.1](https://github.com/informatievlaanderen/public-api/compare/v6.3.0...v6.3.1) (2024-05-31)
+
+
+### Bug Fixes
+
+* retrieve jsonld from cache ([2de25de](https://github.com/informatievlaanderen/public-api/commit/2de25de36fcb597b098438afd7af8db7414ba70f))
+
 # [6.3.0](https://github.com/informatievlaanderen/public-api/compare/v6.2.3...v6.3.0) (2024-05-29)
 
 
