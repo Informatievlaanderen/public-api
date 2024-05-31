@@ -75,7 +75,7 @@ namespace Common.Infrastructure.Controllers
                 {
                     _logger.LogInformation("Failed to retrieve record {Record} from Redis, trying to retrieve JSON-LD instead.", key);
 
-                    key = $"{cacheKey}.{acceptType}".ToLowerInvariant();
+                    key = $"{cacheKey}.jsonld".ToLowerInvariant();
                     cachedResponse = await GetFromCacheAsync(key, AcceptType.JsonLd);
 
                     if (cachedResponse is not null)
