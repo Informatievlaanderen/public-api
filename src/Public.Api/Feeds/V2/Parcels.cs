@@ -74,7 +74,7 @@ namespace Public.Api.Feeds.V2
                 embed);
 
             var value = await GetFromBackendAsync(
-                restClients[RegistryKeys.Parcel].Value,
+                restClients[RegistryKeys.ParcelV2].Value,
                 BackendRequest,
                 contentFormat.ContentType,
                 HandleBadRequest,
