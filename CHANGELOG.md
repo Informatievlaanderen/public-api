@@ -1,3 +1,10 @@
+# [6.4.0](https://github.com/informatievlaanderen/public-api/compare/v6.3.1...v6.4.0) (2024-06-10)
+
+
+### Features
+
+* add switch parcel feeds ([fd33797](https://github.com/informatievlaanderen/public-api/commit/fd337978fc47d878ade3bbd49855ce5d2d6dd61c))
+
 ## [6.3.1](https://github.com/informatievlaanderen/public-api/compare/v6.3.0...v6.3.1) (2024-05-31)
 
 
