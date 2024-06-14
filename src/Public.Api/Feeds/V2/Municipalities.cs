@@ -11,7 +11,7 @@ namespace Public.Api.Feeds.V2
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
-    using MunicipalityRegistry.Api.Legacy.Municipality.Responses;
+    using MunicipalityRegistry.Api.Oslo.Municipality.Responses;
     using Infrastructure;
     using Infrastructure.Configuration;
     using RestSharp;
@@ -58,7 +58,7 @@ namespace Public.Api.Feeds.V2
         public async Task<IActionResult> GetMunicipalitiesFeedV2(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IIndex<string, Lazy<RestClient>> restClients,
-            [FromServices] IOptions<MunicipalityOptions> responseOptions,
+            [FromServices] IOptions<MunicipalityOptionsV2> responseOptions,
             [FromQuery] long? from,
             [FromQuery] int? limit,
             [FromQuery] string embed,
@@ -74,7 +74,7 @@ namespace Public.Api.Feeds.V2
                 embed);
 
             var value = await GetFromBackendAsync(
-                restClients[RegistryKeys.Municipality].Value,
+                restClients[RegistryKeys.MunicipalityV2].Value,
                 BackendRequest,
                 contentFormat.ContentType,
                 HandleBadRequest,

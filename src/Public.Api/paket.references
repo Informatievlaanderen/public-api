@@ -2,9 +2,7 @@ Be.Vlaanderen.Basisregisters.Auth.AcmIdm
 Be.Vlaanderen.Basisregisters.Api
 Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting
 
-Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo
-Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo
 Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo
@@ -15,7 +13,6 @@ Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions
 Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo
 Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions
-Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Legacy
 Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo
 Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions
 Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice
