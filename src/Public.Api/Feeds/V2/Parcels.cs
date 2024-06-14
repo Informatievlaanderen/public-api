@@ -13,7 +13,7 @@ namespace Public.Api.Feeds.V2
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
-    using ParcelRegistry.Api.Legacy.Parcel.Sync;
+    using ParcelRegistry.Api.Oslo.Parcel.Sync;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -58,7 +58,7 @@ namespace Public.Api.Feeds.V2
         public async Task<IActionResult> GetParcelsFeedV2(
                  [FromServices] IActionContextAccessor actionContextAccessor,
                  [FromServices] IIndex<string, Lazy<RestClient>> restClients,
-                 [FromServices] IOptions<ParcelOptions> responseOptions,
+                 [FromServices] IOptions<ParcelOptionsV2> responseOptions,
                  [FromQuery] long? from,
                  [FromQuery] int? limit,
                  [FromQuery] string embed,
