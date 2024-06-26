@@ -27,7 +27,7 @@ namespace Public.Api.Feeds.V2
         /// <param name="restClients"></param>
         /// <param name="responseOptions"></param>
         /// <param name="from">Eventidentificator (volgnummer) vanaf waar de feed moet gestart of hernomen worden (optioneel).</param>
-        /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
+        /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 100 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
         /// <param name="embed">Keuze welke info in het <![CDATA[&lt;Content&gt;]]>-gedeelte van de output moet zitten: "event", "object", "event,object" (optioneel).</param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
