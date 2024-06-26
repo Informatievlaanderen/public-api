@@ -1,3 +1,10 @@
+# [6.5.0](https://github.com/informatievlaanderen/public-api/compare/v6.4.1...v6.5.0) (2024-06-26)
+
+
+### Features
+
+* switch to oslo api feeds for postal + muni ([23dc5bb](https://github.com/informatievlaanderen/public-api/commit/23dc5bb639d9880165b4835c5b58e40eedc975d5))
+
 ## [6.4.1](https://github.com/informatievlaanderen/public-api/compare/v6.4.0...v6.4.1) (2024-06-26)
 
 # [6.4.0](https://github.com/informatievlaanderen/public-api/compare/v6.3.1...v6.4.0) (2024-06-10)
