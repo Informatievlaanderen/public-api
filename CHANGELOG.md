@@ -1,3 +1,10 @@
+# [6.6.0](https://github.com/informatievlaanderen/public-api/compare/v6.5.0...v6.6.0) (2024-07-02)
+
+
+### Features
+
+* switch feeds api to oslo for building + address + streetname ([79a02e5](https://github.com/informatievlaanderen/public-api/commit/79a02e58b93f27d7bb6d1b99a95fa01775a99807))
+
 # [6.5.0](https://github.com/informatievlaanderen/public-api/compare/v6.4.1...v6.5.0) (2024-06-26)
 
 
