@@ -5,7 +5,7 @@ namespace Public.Api.Feeds.V2
     using System.Threading.Tasks;
     using Autofac.Features.Indexed;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using BuildingRegistry.Api.Legacy.Building.Sync;
+    using BuildingRegistry.Api.Oslo.Building.Sync;
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;
@@ -58,7 +58,7 @@ namespace Public.Api.Feeds.V2
         public async Task<IActionResult> GetBuildingsFeedV2(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IIndex<string, Lazy<RestClient>> restClients,
-            [FromServices] IOptions<BuildingOptions> responseOptions,
+            [FromServices] IOptions<BuildingOptionsV2> responseOptions,
             [FromQuery] long? from,
             [FromQuery] int? limit,
             [FromQuery] string embed,
@@ -74,7 +74,7 @@ namespace Public.Api.Feeds.V2
                 embed);
 
             var value = await GetFromBackendAsync(
-                restClients[RegistryKeys.Building].Value,
+                restClients[RegistryKeys.BuildingV2].Value,
                 BackendRequest,
                 contentFormat.ContentType,
                 HandleBadRequest,

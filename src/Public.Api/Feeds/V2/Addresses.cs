@@ -3,7 +3,7 @@ namespace Public.Api.Feeds.V2
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Legacy.Address.Sync;
+    using AddressRegistry.Api.Oslo.Address.Sync;
     using Autofac.Features.Indexed;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
@@ -58,7 +58,7 @@ namespace Public.Api.Feeds.V2
         public async Task<IActionResult> GetAddressesFeedV2(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IIndex<string, Lazy<RestClient>> restClients,
-            [FromServices] IOptions<AddressOptions> responseOptions,
+            [FromServices] IOptions<AddressOptionsV2> responseOptions,
             [FromQuery] long? from,
             [FromQuery] int? limit,
             [FromQuery] string embed,
@@ -74,7 +74,7 @@ namespace Public.Api.Feeds.V2
                 embed);
 
             var value = await GetFromBackendAsync(
-                restClients[RegistryKeys.Address].Value,
+                restClients[RegistryKeys.AddressV2].Value,
                 BackendRequest,
                 contentFormat.ContentType,
                 HandleBadRequest,
