@@ -25,7 +25,6 @@ namespace Public.Api.Infrastructure
     using Be.Vlaanderen.Basisregisters.GrAr.Provenance;
     using Be.Vlaanderen.Basisregisters.Utilities;
     using BuildingRegistry.Api.BackOffice.Abstractions.Building.Responses;
-    using BuildingRegistry.Api.Legacy.Infrastructure.Options;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
@@ -49,7 +48,6 @@ namespace Public.Api.Infrastructure
     using Microsoft.OpenApi.Models;
     using Modules;
     using ParcelRegistry.Api.BackOffice.Abstractions.Requests;
-    using ProblemDetailsExceptionMapping;
     using ProblemDetailsExceptionMappings;
     using Redis;
     using Road.Downloads;
@@ -154,13 +152,10 @@ namespace Public.Api.Infrastructure
                             typeof(Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(MunicipalityRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(PostalRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(StreetNameRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(StreetNameRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ProposeStreetNameRequest).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(AddressRegistry.Api.Legacy.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(AddressRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ApproveAddressRequest).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(ResponseOptions).GetTypeInfo().Assembly.GetName().Name,
                             typeof(BuildingRegistry.Api.Oslo.Infrastructure.Options.ResponseOptions).GetTypeInfo().Assembly.GetName().Name,
                             typeof(PlanBuildingResponse).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
@@ -318,11 +313,8 @@ namespace Public.Api.Infrastructure
 
                 .ConfigureRegistryOptions<MunicipalityOptionsV2>(_configuration.GetSection("ApiConfiguration:MunicipalityRegistryV2"))
                 .ConfigureRegistryOptions<PostalOptionsV2>(_configuration.GetSection("ApiConfiguration:PostalRegistryV2"))
-                .ConfigureRegistryOptions<StreetNameOptions>(_configuration.GetSection("ApiConfiguration:StreetNameRegistry"))
                 .ConfigureRegistryOptions<StreetNameOptionsV2>(_configuration.GetSection("ApiConfiguration:StreetNameRegistryV2"))
-                .ConfigureRegistryOptions<AddressOptions>(_configuration.GetSection("ApiConfiguration:AddressRegistry"))
                 .ConfigureRegistryOptions<AddressOptionsV2>(_configuration.GetSection("ApiConfiguration:AddressRegistryV2"))
-                .ConfigureRegistryOptions<BuildingOptions>(_configuration.GetSection("ApiConfiguration:BuildingRegistry"))
                 .ConfigureRegistryOptions<BuildingOptionsV2>(_configuration.GetSection("ApiConfiguration:BuildingRegistryV2"))
                 .ConfigureRegistryOptions<ParcelOptionsV2>(_configuration.GetSection("ApiConfiguration:ParcelRegistryV2"))
                 .ConfigureRegistryOptions<SuspiciousCasesOptionsV2>(_configuration.GetSection("ApiConfiguration:SuspiciousCases"))
@@ -626,7 +618,6 @@ namespace Public.Api.Infrastructure
                         },
                         ProblemDetailsExceptionMappers = new List<ApiProblemDetailsExceptionMapping>
                         {
-                            new GrbWfsExceptionMapping(),
                             new GoneExceptionMapping(),
                             new NotFoundExceptionMapping(),
                             new PreconditionFailedExceptionMapping(),

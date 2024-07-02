@@ -14,7 +14,7 @@ namespace Public.Api.Feeds.V2
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
     using RestSharp;
-    using StreetNameRegistry.Api.Legacy.StreetName.Sync;
+    using StreetNameRegistry.Api.Oslo.StreetName.Sync;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
@@ -58,7 +58,7 @@ namespace Public.Api.Feeds.V2
         public async Task<IActionResult> GetStreetNamesFeedV2(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IIndex<string, Lazy<RestClient>> restClients,
-            [FromServices] IOptions<StreetNameOptions> responseOptions,
+            [FromServices] IOptions<StreetNameOptionsV2> responseOptions,
             [FromQuery] long? from,
             [FromQuery] int? limit,
             [FromQuery] string embed,
@@ -74,7 +74,7 @@ namespace Public.Api.Feeds.V2
                 embed);
 
             var value = await GetFromBackendAsync(
-                restClients[RegistryKeys.StreetName].Value,
+                restClients[RegistryKeys.StreetNameV2].Value,
                 BackendRequest,
                 contentFormat.ContentType,
                 HandleBadRequest,

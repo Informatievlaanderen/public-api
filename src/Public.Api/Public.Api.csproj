@@ -18,13 +18,10 @@
   <ItemGroup>
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo\content\MunicipalityRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo\content\PostalRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Legacy\content\StreetNameRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo\content\StreetNameRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions\content\StreetNameRegistry.Api.BackOffice.Abstractions.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Legacy\content\AddressRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo\content\AddressRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions\content\AddressRegistry.Api.BackOffice.Abstractions.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Legacy\content\BuildingRegistry.Api.Legacy.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo\content\BuildingRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions\content\BuildingRegistry.Api.BackOffice.Abstractions.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo\content\ParcelRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
