@@ -1,3 +1,10 @@
+## [6.6.1](https://github.com/informatievlaanderen/public-api/compare/v6.6.0...v6.6.1) (2024-07-08)
+
+
+### Bug Fixes
+
+* update road-registry ([78c4bcf](https://github.com/informatievlaanderen/public-api/commit/78c4bcf14c870279ab59c807f21fdeae77fe034c))
+
 # [6.6.0](https://github.com/informatievlaanderen/public-api/compare/v6.5.0...v6.6.0) (2024-07-02)
 
 
