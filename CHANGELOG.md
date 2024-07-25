@@ -1,3 +1,10 @@
+# [6.7.0](https://github.com/informatievlaanderen/public-api/compare/v6.6.1...v6.7.0) (2024-07-25)
+
+
+### Features
+
+* correct removal building unit ([4c8807c](https://github.com/informatievlaanderen/public-api/commit/4c8807c0af9af4be4196e547f4f0632fb01d75b3))
+
 ## [6.6.1](https://github.com/informatievlaanderen/public-api/compare/v6.6.0...v6.6.1) (2024-07-08)
 
 
