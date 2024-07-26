@@ -1,12 +1,10 @@
 namespace Public.Api.Status.Clients
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using BackendResponse;
     using Responses;
     using RestSharp;
 
-    public sealed class SnapshotStatusClient : BaseStatusClient<RegistrySnapshotStatusResponse, List<SnapshotStatus>>
+    public sealed class SnapshotStatusClient : BaseStatusClient<RegistrySnapshotStatusResponse, SnapshotStatus>
     {
         public SnapshotStatusClient(string registry, RestClient restClient)
             : base(registry, restClient) { }
@@ -14,17 +12,12 @@ namespace Public.Api.Status.Clients
         protected override RestRequest CreateStatusRequest()
             => new RestRequest("snapshots");
 
-        protected override RegistrySnapshotStatusResponse Map(List<SnapshotStatus> response)
+        protected override RegistrySnapshotStatusResponse Map(SnapshotStatus response)
             => new RegistrySnapshotStatusResponse()
             {
-                projections = response
-                    .Select(status =>
-                        new RegistrySnapshotStatus()
-                        {
-                            Name = "Snapshot",
-                            FailedSnapshotsCount = status.FailedSnapshotsCount,
-                            LastVerifiedSnapshotTimestamp = status.LastSnapshotVerificationTimestamp
-                        })
+                Name = "Snapshot",
+                FailedSnapshotsCount = response.FailedSnapshotsCount,
+                DifferenceInDaysOfLastVerification = response.DifferenceInDaysOfLastVerification
             };
     }
 }
