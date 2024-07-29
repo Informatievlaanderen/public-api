@@ -1,3 +1,10 @@
+# [6.8.0](https://github.com/informatievlaanderen/public-api/compare/v6.7.0...v6.8.0) (2024-07-29)
+
+
+### Features
+
+* add snapshot status endpoint ([025f881](https://github.com/informatievlaanderen/public-api/commit/025f8816bb198ca6bc7cb506b930d28f1b349aa7))
+
 # [6.7.0](https://github.com/informatievlaanderen/public-api/compare/v6.6.1...v6.7.0) (2024-07-25)
 
 
