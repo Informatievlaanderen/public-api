@@ -156,8 +156,8 @@ NUGET
       NSwag.CodeGeneration.CSharp (>= 14.0.3)
       NSwag.CodeGeneration.TypeScript (>= 14.0.3)
       Swashbuckle.AspNetCore (6.2.3)
-    Be.Vlaanderen.Basisregisters.Auth.AcmIdm (2.0)
-      Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions (>= 2.0)
+    Be.Vlaanderen.Basisregisters.Auth.AcmIdm (3.0.1)
+      Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions (>= 3.0)
       IdentityModel.AspNetCore.OAuth2Introspection (>= 6.2)
       Microsoft.AspNetCore.Authentication.JwtBearer (>= 8.0.3)
       Microsoft.Extensions.DependencyInjection (>= 8.0)
@@ -254,7 +254,7 @@ NUGET
       Be.Vlaanderen.Basisregisters.Api (>= 23.0)
       Be.Vlaanderen.Basisregisters.EventHandling.Autofac (>= 5.0)
       Be.Vlaanderen.Basisregisters.GrAr.Legacy (>= 21.0)
-    Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions (2.0)
+    Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions (3.0)
       Microsoft.Extensions.DependencyInjection.Abstractions (>= 8.0.1)
       Microsoft.Extensions.Logging.Abstractions (>= 8.0.1)
     Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions (5.5.3) - copy_content_to_output_dir: always
@@ -270,7 +270,7 @@ NUGET
       CsvHelper (>= 31.0.2)
     Be.Vlaanderen.Basisregisters.ProblemDetails (9.0)
       System.Reflection.Metadata (>= 8.0)
-    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice (4.3) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice (4.4) - copy_content_to_output_dir: always
       Amazon.Lambda.Core (>= 2.2)
       AWSSDK.DynamoDBv2 (>= 3.7.302)
       Be.Vlaanderen.Basisregisters.AggregateSource (>= 9.0.1)
@@ -301,11 +301,11 @@ NUGET
       Polly (>= 8.3.1)
       SqlStreamStore (>= 1.2)
       System.IdentityModel.Tokens.Jwt (>= 7.4.1)
-    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions (4.3) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions (4.4) - copy_content_to_output_dir: always
       Be.Vlaanderen.Basisregisters.BlobStore (>= 4.0)
       MediatR.Contracts (>= 2.0.1)
       Microsoft.Net.Http.Headers (>= 8.0.3)
-    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (4.3) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (4.4) - copy_content_to_output_dir: always
       AspNetCore.HealthChecks.SqlServer (>= 8.0)
       AWSSDK.Core (>= 3.7.302.20)
       Be.Vlaanderen.Basisregisters.Api (>= 23.1)
