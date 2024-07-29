@@ -63,7 +63,7 @@ namespace Public.Api.Status
         {
             var keyValuePairs = await clients.GetStatuses(cancellationToken);
             var projectionStatuses = ProjectionStatusResponse.From(keyValuePairs);
-            
+
             if (state is not null)
             {
                 foreach (var projectionStatus in projectionStatuses
@@ -178,7 +178,7 @@ namespace Public.Api.Status
             }
 
             var projectionStatuses = ProjectionStatusResponse.From(keyValuePairsProducer);
-            
+
             if (state is not null)
             {
                 foreach (var projectionStatus in projectionStatuses
@@ -250,6 +250,19 @@ namespace Public.Api.Status
             var backOfficeStatusResponses = BackOfficeStatusResponse.From(keyValuePairs);
 
             return Ok(backOfficeStatusResponses);
+        }
+
+        [HttpGet("snapshot")]
+        [ProducesResponseType(typeof(SnapshotStatusResponse), StatusCodes.Status200OK)]
+        [HttpCacheExpiration(MaxAge = DefaultStatusCaching)]
+        public async Task<IActionResult> GetSnapshotStatus(
+            [FromServices] IEnumerable<SnapshotStatusClient> clients,
+            CancellationToken cancellationToken = default)
+        {
+            var keyValuePairs = await clients.GetStatuses(cancellationToken);
+            var snapshotStatusResponses = SnapshotStatusResponse.From(keyValuePairs);
+
+            return Ok(snapshotStatusResponses);
         }
     }
 }

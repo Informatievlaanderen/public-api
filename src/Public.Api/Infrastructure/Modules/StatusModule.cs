@@ -34,6 +34,7 @@ namespace Public.Api.Infrastructure.Modules
                 RegisterConsumerStatusClient(key, value.ProjectionsUrl, builder);
                 RegisterImporterGrbStatusClient(key, value.ImporterGrbUrl, builder);
                 RegisterBackOfficeStatusClient(key, value.ProjectionsUrl, builder);
+                RegisterSnapshotStatusClient(key, value.ProjectionsUrl, builder);
             }
         }
 
@@ -178,6 +179,22 @@ namespace Public.Api.Infrastructure.Modules
 
             builder
                 .Register(context => new BackOfficeStatusClient(name, context.ResolveNamed<RestClient>(key)))
+                .AsSelf();
+        }
+
+        private void RegisterSnapshotStatusClient(
+            string name,
+            string baseUrl,
+            ContainerBuilder builder)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                return;
+
+            var key = $"Snapshot-{name}";
+            RegisterKeyedRestClient(baseUrl, key, builder);
+
+            builder
+                .Register(context => new SnapshotStatusClient(name, context.ResolveNamed<RestClient>(key)))
                 .AsSelf();
         }
 
