@@ -1,6 +1,8 @@
 namespace Public.Api.Infrastructure.Swagger
 {
     using System.Collections.Generic;
+    using System.Linq;
+    using Common.Infrastructure.Controllers.Attributes;
     using Feeds;
     using Feeds.V2;
     using Microsoft.AspNetCore.Mvc.Controllers;
@@ -36,30 +38,29 @@ namespace Public.Api.Infrastructure.Swagger
     {
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
-            if (operation.Parameters == null)
-                operation.Parameters = new List<OpenApiParameter>();
+            operation.Parameters ??= new List<OpenApiParameter>();
 
-            if (context.ApiDescription.ActionDescriptor is ControllerActionDescriptor descriptor &&
-                descriptor.ControllerTypeInfo.Name.Equals(nameof(FeedV2Controller)))
+            if (context.ApiDescription.ActionDescriptor is not ControllerActionDescriptor descriptor)
+            {
+                return;
+            }
+
+            var apiKeyAuthAttribute =
+                descriptor.MethodInfo.GetCustomAttributes(typeof(ApiKeyAuthAttribute), true).FirstOrDefault() as ApiKeyAuthAttribute
+                ?? descriptor.ControllerTypeInfo.GetCustomAttributes(typeof(ApiKeyAuthAttribute), true).FirstOrDefault() as ApiKeyAuthAttribute;
+            if (apiKeyAuthAttribute is not null)
             {
                 operation.Parameters.Add(new OpenApiParameter
                 {
                     Name = "x-api-key",
                     In = ParameterLocation.Header,
-                    Description = "x-api-key header met verkregen API key.",
+                    Description = apiKeyAuthAttribute.IsOptional
+                        ? "x-api-key header met verkregen API key (optioneel)."
+                        : "x-api-key header met verkregen API key.",
                     Schema = new OpenApiSchema { Type = "string" },
-                    Required = true
+                    Required = !apiKeyAuthAttribute.IsOptional
                 });
             }
-            else
-                operation.Parameters.Add(new OpenApiParameter
-                {
-                    Name = "x-api-key",
-                    In = ParameterLocation.Header,
-                    Description = "x-api-key header met verkregen API key (optioneel).",
-                    Schema = new OpenApiSchema { Type = "string" },
-                    Required = false // set to false if this is optional
-                });
         }
     }
 }
