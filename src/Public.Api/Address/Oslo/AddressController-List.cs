@@ -7,6 +7,7 @@ namespace Public.Api.Address.Oslo
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Common.Infrastructure;
+    using Common.Infrastructure.Controllers.Attributes;
     using Infrastructure;
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
@@ -51,6 +52,7 @@ namespace Public.Api.Address.Oslo
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("adressen", Name = nameof(ListAddressesV2))]
         [ApiOrder(ApiOrder.Address.V2 + 2)]
+        [ApiProduces(EndpointType.Oslo)]
         [ProducesResponseType(typeof(AddressListOsloResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]

@@ -37,6 +37,7 @@ namespace Public.Api.Infrastructure.Configuration
         public bool CorrectRegularizationAddress { get; set; }
         public bool CorrectDeregulationAddress { get; set; }
         public bool CorrectRemovalAddress { get; set; }
+        public bool SearchAddresses { get; set; }
         public bool ReaddressStreetNameAddresses { get; set; }
 
         public bool PlanBuilding { get; set; }

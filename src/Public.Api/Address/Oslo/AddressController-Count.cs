@@ -7,6 +7,7 @@ namespace Public.Api.Address.Oslo
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Common.Infrastructure;
+    using Common.Infrastructure.Controllers.Attributes;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Marvin.Cache.Headers;
@@ -38,6 +39,7 @@ namespace Public.Api.Address.Oslo
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("adressen/totaal-aantal", Name = nameof(CountAddressesV2))]
         [ApiOrder(ApiOrder.Address.V2 + 3)]
+        [ApiProduces(EndpointType.Oslo)]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(TotaalAantalResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]

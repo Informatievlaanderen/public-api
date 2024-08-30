@@ -351,6 +351,7 @@ namespace Public.Api.Infrastructure
                 .AddSingleton(c => new CorrectRegularizationAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectRegularizationAddress))
                 .AddSingleton(c => new CorrectDeregulationAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectDeregulationAddress))
                 .AddSingleton(c => new CorrectRemovalAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectRemovalAddress))
+                .AddSingleton(c => new SearchAddressesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.SearchAddresses))
                 .AddSingleton(c => new ReaddressStreetNameAddressesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ReaddressStreetNameAddresses))
 
                 .AddSingleton(c => new PlanBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.PlanBuilding))
