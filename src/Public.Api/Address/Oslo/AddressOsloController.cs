@@ -5,7 +5,6 @@ namespace Public.Api.Address.Oslo
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
-    using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
@@ -20,7 +19,6 @@ namespace Public.Api.Address.Oslo
     [AdvertiseApiVersions(Version.V2)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Adressen")]
-    [ApiProduces(EndpointType.Oslo)]
     public partial class AddressOsloController : RegistryApiController<AddressOsloController>
     {
         protected override string NotFoundExceptionMessage => "Onbestaand adres.";

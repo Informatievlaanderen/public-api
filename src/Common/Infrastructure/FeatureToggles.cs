@@ -219,6 +219,13 @@ namespace Common.Infrastructure
         public CorrectRemovalAddressToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
     }
 
+    public class SearchAddressesToggle : IFeatureToggle
+    {
+        public bool FeatureEnabled { get; }
+
+        public SearchAddressesToggle(bool featureEnabled) => FeatureEnabled = featureEnabled;
+    }
+
     public class ReaddressStreetNameAddressesToggle : IFeatureToggle
     {
         public bool FeatureEnabled { get; }

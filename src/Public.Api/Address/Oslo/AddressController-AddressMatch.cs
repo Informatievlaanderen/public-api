@@ -6,6 +6,8 @@ namespace Public.Api.Address.Oslo
     using AddressRegistry.Api.Oslo.AddressMatch.Responses;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using Common.Infrastructure;
+    using Common.Infrastructure.Controllers.Attributes;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
@@ -39,6 +41,7 @@ namespace Public.Api.Address.Oslo
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("adresmatch", Name = nameof(AddressMatchV2))]
         [ApiOrder(ApiOrder.Address.V2 + 4)]
+        [ApiProduces(EndpointType.Oslo)]
         [ProducesResponseType(typeof(AddressMatchOsloCollection), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]

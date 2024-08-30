@@ -5,6 +5,7 @@ namespace Common.Infrastructure
         Legacy,
         Sync,
         BackOffice,
-        Oslo
+        Oslo,
+        Json
     }
 }
