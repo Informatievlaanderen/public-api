@@ -70,7 +70,7 @@ namespace Public.Api.Address.Oslo
                 return NotFound();
             }
 
-            limit = int.Max(MaxSearchLimit, limit ?? DefaultSearchLimit);
+            limit = int.Max(0, int.Min(MaxSearchLimit, limit ?? DefaultSearchLimit));
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendListRequest(
