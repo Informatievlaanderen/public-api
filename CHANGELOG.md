@@ -1,3 +1,10 @@
+## [6.9.1](https://github.com/informatievlaanderen/public-api/compare/v6.9.0...v6.9.1) (2024-09-02)
+
+
+### Bug Fixes
+
+* address search default/max limit ([619b501](https://github.com/informatievlaanderen/public-api/commit/619b50134d073c3af832c2a0f0332a2e6471f1e2))
+
 # [6.9.0](https://github.com/informatievlaanderen/public-api/compare/v6.8.0...v6.9.0) (2024-09-02)
 
 
