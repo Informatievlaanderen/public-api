@@ -1,3 +1,10 @@
+# [6.9.0](https://github.com/informatievlaanderen/public-api/compare/v6.8.0...v6.9.0) (2024-09-02)
+
+
+### Features
+
+* add address search ([f8f5326](https://github.com/informatievlaanderen/public-api/commit/f8f53268b23129ed0cfbea75764a932a8f85b236))
+
 # [6.8.0](https://github.com/informatievlaanderen/public-api/compare/v6.7.0...v6.8.0) (2024-07-29)
 
 
