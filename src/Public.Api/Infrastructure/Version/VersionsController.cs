@@ -49,7 +49,10 @@ namespace Public.Api.Infrastructure.Version
             CancellationToken cancellationToken)
         {
             var healthClient = scope.ResolveNamed<RestClient>($"Health-{registry}");
-            var healthResponse = await healthClient.ExecuteAsync(new RestRequest(), cancellationToken);
+            var healthResponse = await healthClient.ExecuteAsync(new RestRequest
+            {
+                Timeout = 10 * 1000, // used in cancellationtokensource => milliseconds
+            }, cancellationToken);
 
             var downstreamVersion = healthResponse
                 ?.Headers
