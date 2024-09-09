@@ -1,3 +1,11 @@
+## [6.9.2](https://github.com/informatievlaanderen/public-api/compare/v6.9.1...v6.9.2) (2024-09-09)
+
+
+### Bug Fixes
+
+* add timeout to versions endpoint ([2725c2e](https://github.com/informatievlaanderen/public-api/commit/2725c2e1080938e0b4e75038910ca71a083ba5b0))
+* **search:** parameter name ([6be225d](https://github.com/informatievlaanderen/public-api/commit/6be225d359c25f0820452ebff0bcb350084efa36))
+
 ## [6.9.1](https://github.com/informatievlaanderen/public-api/compare/v6.9.0...v6.9.1) (2024-09-02)
 
 
