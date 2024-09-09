@@ -58,7 +58,7 @@ namespace Public.Api.Address.Oslo
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> SearchAddresses(
             [FromQuery] string? query,
-            [FromQuery] string? municipalityOrPostalName,
+            [FromQuery(Name="gemeenteOfPostNaam")] string? municipalityOrPostalName,
             [FromQuery] int? limit,
             [FromServices] SearchAddressesToggle searchAddressesToggle,
             [FromServices] IActionContextAccessor actionContextAccessor,
