@@ -22,6 +22,7 @@ namespace Common.Infrastructure.Controllers.Attributes
         private readonly string _requiredAccess;
 
         public bool AllowAuthorizationHeader { get; set; }
+        public bool IsOptional { get; set; }
 
         public ApiKeyAuthAttribute(string requiredAccess) => _requiredAccess = requiredAccess;
 
