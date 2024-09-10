@@ -1,3 +1,10 @@
+# [6.10.0](https://github.com/informatievlaanderen/public-api/compare/v6.9.2...v6.10.0) (2024-09-10)
+
+
+### Features
+
+* add road listoverlapping endpoints ([ff7fd95](https://github.com/informatievlaanderen/public-api/commit/ff7fd95228e8e5a70bc0f6cfe08693cee1f57f2c))
+
 ## [6.9.2](https://github.com/informatievlaanderen/public-api/compare/v6.9.1...v6.9.2) (2024-09-09)
 
 
