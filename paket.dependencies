@@ -4,7 +4,7 @@ source https://api.nuget.org/v3/index.json
 // PRODUCTION STUFF
 nuget RestSharp 112.0.0
 nuget Marvin.Cache.Headers 7.1.0
-nuget StackExchange.Redis 2.5.43
+nuget StackExchange.Redis 2.8.16
 nuget AWSSDK.S3 3.7.307
 
 nuget Datadog.Trace.Bundle 2.49.0
