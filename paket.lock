@@ -617,7 +617,7 @@ NUGET
     Polly (8.3.1)
       Polly.Core (>= 8.3.1)
     Polly.Core (8.3.1)
-    RestSharp (108.0.2)
+    RestSharp (112.0)
     Scrutor (4.2.2)
       Microsoft.Extensions.DependencyInjection.Abstractions (>= 6.0)
       Microsoft.Extensions.DependencyModel (>= 6.0)

@@ -2,7 +2,7 @@ framework: net8.0
 source https://api.nuget.org/v3/index.json
 
 // PRODUCTION STUFF
-nuget RestSharp 108.0.2
+nuget RestSharp 112.0.0
 nuget Marvin.Cache.Headers 7.1.0
 nuget StackExchange.Redis 2.5.43
 nuget AWSSDK.S3 3.7.307
