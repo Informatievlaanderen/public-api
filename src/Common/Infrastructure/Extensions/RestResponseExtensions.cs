@@ -2,6 +2,7 @@ namespace Common.Infrastructure.Extensions
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Runtime.Serialization;
     using System.Xml;
     using Microsoft.Extensions.Primitives;
@@ -32,17 +33,20 @@ namespace Common.Infrastructure.Extensions
 
         public static IEnumerable<KeyValuePair<string, StringValues>> HeadersToKeyValuePairs(this RestResponse restResponse)
         {
-            foreach (var header in restResponse.Headers)
+            if(restResponse.Headers is null)
+                yield break;
+
+            var responseHeadersByName = restResponse
+                .Headers
+                .GroupBy(h => h.Name)
+                .ToDictionary(x => x.Key, y => y.Select(p => p.Value).ToList());
+
+            foreach (var header in responseHeadersByName)
             {
-                switch (header.Value)
-                {
-                    case string headerValue:
-                        yield return new KeyValuePair<string, StringValues>(header.Name, new StringValues(headerValue));
-                        break;
-                    case string[] headerValues:
-                        yield return new KeyValuePair<string, StringValues>(header.Name, new StringValues(headerValues));
-                        break;
-                }
+                if(header.Value.Count == 1)
+                    yield return new KeyValuePair<string, StringValues>(header.Key, new StringValues(header.Value.First()));
+                else
+                    yield return new KeyValuePair<string, StringValues>(header.Key, new StringValues(header.Value.ToArray()));
             }
         }
     }

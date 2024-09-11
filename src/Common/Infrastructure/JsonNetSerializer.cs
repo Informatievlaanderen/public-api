@@ -1,24 +1,25 @@
-namespace Common.Infrastructure;
-
-using System.Linq;
-using Newtonsoft.Json;
-using RestSharp.Serializers;
-using RestSharp;
-
-public class JsonNetSerializer : IRestSerializer, ISerializer, IDeserializer
+namespace Common.Infrastructure
 {
-    public string Serialize(object obj) => JsonConvert.SerializeObject(obj);
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using RestSharp.Serializers;
+    using RestSharp;
 
-    public string Serialize(Parameter bodyParameter) => JsonConvert.SerializeObject(bodyParameter.Value);
+    public class JsonNetSerializer : IRestSerializer, ISerializer, IDeserializer
+    {
+        public string Serialize(object obj) => JsonConvert.SerializeObject(obj);
 
-    public T Deserialize<T>(RestResponse response) => JsonConvert.DeserializeObject<T>(response.Content);
+        public string Serialize(Parameter bodyParameter) => JsonConvert.SerializeObject(bodyParameter.Value);
 
-    public string ContentType { get; set; } = "application/json";
+        public T Deserialize<T>(RestResponse response) => JsonConvert.DeserializeObject<T>(response.Content);
 
-    public DataFormat DataFormat { get; } = DataFormat.Json;
+        public ContentType ContentType { get; set; } = ContentType.Json;
 
-    public ISerializer Serializer => this;
-    public IDeserializer Deserializer => this;
-    public string[] AcceptedContentTypes { get; } = { "application/json" };
-    public SupportsContentType SupportsContentType { get; } = contentType => new [] { "application/json", "text/json", "text/x-json", "text/javascript", "*+json" }.Contains(contentType);
+        public DataFormat DataFormat { get; } = DataFormat.Json;
+
+        public ISerializer Serializer => this;
+        public IDeserializer Deserializer => this;
+        public string[] AcceptedContentTypes { get; } = ["application/json"];
+        public SupportsContentType SupportsContentType { get; } = contentType => new List<string> { "application/json", "text/json", "text/x-json", "text/javascript", "*+json" }.Contains(contentType);
+    }
 }

@@ -16,16 +16,10 @@ namespace Common.Infrastructure.Modules
 
     public class ApiConfigurationModule : Module
     {
-        private readonly string _downstreamUser;
-        private readonly string _downstreamPass;
-
         private readonly NamedConfigurations<ApiConfiguration> _apiConfiguration;
 
         public ApiConfigurationModule(IConfiguration configuration)
         {
-            _downstreamUser = configuration["RegistryAuthUser"];
-            _downstreamPass = configuration["RegistryAuthPass"];
-
             _apiConfiguration = new NamedConfigurations<ApiConfiguration>(configuration, "ApiConfiguration");
         }
 
@@ -37,7 +31,7 @@ namespace Common.Infrastructure.Modules
             {
                 RegisterRestClient(registry.Key, registry.Value.ApiUrl, builder);
                 RegisterHttpClient(registry.Key, registry.Value.ApiUrl, builder);
-                RegisterHealthClient(registry.Key, registry.Value.HealthUrl, _downstreamUser, _downstreamPass, builder);
+                RegisterHealthClient(registry.Key, registry.Value.HealthUrl, builder);
                 RegisterApiCacheToggle(registry.Key, registry.Value.UseCache, builder);
 
                 healthUrls.Add(registry.Key, registry.Value.HealthUrl);
@@ -73,13 +67,14 @@ namespace Common.Infrastructure.Modules
             builder
                 .Register(context =>
                 {
-                    var restClient = new RestClient(new RestClientOptions(new Uri(baseUrl))
-                    {
-                        CookieContainer = new CookieContainer(),
-                        Encoding = Encoding.UTF8
-                    });
+                    var restClient = new RestClient(
+                        new RestClientOptions(new Uri(baseUrl))
+                        {
+                            CookieContainer = new CookieContainer(),
+                            Encoding = Encoding.UTF8,
+                        },
+                        configureSerialization: s=> s.UseSerializer<JsonNetSerializer>());
 
-                    restClient.UseSerializer<JsonNetSerializer>();
                     return restClient;
                 })
                 .Keyed<RestClient>(name);
@@ -88,8 +83,6 @@ namespace Common.Infrastructure.Modules
         private static void RegisterHealthClient(
             string name,
             string baseUrl,
-            string user,
-            string password,
             ContainerBuilder builder)
         {
             var healthServiceName = $"Health-{name}";
@@ -98,14 +91,12 @@ namespace Common.Infrastructure.Modules
                 .Register(context =>
                 {
                     var restClient = new RestClient(
-                        new RestClientOptions(new Uri(baseUrl))
-                        {
-                            CookieContainer = new CookieContainer(),
-                            Encoding = Encoding.UTF8
-                        })
-                    {
-                        Authenticator = new HttpBasicAuthenticator(user, password)
-                    };
+                            new RestClientOptions(new Uri(baseUrl))
+                            {
+                                CookieContainer = new CookieContainer(),
+                                Encoding = Encoding.UTF8
+                            })
+                        ;
 
                     return restClient;
                 })
