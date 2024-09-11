@@ -1,3 +1,10 @@
+# [6.11.0](https://github.com/informatievlaanderen/public-api/compare/v6.10.1...v6.11.0) (2024-09-11)
+
+
+### Features
+
+* upgrade redis ([b9f6ff1](https://github.com/informatievlaanderen/public-api/commit/b9f6ff161c162a8ee39a819a8e286c304ce21d08))
+
 ## [6.10.1](https://github.com/informatievlaanderen/public-api/compare/v6.10.0...v6.10.1) (2024-09-11)
 
 
