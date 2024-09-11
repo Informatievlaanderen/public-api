@@ -7,10 +7,12 @@ namespace Public.Api.Road.Extracts.V2
     using RestSharp;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.Infrastructure.Controllers.Attributes;
     using RoadRegistry.BackOffice.Api.Extracts;
 
     public partial class ExtractControllerV2
     {
+        [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
         [HttpPost("wegen/extract/overlapping/perniscode")]
         public async Task<ActionResult> ListOverlappingByNisCode(
             [FromBody] ExtractsController.ListOverlappingByNisCodeParameters body,
