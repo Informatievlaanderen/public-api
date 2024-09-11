@@ -1,3 +1,10 @@
+## [6.10.1](https://github.com/informatievlaanderen/public-api/compare/v6.10.0...v6.10.1) (2024-09-11)
+
+
+### Bug Fixes
+
+* add ApiKeyAuth to new overlapping endpoints ([d1dc9e2](https://github.com/informatievlaanderen/public-api/commit/d1dc9e26b86fd8f1bdfeb33d0aff7a71af6916c1))
+
 # [6.10.0](https://github.com/informatievlaanderen/public-api/compare/v6.9.2...v6.10.0) (2024-09-10)
 
 
