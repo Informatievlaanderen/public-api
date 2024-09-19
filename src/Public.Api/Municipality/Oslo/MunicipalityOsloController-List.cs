@@ -32,10 +32,10 @@ namespace Public.Api.Municipality.Oslo
         /// <param name="sort">Optionele sortering van het resultaat (niscode, naam, naam-nl, naam-fr, naam-de, naam-en).</param>
         /// <param name="gemeentenaam">Filter op de gemeentenaam van de gemeente (exact) (optioneel).</param>
         /// <param name="status">
-        /// Filter op de status van de gemeente (exact) (optioneel). <br />
+        /// Filter op de status van de gemeente (exact) (optioneel). \
         /// `"inGebruik"` `"gehistoreerd"` `"voorgesteld"`
         /// </param>
-        /// <param name="gewest">Filter op het gewest van de gemeente (exact) (optioneel). <br />
+        /// <param name="gewest">Filter op het gewest van de gemeente (exact) (optioneel). \
         /// `"vlaams"`
         /// </param>
         /// <param name="actionContextAccessor"></param>

@@ -28,7 +28,7 @@ namespace Public.Api.Parcel.Oslo
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
         /// <param name="sort">Optionele sortering van het resultaat (id).</param>
         /// <param name="status">
-        /// Filter op de status van het perceel (exact) (optioneel).<br/>
+        /// Filter op de status van het perceel (exact) (optioneel). \
         /// `"gerealiseerd"` `"gehistoreerd"`
         /// </param>
         /// <param name="adresObjectId">Filter op de objectidentificator van het gekoppelde adres (exact) (optioneel).</param>

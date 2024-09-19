@@ -65,7 +65,6 @@ namespace Public.Api.StreetName.BackOffice
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] ApproveStreetNameToggle approveStreetNameToggle,
             [FromHeader(Name = HeaderNames.IfMatch)] string? ifMatch,
-            [FromHeader(Name = HeaderNames.Authorization)] string? authorization,
             CancellationToken cancellationToken = default)
         {
             if (!approveStreetNameToggle.FeatureEnabled)

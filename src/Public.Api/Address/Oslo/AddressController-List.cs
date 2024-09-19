@@ -36,7 +36,7 @@ namespace Public.Api.Address.Oslo
         /// <param name="busnummer">Filter op het busnummer van het adres (exact) (optioneel).</param>
         /// <param name="niscode">Filter op de NIS-code van het adres (exact) (optioneel).</param>
         /// <param name="status">
-        /// Filter op de status van het adres (exact) (optioneel).<br/>
+        /// Filter op de status van het adres (exact) (optioneel). \
         /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"` `"afgekeurd"`
         /// </param>
         /// <param name="straatnaamObjectId">Filter op de objectidentificator van de gekoppelde straatnaam (exact) (optioneel).</param>

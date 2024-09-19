@@ -33,10 +33,10 @@ namespace Public.Api.StreetName.Oslo
         /// <param name="gemeentenaam">Filter op de gemeentenaam van de straatnaam (exact) (optioneel).</param>
         /// <param name="niscode">Filter op de NIS-code van de straatnaam (exact) (optioneel).</param>
         /// <param name="status">
-        /// Filter op de status van de straatnaam (exact) (optioneel). <br />
+        /// Filter op de status van de straatnaam (exact) (optioneel). \
         /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"` `"afgekeurd"`
         /// </param>
-        /// <param name="gewest">Filter op het gewest van de straatnaam (exact) (optioneel). <br />
+        /// <param name="gewest">Filter op het gewest van de straatnaam (exact) (optioneel). \
         /// `"vlaams"`
         /// </param>
         /// <param name="actionContextAccessor"></param>
