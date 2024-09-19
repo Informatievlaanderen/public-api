@@ -30,7 +30,7 @@ namespace Public.Api.Building.Oslo
         /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt. De offset is echter beperkt tot 1000000, indien meer data dient ingelezen te worden is het gebruik van extra filters aangewezen op de service of verwijzen we naar de <a href="https://basisregisters.vlaanderen.be/producten/grar" target="_blank" >downloadproducten van het gebouwen- en adressenregister</a> (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
         /// <param name="sort">Optionele sortering van het resultaat (id).</param>
-        /// <param name="status">Filter op de status van het gebouw (exact) (optioneel).<br/>
+        /// <param name="status">Filter op de status van het gebouw (exact) (optioneel). \
         /// `"gepland"` `"inAanbouw"` `"gerealiseerd"` `"gehistoreerd"` `"nietGerealiseerd"`
         /// </param>
         /// <param name="caPaKey">Filter op de objectidentificator van het gekoppelde perceel (exact) (optioneel) (CaPaKey waarbij forward slash `/` vervangen werd door koppelteken `-`).</param>

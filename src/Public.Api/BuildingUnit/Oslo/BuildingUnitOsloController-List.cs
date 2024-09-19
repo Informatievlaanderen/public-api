@@ -32,7 +32,7 @@ namespace Public.Api.BuildingUnit.Oslo
         /// <param name="gebouwObjectId">Filter op de objectidentificator van het gekoppelde gebouw (exact) (optioneel).</param>
         /// <param name="adresObjectId">Filter op de objectidentificator van het gekoppelde adres (exact) (optioneel).</param>
         /// <param name="status">
-        /// Filter op de status van de gebouweenheid (exact).<br/>
+        /// Filter op de status van de gebouweenheid (exact). \
         /// `"gepland"` `"gerealiseerd"` `"gehistoreerd"` `"nietGerealiseerd"`
         /// </param>
         /// <param name="functie">Filter op de functie van een gebouweenheid (exact) (optioneel).</param>
