@@ -9,13 +9,13 @@ nuget AWSSDK.S3 3.7.307
 
 nuget Datadog.Trace.Bundle 2.49.0
 
-nuget Swashbuckle.AspNetCore 6.2.3
-nuget Swashbuckle.AspNetCore.Filters 8.0.1
-nuget Swashbuckle.AspNetCore.Newtonsoft 6.2.3
-nuget Swashbuckle.AspNetCore.Annotations 6.2.3
-nuget Swashbuckle.AspNetCore.Swagger 6.2.3
-nuget Swashbuckle.AspNetCore.SwaggerGen 6.2.3
-nuget Swashbuckle.AspNetCore.SwaggerUI 6.2.3
+nuget Swashbuckle.AspNetCore 6.7.3
+nuget Swashbuckle.AspNetCore.Filters 8.0.2
+nuget Swashbuckle.AspNetCore.Newtonsoft 6.7.3
+nuget Swashbuckle.AspNetCore.Annotations 6.7.3
+nuget Swashbuckle.AspNetCore.Swagger 6.7.3
+nuget Swashbuckle.AspNetCore.SwaggerGen 6.7.3
+nuget Swashbuckle.AspNetCore.SwaggerUI 6.7.3
 
 // VBR STUFF
 nuget Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo        5.2.0  copy_content_to_output_dir: always
@@ -38,7 +38,7 @@ nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 7.2.5
 nuget Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting 9.0.1
 
 nuget Be.Vlaanderen.Basisregisters.Auth.AcmIdm 2.0.0
-nuget Be.Vlaanderen.Basisregisters.Api 23.1.0
+nuget Be.Vlaanderen.Basisregisters.Api 23.2.0
 
 nuget Be.Vlaanderen.Basisregisters.GrAr.Common 21.14.1
 nuget Be.Vlaanderen.Basisregisters.GrAr.Edit 21.14.1
