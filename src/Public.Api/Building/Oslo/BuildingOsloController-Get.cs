@@ -61,18 +61,20 @@ namespace Public.Api.Building.Oslo
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
-            // As long as we do not control WFS, buildings cannot be cached
-            //var cacheKey = $"V2/building:{objectId}";
+            var cacheKey = $"oslo/building:{objectId}";
 
-            //var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
-            //    ? GetFromCacheThenFromBackendAsync(format, BackendRequest, cacheKey, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken)
-            //    : GetFromBackendAsync(format, BackendRequest, Request.GetTypedHeaders(), CreateDefaultHandleBadRequest(), cancellationToken));
-
-            var value = await GetFromBackendAsync(
-                contentFormat.ContentType,
-                BackendRequest,
-                CreateDefaultHandleBadRequest(),
-                cancellationToken);
+            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
+                ? GetFromCacheThenFromBackendAsync(
+                    contentFormat.ContentType,
+                    BackendRequest,
+                    cacheKey,
+                    CreateDefaultHandleBadRequest(),
+                    cancellationToken)
+                : GetFromBackendAsync(
+                    contentFormat.ContentType,
+                    BackendRequest,
+                    CreateDefaultHandleBadRequest(),
+                    cancellationToken));
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForRead());
         }
