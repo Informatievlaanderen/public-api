@@ -1,3 +1,10 @@
+## [6.12.2](https://github.com/informatievlaanderen/public-api/compare/v6.12.1...v6.12.2) (2024-09-20)
+
+
+### Bug Fixes
+
+* enable building cache ([4966742](https://github.com/informatievlaanderen/public-api/commit/496674213f88191e26cd919c3d5409eacf6ddbe0))
+
 ## [6.12.1](https://github.com/informatievlaanderen/public-api/compare/v6.12.0...v6.12.1) (2024-09-20)
 
 
