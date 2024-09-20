@@ -1,3 +1,10 @@
+## [6.12.1](https://github.com/informatievlaanderen/public-api/compare/v6.12.0...v6.12.1) (2024-09-20)
+
+
+### Bug Fixes
+
+* swagger upgrade changes ([37a614e](https://github.com/informatievlaanderen/public-api/commit/37a614e143520991f9aa5c8bb4a5a2e31e22cf84))
+
 # [6.12.0](https://github.com/informatievlaanderen/public-api/compare/v6.11.0...v6.12.0) (2024-09-19)
 
 
