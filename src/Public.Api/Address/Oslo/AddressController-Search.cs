@@ -29,6 +29,10 @@ namespace Public.Api.Address.Oslo
         /// <param name="query">De zoek query.</param>
         /// <param name="municipalityOrPostalName">Limiteer de zoek query in een te zoeken gemeente- of postnaam (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 50 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 10 instanties (optioneel).</param>
+        /// <param name="status">
+        /// Filter op de status van het adres of de straatnaam (exact) (optioneel). \
+        /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"` `"afgekeurd"`
+        /// </param>
         /// <param name="searchAddressesToggle"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
@@ -57,9 +61,10 @@ namespace Public.Api.Address.Oslo
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> SearchAddresses(
-            [FromQuery] string? query,
+            [FromQuery(Name = "q")] string? query,
             [FromQuery(Name="gemeenteOfPostNaam")] string? municipalityOrPostalName,
             [FromQuery] int? limit,
+            [FromQuery] string? status,
             [FromServices] SearchAddressesToggle searchAddressesToggle,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptionsV2> responseOptions,
@@ -76,7 +81,8 @@ namespace Public.Api.Address.Oslo
             RestRequest BackendRequest() => CreateBackendListRequest(
                 limit,
                 query,
-                municipalityOrPostalName);
+                municipalityOrPostalName,
+                status);
 
             var value = await  GetFromBackendAsync(
                     contentFormat.ContentType,
@@ -90,12 +96,14 @@ namespace Public.Api.Address.Oslo
         private static RestRequest CreateBackendListRequest(
             int? limit,
             string? query,
-            string? municipalityOrPostalName)
+            string? municipalityOrPostalName,
+            string? status)
         {
             var filter = new AddressSearchFilter
             {
                 Query = query,
-                MunicipalityOrPostalName = municipalityOrPostalName
+                MunicipalityOrPostalName = municipalityOrPostalName,
+                Status = status
             };
 
             return new RestRequest("adressen/zoeken")
