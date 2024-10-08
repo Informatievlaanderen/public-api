@@ -1,3 +1,10 @@
+# [6.13.0](https://github.com/informatievlaanderen/public-api/compare/v6.12.2...v6.13.0) (2024-10-08)
+
+
+### Features
+
+* **address:** add status filter to search ([e5618a5](https://github.com/informatievlaanderen/public-api/commit/e5618a5f2438d61a8f7e14c5ab2ba0da4780ad4c))
+
 ## [6.12.2](https://github.com/informatievlaanderen/public-api/compare/v6.12.1...v6.12.2) (2024-09-20)
 
 
