@@ -24,38 +24,7 @@ namespace Public.Api.Infrastructure
                 return;
             }
 
-            var ns = action.DisplayName.Split('.');
-            if (ToggleOslo(action, ns))
-                return;
-
-            if (ToggleTicketing(action, ns))
-                return;
-
             action.ApiExplorer.IsVisible = FeatureIsEnabled(GetPossibleFeatureToggleKeys(action));
-        }
-
-        private bool ToggleOslo(ActionModel action, string[] ns)
-        {
-            if (ns.Length <= 2 || ns[3] != "Oslo")
-            {
-                return false;
-            }
-
-            var featureName = $"Is{ns[2]}OsloApiEnabled";
-            action.ApiExplorer.IsVisible = FeatureIsEnabled(featureName);
-            return true;
-        }
-
-        private bool ToggleTicketing(ActionModel action, string[] ns)
-        {
-            if (ns.Length <= 1 || ns[2] != "Tickets")
-            {
-                return false;
-            }
-
-            const string featureName = "Ticketing";
-            action.ApiExplorer.IsVisible = FeatureIsEnabled(featureName);
-            return true;
         }
 
         private bool FeatureIsEnabled(string key)
