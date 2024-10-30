@@ -43,7 +43,6 @@ namespace Public.Api.Address.Oslo
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adressen/zoeken", Name = nameof(SearchAddresses))]
         [ApiOrder(ApiOrder.Address.V2 + 5)]
         [ApiProduces(EndpointType.Json)]
         [ProducesResponseType(typeof(AddressSearchResponse), StatusCodes.Status200OK)]
@@ -60,6 +59,7 @@ namespace Public.Api.Address.Oslo
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
+        [HttpGet("adressen/zoeken", Name = nameof(SearchAddresses))]
         public async Task<IActionResult> SearchAddresses(
             [FromQuery(Name = "q")] string? query,
             [FromQuery(Name="gemeenteOfPostNaam")] string? municipalityOrPostalName,
