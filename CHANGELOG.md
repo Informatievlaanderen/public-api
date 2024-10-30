@@ -1,3 +1,10 @@
+## [6.13.1](https://github.com/informatievlaanderen/public-api/compare/v6.13.0...v6.13.1) (2024-10-30)
+
+
+### Bug Fixes
+
+* toggle oslo endpoints indepentently ([15f04e5](https://github.com/informatievlaanderen/public-api/commit/15f04e56c2c5145c5a134e203d0b099dffcbe832))
+
 # [6.13.0](https://github.com/informatievlaanderen/public-api/compare/v6.12.2...v6.13.0) (2024-10-08)
 
 
