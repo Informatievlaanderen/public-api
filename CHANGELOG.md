@@ -1,3 +1,10 @@
+## [6.13.4](https://github.com/informatievlaanderen/public-api/compare/v6.13.3...v6.13.4) (2024-12-09)
+
+
+### Bug Fixes
+
+* correct building context ([2ac4b1c](https://github.com/informatievlaanderen/public-api/commit/2ac4b1c56cbfedf40acbfd0038cfb1160030819b))
+
 ## [6.13.3](https://github.com/informatievlaanderen/public-api/compare/v6.13.2...v6.13.3) (2024-11-19)
 
 ## [6.13.2](https://github.com/informatievlaanderen/public-api/compare/v6.13.1...v6.13.2) (2024-11-05)
