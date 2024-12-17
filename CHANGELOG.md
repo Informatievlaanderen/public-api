@@ -1,3 +1,10 @@
+# [6.14.0](https://github.com/informatievlaanderen/public-api/compare/v6.13.4...v6.14.0) (2024-12-17)
+
+
+### Features
+
+* **address:** add parameters to search ([be8547d](https://github.com/informatievlaanderen/public-api/commit/be8547deb576a2e1ca2c0731c728e4451404d1e3))
+
 ## [6.13.4](https://github.com/informatievlaanderen/public-api/compare/v6.13.3...v6.13.4) (2024-12-09)
 
 
