@@ -1,5 +1,6 @@
 namespace Public.Api.Address.Oslo
 {
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
     using AddressRegistry.Api.Oslo.Address.Search;
@@ -27,12 +28,16 @@ namespace Public.Api.Address.Oslo
         /// Zoeken naar adressen of straatnamen via een query.
         /// </summary>
         /// <param name="query">De zoek query.</param>
-        /// <param name="municipalityOrPostalName">Limiteer de zoek query in een te zoeken gemeente- of postnaam (optioneel).</param>
+        /// <param name="municipalityName">Filter op de gemeentenaam van de zoek query (exact) (optioneel).</param>
+        /// <param name="nisCode">Filter op de NIS-code van de zoek query (exact) (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 50 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 10 instanties (optioneel).</param>
         /// <param name="status">
         /// Filter op de status van het adres of de straatnaam (exact) (optioneel). \
         /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"` `"afgekeurd"`
         /// </param>
+        /// <param name="resultType">
+        /// Specifieer de gewenste resultaten (exact) (optioneel). \
+        /// `"adressen"` `"straatnamen"`</param>
         /// <param name="searchAddressesToggle"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
@@ -62,9 +67,11 @@ namespace Public.Api.Address.Oslo
         [HttpGet("adressen/zoeken", Name = nameof(SearchAddresses))]
         public async Task<IActionResult> SearchAddresses(
             [FromQuery(Name = "q")] string? query,
-            [FromQuery(Name="gemeenteOfPostNaam")] string? municipalityOrPostalName,
+            [FromQuery(Name="gemeenteNaam")] string? municipalityName,
+            [FromQuery(Name="niscode")] string? nisCode,
             [FromQuery] int? limit,
             [FromQuery] string? status,
+            [FromQuery(Name="resultaatType")] string? resultType,
             [FromServices] SearchAddressesToggle searchAddressesToggle,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<AddressOptionsV2> responseOptions,
@@ -81,8 +88,10 @@ namespace Public.Api.Address.Oslo
             RestRequest BackendRequest() => CreateBackendListRequest(
                 limit,
                 query,
-                municipalityOrPostalName,
-                status);
+                municipalityName,
+                nisCode,
+                status,
+                resultType);
 
             var value = await  GetFromBackendAsync(
                     contentFormat.ContentType,
@@ -96,14 +105,28 @@ namespace Public.Api.Address.Oslo
         private static RestRequest CreateBackendListRequest(
             int? limit,
             string? query,
-            string? municipalityOrPostalName,
-            string? status)
+            string? municipalityName,
+            string? nisCode,
+            string? status,
+            string? resultType)
         {
+            ResultType? resultTypeParsed = null;
+            if (string.Equals(resultType, "adressen", StringComparison.OrdinalIgnoreCase))
+            {
+                resultTypeParsed = ResultType.Address;
+            }
+            else if (string.Equals(resultType, "straatnamen", StringComparison.OrdinalIgnoreCase))
+            {
+                resultTypeParsed = ResultType.StreetName;
+            }
+
             var filter = new AddressSearchFilter
             {
                 Query = query,
-                MunicipalityOrPostalName = municipalityOrPostalName,
-                Status = status
+                MunicipalityName = municipalityName,
+                NisCode = nisCode,
+                Status = status,
+                ResultType = resultTypeParsed
             };
 
             return new RestRequest("adressen/zoeken")
