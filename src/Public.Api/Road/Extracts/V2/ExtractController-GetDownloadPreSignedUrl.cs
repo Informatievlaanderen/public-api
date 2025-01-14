@@ -15,16 +15,12 @@ namespace Public.Api.Road.Extracts.V2
     {
         [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
         [HttpGet("wegen/extract/download/{downloadId}/presignedurl")]
-        public async Task<ActionResult> GetDownloadPreSignedUrl(
+        public async Task<ActionResult> GetDownloadPreSignedUrlForExtract(
             [FromRoute]string downloadId,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
-            RestRequest BackendRequest() => new RestRequest("extracts/download/{downloadId}/presignedurl", Method.Get)
-                .AddParameter("downloadId", downloadId, ParameterType.UrlSegment)
-                .AddHeaderAuthorization(actionContextAccessor);
-
             var value = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
                 BackendRequest,
@@ -33,6 +29,10 @@ namespace Public.Api.Road.Extracts.V2
                 cancellationToken: cancellationToken);
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
+
+            RestRequest BackendRequest() => new RestRequest("extracts/download/{downloadId}/presignedurl", Method.Get)
+                .AddParameter("downloadId", downloadId, ParameterType.UrlSegment)
+                .AddHeaderAuthorization(actionContextAccessor);
         }
     }
 }

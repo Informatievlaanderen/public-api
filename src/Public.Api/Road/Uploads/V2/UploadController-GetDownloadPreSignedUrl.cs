@@ -15,16 +15,12 @@ namespace Public.Api.Road.Uploads.V2
     {
         [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
         [HttpGet("wegen/upload/{identifier}/presignedurl")]
-        public async Task<ActionResult> GetDownloadPreSignedUrl(
+        public async Task<ActionResult> GetDownloadPreSignedUrlForUpload(
             [FromRoute]string identifier,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
-            RestRequest BackendRequest() => new RestRequest("upload/{identifier}/presignedurl", Method.Get)
-                .AddParameter("identifier", identifier, ParameterType.UrlSegment)
-                .AddHeaderAuthorization(actionContextAccessor);
-
             var value = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
                 BackendRequest,
@@ -33,6 +29,10 @@ namespace Public.Api.Road.Uploads.V2
                 cancellationToken: cancellationToken);
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
+
+            RestRequest BackendRequest() => new RestRequest("upload/{identifier}/presignedurl", Method.Get)
+                .AddParameter("identifier", identifier, ParameterType.UrlSegment)
+                .AddHeaderAuthorization(actionContextAccessor);
         }
     }
 }
