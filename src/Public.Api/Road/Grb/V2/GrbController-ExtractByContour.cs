@@ -21,7 +21,7 @@ namespace Public.Api.Road.Grb.V2
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [HttpPost("wegen/grb/extracts/bycontour", Name = nameof(ExtractByContour))]
+        [HttpPost("wegen/grb/extract/percontour", Name = nameof(ExtractByContour))]
         public async Task<IActionResult> ExtractByContour(
             [FromBody] DownloadExtractRequestBody body,
             [FromServices] IActionContextAccessor actionContextAccessor,
