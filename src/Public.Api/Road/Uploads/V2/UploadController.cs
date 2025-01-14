@@ -22,7 +22,7 @@ namespace Public.Api.Road.Uploads.V2
     [ApiExplorerSettings(GroupName = "Upload")]
     [ApiOrder(ApiOrder.Road.RoadUpload)]
     [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
-    public partial class UploadControllerV2 : RoadRegistryApiController<Grb.V2.GrbControllerV2>
+    public partial class UploadControllerV2 : RoadRegistryApiController<UploadControllerV2>
     {
         private readonly HttpClient _httpClient;
         protected override string NotFoundExceptionMessage => "Onbestaande upload.";
@@ -35,7 +35,7 @@ namespace Public.Api.Road.Uploads.V2
             [KeyFilter(RegistryKeys.Road)] HttpClient httpClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
-            ILogger<Grb.V2.GrbControllerV2> logger)
+            ILogger<UploadControllerV2> logger)
             : base(httpContextAccessor, redis, logger, restClient, cacheToggle, actionContextAccessor)
         {
             _httpClient = httpClient;
