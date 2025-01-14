@@ -28,6 +28,10 @@ namespace Public.Api.Road.Grb.V2
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
+            RestRequest BackendRequest() => new RestRequest("grb/extracts/bycontour", Method.Post)
+                .AddJsonBodyOrEmpty(body)
+                .AddHeaderAuthorization(actionContextAccessor);
+
             var value = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
                 BackendRequest,
@@ -36,10 +40,6 @@ namespace Public.Api.Road.Grb.V2
                 cancellationToken: cancellationToken);
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
-
-            RestRequest BackendRequest() => new RestRequest("grb/extracts/bycontour", Method.Post)
-                .AddJsonBodyOrEmpty(body)
-                .AddHeaderAuthorization(actionContextAccessor);
         }
     }
 }

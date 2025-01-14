@@ -1,12 +1,15 @@
 namespace Public.Api.Road.Extracts.V2
 {
-    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
+    using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure.Controllers.Attributes;
+    using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using RestSharp;
 
     public partial class ExtractControllerV2
     {
@@ -14,21 +17,22 @@ namespace Public.Api.Road.Extracts.V2
         [HttpGet("wegen/extract/download/{downloadId}/presignedurl")]
         public async Task<ActionResult> GetDownloadPreSignedUrl(
             [FromRoute]string downloadId,
+            [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
-            var response = await GetFromBackendWithBadRequestAsync(
-                _httpClient,
+            RestRequest BackendRequest() => new RestRequest("extracts/download/{downloadId}/presignedurl", Method.Get)
+                .AddParameter("downloadId", downloadId, ParameterType.UrlSegment)
+                .AddHeaderAuthorization(actionContextAccessor);
+
+            var value = await GetFromBackendWithBadRequestAsync(
+                AcceptType.Json,
                 BackendRequest,
                 CreateDefaultHandleBadRequest(),
                 problemDetailsHelper,
-                cancellationToken
-            );
+                cancellationToken: cancellationToken);
 
-            return response.ToActionResult();
-
-            HttpRequestMessage BackendRequest() =>
-                CreateBackendHttpRequestMessage(HttpMethod.Get, $"extracts/download/{downloadId}/presignedurl");
+            return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
         }
     }
 }

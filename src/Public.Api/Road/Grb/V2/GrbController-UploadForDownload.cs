@@ -29,6 +29,10 @@ namespace Public.Api.Road.Grb.V2
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
+            RestRequest BackendRequest() => new RestRequest("grb/download/{downloadId}/upload", Method.Post)
+                .AddParameter("downloadId", downloadId, ParameterType.UrlSegment)
+                .AddHeaderAuthorization(actionContextAccessor);
+
             var value = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
                 BackendRequest,
@@ -37,10 +41,6 @@ namespace Public.Api.Road.Grb.V2
                 cancellationToken: cancellationToken);
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
-
-            RestRequest BackendRequest() => new RestRequest("grb/download/{downloadId}/upload", Method.Post)
-                .AddParameter("downloadId", downloadId, ParameterType.UrlSegment)
-                .AddHeaderAuthorization(actionContextAccessor);
         }
     }
 }
