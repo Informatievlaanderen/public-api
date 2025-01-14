@@ -1,6 +1,5 @@
-namespace Public.Api.Road.Uploads.V2
+namespace Public.Api.Road.Grb.V2
 {
-    using System.Net.Http;
     using Asp.Versioning;
     using Autofac.Features.AttributeFilters;
     using Be.Vlaanderen.Basisregisters.Api;
@@ -19,29 +18,22 @@ namespace Public.Api.Road.Uploads.V2
     [ApiVersion(Version.V2)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
-    [ApiExplorerSettings(GroupName = "Upload")]
-    [ApiOrder(ApiOrder.Road.RoadUpload)]
+    [ApiExplorerSettings(GroupName = "Grb")]
+    [ApiOrder(ApiOrder.Road.RoadGrb)]
     [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
-    public partial class UploadControllerV2 : RoadRegistryApiController<Grb.V2.GrbControllerV2>
+    public partial class GrbControllerV2 : RoadRegistryApiController<GrbControllerV2>
     {
-        private readonly HttpClient _httpClient;
         protected override string NotFoundExceptionMessage => "Onbestaande upload.";
         protected override string GoneExceptionMessage => "Verwijderde upload.";
 
-        public UploadControllerV2(
+        public GrbControllerV2(
             IHttpContextAccessor httpContextAccessor,
             IActionContextAccessor actionContextAccessor,
             [KeyFilter(RegistryKeys.Road)] RestClient restClient,
-            [KeyFilter(RegistryKeys.Road)] HttpClient httpClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
-            ILogger<Grb.V2.GrbControllerV2> logger)
+            ILogger<GrbControllerV2> logger)
             : base(httpContextAccessor, redis, logger, restClient, cacheToggle, actionContextAccessor)
-        {
-            _httpClient = httpClient;
-        }
-
-        private static ContentFormat DetermineFormat(ActionContext context)
-            => ContentFormat.For(EndpointType.BackOffice, context);
+        { }
     }
 }
