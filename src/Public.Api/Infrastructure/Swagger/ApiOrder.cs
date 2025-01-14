@@ -73,6 +73,7 @@ namespace Public.Api.Infrastructure.Swagger
             public const int RoadUpload = ChangeFeed + 40;
             public const int Organization = ChangeFeed + 50;
             public const int RoadSegment = ChangeFeed + 60;
+            public const int RoadGrb = ChangeFeed + 70;
         }
 
         public const int Extract = Road.ChangeFeed + 100;

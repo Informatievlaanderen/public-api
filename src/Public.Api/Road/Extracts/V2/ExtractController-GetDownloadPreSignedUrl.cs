@@ -5,32 +5,34 @@ namespace Public.Api.Road.Extracts.V2
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure.Controllers.Attributes;
+    using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
-    using RoadRegistry.BackOffice.Abstractions.Extracts;
 
     public partial class ExtractControllerV2
     {
         [ApiKeyAuth("Road", AllowAuthorizationHeader = true)]
-        [HttpPost("wegen/extract/downloadaanvragen")]
-        public async Task<ActionResult> PostDownloadRequestV2(
-            [FromBody]DownloadExtractRequestBody body,
+        [HttpGet("wegen/extract/download/{downloadId}/presignedurl")]
+        public async Task<ActionResult> GetDownloadPreSignedUrlForExtract(
+            [FromRoute]string downloadId,
+            [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
-            RestRequest BackendRequest() =>
-                CreateBackendRestRequest(Method.Get, "extracts/downloadrequests")
-                    .AddParameter(nameof(body), body, ParameterType.RequestBody);
-
-            var response = await GetFromBackendWithBadRequestAsync(
+            var value = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
                 BackendRequest,
                 CreateDefaultHandleBadRequest(),
                 problemDetailsHelper,
                 cancellationToken: cancellationToken);
 
-            return new BackendResponseResult(response);
+            return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
+
+            RestRequest BackendRequest() => new RestRequest("extracts/download/{downloadId}/presignedurl", Method.Get)
+                .AddParameter("downloadId", downloadId, ParameterType.UrlSegment)
+                .AddHeaderAuthorization(actionContextAccessor);
         }
     }
 }
