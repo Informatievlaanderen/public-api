@@ -1,3 +1,10 @@
+# [6.16.0](https://github.com/informatievlaanderen/public-api/compare/v6.15.0...v6.16.0) (2025-01-15)
+
+
+### Features
+
+* GAWR-5717 add road presigned endpoints ([9a3fefa](https://github.com/informatievlaanderen/public-api/commit/9a3fefac8c16e255169862feccb9a17bfde40bde))
+
 # [6.15.0](https://github.com/informatievlaanderen/public-api/compare/v6.14.1...v6.15.0) (2025-01-14)
 
 
