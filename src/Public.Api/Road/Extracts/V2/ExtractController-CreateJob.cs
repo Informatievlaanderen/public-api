@@ -2,13 +2,12 @@ namespace Public.Api.Road.Extracts.V2
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
-    using Common.Infrastructure.Extensions;
+    using Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using Public.Api.Infrastructure;
     using RestSharp;
     using RoadRegistry.BackOffice.Abstractions.Jobs;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -23,7 +22,6 @@ namespace Public.Api.Road.Extracts.V2
         [HttpPost("wegen/extract/download/{downloadId}/jobs", Name = nameof(RoadExtractCreateJobV2))]
         public async Task<IActionResult> RoadExtractCreateJobV2(
             [FromRoute] string downloadId,
-            [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] RoadJobsToggle featureToggle,
             CancellationToken cancellationToken = default)
@@ -33,19 +31,18 @@ namespace Public.Api.Road.Extracts.V2
                 return NotFound();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
-
-            RestRequest BackendRequest() => new RestRequest($"extracts/download/{downloadId}/jobs", Method.Post)
-                .AddHeaderAuthorization(actionContextAccessor);
-
             var value = await GetFromBackendWithBadRequestAsync(
-                contentFormat.ContentType,
+                AcceptType.Json,
                 BackendRequest,
                 CreateDefaultHandleBadRequest(),
                 problemDetailsHelper,
                 cancellationToken: cancellationToken);
 
-            return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
+            return new BackendResponseResult(value);
+
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Post, "extracts/download/{downloadId}/jobs")
+                    .AddParameter("downloadId", downloadId, ParameterType.UrlSegment);
         }
     }
 }
