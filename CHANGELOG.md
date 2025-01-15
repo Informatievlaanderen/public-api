@@ -1,3 +1,10 @@
+# [6.15.0](https://github.com/informatievlaanderen/public-api/compare/v6.14.1...v6.15.0) (2025-01-14)
+
+
+### Features
+
+* add road presigned endpoints ([c629990](https://github.com/informatievlaanderen/public-api/commit/c629990f31cd5a2069d37a7d5166057e60a11d79))
+
 ## [6.14.1](https://github.com/informatievlaanderen/public-api/compare/v6.14.0...v6.14.1) (2025-01-07)
 
 # [6.14.0](https://github.com/informatievlaanderen/public-api/compare/v6.13.4...v6.14.0) (2024-12-17)
