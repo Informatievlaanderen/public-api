@@ -2,13 +2,12 @@ namespace Public.Api.Road.Uploads.V2
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
-    using Common.Infrastructure.Extensions;
+    using Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using Public.Api.Infrastructure;
     using RestSharp;
     using RoadRegistry.BackOffice.Abstractions.Jobs;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -22,7 +21,6 @@ namespace Public.Api.Road.Uploads.V2
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [HttpPost("wegen/upload/jobs", Name = nameof(RoadUploadCreateJobV2))]
         public async Task<IActionResult> RoadUploadCreateJobV2(
-            [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] RoadJobsToggle featureToggle,
             CancellationToken cancellationToken = default)
@@ -32,19 +30,17 @@ namespace Public.Api.Road.Uploads.V2
                 return NotFound();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
-
-            RestRequest BackendRequest() => new RestRequest("upload/jobs", Method.Post)
-                .AddHeaderAuthorization(actionContextAccessor);
-
             var value = await GetFromBackendWithBadRequestAsync(
-                contentFormat.ContentType,
+                AcceptType.Json,
                 BackendRequest,
                 CreateDefaultHandleBadRequest(),
                 problemDetailsHelper,
                 cancellationToken: cancellationToken);
 
-            return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
+            return new BackendResponseResult(value);
+
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Post, "upload/jobs");
         }
     }
 }

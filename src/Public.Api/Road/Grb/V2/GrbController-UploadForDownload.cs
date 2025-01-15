@@ -25,7 +25,6 @@ namespace Public.Api.Road.Grb.V2
         [HttpPost("wegen/grb/download/{downloadId}/upload", Name = nameof(UploadForDownload))]
         public async Task<IActionResult> UploadForDownload(
             [FromRoute] string downloadId,
-            [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
@@ -36,11 +35,11 @@ namespace Public.Api.Road.Grb.V2
                 problemDetailsHelper,
                 cancellationToken: cancellationToken);
 
-            return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
+            return new BackendResponseResult(value);
 
-            RestRequest BackendRequest() => new RestRequest("grb/download/{downloadId}/upload", Method.Post)
-                .AddParameter("downloadId", downloadId, ParameterType.UrlSegment)
-                .AddHeaderAuthorization(actionContextAccessor);
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Post, "grb/download/{downloadId}/upload")
+                    .AddParameter("downloadId", downloadId, ParameterType.UrlSegment);
         }
     }
 }

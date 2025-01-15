@@ -5,8 +5,8 @@ namespace Public.Api.Road.Extracts.V2
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure.Controllers.Attributes;
+    using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
-    using Public.Api.Infrastructure;
     using RestSharp;
     using RoadRegistry.BackOffice.Api.Extracts;
 

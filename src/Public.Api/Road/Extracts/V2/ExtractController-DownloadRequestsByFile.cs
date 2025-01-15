@@ -21,6 +21,15 @@ namespace Public.Api.Road.Extracts.V2
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
+            var response = await GetFromBackendWithBadRequestAsync(
+                AcceptType.Json,
+                BackendRequest,
+                CreateDefaultHandleBadRequest(),
+                problemDetailsHelper,
+                cancellationToken: cancellationToken);
+
+            return new BackendResponseResult(response);
+
             RestRequest BackendRequest()
             {
                 var request = CreateBackendRestRequest(Method.Post, "extracts/downloadrequests/byfile");
@@ -41,15 +50,6 @@ namespace Public.Api.Road.Extracts.V2
 
                 return request;
             }
-
-            var response = await GetFromBackendWithBadRequestAsync(
-                AcceptType.Json,
-                BackendRequest,
-                CreateDefaultHandleBadRequest(),
-                problemDetailsHelper,
-                cancellationToken: cancellationToken);
-
-            return new BackendResponseResult(response);
         }
     }
 }
