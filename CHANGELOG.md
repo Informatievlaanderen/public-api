@@ -1,3 +1,10 @@
+## [6.16.1](https://github.com/informatievlaanderen/public-api/compare/v6.16.0...v6.16.1) (2025-01-16)
+
+
+### Bug Fixes
+
+* add missing dependencies for /info/events ([489eb00](https://github.com/informatievlaanderen/public-api/commit/489eb00fadf21d3daef234e8e5366bbf44d081c1))
+
 # [6.16.0](https://github.com/informatievlaanderen/public-api/compare/v6.15.0...v6.16.0) (2025-01-15)
 
 
