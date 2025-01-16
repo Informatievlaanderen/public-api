@@ -35,7 +35,8 @@ nuget Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstraction
 
 nuget Be.Vlaanderen.Basisregisters.Build.Pipeline 7.2.5
 
-nuget Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting 9.0.1
+nuget Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting 9.1.1
+nuget Be.Vlaanderen.Basisregisters.CommandHandling 9.1.1
 
 nuget Be.Vlaanderen.Basisregisters.Auth.AcmIdm 3.2.0
 nuget Be.Vlaanderen.Basisregisters.Api 23.2.0
