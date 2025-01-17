@@ -36,16 +36,20 @@ namespace Public.Api.Road.Extracts.V2
 
                 request.AddParameter(nameof(body.Description), body.Description, ParameterType.GetOrPost);
                 request.AddParameter(nameof(body.IsInformative), body.IsInformative, ParameterType.GetOrPost);
-                foreach (var file in body.Files)
+                if (body.Files is not null)
                 {
-                    request.AddFile(nameof(body.Files), () =>
+                    foreach (var file in body.Files)
                     {
-                        var copyStream = new MemoryStream();
-                        file.OpenReadStream().CopyTo(copyStream);
-                        copyStream.Position = 0;
-                        return copyStream;
-                    }, file.FileName);
+                        request.AddFile(nameof(body.Files), () =>
+                        {
+                            var copyStream = new MemoryStream();
+                            file.OpenReadStream().CopyTo(copyStream);
+                            copyStream.Position = 0;
+                            return copyStream;
+                        }, file.FileName);
+                    }
                 }
+
                 request.AddHeader("Content-Type", "multipart/form-data");
 
                 return request;
