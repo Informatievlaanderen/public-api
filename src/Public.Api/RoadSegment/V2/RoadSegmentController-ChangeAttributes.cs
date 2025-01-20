@@ -4,6 +4,7 @@ namespace Public.Api.RoadSegment.V2
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
+    using Common.FeatureToggles;
     using Common.Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;

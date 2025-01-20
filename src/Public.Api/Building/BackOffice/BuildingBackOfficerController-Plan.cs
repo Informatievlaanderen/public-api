@@ -4,6 +4,7 @@ namespace Public.Api.Building.BackOffice
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using BuildingRegistry.Api.BackOffice.Abstractions.Building.Requests;
+    using Common.FeatureToggles;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
     using Infrastructure;

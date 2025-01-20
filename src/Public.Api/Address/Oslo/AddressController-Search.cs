@@ -5,6 +5,7 @@ namespace Public.Api.Address.Oslo
     using System.Threading.Tasks;
     using AddressRegistry.Api.Oslo.Address.Search;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.FeatureToggles;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers.Attributes;
     using Infrastructure;

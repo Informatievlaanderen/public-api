@@ -1,20 +1,17 @@
 namespace Public.Api.Infrastructure
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Configuration;
-    using Microsoft.AspNetCore.Mvc;
+    using Common.FeatureToggles;
     using Microsoft.AspNetCore.Mvc.ApplicationModels;
-    using Microsoft.Extensions.Configuration;
 
-    public class FeatureToggleConvention : IActionModelConvention
+    public sealed class FeatureToggleConvention : IActionModelConvention
     {
         private readonly Dictionary<string, bool> _features;
-        public FeatureToggleConvention([FromServices] IConfiguration configuration)
+
+        public FeatureToggleConvention(IEnumerable<IKeyedFeatureToggle> featureToggles)
         {
-            _features = configuration.GetSection(FeatureToggleOptions.ConfigurationKey).GetChildren().AsEnumerable()
-                .ToDictionary(x => x.Key, y => Convert.ToBoolean(y.Value));
+            _features = featureToggles.ToDictionary(x => x.GetType().FullName, x => x.FeatureEnabled);
         }
 
         public void Apply(ActionModel action)
@@ -24,23 +21,19 @@ namespace Public.Api.Infrastructure
                 return;
             }
 
-            action.ApiExplorer.IsVisible = FeatureIsEnabled(GetPossibleFeatureToggleKeys(action));
-        }
+            var toggleParameter = action
+                .ActionMethod
+                .GetParameters()
+                .FirstOrDefault(param => typeof(IKeyedFeatureToggle).IsAssignableFrom(param.ParameterType));
 
-        private bool FeatureIsEnabled(string key)
-        {
-            return !_features.ContainsKey(key) ||
-                   (_features.ContainsKey(key) && _features[key]);
-        }
-        private bool FeatureIsEnabled(IEnumerable<string> keys)
-        {
-            return keys.All(FeatureIsEnabled);
-        }
+            if (toggleParameter != null)
+            {
+                action.ApiExplorer.IsVisible = _features.ContainsKey(toggleParameter.ParameterType.FullName)
+                                               && _features[toggleParameter.ParameterType.FullName];
+                return;
+            }
 
-        private IEnumerable<string> GetPossibleFeatureToggleKeys(ActionModel action)
-        {
-            yield return action.ActionName;
-            yield return $"{action.Controller.ControllerName}{action.ActionName}";
+            action.ApiExplorer.IsVisible = true;
         }
     }
 }

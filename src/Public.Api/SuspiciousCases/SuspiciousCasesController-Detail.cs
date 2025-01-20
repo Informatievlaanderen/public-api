@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions.Detail;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.FeatureToggles;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
