@@ -6,6 +6,7 @@ nuget RestSharp 112.0.0
 nuget Marvin.Cache.Headers 7.1.0
 nuget StackExchange.Redis 2.8.16
 nuget AWSSDK.S3 3.7.307
+nuget AWSSDK.DynamoDBv2 3.7.405.9
 
 nuget Datadog.Trace.Bundle 2.49.0
 

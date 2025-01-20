@@ -18,9 +18,9 @@ NUGET
     Autofac.Extensions.DependencyInjection (9.0)
       Autofac (>= 8.0)
       Microsoft.Extensions.DependencyInjection.Abstractions (>= 8.0)
-    AWSSDK.Core (3.7.303.1)
-    AWSSDK.DynamoDBv2 (3.7.302.2) - copy_content_to_output_dir: always
-      AWSSDK.Core (>= 3.7.303.1 < 4.0)
+    AWSSDK.Core (3.7.401.3)
+    AWSSDK.DynamoDBv2 (3.7.405.9)
+      AWSSDK.Core (>= 3.7.401.3 < 4.0)
     AWSSDK.S3 (3.7.307)
       AWSSDK.Core (>= 3.7.302.20 < 4.0)
     AWSSDK.SQS (3.7.300.61) - copy_content_to_output_dir: always

@@ -2,6 +2,8 @@ Be.Vlaanderen.Basisregisters.Api
 
 Autofac.Extensions.DependencyInjection
 
+AWSSDK.DynamoDBv2
+
 FeatureToggle.Common
 
 RestSharp

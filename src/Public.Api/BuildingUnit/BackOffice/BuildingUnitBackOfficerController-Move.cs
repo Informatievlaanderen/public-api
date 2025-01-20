@@ -5,6 +5,7 @@ namespace Public.Api.BuildingUnit.BackOffice
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using BuildingRegistry.Api.BackOffice.Abstractions.BuildingUnit.Requests;
     using BuildingRegistry.Api.Oslo.BuildingUnit.Detail;
+    using Common.FeatureToggles;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
