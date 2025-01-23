@@ -1,3 +1,10 @@
+# [6.17.0](https://github.com/informatievlaanderen/public-api/compare/v6.16.1...v6.17.0) (2025-01-23)
+
+
+### Features
+
+* add dynamic toggles ([3cd31b2](https://github.com/informatievlaanderen/public-api/commit/3cd31b2e1f4148ddd4b74af7f08286a7c1b75516))
+
 ## [6.16.1](https://github.com/informatievlaanderen/public-api/compare/v6.16.0...v6.16.1) (2025-01-16)
 
 
