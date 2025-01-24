@@ -1,3 +1,10 @@
+## [6.17.4](https://github.com/informatievlaanderen/public-api/compare/v6.17.3...v6.17.4) (2025-01-24)
+
+
+### Bug Fixes
+
+* dont overwrite values if already present ([be13efe](https://github.com/informatievlaanderen/public-api/commit/be13efeefbcdd829dd837f3d803207869be13862))
+
 ## [6.17.3](https://github.com/informatievlaanderen/public-api/compare/v6.17.2...v6.17.3) (2025-01-24)
 
 ## [6.17.2](https://github.com/informatievlaanderen/public-api/compare/v6.17.1...v6.17.2) (2025-01-24)
