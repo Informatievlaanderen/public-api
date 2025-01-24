@@ -58,15 +58,21 @@
             {
                 if (_featureToggles.TryAdd(featureToggle, false))
                 {
-                    await _amazonDynamoDb.PutItemAsync(new PutItemRequest
+                    try
                     {
-                        TableName = _tableName,
-                        Item =
+                        await _amazonDynamoDb.PutItemAsync(new PutItemRequest
                         {
-                            ["FeatureName"] = new AttributeValue(featureToggle),
-                            ["Enabled"] = new AttributeValue { BOOL = false }
-                        }
-                    });
+                            TableName = _tableName,
+                            Item =
+                            {
+                                ["FeatureName"] = new AttributeValue(featureToggle),
+                                ["Enabled"] = new AttributeValue { BOOL = false }
+                            },
+                            ConditionExpression = "attribute_not_exists(FeatureName)"
+                        });
+                    }
+                    catch (ConditionalCheckFailedException)
+                    { }
                 }
             }
         }
