@@ -4,8 +4,9 @@ namespace Public.Api.Road.Uploads.V2
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.FeatureToggles;
+    using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
-    using Public.Api.Infrastructure;
 
     public partial class UploadControllerV2
     {
@@ -13,10 +14,13 @@ namespace Public.Api.Road.Uploads.V2
         public async Task<IActionResult> RoadGetUploadV2(
             [FromRoute] string identifier,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] RoadJobsToggle featureToggle,
             CancellationToken cancellationToken)
         {
-            HttpRequestMessage BackendRequest() =>
-                CreateBackendHttpRequestMessage(HttpMethod.Get, $"upload/{identifier}");
+            if (!featureToggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
 
             var response = await GetFromBackendWithBadRequestAsync(
                 _httpClient,
@@ -27,6 +31,9 @@ namespace Public.Api.Road.Uploads.V2
             );
 
             return response.ToActionResult();
+
+            HttpRequestMessage BackendRequest() =>
+                CreateBackendHttpRequestMessage(HttpMethod.Get, $"upload/{identifier}");
         }
     }
 }

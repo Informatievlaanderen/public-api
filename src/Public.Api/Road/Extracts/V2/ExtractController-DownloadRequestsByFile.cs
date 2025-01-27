@@ -5,10 +5,10 @@ namespace Public.Api.Road.Extracts.V2
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.FeatureToggles;
     using Common.Infrastructure.Controllers.Attributes;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
     using RestSharp;
     using RoadRegistry.BackOffice.Api.Extracts;
 
@@ -20,9 +20,14 @@ namespace Public.Api.Road.Extracts.V2
         public async Task<ActionResult> PostDownloadRequestByFileV2(
             DownloadExtractByFileRequestBody body,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] ILogger<ExtractControllerV2> logger,
+            [FromServices] RoadExtractDownloadRequestsByFileToggle toggle,
             CancellationToken cancellationToken = default)
         {
+            if (!toggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
+
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
                 BackendRequest,

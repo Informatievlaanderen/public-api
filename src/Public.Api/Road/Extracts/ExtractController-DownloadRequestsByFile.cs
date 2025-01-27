@@ -9,6 +9,7 @@ namespace Public.Api.Road.Extracts
     using RoadRegistry.BackOffice.Api.Extracts;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.FeatureToggles;
 
     public partial class ExtractController
     {
@@ -17,11 +18,13 @@ namespace Public.Api.Road.Extracts
         public async Task<ActionResult> PostDownloadRequestByFile(
             [FromBody] DownloadExtractByFileRequestBody body,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] RoadExtractDownloadRequestsByFileToggle toggle,
             CancellationToken cancellationToken = default)
         {
-            RestRequest BackendRequest() =>
-                CreateBackendRestRequest(Method.Post, "extracts/downloadrequests/byfile")
-                    .AddJsonBodyOrEmpty(body);
+            if (!toggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
@@ -31,6 +34,10 @@ namespace Public.Api.Road.Extracts
                 cancellationToken: cancellationToken);
 
             return new BackendResponseResult(response);
+
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Post, "extracts/downloadrequests/byfile")
+                    .AddJsonBodyOrEmpty(body);
         }
     }
 }

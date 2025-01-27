@@ -4,6 +4,7 @@ namespace Public.Api.Road.Grb.V2
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.FeatureToggles;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -23,8 +24,14 @@ namespace Public.Api.Road.Grb.V2
         public async Task<IActionResult> ExtractByContour(
             [FromBody] DownloadExtractRequestBody body,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] RoadGrbExtractByContourToggle toggle,
             CancellationToken cancellationToken = default)
         {
+            if (!toggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
+
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
                 BackendRequest,

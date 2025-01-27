@@ -4,6 +4,7 @@ namespace Public.Api.Road.Uploads.V2
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.FeatureToggles;
     using Common.Infrastructure.Controllers.Attributes;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
@@ -16,8 +17,14 @@ namespace Public.Api.Road.Uploads.V2
         public async Task<ActionResult> GetDownloadPreSignedUrlForUpload(
             [FromRoute] string identifier,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] RoadJobsToggle featureToggle,
             CancellationToken cancellationToken = default)
         {
+            if (!featureToggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
+
             var value = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
                 BackendRequest,

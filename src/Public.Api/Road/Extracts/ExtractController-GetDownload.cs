@@ -7,6 +7,7 @@ namespace Public.Api.Road.Extracts
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.FeatureToggles;
 
     public partial class ExtractController
     {
@@ -15,10 +16,13 @@ namespace Public.Api.Road.Extracts
         public async Task<ActionResult> PostDownloadRequest(
             [FromRoute]string downloadId,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] RoadExtractGetDownloadToggle toggle,
             CancellationToken cancellationToken = default)
         {
-            HttpRequestMessage BackendRequest() =>
-                CreateBackendHttpRequestMessage(HttpMethod.Get, $"extracts/download/{downloadId}");
+            if (!toggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
 
             var response = await GetFromBackendWithBadRequestAsync(
                 _httpClient,
@@ -29,6 +33,9 @@ namespace Public.Api.Road.Extracts
             );
 
             return response.ToActionResult();
+
+            HttpRequestMessage BackendRequest() =>
+                CreateBackendHttpRequestMessage(HttpMethod.Get, $"extracts/download/{downloadId}");
         }
     }
 }

@@ -6,6 +6,7 @@ namespace Public.Api.Road.Downloads
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.FeatureToggles;
 
     public partial class DownloadController
     {
@@ -13,10 +14,13 @@ namespace Public.Api.Road.Downloads
         public async Task<IActionResult> GetForProduct(
             [FromRoute] string datum,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] RoadDownloadGetForProductToggle toggle,
             CancellationToken cancellationToken = default)
         {
-            HttpRequestMessage BackendRequest() =>
-                CreateBackendHttpRequestMessage(HttpMethod.Get, $"download/for-product/{datum}");
+            if (!toggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
 
             var response = await GetFromBackendWithBadRequestAsync(
                 _httpClient,
@@ -27,6 +31,9 @@ namespace Public.Api.Road.Downloads
             );
 
             return response.ToActionResult();
+
+            HttpRequestMessage BackendRequest() =>
+                CreateBackendHttpRequestMessage(HttpMethod.Get, $"download/for-product/{datum}");
         }
     }
 }
