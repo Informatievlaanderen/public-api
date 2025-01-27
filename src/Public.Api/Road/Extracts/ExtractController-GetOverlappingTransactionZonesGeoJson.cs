@@ -7,16 +7,20 @@ namespace Public.Api.Road.Extracts
     using RestSharp;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.FeatureToggles;
 
     public partial class ExtractController
     {
         [HttpGet("wegen/extract/overlappingtransactionzones.geojson")]
         public async Task<ActionResult> GetOverlappingTransactionZonesGeoJson(
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] RoadExtractGetOverlappingTransactionZonesGeoJsonToggle toggle,
             CancellationToken cancellationToken = default)
         {
-            RestRequest BackendRequest() =>
-                CreateBackendRestRequest(Method.Get, "extracts/overlappingtransactionzones.geojson");
+            if (!toggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
@@ -31,6 +35,9 @@ namespace Public.Api.Road.Extracts
             };
 
             return response.ToActionResult(options);
+
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Get, "extracts/overlappingtransactionzones.geojson");
         }
     }
 }

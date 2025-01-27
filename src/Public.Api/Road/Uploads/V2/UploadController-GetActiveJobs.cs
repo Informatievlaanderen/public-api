@@ -4,12 +4,11 @@ namespace Public.Api.Road.Uploads.V2
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.FeatureToggles;
-    using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
+    using Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using Public.Api.Infrastructure;
     using RestSharp;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 

@@ -6,16 +6,20 @@ namespace Public.Api.Road.Downloads
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.FeatureToggles;
 
     public partial class DownloadController
     {
         [HttpGet("wegen/download/voor-editor")]
         public async Task<IActionResult> GetForEditor(
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] RoadDownloadGetForEditorToggle toggle,
             CancellationToken cancellationToken = default)
         {
-            HttpRequestMessage BackendRequest() =>
-                CreateBackendHttpRequestMessage(HttpMethod.Get, "download/for-editor");
+            if (!toggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
 
             var response = await GetFromBackendWithBadRequestAsync(
                 _httpClient,
@@ -26,6 +30,9 @@ namespace Public.Api.Road.Downloads
             );
 
             return response.ToActionResult();
+
+            HttpRequestMessage BackendRequest() =>
+                CreateBackendHttpRequestMessage(HttpMethod.Get, "download/for-editor");
         }
     }
 }

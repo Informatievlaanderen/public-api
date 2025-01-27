@@ -4,6 +4,7 @@ namespace Public.Api.Road.Extracts.V2
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.FeatureToggles;
     using Common.Infrastructure.Controllers.Attributes;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
@@ -17,11 +18,13 @@ namespace Public.Api.Road.Extracts.V2
         public async Task<ActionResult> PostDownloadRequestByContourV2(
             [FromBody] DownloadExtractByContourRequestBody body,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] RoadExtractDownloadRequestsByContourToggle toggle,
             CancellationToken cancellationToken = default)
         {
-            RestRequest BackendRequest() =>
-                CreateBackendRestRequest(Method.Post, "extracts/downloadrequests/bycontour")
-                    .AddJsonBodyOrEmpty(body);
+            if (!toggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
@@ -31,6 +34,10 @@ namespace Public.Api.Road.Extracts.V2
                 cancellationToken: cancellationToken);
 
             return new BackendResponseResult(response);
+
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Post, "extracts/downloadrequests/bycontour")
+                    .AddJsonBodyOrEmpty(body);
         }
     }
 }

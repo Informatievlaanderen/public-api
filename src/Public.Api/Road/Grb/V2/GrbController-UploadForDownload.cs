@@ -4,11 +4,10 @@ namespace Public.Api.Road.Grb.V2
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Common.Infrastructure.Extensions;
+    using Common.FeatureToggles;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
     using RoadRegistry.BackOffice.Abstractions.Jobs;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -26,8 +25,14 @@ namespace Public.Api.Road.Grb.V2
         public async Task<IActionResult> UploadForDownload(
             [FromRoute] string downloadId,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] RoadGrbUploadForDownloadToggle toggle,
             CancellationToken cancellationToken = default)
         {
+            if (!toggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
+
             var value = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
                 BackendRequest,

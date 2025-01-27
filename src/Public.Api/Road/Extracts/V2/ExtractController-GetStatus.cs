@@ -4,9 +4,10 @@ namespace Public.Api.Road.Extracts.V2
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.FeatureToggles;
     using Common.Infrastructure.Controllers.Attributes;
+    using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
-    using Public.Api.Infrastructure;
     using RestSharp;
 
     public partial class ExtractControllerV2
@@ -16,11 +17,13 @@ namespace Public.Api.Road.Extracts.V2
         public async Task<ActionResult> GetStatusV2(
             [FromRoute]string uploadId,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] RoadExtractGetStatusToggle toggle,
             CancellationToken cancellationToken = default)
         {
-            RestRequest BackendRequest() =>
-                CreateBackendRestRequest(Method.Get, "extracts/upload/{uploadId}/status")
-                    .AddParameter(nameof(uploadId), uploadId, ParameterType.UrlSegment);
+            if (!toggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
@@ -35,6 +38,10 @@ namespace Public.Api.Road.Extracts.V2
             };
 
             return response.ToActionResult(options);
+
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Get, "extracts/upload/{uploadId}/status")
+                    .AddParameter(nameof(uploadId), uploadId, ParameterType.UrlSegment);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Public.Api.Road.Extracts
     using RestSharp;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.FeatureToggles;
 
     public partial class ExtractController
     {
@@ -16,11 +17,13 @@ namespace Public.Api.Road.Extracts
         public async Task<ActionResult> GetStatus(
             [FromRoute]string uploadId,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] RoadExtractGetStatusToggle toggle,
             CancellationToken cancellationToken = default)
         {
-            RestRequest BackendRequest() =>
-                CreateBackendRestRequest(Method.Get, "extracts/upload/{uploadId}/status")
-                    .AddParameter(nameof(uploadId), uploadId, ParameterType.UrlSegment);
+            if (!toggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
@@ -35,6 +38,10 @@ namespace Public.Api.Road.Extracts
             };
 
             return response.ToActionResult(options);
+
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Get, "extracts/upload/{uploadId}/status")
+                    .AddParameter(nameof(uploadId), uploadId, ParameterType.UrlSegment);
         }
     }
 }

@@ -4,7 +4,6 @@ namespace Public.Api.Road.Uploads
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.FeatureToggles;
-    using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
