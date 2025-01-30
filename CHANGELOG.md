@@ -1,3 +1,25 @@
+## [6.17.5](https://github.com/informatievlaanderen/public-api/compare/v6.17.4...v6.17.5) (2025-01-27)
+
+## [6.17.4](https://github.com/informatievlaanderen/public-api/compare/v6.17.3...v6.17.4) (2025-01-24)
+
+
+### Bug Fixes
+
+* dont overwrite values if already present ([be13efe](https://github.com/informatievlaanderen/public-api/commit/be13efeefbcdd829dd837f3d803207869be13862))
+
+## [6.17.3](https://github.com/informatievlaanderen/public-api/compare/v6.17.2...v6.17.3) (2025-01-24)
+
+## [6.17.2](https://github.com/informatievlaanderen/public-api/compare/v6.17.1...v6.17.2) (2025-01-24)
+
+## [6.17.1](https://github.com/informatievlaanderen/public-api/compare/v6.17.0...v6.17.1) (2025-01-24)
+
+# [6.17.0](https://github.com/informatievlaanderen/public-api/compare/v6.16.1...v6.17.0) (2025-01-23)
+
+
+### Features
+
+* add dynamic toggles ([3cd31b2](https://github.com/informatievlaanderen/public-api/commit/3cd31b2e1f4148ddd4b74af7f08286a7c1b75516))
+
 ## [6.16.1](https://github.com/informatievlaanderen/public-api/compare/v6.16.0...v6.16.1) (2025-01-16)
 
 

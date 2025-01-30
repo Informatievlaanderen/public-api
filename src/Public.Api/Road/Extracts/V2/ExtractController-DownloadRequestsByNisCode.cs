@@ -4,9 +4,10 @@ namespace Public.Api.Road.Extracts.V2
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.FeatureToggles;
     using Common.Infrastructure.Controllers.Attributes;
+    using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
-    using Public.Api.Infrastructure;
     using RestSharp;
     using RoadRegistry.BackOffice.Api.Extracts;
 
@@ -17,11 +18,13 @@ namespace Public.Api.Road.Extracts.V2
         public async Task<ActionResult> PostDownloadRequestByNisCodeV2(
             [FromBody] DownloadExtractByNisCodeRequestBody body,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] RoadExtractDownloadRequestsByNisCodeToggle toggle,
             CancellationToken cancellationToken = default)
         {
-            RestRequest BackendRequest() =>
-                CreateBackendRestRequest(Method.Post, "extracts/downloadrequests/byniscode")
-                    .AddJsonBodyOrEmpty(body);
+            if (!toggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
 
             var response = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
@@ -31,6 +34,10 @@ namespace Public.Api.Road.Extracts.V2
                 cancellationToken: cancellationToken);
 
             return new BackendResponseResult(response);
+
+            RestRequest BackendRequest() =>
+                CreateBackendRestRequest(Method.Post, "extracts/downloadrequests/byniscode")
+                    .AddJsonBodyOrEmpty(body);
         }
     }
 }

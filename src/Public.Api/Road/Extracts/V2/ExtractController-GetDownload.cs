@@ -4,9 +4,10 @@ namespace Public.Api.Road.Extracts.V2
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.FeatureToggles;
     using Common.Infrastructure.Controllers.Attributes;
+    using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
-    using Public.Api.Infrastructure;
 
     public partial class ExtractControllerV2
     {
@@ -15,10 +16,13 @@ namespace Public.Api.Road.Extracts.V2
         public async Task<ActionResult> PostDownloadRequestV2(
             [FromRoute]string downloadId,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] RoadExtractGetDownloadToggle toggle,
             CancellationToken cancellationToken = default)
         {
-            HttpRequestMessage BackendRequest() =>
-                CreateBackendHttpRequestMessage(HttpMethod.Get, $"extracts/download/{downloadId}");
+            if (!toggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
 
             var response = await GetFromBackendWithBadRequestAsync(
                 _httpClient,
@@ -29,6 +33,9 @@ namespace Public.Api.Road.Extracts.V2
             );
 
             return response.ToActionResult();
+
+            HttpRequestMessage BackendRequest() =>
+                CreateBackendHttpRequestMessage(HttpMethod.Get, $"extracts/download/{downloadId}");
         }
     }
 }

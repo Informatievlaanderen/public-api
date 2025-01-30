@@ -3,6 +3,7 @@ namespace Public.Api.Building.Grb
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.FeatureToggles;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
     using Infrastructure;

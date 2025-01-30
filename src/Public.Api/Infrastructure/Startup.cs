@@ -6,9 +6,10 @@ namespace Public.Api.Infrastructure
     using System.IO;
     using System.Linq;
     using System.Reflection;
-    using System.Security.Cryptography;
     using System.Text;
     using AddressRegistry.Api.BackOffice.Abstractions.Requests;
+    using Amazon;
+    using Amazon.DynamoDBv2;
     using Asp.Versioning.ApiExplorer;
     using Asp.Versioning.ApplicationModels;
     using Autofac;
@@ -25,6 +26,8 @@ namespace Public.Api.Infrastructure
     using Be.Vlaanderen.Basisregisters.GrAr.Provenance;
     using Be.Vlaanderen.Basisregisters.Utilities;
     using BuildingRegistry.Api.BackOffice.Abstractions.Building.Responses;
+    using BuildingRegistry.Api.Oslo.Infrastructure.Options;
+    using Common.FeatureToggles;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
@@ -44,7 +47,6 @@ namespace Public.Api.Infrastructure
     using Microsoft.Extensions.FileProviders;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
-    using Microsoft.Extensions.Options;
     using Microsoft.OpenApi.Models;
     using Modules;
     using ParcelRegistry.Api.BackOffice.Abstractions.Requests;
@@ -65,25 +67,23 @@ namespace Public.Api.Infrastructure
     /// <summary>Represents the startup process for the application.</summary>
     public class Startup
     {
-        private static readonly SHA1 Sha1 = SHA1.Create();
-
         private const string DefaultCulture = "en-GB";
         private const string SupportedCultures = "en-GB;en-US;en"; //"en-GB;en-US;en;nl-BE;nl";
 
         private IContainer _applicationContainer;
 
+        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IConfiguration _configuration;
         private readonly ILoggerFactory _loggerFactory;
         private readonly OpenApiContact _contact;
         private readonly MarketingVersion _marketingVersion;
 
-        private Url BaseUrl => new Url(_configuration["BaseUrl"]);
-        private Url SiteUrl => new Url(_configuration["SiteUrl"]);
-
         public Startup(
+            IWebHostEnvironment webHostEnvironment,
             IConfiguration configuration,
             ILoggerFactory loggerFactory)
         {
+            _webHostEnvironment = webHostEnvironment;
             _configuration = configuration;
             _loggerFactory = loggerFactory;
             _marketingVersion = new MarketingVersion(_configuration);
@@ -105,6 +105,21 @@ namespace Public.Api.Infrastructure
                 ? baseUrl.Substring(0, baseUrl.Length - 1)
                 : baseUrl;
 
+            var amazonDynamoDbClient = new AmazonDynamoDBClient(RegionEndpoint.EUWest1);
+            if (_webHostEnvironment.IsDevelopment())
+            {
+                amazonDynamoDbClient = new AmazonDynamoDBClient(new AmazonDynamoDBConfig
+                {
+                    RegionEndpoint = RegionEndpoint.EUWest1,
+                    ServiceURL = "http://localhost:8000",
+                });
+            }
+
+            var dynamoDbFeatureToggleService = new DynamoDbFeatureToggleService(amazonDynamoDbClient, _configuration["FeatureToggleTableName"]);
+            dynamoDbFeatureToggleService.Initialize().GetAwaiter().GetResult();
+            var keyedFeatureToggles = KeyedFeatureToggleExtensions.GetFeatureToggles(dynamoDbFeatureToggleService);
+            dynamoDbFeatureToggleService.Migrate(keyedFeatureToggles).GetAwaiter().GetResult();
+
             services
                 .ConfigureDefaultForApi<Startup>(new StartupConfigureOptions
                 {
@@ -124,14 +139,11 @@ namespace Public.Api.Infrastructure
                     },
                     Swagger =
                     {
-                        ApiInfo = (provider, description) => new OpenApiInfo
+                        ApiInfo = (_, _) => new OpenApiInfo
                         {
                             Version = _marketingVersion,
                             Title = "Basisregisters Vlaanderen API",
-                            Description = GetApiLeadingText(
-                                provider.ApiVersionDescriptions.FirstOrDefault(x => !x.IsDeprecated),
-                                Convert.ToBoolean(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey)["IsFeedsVisible"]),
-                                Convert.ToBoolean(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey)["ProposeStreetName"])),
+                            Description = GetApiLeadingText(),
                             Contact = _contact,
                             License = new OpenApiLicense
                             {
@@ -156,7 +168,7 @@ namespace Public.Api.Infrastructure
                             typeof(ProposeStreetNameRequest).GetTypeInfo().Assembly.GetName().Name,
                             typeof(AddressRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ApproveAddressRequest).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(BuildingRegistry.Api.Oslo.Infrastructure.Options.ResponseOptions).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(ResponseOptions).GetTypeInfo().Assembly.GetName().Name,
                             typeof(PlanBuildingResponse).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(AttachAddressRequest).GetTypeInfo().Assembly.GetName().Name,
@@ -183,7 +195,7 @@ namespace Public.Api.Infrastructure
                                 x.CustomSchemaIds(type => SwashbuckleHelpers.GetCustomSchemaId(type) ??
                                                           SwashbuckleSchemaHelper.GetSchemaId(type));
 
-                                SwaggerExtensions.AddRoadRegistrySchemaFilters(x);
+                                x.AddRoadRegistrySchemaFilters();
                             }
                         }
                     },
@@ -274,7 +286,7 @@ namespace Public.Api.Infrastructure
                     ActionModelConventions =
                     {
                         new ApiVisibleActionModelConvention(),
-                        new FeatureToggleConvention(_configuration)
+                        new FeatureToggleConvention(keyedFeatureToggles)
                     }
                 }
                 .EnableJsonErrorActionFilterOption())
@@ -318,95 +330,10 @@ namespace Public.Api.Infrastructure
                 .ConfigureRegistryOptions<BuildingOptionsV2>(_configuration.GetSection("ApiConfiguration:BuildingRegistryV2"))
                 .ConfigureRegistryOptions<ParcelOptionsV2>(_configuration.GetSection("ApiConfiguration:ParcelRegistryV2"))
                 .ConfigureRegistryOptions<SuspiciousCasesOptionsV2>(_configuration.GetSection("ApiConfiguration:SuspiciousCases"))
-                .Configure<FeatureToggleOptions>(_configuration.GetSection(FeatureToggleOptions.ConfigurationKey))
                 .Configure<ExcludedRouteModelOptions>(_configuration.GetSection("ExcludedRoutes"))
-                .AddSingleton(c => new FeedsVisibleToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.IsFeedsVisible))
-                .AddSingleton(c => new ProposeStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ProposeStreetName))
-                .AddSingleton(c => new ApproveStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ApproveStreetName))
-                .AddSingleton(c => new RejectStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RejectStreetName))
-                .AddSingleton(c => new RetireStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RetireStreetName))
-                .AddSingleton(c => new RenameStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RenameStreetName))
-                .AddSingleton(c => new RemoveStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RemoveStreetName))
-                .AddSingleton(c => new CorrectStreetNameRetirementToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectStreetNameRetirement))
-                .AddSingleton(c => new CorrectStreetNameNamesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectStreetNameNames))
-                .AddSingleton(c => new CorrectStreetNameHomonymAdditionsToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectStreetNameHomonymAdditions))
-                .AddSingleton(c => new CorrectStreetNameApprovalToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectStreetNameApproval))
-                .AddSingleton(c => new CorrectStreetNameRejectionToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectStreetNameRejection))
-                .AddSingleton(c => new ProposeAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ProposeAddress))
-                .AddSingleton(c => new ApproveAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ApproveAddress))
-                .AddSingleton(c => new DeregulateAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.DeregulateAddress))
-                .AddSingleton(c => new RegularizeAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RegularizeAddress))
-                .AddSingleton(c => new RejectAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RejectAddress))
-                .AddSingleton(c => new RetireAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RetireAddress))
-                .AddSingleton(c => new RemoveAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RemoveAddress))
-                .AddSingleton(c => new ChangePostalCodeAddress(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangePostalCodeAddress))
-                .AddSingleton(c => new ChangePositionAddress(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangePositionAddress))
-                .AddSingleton(c => new CorrectHouseNumberAddress(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectHouseNumberAddress))
-                .AddSingleton(c => new CorrectBoxNumberAddress(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBoxNumberAddress))
-                .AddSingleton(c => new CorrectPostalCodeAddress(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectPostalCodeAddress))
-                .AddSingleton(c => new CorrectPositionAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectPositionAddress))
-                .AddSingleton(c => new CorrectApprovalAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectApprovalAddress))
-                .AddSingleton(c => new CorrectRejectionAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectRejectionAddress))
-                .AddSingleton(c => new CorrectRetirementAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectRetirementAddress))
-                .AddSingleton(c => new CorrectRegularizationAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectRegularizationAddress))
-                .AddSingleton(c => new CorrectDeregulationAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectDeregulationAddress))
-                .AddSingleton(c => new CorrectRemovalAddressToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectRemovalAddress))
-                .AddSingleton(c => new SearchAddressesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.SearchAddresses))
-                .AddSingleton(c => new ReaddressStreetNameAddressesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ReaddressStreetNameAddresses))
-
-                .AddSingleton(c => new PlanBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.PlanBuilding))
-                .AddSingleton(c => new MergeBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.MergeBuilding))
-                .AddSingleton(c => new BuildingUnderConstructionToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.BuildingUnderConstruction))
-                .AddSingleton(c => new CorrectBuildingUnderConstructionToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingUnderConstruction))
-                .AddSingleton(c => new RealizeBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RealizeBuilding))
-                .AddSingleton(c => new CorrectBuildingRealizationToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingRealization))
-                .AddSingleton(c => new NotRealizeBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.NotRealizeBuilding))
-                .AddSingleton(c => new CorrectBuildingNotRealizationToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingNotRealization))
-                .AddSingleton(c => new ChangeBuildingGeometryOutlineToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangeBuildingGeometryOutline))
-                .AddSingleton(c => new DemolishBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.DemolishBuilding))
-                .AddSingleton(c => new RemoveBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RemoveBuilding))
-                .AddSingleton(c => new ChangeGeometryBuilding(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangeGeometryBuilding))
-                .AddSingleton(c => new CorrectGeometryBuildingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectGeometryBuilding))
-                .AddSingleton(c => new BuildingGrbUploadJobToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.BuildingGrbUploadJob))
-
-                .AddSingleton(c => new PlanBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.PlanBuildingUnit))
-                .AddSingleton(c => new RealizeBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RealizeBuildingUnit))
-                .AddSingleton(c => new CorrectBuildingUnitRealizationToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingUnitRealization))
-                .AddSingleton(c => new NotRealizeBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.NotRealizeBuildingUnit))
-                .AddSingleton(c => new CorrectBuildingUnitNotRealizationToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingUnitNotRealization))
-                .AddSingleton(c => new RetireBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RetireBuildingUnit))
-                .AddSingleton(c => new CorrectBuildingUnitRetirementToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingUnitRetirement))
-                .AddSingleton(c => new CorrectBuildingUnitRemovalToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingUnitRemoval))
-                .AddSingleton(c => new AttachAddressBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.AttachAddressBuildingUnit))
-                .AddSingleton(c => new DetachAddressBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.DetachAddressBuildingUnit))
-                .AddSingleton(c => new RegularizeBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RegularizeBuildingUnit))
-                .AddSingleton(c => new CorrectBuildingUnitRegularizationToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingUnitRegularization))
-                .AddSingleton(c => new DeregulateBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.DeregulateBuildingUnit))
-                .AddSingleton(c => new CorrectBuildingUnitDeregulationToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingUnitDeregulation))
-                .AddSingleton(c => new ChangeFunctionBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangeFunctionBuildingUnit))
-                .AddSingleton(c => new CorrectFunctionBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectFunctionBuildingUnit))
-                .AddSingleton(c => new CorrectBuildingUnitPositionToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CorrectBuildingUnitPosition))
-                .AddSingleton(c => new RemoveBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RemoveBuildingUnit))
-                .AddSingleton(c => new MoveBuildingUnitToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.MoveBuildingUnit))
-
-                .AddSingleton(c => new AttachAddressParcelToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.AttachAddressParcel))
-                .AddSingleton(c => new DetachAddressParcelToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.DetachAddressParcel))
-
-                .AddSingleton(c => new TicketingToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.Ticketing))
-
-                .AddSingleton(c => new ChangeRoadSegmentAttributesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangeRoadSegmentAttributes))
-                .AddSingleton(c => new ChangeRoadSegmentDynamicAttributesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangeRoadSegmentDynamicAttributes))
-                .AddSingleton(c => new ChangeRoadSegmentOutlineGeometryToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.ChangeRoadSegmentOutlineGeometry))
-                .AddSingleton(c => new CreateRoadSegmentOutlineToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.CreateRoadSegmentOutline))
-                .AddSingleton(c => new DeleteRoadSegmentOutlineToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.DeleteRoadSegmentOutline))
-                .AddSingleton(c => new LinkRoadSegmentStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.LinkRoadSegmentStreetName))
-                .AddSingleton(c => new UnlinkRoadSegmentStreetNameToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.UnlinkRoadSegmentStreetName))
-                .AddSingleton(c => new GetRoadSegmentToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.GetRoadSegment))
-                .AddSingleton(c => new GetRoadOrganizationsToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.GetRoadOrganizations))
-                .AddSingleton(c => new RoadJobsToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.RoadJobs))
-
-                .AddSingleton(c => new ListSuspiciousCasesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.GetSuspiciousCases))
-                .AddSingleton(c => new DetailSuspiciousCasesToggle(c.GetRequiredService<IOptions<FeatureToggleOptions>>().Value.GetSuspiciousCases));
+                .AddSingleton<IAmazonDynamoDB>(_ => amazonDynamoDbClient)
+                .AddSingleton<IDynamicFeatureToggleService>(_ => dynamoDbFeatureToggleService)
+                .RegisterFeatureToggles();
 
             services
                 .RemoveAll<IApiControllerSpecification>();
@@ -428,10 +355,6 @@ namespace Public.Api.Infrastructure
                 .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .Where(t => t.IsSubClassOfGeneric(typeof(RegistryApiController<>)))
                 .WithAttributeFiltering();
-
-            // containerBuilder
-            //     .RegisterType<FeedController>()
-            //     .WithAttributeFiltering();
 
             containerBuilder
                 .RegisterType<FeedV2Controller>()
@@ -649,14 +572,9 @@ namespace Public.Api.Infrastructure
             return name != null && (name.Contains("Registry.Api") || name.Contains("RoadRegistry") || name.Contains("IntegrationDb"));
         }
 
-        private string GetApiLeadingText(ApiVersionDescription description, bool isFeedsVisibleToggle, bool isProposeStreetName)
+        private string GetApiLeadingText()
         {
             var text = new StringBuilder(1000);
-
-            // Todo: below should be used once we deprecate v1.
-            // var baseUrlWithGroupName = BaseUrl.Combine(description.GroupName);
-            var baseUrlWithGroupName = BaseUrl.Combine("v2");
-            var siteUrlWithDocs = SiteUrl.Combine("documentatie");
 
 text.Append(
 $@"# Introductie

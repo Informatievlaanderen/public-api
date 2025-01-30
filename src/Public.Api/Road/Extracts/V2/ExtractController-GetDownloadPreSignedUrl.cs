@@ -4,6 +4,7 @@ namespace Public.Api.Road.Extracts.V2
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.FeatureToggles;
     using Common.Infrastructure.Controllers.Attributes;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
@@ -16,8 +17,14 @@ namespace Public.Api.Road.Extracts.V2
         public async Task<ActionResult> GetDownloadPreSignedUrlForExtract(
             [FromRoute] string downloadId,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] RoadExtractGetDownloadToggle toggle,
             CancellationToken cancellationToken = default)
         {
+            if (!toggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
+
             var value = await GetFromBackendWithBadRequestAsync(
                 AcceptType.Json,
                 BackendRequest,

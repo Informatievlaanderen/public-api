@@ -14,6 +14,7 @@ namespace Public.Api.RoadSegment
     using Swashbuckle.AspNetCore.Filters;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.FeatureToggles;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class RoadSegmentController

@@ -4,7 +4,7 @@ namespace Public.Api.Road.Extracts.V2
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Common.Infrastructure;
+    using Common.FeatureToggles;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -23,7 +23,7 @@ namespace Public.Api.Road.Extracts.V2
         public async Task<IActionResult> RoadExtractCreateJobV2(
             [FromRoute] string downloadId,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] RoadJobsToggle featureToggle,
+            [FromServices] RoadExtractCreateJobToggle featureToggle,
             CancellationToken cancellationToken = default)
         {
             if (!featureToggle.FeatureEnabled)

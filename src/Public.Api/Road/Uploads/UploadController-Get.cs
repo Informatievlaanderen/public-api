@@ -6,6 +6,7 @@ namespace Public.Api.Road.Uploads
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
+    using Common.FeatureToggles;
 
     public partial class UploadController
     {
@@ -13,10 +14,13 @@ namespace Public.Api.Road.Uploads
         public async Task<IActionResult> RoadGetUpload(
             [FromRoute] string identifier,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] RoadJobsToggle featureToggle,
             CancellationToken cancellationToken)
         {
-            HttpRequestMessage BackendRequest() =>
-                CreateBackendHttpRequestMessage(HttpMethod.Get, $"upload/{identifier}");
+            if (!featureToggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
 
             var response = await GetFromBackendWithBadRequestAsync(
                 _httpClient,
@@ -27,6 +31,9 @@ namespace Public.Api.Road.Uploads
             );
 
             return response.ToActionResult();
+
+            HttpRequestMessage BackendRequest() =>
+                CreateBackendHttpRequestMessage(HttpMethod.Get, $"upload/{identifier}");
         }
     }
 }
