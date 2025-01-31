@@ -13,6 +13,7 @@ namespace Common.Infrastructure.Controllers
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Middleware;
+    using Be.Vlaanderen.Basisregisters.BasicApiProblem;
     using Extensions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -315,7 +316,14 @@ namespace Common.Infrastructure.Controllers
 
             handleNotOkResponseAction(response.StatusCode);
 
-            throw new ApiProblemDetailsException("Fout bij de bron.", (int)response.StatusCode, response.GetProblemDetails(), response.ErrorException);
+            if (response.Content is not null)
+            {
+                throw new ApiProblemDetailsException("Fout bij de bron.", (int)response.StatusCode, response.GetProblemDetails(), response.ErrorException);
+            }
+            else
+            {
+                throw new ApiProblemDetailsException("Fout bij de bron.", (int)response.StatusCode, new ExceptionProblemDetails(), response.ErrorException);
+            }
         }
 
         private async Task<RestResponse> ExecuteRequestAsync(
