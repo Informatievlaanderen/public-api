@@ -1,3 +1,10 @@
+## [6.17.6](https://github.com/informatievlaanderen/public-api/compare/v6.17.5...v6.17.6) (2025-01-31)
+
+
+### Bug Fixes
+
+* nullref problem details ([ff5841a](https://github.com/informatievlaanderen/public-api/commit/ff5841aa36e099cf8b37f50d733326ce2603de1d))
+
 ## [6.17.5](https://github.com/informatievlaanderen/public-api/compare/v6.17.4...v6.17.5) (2025-01-27)
 
 ## [6.17.4](https://github.com/informatievlaanderen/public-api/compare/v6.17.3...v6.17.4) (2025-01-24)
