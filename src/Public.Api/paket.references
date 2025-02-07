@@ -13,9 +13,7 @@ Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo
 Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions
 Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo
 Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions
-Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice
 Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api
-Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions
 Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions
 
 Be.Vlaanderen.Basisregisters.GrAr.Common
