@@ -26,7 +26,7 @@
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions\content\BuildingRegistry.Api.BackOffice.Abstractions.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo\content\ParcelRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions\content\ParcelRegistry.Api.BackOffice.Abstractions.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Abstractions\content\RoadRegistry.BackOffice.Abstractions.xml" CopyToOutputDirectory="Always" />
+    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api\content\RoadRegistry.BackOffice.Abstractions.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api\content\RoadRegistry.BackOffice.Api.xml" CopyToOutputDirectory="Always" />
     <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions\content\Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions.xml" CopyToOutputDirectory="Always" />
 
