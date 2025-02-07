@@ -1,3 +1,10 @@
+# [6.18.0](https://github.com/informatievlaanderen/public-api/compare/v6.17.6...v6.18.0) (2025-02-07)
+
+
+### Features
+
+* update road packages to add link streetname to attributes endpoint ([e002b33](https://github.com/informatievlaanderen/public-api/commit/e002b33dea108e87a20f8eb03d284cf9b240be52))
+
 ## [6.17.6](https://github.com/informatievlaanderen/public-api/compare/v6.17.5...v6.17.6) (2025-01-31)
 
 
