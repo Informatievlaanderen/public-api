@@ -1,3 +1,10 @@
+# [6.19.0](https://github.com/informatievlaanderen/public-api/compare/v6.18.0...v6.19.0) (2025-02-14)
+
+
+### Features
+
+* **address:** add bulk correct boxnumbers GAWR-6751 ([fac3c0e](https://github.com/informatievlaanderen/public-api/commit/fac3c0e6aeaffccae136e1215bb5b338811ae4d1))
+
 # [6.18.0](https://github.com/informatievlaanderen/public-api/compare/v6.17.6...v6.18.0) (2025-02-07)
 
 
