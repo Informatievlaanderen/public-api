@@ -99,6 +99,15 @@
         { }
     }
 
+    public sealed class CorrectBoxNumbersAddress : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "AddressCorrectBoxNumbers";
+
+        public CorrectBoxNumbersAddress(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            :base(dynamicFeatureToggleService)
+        { }
+    }
+
     public sealed class CorrectPostalCodeAddress : KeyedFeatureToggleBase, IKeyedFeatureToggle
     {
         public override string Key => "AddressCorrectPostalCode";
