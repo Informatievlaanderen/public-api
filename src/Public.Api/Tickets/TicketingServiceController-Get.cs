@@ -8,6 +8,7 @@ namespace Public.Api.Tickets
     using Be.Vlaanderen.Basisregisters.Sqs.Responses;
     using Infrastructure;
     using Infrastructure.Swagger;
+    using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -43,6 +44,8 @@ namespace Public.Api.Tickets
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(TicketNotFoundResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
+        [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
+        [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = 0, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> GetTicket(
             [FromRoute] Guid ticketId,
             [FromServices] IActionContextAccessor actionContextAccessor,
