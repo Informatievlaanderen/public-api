@@ -1,3 +1,10 @@
+## [6.20.1](https://github.com/informatievlaanderen/public-api/compare/v6.20.0...v6.20.1) (2025-03-19)
+
+
+### Bug Fixes
+
+* **road:** pass Location header back to client ([6963591](https://github.com/informatievlaanderen/public-api/commit/6963591e22d774c43db3a1a57a631f096a3a8946))
+
 # [6.20.0](https://github.com/informatievlaanderen/public-api/compare/v6.19.0...v6.20.0) (2025-03-19)
 
 
