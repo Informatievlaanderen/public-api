@@ -1,3 +1,15 @@
+# [6.20.0](https://github.com/informatievlaanderen/public-api/compare/v6.19.0...v6.20.0) (2025-03-19)
+
+
+### Bug Fixes
+
+* set no cache explicit for ticketing endpoint ([59e8b9a](https://github.com/informatievlaanderen/public-api/commit/59e8b9a347d8a19f7ad92d891891eadd4249b84c))
+
+
+### Features
+
+* **road:** add delete segments endpoint ([fac81fc](https://github.com/informatievlaanderen/public-api/commit/fac81fc19b87d779f2d1d80046e0b8eb1eedf350))
+
 # [6.19.0](https://github.com/informatievlaanderen/public-api/compare/v6.18.0...v6.19.0) (2025-02-14)
 
 
