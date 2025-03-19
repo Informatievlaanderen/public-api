@@ -45,6 +45,15 @@
         { }
     }
 
+    public sealed class DeleteRoadSegmentsToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadSegmentDeleteSegments";
+
+        public DeleteRoadSegmentsToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
     public sealed class LinkRoadSegmentStreetNameToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
     {
         public override string Key => "RoadSegmentLinkStreetName";
