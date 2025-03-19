@@ -31,7 +31,7 @@ namespace Public.Api.RoadSegment.V2
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet(GetRoadSegmentRoute, Name = nameof(GetRoadSegmentV2))]
-        [ApiOrder(ApiOrder.Road.RoadSegment + 1)]
+        [ApiOrder(ApiOrder.Road.RoadSegment.Get)]
         [ProducesResponseType(typeof(GetRoadSegmentResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]

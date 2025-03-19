@@ -72,7 +72,20 @@ namespace Public.Api.Infrastructure.Swagger
             public const int Information = ChangeFeed + 30;
             public const int RoadUpload = ChangeFeed + 40;
             public const int Organization = ChangeFeed + 50;
-            public const int RoadSegment = ChangeFeed + 60;
+            public static class RoadSegment
+            {
+                public const int Root = ChangeFeed + 60;
+
+                public const int Get = Root + 1;
+                public const int ChangeAttributes = Get + 1;
+                public const int ChangeDynamicAttributes = ChangeAttributes + 1;
+                public const int CreateOutline = ChangeDynamicAttributes + 1;
+                public const int ChangeOutlineGeometry = CreateOutline + 1;
+                public const int DeleteOutline = ChangeOutlineGeometry + 1;
+                public const int DeleteRoadSegments = DeleteOutline + 1;
+                public const int LinkStreetName = DeleteRoadSegments + 1;
+                public const int UnlinkStreetName = LinkStreetName + 1;
+            }
             public const int RoadGrb = ChangeFeed + 70;
         }
 

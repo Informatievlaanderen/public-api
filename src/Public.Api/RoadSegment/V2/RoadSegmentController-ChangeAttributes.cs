@@ -35,7 +35,7 @@ namespace Public.Api.RoadSegment.V2
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpPost(ChangeRoadSegmentAttributesRoute, Name = nameof(ChangeRoadSegmentAttributesV2))]
-        [ApiOrder(ApiOrder.Road.RoadSegment + 2)]
+        [ApiOrder(ApiOrder.Road.RoadSegment.ChangeAttributes)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]

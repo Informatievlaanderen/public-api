@@ -22,7 +22,7 @@ namespace Public.Api.Road.Organizations
     [ApiExplorerSettings(GroupName = "Wegen")]
     [ApiConsumes(EndpointType.BackOffice)]
     [ApiProduces(EndpointType.BackOffice)]
-    [ApiOrder(ApiOrder.Road.RoadSegment)]
+    [ApiOrder(ApiOrder.Road.Organization)]
     public partial class OrganizationsController : RoadRegistryApiController<OrganizationsController>
     {
         protected override string NotFoundExceptionMessage => "Onbestaande organisatie.";

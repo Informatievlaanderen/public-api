@@ -23,7 +23,7 @@ namespace Public.Api.RoadSegment.V2
     [ApiExplorerSettings(GroupName = "Wegen")]
     [ApiConsumes(EndpointType.BackOffice)]
     [ApiProduces(EndpointType.BackOffice)]
-    [ApiOrder(ApiOrder.Road.RoadSegment)]
+    [ApiOrder(ApiOrder.Road.RoadSegment.Root)]
     public partial class RoadSegmentControllerV2 : RoadRegistryApiController<RoadSegmentControllerV2>
     {
         public RoadSegmentControllerV2(
