@@ -64,7 +64,7 @@ namespace Public.Api.RoadSegment.V2
                 problemDetailsHelper,
                 cancellationToken: cancellationToken);
 
-            return new BackendResponseResult(response);
+            return new BackendResponseResult(response, BackendResponseResultOptions.ForBackOffice());
 
             RestRequest BackendRequest() =>
                 CreateBackendRestRequest(Method.Post, DeleteRoadSegmentsRoute)
