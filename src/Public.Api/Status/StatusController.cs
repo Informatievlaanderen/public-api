@@ -17,7 +17,7 @@ namespace Public.Api.Status
     using AcceptTypes = Be.Vlaanderen.Basisregisters.Api.AcceptTypes;
     using Version = Infrastructure.Version.Version;
 
-   // [ApiVersion(Version.Current)]
+    // [ApiVersion(Version.Current)]
     [ApiVersion(Version.V2)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("status")]
@@ -120,7 +120,10 @@ namespace Public.Api.Status
         /// <summary>
         /// Vraag de status van de producers op.
         /// </summary>
-        /// <param name="clients"></param>
+        /// <param name="producerClients"></param>
+        /// <param name="snapshotClients"></param>
+        /// <param name="ldesClients"></param>
+        /// <param name="state"></param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als opvragen van de status van de producers gelukt is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
@@ -130,54 +133,22 @@ namespace Public.Api.Status
         public async Task<IActionResult> GetProducerStatus(
             [FromServices] IEnumerable<ProducerStatusClient> producerClients,
             [FromServices] IEnumerable<ProducerSnapshotOsloStatusClient> snapshotClients,
+            [FromServices] IEnumerable<ProducerLdesStatusClient> ldesClients,
             [FromQuery] string? state = null,
             CancellationToken cancellationToken = default)
         {
-            var keyValuePairsProducer =
-                (await producerClients.GetStatuses(cancellationToken)).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-            var keyValuePairsSnapshot = await snapshotClients.GetStatuses(cancellationToken);
+            var registryStatusResponses = new Dictionary<string, RegistryProjectionStatusResponse?>();
 
-            foreach (var (key, value) in keyValuePairsSnapshot)
-            {
-                try
-                {
-                    if (keyValuePairsProducer.ContainsKey(key) &&
-                        keyValuePairsProducer[key] is null && value is null)
-                    {
-                        continue;
-                    }
+            var producerRegistryStatuses = await producerClients.GetStatuses(cancellationToken);
+            AddRegistryStatusResponses(producerRegistryStatuses);
 
-                    if (keyValuePairsProducer.ContainsKey(key))
-                    {
-                        if (keyValuePairsProducer[key] is null && value is not null)
-                        {
-                            keyValuePairsProducer[key] = value;
-                        }
-                        else
-                        {
-                            keyValuePairsProducer[key].Projections =
-                                keyValuePairsProducer[key].Projections.Concat(value.Projections);
-                        }
-                    }
-                    else
-                    {
-                        keyValuePairsProducer.Add(key, value);
-                    }
-                }
-                catch (Exception)
-                {
-                    if (keyValuePairsProducer.ContainsKey(key))
-                    {
-                        keyValuePairsProducer[key] = null;
-                    }
-                    else
-                    {
-                        keyValuePairsProducer.Add(key, null);
-                    }
-                }
-            }
+            var snapshotRegistryStatuses = await snapshotClients.GetStatuses(cancellationToken);
+            AddRegistryStatusResponses(snapshotRegistryStatuses);
 
-            var projectionStatuses = ProjectionStatusResponse.From(keyValuePairsProducer);
+            var ldesRegistryStatuses = await ldesClients.GetStatuses(cancellationToken);
+            AddRegistryStatusResponses(ldesRegistryStatuses);
+
+            var projectionStatuses = ProjectionStatusResponse.From(registryStatusResponses);
 
             if (state is not null)
             {
@@ -190,6 +161,38 @@ namespace Public.Api.Status
             }
 
             return Ok(projectionStatuses);
+
+            void AddRegistryStatusResponses(IEnumerable<KeyValuePair<string, RegistryProjectionStatusResponse?>> registryStatuses)
+            {
+                foreach (var (key, value) in registryStatuses)
+                {
+                    try
+                    {
+                        if (!registryStatusResponses.ContainsKey(key))
+                        {
+                            registryStatusResponses.Add(key, value);
+                            continue;
+                        }
+
+                        if (value is null)
+                        {
+                            continue;
+                        }
+
+                        if (registryStatusResponses[key] is null)
+                        {
+                            registryStatusResponses[key] = value;
+                            continue;
+                        }
+
+                        registryStatusResponses[key]!.Projections = registryStatusResponses[key]!.Projections.Concat(value.Projections);
+                    }
+                    catch
+                    {
+                        registryStatusResponses[key] = null;
+                    }
+                }
+            }
         }
 
         /// <summary>

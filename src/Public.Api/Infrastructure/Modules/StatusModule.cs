@@ -31,6 +31,7 @@ namespace Public.Api.Infrastructure.Modules
                 RegisterSyndicationStatusClient(key, value.ProjectionsUrl, builder);
                 RegisterProducerStatusClient(key, value.ProducerUrl, builder);
                 RegisterProducerSnapshotOsloStatusClient(key, value.ProducerSnapshotOsloUrl, builder);
+                RegisterProducerLdesStatusClient(key, value.ProducerLdesUrl, builder);
                 RegisterConsumerStatusClient(key, value.ProjectionsUrl, builder);
                 RegisterImporterGrbStatusClient(key, value.ImporterGrbUrl, builder);
                 RegisterBackOfficeStatusClient(key, value.ProjectionsUrl, builder);
@@ -131,6 +132,22 @@ namespace Public.Api.Infrastructure.Modules
 
             builder
                 .Register(context => new ProducerSnapshotOsloStatusClient(name, context.ResolveNamed<RestClient>(key)))
+                .AsSelf();
+        }
+
+        private void RegisterProducerLdesStatusClient(
+            string name,
+            string baseUrl,
+            ContainerBuilder builder)
+        {
+            if (string.IsNullOrWhiteSpace(baseUrl))
+                return;
+
+            var key = $"ProducerLdes-{name}";
+            RegisterKeyedRestClient(baseUrl, key, builder);
+
+            builder
+                .Register(context => new ProducerLdesStatusClient(name, context.ResolveNamed<RestClient>(key)))
                 .AsSelf();
         }
 
