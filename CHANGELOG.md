@@ -1,3 +1,10 @@
+# [6.21.0](https://github.com/informatievlaanderen/public-api/compare/v6.20.1...v6.21.0) (2025-03-27)
+
+
+### Features
+
+* add ldes producer status clients ([e09124f](https://github.com/informatievlaanderen/public-api/commit/e09124f3507594c02427b82c043e63089d817e47))
+
 ## [6.20.1](https://github.com/informatievlaanderen/public-api/compare/v6.20.0...v6.20.1) (2025-03-19)
 
 
