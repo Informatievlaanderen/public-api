@@ -27,7 +27,7 @@ namespace Public.Api.Address.Oslo
         private const int DefaultSearchLimit = 10;
 
         /// <summary>
-        /// Zoeken naar adressen of straatnamen via een query. (PUBLIC BETA)
+        /// Zoeken naar adressen of straatnamen via een query.
         /// </summary>
         /// <param name="query">De zoek query.</param>
         /// <param name="municipalityName">Filter op de gemeentenaam van de zoek query (exact) (optioneel).</param>
@@ -68,8 +68,11 @@ namespace Public.Api.Address.Oslo
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         [HttpGet("adressen/zoeken", Name = nameof(SearchAddresses))]
         [SwaggerOperation(Description = "Zoek naar een straatnaam of adres met/zonder busnummer(s) binnen een gemeente of heel Vlaanderen.<br/>" +
-                                        "Autocompletion bevindt zich in public beta. Tijdens de public beta kan de functionaliteit nog veranderen en kunnen er onverwachte fouten of problemen optreden.<br/>" +
-                                        "Prestaties kunnen variëren en kunnen in de toekomst wijzigen naarmate updates en aanpassingen worden doorgevoerd.")]
+                                        "Om te voorkomen dat de server reageert met een 429 Too Many Requests-fout bij een te hoge frequentie van verzoeken, gelden de volgende richtlijnen voor afnemers:" +
+                                        "<ul>" +
+                                            "<li>Wacht minimaal 300 milliseconden na de laatste toetsaanslag voordat een verzoek naar het endpoint wordt gestuurd. Deze zogeheten debounce-periode sluit aan bij de gemiddelde menselijke reactietijd en wordt algemeen aanbevolen voor zoekinterfaces.</li>" +
+                                            "<li>Pas lokale filters toe (zoals gemeente of postcode) om de omvang van de zoekopdracht te beperken en de belasting van het systeem te verlagen.</li>" +
+                                        "</ul>")]
         public async Task<IActionResult> SearchAddresses(
             [FromQuery(Name = "q")] string? query,
             [FromQuery(Name="gemeenteNaam")] string? municipalityName,
