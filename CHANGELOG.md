@@ -1,3 +1,10 @@
+## [6.22.1](https://github.com/informatievlaanderen/public-api/compare/v6.22.0...v6.22.1) (2025-04-30)
+
+
+### Bug Fixes
+
+* update road #GAWR-6877 ([d9d6c2c](https://github.com/informatievlaanderen/public-api/commit/d9d6c2c80a18526d1ecdd5c35f0307e207c805ef)), closes [#GAWR-6877](https://github.com/informatievlaanderen/public-api/issues/GAWR-6877)
+
 # [6.22.0](https://github.com/informatievlaanderen/public-api/compare/v6.21.1...v6.22.0) (2025-04-30)
 
 
