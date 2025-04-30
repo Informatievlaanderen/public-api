@@ -250,7 +250,7 @@ NUGET
       CsvHelper (>= 31.0.2)
     Be.Vlaanderen.Basisregisters.ProblemDetails (9.0)
       System.Reflection.Metadata (>= 8.0)
-    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (4.27) - copy_content_to_output_dir: always
+    Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api (4.30) - copy_content_to_output_dir: always
       AspNetCore.HealthChecks.SqlServer (>= 8.0)
       AWSSDK.Core (>= 3.7.302.20)
       Be.Vlaanderen.Basisregisters.Api (>= 23.1)
