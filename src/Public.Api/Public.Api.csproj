@@ -1,52 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
-  <Import Project="..\..\packages\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\Be.Vlaanderen.Basisregisters.Build.Pipeline.Settings.App.props" />
+  <Import Project="..\..\.build\Be.Vlaanderen.Basisregisters.Build.Pipeline\Content\Be.Vlaanderen.Basisregisters.Build.Pipeline.Settings.App.props" />
   <PropertyGroup>
     <ServerGarbageCollection>true</ServerGarbageCollection>
     <EnableDefaultContentItems>false</EnableDefaultContentItems>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\net8.0\Public.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\net9.0\Public.Api.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;1591</NoWarn>
-    <DefineConstants>TRACE;DEBUG;NETCOREAPP;NET8_0</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NETCOREAPP;NET9_0</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\net8.0\Public.Api.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\net9.0\Public.Api.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo\content\MunicipalityRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo\content\PostalRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo\content\StreetNameRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions\content\StreetNameRegistry.Api.BackOffice.Abstractions.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo\content\AddressRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions\content\AddressRegistry.Api.BackOffice.Abstractions.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo\content\BuildingRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions\content\BuildingRegistry.Api.BackOffice.Abstractions.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo\content\ParcelRegistry.Api.Oslo.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions\content\ParcelRegistry.Api.BackOffice.Abstractions.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api\content\RoadRegistry.BackOffice.Abstractions.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api\content\RoadRegistry.BackOffice.Api.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions\content\Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions.xml" CopyToOutputDirectory="Always" />
-
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Common\lib\netstandard2.1\Be.Vlaanderen.Basisregisters.GrAr.Common.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Edit\lib\netstandard2.1\Be.Vlaanderen.Basisregisters.GrAr.Edit.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Legacy\lib\netstandard2.1\Be.Vlaanderen.Basisregisters.GrAr.Legacy.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.GrAr.Provenance\lib\netstandard2.1\Be.Vlaanderen.Basisregisters.GrAr.Provenance.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.ProblemDetails\lib\net8.0\Be.Vlaanderen.Basisregisters.ProblemDetails.xml" CopyToOutputDirectory="Always" />
-    <Content Include="..\..\packages\Be.Vlaanderen.Basisregisters.TicketingService.Abstractions\lib\netstandard2.1\TicketingService.Abstractions.xml" CopyToOutputDirectory="Always" />
     <Content Include="Be.Vlaanderen.Basisregisters.Utilities.Rfc3339DateTimeOffset.xml" CopyToOutputDirectory="Always" />
   </ItemGroup>
+
   <ItemGroup>
     <Content Include="Dockerfile" CopyToOutputDirectory="Always" />
     <Content Include="appsettings.json" CopyToOutputDirectory="Always" />
     <Content Include="appsettings.*.json" CopyToOutputDirectory="Always" />
     <Content Include="init.sh" CopyToOutputDirectory="Always" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
+
   <ItemGroup>
     <None Update="wwwroot\**\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -59,5 +42,47 @@
       </ReferencePath>
     </ItemGroup>
   </Target>
-  <Import Project="..\..\.paket\Paket.Restore.targets" />
+
+  <ItemGroup>
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.Api" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.Auth.AcmIdm" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.CommandHandling" />
+
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions" GeneratePathProperty="true" />
+
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Common" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Legacy" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Edit" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Provenance" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Import" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.EventHandling" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.ProblemDetails" GeneratePathProperty="true" />
+    <!-- <PackageReference Include="Be.Vlaanderen.Basisregisters.Sqs" /> -->
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.TicketingService.Abstractions" />
+
+    <PackageReference Include="Datadog.Trace.Bundle" />
+
+    <PackageReference Include="AWSSDK.DynamoDBv2" />
+    <PackageReference Include="AWSSDK.S3" />
+    <!-- <PackageReference Include="Marvin.Cache.Headers" />
+    <PackageReference Include="StackExchange.Redis" /> -->
+  </ItemGroup>
+
+<Target Name="_ResolveCopyLocalNuGetPackageXmls" AfterTargets="ResolveReferences">
+  <ItemGroup>
+    <ReferenceCopyLocalPaths Include="@(ReferenceCopyLocalPaths->'%(RootDir)%(Directory)%(Filename).xml')" Condition="Exists('%(RootDir)%(Directory)%(Filename).xml')" />
+  </ItemGroup>
+</Target>
 </Project>
