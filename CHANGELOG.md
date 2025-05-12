@@ -1,3 +1,10 @@
+# [6.23.0](https://github.com/informatievlaanderen/public-api/compare/v6.22.1...v6.23.0) (2025-05-12)
+
+
+### Features
+
+* add remove measured building ([d0114d7](https://github.com/informatievlaanderen/public-api/commit/d0114d763f405fb460f2efd1255d2040b8d36417))
+
 ## [6.22.1](https://github.com/informatievlaanderen/public-api/compare/v6.22.0...v6.22.1) (2025-04-30)
 
 
