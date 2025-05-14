@@ -77,7 +77,7 @@ namespace Public.Api.Building.BackOffice
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext!);
 
-            RestRequest BackendRequest() => new RestRequest(RemoveBuildingRoute, Method.Post)
+            RestRequest BackendRequest() => new RestRequest(RemoveMeasuredBuildingRoute, Method.Post)
                 .AddParameter("objectId", objectId, ParameterType.UrlSegment)
                 .AddHeaderIfMatch(ifMatch)
                 .AddHeaderAuthorization(actionContextAccessor);
