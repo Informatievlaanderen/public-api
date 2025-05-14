@@ -1,3 +1,10 @@
+## [6.23.1](https://github.com/informatievlaanderen/public-api/compare/v6.23.0...v6.23.1) (2025-05-14)
+
+
+### Bug Fixes
+
+* remove measured building route ([89d2d8b](https://github.com/informatievlaanderen/public-api/commit/89d2d8bae192cff0f5008a5a37519a2c204c8a75))
+
 # [6.23.0](https://github.com/informatievlaanderen/public-api/compare/v6.22.1...v6.23.0) (2025-05-12)
 
 
