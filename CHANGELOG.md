@@ -1,3 +1,10 @@
+## [6.23.3](https://github.com/informatievlaanderen/public-api/compare/v6.23.2...v6.23.3) (2025-05-20)
+
+
+### Bug Fixes
+
+* roadsegmentcategory contract GAWR-6921 ([8e78906](https://github.com/informatievlaanderen/public-api/commit/8e78906658494709bccd817cb90283b444b45c0a))
+
 ## [6.23.2](https://github.com/informatievlaanderen/public-api/compare/v6.23.1...v6.23.2) (2025-05-20)
 
 ## [6.23.1](https://github.com/informatievlaanderen/public-api/compare/v6.23.0...v6.23.1) (2025-05-14)
