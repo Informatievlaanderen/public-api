@@ -17,10 +17,10 @@ namespace Public.Api.RoadSegment
     using Road;
 
     [ApiVisible]
-    [ApiVersion(Version.V1)]
+    [ApiVersion(Version.V1, Deprecated = true)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
-    [ApiExplorerSettings(GroupName = "Wegen")]
+    [ApiExplorerSettings(GroupName = "Wegen (v1)")]
     [ApiConsumes(EndpointType.BackOffice)]
     [ApiProduces(EndpointType.BackOffice)]
     [ApiOrder(ApiOrder.Road.RoadSegment.Root)]
