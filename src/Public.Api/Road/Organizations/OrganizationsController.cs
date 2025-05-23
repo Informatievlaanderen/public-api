@@ -16,10 +16,10 @@ namespace Public.Api.Road.Organizations
     using RestSharp;
 
     [ApiVisible]
-    [ApiVersion(Version.V1)]
+    [ApiVersion(Version.V1, Deprecated = true)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
-    [ApiExplorerSettings(GroupName = "Wegen")]
+    [ApiExplorerSettings(GroupName = "Wegen (v1)")]
     [ApiConsumes(EndpointType.BackOffice)]
     [ApiProduces(EndpointType.BackOffice)]
     [ApiOrder(ApiOrder.Road.Organization)]
