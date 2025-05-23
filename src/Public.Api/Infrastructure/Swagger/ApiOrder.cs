@@ -62,11 +62,9 @@ namespace Public.Api.Infrastructure.Swagger
             public const int Edit = Base + 30;
         }
 
-        public const int TicketingService = Parcel.Base + 100;
-
         public static class Road
         {
-            public const int ChangeFeed = TicketingService + 100;
+            public const int ChangeFeed = Parcel.Base + 100;
             public const int Download = ChangeFeed + 10;
             public const int RoadExtract = ChangeFeed + 20;
             public const int Information = ChangeFeed + 30;
@@ -98,13 +96,10 @@ namespace Public.Api.Infrastructure.Swagger
             public const int V2 = Base + 10;
         }
 
-        public const int CrabHouseNumber = SuspiciousCases.V2 + 100;
-        public const int CrabSubaddress = CrabHouseNumber + 5;
-        public const int CrabBuildings = CrabSubaddress + 5;
+        public const int Status = SuspiciousCases.V2 + 100;
 
-        public const int Status = CrabHouseNumber + 100;
 
-        public const int AddressRepresentation = Status + 100;
+        public const int TicketingService = SuspiciousCases.V2 + 500;
     }
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
