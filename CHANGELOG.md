@@ -1,3 +1,20 @@
+# [7.0.0](https://github.com/informatievlaanderen/public-api/compare/v6.23.4...v7.0.0) (2025-05-26)
+
+
+### Bug Fixes
+
+* road order + seperate v1 wegen ([957ecff](https://github.com/informatievlaanderen/public-api/commit/957ecffe5afa594cabbb92ecf57534ced90c6e2c))
+
+
+### Code Refactoring
+
+* use renovate and nuget + update pipeline ([f34a424](https://github.com/informatievlaanderen/public-api/commit/f34a4240db1c4d9f6a9c7449965893417481a741))
+
+
+### BREAKING CHANGES
+
+* update to dotnet 9
+
 ## [6.23.4](https://github.com/informatievlaanderen/public-api/compare/v6.23.3...v6.23.4) (2025-05-22)
 
 ## [6.23.3](https://github.com/informatievlaanderen/public-api/compare/v6.23.2...v6.23.3) (2025-05-20)
