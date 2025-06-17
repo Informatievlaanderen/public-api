@@ -19,7 +19,7 @@
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo" Version="5.1.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions" Version="5.1.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo" Version="6.0.2" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions" Version="6.0.2" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions" Version="6.1.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api" Version="4.31.5" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions" Version="3.0.2" />
 
