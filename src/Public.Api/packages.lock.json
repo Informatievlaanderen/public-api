@@ -280,9 +280,9 @@
       },
       "Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo": {
         "type": "Direct",
-        "requested": "[6.0.2, )",
-        "resolved": "6.0.2",
-        "contentHash": "jDr4tK7iyPRbqf1sb5SakPhJel1YAg7dtQsOYHhlwYnaeCt473uD+UvBRE0QdFW8+YNTjhJ+6Fj3yAdMUdWK5w==",
+        "requested": "[6.1.0, )",
+        "resolved": "6.1.0",
+        "contentHash": "VERJe5UKgQu1J1udXQWSpNiQ9mFlEeRwyqtbluYot6FB4eiQ6cdTRJRlWxDDVW4W4GEp7+zkEE8Xxvt0YG78oQ==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Be.Vlaanderen.Basisregisters.Api": "24.0.0",
