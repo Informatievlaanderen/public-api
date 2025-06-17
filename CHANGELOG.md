@@ -1,3 +1,10 @@
+# [7.1.0](https://github.com/informatievlaanderen/public-api/compare/v7.0.0...v7.1.0) (2025-06-17)
+
+
+### Features
+
+* add parcel capakey route GAWR-6952 ([6f98e65](https://github.com/informatievlaanderen/public-api/commit/6f98e659492cfc37c77cd89f9e21f33b343fd9e9))
+
 # [7.0.0](https://github.com/informatievlaanderen/public-api/compare/v6.23.4...v7.0.0) (2025-05-26)
 
 
