@@ -1,3 +1,10 @@
+## [7.1.1](https://github.com/informatievlaanderen/public-api/compare/v7.1.0...v7.1.1) (2025-06-18)
+
+
+### Bug Fixes
+
+* urldecode objectid for parcel ([5a4cb90](https://github.com/informatievlaanderen/public-api/commit/5a4cb90062cc01cd90d701e17e30cdb3f8c49ec7))
+
 # [7.1.0](https://github.com/informatievlaanderen/public-api/compare/v7.0.0...v7.1.0) (2025-06-17)
 
 
