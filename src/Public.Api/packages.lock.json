@@ -245,9 +245,9 @@
       },
       "Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions": {
         "type": "Direct",
-        "requested": "[3.0.2, )",
-        "resolved": "3.0.2",
-        "contentHash": "1WdY83M0m6u0Hyvku42xLYHWQeJpkvd3Ph9Kgy2SVgcVq4KqH+49MAH8faDU7i/nx2GpCq8Bbz5IGvYoSwq7kQ==",
+        "requested": "[3.1.8, )",
+        "resolved": "3.1.8",
+        "contentHash": "+Pp5MsDiDO5iOLVB1LDJnQZFg1ibZyDmTOKba4EiMWtcv6LNC9ZpNam3h0ycrS9SQBX/1oR7DyHXX9Zv4MvNag==",
         "dependencies": {
           "Be.Vlaanderen.Basisregisters.Api": "24.0.0"
         }
