@@ -54,7 +54,7 @@ namespace Public.Api.Parcel.Oslo
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            objectId = objectId.Replace("/", "-");
+            objectId = System.Net.WebUtility.UrlDecode(objectId).Replace("/", "-");
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
