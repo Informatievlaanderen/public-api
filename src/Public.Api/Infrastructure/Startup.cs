@@ -591,6 +591,23 @@ Doelpubliek | REST basis-URL                                                    
 ----------- | ----------------------------------------------------------------- |
 Iedereen    | {_configuration["BaseUrl"]} |
 
+## API-Keys
+Informatie rond het aanvragen en gebruik van API-keys kan u vinden in de [API-Keys documentatie](https://basisregisters.vlaanderen.be/apikey).
+
+### Limieten
+Elke API-key heeft een limiet van een aantal requests per seconde.
+De limieten kunt u [hier](https://basisregisters.vlaanderen.be/apikey/limieten) terugvinden.
+
+### 429 Too Many Requests
+
+Deze API hanteert rate limiting op basis van het aantal toegestane requests per seconde per API key. Wanneer deze limiet wordt overschreden, retourneert de API een HTTP 429 Too Many Requests response.
+Clients wordt aangeraden om bij ontvangst van een 429-response kort te pauzeren (bijvoorbeeld enkele honderden milliseconden) en vervolgens opnieuw te proberen.
+
+#### Advies aan clientontwikkelaars
+Om storingen te voorkomen:
+ - Implementeer exponential backoff of een vaste wachttijd voordat u de request opnieuw verstuurt.
+ - Zorg ervoor dat het totaal aantal requests per seconde per API key onder de limiet blijft.
+
 ");
 return text.ToString();
         }
