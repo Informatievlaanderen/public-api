@@ -52,7 +52,10 @@ namespace Public.Api.Address.Oslo
         [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Van de optionele parameters (1) moet er minstens één ingevuld zijn.")]
+        [SwaggerOperation(Description = "Van de optionele parameters (1) moet er minstens één ingevuld zijn.<br/>" +
+                                        "**LET OP:** Bovenop de throttling limieten van uw API-key wordt er ook een extra algemene throttling limiet toegepast voor deze endpoint.<br/>" +
+                                        "Deze algemene limiet wordt gedeeld over ***alle*** uitgegeven API-keys. " +
+                                        "Het kan dus gebeuren dat u gethrottled wordt op deze endpoint zonder dat u de limieten van uw eigen API-key bereikt heeft.")]
         public async Task<IActionResult> AddressMatchV2(
             [FromQuery] string gemeentenaam,
             [FromQuery] string niscode,
