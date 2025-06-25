@@ -591,11 +591,11 @@ Doelpubliek | REST basis-URL                                                    
 ----------- | ----------------------------------------------------------------- |
 Iedereen    | {_configuration["BaseUrl"]} |
 
-## API-Keys
-Informatie rond het aanvragen en gebruik van API-keys kan u vinden in de [API-Keys documentatie](https://basisregisters.vlaanderen.be/apikey).
+## API keys
+Informatie rond het aanvragen en gebruik van API keys kan u vinden in de [API keys documentatie](https://basisregisters.vlaanderen.be/apikey).
 
 ### Limieten
-Elke API-key heeft een limiet van een aantal requests per seconde.
+Elke API key heeft een limiet van een aantal requests per seconde.
 De limieten kunt u [hier](https://basisregisters.vlaanderen.be/apikey/limieten) terugvinden.
 
 ### 429 Too Many Requests
