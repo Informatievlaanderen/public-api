@@ -4,20 +4,20 @@
     "net9.0": {
       "AWSSDK.DynamoDBv2": {
         "type": "Direct",
-        "requested": "[3.7.407, )",
-        "resolved": "3.7.407",
-        "contentHash": "YhenYMRx4d//UI6oEzvOPx/z8lBpSYQDel+JcFTIyR1IuRq1S3Fj3EOKUkjO8Rc24tcW9iO7fwvQldCYm50AyQ==",
+        "requested": "[3.7.407.30, )",
+        "resolved": "3.7.407.30",
+        "contentHash": "rEWxHqeHGXIxqB/R3eDjb7wInmKHHPONc/q6HowAKdZENHhnG+Up8xDYlId38/lXi5xaMFCbWejd5lHgmDxUwg==",
         "dependencies": {
-          "AWSSDK.Core": "[3.7.402.45, 4.0.0)"
+          "AWSSDK.Core": "[3.7.402.75, 4.0.0)"
         }
       },
       "AWSSDK.S3": {
         "type": "Direct",
-        "requested": "[3.7.407, )",
-        "resolved": "3.7.407",
-        "contentHash": "s0QLDmmFayUmBZJijCVokkmCS5uQRF93ancGh+maXaI4vLW1fXIXfjd1xL8oHbpduFrT0H8jtNXc7m0HqaW/jg==",
+        "requested": "[3.7.419.1, )",
+        "resolved": "3.7.419.1",
+        "contentHash": "ZXzqSzGG9WJEDyA7M6gJ3P/i/iWbFfwe1tNyuMmlSryRIrp3eB9W6v0tdG2YQLXTx4ebUPYIUBAYb+wPNCgV1Q==",
         "dependencies": {
-          "AWSSDK.Core": "[3.7.400.56, 4.0.0)"
+          "AWSSDK.Core": "[3.7.402.75, 4.0.0)"
         }
       },
       "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions": {
@@ -432,8 +432,8 @@
       },
       "AWSSDK.Core": {
         "type": "Transitive",
-        "resolved": "3.7.402.45",
-        "contentHash": "/v2s2v3gfZjh6zz3EwJK0SwUfW+Y8OO9N0yAPrFMmVmvPzTskDF/iA2L+OQZB0AbWI7PoNC0YOzkcHO1Tw0ZTg=="
+        "resolved": "3.7.402.75",
+        "contentHash": "CjRehjy7CGvOk1EnL7t4IveqGcW8BzCzB0tHwey44FCE8YHZv3suuKvFGhOxEH9qb7pWbRXVtf+vPs+Njr1ymQ=="
       },
       "AWSSDK.SQS": {
         "type": "Transitive",
@@ -2652,7 +2652,7 @@
       "common": {
         "type": "Project",
         "dependencies": {
-          "AWSSDK.DynamoDBv2": "[3.7.407, )",
+          "AWSSDK.DynamoDBv2": "[3.7.407.30, )",
           "Autofac.Extensions.DependencyInjection": "[10.0.0, )",
           "Be.Vlaanderen.Basisregisters.Api": "[24.0.0, )",
           "FeatureToggle.Common": "[4.0.2, )",
