@@ -292,15 +292,15 @@
       },
       "Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo": {
         "type": "Direct",
-        "requested": "[6.0.1, )",
-        "resolved": "6.0.1",
-        "contentHash": "nk1eNlKziFVlz7tUdoPgnWdfC1Vw36jOuj9yhpuh4JuDmez1bS3hjb1I8/uWcSb+nI44PXGKJBuA8dwQZzCP+A==",
+        "requested": "[6.1.0, )",
+        "resolved": "6.1.0",
+        "contentHash": "fQHIpa/qxQDWsi4a8lNn1KImGGrPsfO76Xyvj33TzDIpTCiMXlLV/QK1APAp/FHEjWUwJMryCU4MVjOf4ls+Sw==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Be.Vlaanderen.Basisregisters.AggregateSource": "10.0.2",
           "Be.Vlaanderen.Basisregisters.Api": "24.0.0",
           "CsvHelper": "33.0.1",
-          "Datadog.Trace.Bundle": "3.14.3"
+          "Datadog.Trace.Bundle": "3.16.0"
         }
       },
       "Be.Vlaanderen.Basisregisters.ProblemDetails": {
