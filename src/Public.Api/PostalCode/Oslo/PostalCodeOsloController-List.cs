@@ -31,6 +31,7 @@ namespace Public.Api.PostalCode.Oslo
         /// <param name="gemeentenaam">Filter op de gemeentenaam van de postcode (exact) (optioneel).</param>
         /// <param name="postnaam">Filter op de postnaam van de postcode (exact) (optioneel).</param>
         /// <param name="nuts3">Filter op de NUTS3 classificatie gebruikt door Eurostat (exact) (optioneel).</param>
+        /// <param name="heeftGemeente">Filter of de postcode een link heeft met gemeente (true/false) (exact) (optioneel).</param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
@@ -63,6 +64,7 @@ namespace Public.Api.PostalCode.Oslo
             [FromQuery] string gemeentenaam,
             [FromQuery] string postnaam,
             [FromQuery] string? nuts3,
+            [FromQuery] bool? heeftGemeente,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IOptions<PostalOptionsV2> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -78,7 +80,8 @@ namespace Public.Api.PostalCode.Oslo
                 sort,
                 gemeentenaam,
                 postnaam,
-                nuts3);
+                nuts3,
+                heeftGemeente);
 
             var value = await GetFromBackendAsync(
                 contentFormat.ContentType,
@@ -95,13 +98,15 @@ namespace Public.Api.PostalCode.Oslo
             string sort,
             string municipalityName,
             string postnaam,
-            string? nuts3)
+            string? nuts3,
+            bool? heeftGemeente)
         {
             var filter = new PostalInformationFilter
             {
                 MunicipalityName = municipalityName,
                 PostalName = postnaam,
-                Nuts3Code = nuts3
+                Nuts3Code = nuts3,
+                HasMunicipality = heeftGemeente
             };
 
             // postcode
