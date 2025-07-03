@@ -171,6 +171,15 @@
         { }
     }
 
+    public sealed class RoadExtractGetDetailsToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadExtractGetDetails";
+
+        public RoadExtractGetDetailsToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
     public sealed class RoadExtractGetOverlappingTransactionZonesGeoJsonToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
     {
         public override string Key => "RoadExtractGetOverlappingTransactionZonesGeoJson";
