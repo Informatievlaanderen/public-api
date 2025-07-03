@@ -36,9 +36,9 @@
       },
       "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo": {
         "type": "Direct",
-        "requested": "[5.0.8, )",
-        "resolved": "5.0.8",
-        "contentHash": "j1S4LL7hcmSb30DWMxcL/8Z6kKbj+Ee9AM03k48u18xPMVKHvbj1yFNqR1aMQaL8gjafdoV127LsZ3Q5jjqUQA==",
+        "requested": "[5.0.9, )",
+        "resolved": "5.0.9",
+        "contentHash": "ShJ/Gk0QkyGvPCKSiE1+oA5ESwg5oJWB9Ei/b8knfgpZ52nELnvM0L/yDcu8+lEIlQepvIS1lS1+ECTjLNXEkA==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Be.Vlaanderen.Basisregisters.Api": "24.0.0",
