@@ -20,7 +20,12 @@ namespace Public.Api.Parcel.Oslo
         /// <summary>
         /// Vraag een perceel op (v2).
         /// </summary>
-        /// <param name="objectId">Objectidentificator van het perceel (CaPaKey waarbij forward slash `/` vervangen werd door koppelteken `-`) of de URL-gecodeerde CaPaKey.</param>
+        /// <param name="objectId">Dit kan op 3 manieren:
+        /// <ul>
+        /// <li>objectidentificator van het perceel (CaPaKey waarbij forward slash `/` vervangen werd door koppelteken `-`): `11001B0001-00S000`</li>
+        /// <li>de CaPaKey van het perceel: `11001B0001/00S000`</li>
+        /// <li>de URL-gecodeerde CaPaKey van het perceel: `11001B0001%2F00S000`</li>
+        /// </ul></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
@@ -93,7 +98,7 @@ namespace Public.Api.Parcel.Oslo
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("percelen/{caPaKeyPart1}/{caPaKeyPart2}", Name = nameof(GetParcelV2CaPaKey))]
-        [ApiOrder(ApiOrder.Parcel.V2 + 2)]
+        [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(ParcelDetailOsloResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
