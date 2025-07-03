@@ -1,3 +1,10 @@
+# [7.2.0](https://github.com/informatievlaanderen/public-api/compare/v7.1.5...v7.2.0) (2025-07-03)
+
+
+### Features
+
+* **road:** add extract details endpoint ([18d125f](https://github.com/informatievlaanderen/public-api/commit/18d125ff4d7c8f70626fb1079f684fea2f83f75e))
+
 ## [7.1.5](https://github.com/informatievlaanderen/public-api/compare/v7.1.4...v7.1.5) (2025-07-03)
 
 ## [7.1.4](https://github.com/informatievlaanderen/public-api/compare/v7.1.3...v7.1.4) (2025-06-25)
