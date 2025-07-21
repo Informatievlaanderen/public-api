@@ -143,9 +143,9 @@
       },
       "Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo": {
         "type": "Direct",
-        "requested": "[5.1.0, )",
-        "resolved": "5.1.0",
-        "contentHash": "faqtjZvwxAdycceIVmBGHI+ZTfvX/QIWYcr0pemJkTL2hAWV9WGu7O2cf8hYDiJa5hL1zyixPHc8GCxYwOjgBw==",
+        "requested": "[5.2.0, )",
+        "resolved": "5.2.0",
+        "contentHash": "YL9xUx20sC9CM9rFffNnuhX9QaU/Hro8VZaP0Vv0maS2D/S/KNJZAkGSdDD9osQkbElnR97st9mtZq85JgxzAg==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Be.Vlaanderen.Basisregisters.Api": "24.0.0",
