@@ -37,8 +37,8 @@
 
         <PackageVersion Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
 
-        <PackageVersion Include="AWSSDK.DynamoDBv2" Version="3.7.407" />
-        <PackageVersion Include="AWSSDK.S3" Version="3.7.407" />
+        <PackageVersion Include="AWSSDK.DynamoDBv2" Version="3.7.409.4" />
+        <PackageVersion Include="AWSSDK.S3" Version="3.7.421.4" />
 
         <PackageVersion Include="FeatureToggle.Common" Version="4.0.2" />
         <PackageVersion Include="RestSharp" Version="112.1.0" />
