@@ -170,7 +170,14 @@
             : base(dynamicFeatureToggleService)
         { }
     }
+    public sealed class RoadExtractGetUploadToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadExtractGetUpload";
 
+        public RoadExtractGetUploadToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
     public sealed class RoadExtractGetDetailsToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
     {
         public override string Key => "RoadExtractGetDetails";
@@ -203,6 +210,49 @@
         public override string Key => "RoadExtractGetTransactionZonesGeoJson";
 
         public RoadExtractGetTransactionZonesGeoJsonToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadListExtractsToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadListExtracts";
+
+        public RoadListExtractsToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadOverlappingExtractsByContourToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadOverlappingExtractsByContour";
+
+        public RoadOverlappingExtractsByContourToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadOverlappingExtractsByNisCodeToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadOverlappingExtractsByNisCode";
+
+        public RoadOverlappingExtractsByNisCodeToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+    public sealed class RoadUploadExtractToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadUploadExtract";
+
+        public RoadUploadExtractToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+    public sealed class RoadCloseExtractToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadCloseExtract";
+
+        public RoadCloseExtractToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
             : base(dynamicFeatureToggleService)
         { }
     }
