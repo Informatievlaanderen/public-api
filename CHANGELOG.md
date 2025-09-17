@@ -1,3 +1,10 @@
+## [7.3.1](https://github.com/informatievlaanderen/public-api/compare/v7.3.0...v7.3.1) (2025-09-17)
+
+
+### Bug Fixes
+
+* update packages ([56c9fb4](https://github.com/informatievlaanderen/public-api/commit/56c9fb408b7194ab1602131ec076cd69e0675756))
+
 # [7.3.0](https://github.com/informatievlaanderen/public-api/compare/v7.2.0...v7.3.0) (2025-09-04)
 
 
