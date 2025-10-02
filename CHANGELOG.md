@@ -1,3 +1,10 @@
+# [7.4.0](https://github.com/informatievlaanderen/public-api/compare/v7.3.1...v7.4.0) (2025-10-02)
+
+
+### Features
+
+* add heeftGemeente to postal list ([d19ad79](https://github.com/informatievlaanderen/public-api/commit/d19ad79fd7eccfebf9426828a71039b46d422082))
+
 ## [7.3.1](https://github.com/informatievlaanderen/public-api/compare/v7.3.0...v7.3.1) (2025-09-17)
 
 
