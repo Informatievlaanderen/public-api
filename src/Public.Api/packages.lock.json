@@ -129,13 +129,13 @@
       },
       "Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions": {
         "type": "Direct",
-        "requested": "[5.1.0, )",
-        "resolved": "5.1.0",
-        "contentHash": "cSEBCQJG/z+8xOe1zDACvGE/5c1k53n+qS2lTxp9VTyCGLvK3JcS8z29Aw1Ks1QX2Lr4XLIATr9LgbLO+OK1Gg==",
+        "requested": "[5.5.0, )",
+        "resolved": "5.5.0",
+        "contentHash": "k8XNcBHcqj9Dt6Ss5Taj7sYYLZpjUzguHsrFqIBw3J5MWsoAFl45OJ9t5JgudmYZOt7UQHIkK2aV0sqItbneyw==",
         "dependencies": {
           "Be.Vlaanderen.Basisregisters.Api": "24.0.0",
-          "Be.Vlaanderen.Basisregisters.GrAr.Edit": "22.0.0",
-          "Be.Vlaanderen.Basisregisters.Sqs": "4.0.1",
+          "Be.Vlaanderen.Basisregisters.GrAr.Edit": "22.2.0",
+          "Be.Vlaanderen.Basisregisters.Sqs": "4.1.1",
           "Be.Vlaanderen.Basisregisters.TicketingService.Abstractions": "3.0.0",
           "MediatR.Contracts": "2.0.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.4"
@@ -688,8 +688,8 @@
       },
       "Be.Vlaanderen.Basisregisters.Sqs": {
         "type": "Transitive",
-        "resolved": "4.0.1",
-        "contentHash": "ZhlPVAxQy42dZFLUC8+blptMkj/MdR5GlqJ+p0r5nli1VdnZSMzDjOKPG45hhijJtga2/kmAL6R4XKJfC5wehw==",
+        "resolved": "4.1.1",
+        "contentHash": "IsZ9MsnKg0Ti2rWRoZ+FxW8Ju3k+9Jjwmq8k+0ZoacdrSmBudvT67LxMh+UMB5qqm2qFB15lSR2p02dOIor1+w==",
         "dependencies": {
           "Be.Vlaanderen.Basisregisters.GrAr.Provenance": "22.0.0",
           "Be.Vlaanderen.Basisregisters.MessageHandling.AwsSqs.Simple": "6.0.0",
