@@ -61,6 +61,7 @@
     <PackageReference Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions" GeneratePathProperty="true" />
     <PackageReference Include="Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api" GeneratePathProperty="true" />
     <PackageReference Include="Be.Vlaanderen.Basisregisters.IntegrationDb.Api.Abstractions" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.NotificationService.Api.Abstractions" GeneratePathProperty="true" />
 
     <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Common" GeneratePathProperty="true" />
     <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Legacy" GeneratePathProperty="true" />

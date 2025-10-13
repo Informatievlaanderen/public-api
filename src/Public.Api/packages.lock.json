@@ -264,6 +264,16 @@
           "Datadog.Trace.Bundle": "3.16.0"
         }
       },
+      "Be.Vlaanderen.Basisregisters.NotificationService.Api.Abstractions": {
+        "type": "Direct",
+        "requested": "[1.1.1, )",
+        "resolved": "1.1.1",
+        "contentHash": "ppqqBAP/57HGfIS5uFBXXaWDAVhxdEOLiJjD5+pm3q8W4a71r3bRfCwnKTsXzT2yufqLAQSCHSNkydWezMCPZw==",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3",
+          "Swashbuckle.AspNetCore.Filters.Abstractions": "8.0.2"
+        }
+      },
       "Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions": {
         "type": "Direct",
         "requested": "[6.1.0, )",
