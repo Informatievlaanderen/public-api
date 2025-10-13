@@ -22,6 +22,7 @@ namespace Public.Api.Infrastructure.Configuration
         public const string Road = "RoadRegistry";
         public const string TicketingService = "TicketingService";
         public const string SuspiciousCases = "SuspiciousCases";
+        public const string Notifications = "Notifications";
         public const string IntegrationDb = "IntegrationDb";
     }
 }
