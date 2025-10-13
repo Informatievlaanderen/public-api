@@ -98,8 +98,10 @@ namespace Public.Api.Infrastructure.Swagger
 
         public const int Status = SuspiciousCases.V2 + 100;
 
+        public const int Notifications = SuspiciousCases.V2 + 400;
 
         public const int TicketingService = SuspiciousCases.V2 + 500;
+
     }
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
