@@ -2,7 +2,7 @@
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions.Detail;
+    using Basisregisters.IntegrationDb.Api.Abstractions.SuspiciousCase.Detail;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.FeatureToggles;
     using Common.Infrastructure;

@@ -1,6 +1,6 @@
 namespace Public.Api.Infrastructure.Configuration
 {
-    using Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions;
+    using Basisregisters.IntegrationDb.Api.Abstractions.SuspiciousCase;
 
     public class SuspiciousCasesOptionsV2 : ResponseOptions, IRegistryOptions
     {

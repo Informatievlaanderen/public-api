@@ -243,13 +243,13 @@
           "Microsoft.CSharp": "4.7.0"
         }
       },
-      "Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions": {
+      "Be.Vlaanderen.Basisregisters.IntegrationDb.Api.Abstractions": {
         "type": "Direct",
-        "requested": "[3.0.2, )",
-        "resolved": "3.0.2",
-        "contentHash": "1WdY83M0m6u0Hyvku42xLYHWQeJpkvd3Ph9Kgy2SVgcVq4KqH+49MAH8faDU7i/nx2GpCq8Bbz5IGvYoSwq7kQ==",
+        "requested": "[3.5.1, )",
+        "resolved": "3.5.1",
+        "contentHash": "+CahQE0XCnErYjXpPIim8ZYxnuTtc+bpWz3xmZk2feqziZ0xf9x5W9a048g0vaX2IhY6kvi9UaNxXKz8vz12eA==",
         "dependencies": {
-          "Be.Vlaanderen.Basisregisters.Api": "24.0.0"
+          "Be.Vlaanderen.Basisregisters.Api": "24.1.0"
         }
       },
       "Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo": {

@@ -92,10 +92,14 @@ namespace Common.Infrastructure.Controllers
                 headersToForward,
                 cancellationToken);
 
-        protected static RestRequest CreateBackendRequestWithJsonBody<TRequest>(string path, TRequest body, Method method)
+        protected static RestRequest CreateBackendRequestWithJsonBody<TRequest>(string path, TRequest? body, Method method)
             where TRequest : class
         {
-            var request = new RestRequest(path).AddJsonBody(body);
+            var request = new RestRequest(path);
+            if (body is not null)
+            {
+                request.AddJsonBody(body);
+            }
             request.Method = method;
             return request;
         }
