@@ -15,7 +15,7 @@ namespace Public.Api.Infrastructure
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
     using Autofac.Features.AttributeFilters;
-    using Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions.List;
+    using Basisregisters.IntegrationDb.Api.Abstractions.SuspiciousCase.List;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;

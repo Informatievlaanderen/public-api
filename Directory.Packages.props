@@ -21,7 +21,7 @@
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo" Version="6.1.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions" Version="6.1.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api" Version="4.37.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.IntegrationDb.SuspiciousCases.Api.Abstractions" Version="3.0.2" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.IntegrationDb.Api.Abstractions" Version="3.5.1" />
 
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Common" Version="22.2.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Legacy" Version="22.2.0" />

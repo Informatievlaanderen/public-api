@@ -2,6 +2,7 @@ namespace Public.Api.Address.IntegrationDb
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using Basisregisters.IntegrationDb.Api.Abstractions.Address.CorrectDerivedFromBuildingUnitPositions;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
@@ -16,7 +17,7 @@ namespace Public.Api.Address.IntegrationDb
 
     public partial class AddressIntegrationDbController
     {
-        public const string CorrectDerivedFromBuildingUnitPositionsRoute = "adressen/acties/corrigeren/afgeleid-van-gebouweenheid-posities";
+        private const string CorrectDerivedFromBuildingUnitPositionsRoute = "adressen/acties/corrigeren/afgeleid-van-gebouweenheid-posities";
 
         /// <summary>
         /// Corrigeer adres posities met methode Afgeleid en specificatie Gebouweenheid (v2).
@@ -53,7 +54,7 @@ namespace Public.Api.Address.IntegrationDb
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() =>
-                CreateBackendRequestWithJsonBody("v2/adressen/corrigeren/afgeleid-van-gebouweenheid-posities", request, Method.Post)
+                CreateBackendRequestWithJsonBody($"{BackOfficeVersion}/adressen/corrigeren/afgeleid-van-gebouweenheid-posities", request, Method.Post)
                     .AddHeaderAuthorization(actionContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(

@@ -27,6 +27,8 @@ namespace Public.Api.Address.IntegrationDb
         protected override string NotFoundExceptionMessage => "Onbestaand adres.";
         protected override string GoneExceptionMessage => "Verwijderd adres.";
 
+        protected const string BackOfficeVersion = "v2";
+
         public AddressIntegrationDbController(
             [KeyFilter(RegistryKeys.IntegrationDb)] RestClient restClient,
             [KeyFilter(RegistryKeys.IntegrationDb)] IFeatureToggle cacheToggle,

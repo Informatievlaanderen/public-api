@@ -31,7 +31,7 @@
             ILogger<SuspiciousCasesController> logger)
             : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
-        private static ContentFormat DetermineFormat(ActionContext context)
+        private static ContentFormat DetermineFormat(ActionContext? context)
             => ContentFormat.For(EndpointType.BackOffice, context);
 
         protected override string GoneExceptionMessage { get; }
