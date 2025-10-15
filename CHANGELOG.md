@@ -1,3 +1,10 @@
+# [7.5.0](https://github.com/informatievlaanderen/public-api/compare/v7.4.0...v7.5.0) (2025-10-15)
+
+
+### Features
+
+* add endpoint "correct addresses derived from buildingunit positions" GAWR-7043 ([ea53b2c](https://github.com/informatievlaanderen/public-api/commit/ea53b2c2e25ccf9a02dce352b11baa05767a4f10))
+
 # [7.4.0](https://github.com/informatievlaanderen/public-api/compare/v7.3.1...v7.4.0) (2025-10-02)
 
 
