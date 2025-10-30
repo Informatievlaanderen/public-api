@@ -1,3 +1,10 @@
+# [7.6.0](https://github.com/informatievlaanderen/public-api/compare/v7.5.0...v7.6.0) (2025-10-30)
+
+
+### Features
+
+* add notifications endpoints GAWR-7086 ([d224440](https://github.com/informatievlaanderen/public-api/commit/d22444050461d508516e5e15afa5410eec3e6a91))
+
 # [7.5.0](https://github.com/informatievlaanderen/public-api/compare/v7.4.0...v7.5.0) (2025-10-15)
 
 
