@@ -50,8 +50,7 @@
         }
 
         public bool IsFeatureEnabled(string featureName)
-            => true;
-            //=> _featureToggles.ContainsKey(featureName) && _featureToggles[featureName];
+            => _featureToggles.ContainsKey(featureName) && _featureToggles[featureName];
 
         public async Task Migrate(IEnumerable<IKeyedFeatureToggle> keyedFeatureToggles)
         {
