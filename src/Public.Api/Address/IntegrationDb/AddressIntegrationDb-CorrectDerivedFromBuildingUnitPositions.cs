@@ -42,7 +42,9 @@ namespace Public.Api.Address.IntegrationDb
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        [SwaggerRequestExample(typeof(CorrigerenAfgeleidVanGebouwEenhedenRequest), typeof(CorrigerenAfgeleidVanGebouwEenhedenRequestExamples))]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
+        [SwaggerResponseExample(StatusCodes.Status202Accepted, typeof(CorrigerenAfgeleidVanGebouwEenhedenResponseExample))]
         [SwaggerOperation(Description = "Corrigeer adres posities met methode Afgeleid en specificatie Gebouweenheid.")]
         [HttpPost(CorrectDerivedFromBuildingUnitPositionsRoute, Name = nameof(CorrectDerivedFromBuildingUnitPositions))]
         public async Task<IActionResult> CorrectDerivedFromBuildingUnitPositions(
