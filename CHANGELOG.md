@@ -1,3 +1,10 @@
+## [7.6.1](https://github.com/informatievlaanderen/public-api/compare/v7.6.0...v7.6.1) (2025-11-05)
+
+
+### Bug Fixes
+
+* address correct derived from BU positions docs ([fc660cb](https://github.com/informatievlaanderen/public-api/commit/fc660cbe7b186da4db511f260ff5d196d32d6753))
+
 # [7.6.0](https://github.com/informatievlaanderen/public-api/compare/v7.5.0...v7.6.0) (2025-10-30)
 
 
