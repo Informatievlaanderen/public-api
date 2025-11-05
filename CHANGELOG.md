@@ -1,3 +1,10 @@
+## [7.6.2](https://github.com/informatievlaanderen/public-api/compare/v7.6.1...v7.6.2) (2025-11-05)
+
+
+### Bug Fixes
+
+* add toggle + correct docs ([513bf61](https://github.com/informatievlaanderen/public-api/commit/513bf612e8470dc416497d79f3ffefab1b08ebba))
+
 ## [7.6.1](https://github.com/informatievlaanderen/public-api/compare/v7.6.0...v7.6.1) (2025-11-05)
 
 
