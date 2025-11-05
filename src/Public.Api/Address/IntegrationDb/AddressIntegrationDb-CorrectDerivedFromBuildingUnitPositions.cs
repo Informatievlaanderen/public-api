@@ -4,6 +4,7 @@ namespace Public.Api.Address.IntegrationDb
     using System.Threading.Tasks;
     using Basisregisters.IntegrationDb.Api.Abstractions.Address.CorrectDerivedFromBuildingUnitPositions;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.FeatureToggles;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
@@ -25,8 +26,9 @@ namespace Public.Api.Address.IntegrationDb
         /// <param name="request"></param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
+        /// <param name="correctDerivedFromBuildingUnitPositionsToggle"></param>
         /// <param name="cancellationToken"></param>
-        /// <response code="202">Als het ticket succesvol is aangemaakt.</response>
+        /// <response code="202">Het aantal adressen dat zal verwerkt worden.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="401">Als u niet geauthenticeerd bent om deze actie uit te voeren.</response>
         /// <response code="403">Als u niet beschikt over de correcte rechten om deze actie uit te voeren.</response>
@@ -36,7 +38,7 @@ namespace Public.Api.Address.IntegrationDb
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         /// <returns></returns>
-        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(typeof(CorrigerenAfgeleidVanGebouwEenhedenResponse), StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
@@ -51,8 +53,14 @@ namespace Public.Api.Address.IntegrationDb
             [FromBody] CorrigerenAfgeleidVanGebouwEenhedenRequest? request,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
+            [FromServices] CorrectDerivedFromBuildingUnitPositionsAddressToggle correctDerivedFromBuildingUnitPositionsToggle,
             CancellationToken cancellationToken = default)
         {
+            if (!correctDerivedFromBuildingUnitPositionsToggle.FeatureEnabled)
+            {
+                return NotFound();
+            }
+
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             RestRequest BackendRequest() =>

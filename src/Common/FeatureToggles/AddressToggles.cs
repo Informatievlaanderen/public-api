@@ -197,6 +197,15 @@
             :base(dynamicFeatureToggleService)
         { }
     }
+
+    public sealed class CorrectDerivedFromBuildingUnitPositionsAddressToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "AddressCorrectFromBuildingUnitPositions";
+
+        public CorrectDerivedFromBuildingUnitPositionsAddressToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            :base(dynamicFeatureToggleService)
+        { }
+    }
 }
 
 
