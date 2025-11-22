@@ -14,11 +14,11 @@
       },
       "AWSSDK.DynamoDBv2": {
         "type": "Direct",
-        "requested": "[3.7.407, )",
-        "resolved": "3.7.407",
-        "contentHash": "YhenYMRx4d//UI6oEzvOPx/z8lBpSYQDel+JcFTIyR1IuRq1S3Fj3EOKUkjO8Rc24tcW9iO7fwvQldCYm50AyQ==",
+        "requested": "[3.7.509.2, )",
+        "resolved": "3.7.509.2",
+        "contentHash": "Gzthx4SPoYcBmv/3k9CjUW5qFXNOyPCVxPUoawwJjmU5DM5ENDnuB70ikKATjhy5yPFtEduVycmNY8c0cYfa0Q==",
         "dependencies": {
-          "AWSSDK.Core": "[3.7.402.45, 4.0.0)"
+          "AWSSDK.Core": "[3.7.500.48, 4.0.0)"
         }
       },
       "Be.Vlaanderen.Basisregisters.Api": {
@@ -206,8 +206,8 @@
       },
       "AWSSDK.Core": {
         "type": "Transitive",
-        "resolved": "3.7.402.45",
-        "contentHash": "/v2s2v3gfZjh6zz3EwJK0SwUfW+Y8OO9N0yAPrFMmVmvPzTskDF/iA2L+OQZB0AbWI7PoNC0YOzkcHO1Tw0ZTg=="
+        "resolved": "3.7.500.48",
+        "contentHash": "n8L8OXc/QLCU1UlwRFWayyEwIbJiUqxSTfyAvh59x3f8l3WBZNkITJxJiJJNyTJaubRxsrWq/bTYgwJcr+3X/w=="
       },
       "Azure.Core": {
         "type": "Transitive",
