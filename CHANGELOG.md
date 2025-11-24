@@ -1,3 +1,10 @@
+# [7.7.0](https://github.com/informatievlaanderen/public-api/compare/v7.6.3...v7.7.0) (2025-11-24)
+
+
+### Features
+
+* remove road v1 ([be44dda](https://github.com/informatievlaanderen/public-api/commit/be44ddaf1375a1dd34b08be6bc4178c9d885759d))
+
 ## [7.6.3](https://github.com/informatievlaanderen/public-api/compare/v7.6.2...v7.6.3) (2025-11-05)
 
 
