@@ -1,3 +1,10 @@
+## [7.7.1](https://github.com/informatievlaanderen/public-api/compare/v7.7.0...v7.7.1) (2025-12-01)
+
+
+### Bug Fixes
+
+* toggle dynamo ([a5a23d4](https://github.com/informatievlaanderen/public-api/commit/a5a23d4ffb9419423773b2efc8b31db5e20434d0))
+
 # [7.7.0](https://github.com/informatievlaanderen/public-api/compare/v7.6.3...v7.7.0) (2025-11-24)
 
 
