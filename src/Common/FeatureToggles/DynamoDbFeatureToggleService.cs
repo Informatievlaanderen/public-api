@@ -90,7 +90,7 @@
                 {
                     var featureName = item["FeatureName"].S;
                     var enabled = item["Enabled"].BOOL;
-                    _featureToggles[featureName] = true;
+                    _featureToggles[featureName] = enabled;
                 }
 
                 scanRequest.ExclusiveStartKey = scanResponse.LastEvaluatedKey;
