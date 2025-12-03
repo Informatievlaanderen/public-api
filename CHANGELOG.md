@@ -1,3 +1,10 @@
+## [7.8.1](https://github.com/informatievlaanderen/public-api/compare/v7.8.0...v7.8.1) (2025-12-03)
+
+
+### Bug Fixes
+
+* settings for detail links ([e470435](https://github.com/informatievlaanderen/public-api/commit/e470435a5e0c90c1cbc98587a138eabf898547ee))
+
 # [7.8.0](https://github.com/informatievlaanderen/public-api/compare/v7.7.1...v7.8.0) (2025-12-03)
 
 
