@@ -1,3 +1,10 @@
+# [7.8.0](https://github.com/informatievlaanderen/public-api/compare/v7.7.1...v7.8.0) (2025-12-03)
+
+
+### Features
+
+* bump packages to include links GAWR-7137 ([31de198](https://github.com/informatievlaanderen/public-api/commit/31de198fae25f54983935ccabfa9382f7564523a))
+
 ## [7.7.1](https://github.com/informatievlaanderen/public-api/compare/v7.7.0...v7.7.1) (2025-12-01)
 
 
