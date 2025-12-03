@@ -14,7 +14,7 @@
         public ForbiddenOAuthResponseExamples(
             IHttpContextAccessor httpContextAccessor,
             ProblemDetailsHelper problemDetailsHelper,
-            string apiVersion = "v1")
+            string apiVersion = "v2")
         {
             _httpContextAccessor = httpContextAccessor;
             _problemDetailsHelper = problemDetailsHelper;
