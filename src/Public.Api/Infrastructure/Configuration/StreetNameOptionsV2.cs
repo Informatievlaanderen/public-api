@@ -1,6 +1,6 @@
 namespace Public.Api.Infrastructure.Configuration
 {
-   using StreetNameRegistry.Api.Oslo.Abstractions.Infrastructure.Options;
+   using StreetNameRegistry.Api.Oslo.Infrastructure.Options;
 
    public class StreetNameOptionsV2 : ResponseOptions, IRegistryOptions
    {
