@@ -1,3 +1,10 @@
+## [7.8.2](https://github.com/informatievlaanderen/public-api/compare/v7.8.1...v7.8.2) (2025-12-04)
+
+
+### Bug Fixes
+
+* update parcel package for links ([bbabbe0](https://github.com/informatievlaanderen/public-api/commit/bbabbe05844b789a193d8517e3c88a70ea4bfb03))
+
 ## [7.8.1](https://github.com/informatievlaanderen/public-api/compare/v7.8.0...v7.8.1) (2025-12-03)
 
 
