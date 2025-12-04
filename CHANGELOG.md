@@ -1,3 +1,10 @@
+## [7.8.3](https://github.com/informatievlaanderen/public-api/compare/v7.8.2...v7.8.3) (2025-12-04)
+
+
+### Bug Fixes
+
+* **parcel:** update docs parcel ([8f47ff9](https://github.com/informatievlaanderen/public-api/commit/8f47ff938d9bcc274ca67c047dbd525907a59b79))
+
 ## [7.8.2](https://github.com/informatievlaanderen/public-api/compare/v7.8.1...v7.8.2) (2025-12-04)
 
 
