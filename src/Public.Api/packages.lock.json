@@ -22,9 +22,9 @@
       },
       "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions": {
         "type": "Direct",
-        "requested": "[5.3.0, )",
-        "resolved": "5.3.0",
-        "contentHash": "3UDuzUXadur0QMxBeKQ+tqd9dV9zJ1Gd3XzaVLZl3HVxoqCIND3ZfCJdys8QTE4Ff6lzpG1LhBDytIA9+gbkYQ==",
+        "requested": "[5.3.1, )",
+        "resolved": "5.3.1",
+        "contentHash": "rzlAxegawIoRrxWVjNHNcVVgRVEIyR/ttnmPNmOElfXs3hTv1C8dKGYgi1sa5ZBCp9FzB0bZtH8HAMuh/39W9w==",
         "dependencies": {
           "Be.Vlaanderen.Basisregisters.Api": "24.1.0",
           "Be.Vlaanderen.Basisregisters.GrAr.Edit": "22.3.0",
@@ -36,9 +36,9 @@
       },
       "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo": {
         "type": "Direct",
-        "requested": "[5.3.0, )",
-        "resolved": "5.3.0",
-        "contentHash": "XbNv1eiCdsrOQFXB4w9Zumirk5TgErH6ijZroEiLD7Ihz/uRGjzoy4a7L4r7Bd4muGFfoaauEr2ZbtEGi7iNbQ==",
+        "requested": "[5.3.1, )",
+        "resolved": "5.3.1",
+        "contentHash": "olAaF0vzMuBsD/VEql9zwf714mR3Pq29/HT/EPa6MlsAjMcukr1/lwHY/VoFkowr7jAI3s3yKWrd7MyLASaL2g==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Be.Vlaanderen.Basisregisters.Api": "24.1.0",
@@ -254,9 +254,9 @@
       },
       "Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo": {
         "type": "Direct",
-        "requested": "[6.4.0, )",
-        "resolved": "6.4.0",
-        "contentHash": "oWE/hv6svHFXwjTTABRxtaDHfzjOrVfq9H2CrXR63CsColyFtu5IVkd9G389DH0jtL1pTil1YVK4mJUiqkAW/Q==",
+        "requested": "[6.4.1, )",
+        "resolved": "6.4.1",
+        "contentHash": "5OlsS0GcunzAOHkxdXEDg+UW6/iKAN8WzFNcLC6V0tEibBFMPw2HdeoVwB5KlIX9d+CSanHeQDJ1D0rS448iJQ==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Be.Vlaanderen.Basisregisters.AggregateSource": "10.0.2",
@@ -302,9 +302,9 @@
       },
       "Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo": {
         "type": "Direct",
-        "requested": "[6.5.0, )",
-        "resolved": "6.5.0",
-        "contentHash": "YYns64ZZJ5ltGgQ4gzM+lL5/CHstxFcNFm4UPbv1SODJm8an8a5JttwzYe8wsDsczRXMoziu3wu+MU5dhLq5Hg==",
+        "requested": "[6.5.1, )",
+        "resolved": "6.5.1",
+        "contentHash": "0Pd6JOc5tS/tchZfifnfillb6/j0QEu/iCqjBoeZPKnCGz/V8/dvxFyftlG+iUJZzWIFyiTY1Z79M2yp/WY+GA==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Be.Vlaanderen.Basisregisters.AggregateSource": "10.0.2",
@@ -347,9 +347,9 @@
       },
       "Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions": {
         "type": "Direct",
-        "requested": "[5.5.0, )",
-        "resolved": "5.5.0",
-        "contentHash": "yJI4D2l0B9COy4houHIVNB9BLEov5tFd3C1FD6mOfbROu70fFN07KKFssm9BMyuw/xK2McxcnvvO8pjnRcpWqw==",
+        "requested": "[5.5.1, )",
+        "resolved": "5.5.1",
+        "contentHash": "2Kt5sYpTj1GOvm8AGW5D7bVMLdc0kzOYoZ10BwJQ4Fpi+S9h7Ip/YkqYmWg+m91TxUCs+dAn1p15irZKO5ZY8w==",
         "dependencies": {
           "Be.Vlaanderen.Basisregisters.Api": "24.1.0",
           "Be.Vlaanderen.Basisregisters.GrAr.Legacy": "22.3.0",
@@ -360,9 +360,9 @@
       },
       "Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo": {
         "type": "Direct",
-        "requested": "[5.5.0, )",
-        "resolved": "5.5.0",
-        "contentHash": "BEEFIQ/8BuoZWufETX5NNuVowzVe7A0XqWLF3erUPq3rDb5Ofyf7ad/PX/aOKgerF+jDEAXRhN3paGylGlNjQA==",
+        "requested": "[5.5.1, )",
+        "resolved": "5.5.1",
+        "contentHash": "pdq/vOVlFo/+rFvUImrqaSUJNHiEsQkOphxZwA+DyD9BaqxgnnvhP3dDXQReiL8s/W2iMc1SR1f9P+QZYKL7lg==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Be.Vlaanderen.Basisregisters.Api": "24.1.0",
