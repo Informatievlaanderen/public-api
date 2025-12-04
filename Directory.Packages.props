@@ -32,7 +32,7 @@
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.EventHandling" Version="7.0.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.ProblemDetails" Version="10.0.0" />
         <!-- <PackageVersion Include="Be.Vlaanderen.Basisregisters.Sqs" Version="4.0.1" /> -->
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.TicketingService.Abstractions" Version="3.2.3" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.TicketingService.Abstractions" Version="3.2.4" />
 
         <PackageVersion Include="Datadog.Trace.Bundle" Version="3.24.1" />
 
