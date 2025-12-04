@@ -384,11 +384,11 @@
       },
       "Datadog.Trace.Bundle": {
         "type": "Direct",
-        "requested": "[3.24.1, )",
-        "resolved": "3.24.1",
-        "contentHash": "lhaP/ObA6w5T72qwgrBwuz1qnFXxB3hqRzN2VcuzB8QT1yrVahD6ehOsne0T1OreYrrXlEGDcoQqrKD75bAKwQ==",
+        "requested": "[3.32.0, )",
+        "resolved": "3.32.0",
+        "contentHash": "ZUCCHN1T/x4BV68ooiuSaMAneC8VfVBqTu7VI6u5CZItGd87EI/3e0KexKDhCp5+wX+xABEnv04iv6fQJCHA5A==",
         "dependencies": {
-          "Datadog.Trace": "3.24.1"
+          "Datadog.Trace": "3.32.0"
         }
       },
       "Asp.Versioning.Abstractions": {
@@ -751,8 +751,8 @@
       },
       "Datadog.Trace": {
         "type": "Transitive",
-        "resolved": "3.24.1",
-        "contentHash": "m7X5VGwAh5uTRBe+3J/oVbqKjTW6cfEi7z4B11qrLP+IbYgcQHyJxvsQj8vwPWpiPaEX6JYeHhXbQt/rNhYdSg==",
+        "resolved": "3.32.0",
+        "contentHash": "h5XW+a3KRAjS28uSRpungaUZfV2drvoAZ9nEHlfOsTlkEWrQ2wAARtNIImYUKZiP3OULtvCpeOGPNjlHWjw0xw==",
         "dependencies": {
           "System.Diagnostics.DiagnosticSource": "4.4.1"
         }
