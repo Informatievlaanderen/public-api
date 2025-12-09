@@ -1,3 +1,10 @@
+# [7.9.0](https://github.com/informatievlaanderen/public-api/compare/v7.8.4...v7.9.0) (2025-12-09)
+
+
+### Features
+
+* remove all v1 remnants ([6aeb729](https://github.com/informatievlaanderen/public-api/commit/6aeb7290884788e2716bb4f4031f32eb45ff936e))
+
 ## [7.8.4](https://github.com/informatievlaanderen/public-api/compare/v7.8.3...v7.8.4) (2025-12-04)
 
 ## [7.8.3](https://github.com/informatievlaanderen/public-api/compare/v7.8.2...v7.8.3) (2025-12-04)
