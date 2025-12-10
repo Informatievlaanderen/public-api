@@ -528,7 +528,7 @@ namespace Public.Api.Infrastructure
 
                                 li[data-item-id=""section/Introductie""],
                                 li[data-item-id=""tag/Gemeenten""],
-                                li[data-item-id=""tag/CRAB-Huisnummers""]
+                                li[data-item-id=""tag/Verdachte-gevallen""]
                                 {
                                     border-top: 1px solid rgb(225, 225, 225);
                                 }

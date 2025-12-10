@@ -115,6 +115,41 @@
           "System.Text.Encoding.CodePages": "9.0.3"
         }
       },
+      "Be.Vlaanderen.Basisregisters.AspNetCore.Swagger": {
+        "type": "Direct",
+        "requested": "[6.0.1, )",
+        "resolved": "6.0.1",
+        "contentHash": "b2GuYDbbuIjoPf8sHA+Vbr8dN4bTvn5GcOSFyMNBhdqanDBa/YJd+jO9r9IsvwbfN9QpYuE+JSrHatb1trEAPw==",
+        "dependencies": {
+          "Asp.Versioning.Mvc.ApiExplorer": "8.1.0",
+          "Microsoft.Extensions.Localization.Abstractions": "9.0.3",
+          "Swashbuckle.AspNetCore": "8.1.0",
+          "Swashbuckle.AspNetCore.Annotations": "8.1.0",
+          "Swashbuckle.AspNetCore.Filters": "8.0.2",
+          "Swashbuckle.AspNetCore.Newtonsoft": "8.1.0",
+          "Swashbuckle.AspNetCore.Swagger": "8.1.0",
+          "Swashbuckle.AspNetCore.SwaggerGen": "8.1.0",
+          "Swashbuckle.AspNetCore.SwaggerUI": "8.1.0"
+        }
+      },
+      "Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc": {
+        "type": "Direct",
+        "requested": "[6.0.1, )",
+        "resolved": "6.0.1",
+        "contentHash": "kNdUkQSDIqtsaC0qXPEREZ58GHRzFh2Mko6j4AZmyGaZ7B39I1Ix+PbSYFCgv7eKWlGjCtc/a7RUR6NVeKgIiw==",
+        "dependencies": {
+          "Asp.Versioning.Mvc.ApiExplorer": "8.1.0",
+          "Be.Vlaanderen.Basisregisters.AspNetCore.Swagger": "6.0.1",
+          "Microsoft.Extensions.FileProviders.Embedded": "9.0.3",
+          "Microsoft.Extensions.Localization.Abstractions": "9.0.3",
+          "NJsonSchema.CodeGeneration.CSharp": "11.2.0",
+          "NJsonSchema.CodeGeneration.TypeScript": "11.2.0",
+          "NSwag.CodeGeneration.CSharp": "14.3.0",
+          "NSwag.CodeGeneration.TypeScript": "14.3.0",
+          "Newtonsoft.Json": "13.0.3",
+          "Swashbuckle.AspNetCore": "8.1.0"
+        }
+      },
       "Be.Vlaanderen.Basisregisters.Auth.AcmIdm": {
         "type": "Direct",
         "requested": "[4.0.1, )",
@@ -572,39 +607,6 @@
         "type": "Transitive",
         "resolved": "5.0.0",
         "contentHash": "VrjJYYjxkj+rDKnrgxOaBql5NEXBPlOReNx6jZeJzab4GAQPid4ydoRzqIcf0AYMuj2UCA6ftD9Nr4LjF4c2ew=="
-      },
-      "Be.Vlaanderen.Basisregisters.AspNetCore.Swagger": {
-        "type": "Transitive",
-        "resolved": "6.0.0",
-        "contentHash": "KD3CLVHsbW3DuCmo6DMc/tGZkZtOwTrYD2DE6v26S6V/ulFBIuJAAFoJnzRpQSo33dLg+iD1DKkO5isipksuMg==",
-        "dependencies": {
-          "Asp.Versioning.Mvc.ApiExplorer": "8.1.0",
-          "Microsoft.Extensions.Localization.Abstractions": "9.0.3",
-          "Swashbuckle.AspNetCore": "8.1.0",
-          "Swashbuckle.AspNetCore.Annotations": "8.1.0",
-          "Swashbuckle.AspNetCore.Filters": "8.0.2",
-          "Swashbuckle.AspNetCore.Newtonsoft": "8.1.0",
-          "Swashbuckle.AspNetCore.Swagger": "8.1.0",
-          "Swashbuckle.AspNetCore.SwaggerGen": "8.1.0",
-          "Swashbuckle.AspNetCore.SwaggerUI": "8.1.0"
-        }
-      },
-      "Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc": {
-        "type": "Transitive",
-        "resolved": "6.0.0",
-        "contentHash": "78iRvEFC7rTLMLjYa2javI+JIeLPxBiqe2YHBh1Arux01ZJeIV6gByaFkV9clregPENQlmljIIlNLRyR183xNQ==",
-        "dependencies": {
-          "Asp.Versioning.Mvc.ApiExplorer": "8.1.0",
-          "Be.Vlaanderen.Basisregisters.AspNetCore.Swagger": "6.0.0",
-          "Microsoft.Extensions.FileProviders.Embedded": "9.0.3",
-          "Microsoft.Extensions.Localization.Abstractions": "9.0.3",
-          "NJsonSchema.CodeGeneration.CSharp": "11.2.0",
-          "NJsonSchema.CodeGeneration.TypeScript": "11.2.0",
-          "NSwag.CodeGeneration.CSharp": "14.3.0",
-          "NSwag.CodeGeneration.TypeScript": "14.3.0",
-          "Newtonsoft.Json": "13.0.3",
-          "Swashbuckle.AspNetCore": "8.1.0"
-        }
       },
       "Be.Vlaanderen.Basisregisters.Aws.DistributedMutex": {
         "type": "Transitive",

@@ -70,7 +70,8 @@
     <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Import" GeneratePathProperty="true" />
     <PackageReference Include="Be.Vlaanderen.Basisregisters.EventHandling" />
     <PackageReference Include="Be.Vlaanderen.Basisregisters.ProblemDetails" GeneratePathProperty="true" />
-    <!-- <PackageReference Include="Be.Vlaanderen.Basisregisters.Sqs" /> -->
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AspNetCore.Swagger" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc" />
     <PackageReference Include="Be.Vlaanderen.Basisregisters.TicketingService.Abstractions" />
 
     <PackageReference Include="Datadog.Trace.Bundle" />
