@@ -1,3 +1,10 @@
+## [7.9.1](https://github.com/informatievlaanderen/public-api/compare/v7.9.0...v7.9.1) (2025-12-10)
+
+
+### Bug Fixes
+
+* download docs url GAWR-7203 ([9495a3b](https://github.com/informatievlaanderen/public-api/commit/9495a3b894a725336a8c1ad54edf46e0a4775249))
+
 # [7.9.0](https://github.com/informatievlaanderen/public-api/compare/v7.8.4...v7.9.0) (2025-12-09)
 
 
