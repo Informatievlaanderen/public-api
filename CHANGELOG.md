@@ -1,3 +1,10 @@
+# [7.10.0](https://github.com/informatievlaanderen/public-api/compare/v7.9.1...v7.10.0) (2026-01-12)
+
+
+### Features
+
+* **road:** add Inwinning endpoints ([c2e7117](https://github.com/informatievlaanderen/public-api/commit/c2e7117f0de5ca467da7ad9d5bb752dfc01cf376))
+
 ## [7.9.1](https://github.com/informatievlaanderen/public-api/compare/v7.9.0...v7.9.1) (2025-12-10)
 
 
