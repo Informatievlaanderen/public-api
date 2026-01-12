@@ -274,4 +274,22 @@
             : base(dynamicFeatureToggleService)
         { }
     }
+
+    public sealed class RoadInwinningRequestExtractToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadInwinningRequestExtract";
+
+        public RoadInwinningRequestExtractToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadInwinningUploadExtractToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadInwinningUploadExtract";
+
+        public RoadInwinningUploadExtractToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
 }

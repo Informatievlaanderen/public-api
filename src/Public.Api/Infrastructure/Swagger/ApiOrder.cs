@@ -78,6 +78,7 @@ namespace Public.Api.Infrastructure.Swagger
                 public const int UnlinkStreetName = LinkStreetName + 1;
             }
             public const int RoadGrb = ChangeFeed + 70;
+            public const int RoadInwinning = ChangeFeed + 80;
         }
 
         public const int Extract = Road.ChangeFeed + 100;
