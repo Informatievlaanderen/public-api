@@ -26,6 +26,7 @@ namespace Common.Infrastructure.Extensions
                 AcceptType.Ld => AcceptTypes.JsonLd,
                 AcceptType.Xml => AcceptTypes.Xml,
                 AcceptType.Atom => AcceptTypes.Atom,
+                AcceptType.JsonCloudEventsBatch => AcceptTypes.JsonCloudEventsBatch,
                 _ => throw new ArgumentOutOfRangeException(nameof(acceptType), acceptType, null)
             };
         }
@@ -36,6 +37,7 @@ namespace Common.Infrastructure.Extensions
             {
                 AcceptType.Json => AcceptTypes.JsonProblem,
                 AcceptType.JsonLd => AcceptTypes.JsonProblem,
+                AcceptType.JsonCloudEventsBatch => AcceptTypes.JsonProblem,
                 AcceptType.Ld => AcceptTypes.JsonProblem,
                 AcceptType.Xml => AcceptTypes.XmlProblem,
                 AcceptType.Atom => AcceptTypes.XmlProblem,
@@ -73,6 +75,11 @@ namespace Common.Infrastructure.Extensions
                 if (headerValue.Contains(AcceptTypes.JsonProblem))
                 {
                     return AcceptType.JsonProblem;
+                }
+
+                if (headerValue.Contains(AcceptTypes.JsonCloudEventsBatch))
+                {
+                    return AcceptType.JsonCloudEventsBatch;
                 }
 
                 if (headerValue.Contains(AcceptTypes.JsonLd))
@@ -120,6 +127,9 @@ namespace Common.Infrastructure.Extensions
 
                             case AcceptTypes.Xml:
                                 return AcceptType.Xml;
+
+                            case AcceptTypes.JsonCloudEventsBatch:
+                                return AcceptType.JsonCloudEventsBatch;
 
                             case AcceptTypes.JsonLd:
                                 return AcceptType.JsonLd;

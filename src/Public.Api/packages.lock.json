@@ -59,9 +59,9 @@
       },
       "Be.Vlaanderen.Basisregisters.Api": {
         "type": "Direct",
-        "requested": "[24.1.0, )",
-        "resolved": "24.1.0",
-        "contentHash": "hcXBIwOflwBM09ZquNLjwBbqGurnpbK2vHNeIse2LhHm4BlbS+sMIOeIlPVW1oMJdwGiJ5DR4s/PNFFihMvRHQ==",
+        "requested": "[24.2.0, )",
+        "resolved": "24.2.0",
+        "contentHash": "Qss5u+Ulomrnmyw9MNShjc++nMiMReSNkGPwJ7w4OrnPDU/9TXUgCBdvrlfzlehF3LZu5iws3zcv6DAXgcZv9g==",
         "dependencies": {
           "Asp.Versioning.Mvc.ApiExplorer": "8.1.0",
           "Autofac": "8.2.1",
@@ -2666,7 +2666,7 @@
         "dependencies": {
           "AWSSDK.DynamoDBv2": "[3.7.407, )",
           "Autofac.Extensions.DependencyInjection": "[10.0.0, )",
-          "Be.Vlaanderen.Basisregisters.Api": "[24.1.0, )",
+          "Be.Vlaanderen.Basisregisters.Api": "[24.2.0, )",
           "FeatureToggle.Common": "[4.0.2, )",
           "Marvin.Cache.Headers": "[7.2.0, )",
           "RestSharp": "[112.1.0, )",

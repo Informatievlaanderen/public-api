@@ -6,6 +6,7 @@ namespace Common.Infrastructure
         Sync,
         BackOffice,
         Oslo,
-        Json
+        Json,
+        ChangeFeed
     }
 }

@@ -29,6 +29,12 @@ namespace Common.Infrastructure.Extensions
                     {
                         AcceptType.Json
                     },
+                EndpointType.ChangeFeed
+                    => new []
+                    {
+                        AcceptType.Json,
+                        AcceptType.JsonCloudEventsBatch
+                    },
                 EndpointType.Oslo
                     => new []
                     {
@@ -45,17 +51,22 @@ namespace Common.Infrastructure.Extensions
             return endpointType switch
             {
                 EndpointType.Legacy
-                => new[]
-                {
-                    AcceptType.Json,
-                    AcceptType.Xml
-                },
+                    => new[]
+                    {
+                        AcceptType.Json,
+                        AcceptType.Xml
+                    },
                 EndpointType.Sync
-                => new[]
-                {
-                    AcceptType.Atom,
-                    AcceptType.Xml
-                },
+                    => new[]
+                    {
+                        AcceptType.Atom,
+                        AcceptType.Xml
+                    },
+                EndpointType.ChangeFeed
+                    => new []
+                    {
+                        AcceptType.JsonCloudEventsBatch
+                    },
                 EndpointType.BackOffice
                     => new []
                     {
