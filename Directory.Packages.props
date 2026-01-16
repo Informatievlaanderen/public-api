@@ -5,7 +5,7 @@
         <CentralPackageVersionOverrideEnabled>false</CentralPackageVersionOverrideEnabled>
     </PropertyGroup>
     <ItemGroup>
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.Api" Version="24.1.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.Api" Version="24.2.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.Auth.AcmIdm" Version="4.0.1" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting" Version="10.0.2" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.CommandHandling" Version="10.0.2" />
