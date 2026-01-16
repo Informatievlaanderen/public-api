@@ -292,4 +292,22 @@
             : base(dynamicFeatureToggleService)
         { }
     }
+
+    public sealed class RoadInwinningListToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadInwinningList";
+
+        public RoadInwinningListToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadInwinningNisCodesToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadInwinningNisCodes";
+
+        public RoadInwinningNisCodesToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
 }
