@@ -119,7 +119,6 @@ namespace Public.Api.Infrastructure
             var dynamoDbFeatureToggleService = new DynamoDbFeatureToggleService(amazonDynamoDbClient, _configuration["FeatureToggleTableName"]);
             dynamoDbFeatureToggleService.Initialize().GetAwaiter().GetResult();
             var keyedFeatureToggles = KeyedFeatureToggleExtensions.GetFeatureToggles(dynamoDbFeatureToggleService);
-            dynamoDbFeatureToggleService.Migrate(keyedFeatureToggles).GetAwaiter().GetResult();
 
             services
                 .ConfigureDefaultForApi<Startup>(new StartupConfigureOptions
@@ -333,7 +332,13 @@ namespace Public.Api.Infrastructure
                 .ConfigureRegistryOptions<SuspiciousCasesOptionsV2>(_configuration.GetSection("ApiConfiguration:SuspiciousCases"))
                 .Configure<ExcludedRouteModelOptions>(_configuration.GetSection("ExcludedRoutes"))
                 .AddSingleton<IAmazonDynamoDB>(_ => amazonDynamoDbClient)
-                .AddSingleton<IDynamicFeatureToggleService>(_ => dynamoDbFeatureToggleService)
+                .AddSingleton<IDynamicFeatureToggleService>(_ =>
+                {
+                    var defaultEnabled = _configuration.GetValue<bool>("FeatureToggleDefaultEnabled");
+                    dynamoDbFeatureToggleService.Migrate(keyedFeatureToggles, defaultEnabled).GetAwaiter().GetResult();
+
+                    return dynamoDbFeatureToggleService;
+                })
                 .RegisterFeatureToggles();
 
             services
@@ -489,6 +494,7 @@ namespace Public.Api.Infrastructure
             ILoggerFactory loggerFactory,
             IApiVersionDescriptionProvider apiVersionProvider)
         {
+            serviceProvider.GetRequiredService<IDynamicFeatureToggleService>(); // trigger migration
             var version = Assembly.GetEntryAssembly()?.GetName().Version;
 
             app

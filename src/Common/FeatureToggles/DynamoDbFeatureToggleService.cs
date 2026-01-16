@@ -52,7 +52,7 @@
         public bool IsFeatureEnabled(string featureName)
             => _featureToggles.ContainsKey(featureName) && _featureToggles[featureName];
 
-        public async Task Migrate(IEnumerable<IKeyedFeatureToggle> keyedFeatureToggles)
+        public async Task Migrate(IEnumerable<IKeyedFeatureToggle> keyedFeatureToggles, bool defaultEnabled)
         {
             foreach (var featureToggle in keyedFeatureToggles.Select(x => x.Key))
             {
@@ -66,7 +66,7 @@
                             Item =
                             {
                                 ["FeatureName"] = new AttributeValue(featureToggle),
-                                ["Enabled"] = new AttributeValue { BOOL = false }
+                                ["Enabled"] = new AttributeValue { BOOL = defaultEnabled }
                             },
                             ConditionExpression = "attribute_not_exists(FeatureName)"
                         });
