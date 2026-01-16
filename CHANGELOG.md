@@ -1,3 +1,10 @@
+# [7.11.0](https://github.com/informatievlaanderen/public-api/compare/v7.10.0...v7.11.0) (2026-01-16)
+
+
+### Features
+
+* **road:** add Inwinning endpoints (List, NisCodes) ([41db9c5](https://github.com/informatievlaanderen/public-api/commit/41db9c5cd4b662b05b2102e6d1a8ebf0a3af756b))
+
 # [7.10.0](https://github.com/informatievlaanderen/public-api/compare/v7.9.1...v7.10.0) (2026-01-12)
 
 
