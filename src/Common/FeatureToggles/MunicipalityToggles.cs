@@ -1,10 +1,11 @@
-﻿namespace Common.FeatureToggles;
-
-public sealed class ChangeFeedMunicipalityToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+﻿namespace Common.FeatureToggles
 {
-    public override string Key => "ChangeFeedMunicipalityToggle";
+    public sealed class ChangeFeedMunicipalityToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "ChangeFeedMunicipalityToggle";
 
-    public ChangeFeedMunicipalityToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
-        : base(dynamicFeatureToggleService)
-    { }
+        public ChangeFeedMunicipalityToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
 }

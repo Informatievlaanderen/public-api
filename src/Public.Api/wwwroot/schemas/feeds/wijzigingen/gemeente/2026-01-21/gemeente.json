@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:gemeente:2026-01-01",
+  "title": "Gemeente event data (create/update/delete)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["@id", "objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
+  "properties": {
+    "@id": {
+      "type": "string",
+      "format": "uri",
+      "description": "Canonical identifier URI of the municipality"
+    },
+    "objectId": {
+      "type": "string",
+      "description": "Municipality object identifier (typically NIS code as string)"
+    },
+    "naamruimte": {
+      "type": "string",
+      "format": "uri",
+      "description": "Namespace URI"
+    },
+    "versieId": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Version timestamp of the municipality state"
+    },
+    "nisCodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9]{5}$"
+      },
+      "description": "List of NIS codes associated with the municipality"
+    },
+    "attributen": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/attribuutChange" },
+      "description": "List of attribute changes"
+    }
+  },
+  "$defs": {
+    "attribuutChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["naam", "oudeWaarde", "nieuweWaarde"],
+      "properties": {
+        "naam": {
+          "type": "string",
+          "description": "Name of the changed attribute"
+        },
+        "oudeWaarde": {},
+        "nieuweWaarde": {}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "naam": { "const": "nisCode" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": { "type": ["null", "string"], "pattern": "^[0-9]{5}$" },
+              "nieuweWaarde": { "type": "string", "pattern": "^[0-9]{5}$" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "naam": { "const": "gemeenteStatus" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": {
+                "type": ["null", "string"],
+                "enum": ["voorgesteld", "inGebruik"]
+              },
+              "nieuweWaarde": {
+                "type": "string",
+                "enum": ["voorgesteld", "inGebruik"]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "naam": { "const": "officieleTalen" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": {
+                "type": "array",
+                "items": { "type": "string", "pattern": "^[a-z]{2}$" }
+              },
+              "nieuweWaarde": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "type": "string", "pattern": "^[a-z]{2}$" }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "naam": { "const": "faciliteitenTalen" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": {
+                "type": "array",
+                "items": { "type": "string", "pattern": "^[a-z]{2}$" }
+              },
+              "nieuweWaarde": {
+                "type": "array",
+                "items": { "type": "string", "pattern": "^[a-z]{2}$" }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "naam": { "const": "gemeentenamen" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": {
+                "type": "array",
+                "items": { "$ref": "#/$defs/gemeentenaam" }
+              },
+              "nieuweWaarde": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "$ref": "#/$defs/gemeentenaam" }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "gemeentenaam": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["spelling", "taal"],
+      "properties": {
+        "spelling": { "type": "string" },
+        "taal": { "type": "string", "pattern": "^[a-z]{2}$" }
+      }
+    }
+  }
+}

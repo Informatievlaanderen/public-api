@@ -30,7 +30,6 @@ namespace Public.Api.Feeds.V2.Change
         public const string FeedsGroupName = "Feeds";
 
         protected const int DefaultFeedCaching = 0;
-        private const int NoPaging = 0;
 
         public ChangeFeedV2Controller(
             IHttpContextAccessor httpContextAccessor,

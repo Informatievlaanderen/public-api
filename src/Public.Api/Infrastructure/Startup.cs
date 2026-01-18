@@ -196,6 +196,7 @@ namespace Public.Api.Infrastructure
                                                           SwashbuckleSchemaHelper.GetSchemaId(type));
 
                                 x.AddRoadRegistrySchemaFilters();
+                                x.SchemaFilter<CloudEventSchemaFilter>();
                             }
                         }
                     },
