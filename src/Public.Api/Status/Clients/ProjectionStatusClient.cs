@@ -26,7 +26,8 @@ namespace Public.Api.Status.Clients
                             Name = string.IsNullOrWhiteSpace(status.Name) ? status.Id : status.Name,
                             Description = status.Description,
                             State = status.State,
-                            CurrentPosition = status.CurrentPosition
+                            CurrentPosition = status.CurrentPosition,
+                            StorePosition = status.StorePosition
                         })
             };
     }
