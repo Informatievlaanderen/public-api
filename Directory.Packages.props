@@ -5,12 +5,12 @@
         <CentralPackageVersionOverrideEnabled>false</CentralPackageVersionOverrideEnabled>
     </PropertyGroup>
     <ItemGroup>
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.Api" Version="24.1.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.Api" Version="24.2.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.Auth.AcmIdm" Version="4.0.1" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting" Version="10.0.2" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.CommandHandling" Version="10.0.2" />
 
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo" Version="6.4.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo" Version="6.5.2" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo" Version="6.5.1" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo" Version="5.5.1" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions" Version="5.5.1" />
@@ -46,6 +46,7 @@
         <PackageVersion Include="RestSharp" Version="112.1.0" />
         <PackageVersion Include="Marvin.Cache.Headers" Version="7.2.0" />
         <PackageVersion Include="StackExchange.Redis" Version="2.8.37" />
+        <PackageVersion Include="CloudNative.CloudEvents.NewtonsoftJson" Version="2.8.0" />
 
         <PackageVersion Include="Serilog" Version="4.3.0" />
         <PackageVersion Include="Serilog.Settings.Configuration" Version="9.0.0" />

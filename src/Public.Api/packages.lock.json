@@ -59,9 +59,9 @@
       },
       "Be.Vlaanderen.Basisregisters.Api": {
         "type": "Direct",
-        "requested": "[24.1.0, )",
-        "resolved": "24.1.0",
-        "contentHash": "hcXBIwOflwBM09ZquNLjwBbqGurnpbK2vHNeIse2LhHm4BlbS+sMIOeIlPVW1oMJdwGiJ5DR4s/PNFFihMvRHQ==",
+        "requested": "[24.2.0, )",
+        "resolved": "24.2.0",
+        "contentHash": "Qss5u+Ulomrnmyw9MNShjc++nMiMReSNkGPwJ7w4OrnPDU/9TXUgCBdvrlfzlehF3LZu5iws3zcv6DAXgcZv9g==",
         "dependencies": {
           "Asp.Versioning.Mvc.ApiExplorer": "8.1.0",
           "Autofac": "8.2.1",
@@ -289,9 +289,9 @@
       },
       "Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo": {
         "type": "Direct",
-        "requested": "[6.4.1, )",
-        "resolved": "6.4.1",
-        "contentHash": "5OlsS0GcunzAOHkxdXEDg+UW6/iKAN8WzFNcLC6V0tEibBFMPw2HdeoVwB5KlIX9d+CSanHeQDJ1D0rS448iJQ==",
+        "requested": "[6.5.2, )",
+        "resolved": "6.5.2",
+        "contentHash": "Xin4Lc+tTWpLvWSXn3vn23Y7ZoKImD990PlOy+zD/dlmfVytYPdRBeejUF5oWb6v/01Lyuu1Lv/AmkxROZoedg==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Be.Vlaanderen.Basisregisters.AggregateSource": "10.0.2",
@@ -415,6 +415,16 @@
         "contentHash": "FIZVv5CczFBfNwePQ0D4WcbEz1my2Z1gNfNoFo6KtUbA4Mzq5JcCAUQWPZrwnzX8Ni8Y326hb8ecSGuGp4xTDA==",
         "dependencies": {
           "System.Text.Json": "9.0.5"
+        }
+      },
+      "CloudNative.CloudEvents.NewtonsoftJson": {
+        "type": "Direct",
+        "requested": "[2.8.0, )",
+        "resolved": "2.8.0",
+        "contentHash": "BIs7Tg73XqRDnk1m60leowADsXNJyg7a9wQnim2zfamory1jXRtrd9N1ppX3DbaTjSd2w5rqRk9ufLfgzIFBcg==",
+        "dependencies": {
+          "CloudNative.CloudEvents": "2.8.0",
+          "Newtonsoft.Json": "13.0.3"
         }
       },
       "Datadog.Trace.Bundle": {
@@ -731,6 +741,11 @@
         "type": "Transitive",
         "resolved": "4.0.8",
         "contentHash": "jzp8ifH4bBjvhxGe4bBDeDGEXVbiXco7cZX2iKghOTulus30lKk/oj9mOz2gMusQHGEppvXhtHgoJsX3XNYRng=="
+      },
+      "CloudNative.CloudEvents": {
+        "type": "Transitive",
+        "resolved": "2.8.0",
+        "contentHash": "RvabvAQV7u3FZcZL5UlRmFz3/T5nMl86GpChpRvHKRHbO+/I4LBcZ0xRqYnNfAh30gM+h/JkSBHEnbhl0zmGtA=="
       },
       "CommandLineParser": {
         "type": "Transitive",
@@ -2666,7 +2681,7 @@
         "dependencies": {
           "AWSSDK.DynamoDBv2": "[3.7.407, )",
           "Autofac.Extensions.DependencyInjection": "[10.0.0, )",
-          "Be.Vlaanderen.Basisregisters.Api": "[24.1.0, )",
+          "Be.Vlaanderen.Basisregisters.Api": "[24.2.0, )",
           "FeatureToggle.Common": "[4.0.2, )",
           "Marvin.Cache.Headers": "[7.2.0, )",
           "RestSharp": "[112.1.0, )",

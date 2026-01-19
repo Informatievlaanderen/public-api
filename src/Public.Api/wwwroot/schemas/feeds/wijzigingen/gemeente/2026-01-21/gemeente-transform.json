@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:gemeente-transform:2026-01-01",
+  "title": "Gemeente transform data",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["vanObjectId", "naarObjectId", "nisCodes"],
+  "properties": {
+    "vanObjectId": {
+      "type": "string",
+      "pattern": "^[0-9]{5}$",
+      "description": "Source municipality object identifier (5 digits)."
+    },
+    "naarObjectId": {
+      "type": "string",
+      "pattern": "^[0-9]{5}$",
+      "description": "Target municipality object identifier (5 digits)."
+    },
+    "nisCodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9]{5}$",
+        "description": "NIS code (5 digits)."
+      }
+    }
+  }
+}
