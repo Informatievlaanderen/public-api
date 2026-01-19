@@ -1,3 +1,10 @@
+## [7.13.1](https://github.com/informatievlaanderen/public-api/compare/v7.13.0...v7.13.1) (2026-01-19)
+
+
+### Bug Fixes
+
+* cache toggle and problem response ([2393625](https://github.com/informatievlaanderen/public-api/commit/23936253b1ddcf8f4386022b97ea59cbb2222020))
+
 # [7.13.0](https://github.com/informatievlaanderen/public-api/compare/v7.12.1...v7.13.0) (2026-01-19)
 
 
