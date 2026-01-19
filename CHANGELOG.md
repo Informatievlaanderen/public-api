@@ -1,3 +1,10 @@
+# [7.12.0](https://github.com/informatievlaanderen/public-api/compare/v7.11.0...v7.12.0) (2026-01-19)
+
+
+### Features
+
+* add StorePosition to Projection status response ([645fea5](https://github.com/informatievlaanderen/public-api/commit/645fea583eddac0309894794ce17b9334daf53ad))
+
 # [7.11.0](https://github.com/informatievlaanderen/public-api/compare/v7.10.0...v7.11.0) (2026-01-16)
 
 
