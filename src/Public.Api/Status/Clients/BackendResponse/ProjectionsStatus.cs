@@ -5,7 +5,7 @@ namespace Public.Api.Status.Clients.BackendResponse
     public class ProjectionsStatusList
     {
         public List<ProjectionStatus> Projections { get; set; }
-        public long StreamPosition { get; set; }
+        public long? StreamPosition { get; set; }
     }
 
     public class ProjectionStatus
@@ -15,6 +15,7 @@ namespace Public.Api.Status.Clients.BackendResponse
         public string Description { get; set; }
         public string State { get; set; }
         public long CurrentPosition { get; set; }
+        public long? StorePosition { get; set; }
         public string ErrorMessage { get; set; }
     }
 }
