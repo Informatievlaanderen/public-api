@@ -9,7 +9,7 @@ namespace Public.Api.Status.Responses
     {
         public ProjectionStatusResponse()
         { }
-        
+
         private ProjectionStatusResponse(SerializationInfo info, StreamingContext context)
             : base(info, context)
         { }
@@ -19,7 +19,7 @@ namespace Public.Api.Status.Responses
     public class RegistryProjectionStatusResponse
     {
         [DataMember(Order = 1)]
-        public long StreamPosition { get; set; }
+        public long? StreamPosition { get; set; }
 
         [DataMember(Order = 2)]
         public IEnumerable<RegistryProjectionStatus> Projections { get; set; }
@@ -41,5 +41,8 @@ namespace Public.Api.Status.Responses
 
         [DataMember(Order = 5)]
         public long CurrentPosition { get; set; }
+
+        [DataMember(Order = 6)]
+        public long? StorePosition { get; set; }
     }
 }
