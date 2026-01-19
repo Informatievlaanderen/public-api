@@ -1,3 +1,10 @@
+## [7.12.1](https://github.com/informatievlaanderen/public-api/compare/v7.12.0...v7.12.1) (2026-01-19)
+
+
+### Bug Fixes
+
+* StorePosition in status projection ([873604d](https://github.com/informatievlaanderen/public-api/commit/873604d4259119f56d5703434b7080dbd205b64e))
+
 # [7.12.0](https://github.com/informatievlaanderen/public-api/compare/v7.11.0...v7.12.0) (2026-01-19)
 
 
