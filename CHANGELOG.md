@@ -1,3 +1,10 @@
+## [7.13.2](https://github.com/informatievlaanderen/public-api/compare/v7.13.1...v7.13.2) (2026-01-19)
+
+
+### Bug Fixes
+
+* add schemas to staticfiles ([8cdeafe](https://github.com/informatievlaanderen/public-api/commit/8cdeafecf27569bfae88318803f0a5aa3c7b3088))
+
 ## [7.13.1](https://github.com/informatievlaanderen/public-api/compare/v7.13.0...v7.13.1) (2026-01-19)
 
 
