@@ -4,6 +4,7 @@ namespace Public.Api.Feeds.V2.Change
     using System.Net;
     using System.Net.Http.Headers;
     using Asp.Versioning;
+    using Autofac.Features.Indexed;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.Api.Search.Filtering;
@@ -27,6 +28,7 @@ namespace Public.Api.Feeds.V2.Change
     [ApiKeyAuth("Sync")]
     public partial class ChangeFeedV2Controller : ApiController<ChangeFeedV2Controller>
     {
+        private readonly IIndex<string, IFeatureToggle> _cacheToggles;
         public const string FeedsGroupName = "Feeds";
 
         protected const int DefaultFeedCaching = 0;
@@ -34,8 +36,12 @@ namespace Public.Api.Feeds.V2.Change
         public ChangeFeedV2Controller(
             IHttpContextAccessor httpContextAccessor,
             ConnectionMultiplexerProvider redis,
+            [FromServices] IIndex<string, IFeatureToggle> cacheToggles,
             ILogger<ChangeFeedV2Controller> logger)
-            : base(httpContextAccessor, redis, logger) { }
+            : base(httpContextAccessor, redis, logger)
+        {
+            _cacheToggles = cacheToggles;
+        }
 
         private static ContentFormat DetermineFormat(ActionContext context)
             => ContentFormat.For(EndpointType.ChangeFeed, context);
@@ -63,9 +69,9 @@ namespace Public.Api.Feeds.V2.Change
             }
         }
 
-        protected bool CanGetFromCache(IFeatureToggle cacheToggle, ActionContext actionContext)
+        protected bool CanGetFromCache(string toggleName, ActionContext actionContext)
         {
-            return cacheToggle.FeatureEnabled
+            return _cacheToggles[toggleName].FeatureEnabled
                    && !actionContext.HttpContext.Request
                        .Headers
                        .CacheControl

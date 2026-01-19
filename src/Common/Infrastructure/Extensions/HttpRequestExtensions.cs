@@ -36,6 +36,9 @@ namespace Common.Infrastructure.Extensions
             // convert Atom to Xml to support problem-details
             if (request.GetTypedHeaders().Contains(AcceptType.Atom))
                 request.SetAcceptType(AcceptType.Xml);
+
+            if (request.GetTypedHeaders().Contains(AcceptType.JsonCloudEventsBatch))
+                request.SetAcceptType(AcceptType.Json);
         }
     }
 }

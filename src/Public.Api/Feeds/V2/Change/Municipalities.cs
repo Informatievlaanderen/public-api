@@ -64,7 +64,6 @@
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IIndex<string, Lazy<RestClient>> restClients,
             [FromServices] ChangeFeedMunicipalityToggle changeFeedMunicipalityToggle,
-            [FromServices] [KeyFilter(RegistryKeys.MunicipalityV2)] IFeatureToggle cacheToggle,
             [FromQuery] int? pagina,
             [FromQuery] int? feedPositie,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -81,7 +80,7 @@
                 pagina,
                 feedPositie);
 
-            var value = await (CanGetFromCache(cacheToggle, actionContextAccessor.ActionContext)
+            var value = await (CanGetFromCache(RegistryKeys.MunicipalityV2, actionContextAccessor.ActionContext)
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
                     restClients[RegistryKeys.MunicipalityV2].Value,
