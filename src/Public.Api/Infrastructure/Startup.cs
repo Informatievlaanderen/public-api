@@ -572,6 +572,11 @@ namespace Public.Api.Infrastructure
                     ContentTypeProvider = new FileExtensionContentTypeProvider(new Dictionary<string, string> { [".jsonld"] = "application/ld+json" }),
                     FileProvider = new PhysicalFileProvider(Path.Combine(env.WebRootPath, "context")),
                     RequestPath = "/context"
+                })
+                .UseStaticFiles(new StaticFileOptions
+                {
+                    FileProvider = new PhysicalFileProvider(Path.Combine(env.WebRootPath, "schemas")),
+                    RequestPath = "/schemas"
                 });
         }
 
