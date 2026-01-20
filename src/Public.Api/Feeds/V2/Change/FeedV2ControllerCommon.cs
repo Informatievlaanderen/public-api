@@ -29,9 +29,10 @@ namespace Public.Api.Feeds.V2.Change
     public partial class ChangeFeedV2Controller : ApiController<ChangeFeedV2Controller>
     {
         private readonly IIndex<string, IFeatureToggle> _cacheToggles;
-        public const string FeedsGroupName = "Feeds";
 
-        protected const int DefaultFeedCaching = 0;
+        private const int DefaultFeedCaching = 24 * 60 * 60; // Hours, Minutes, Second
+
+        public const string FeedsGroupName = "Feeds";
 
         public ChangeFeedV2Controller(
             IHttpContextAccessor httpContextAccessor,
