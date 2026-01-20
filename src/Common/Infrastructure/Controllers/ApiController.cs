@@ -64,7 +64,7 @@ namespace Common.Infrastructure.Controllers
         {
             if (_redis != null)
             {
-                var key = $"{cacheKey}.{acceptType}".ToLowerInvariant();
+                var key = GetCacheKey(acceptType, cacheKey);
                 var cachedResponse = await GetFromCacheAsync(key, acceptType);
 
                 if (cachedResponse is not null)
@@ -97,6 +97,13 @@ namespace Common.Infrastructure.Controllers
                 acceptType,
                 handleNotOkResponseAction,
                 cancellationToken);
+        }
+
+        private static string GetCacheKey(AcceptType acceptType, string cacheKey)
+        {
+            return acceptType == AcceptType.JsonCloudEventsBatch
+                ? $"{cacheKey}".ToLowerInvariant()
+                : $"{cacheKey}.{acceptType}".ToLowerInvariant();
         }
 
         private async Task<BackendResponse?> GetFromCacheAsync(string key, AcceptType acceptType)

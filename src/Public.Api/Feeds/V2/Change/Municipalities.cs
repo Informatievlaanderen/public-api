@@ -4,13 +4,11 @@
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using Autofac.Features.AttributeFilters;
     using Autofac.Features.Indexed;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using CloudNative.CloudEvents;
     using Common.FeatureToggles;
     using Common.Infrastructure;
-    using FeatureToggle;
     using Infrastructure;
     using Infrastructure.Configuration;
     using Marvin.Cache.Headers;
@@ -21,6 +19,7 @@
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
+    using ValidationProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails;
 
     public partial class ChangeFeedV2Controller
     {
@@ -45,7 +44,7 @@
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet("gemeenten", Name = nameof(ChangeFeedMunicipality))]
         [ProducesResponseType(typeof(List<CloudEvent>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
@@ -101,7 +100,7 @@
         [ApiExplorerSettings(IgnoreApi = true)]
         [HttpGet("gemeenten/{nisCode}", Name = nameof(ChangeFeedMunicipalityById))]
         [ProducesResponseType(typeof(List<CloudEvent>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
