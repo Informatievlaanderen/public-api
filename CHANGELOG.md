@@ -1,3 +1,11 @@
+## [7.13.3](https://github.com/informatievlaanderen/public-api/compare/v7.13.2...v7.13.3) (2026-01-20)
+
+
+### Bug Fixes
+
+* default page for feeds ([4380ff2](https://github.com/informatievlaanderen/public-api/commit/4380ff2956f298acbee575773a3e30dc7c4cc336))
+* **feed:** remove no cache attributes ([7609bf6](https://github.com/informatievlaanderen/public-api/commit/7609bf6d16f03b28e0fa2ef060a65ec19eed6ae8))
+
 ## [7.13.2](https://github.com/informatievlaanderen/public-api/compare/v7.13.1...v7.13.2) (2026-01-19)
 
 
