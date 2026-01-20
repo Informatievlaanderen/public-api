@@ -1,3 +1,10 @@
+## [7.13.4](https://github.com/informatievlaanderen/public-api/compare/v7.13.3...v7.13.4) (2026-01-20)
+
+
+### Bug Fixes
+
+* **feed:** determine cachekey feeds ([ad19670](https://github.com/informatievlaanderen/public-api/commit/ad196707cc777b71be7a05cfd11042d1b905e0ec))
+
 ## [7.13.3](https://github.com/informatievlaanderen/public-api/compare/v7.13.2...v7.13.3) (2026-01-20)
 
 
