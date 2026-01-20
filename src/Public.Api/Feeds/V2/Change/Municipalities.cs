@@ -70,8 +70,10 @@
             if (!changeFeedMunicipalityToggle.FeatureEnabled)
                 return NotFound();
 
-            pagina ??= 1;
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+
+            if (pagina is null && feedPositie is null)
+                pagina = 1;
             var cacheKey = $"feed/municipality:{pagina}";
 
             RestRequest BackendRequest() => CreateBackendChangeFeedRequest(
