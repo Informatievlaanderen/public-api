@@ -1,3 +1,10 @@
+## [7.13.5](https://github.com/informatievlaanderen/public-api/compare/v7.13.4...v7.13.5) (2026-01-20)
+
+
+### Bug Fixes
+
+* feed pagination+cache+feedposition ([fe23285](https://github.com/informatievlaanderen/public-api/commit/fe232859d53de5453e1c82a0f0f5a1510f4097cd))
+
 ## [7.13.4](https://github.com/informatievlaanderen/public-api/compare/v7.13.3...v7.13.4) (2026-01-20)
 
 
