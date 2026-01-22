@@ -96,7 +96,7 @@
                     HandleBadRequest,
                     cancellationToken));
 
-            return new BackendResponseResult(value);
+            return new BackendResponseResult(value, BackendResponseResultOptions.ForRead());
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]

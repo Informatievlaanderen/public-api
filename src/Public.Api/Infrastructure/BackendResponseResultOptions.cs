@@ -20,7 +20,7 @@ namespace Public.Api.Infrastructure
 
         public static BackendResponseResultOptions ForRead()
         {
-            return new BackendResponseResultOptions { ForwardHeaders = new List<string> { "ETag" } };
+            return new BackendResponseResultOptions { ForwardHeaders = new List<string> { "ETag", "X-Page-Complete" } };
         }
     }
 }
