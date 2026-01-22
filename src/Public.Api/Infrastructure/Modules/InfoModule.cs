@@ -25,12 +25,12 @@ namespace Public.Api.Infrastructure.Modules
                     .As<IRegistryEventsMarkdownGenerator>()
                     .Keyed<IRegistryEventsMarkdownGenerator>(registryKey);
 
-            RegisterMarkDownGenerator<MunicipalityRegistry.DomainAssemblyMarker>(RegistryKeys.Municipality);
-            RegisterMarkDownGenerator<PostalRegistry.DomainAssemblyMarker>(RegistryKeys.Postal);
-            RegisterMarkDownGenerator<StreetNameRegistry.DomainAssemblyMarker>(RegistryKeys.StreetName);
-            RegisterMarkDownGenerator<AddressRegistry.DomainAssemblyMarker>(RegistryKeys.Address);
-            RegisterMarkDownGenerator<BuildingRegistry.DomainAssemblyMarker>(RegistryKeys.Building);
-            RegisterMarkDownGenerator<ParcelRegistry.DomainAssemblyMarker>(RegistryKeys.Parcel);
+            RegisterMarkDownGenerator<MunicipalityRegistry.DomainAssemblyMarker>(RegistryKeys.MunicipalityV2);
+            RegisterMarkDownGenerator<PostalRegistry.DomainAssemblyMarker>(RegistryKeys.PostalV2);
+            RegisterMarkDownGenerator<StreetNameRegistry.DomainAssemblyMarker>(RegistryKeys.StreetNameV2);
+            RegisterMarkDownGenerator<AddressRegistry.DomainAssemblyMarker>(RegistryKeys.AddressV2);
+            RegisterMarkDownGenerator<BuildingRegistry.DomainAssemblyMarker>(RegistryKeys.BuildingV2);
+            RegisterMarkDownGenerator<ParcelRegistry.DomainAssemblyMarker>(RegistryKeys.ParcelV2);
             // RegisterMarkDownGenerator<RoadRegistry.BackOffice.DomainAssemblyMarker>(RegistryKeys.Road);
         }
     }
