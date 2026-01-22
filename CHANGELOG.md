@@ -1,3 +1,10 @@
+## [7.13.7](https://github.com/informatievlaanderen/public-api/compare/v7.13.6...v7.13.7) (2026-01-22)
+
+
+### Bug Fixes
+
+* forward headers case insensitive ([9766fee](https://github.com/informatievlaanderen/public-api/commit/9766fee16a9052846b18fa4f62d55e32a022e5f2))
+
 ## [7.13.6](https://github.com/informatievlaanderen/public-api/compare/v7.13.5...v7.13.6) (2026-01-22)
 
 
