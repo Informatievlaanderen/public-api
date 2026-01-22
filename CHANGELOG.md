@@ -1,3 +1,10 @@
+## [7.13.6](https://github.com/informatievlaanderen/public-api/compare/v7.13.5...v7.13.6) (2026-01-22)
+
+
+### Bug Fixes
+
+* **feed:** add x-page-complete header to forward ([e28f7be](https://github.com/informatievlaanderen/public-api/commit/e28f7be9d9fc08b6828b60f94b8b37da379a0f7f))
+
 ## [7.13.5](https://github.com/informatievlaanderen/public-api/compare/v7.13.4...v7.13.5) (2026-01-20)
 
 
