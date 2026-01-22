@@ -1,3 +1,10 @@
+## [7.13.8](https://github.com/informatievlaanderen/public-api/compare/v7.13.7...v7.13.8) (2026-01-22)
+
+
+### Bug Fixes
+
+* markdown headers documentation ([28a814c](https://github.com/informatievlaanderen/public-api/commit/28a814c825999c7dde97967bb128c279a9d98447))
+
 ## [7.13.7](https://github.com/informatievlaanderen/public-api/compare/v7.13.6...v7.13.7) (2026-01-22)
 
 
