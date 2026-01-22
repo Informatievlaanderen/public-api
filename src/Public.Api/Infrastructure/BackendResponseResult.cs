@@ -1,5 +1,6 @@
 namespace Public.Api.Infrastructure
 {
+    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
@@ -39,7 +40,7 @@ namespace Public.Api.Infrastructure
             foreach (var headerToForward in _options.ForwardHeaders)
             {
                 var headerFromResponse = _response.ResponseHeaders
-                    .SingleOrDefault(responseHeader => responseHeader.Key == headerToForward);
+                    .SingleOrDefault(responseHeader => string.Equals(responseHeader.Key, headerToForward, StringComparison.OrdinalIgnoreCase));
 
                 if (!headerFromResponse.Equals(new KeyValuePair<string, StringValues>()))
                 {
