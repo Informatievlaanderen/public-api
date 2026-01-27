@@ -49,13 +49,12 @@ namespace Public.Api.Feeds.V2.Change
 
         private static RestRequest CreateBackendChangeFeedRequest(
             string resourcename,
-            int? page,
-            int? feedPosition)
+            int? page)
             => new RestRequest($"{resourcename}/wijzigingen")
                     .AddFiltering(new
                     {
                         page = page,
-                        feedPosition = feedPosition
+                        //feedPosition = feedPosition
                     });
 
         protected void HandleBadRequest(HttpStatusCode statusCode)

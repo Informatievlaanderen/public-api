@@ -17,6 +17,7 @@
     using Microsoft.AspNetCore.Mvc.Infrastructure;
     using MunicipalityRegistry.Api.Oslo.Municipality.Responses;
     using RestSharp;
+    using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
     using ValidationProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails;
@@ -24,18 +25,16 @@
     public partial class ChangeFeedV2Controller
     {
         /// <summary>
-        /// Vraag een lijst met wijzigingen op gemeenten in CloudEvents formaat (v2).
+        /// Vraag een lijst op met wijzigingen over gemeenten (v2).
         /// </summary>
         /// <param name="actionContextAccessor"></param>
         /// <param name="restClients"></param>
-        /// <param name="pagina">Paginanummer vanaf waar de feed moet gestart of hernomen worden (optioneel).</param>
-        /// <param name="feedPositie">Positie van de XML/Atom feed die vertaald wordt naar een pagina (optioneel). Let op: de pagina kunnen items bevatten die voor de gegeven positie liggen.</param>
-        /// <param name="cacheToggle"></param>
+        /// <param name="pagina">Paginanummer dat aangeeft vanaf welke pagina de feedresultaten worden opgehaald (optioneel).</param>
         /// <param name="changeFeedMunicipalityToggle"></param>
         /// <param name="cancellationToken"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel).</param>
         /// <returns></returns>
-        /// <response code="200">Als de opvraging van een lijst met wijzigingen op gemeenten gelukt is.</response>
+        /// <response code="200">Als de opvraging van de lijst met wijzigingen over gemeenten gelukt is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="401">Als er geen API key is meegegeven.</response>
         /// <response code="403">Als u niet beschikt over de correcte rechten om deze actie uit te voeren.</response>
@@ -51,6 +50,7 @@
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-page-complete", "bool", "Geeft aan of de pagina definitief is.<br/>`true`: er worden geen nieuwe wijzigingen meer aan deze pagina toegevoegd.<br/>`false`: er kunnen nog wijzigingen aan deze pagina worden toegevoegd.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(MunicipalityFeedResultExample))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedResponseExamplesV2))]
@@ -58,12 +58,16 @@
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [HttpCacheExpiration(MaxAge = DefaultFeedCaching)]
+        [SwaggerOperation(Description = "Vraag een lijst op van wijzigingen over gemeenten, bedoeld om een lokale kopie van het register efficiënt te synchroniseren.<br/>" +
+                                        "De response bestaat uit een batch <b>CloudEvents</b>. Voor de betekenis van de standaard CloudEvents-attributen verwijzen we naar de officiële <a href=\"https://cloudevents.io/\" target=\"_blank\">CloudEvents-documentatie</a>.<br/>" +
+                                        "Geometrieën worden altijd meegegeven als <b>GML</b>, inclusief het <b>SRS</b>. Raadpleeg dit SRS altijd bij verwerking, aangezien de projectie kan wijzigen.<br/>" +
+                                        "Aanbeveling: vraag de feed niet vaker op dan nodig. Stem de opvraagfrequentie af op je verwerkingscapaciteit en de gewenste actualiteit van je lokale kopie.")]
         public async Task<IActionResult> ChangeFeedMunicipality(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IIndex<string, Lazy<RestClient>> restClients,
             [FromServices] ChangeFeedMunicipalityToggle changeFeedMunicipalityToggle,
             [FromQuery] int? pagina,
-            [FromQuery] int? feedPositie,
+            //[FromQuery] int? feedPositie,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
@@ -72,14 +76,13 @@
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            if (pagina is null && feedPositie is null)
-                pagina = 1;
+            //if (pagina is null && feedPositie is null)
+            pagina ??= 1;
             var cacheKey = $"feed/municipality:{pagina}";
 
             RestRequest BackendRequest() => CreateBackendChangeFeedRequest(
                 "gemeenten",
-                pagina,
-                feedPositie);
+                pagina);
 
             var value = await (CanGetFromCache(RegistryKeys.MunicipalityV2, actionContextAccessor.ActionContext)
                 ? GetFromCacheThenFromBackendAsync(
