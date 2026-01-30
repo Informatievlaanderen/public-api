@@ -1,3 +1,10 @@
+# [7.14.0](https://github.com/informatievlaanderen/public-api/compare/v7.13.8...v7.14.0) (2026-01-30)
+
+
+### Features
+
+* add feed positions ([75bb456](https://github.com/informatievlaanderen/public-api/commit/75bb456609f57105c300e082f087bbb5d47273f6))
+
 ## [7.13.8](https://github.com/informatievlaanderen/public-api/compare/v7.13.7...v7.13.8) (2026-01-22)
 
 
