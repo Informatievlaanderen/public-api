@@ -37,7 +37,7 @@ namespace Public.Api.Road.Extracten
                 problemDetailsHelper,
                 cancellationToken: cancellationToken);
 
-            return new BackendResponseResult(response);
+            return new BackendResponseResult(response, BackendResponseResultOptions.ForBackOffice());
         }
     }
 }
