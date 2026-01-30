@@ -43,17 +43,16 @@
             ConnectionMultiplexerProvider redis,
             ILogger<FeedPositionsController> logger)
             : base(httpContextAccessor, redis, logger)
-        {
-        }
+        { }
 
         /// <summary>
         /// Vraag de posities op van de feeds voor een bepaald register, aan de hand van een andere positie identificator.
         /// </summary>
         /// <param name="restClients"></param>
         /// <param name="register">Het register waarvoor je de posities opvraagt.</param>
-        /// <param name="feed">Eventidentificator van de XML/Atom feeds (optioneel).</param>
-        /// <param name="download">De identificator in het dowloadbestand (_metadata.dbf) (optioneel).</param>
-        /// <param name="wijzigingFeedId">De Id van de entry in de wijzigingen feed (optioneel).</param>
+        /// <param name="feed">Eventidentificator van de XML/Atom feeds (1) (optioneel).</param>
+        /// <param name="download">De identificator in het dowloadbestand (_metadata.dbf) (1) (optioneel).</param>
+        /// <param name="wijzigingFeedId">De Id van de entry in de wijzigingen feed (1) (optioneel).</param>
         /// <param name="feedPositionsToggle"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -82,7 +81,7 @@
         [SwaggerOperation(Description = "Van de optionele parameters (1) moet er één ingevuld zijn.")]
         public async Task<IActionResult> FeedPositions(
             [FromServices] IIndex<string, Lazy<RestClient>> restClients,
-            [FromQuery] FeedPositionsEndpoint register,
+            [FromQuery] FeedPositiesRegister register,
             [FromQuery] long? feed,
             [FromQuery] long? download,
             [FromQuery] long? wijzigingFeedId,
@@ -115,30 +114,30 @@
             }
         }
 
-        private static readonly Dictionary<FeedPositionsEndpoint, string> RegistryKeysByEndpoint = new()
+        private static readonly Dictionary<FeedPositiesRegister, string> RegistryKeysByEndpoint = new()
         {
-            { FeedPositionsEndpoint.Municipality, RegistryKeys.MunicipalityV2 },
-            { FeedPositionsEndpoint.Postal, RegistryKeys.PostalV2 },
-            { FeedPositionsEndpoint.StreetName, RegistryKeys.StreetNameV2 },
-            { FeedPositionsEndpoint.Address, RegistryKeys.AddressV2 },
-            { FeedPositionsEndpoint.Building, RegistryKeys.BuildingV2 },
-            { FeedPositionsEndpoint.BuildingUnit, RegistryKeys.BuildingV2 },
-            { FeedPositionsEndpoint.Parcel, RegistryKeys.ParcelV2 }
+            { FeedPositiesRegister.Gemeente, RegistryKeys.MunicipalityV2 },
+            { FeedPositiesRegister.Postinfo, RegistryKeys.PostalV2 },
+            { FeedPositiesRegister.Straatnaam, RegistryKeys.StreetNameV2 },
+            { FeedPositiesRegister.Adres, RegistryKeys.AddressV2 },
+            { FeedPositiesRegister.Gebouw, RegistryKeys.BuildingV2 },
+            { FeedPositiesRegister.Gebouweenheid, RegistryKeys.BuildingV2 },
+            { FeedPositiesRegister.Perceel, RegistryKeys.ParcelV2 }
         };
 
-        private static readonly Dictionary<FeedPositionsEndpoint, string> ResourceNames = new()
+        private static readonly Dictionary<FeedPositiesRegister, string> ResourceNames = new()
         {
-            { FeedPositionsEndpoint.Municipality, "gemeenten" },
-            { FeedPositionsEndpoint.Postal, "postinfo" },
-            { FeedPositionsEndpoint.StreetName, "straatnamen" },
-            { FeedPositionsEndpoint.Address, "adressen" },
-            { FeedPositionsEndpoint.Building, "gebouwen" },
-            { FeedPositionsEndpoint.BuildingUnit, "gebouweenheden" },
-            { FeedPositionsEndpoint.Parcel, "percelen" }
+            { FeedPositiesRegister.Gemeente, "gemeenten" },
+            { FeedPositiesRegister.Postinfo, "postinfo" },
+            { FeedPositiesRegister.Straatnaam, "straatnamen" },
+            { FeedPositiesRegister.Adres, "adressen" },
+            { FeedPositiesRegister.Gebouw, "gebouwen" },
+            { FeedPositiesRegister.Gebouweenheid, "gebouweenheden" },
+            { FeedPositiesRegister.Perceel, "percelen" }
         };
 
         private static RestRequest CreateRequest(
-            FeedPositionsEndpoint register,
+            FeedPositiesRegister register,
             long? feed,
             long? download,
             long? wijzigingFeedId)
@@ -151,22 +150,15 @@
                 });
 
         [DataContract(Name = "FeedPositieRegister", Namespace = "")]
-        public enum FeedPositionsEndpoint
+        public enum FeedPositiesRegister
         {
-            [EnumMember(Value = "gemeente")]
-            Municipality,
-            [EnumMember(Value = "postinfo")]
-            Postal,
-            [EnumMember(Value = "straatnaam")]
-            StreetName,
-            [EnumMember(Value = "adres")]
-            Address,
-            [EnumMember(Value = "gebouw")]
-            Building,
-            [EnumMember(Value = "gebouweenheid")]
-            BuildingUnit,
-            [EnumMember(Value = "perceel")]
-            Parcel
+            Gemeente,
+            Postinfo,
+            Straatnaam,
+            Adres,
+            Gebouw,
+            Gebouweenheid,
+            Perceel
         }
 
         public sealed class FeedPositieResponseExample : IExamplesProvider<FeedPositieResponse>
