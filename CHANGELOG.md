@@ -1,3 +1,10 @@
+## [7.14.1](https://github.com/informatievlaanderen/public-api/compare/v7.14.0...v7.14.1) (2026-01-30)
+
+
+### Bug Fixes
+
+* **road:** pass Location from backoffice to client ([e323f62](https://github.com/informatievlaanderen/public-api/commit/e323f628161a2369b89b27d12b95dee7da5223be))
+
 # [7.14.0](https://github.com/informatievlaanderen/public-api/compare/v7.13.8...v7.14.0) (2026-01-30)
 
 
