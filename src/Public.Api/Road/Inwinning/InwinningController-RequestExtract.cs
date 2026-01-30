@@ -33,7 +33,7 @@ namespace Public.Api.Road.Inwinning
                 problemDetailsHelper,
                 cancellationToken: cancellationToken);
 
-            return new BackendResponseResult(response);
+            return new BackendResponseResult(response, BackendResponseResultOptions.ForBackOffice());
 
             RestRequest BackendRequest() =>
                 CreateBackendRestRequest(Method.Post, "inwinning/downloadaanvraag")

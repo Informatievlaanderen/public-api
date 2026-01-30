@@ -40,7 +40,7 @@ namespace Public.Api.Road.Grb.V2
                 problemDetailsHelper,
                 cancellationToken: cancellationToken);
 
-            return new BackendResponseResult(value);
+            return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
 
             RestRequest BackendRequest() =>
                 CreateBackendRestRequest(Method.Post, "grb/download/{downloadId}/upload")

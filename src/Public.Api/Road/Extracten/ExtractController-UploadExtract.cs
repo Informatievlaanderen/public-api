@@ -32,7 +32,7 @@ namespace Public.Api.Road.Extracten
                 problemDetailsHelper,
                 cancellationToken: cancellationToken);
 
-            return new BackendResponseResult(value);
+            return new BackendResponseResult(value, BackendResponseResultOptions.ForBackOffice());
 
             RestRequest BackendRequest() =>
                 CreateBackendRestRequest(Method.Post, "extracten/{downloadId}/upload")
