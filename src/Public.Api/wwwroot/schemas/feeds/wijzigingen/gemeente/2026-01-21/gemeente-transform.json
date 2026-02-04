@@ -4,17 +4,15 @@
   "title": "Gemeente transform data",
   "type": "object",
   "additionalProperties": false,
-  "required": ["vanObjectId", "naarObjectId", "nisCodes"],
+  "required": ["vanId", "naarId", "nisCodes"],
   "properties": {
-    "vanObjectId": {
+    "vanId": {
       "type": "string",
-      "pattern": "^[0-9]{5}$",
-      "description": "Source municipality object identifier (5 digits)."
+      "description": "Source municipality identifier."
     },
-    "naarObjectId": {
+    "naarId": {
       "type": "string",
-      "pattern": "^[0-9]{5}$",
-      "description": "Target municipality object identifier (5 digits)."
+      "description": "Target municipality identifier."
     },
     "nisCodes": {
       "type": "array",

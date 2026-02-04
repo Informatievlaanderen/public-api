@@ -10,8 +10,8 @@
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting" Version="10.0.2" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.CommandHandling" Version="10.0.2" />
 
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo" Version="6.5.2" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo" Version="6.5.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo" Version="6.7.2" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo" Version="6.6.1" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo" Version="5.5.1" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions" Version="5.5.1" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo" Version="5.3.1" />
@@ -24,11 +24,12 @@
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.IntegrationDb.Api.Abstractions" Version="3.5.2" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.NotificationService.Api.Abstractions" Version="1.1.1" />
 
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Common" Version="22.6.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Legacy" Version="22.6.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Edit" Version="22.6.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Provenance" Version="22.6.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Import" Version="22.6.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Common" Version="22.7.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Legacy" Version="22.7.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Edit" Version="22.7.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.ChangeFeed" Version="22.7.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Provenance" Version="22.7.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Import" Version="22.7.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.EventHandling" Version="7.0.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.ProblemDetails" Version="10.0.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.AspNetCore.Swagger" Version="6.0.1" />
