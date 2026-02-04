@@ -63,7 +63,11 @@
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
+<<<<<<< HEAD
                 "enum": [null, "inGebruik", "gehistoreerd"]
+=======
+                "enum": ["inGebruik", "gehistoreerd"]
+>>>>>>> ebb4fe0d (feat(feed): add postalinfo changefeed)
               },
               "nieuweWaarde": {
                 "type": "string",
