@@ -34,6 +34,9 @@
     <None Update="wwwroot\**\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="wwwroot\schemas\feeds\wijzigingen\postinfo\2026-01-21\postinfo.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Target Name="ChangeAliasesOfStrongNameAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
     <ItemGroup>
@@ -66,6 +69,7 @@
     <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Common" GeneratePathProperty="true" />
     <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Legacy" GeneratePathProperty="true" />
     <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Edit" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.ChangeFeed" GeneratePathProperty="true" />
     <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Provenance" GeneratePathProperty="true" />
     <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Import" GeneratePathProperty="true" />
     <PackageReference Include="Be.Vlaanderen.Basisregisters.EventHandling" />
