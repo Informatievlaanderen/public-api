@@ -29,6 +29,10 @@ namespace Public.Api.Address.Oslo
         /// <param name="straatnaam">Filter op de straatnaam van het adres.</param>
         /// <param name="huisnummer">Filter op het huisnummer van het adres.</param>
         /// <param name="busnummer">Filter op het busnummer van het adres.</param>
+        /// <param name="status">
+        /// Filter op de status van het adres of straatnaam. \
+        /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"` `"afgekeurd"`
+        /// </param>
         /// <param name="actionContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
@@ -63,6 +67,7 @@ namespace Public.Api.Address.Oslo
             [FromQuery] [Required] string straatnaam,
             [FromQuery] string huisnummer,
             [FromQuery] string busnummer,
+            [FromQuery] string? status,
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
@@ -76,7 +81,8 @@ namespace Public.Api.Address.Oslo
                 postcode,
                 gemeentenaam,
                 niscode,
-                straatnaam);
+                straatnaam,
+                status);
 
             var response = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,
@@ -95,7 +101,8 @@ namespace Public.Api.Address.Oslo
             string postalCode,
             string municipalityName,
             string nisCode,
-            string streetName)
+            string streetName,
+            string? status)
         {
             var request = new RestRequest("adresmatch")
                 .AddParameter("taal", language, ParameterType.QueryString);
@@ -117,6 +124,9 @@ namespace Public.Api.Address.Oslo
 
             if (!string.IsNullOrEmpty(streetName))
                 request.AddParameter("straatnaam", streetName, ParameterType.QueryString);
+
+            if (!string.IsNullOrEmpty(status))
+                request.AddParameter("status", status, ParameterType.QueryString);
 
             return request;
         }
