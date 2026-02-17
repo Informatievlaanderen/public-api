@@ -1,3 +1,10 @@
+# [7.15.0](https://github.com/informatievlaanderen/public-api/compare/v7.14.2...v7.15.0) (2026-02-17)
+
+
+### Features
+
+* add status to adresmatch ([93aaa66](https://github.com/informatievlaanderen/public-api/commit/93aaa661cef64a40d8ec84006d96ef232280eb9f))
+
 ## [7.14.2](https://github.com/informatievlaanderen/public-api/compare/v7.14.1...v7.14.2) (2026-01-30)
 
 ## [7.14.1](https://github.com/informatievlaanderen/public-api/compare/v7.14.0...v7.14.1) (2026-01-30)
