@@ -33,7 +33,7 @@
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.ProblemDetails" Version="10.0.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.AspNetCore.Swagger" Version="6.0.1" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc" Version="6.0.1" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.TicketingService.Abstractions" Version="3.2.3" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.TicketingService.Abstractions" Version="3.3.1" />
 
         <PackageVersion Include="Datadog.Trace.Bundle" Version="3.24.1" />
 

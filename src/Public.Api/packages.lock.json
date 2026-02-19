@@ -410,9 +410,9 @@
       },
       "Be.Vlaanderen.Basisregisters.TicketingService.Abstractions": {
         "type": "Direct",
-        "requested": "[3.2.3, )",
-        "resolved": "3.2.3",
-        "contentHash": "FIZVv5CczFBfNwePQ0D4WcbEz1my2Z1gNfNoFo6KtUbA4Mzq5JcCAUQWPZrwnzX8Ni8Y326hb8ecSGuGp4xTDA==",
+        "requested": "[3.3.1, )",
+        "resolved": "3.3.1",
+        "contentHash": "YcBJ6Ce6dkuIQ+jgf33/4f2/NI7UEB0KwN2eVtbKvUpqf2wDKRmQmpYe1Za1OGGMHzU4lpSJl/xfatpvbspUOg==",
         "dependencies": {
           "System.Text.Json": "9.0.5"
         }
