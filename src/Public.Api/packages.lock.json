@@ -4,20 +4,20 @@
     "net9.0": {
       "AWSSDK.DynamoDBv2": {
         "type": "Direct",
-        "requested": "[3.7.407, )",
-        "resolved": "3.7.407",
-        "contentHash": "YhenYMRx4d//UI6oEzvOPx/z8lBpSYQDel+JcFTIyR1IuRq1S3Fj3EOKUkjO8Rc24tcW9iO7fwvQldCYm50AyQ==",
+        "requested": "[3.7.512, )",
+        "resolved": "3.7.512",
+        "contentHash": "cLu05MlZSTYntkzOV57nkZYmLQpACZS0D6nQqgHrg54WS2knBWsZKnxsVp45wE0LD3R3ExQg8drJ87gLu+jZcg==",
         "dependencies": {
-          "AWSSDK.Core": "[3.7.402.45, 4.0.0)"
+          "AWSSDK.Core": "[3.7.500.84, 4.0.0)"
         }
       },
       "AWSSDK.S3": {
         "type": "Direct",
-        "requested": "[3.7.407, )",
-        "resolved": "3.7.407",
-        "contentHash": "s0QLDmmFayUmBZJijCVokkmCS5uQRF93ancGh+maXaI4vLW1fXIXfjd1xL8oHbpduFrT0H8jtNXc7m0HqaW/jg==",
+        "requested": "[3.7.510.10, )",
+        "resolved": "3.7.510.10",
+        "contentHash": "Lmrb8pnEfvrq62HwsfN6tz6FXM82CzyRCWkqRdWxBfmRoLVHs1HKQPRtAar7n98zSLMMslEqXiOSkZ0X+L4+sg==",
         "dependencies": {
-          "AWSSDK.Core": "[3.7.400.56, 4.0.0)"
+          "AWSSDK.Core": "[3.7.500.84, 4.0.0)"
         }
       },
       "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions": {
@@ -487,8 +487,8 @@
       },
       "AWSSDK.Core": {
         "type": "Transitive",
-        "resolved": "3.7.402.45",
-        "contentHash": "/v2s2v3gfZjh6zz3EwJK0SwUfW+Y8OO9N0yAPrFMmVmvPzTskDF/iA2L+OQZB0AbWI7PoNC0YOzkcHO1Tw0ZTg=="
+        "resolved": "3.7.500.84",
+        "contentHash": "eIEQGIkwrJDRRZ+on9gq+hY4K1ENiObko+DpQRSKDiOSoqzTQhiRUBMFp7Y1Wq2Ex2jopVKEMxPJl/33veGfTw=="
       },
       "AWSSDK.SQS": {
         "type": "Transitive",
@@ -2679,7 +2679,7 @@
       "common": {
         "type": "Project",
         "dependencies": {
-          "AWSSDK.DynamoDBv2": "[3.7.407, )",
+          "AWSSDK.DynamoDBv2": "[3.7.512, )",
           "Autofac.Extensions.DependencyInjection": "[10.0.0, )",
           "Be.Vlaanderen.Basisregisters.Api": "[24.3.0, )",
           "FeatureToggle.Common": "[4.0.2, )",
