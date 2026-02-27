@@ -6,6 +6,7 @@
 
         public ChangeFeedMunicipalityToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
             : base(dynamicFeatureToggleService)
-        { }
+        {
+        }
     }
 }

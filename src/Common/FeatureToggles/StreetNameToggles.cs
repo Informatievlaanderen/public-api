@@ -98,4 +98,13 @@
             : base(dynamicFeatureToggleService)
         { }
     }
+
+    public sealed class ChangeFeedStreetNameToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "ChangeFeedStreetNameToggle";
+
+        public ChangeFeedStreetNameToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
 }

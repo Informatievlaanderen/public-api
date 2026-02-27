@@ -22,8 +22,8 @@
             schema.Properties.Add("dataschema", new OpenApiSchema { Type = "string", Format = "uri" });
             schema.Properties.Add("data", new OpenApiSchema { Type = "object" });
             // Add extension attributes
-            schema.Properties.Add("basisregisterseventtype", new OpenApiSchema { Type = "string", Description = "Basisregister-specifieke event type."});
-            schema.Properties.Add("basisregisterscausationid", new OpenApiSchema { Type = "string", Description = "Identifier om wijzigingen met elkaar te correleren o.b.v. het veroorzakend proces."});
+            schema.Properties.Add("basisregisterseventtype", new OpenApiSchema { Type = "string", Description = "Basisregister-specifieke event type.", Nullable = true });
+            schema.Properties.Add("basisregisterscausationid", new OpenApiSchema { Type = "string", Description = "Identifier om wijzigingen met elkaar te correleren o.b.v. het veroorzakend proces.", Nullable = true });
             schema.AdditionalPropertiesAllowed = true;
         }
     }
