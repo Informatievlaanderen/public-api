@@ -66,6 +66,7 @@
     <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Common" GeneratePathProperty="true" />
     <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Legacy" GeneratePathProperty="true" />
     <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Edit" GeneratePathProperty="true" />
+    <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.ChangeFeed" GeneratePathProperty="true" />
     <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Provenance" GeneratePathProperty="true" />
     <PackageReference Include="Be.Vlaanderen.Basisregisters.GrAr.Import" GeneratePathProperty="true" />
     <PackageReference Include="Be.Vlaanderen.Basisregisters.EventHandling" />

@@ -91,6 +91,15 @@
             if (!feedPositionsToggle.FeatureEnabled)
                 return NotFound();
 
+            // Will be removed when registry is implemented
+            if (register is FeedPositiesRegister.Adressen
+                or FeedPositiesRegister.Gebouwen
+                or FeedPositiesRegister.Gebouweenheden
+                or FeedPositiesRegister.Percelen)
+            {
+                return NotFound();
+            }
+
             RestRequest BackendRequest() => CreateRequest(register, feed, download, wijzigingFeedId);
             var value = await GetFromBackendAsync(
                 restClients[RegistryKeysByEndpoint[register]].Value,
@@ -116,24 +125,24 @@
 
         private static readonly Dictionary<FeedPositiesRegister, string> RegistryKeysByEndpoint = new()
         {
-            { FeedPositiesRegister.Gemeente, RegistryKeys.MunicipalityV2 },
+            { FeedPositiesRegister.Gemeenten, RegistryKeys.MunicipalityV2 },
             { FeedPositiesRegister.Postinfo, RegistryKeys.PostalV2 },
-            { FeedPositiesRegister.Straatnaam, RegistryKeys.StreetNameV2 },
-            { FeedPositiesRegister.Adres, RegistryKeys.AddressV2 },
-            { FeedPositiesRegister.Gebouw, RegistryKeys.BuildingV2 },
-            { FeedPositiesRegister.Gebouweenheid, RegistryKeys.BuildingV2 },
-            { FeedPositiesRegister.Perceel, RegistryKeys.ParcelV2 }
+            { FeedPositiesRegister.Straatnamen, RegistryKeys.StreetNameV2 },
+            { FeedPositiesRegister.Adressen, RegistryKeys.AddressV2 },
+            { FeedPositiesRegister.Gebouwen, RegistryKeys.BuildingV2 },
+            { FeedPositiesRegister.Gebouweenheden, RegistryKeys.BuildingV2 },
+            { FeedPositiesRegister.Percelen, RegistryKeys.ParcelV2 }
         };
 
         private static readonly Dictionary<FeedPositiesRegister, string> ResourceNames = new()
         {
-            { FeedPositiesRegister.Gemeente, "gemeenten" },
+            { FeedPositiesRegister.Gemeenten, "gemeenten" },
             { FeedPositiesRegister.Postinfo, "postinfo" },
-            { FeedPositiesRegister.Straatnaam, "straatnamen" },
-            { FeedPositiesRegister.Adres, "adressen" },
-            { FeedPositiesRegister.Gebouw, "gebouwen" },
-            { FeedPositiesRegister.Gebouweenheid, "gebouweenheden" },
-            { FeedPositiesRegister.Perceel, "percelen" }
+            { FeedPositiesRegister.Straatnamen, "straatnamen" },
+            { FeedPositiesRegister.Adressen, "adressen" },
+            { FeedPositiesRegister.Gebouwen, "gebouwen" },
+            { FeedPositiesRegister.Gebouweenheden, "gebouweenheden" },
+            { FeedPositiesRegister.Percelen, "percelen" }
         };
 
         private static RestRequest CreateRequest(
@@ -152,13 +161,13 @@
         [DataContract(Name = "FeedPositieRegister", Namespace = "")]
         public enum FeedPositiesRegister
         {
-            Gemeente,
+            Gemeenten,
             Postinfo,
-            Straatnaam,
-            Adres,
-            Gebouw,
-            Gebouweenheid,
-            Perceel
+            Straatnamen,
+            Adressen,
+            Gebouwen,
+            Gebouweenheden,
+            Percelen
         }
 
         public sealed class FeedPositieResponseExample : IExamplesProvider<FeedPositieResponse>
