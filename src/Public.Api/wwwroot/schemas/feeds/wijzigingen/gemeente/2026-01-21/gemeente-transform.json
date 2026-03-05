@@ -8,11 +8,11 @@
   "properties": {
     "vanId": {
       "type": "string",
-      "description": "Source municipality identifier."
+      "description": "Bron gemeente identificator."
     },
     "naarId": {
       "type": "string",
-      "description": "Target municipality identifier."
+      "description": "Doel gemeente identificator."
     },
     "nisCodes": {
       "type": "array",

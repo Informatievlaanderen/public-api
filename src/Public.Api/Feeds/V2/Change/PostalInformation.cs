@@ -15,7 +15,6 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using MunicipalityRegistry.Api.Oslo.Municipality.Responses;
     using PostalRegistry.Api.Oslo.PostalInformation.Responses;
     using RestSharp;
     using Swashbuckle.AspNetCore.Annotations;
@@ -36,7 +35,7 @@
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel).</param>
         /// <returns></returns>
         /// <response code="200">Als de opvraging van de lijst met wijzigingen over postinformatie gelukt is.</response>
-        /// <response code="304">Als de gemeente niet gewijzigd is ten opzicht van uw verzoek.</response>
+        /// <response code="304">Als de lijst met wijzigingen van de postinformatie niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="401">Als er geen API key is meegegeven.</response>
         /// <response code="403">Als u niet beschikt over de correcte rechten om deze actie uit te voeren.</response>

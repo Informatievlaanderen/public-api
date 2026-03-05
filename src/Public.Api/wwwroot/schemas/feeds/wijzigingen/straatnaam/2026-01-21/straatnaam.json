@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:postinfo:2026-01-01",
-  "title": "Postinfo event data (create/update/delete)",
+  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:straatnaam:2026-01-01",
+  "title": "Straatnaam event data (create/update/delete)",
   "type": "object",
   "additionalProperties": false,
   "required": ["@id", "objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
@@ -9,11 +9,11 @@
     "@id": {
       "type": "string",
       "format": "uri",
-      "description": "Canonical identifier URI of the postal information"
+      "description": "Canonical identifier URI of the streetname information"
     },
     "objectId": {
       "type": "string",
-      "description": "Postal object identifier (typically postalcode as string)"
+      "description": "Streetname object identifier"
     },
     "naamruimte": {
       "type": "string",
@@ -23,7 +23,7 @@
     "versieId": {
       "type": "string",
       "format": "date-time",
-      "description": "Version timestamp of the postal information state"
+      "description": "Version timestamp of the streetname information state"
     },
     "nisCodes": {
       "type": "array",
@@ -32,7 +32,7 @@
         "type": "string",
         "pattern": "^[0-9]{5}$"
       },
-      "description": "List of NIS codes associated with the postal information"
+      "description": "List of NIS codes associated with the streetname"
     },
     "attributen": {
       "type": "array",
@@ -56,37 +56,56 @@
       "allOf": [
         {
           "if": {
-            "properties": { "naam": { "const": "postInfoStatus" } },
+            "properties": { "naam": { "const": "straatnaamStatus" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
-                "enum": [null, "inGebruik", "gehistoreerd"]
+                "enum": [null, "voorgesteld", "inGebruik", "gehistoreerd"]
               },
               "nieuweWaarde": {
                 "type": "string",
-                "enum": ["inGebruik", "gehistoreerd"]
+                "enum": ["voorgesteld", "inGebruik", "gehistoreerd"]
               }
             }
           }
         },
         {
           "if": {
-            "properties": { "naam": { "const": "postnamen" } },
+            "properties": { "naam": { "const": "straatnamen" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": "array",
-                "items": { "$ref": "#/$defs/postnaam" }
+                "items": { "$ref": "#/$defs/straatnaam" }
               },
               "nieuweWaarde": {
                 "type": "array",
                 "minItems": 1,
-                "items": { "$ref": "#/$defs/postnaam" }
+                "items": { "$ref": "#/$defs/straatnaam" }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "naam": { "const": "homoniemToevoegingen" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": {
+                "type": "array",
+                "items": { "$ref": "#/$defs/homoniemToevoeging" }
+              },
+              "nieuweWaarde": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "$ref": "#/$defs/homoniemToevoeging" }
               }
             }
           }
@@ -99,13 +118,22 @@
           "then": {
             "properties": {
               "oudeWaarde": { "type": ["null", "string"] },
-              "nieuweWaarde": { "type": ["null", "string"] }
+              "nieuweWaarde": { "type": ["string"] }
             }
           }
         }
       ]
     },
-    "postnaam": {
+    "straatnaam": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["spelling", "taal"],
+      "properties": {
+        "spelling": { "type": "string" },
+        "taal": { "type": "string", "pattern": "^[a-z]{2}$" }
+      }
+    },
+    "homoniemToevoeging": {
       "type": "object",
       "additionalProperties": false,
       "required": ["spelling", "taal"],
