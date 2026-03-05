@@ -1,3 +1,10 @@
+# [7.16.0](https://github.com/informatievlaanderen/public-api/compare/v7.15.0...v7.16.0) (2026-03-05)
+
+
+### Features
+
+* **feed:** add postalinfo + streetname changefeed ([dcf1c5f](https://github.com/informatievlaanderen/public-api/commit/dcf1c5f19b1deaea6091c5c988cd40092198da89))
+
 # [7.15.0](https://github.com/informatievlaanderen/public-api/compare/v7.14.2...v7.15.0) (2026-02-17)
 
 
