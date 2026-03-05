@@ -63,11 +63,11 @@
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
-                "enum": ["voorgesteld", "inGebruik", "gehistoreerd"]
+                "enum": [null, "voorgesteld", "inGebruik", "gehistoreerd"]
               },
               "nieuweWaarde": {
                 "type": "string",
-                "enum": ["voorgesteld", "inGebruik", "gehistoreerd"]
+                "enum": [null, "voorgesteld", "inGebruik", "gehistoreerd"]
               }
             }
           }

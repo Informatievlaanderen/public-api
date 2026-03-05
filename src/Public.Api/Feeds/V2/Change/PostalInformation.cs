@@ -77,7 +77,6 @@
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
-            //if (pagina is null && feedPositie is null)
             pagina ??= 1;
             var cacheKey = $"feed/postal:{pagina}";
 
@@ -113,7 +112,7 @@
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(MunicipalityFeedResultExample))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PostalFeedResultExample))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
@@ -128,10 +127,10 @@
             [FromQuery] int? limit,
             [FromQuery] int? offset,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromServices] ChangeFeedMunicipalityToggle changeFeedMunicipalityToggle,
+            [FromServices] ChangeFeedPostalInformationToggle changeFeedPostalInformationToggle,
             CancellationToken cancellationToken = default)
         {
-            if (!changeFeedMunicipalityToggle.FeatureEnabled)
+            if (!changeFeedPostalInformationToggle.FeatureEnabled)
                 return NotFound();
 
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
