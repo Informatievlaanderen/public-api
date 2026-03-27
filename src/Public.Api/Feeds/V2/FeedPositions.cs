@@ -91,13 +91,15 @@
             if (!feedPositionsToggle.FeatureEnabled)
                 return NotFound();
 
-            // Will be removed when registry is implemented
-            if (register is FeedPositiesRegister.Adressen
-                or FeedPositiesRegister.Gebouwen
-                or FeedPositiesRegister.Gebouweenheden
-                or FeedPositiesRegister.Percelen)
+            // will be removed once all feeds are ready
+            if (register != FeedPositiesRegister.Adressen)
             {
-                return NotFound();
+                return Ok(new FeedPositieResponse
+                {
+                    Feed = download ?? feed,
+                    WijzigingenFeedPagina = null,
+                    WijzigingenFeedId = null
+                });
             }
 
             RestRequest BackendRequest() => CreateRequest(register, feed, download, wijzigingFeedId);
