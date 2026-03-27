@@ -206,6 +206,15 @@
             :base(dynamicFeatureToggleService)
         { }
     }
+
+    public sealed class ChangeFeedAddressToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "ChangeFeedAddressToggle";
+
+        public ChangeFeedAddressToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
 }
 
 

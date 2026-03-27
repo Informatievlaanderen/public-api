@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:adres:2026-01-01",
+  "title": "Adres event data (create/update/delete)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["@id", "objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
+  "properties": {
+    "@id": {
+      "type": "string",
+      "format": "uri",
+      "description": "Canonical identifier URI of the address information"
+    },
+    "objectId": {
+      "type": "string",
+      "description": "Address object identifier"
+    },
+    "naamruimte": {
+      "type": "string",
+      "format": "uri",
+      "description": "Namespace URI"
+    },
+    "versieId": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Version timestamp of the address information state"
+    },
+    "nisCodes": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9]{5}$"
+      },
+      "description": "List of NIS codes associated with the address"
+    },
+    "attributen": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/attribuutChange" },
+      "description": "List of attribute changes"
+    }
+  },
+  "$defs": {
+    "attribuutChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["naam", "oudeWaarde", "nieuweWaarde"],
+      "properties": {
+        "naam": {
+          "type": "string",
+          "description": "Name of the changed attribute"
+        },
+        "oudeWaarde": {},
+        "nieuweWaarde": {}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "naam": { "const": "adresStatus" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": {
+                "type": ["null", "string"],
+                "enum": [null, "voorgesteld", "afgekeurd", "inGebruik", "gehistoreerd"]
+              },
+              "nieuweWaarde": {
+                "type": "string",
+                "enum": ["voorgesteld", "afgekeurd", "inGebruik", "gehistoreerd"]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "naam": { "const": "straatnaam.id" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": { "type": ["null", "string"] },
+              "nieuweWaarde": { "type": ["string"] }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "naam": { "const": "huisnummer" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": { "type": ["null", "string"] },
+              "nieuweWaarde": { "type": ["string"] }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "naam": { "const": "busnummer" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": { "type": ["null", "string"] },
+              "nieuweWaarde": { "type": ["null", "string"] }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "naam": { "const": "postcode" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": { "type": ["null", "string"] },
+              "nieuweWaarde": { "type": ["string"] }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "naam": { "const": "officieelToegekend" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": { "type": ["null", "boolean"] },
+              "nieuweWaarde": { "type": ["boolean"] }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "naam": { "const": "adresPositie" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": {
+                "oneOf": [
+                  { "type": "null" },
+                  { "$ref": "#/$defs/adresPositie" }
+                ]
+              },
+              "nieuweWaarde": {
+                "$ref": "#/$defs/adresPositie"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "naam": { "const": "positieGeometrieMethode" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": {
+                "type": ["null", "string"],
+                "enum": [null, "aangeduidDoorBeheerder", "afgeleidVanObject", "geïnterpoleerd"]
+              },
+              "nieuweWaarde": {
+                "type": "string",
+                "enum": ["aangeduidDoorBeheerder", "afgeleidVanObject", "geïnterpoleerd"]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "naam": { "const": "positieSpecificatie" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": {
+                "type": ["null", "string"],
+                "enum": [null, "gemeente", "straat", "perceel", "lot", "standplaats", "ligplaats", "gebouw", "gebouweenheid", "ingang", "wegsegment"]
+              },
+              "nieuweWaarde": {
+                "type": "string",
+                "enum": ["gemeente", "straat", "perceel", "lot", "standplaats", "ligplaats", "gebouw", "gebouweenheid", "ingang", "wegsegment"]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "adresPositie": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "projectie", "gml"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Point",
+          "description": "Geometry type"
+        },
+        "projectie": {
+          "type": "string",
+          "description": "Spatial reference system of the geometry"
+        },
+        "gml": {
+          "type": "string",
+          "description": "GML representation of the position"
+        }
+      }
+    }
+  }
+}
