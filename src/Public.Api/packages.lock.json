@@ -397,9 +397,9 @@
       },
       "Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions": {
         "type": "Direct",
-        "requested": "[5.6.0, )",
-        "resolved": "5.6.0",
-        "contentHash": "8Jd/V0Dvbp04NYiazMGdDwcaWgBU6De7f7e74zy4im7Rgjmsc8M4sDaWhmllkToDYVupvZcrbBCZLmRoqY1w/w==",
+        "requested": "[5.6.4, )",
+        "resolved": "5.6.4",
+        "contentHash": "HPRKKwS/oNBB8ZohmbDG5/OZkYbB5SApuwuZ8YyQ6WkcpXDUGQSdXMq8bnT3IpABqy5vJcge45YH2Y5TRaz+RQ==",
         "dependencies": {
           "Be.Vlaanderen.Basisregisters.Api": "24.3.0",
           "Be.Vlaanderen.Basisregisters.GrAr.Legacy": "22.7.0",
