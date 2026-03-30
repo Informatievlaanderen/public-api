@@ -1,3 +1,10 @@
+# [7.17.0](https://github.com/informatievlaanderen/public-api/compare/v7.16.0...v7.17.0) (2026-03-30)
+
+
+### Features
+
+* add address feed ([72b5e00](https://github.com/informatievlaanderen/public-api/commit/72b5e007b428329ad56de0024520d3135a115d5c))
+
 # [7.16.0](https://github.com/informatievlaanderen/public-api/compare/v7.15.0...v7.16.0) (2026-03-05)
 
 
