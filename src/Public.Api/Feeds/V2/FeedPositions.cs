@@ -81,7 +81,7 @@
         [SwaggerOperation(Description = "Van de optionele parameters (1) moet er één ingevuld zijn.")]
         public async Task<IActionResult> FeedPositions(
             [FromServices] IIndex<string, Lazy<RestClient>> restClients,
-            [FromQuery] FeedPositiesRegister register,
+            [FromQuery] FeedPositiesRegister? register,
             [FromQuery] long? feed,
             [FromQuery] long? download,
             [FromQuery] long? wijzigingFeedId,
@@ -90,6 +90,9 @@
         {
             if (!feedPositionsToggle.FeatureEnabled)
                 return NotFound();
+
+            if(register is null)
+                return Ok(new FeedPositieResponse());
 
             // will be removed once all feeds are ready
             if (register != FeedPositiesRegister.Adressen)
@@ -102,9 +105,9 @@
                 });
             }
 
-            RestRequest BackendRequest() => CreateRequest(register, feed, download, wijzigingFeedId);
+            RestRequest BackendRequest() => CreateRequest(register.Value, feed, download, wijzigingFeedId);
             var value = await GetFromBackendAsync(
-                restClients[RegistryKeysByEndpoint[register]].Value,
+                restClients[RegistryKeysByEndpoint[register.Value]].Value,
                 BackendRequest,
                 AcceptType.Json,
                 HandleBadRequest,
