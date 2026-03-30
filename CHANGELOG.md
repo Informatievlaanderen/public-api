@@ -1,3 +1,10 @@
+## [7.17.1](https://github.com/informatievlaanderen/public-api/compare/v7.17.0...v7.17.1) (2026-03-30)
+
+
+### Bug Fixes
+
+* **feed:** return empty response when no register argument is given ([2a2540b](https://github.com/informatievlaanderen/public-api/commit/2a2540bebfe34f9dc1e59a31d51834f22063c523))
+
 # [7.17.0](https://github.com/informatievlaanderen/public-api/compare/v7.16.0...v7.17.0) (2026-03-30)
 
 
