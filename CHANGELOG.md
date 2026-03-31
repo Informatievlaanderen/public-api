@@ -1,3 +1,10 @@
+## [7.17.2](https://github.com/informatievlaanderen/public-api/compare/v7.17.1...v7.17.2) (2026-03-31)
+
+
+### Bug Fixes
+
+* **feed:** schema folder adres ([f8eff71](https://github.com/informatievlaanderen/public-api/commit/f8eff7180f5f5cc32964e46235af9e7ed1901a76))
+
 ## [7.17.1](https://github.com/informatievlaanderen/public-api/compare/v7.17.0...v7.17.1) (2026-03-30)
 
 
