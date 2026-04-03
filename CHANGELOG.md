@@ -1,3 +1,10 @@
+# [7.18.0](https://github.com/informatievlaanderen/public-api/compare/v7.17.2...v7.18.0) (2026-04-03)
+
+
+### Features
+
+* **feed:** add parcel feed ([8f0d721](https://github.com/informatievlaanderen/public-api/commit/8f0d721f08d0935f6bb71e4aac01e9763932706f))
+
 ## [7.17.2](https://github.com/informatievlaanderen/public-api/compare/v7.17.1...v7.17.2) (2026-03-31)
 
 
