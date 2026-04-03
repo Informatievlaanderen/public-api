@@ -17,4 +17,13 @@
             : base(dynamicFeatureToggleService)
         { }
     }
+
+    public sealed class ChangeFeedParcelToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "ChangeFeedParcelToggle";
+
+        public ChangeFeedParcelToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
 }

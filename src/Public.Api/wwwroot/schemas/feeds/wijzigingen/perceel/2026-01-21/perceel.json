@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:perceel:2026-01-01",
+  "title": "Perceel event data (create/update/delete)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["@id", "objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
+  "properties": {
+    "@id": {
+      "type": "string",
+      "format": "uri",
+      "description": "De persistente URI die dit perceel-object identificeert."
+    },
+    "objectId": {
+      "type": "string",
+      "description": "De objectidentificator van het perceel."
+    },
+    "naamruimte": {
+      "type": "string",
+      "format": "uri",
+      "description": "De naamruimte waartoe dit object behoort."
+    },
+    "versieId": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Tijdstip van deze versie van het perceel-object."
+    },
+    "nisCodes": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9]{5}$"
+      },
+      "description": "De NIS-code(s) van de betrokken gemeente(n) op het moment van de wijziging. Bruikbaar voor client-side filtering."
+    },
+    "attributen": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/attribuutChange" },
+      "description": "De gewijzigde attributen met hun oude en nieuwe waarde."
+    }
+  },
+  "$defs": {
+    "attribuutChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["naam", "oudeWaarde", "nieuweWaarde"],
+      "properties": {
+        "naam": {
+          "type": "string",
+          "description": "Name of the changed attribute"
+        },
+        "oudeWaarde": {
+          "description": "De waarde van het attribuut vóór de wijziging. Null bij aanmaak."
+        },
+        "nieuweWaarde": {
+          "description": "De waarde van het attribuut na de wijziging."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "naam": { "const": "perceelStatus" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": {
+                "type": ["null", "string"],
+                "enum": [null, "gerealiseerd", "gehistoreerd"]
+              },
+              "nieuweWaarde": {
+                "type": "string",
+                "enum": ["gerealiseerd", "gehistoreerd"]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "naam": { "const": "adresIds" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": {
+                "oneOf": [
+                  { "type": "null" },
+                  {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                ]
+              },
+              "nieuweWaarde": {
+                "oneOf": [
+                  { "type": "null" },
+                  {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
