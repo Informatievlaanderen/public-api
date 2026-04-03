@@ -23,7 +23,7 @@
     "versieId": {
       "type": "string",
       "format": "date-time",
-      "description": "Tijdstip van deze versie van het adres-object."
+      "description": "Tijdstip van deze versie van het perceel-object."
     },
     "nisCodes": {
       "type": "array",
