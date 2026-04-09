@@ -9,21 +9,21 @@
     "@id": {
       "type": "string",
       "format": "uri",
-      "description": "Canonical identifier URI of the address information"
+      "description": "De persistente URI die dit adres-object identificeert."
     },
     "objectId": {
       "type": "string",
-      "description": "Address object identifier"
+      "description": "De objectidentificator van het adres."
     },
     "naamruimte": {
       "type": "string",
       "format": "uri",
-      "description": "Namespace URI"
+      "description": "De naamruimte waartoe dit object behoort."
     },
     "versieId": {
       "type": "string",
       "format": "date-time",
-      "description": "Version timestamp of the address information state"
+      "description": "Tijdstip van deze versie van het adres-object."
     },
     "nisCodes": {
       "type": "array",
@@ -32,12 +32,12 @@
         "type": "string",
         "pattern": "^[0-9]{5}$"
       },
-      "description": "List of NIS codes associated with the address"
+      "description": "De NIS-code(s) van de betrokken gemeente(n) op het moment van de wijziging. Bruikbaar voor client-side filtering."
     },
     "attributen": {
       "type": "array",
       "items": { "$ref": "#/$defs/attribuutChange" },
-      "description": "List of attribute changes"
+      "description": "De gewijzigde attributen met hun oude en nieuwe waarde."
     }
   },
   "$defs": {
@@ -48,10 +48,14 @@
       "properties": {
         "naam": {
           "type": "string",
-          "description": "Name of the changed attribute"
+          "description": "Naam van het gewijzigde attribuut."
         },
-        "oudeWaarde": {},
-        "nieuweWaarde": {}
+        "oudeWaarde": {
+          "description": "De waarde van het attribuut vóór de wijziging. Null bij aanmaak."
+        },
+        "nieuweWaarde": {
+          "description": "De waarde van het attribuut na de wijziging."
+        }
       },
       "allOf": [
         {
@@ -197,15 +201,15 @@
         "type": {
           "type": "string",
           "const": "Point",
-          "description": "Geometry type"
+          "description": "Het type geometrie."
         },
         "projectie": {
           "type": "string",
-          "description": "Spatial reference system of the geometry"
+          "description": "Het ruimtelijk referentiesysteem van de geometrie."
         },
         "gml": {
           "type": "string",
-          "description": "GML representation of the position"
+          "description": "De positie als GML-geometrie."
         }
       }
     }

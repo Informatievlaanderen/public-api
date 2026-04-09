@@ -48,7 +48,7 @@
       "properties": {
         "naam": {
           "type": "string",
-          "description": "Name of the changed attribute"
+          "description": "Naam van het gewijzigde attribuut."
         },
         "oudeWaarde": {
           "description": "De waarde van het attribuut vóór de wijziging. Null bij aanmaak."
