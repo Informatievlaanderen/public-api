@@ -102,7 +102,7 @@
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
-        [HttpGet("straatnamen/{persistentLocalId}", Name = nameof(ChangeFeedStreetNameById))]
+        [HttpGet("straatnamen/{objectId}", Name = nameof(ChangeFeedStreetNameById))]
         [ProducesResponseType(typeof(List<CloudEvent>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
@@ -122,7 +122,7 @@
         public async Task<IActionResult> ChangeFeedStreetNameById(
             [FromServices] IActionContextAccessor actionContextAccessor,
             [FromServices] IIndex<string, Lazy<RestClient>> restClients,
-            [FromRoute] string persistentLocalId,
+            [FromRoute] int objectId,
             [FromQuery] int? limit,
             [FromQuery] int? offset,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
@@ -136,7 +136,7 @@
 
             var value = await GetFromBackendAsync(
                 restClients[RegistryKeys.StreetNameV2].Value,
-                () => new RestRequest($"straatnamen/{persistentLocalId}/wijzigingen", Method.Get).AddPagination(offset, limit),
+                () => new RestRequest($"straatnamen/{objectId}/wijzigingen", Method.Get).AddPagination(offset, limit),
                 contentFormat.ContentType,
                 HandleBadRequest,
                 cancellationToken: cancellationToken);
