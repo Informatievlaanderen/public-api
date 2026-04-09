@@ -170,4 +170,13 @@
          : base(dynamicFeatureToggleService)
         { }
     }
+
+    public sealed class ChangeFeedBuildingUnitToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "ChangeFeedBuildingUnitToggle";
+
+        public ChangeFeedBuildingUnitToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
 }
