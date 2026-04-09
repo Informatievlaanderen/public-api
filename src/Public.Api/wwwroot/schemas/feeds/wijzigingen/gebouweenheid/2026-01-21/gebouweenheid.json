@@ -13,7 +13,7 @@
     },
     "objectId": {
       "type": "string",
-      "description": "De objectidentificator van het gebouweenheid."
+      "description": "De objectidentificator van de gebouweenheid."
     },
     "naamruimte": {
       "type": "string",

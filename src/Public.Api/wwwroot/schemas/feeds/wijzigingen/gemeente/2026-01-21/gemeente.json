@@ -23,7 +23,7 @@
     "versieId": {
       "type": "string",
       "format": "date-time",
-      "description": "VTijdstip van deze versie van het gemeente-object."
+      "description": "Tijdstip van deze versie van het gemeente-object."
     },
     "nisCodes": {
       "type": "array",

@@ -77,7 +77,7 @@
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             pagina ??= 1;
-            var cacheKey = $"feed/building:{pagina}";
+            var cacheKey = $"feed/buildingunit:{pagina}";
 
             RestRequest BackendRequest() => CreateBackendChangeFeedRequest(
                 "gebouweenheden",
