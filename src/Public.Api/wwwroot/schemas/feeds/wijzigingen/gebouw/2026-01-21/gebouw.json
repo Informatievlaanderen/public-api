@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:perceel:2026-01-01",
-  "title": "Perceel event data (create/update/delete)",
+  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:gebouw:2026-01-01",
+  "title": "Gebouw event data (create/update/delete)",
   "type": "object",
   "additionalProperties": false,
   "required": ["@id", "objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
@@ -9,11 +9,11 @@
     "@id": {
       "type": "string",
       "format": "uri",
-      "description": "De persistente URI die dit perceel-object identificeert."
+      "description": "De persistente URI die dit gebouw-object identificeert."
     },
     "objectId": {
       "type": "string",
-      "description": "De objectidentificator van het perceel."
+      "description": "De objectidentificator van het gebouw."
     },
     "naamruimte": {
       "type": "string",
@@ -23,7 +23,7 @@
     "versieId": {
       "type": "string",
       "format": "date-time",
-      "description": "Tijdstip van deze versie van het perceel-object."
+      "description": "Tijdstip van deze versie van het gebouw-object."
     },
     "nisCodes": {
       "type": "array",
@@ -60,25 +60,25 @@
       "allOf": [
         {
           "if": {
-            "properties": { "naam": { "const": "perceelStatus" } },
+            "properties": { "naam": { "const": "gebouwStatus" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
-                "enum": [null, "gerealiseerd", "gehistoreerd"]
+                "enum": [null, "gepland", "inAanbouw", "nietGerealiseerd", "gerealiseerd", "gehistoreerd"]
               },
               "nieuweWaarde": {
                 "type": "string",
-                "enum": ["gerealiseerd", "gehistoreerd"]
+                "enum": ["gepland", "inAanbouw", "nietGerealiseerd", "gerealiseerd", "gehistoreerd"]
               }
             }
           }
         },
         {
           "if": {
-            "properties": { "naam": { "const": "adresIds" } },
+            "properties": { "naam": { "const": "gebouwGeometrie" } },
             "required": ["naam"]
           },
           "then": {
@@ -86,25 +86,54 @@
               "oudeWaarde": {
                 "oneOf": [
                   { "type": "null" },
-                  {
-                    "type": "array",
-                    "items": { "type": "string" }
-                  }
+                  { "$ref": "#/$defs/gebouwGeometrie" }
                 ]
               },
               "nieuweWaarde": {
-                "oneOf": [
-                  { "type": "null" },
-                  {
-                    "type": "array",
-                    "items": { "type": "string" }
-                  }
-                ]
+                "$ref": "#/$defs/gebouwGeometrie"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "naam": { "const": "geometrieMethode" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": {
+                "type": ["null", "string"],
+                "enum": [null, "ingeschetst", "ingemetenGRB"]
+              },
+              "nieuweWaarde": {
+                "type": "string",
+                "enum": ["ingeschetst", "ingemetenGRB"]
               }
             }
           }
         }
       ]
+    },
+    "gebouwGeometrie": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "projectie", "gml"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Polygon",
+          "description": "Het type geometrie."
+        },
+        "projectie": {
+          "type": "string",
+          "description": "Het ruimtelijk referentiesysteem van de geometrie."
+        },
+        "gml": {
+          "type": "string",
+          "description": "De positie als GML-geometrie."
+        }
+      }
     }
   }
 }
