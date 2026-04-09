@@ -8,6 +8,7 @@
   "properties": {
     "transformaties": {
       "type": "array",
+      "description": "De lijst van adrestransformaties bij heradressering of gemeentefusie.",
       "items": {
         "$ref": "#/$defs/adresTransformatie"
       }
@@ -18,7 +19,7 @@
       "items": {
         "type": "string",
         "pattern": "^[0-9]{5}$",
-        "description": "NIS code (5 digits)."
+        "description": "De NIS-codes van de betrokken gemeenten (5 cijfers). Bij heradressering één NIS-code, bij gemeentefusie de NIS-codes van zowel de bron- als doelgemeente."
       }
     }
   },
@@ -30,10 +31,12 @@
       "properties": {
         "vanId": {
           "type": "string",
+          "description": "De identificator van het bronadres dat vervangen wordt.",
           "minLength": 1
         },
         "naarId": {
           "type": "string",
+          "description": "De identificator van het doeladres dat het bronadres vervangt.",
           "minLength": 1
         }
       }
