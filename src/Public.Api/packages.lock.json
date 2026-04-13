@@ -352,9 +352,9 @@
       },
       "Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo": {
         "type": "Direct",
-        "requested": "[6.6.1, )",
-        "resolved": "6.6.1",
-        "contentHash": "TUPShrrFNeodnxpAnabUi4+PFrbAD7GCTd3rpFnNZmvL7iO1O9ret7oqvUudJ6Yro+CYltZ/2H7dphaxWfAp0g==",
+        "requested": "[6.6.4, )",
+        "resolved": "6.6.4",
+        "contentHash": "UB+wYDP4Rk/p2oSkV2HjWWPNn1BF8XXA9i/eiyqdd1pO4NyVVPYHALtuPcZVJRfVPPu8SVwMqmMDTCRH1iFcYg==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Be.Vlaanderen.Basisregisters.AggregateSource": "10.0.2",
