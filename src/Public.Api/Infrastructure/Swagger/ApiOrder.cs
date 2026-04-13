@@ -58,14 +58,13 @@ namespace Public.Api.Infrastructure.Swagger
         public static class Road
         {
             public const int ChangeFeed = Parcel.Base + 100;
-            public const int Download = ChangeFeed + 10;
-            public const int RoadExtract = ChangeFeed + 20;
-            public const int Information = ChangeFeed + 30;
-            public const int RoadUpload = ChangeFeed + 40;
-            public const int Organization = ChangeFeed + 50;
+            public const int RoadExtract = ChangeFeed + 10;
+            public const int Information = ChangeFeed + 20;
+            public const int RoadUpload = ChangeFeed + 30;
+            public const int Organization = ChangeFeed + 40;
             public static class RoadSegment
             {
-                public const int Root = ChangeFeed + 60;
+                public const int Root = ChangeFeed + 50;
 
                 public const int Get = Root + 1;
                 public const int ChangeAttributes = Get + 1;
@@ -77,8 +76,8 @@ namespace Public.Api.Infrastructure.Swagger
                 public const int LinkStreetName = DeleteRoadSegments + 1;
                 public const int UnlinkStreetName = LinkStreetName + 1;
             }
-            public const int RoadGrb = ChangeFeed + 70;
-            public const int RoadInwinning = ChangeFeed + 80;
+            public const int Inwinning = ChangeFeed + 60;
+            public const int Inwinningsstatus = ChangeFeed + 70;
         }
 
         public const int Extract = Road.ChangeFeed + 100;

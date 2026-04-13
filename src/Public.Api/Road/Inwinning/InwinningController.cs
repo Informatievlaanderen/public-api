@@ -19,7 +19,7 @@ namespace Public.Api.Road.Inwinning
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Inwinning")]
-    [ApiOrder(ApiOrder.Road.RoadInwinning)]
+    [ApiOrder(ApiOrder.Road.Inwinning)]
     public partial class InwinningControllerV2 : RoadRegistryApiController<InwinningControllerV2>
     {
         protected override string NotFoundExceptionMessage => "Onbestaand extract.";

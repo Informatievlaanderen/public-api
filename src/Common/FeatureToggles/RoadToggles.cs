@@ -310,4 +310,22 @@
             : base(dynamicFeatureToggleService)
         { }
     }
+
+    public sealed class RoadInwinningsstatusGemeenteToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadInwinningsstatusGemeente";
+
+        public RoadInwinningsstatusGemeenteToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadInwinningsstatusWegsegmentToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadInwinningsstatusWegsegment";
+
+        public RoadInwinningsstatusWegsegmentToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
 }
