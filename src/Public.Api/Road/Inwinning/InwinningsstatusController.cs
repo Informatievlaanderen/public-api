@@ -6,6 +6,7 @@ namespace Public.Api.Road.Inwinning
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;
+    using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,9 @@ namespace Public.Api.Road.Inwinning
     [ApiVersion(Version.V2)]
     [AdvertiseApiVersions(Version.CurrentAdvertised)]
     [ApiRoute("")]
-    [ApiExplorerSettings(GroupName = "Inwinningsstatus")]
+    [ApiExplorerSettings(GroupName = "Wegen")]
+    [ApiConsumes(EndpointType.BackOffice)]
+    [ApiProduces(EndpointType.BackOffice)]
     [ApiOrder(ApiOrder.Road.Inwinningsstatus)]
     public partial class InwinningsstatusControllerV2 : RoadRegistryApiController<InwinningsstatusControllerV2>
     {
