@@ -1,3 +1,15 @@
+# [7.19.0](https://github.com/informatievlaanderen/public-api/compare/v7.18.0...v7.19.0) (2026-04-13)
+
+
+### Bug Fixes
+
+* **road:** inwinningsstatus endpoints under "Wegen" ([008edd8](https://github.com/informatievlaanderen/public-api/commit/008edd845c1860a53938940d813819425d05daf7))
+
+
+### Features
+
+* road inwinningsstatus endpoints ([a51514c](https://github.com/informatievlaanderen/public-api/commit/a51514c96b1415e4fb96bbc6ada39ac11f9be8ee))
+
 # [7.18.0](https://github.com/informatievlaanderen/public-api/compare/v7.17.2...v7.18.0) (2026-04-03)
 
 
