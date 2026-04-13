@@ -52,8 +52,6 @@ namespace Public.Api.Infrastructure
     using ParcelRegistry.Api.BackOffice.Abstractions.Requests;
     using ProblemDetailsExceptionMappings;
     using Redis;
-    using Road.Downloads;
-    using Road.Downloads.V2;
     using RoadRegistry.BackOffice.Abstractions;
     using RoadRegistry.BackOffice.Api.Infrastructure;
     using RoadRegistry.BackOffice.Api.Infrastructure.Extensions;
@@ -369,10 +367,6 @@ namespace Public.Api.Infrastructure
 
             containerBuilder
                 .RegisterType<ExtractController>()
-                .WithAttributeFiltering();
-
-            containerBuilder
-                .RegisterType<DownloadControllerV2>()
                 .WithAttributeFiltering();
 
             containerBuilder
