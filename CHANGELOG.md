@@ -1,3 +1,10 @@
+# [7.20.0](https://github.com/informatievlaanderen/public-api/compare/v7.19.0...v7.20.0) (2026-04-21)
+
+
+### Features
+
+* **feed:** add building+buildingunit feeds ([148ced0](https://github.com/informatievlaanderen/public-api/commit/148ced02de08799a5216b47d9a03f5a607bf6122))
+
 # [7.19.0](https://github.com/informatievlaanderen/public-api/compare/v7.18.0...v7.19.0) (2026-04-13)
 
 
