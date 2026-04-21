@@ -8,11 +8,11 @@
   "properties": {
     "vanId": {
       "type": "string",
-      "description": "Bron gemeente identificator."
+      "description": "De identificator van de brongemeente in de van-naar koppeling."
     },
     "naarId": {
       "type": "string",
-      "description": "Doel gemeente identificator."
+      "description": "De identificator van de doelgemeente in de van-naar koppeling."
     },
     "nisCodes": {
       "type": "array",
@@ -20,7 +20,7 @@
       "items": {
         "type": "string",
         "pattern": "^[0-9]{5}$",
-        "description": "NIS code (5 digits)."
+        "description": "De NIS-codes van de betrokken gemeenten (5 cijfers)."
       }
     }
   }

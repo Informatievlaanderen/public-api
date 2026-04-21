@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:adres:2026-01-01",
-  "title": "Adres event data (create/update/delete)",
+  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:gebouweenheid:2026-01-01",
+  "title": "Gebouweenheid event data (create/update/delete)",
   "type": "object",
   "additionalProperties": false,
   "required": ["@id", "objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
@@ -9,11 +9,11 @@
     "@id": {
       "type": "string",
       "format": "uri",
-      "description": "De persistente URI die dit adres-object identificeert."
+      "description": "De persistente URI die dit gebouweenheid-object identificeert."
     },
     "objectId": {
       "type": "string",
-      "description": "De objectidentificator van het adres."
+      "description": "De objectidentificator van de gebouweenheid."
     },
     "naamruimte": {
       "type": "string",
@@ -23,7 +23,7 @@
     "versieId": {
       "type": "string",
       "format": "date-time",
-      "description": "Tijdstip van deze versie van het adres-object."
+      "description": "Tijdstip van deze versie van het gebouweenheid-object."
     },
     "nisCodes": {
       "type": "array",
@@ -60,85 +60,55 @@
       "allOf": [
         {
           "if": {
-            "properties": { "naam": { "const": "adresStatus" } },
+            "properties": { "naam": { "const": "gebouw.id" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": { "type": ["null", "string"] },
+              "nieuweWaarde": { "type": ["string"] }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "naam": { "const": "gebouweenheidStatus" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
-                "enum": [null, "voorgesteld", "afgekeurd", "inGebruik", "gehistoreerd"]
+                "enum": [null, "gepland", "nietGerealiseerd", "gerealiseerd", "gehistoreerd"]
               },
               "nieuweWaarde": {
                 "type": "string",
-                "enum": ["voorgesteld", "afgekeurd", "inGebruik", "gehistoreerd"]
+                "enum": ["gepland", "nietGerealiseerd", "gerealiseerd", "gehistoreerd"]
               }
             }
           }
         },
         {
           "if": {
-            "properties": { "naam": { "const": "straatnaam.id" } },
+            "properties": { "naam": { "const": "gebouweenheidFunctie" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
-              "oudeWaarde": { "type": ["null", "string"] },
-              "nieuweWaarde": { "type": ["string"] }
+              "oudeWaarde": {
+                "type": ["null", "string"],
+                "enum": [null, "nietGekend", "gemeenschappelijkDeel"]
+              },
+              "nieuweWaarde": {
+                "type": "string",
+                "enum": ["nietGekend", "gemeenschappelijkDeel"]
+              }
             }
           }
         },
         {
           "if": {
-            "properties": { "naam": { "const": "huisnummer" } },
-            "required": ["naam"]
-          },
-          "then": {
-            "properties": {
-              "oudeWaarde": { "type": ["null", "string"] },
-              "nieuweWaarde": { "type": ["string"] }
-            }
-          }
-        },
-        {
-          "if": {
-            "properties": { "naam": { "const": "busnummer" } },
-            "required": ["naam"]
-          },
-          "then": {
-            "properties": {
-              "oudeWaarde": { "type": ["null", "string"] },
-              "nieuweWaarde": { "type": ["null", "string"] }
-            }
-          }
-        },
-        {
-          "if": {
-            "properties": { "naam": { "const": "postcode" } },
-            "required": ["naam"]
-          },
-          "then": {
-            "properties": {
-              "oudeWaarde": { "type": ["null", "string"] },
-              "nieuweWaarde": { "type": ["string"] }
-            }
-          }
-        },
-        {
-          "if": {
-            "properties": { "naam": { "const": "officieelToegekend" } },
-            "required": ["naam"]
-          },
-          "then": {
-            "properties": {
-              "oudeWaarde": { "type": ["null", "boolean"] },
-              "nieuweWaarde": { "type": ["boolean"] }
-            }
-          }
-        },
-        {
-          "if": {
-            "properties": { "naam": { "const": "adresPositie" } },
+            "properties": { "naam": { "const": "gebouweenheidPositie" } },
             "required": ["naam"]
           },
           "then": {
@@ -146,11 +116,11 @@
               "oudeWaarde": {
                 "oneOf": [
                   { "type": "null" },
-                  { "$ref": "#/$defs/adresPositie" }
+                  { "$ref": "#/$defs/gebouweenheidPositie" }
                 ]
               },
               "nieuweWaarde": {
-                "$ref": "#/$defs/adresPositie"
+                "$ref": "#/$defs/gebouweenheidPositie"
               }
             }
           }
@@ -175,25 +145,47 @@
         },
         {
           "if": {
-            "properties": { "naam": { "const": "positieSpecificatie" } },
+            "properties": { "naam": { "const": "adresIds" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
-                "type": ["null", "string"],
-                "enum": [null, "gemeente", "straat", "perceel", "lot", "standplaats", "ligplaats", "gebouw", "gebouweenheid", "ingang", "wegsegment"]
+                "oneOf": [
+                  { "type": "null" },
+                  {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                ]
               },
               "nieuweWaarde": {
-                "type": "string",
-                "enum": ["gemeente", "straat", "perceel", "lot", "standplaats", "ligplaats", "gebouw", "gebouweenheid", "ingang", "wegsegment"]
+                "oneOf": [
+                  { "type": "null" },
+                  {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                ]
               }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "naam": { "const": "afwijkingVastgesteld" } },
+            "required": ["naam"]
+          },
+          "then": {
+            "properties": {
+              "oudeWaarde": { "type": ["null", "boolean"] },
+              "nieuweWaarde": { "type": ["boolean"] }
             }
           }
         }
       ]
     },
-    "adresPositie": {
+    "gebouweenheidPositie": {
       "type": "object",
       "additionalProperties": false,
       "required": ["type", "projectie", "gml"],

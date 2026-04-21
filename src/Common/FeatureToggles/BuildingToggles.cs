@@ -125,4 +125,13 @@
             : base(dynamicFeatureToggleService)
         { }
     }
+
+    public sealed class ChangeFeedBuildingToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "ChangeFeedBuildingToggle";
+
+        public ChangeFeedBuildingToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
 }
