@@ -4,15 +4,11 @@
   "title": "Straatnaam transform data",
   "type": "object",
   "additionalProperties": false,
-  "required": ["vanIds", "naarIds", "nisCodes"],
+  "required": ["vanId", "naarIds", "nisCodes"],
   "properties": {
-    "vanIds": {
-      "type": "array",
-      "minItems": 1,
-      "items": {
-        "type": "string"
-      },
-      "description": "De identificator(en) van de bronstraatnamen in de van-naar koppeling."
+    "vanId": {
+      "type": "string",
+      "description": "De identificator van de bronstraatnaam in de van-naar koppeling."
     },
     "naarIds": {
       "type": "array",
