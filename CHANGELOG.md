@@ -1,3 +1,10 @@
+## [7.20.1](https://github.com/informatievlaanderen/public-api/compare/v7.20.0...v7.20.1) (2026-04-21)
+
+
+### Bug Fixes
+
+* schema streetname transform ([a822cc4](https://github.com/informatievlaanderen/public-api/commit/a822cc4b320354910b40f415b7a34b0a22418254))
+
 # [7.20.0](https://github.com/informatievlaanderen/public-api/compare/v7.19.0...v7.20.0) (2026-04-21)
 
 
