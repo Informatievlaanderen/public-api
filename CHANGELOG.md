@@ -1,3 +1,10 @@
+## [7.20.3](https://github.com/informatievlaanderen/public-api/compare/v7.20.2...v7.20.3) (2026-04-21)
+
+
+### Bug Fixes
+
+* revert "fix: streetname transformschema naarIds" ([88a15b9](https://github.com/informatievlaanderen/public-api/commit/88a15b917d212a5e141b05fa3d44a5102c192e09))
+
 ## [7.20.2](https://github.com/informatievlaanderen/public-api/compare/v7.20.1...v7.20.2) (2026-04-21)
 
 
