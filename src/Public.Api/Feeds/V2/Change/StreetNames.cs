@@ -77,26 +77,17 @@
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             pagina ??= 1;
-            var cacheKey = $"feed/streetname:{pagina}";
 
             RestRequest BackendRequest() => CreateBackendChangeFeedRequest(
                 "straatnamen",
                 pagina);
 
-            var value = await (CanGetFromCache(RegistryKeys.StreetNameV2, actionContextAccessor.ActionContext)
-                ? GetFromCacheThenFromBackendAsync(
-                    contentFormat.ContentType,
-                    restClients[RegistryKeys.StreetNameV2].Value,
-                    BackendRequest,
-                    cacheKey,
-                    HandleBadRequest,
-                    cancellationToken)
-                : GetFromBackendAsync(
+            var value = await GetFromBackendAsync(
                     restClients[RegistryKeys.StreetNameV2].Value,
                     BackendRequest,
                     contentFormat.ContentType,
                     HandleBadRequest,
-                    cancellationToken));
+                    cancellationToken);
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForRead());
         }

@@ -77,26 +77,17 @@ namespace Public.Api.Feeds.V2.Change
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             pagina ??= 1;
-            var cacheKey = $"feed/parcel:{pagina}";
 
             RestRequest BackendRequest() => CreateBackendChangeFeedRequest(
                 "percelen",
                 pagina);
 
-            var value = await (CanGetFromCache(RegistryKeys.ParcelV2, actionContextAccessor.ActionContext)
-                ? GetFromCacheThenFromBackendAsync(
-                    contentFormat.ContentType,
-                    restClients[RegistryKeys.ParcelV2].Value,
-                    BackendRequest,
-                    cacheKey,
-                    HandleBadRequest,
-                    cancellationToken)
-                : GetFromBackendAsync(
+            var value = await GetFromBackendAsync(
                     restClients[RegistryKeys.ParcelV2].Value,
                     BackendRequest,
                     contentFormat.ContentType,
                     HandleBadRequest,
-                    cancellationToken));
+                    cancellationToken);
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForRead());
         }

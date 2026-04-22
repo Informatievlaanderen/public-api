@@ -77,26 +77,17 @@
             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
 
             pagina ??= 1;
-            var cacheKey = $"feed/postal:{pagina}";
 
             RestRequest BackendRequest() => CreateBackendChangeFeedRequest(
                 "postcodes",
                 pagina);
 
-            var value = await (CanGetFromCache(RegistryKeys.PostalV2, actionContextAccessor.ActionContext)
-                ? GetFromCacheThenFromBackendAsync(
-                    contentFormat.ContentType,
-                    restClients[RegistryKeys.PostalV2].Value,
-                    BackendRequest,
-                    cacheKey,
-                    HandleBadRequest,
-                    cancellationToken)
-                : GetFromBackendAsync(
+            var value = await GetFromBackendAsync(
                     restClients[RegistryKeys.PostalV2].Value,
                     BackendRequest,
                     contentFormat.ContentType,
                     HandleBadRequest,
-                    cancellationToken));
+                    cancellationToken);
 
             return new BackendResponseResult(value, BackendResponseResultOptions.ForRead());
         }
