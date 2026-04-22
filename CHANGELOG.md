@@ -1,3 +1,10 @@
+## [7.20.4](https://github.com/informatievlaanderen/public-api/compare/v7.20.3...v7.20.4) (2026-04-22)
+
+
+### Bug Fixes
+
+* **feed:** remove cache lookup since not cached and reduce latency ([66868ea](https://github.com/informatievlaanderen/public-api/commit/66868ea2f13a40ab4e7ef0693edd250ab9738ee2))
+
 ## [7.20.3](https://github.com/informatievlaanderen/public-api/compare/v7.20.2...v7.20.3) (2026-04-21)
 
 
