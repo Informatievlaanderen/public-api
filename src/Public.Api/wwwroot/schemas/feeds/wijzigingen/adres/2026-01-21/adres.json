@@ -120,7 +120,7 @@
           "then": {
             "properties": {
               "oudeWaarde": { "type": ["null", "string"] },
-              "nieuweWaarde": { "type": ["string"] }
+              "nieuweWaarde": { "type": ["null", "string"] }
             }
           }
         },
