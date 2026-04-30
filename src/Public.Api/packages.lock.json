@@ -4,20 +4,20 @@
     "net9.0": {
       "AWSSDK.DynamoDBv2": {
         "type": "Direct",
-        "requested": "[3.7.407, )",
-        "resolved": "3.7.407",
-        "contentHash": "YhenYMRx4d//UI6oEzvOPx/z8lBpSYQDel+JcFTIyR1IuRq1S3Fj3EOKUkjO8Rc24tcW9iO7fwvQldCYm50AyQ==",
+        "requested": "[3.7.513.2, )",
+        "resolved": "3.7.513.2",
+        "contentHash": "SjjKfpLq+K6+1iup8MKCDiOGWG6IHuj4BpU8auNJZxVcvRyYEc+w+q86ByFzmeegah9TG5XxaYcP/Zf7BwEDIw==",
         "dependencies": {
-          "AWSSDK.Core": "[3.7.402.45, 4.0.0)"
+          "AWSSDK.Core": "[3.7.500.96, 4.0.0)"
         }
       },
       "AWSSDK.S3": {
         "type": "Direct",
-        "requested": "[3.7.407, )",
-        "resolved": "3.7.407",
-        "contentHash": "s0QLDmmFayUmBZJijCVokkmCS5uQRF93ancGh+maXaI4vLW1fXIXfjd1xL8oHbpduFrT0H8jtNXc7m0HqaW/jg==",
+        "requested": "[3.7.511.6, )",
+        "resolved": "3.7.511.6",
+        "contentHash": "J4GKZ96qRsSixifzu2X88sfNTvh0PtfTG7wEsHfBOL/sfsBfseIsDPvrQqDr6ppW9M0pxqX8uCf/S4MY5hbU2g==",
         "dependencies": {
-          "AWSSDK.Core": "[3.7.400.56, 4.0.0)"
+          "AWSSDK.Core": "[3.7.500.96, 4.0.0)"
         }
       },
       "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions": {
@@ -502,8 +502,8 @@
       },
       "AWSSDK.Core": {
         "type": "Transitive",
-        "resolved": "3.7.402.45",
-        "contentHash": "/v2s2v3gfZjh6zz3EwJK0SwUfW+Y8OO9N0yAPrFMmVmvPzTskDF/iA2L+OQZB0AbWI7PoNC0YOzkcHO1Tw0ZTg=="
+        "resolved": "3.7.500.96",
+        "contentHash": "/eerYLuesPVAQoQbWthD2xJOUuoQee6nnRmbxx5aDGL6+lpBJr96Ega7rrlTj1ZbbVJQrofy31G7l1e+UwSZdw=="
       },
       "AWSSDK.SQS": {
         "type": "Transitive",
@@ -2934,7 +2934,7 @@
       "common": {
         "type": "Project",
         "dependencies": {
-          "AWSSDK.DynamoDBv2": "[3.7.407, )",
+          "AWSSDK.DynamoDBv2": "[3.7.513.2, )",
           "Autofac.Extensions.DependencyInjection": "[10.0.0, )",
           "Be.Vlaanderen.Basisregisters.Api": "[24.3.0, )",
           "FeatureToggle.Common": "[4.0.2, )",
