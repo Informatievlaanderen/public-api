@@ -397,12 +397,12 @@
       },
       "Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions": {
         "type": "Direct",
-        "requested": "[5.6.0, )",
-        "resolved": "5.6.0",
-        "contentHash": "8Jd/V0Dvbp04NYiazMGdDwcaWgBU6De7f7e74zy4im7Rgjmsc8M4sDaWhmllkToDYVupvZcrbBCZLmRoqY1w/w==",
+        "requested": "[5.6.8, )",
+        "resolved": "5.6.8",
+        "contentHash": "Q8X0DlL0r+Xl1PXGcsWwWVMBZ875Q7h5gIXDUpP0GNRRavcq7joHU28ihXujBqG9xq74iBoTAKTIzSil6j3ZFg==",
         "dependencies": {
           "Be.Vlaanderen.Basisregisters.Api": "24.3.0",
-          "Be.Vlaanderen.Basisregisters.GrAr.Legacy": "22.7.0",
+          "Be.Vlaanderen.Basisregisters.GrAr.Legacy": "22.9.0",
           "Be.Vlaanderen.Basisregisters.Sqs": "4.0.1",
           "Be.Vlaanderen.Basisregisters.TicketingService.Abstractions": "3.0.0",
           "MediatR.Contracts": "2.0.1"
