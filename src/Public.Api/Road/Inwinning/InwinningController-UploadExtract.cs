@@ -18,6 +18,7 @@ namespace Public.Api.Road.Inwinning
             [FromRoute] string downloadId,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] RoadInwinningUploadExtractToggle toggle,
+            [FromQuery] bool dryRun = false,
             CancellationToken cancellationToken = default)
         {
             if (!toggle.FeatureEnabled)
@@ -36,7 +37,8 @@ namespace Public.Api.Road.Inwinning
 
             RestRequest BackendRequest() =>
                 CreateBackendRestRequest(Method.Post, "inwinning/{downloadId}/upload")
-                    .AddParameter("downloadId", downloadId, ParameterType.UrlSegment);
+                    .AddParameter("downloadId", downloadId, ParameterType.UrlSegment)
+                    .AddParameter("dryRun", dryRun, ParameterType.QueryString);
         }
     }
 }
