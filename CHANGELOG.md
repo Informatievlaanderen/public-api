@@ -1,3 +1,10 @@
+# [7.21.0](https://github.com/informatievlaanderen/public-api/compare/v7.20.4...v7.21.0) (2026-05-08)
+
+
+### Features
+
+* **road:** add dryRun option to inwinning upload ([51a1039](https://github.com/informatievlaanderen/public-api/commit/51a1039c541c0d0eb630aa4be7517f3a4e762cbc))
+
 ## [7.20.4](https://github.com/informatievlaanderen/public-api/compare/v7.20.3...v7.20.4) (2026-04-22)
 
 
