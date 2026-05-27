@@ -295,9 +295,9 @@
       },
       "Be.Vlaanderen.Basisregisters.IntegrationDb.Api.Abstractions": {
         "type": "Direct",
-        "requested": "[3.5.2, )",
-        "resolved": "3.5.2",
-        "contentHash": "86B57uoBB3DlXLj+GybVsOPQjRIxiRzZJvCYgXu3pVgd4aAacuc+g1T1EU2oSMPcws9LT5t0R9ef13jo61WQ4g==",
+        "requested": "[3.7.1, )",
+        "resolved": "3.7.1",
+        "contentHash": "JZB5v3r6GLo4XeTJhaCPLL76mBgRd8qI/JqUOugokgZRipObFxKfsAeiLqxS05Fs7hE1RY4w7cp0UNA8el5D3w==",
         "dependencies": {
           "Be.Vlaanderen.Basisregisters.Api": "24.1.0"
         }
