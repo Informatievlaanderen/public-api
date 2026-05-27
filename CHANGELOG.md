@@ -1,3 +1,10 @@
+## [7.21.1](https://github.com/informatievlaanderen/public-api/compare/v7.21.0...v7.21.1) (2026-05-27)
+
+
+### Bug Fixes
+
+* **schema:** postinfo status gerealiseerd instead of inGebruik ([6a7c5f0](https://github.com/informatievlaanderen/public-api/commit/6a7c5f00051d4d9bae55d96463cc4367ffd071fc))
+
 # [7.21.0](https://github.com/informatievlaanderen/public-api/compare/v7.20.4...v7.21.0) (2026-05-08)
 
 
