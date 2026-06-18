@@ -1,7 +1,7 @@
 namespace Common.Infrastructure.Extensions
 {
     using System.Linq;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.AspNetCore.Http;
     using RestSharp;
 
     public static class RestRequestExtensions
@@ -16,11 +16,11 @@ namespace Common.Infrastructure.Extensions
             return request;
         }
 
-        public static RestRequest AddHeaderAuthorization(this RestRequest request, IActionContextAccessor actionContextAccessor)
+        public static RestRequest AddHeaderAuthorization(this RestRequest request, IHttpContextAccessor httpContextAccessor)
         {
-            if (actionContextAccessor.ActionContext.HttpContext.Request.Headers.Authorization.Any())
+            if (httpContextAccessor.HttpContext.Request.Headers.Authorization.Any())
             {
-                request.AddHeader(HeaderNames.Authorization, actionContextAccessor.ActionContext.HttpContext.Request.Headers.Authorization);
+                request.AddHeader(HeaderNames.Authorization, httpContextAccessor.HttpContext.Request.Headers.Authorization);
             }
 
             return request;

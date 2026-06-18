@@ -11,7 +11,6 @@ namespace Common.Infrastructure.Controllers
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using FeatureToggle;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Primitives;
     using ProblemDetailsException;
@@ -41,10 +40,10 @@ namespace Common.Infrastructure.Controllers
             _cacheToggle = cacheToggle;
         }
 
-        protected bool CanGetFromCache(ActionContext actionContext)
+        protected bool CanGetFromCache(HttpContext httpContext)
         {
             return _cacheToggle.FeatureEnabled
-                   && !actionContext.HttpContext.Request
+                   && !httpContext.Request
                        .Headers
                        .CacheControl
                        .Any(x => CacheControlHeaderValue.TryParse(x, out var value) && value!.NoCache);

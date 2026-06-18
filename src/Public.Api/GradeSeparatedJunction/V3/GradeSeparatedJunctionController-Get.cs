@@ -4,10 +4,10 @@ namespace Public.Api.GradeSeparatedJunction.V3
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.FeatureToggles;
+    using Infrastructure;
+    using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Public.Api.Infrastructure;
-    using Public.Api.Infrastructure.Swagger;
     using RestSharp;
     using RoadRegistry.BackOffice.Api.V2.GradeSeparatedJunctions;
     using Swashbuckle.AspNetCore.Annotations;

@@ -4,7 +4,6 @@ namespace Public.Api.Road.Organizations.V2
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.FeatureToggles;
-    using Common.Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Public.Api.Infrastructure;

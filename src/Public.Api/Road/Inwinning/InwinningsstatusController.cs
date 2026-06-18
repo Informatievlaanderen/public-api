@@ -8,13 +8,12 @@ namespace Public.Api.Road.Inwinning
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
+    using Infrastructure.Configuration;
+    using Infrastructure.Swagger;
+    using Infrastructure.Version;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
-    using Public.Api.Infrastructure.Configuration;
-    using Public.Api.Infrastructure.Swagger;
-    using Public.Api.Infrastructure.Version;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -34,13 +33,12 @@ namespace Public.Api.Road.Inwinning
 
         public InwinningsstatusControllerV2(
             IHttpContextAccessor httpContextAccessor,
-            IActionContextAccessor actionContextAccessor,
             [KeyFilter(RegistryKeys.Road)] RestClient restClient,
             [KeyFilter(RegistryKeys.Road)] HttpClient httpClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<InwinningsstatusControllerV2> logger)
-            : base(httpContextAccessor, redis, logger, restClient, cacheToggle, actionContextAccessor)
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle)
         {
         }
     }

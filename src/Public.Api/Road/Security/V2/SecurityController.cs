@@ -10,7 +10,6 @@ namespace Public.Api.Road.Security.V2
     using Infrastructure.Version;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
     using RestSharp;
 
@@ -26,18 +25,17 @@ namespace Public.Api.Road.Security.V2
 
         public SecurityControllerV2(
             IHttpContextAccessor httpContextAccessor,
-            IActionContextAccessor actionContextAccessor,
             [KeyFilter(RegistryKeys.Road)] RestClient restClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<SecurityControllerV2> logger)
-            : base(httpContextAccessor, redis, logger, restClient, cacheToggle, actionContextAccessor)
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle)
         {
         }
 
         private ContentFormat DetermineFormat()
         {
-            return ContentFormat.For(EndpointType.BackOffice, ActionContextAccessor.ActionContext);
+            return ContentFormat.For(EndpointType.BackOffice, HttpContextAccessor.HttpContext);
         }
     }
 }

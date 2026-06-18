@@ -41,7 +41,7 @@ namespace Public.Api.Tickets
             _ticketingToggle = ticketingToggle;
         }
 
-        private static ContentFormat DetermineFormat(ActionContext context)
+        private static ContentFormat DetermineFormat(HttpContext context)
             => ContentFormat.For(EndpointType.Legacy, context);
     }
 }

@@ -12,7 +12,7 @@ namespace Public.Api.BuildingUnit.Oslo
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.OpenApi;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -23,7 +23,7 @@ namespace Public.Api.BuildingUnit.Oslo
         /// Vraag een totaal aantal gebouweenheden op (v2).
         /// </summary>
         /// <param name="adresObjectId">Optionele objectidentificator van het gekoppelde adres.</param>
-        /// <param name="actionContextAccessor"></param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van het totaal aantal gebouweenheden gelukt is.</response>
@@ -38,8 +38,8 @@ namespace Public.Api.BuildingUnit.Oslo
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", JsonSchemaType.String, "De ETag van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(TotalCountOsloResponseExample))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
@@ -48,11 +48,11 @@ namespace Public.Api.BuildingUnit.Oslo
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultCountCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> CountBuildingUnitsV2(
             [FromQuery] int? adresObjectId,
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() => CreateBackendCountRequest(adresObjectId);
 

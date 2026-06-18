@@ -34,7 +34,7 @@ namespace Public.Api.StreetName.Oslo
             ILogger<StreetNameOsloController> logger)
             : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
-        private static ContentFormat DetermineFormat(ActionContext context)
+        private static ContentFormat DetermineFormat(HttpContext context)
             => ContentFormat.For(EndpointType.Oslo, context);
     }
 }

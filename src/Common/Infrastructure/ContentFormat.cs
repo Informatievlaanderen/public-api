@@ -17,7 +17,7 @@ namespace Common.Infrastructure
 
         public static ContentFormat For(
             EndpointType endpointType,
-            ActionContext? context)
+            HttpContext? context)
         {
             var acceptType = DetermineAcceptType(context)
                 ?.ValidateFor(endpointType);
@@ -25,11 +25,11 @@ namespace Common.Infrastructure
             return new ContentFormat(acceptType ?? throw new InvalidOperationException("Invalid accept type."));
         }
 
-        public static AcceptType? DetermineAcceptType(ActionContext? context)
+        public static AcceptType? DetermineAcceptType(HttpContext? context)
         {
-            return context?.HttpContext.Request
+            return context?.Request
                 .GetTypedHeaders()
-                .DetermineAcceptType(context.ActionDescriptor);
+                .DetermineAcceptType(context);
         }
     }
 }

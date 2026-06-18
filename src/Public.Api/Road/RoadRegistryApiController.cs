@@ -5,38 +5,36 @@ namespace Public.Api.Road
     using Common.Infrastructure.Extensions;
     using FeatureToggle;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
     using RestSharp;
     using System.Net.Http;
 
     public abstract class RoadRegistryApiController<TController> : RegistryApiController<TController>
     {
-        protected readonly IActionContextAccessor ActionContextAccessor;
+        protected readonly IHttpContextAccessor HttpContextAccessor;
 
         protected RoadRegistryApiController(
             IHttpContextAccessor httpContextAccessor,
             ConnectionMultiplexerProvider redis,
             ILogger<TController> logger,
             RestClient restClient,
-            IFeatureToggle cacheToggle,
-            IActionContextAccessor actionContextAccessor
+            IFeatureToggle cacheToggle
         )
             : base(httpContextAccessor, redis, logger, restClient, cacheToggle)
         {
-            ActionContextAccessor = actionContextAccessor;
+            HttpContextAccessor = httpContextAccessor;
         }
 
         protected RestRequest CreateBackendRestRequest(Method method, string path)
         {
             return new RestRequest(path, method)
-                .AddHeaderAuthorization(ActionContextAccessor);
+                .AddHeaderAuthorization(HttpContextAccessor);
         }
 
         protected HttpRequestMessage CreateBackendHttpRequestMessage(HttpMethod method, string path)
         {
             return new HttpRequestMessage(method, path)
-                .AddHeaderAuthorization(ActionContextAccessor);
+                .AddHeaderAuthorization(HttpContextAccessor);
         }
     }
 }

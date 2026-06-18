@@ -108,7 +108,7 @@ namespace Common.Infrastructure
         }
 
         private static string FormatAsUriParameter(KeyValuePair<string, StringValues> parameter)
-            => $"&{parameter.Key}={Uri.EscapeUriString(parameter.Value)}";
+            => $"&{parameter.Key}={Uri.EscapeDataString(parameter.Value!)}";
 
         private string GetNextPagePattern(string nextPageUrlTemplate)
         {

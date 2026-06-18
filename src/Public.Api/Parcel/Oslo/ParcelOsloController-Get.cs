@@ -9,7 +9,7 @@ namespace Public.Api.Parcel.Oslo
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.OpenApi;
     using ParcelRegistry.Api.Oslo.Parcel.Detail;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
@@ -26,7 +26,7 @@ namespace Public.Api.Parcel.Oslo
         /// <li>de CaPaKey van het perceel: `11001B0001/00S000`</li>
         /// <li>de URL-gecodeerde CaPaKey van het perceel: `11001B0001%2F00S000`</li>
         /// </ul></param>
-        /// <param name="actionContextAccessor"></param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als het perceel gevonden is.</response>
@@ -44,8 +44,8 @@ namespace Public.Api.Parcel.Oslo
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status410Gone)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", JsonSchemaType.String, "De ETag van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(ParcelOsloResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(ParcelNotFoundResponseExamples))]
@@ -55,18 +55,18 @@ namespace Public.Api.Parcel.Oslo
         [HttpCacheExpiration(MaxAge = DefaultDetailCaching)]
         public async Task<IActionResult> GetParcelV2(
             [FromRoute] string objectId,
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
             objectId = System.Net.WebUtility.UrlDecode(objectId).Replace("/", "-");
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
             var cacheKey = $"oslo/parcel:{objectId}";
 
-            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
+            var value = await (CanGetFromCache(httpContextAccessor.HttpContext!)
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,
@@ -87,7 +87,7 @@ namespace Public.Api.Parcel.Oslo
         /// </summary>
         /// <param name="caPaKeyPart1">Het eerste deel van de CaPaKey van het perceel.</param>
         /// <param name="caPaKeyPart2">Het tweede deel van de CaPaKey van het perceel.</param>
-        /// <param name="actionContextAccessor"></param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als het perceel gevonden is.</response>
@@ -105,8 +105,8 @@ namespace Public.Api.Parcel.Oslo
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status410Gone)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", JsonSchemaType.String, "De ETag van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(ParcelOsloResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(ParcelNotFoundResponseExamples))]
@@ -117,18 +117,18 @@ namespace Public.Api.Parcel.Oslo
         public async Task<IActionResult> GetParcelV2CaPaKey(
             [FromRoute] string caPaKeyPart1,
             [FromRoute] string caPaKeyPart2,
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
             var objectId = $"{caPaKeyPart1}-{caPaKeyPart2}";
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
             var cacheKey = $"oslo/parcel:{objectId}";
 
-            var value = await (CanGetFromCache(actionContextAccessor.ActionContext)
+            var value = await (CanGetFromCache(httpContextAccessor.HttpContext!)
                 ? GetFromCacheThenFromBackendAsync(
                     contentFormat.ContentType,
                     BackendRequest,

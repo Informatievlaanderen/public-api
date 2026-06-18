@@ -5,7 +5,6 @@ namespace Public.Api.BuildingUnit.Oslo
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
-    using Be.Vlaanderen.Basisregisters.Utilities;
     using BuildingRegistry.Api.Oslo.BuildingUnit.List;
     using BuildingRegistry.Api.Oslo.BuildingUnit.Query;
     using Common.Infrastructure;
@@ -15,8 +14,8 @@ namespace Public.Api.BuildingUnit.Oslo
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
+    using Microsoft.OpenApi;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -36,7 +35,7 @@ namespace Public.Api.BuildingUnit.Oslo
         /// `"gepland"` `"gerealiseerd"` `"gehistoreerd"` `"nietGerealiseerd"`
         /// </param>
         /// <param name="functie">Filter op de functie van een gebouweenheid (exact) (optioneel).</param>
-        /// <param name="actionContextAccessor"></param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
@@ -53,8 +52,8 @@ namespace Public.Api.BuildingUnit.Oslo
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", JsonSchemaType.String, "De ETag van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(BuildingUnitListOsloResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
@@ -70,12 +69,12 @@ namespace Public.Api.BuildingUnit.Oslo
             [FromQuery] int? adresObjectId,
             [FromQuery] string status,
             [FromQuery] string? functie,
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] IOptions<BuildingOptionsV2> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
             const Taal taal = Taal.NL;
 
             RestRequest BackendRequest() => CreateBackendListRequest(

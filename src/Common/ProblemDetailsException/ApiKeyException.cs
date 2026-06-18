@@ -11,9 +11,5 @@ namespace Common.ProblemDetailsException
     {
         public ApiKeyException(string message) : base(message, StatusCodes.Status401Unauthorized, new ExceptionProblemDetails(), null)
         { }
-
-        private ApiKeyException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        { }
     }
 }

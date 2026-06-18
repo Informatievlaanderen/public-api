@@ -1,30 +1,33 @@
 ﻿namespace Public.Api.Infrastructure.Swagger
 {
+    using System.Collections.Generic;
     using CloudNative.CloudEvents;
-    using Microsoft.OpenApi.Any;
-    using Microsoft.OpenApi.Models;
+    using Microsoft.OpenApi;
     using Swashbuckle.AspNetCore.SwaggerGen;
 
     public sealed class CloudEventSchemaFilter : ISchemaFilter
     {
-        public void Apply(OpenApiSchema schema, SchemaFilterContext context)
+        public void Apply(IOpenApiSchema schema, SchemaFilterContext context)
         {
             if (context.Type != typeof(CloudEvent))
                 return;
 
-            schema.Properties.Clear();
-            schema.Properties.Add("specversion", new OpenApiSchema { Type = "string", Example = new OpenApiString("1.0") });
-            schema.Properties.Add("id", new OpenApiSchema { Type = "string" });
-            schema.Properties.Add("type", new OpenApiSchema { Type = "string" });
-            schema.Properties.Add("source", new OpenApiSchema { Type = "string", Format = "uri" });
-            schema.Properties.Add("time", new OpenApiSchema { Type = "string", Format = "date-time" });
-            schema.Properties.Add("datacontenttype", new OpenApiSchema { Type = "string" });
-            schema.Properties.Add("dataschema", new OpenApiSchema { Type = "string", Format = "uri" });
-            schema.Properties.Add("data", new OpenApiSchema { Type = "object" });
+            if (schema is not OpenApiSchema cloudEventSchema)
+                return;
+
+            cloudEventSchema.Properties = new Dictionary<string, IOpenApiSchema>();
+            cloudEventSchema.Properties.Add("specversion", new OpenApiSchema { Type = JsonSchemaType.String, Example = "1.0" });
+            cloudEventSchema.Properties.Add("id", new OpenApiSchema { Type = JsonSchemaType.String });
+            cloudEventSchema.Properties.Add("type", new OpenApiSchema { Type = JsonSchemaType.String });
+            cloudEventSchema.Properties.Add("source", new OpenApiSchema { Type = JsonSchemaType.String, Format = "uri" });
+            cloudEventSchema.Properties.Add("time", new OpenApiSchema { Type = JsonSchemaType.String, Format = "date-time" });
+            cloudEventSchema.Properties.Add("datacontenttype", new OpenApiSchema { Type = JsonSchemaType.String });
+            cloudEventSchema.Properties.Add("dataschema", new OpenApiSchema { Type = JsonSchemaType.String, Format = "uri" });
+            cloudEventSchema.Properties.Add("data", new OpenApiSchema { Type = JsonSchemaType.Object });
             // Add extension attributes
-            schema.Properties.Add("basisregisterseventtype", new OpenApiSchema { Type = "string", Description = "Basisregister-specifieke event type.", Nullable = true });
-            schema.Properties.Add("basisregisterscausationid", new OpenApiSchema { Type = "string", Description = "Identifier om wijzigingen met elkaar te correleren o.b.v. het veroorzakend proces.", Nullable = true });
-            schema.AdditionalPropertiesAllowed = true;
+            cloudEventSchema.Properties.Add("basisregisterseventtype", new OpenApiSchema { Type = JsonSchemaType.String | JsonSchemaType.Null, Description = "Basisregister-specifieke event type." });
+            cloudEventSchema.Properties.Add("basisregisterscausationid", new OpenApiSchema { Type = JsonSchemaType.String | JsonSchemaType.Null, Description = "Identifier om wijzigingen met elkaar te correleren o.b.v. het veroorzakend proces." });
+            cloudEventSchema.AdditionalPropertiesAllowed = true;
         }
     }
 }

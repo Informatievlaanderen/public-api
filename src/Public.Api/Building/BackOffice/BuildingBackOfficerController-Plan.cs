@@ -5,13 +5,12 @@ namespace Public.Api.Building.BackOffice
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using BuildingRegistry.Api.BackOffice.Abstractions.Building.Requests;
     using Common.FeatureToggles;
-    using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.OpenApi;
     using RestSharp;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
@@ -25,7 +24,7 @@ namespace Public.Api.Building.BackOffice
         /// Plan een gebouw in (v2).
         /// </summary>
         /// <param name="planBuildingRequest"></param>
-        /// <param name="actionContextAccessor"></param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="planBuildingToggle"></param>
         /// <param name="cancellationToken"></param>
@@ -45,8 +44,8 @@ namespace Public.Api.Building.BackOffice
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerRequestExample(typeof(PlanBuildingRequest), typeof(PlanBuildingRequestExamples))]
-        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string", "De URL van het aangemaakte ticket.")]
-        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", JsonSchemaType.String, "De URL van het aangemaakte ticket.")]
+        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedOAuthResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenOAuthResponseExamplesV2))]
@@ -56,7 +55,7 @@ namespace Public.Api.Building.BackOffice
         [HttpPost(PlanBuildingRoute, Name = nameof(PlanBuilding))]
         public async Task<IActionResult> PlanBuilding(
                     [FromBody] PlanBuildingRequest planBuildingRequest,
-                    [FromServices] IActionContextAccessor actionContextAccessor,
+                    [FromServices] IHttpContextAccessor httpContextAccessor,
                     [FromServices] ProblemDetailsHelper problemDetailsHelper,
                     [FromServices] PlanBuildingToggle planBuildingToggle,
                     CancellationToken cancellationToken = default)
@@ -66,10 +65,10 @@ namespace Public.Api.Building.BackOffice
                 return NotFound();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() =>
-                CreateBackendRequestWithJsonBody(PlanBuildingRoute, planBuildingRequest, Method.Post).AddHeaderAuthorization(actionContextAccessor);
+                CreateBackendRequestWithJsonBody(PlanBuildingRoute, planBuildingRequest, Method.Post).AddHeaderAuthorization(httpContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                     contentFormat.ContentType,

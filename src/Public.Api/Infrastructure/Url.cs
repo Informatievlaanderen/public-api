@@ -1,6 +1,5 @@
 namespace Public.Api.Infrastructure
 {
-    using System;
     using System.Collections.Generic;
     using Be.Vlaanderen.Basisregisters.AggregateSource;
 

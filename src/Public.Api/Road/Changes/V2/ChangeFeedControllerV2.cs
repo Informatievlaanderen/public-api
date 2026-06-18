@@ -10,7 +10,6 @@ namespace Public.Api.Road.Changes.V2
     using Infrastructure.Version;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
     using RestSharp;
 
@@ -26,11 +25,10 @@ namespace Public.Api.Road.Changes.V2
 
         public ChangeFeedControllerV2(
             IHttpContextAccessor httpContextAccessor,
-            IActionContextAccessor actionContextAccessor,
             [KeyFilter(RegistryKeys.Road)] RestClient restClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<ChangeFeedControllerV2> logger)
-            : base(httpContextAccessor, redis, logger, restClient, cacheToggle, actionContextAccessor) { }
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
     }
 }

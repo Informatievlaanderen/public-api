@@ -15,14 +15,14 @@ jobs:
 
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
           persist-credentials: false
 
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
-        node-version: '22.x'
+        node-version: '24.x'
 
     - name: Node version
       shell: bash
@@ -64,7 +64,7 @@ jobs:
       image-name: api-legacy
       build-project: Public.Api
       semver: ${{ needs.set-release-version.outputs.version }}
-      dotnet-version: ${{ vars.VBR_DOTNET_VERSION_9 }}
+      dotnet-version: ${{ vars.VBR_DOTNET_VERSION_10 }}
       prerestore-script: ./pre-restore.sh
     secrets: inherit
 
@@ -77,12 +77,12 @@ jobs:
       version: ${{ steps.set-version.outputs.version }}
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
           persist-credentials: false
 
     - name: Cache NPM
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       env:
         cache-name: cache-npm
       with:
@@ -96,12 +96,12 @@ jobs:
       shell: bash
 
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
-        node-version: '22.x'
+        node-version: '24.x'
 
     - name: Setup Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: '3.x'
 
@@ -155,7 +155,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         continue-on-error: false
         with:
           name: api-legacy-${{ needs.release.outputs.version }}
@@ -171,10 +171,9 @@ jobs:
 
       - name: Configure AWS credentials
         if: needs.release.outputs.version != 'none'
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6
         with:
-          aws-access-key-id: ${{ secrets.VBR_AWS_ACCESS_KEY_ID_DEVOPS }}
-          aws-secret-access-key: ${{ secrets.VBR_AWS_SECRET_ACCESS_KEY_DEVOPS }}
+          role-to-assume: ${{ secrets.VBR_AWS_CICD_ROLE }}
           aws-region: ${{ secrets.VBR_AWS_REGION_PRD }}
 
       - name: Login to Amazon ECR

@@ -7,11 +7,11 @@ namespace Public.Api.Address.IntegrationDb
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
+    using Infrastructure.Configuration;
+    using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using Public.Api.Infrastructure.Configuration;
-    using Public.Api.Infrastructure.Swagger;
     using RestSharp;
     using Version = Infrastructure.Version.Version;
 
@@ -37,7 +37,7 @@ namespace Public.Api.Address.IntegrationDb
             ILogger<AddressIntegrationDbController> logger)
             : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
-        private static ContentFormat DetermineFormat(ActionContext context)
+        private static ContentFormat DetermineFormat(HttpContext context)
             => ContentFormat.For(EndpointType.BackOffice, context);
     }
 }

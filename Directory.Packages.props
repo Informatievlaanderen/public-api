@@ -5,55 +5,56 @@
         <CentralPackageVersionOverrideEnabled>false</CentralPackageVersionOverrideEnabled>
     </PropertyGroup>
     <ItemGroup>
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.Api" Version="24.3.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.Auth.AcmIdm" Version="4.0.1" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting" Version="10.0.2" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.CommandHandling" Version="10.0.2" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.Api" Version="27.0.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.Auth.AcmIdm" Version="5.0.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting" Version="11.0.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.CommandHandling" Version="11.0.0" />
 
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo" Version="6.7.2" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo" Version="6.6.1" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo" Version="5.6.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions" Version="5.6.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo" Version="5.9.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions" Version="5.9.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo" Version="5.9.1" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions" Version="5.9.1" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo" Version="6.6.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions" Version="6.6.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api" Version="4.68.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.IntegrationDb.Api.Abstractions" Version="3.5.2" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.NotificationService.Api.Abstractions" Version="1.1.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo" Version="7.0.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo" Version="7.0.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo" Version="6.0.2" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions" Version="6.0.2" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo" Version="6.0.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions" Version="6.0.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo" Version="6.0.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions" Version="6.0.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo" Version="7.0.4" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions" Version="7.0.4" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api" Version="5.2.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.IntegrationDb.Api.Abstractions" Version="4.1.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.NotificationService.Api.Abstractions" Version="2.0.0" />
 
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Common" Version="22.11.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Legacy" Version="22.11.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Edit" Version="22.11.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.ChangeFeed" Version="22.11.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Provenance" Version="22.11.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Import" Version="22.11.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.CrsTransform" Version="22.11.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.EventHandling" Version="7.0.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.ProblemDetails" Version="10.0.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AspNetCore.Swagger" Version="6.0.1" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc" Version="6.0.1" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.TicketingService.Abstractions" Version="3.2.3" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Common" Version="25.2.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.CrsTransform" Version="25.2.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Legacy" Version="25.2.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Oslo" Version="25.2.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Edit" Version="25.2.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.ChangeFeed" Version="25.2.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Provenance" Version="25.2.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Import" Version="25.2.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.EventHandling" Version="7.1.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.ProblemDetails" Version="10.1.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AspNetCore.Swagger" Version="7.0.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc" Version="7.0.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.TicketingService.Abstractions" Version="4.0.0" />
 
-        <PackageVersion Include="Datadog.Trace.Bundle" Version="3.24.1" />
+        <PackageVersion Include="Datadog.Trace.Bundle" Version="3.49.0" />
 
-        <PackageVersion Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
+        <PackageVersion Include="Autofac.Extensions.DependencyInjection" Version="11.0.2" />
 
-        <PackageVersion Include="AWSSDK.DynamoDBv2" Version="3.7.407" />
-        <PackageVersion Include="AWSSDK.S3" Version="3.7.407" />
+        <PackageVersion Include="AWSSDK.DynamoDBv2" Version="4.0.101.2" />
+        <PackageVersion Include="AWSSDK.S3" Version="4.0.101.2" />
 
         <PackageVersion Include="FeatureToggle.Common" Version="4.0.2" />
-        <PackageVersion Include="RestSharp" Version="112.1.0" />
+        <PackageVersion Include="RestSharp" Version="114.0.0" />
         <PackageVersion Include="Marvin.Cache.Headers" Version="7.2.0" />
         <PackageVersion Include="StackExchange.Redis" Version="2.8.37" />
         <PackageVersion Include="CloudNative.CloudEvents.NewtonsoftJson" Version="2.8.0" />
 
-        <PackageVersion Include="Serilog" Version="4.3.0" />
-        <PackageVersion Include="Serilog.Settings.Configuration" Version="9.0.0" />
-        <PackageVersion Include="Serilog.Extensions.Logging" Version="9.0.1" />
-        <PackageVersion Include="Serilog.Sinks.Console" Version="6.0.0" />
+        <PackageVersion Include="Serilog" Version="4.3.1" />
+        <PackageVersion Include="Serilog.Settings.Configuration" Version="10.0.1" />
+        <PackageVersion Include="Serilog.Extensions.Logging" Version="10.0.0" />
+        <PackageVersion Include="Serilog.Sinks.Console" Version="6.1.1" />
         <PackageVersion Include="Serilog.Enrichers.Thread" Version="4.0.0" />
         <PackageVersion Include="Serilog.Enrichers.Environment" Version="3.0.1" />
 

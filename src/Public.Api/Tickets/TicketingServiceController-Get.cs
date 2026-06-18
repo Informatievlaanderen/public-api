@@ -11,7 +11,6 @@ namespace Public.Api.Tickets
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
     using RestSharp;
     using StreetNameRegistry.Api.Oslo.Infrastructure.Options;
@@ -25,7 +24,7 @@ namespace Public.Api.Tickets
         /// Vraag een ticket op (v2).
         /// </summary>
         /// <param name="ticketId">Identificator van het ticket.</param>
-        /// <param name="actionContextAccessor"></param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als het ticket gevonden is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
@@ -48,7 +47,7 @@ namespace Public.Api.Tickets
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = 0, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> GetTicket(
             [FromRoute] Guid ticketId,
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             CancellationToken cancellationToken = default)
         {
             if (!_ticketingToggle.FeatureEnabled)
@@ -56,12 +55,12 @@ namespace Public.Api.Tickets
                 return NotFound();
             }
 
-            if (actionContextAccessor.ActionContext == null)
+            if (httpContextAccessor.HttpContext == null)
             {
                 return BadRequest();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() => CreateBackendGetRequest(ticketId);
 

@@ -9,7 +9,6 @@
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
     using ValidationProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails;
@@ -20,7 +19,7 @@
         /// Trek een notificatie in.
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="actionContextAccessor"></param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
@@ -44,7 +43,7 @@
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UnpublishNotification(
             [FromRoute] int id,
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] UnpublishNotificationToggle featureToggle,
             CancellationToken cancellationToken = default)
@@ -54,11 +53,11 @@
                 return NotFound();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() =>
                 new RestRequest($"{BackOfficeVersion}/notificaties/{id}/acties/intrekken", Method.Post)
-                    .AddHeaderAuthorization(actionContextAccessor);
+                    .AddHeaderAuthorization(httpContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,

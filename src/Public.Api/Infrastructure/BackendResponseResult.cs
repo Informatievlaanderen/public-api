@@ -27,15 +27,15 @@ namespace Public.Api.Infrastructure
 
         public override Task ExecuteResultAsync(ActionContext context)
         {
-            context.HttpContext.Response.Headers.Add("x-cached", _response.CameFromCache ? "yes" : "no");
+            context.HttpContext.Response.Headers["x-cached"] = _response.CameFromCache ? "yes" : "no";
 
             if (!string.IsNullOrWhiteSpace(_response.DownstreamVersion))
             {
-                context.HttpContext.Response.Headers.Add("x-basisregister-downstream-version", _response.DownstreamVersion);
+                context.HttpContext.Response.Headers["x-basisregister-downstream-version"] = _response.DownstreamVersion;
             }
 
             if (_response.CameFromCache)
-                context.HttpContext.Response.Headers.Add("x-last-modified", _response.LastModified.ToString("O", CultureInfo.InvariantCulture));
+                context.HttpContext.Response.Headers["x-last-modified"] = _response.LastModified.ToString("O", CultureInfo.InvariantCulture);
 
             foreach (var headerToForward in _options.ForwardHeaders)
             {
@@ -44,7 +44,7 @@ namespace Public.Api.Infrastructure
 
                 if (!headerFromResponse.Equals(new KeyValuePair<string, StringValues>()))
                 {
-                    context.HttpContext.Response.Headers.Add(headerFromResponse.Key, headerFromResponse.Value);
+                    context.HttpContext.Response.Headers[headerFromResponse.Key] = headerFromResponse.Value;
                 }
             }
 

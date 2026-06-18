@@ -12,8 +12,8 @@ namespace Public.Api.PostalCode.Oslo
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
+    using Microsoft.OpenApi;
     using PostalRegistry.Api.Oslo.PostalInformation.Query;
     using PostalRegistry.Api.Oslo.PostalInformation.Responses;
     using RestSharp;
@@ -32,7 +32,7 @@ namespace Public.Api.PostalCode.Oslo
         /// <param name="postnaam">Filter op de postnaam van de postcode (exact) (optioneel).</param>
         /// <param name="nuts3">Filter op de NUTS3 classificatie gebruikt door Eurostat (exact) (optioneel).</param>
         /// <param name="heeftGemeente">Filter of de postcode gekoppeld is aan een gemeente (true/false) (optioneel).</param>
-        /// <param name="actionContextAccessor"></param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
@@ -49,7 +49,7 @@ namespace Public.Api.PostalCode.Oslo
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PostalInformationListOsloResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
@@ -65,12 +65,12 @@ namespace Public.Api.PostalCode.Oslo
             [FromQuery] string postnaam,
             [FromQuery] string? nuts3,
             [FromQuery] bool? heeftGemeente,
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] IOptions<PostalOptionsV2> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
             const Taal taal = Taal.NL;
 
             RestRequest BackendRequest() => CreateBackendListRequest(

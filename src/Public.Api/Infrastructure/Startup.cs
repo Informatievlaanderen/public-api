@@ -12,34 +12,27 @@ namespace Public.Api.Infrastructure
     using Amazon.DynamoDBv2;
     using Asp.Versioning.ApiExplorer;
     using Asp.Versioning.ApplicationModels;
-    using Autofac;
     using Autofac.Extensions.DependencyInjection;
-    using Autofac.Features.AttributeFilters;
     using Basisregisters.IntegrationDb.Api.Abstractions.SuspiciousCase.List;
     using Be.Vlaanderen.Basisregisters.Api;
-    using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.AspNetCore.Swagger;
     using Be.Vlaanderen.Basisregisters.GrAr.Common;
     using Be.Vlaanderen.Basisregisters.GrAr.Edit;
-    using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using Be.Vlaanderen.Basisregisters.GrAr.Oslo;
     using Be.Vlaanderen.Basisregisters.GrAr.Provenance;
     using Be.Vlaanderen.Basisregisters.Utilities;
     using BuildingRegistry.Api.BackOffice.Abstractions.Building.Responses;
     using BuildingRegistry.Api.Oslo.Infrastructure.Options;
     using Common.FeatureToggles;
     using Common.Infrastructure;
-    using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
-    using Common.Infrastructure.Modules;
     using Configuration;
-    using Extract;
-    using Feeds.V2;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.AspNetCore.StaticFiles;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -47,20 +40,21 @@ namespace Public.Api.Infrastructure
     using Microsoft.Extensions.FileProviders;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
-    using Microsoft.OpenApi.Models;
-    using Modules;
+    using Microsoft.OpenApi;
     using ParcelRegistry.Api.BackOffice.Abstractions.Requests;
     using ProblemDetailsExceptionMappings;
     using Redis;
     using RoadRegistry.BackOffice.Abstractions;
     using RoadRegistry.BackOffice.Api.Infrastructure;
     using RoadRegistry.BackOffice.Api.Infrastructure.Extensions;
+    using Serilog;
+    using Serilog.Extensions.Logging;
     using StreetNameRegistry.Api.BackOffice.Abstractions.Requests;
     using Swagger;
-    using Swashbuckle.AspNetCore.Filters;
     using TicketingService.Abstractions;
     using Version;
     using HttpRequestExtensions = Common.Infrastructure.Extensions.HttpRequestExtensions;
+    using Identificator = Be.Vlaanderen.Basisregisters.GrAr.Legacy.Identificator;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     /// <summary>Represents the startup process for the application.</summary>
@@ -68,8 +62,6 @@ namespace Public.Api.Infrastructure
     {
         private const string DefaultCulture = "en-GB";
         private const string SupportedCultures = "en-GB;en-US;en"; //"en-GB;en-US;en;nl-BE;nl";
-
-        private IContainer _applicationContainer;
 
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IConfiguration _configuration;
@@ -79,12 +71,11 @@ namespace Public.Api.Infrastructure
 
         public Startup(
             IWebHostEnvironment webHostEnvironment,
-            IConfiguration configuration,
-            ILoggerFactory loggerFactory)
+            IConfiguration configuration)
         {
             _webHostEnvironment = webHostEnvironment;
             _configuration = configuration;
-            _loggerFactory = loggerFactory;
+            _loggerFactory = new SerilogLoggerFactory(Log.Logger);
             _marketingVersion = new MarketingVersion(_configuration);
 
             _contact = new OpenApiContact
@@ -97,7 +88,7 @@ namespace Public.Api.Infrastructure
 
         /// <summary>Configures services for the application.</summary>
         /// <param name="services">The collection of services to configure the application with.</param>
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             var baseUrl = _configuration["BaseUrl"];
             var baseUrlForExceptions = baseUrl.EndsWith("/")
@@ -176,6 +167,7 @@ namespace Public.Api.Infrastructure
                             typeof(NodaHelpers).GetTypeInfo().Assembly.GetName().Name,
                             typeof(GmlConstants).GetTypeInfo().Assembly.GetName().Name,
                             typeof(Identificator).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(GestructureerdeIdentificator).GetTypeInfo().Assembly.GetName().Name,
                             typeof(Provenance).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ProblemDetails).GetTypeInfo().Assembly.GetName().Name,
                             typeof(Rfc3339SerializableDateTimeOffset).GetTypeInfo().Assembly.GetName().Name,
@@ -208,9 +200,6 @@ namespace Public.Api.Infrastructure
                     },
                     MiddlewareHooks =
                     {
-                        //FluentValidation = fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>(),
-                        EnableFluentValidation = false,
-
                         AfterMvcCore = builder =>
                         {
                             builder
@@ -292,7 +281,7 @@ namespace Public.Api.Infrastructure
 
                 .AddHttpClient()
 
-                .AddSingleton<IActionContextAccessor, ActionContextAccessor>()
+                .AddSingleton<IHttpContextAccessor, HttpContextAccessor>()
 
                 .AddHttpCacheHeaders(
                     expirationModelOptions =>
@@ -346,143 +335,6 @@ namespace Public.Api.Infrastructure
 
             services
                 .RemoveAll<IApiControllerSpecification>();
-
-            var containerBuilder = new ContainerBuilder();
-
-            containerBuilder
-                .RegisterModule(new ApiConfigurationModule(_configuration))
-                .RegisterModule(new RedisModule(_configuration))
-                .RegisterModule(new ExtractDownloadModule(_configuration, _marketingVersion))
-                .RegisterModule(new StatusModule(_configuration))
-                .RegisterModule(new InfoModule(_configuration));
-
-            containerBuilder.Populate(services);
-
-            RegisterExamples(containerBuilder);
-
-            containerBuilder
-                .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .Where(t => t.IsSubClassOfGeneric(typeof(RegistryApiController<>)))
-                .WithAttributeFiltering();
-
-            containerBuilder
-                .RegisterType<FeedV2Controller>()
-                .WithAttributeFiltering();
-
-            containerBuilder
-                .RegisterType<ExtractController>()
-                .WithAttributeFiltering();
-
-            containerBuilder
-                .RegisterInstance(_marketingVersion);
-
-            _applicationContainer = containerBuilder.Build();
-
-            return new AutofacServiceProvider(_applicationContainer);
-        }
-
-        private static void RegisterExamples(ContainerBuilder containerBuilder)
-        {
-            containerBuilder
-                .RegisterAssemblyTypes(
-                    AppDomain
-                        .CurrentDomain
-                        .GetAssemblies()
-                        .Where(x => AssemblyNameIsRegistryAssembly(x.FullName)
-                                    // We are explicitly registering the IExamplesProvider<> types from Be.Vlaanderen.Basisregisters.Api
-                                    // because some providers inherit from each other which causes the wrong implementation to be resolved,
-                                    // e.g. BadRequestResponseExamples as BadRequestResponseExamplesV2
-                                    // || (x.FullName ?? string.Empty).Contains("Be.Vlaanderen.Basisregisters.Api")
-                                    )
-                        .ToArray())
-                .AsClosedTypesOf(typeof(IExamplesProvider<>))
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterType<NotModifiedResponseExamples>()
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterType<BadRequestResponseExamples>()
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterType<BadRequestResponseExamplesV2>()
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterType<ConflictResponseExamples>()
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterType<ConflictResponseExamplesV2>()
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterType<ForbiddenResponseExamples>()
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterType<ForbiddenResponseExamplesV2>()
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterType<InternalServerErrorResponseExamples>()
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterType<InternalServerErrorResponseExamplesV2>()
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterType<NotAcceptableResponseExamples>()
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterType<PreconditionFailedResponseExamples>()
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterType<PreconditionFailedResponseExamplesV2>()
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterType<TooManyRequestsResponseExamples>()
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterType<TooManyRequestsResponseExamplesV2>()
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterType<UnauthorizedResponseExamples>()
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterType<UnauthorizedResponseExamplesV2>()
-                .AsImplementedInterfaces()
-                .AsSelf();
-
-            containerBuilder
-                .RegisterType<ValidationErrorResponseExamples>()
-                .AsImplementedInterfaces()
-                .AsSelf();
         }
 
         public void Configure(
@@ -501,7 +353,7 @@ namespace Public.Api.Infrastructure
                 {
                     Common =
                     {
-                        ApplicationContainer = _applicationContainer,
+                        ApplicationContainer = serviceProvider.GetAutofacRoot(),
                         ServiceProvider = serviceProvider,
                         HostingEnvironment = env,
                         ApplicationLifetime = appLifetime,

@@ -66,7 +66,7 @@ namespace Public.Api.Extract
             if (extract == null)
                 throw new ApiException("Onbestaand testbestand.", StatusCodes.Status404NotFound);
 
-            var signedUrl = _client.GetPreSignedURL(
+            var signedUrl = await _client.GetPreSignedURLAsync(
                 new GetPreSignedUrlRequest
                 {
                     BucketName = extract.BucketName,
