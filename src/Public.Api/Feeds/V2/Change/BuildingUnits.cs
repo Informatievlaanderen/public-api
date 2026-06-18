@@ -15,7 +15,7 @@
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.OpenApi;
     using RestSharp;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
@@ -27,7 +27,7 @@
         /// <summary>
         /// Vraag een lijst op met wijzigingen over gebouweenheden (v2).
         /// </summary>
-        /// <param name="actionContextAccessor"></param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="restClients"></param>
         /// <param name="pagina">Paginanummer dat aangeeft vanaf welke pagina de feedresultaten worden opgehaald (optioneel).</param>
         /// <param name="changeFeedBuildingUnitToggle"></param>
@@ -49,9 +49,9 @@
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-page-complete", "bool", "Geeft aan of de pagina definitief is.<br/>`true`: er worden geen nieuwe wijzigingen meer aan deze pagina toegevoegd.<br/>`false`: er kunnen nog wijzigingen aan deze pagina worden toegevoegd.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", JsonSchemaType.String, "De ETag van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-page-complete", JsonSchemaType.Boolean, "Geeft aan of de pagina definitief is.<br/>`true`: er worden geen nieuwe wijzigingen meer aan deze pagina toegevoegd.<br/>`false`: er kunnen nog wijzigingen aan deze pagina worden toegevoegd.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(BuildingUnitFeedResultExample))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedResponseExamplesV2))]
@@ -64,7 +64,7 @@
                                         "Geometrieën worden altijd meegegeven als <b>GML</b>, inclusief het <b>SRS</b>. Raadpleeg dit SRS altijd bij verwerking, aangezien de projectie kan wijzigen.<br/>" +
                                         "Aanbeveling: vraag de feed niet vaker op dan nodig. Stem de opvraagfrequentie af op je verwerkingscapaciteit en de gewenste actualiteit van je lokale kopie.")]
         public async Task<IActionResult> ChangeFeedBuildingUnit(
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] IIndex<string, Lazy<RestClient>> restClients,
             [FromServices] ChangeFeedBuildingUnitToggle changeFeedBuildingUnitToggle,
             [FromQuery] int? pagina,
@@ -74,7 +74,7 @@
             if (!changeFeedBuildingUnitToggle.FeatureEnabled)
                 return NotFound();
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             pagina ??= 1;
 
@@ -100,8 +100,8 @@
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", JsonSchemaType.String, "De ETag van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(BuildingUnitFeedResultExample))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedResponseExamplesV2))]
@@ -111,7 +111,7 @@
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultFeedCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ChangeFeedBuildingUnitById(
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] IIndex<string, Lazy<RestClient>> restClients,
             [FromRoute] int objectId,
             [FromQuery] int? limit,
@@ -123,7 +123,7 @@
             if (!changeFeedBuildingUnitToggle.FeatureEnabled)
                 return NotFound();
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             var value = await GetFromBackendAsync(
                 restClients[RegistryKeys.BuildingV2].Value,

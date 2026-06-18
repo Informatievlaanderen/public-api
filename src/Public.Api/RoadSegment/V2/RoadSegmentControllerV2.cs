@@ -11,7 +11,6 @@ namespace Public.Api.RoadSegment.V2
     using Infrastructure.Version;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
     using RestSharp;
     using Road;
@@ -28,12 +27,11 @@ namespace Public.Api.RoadSegment.V2
     {
         public RoadSegmentControllerV2(
             IHttpContextAccessor httpContextAccessor,
-            IActionContextAccessor actionContextAccessor,
             [KeyFilter(RegistryKeys.Road)] RestClient restClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<RoadSegmentControllerV2> logger)
-            : base(httpContextAccessor, redis, logger, restClient, cacheToggle, actionContextAccessor)
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle)
         {
         }
 
@@ -42,7 +40,7 @@ namespace Public.Api.RoadSegment.V2
 
         private ContentFormat DetermineFormat()
         {
-            return ContentFormat.For(EndpointType.BackOffice, ActionContextAccessor.ActionContext);
+            return ContentFormat.For(EndpointType.BackOffice, HttpContextAccessor.HttpContext);
         }
     }
 }

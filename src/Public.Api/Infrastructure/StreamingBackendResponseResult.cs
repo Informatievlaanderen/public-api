@@ -1,6 +1,5 @@
 namespace Public.Api.Infrastructure
 {
-    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Common.Infrastructure;
@@ -23,8 +22,8 @@ namespace Public.Api.Infrastructure
         {
             var response = context.HttpContext.Response;
 
-            response.Headers.Add(HeaderNames.ContentType, _response.ResponseContentType);
-            response.Headers.Add(HeaderNames.ContentDisposition, _response.ContentDisposition);
+            response.Headers[HeaderNames.ContentType] = _response.ResponseContentType;
+            response.Headers[HeaderNames.ContentDisposition] = _response.ContentDisposition;
 
             foreach (var headerToForward in _options.ForwardHeaders)
             {
@@ -33,7 +32,7 @@ namespace Public.Api.Infrastructure
 
                 if (!headerFromResponse.Equals(default))
                 {
-                    context.HttpContext.Response.Headers.Add(headerFromResponse.Key, headerFromResponse.Value);
+                    context.HttpContext.Response.Headers[headerFromResponse.Key] = headerFromResponse.Value;
                 }
             }
 

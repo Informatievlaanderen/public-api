@@ -9,11 +9,6 @@ namespace Public.Api.Status.Responses
     {
         public ProjectionStatusResponse()
         { }
-
-        private ProjectionStatusResponse(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        { }
-
     }
 
     public class RegistryProjectionStatusResponse

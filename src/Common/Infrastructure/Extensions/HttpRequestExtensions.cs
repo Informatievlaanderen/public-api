@@ -16,11 +16,11 @@ namespace Common.Infrastructure.Extensions
             return string.IsNullOrEmpty(routeValue) ? null : routeValue.ToLowerInvariant();
         }
 
-        public static string GetValueFromQueryString(this ActionContext context, string key)
-            => context.HttpContext.Request.Query.TryGetValue(key, out var queryValue) ? queryValue.ToString().ToLowerInvariant() : null;
+        public static string GetValueFromQueryString(this HttpContext context, string key)
+            => context.Request.Query.TryGetValue(key, out var queryValue) ? queryValue.ToString().ToLowerInvariant() : null;
 
-        public static string GetValueFromHeader(this ActionContext context, string key)
-            => context.HttpContext.Request.Headers.TryGetValue(key, out var headerValue) ? headerValue.ToString().ToLowerInvariant() : null;
+        public static string GetValueFromHeader(this HttpContext context, string key)
+            => context.Request.Headers.TryGetValue(key, out var headerValue) ? headerValue.ToString().ToLowerInvariant() : null;
 
         public static void SetAcceptType(this HttpRequest request, AcceptType? acceptType)
             => request.Headers[HeaderNames.Accept] = acceptType?.ToMimeTypeString();
@@ -29,7 +29,7 @@ namespace Common.Infrastructure.Extensions
             => context
                 .HttpContext
                 .Request
-                .SetAcceptType(ContentFormat.DetermineAcceptType(context));
+                .SetAcceptType(ContentFormat.DetermineAcceptType(context.HttpContext));
 
         public static void RewriteAcceptTypeForProblemDetail(this HttpRequest request)
         {

@@ -12,7 +12,6 @@ namespace Public.Api.Address.Oslo
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
@@ -33,9 +32,7 @@ namespace Public.Api.Address.Oslo
         /// Filter op de status van het adres of straatnaam. \
         /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"` `"afgekeurd"`
         /// </param>
-        /// <param name="actionContextAccessor"></param>
-        /// <param name="responseOptions"></param>
-        /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de adresmatch gelukt is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
@@ -68,11 +65,11 @@ namespace Public.Api.Address.Oslo
             [FromQuery] string huisnummer,
             [FromQuery] string busnummer,
             [FromQuery] string? status,
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() => CreateBackendMatchRequest(
                 Taal.NL,

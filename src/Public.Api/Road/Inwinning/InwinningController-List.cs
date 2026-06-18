@@ -6,10 +6,9 @@ namespace Public.Api.Road.Inwinning
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.FeatureToggles;
     using Common.Infrastructure.Controllers.Attributes;
+    using Infrastructure;
     using Microsoft.AspNetCore.Mvc;
-    using Public.Api.Infrastructure;
     using RestSharp;
-    using RoadRegistry.BackOffice.Api.Inwinning;
 
     public partial class InwinningControllerV2
     {

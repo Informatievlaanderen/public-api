@@ -28,12 +28,11 @@ namespace Public.Api.RoadSegment.V3
     {
         public RoadSegmentControllerV3(
             IHttpContextAccessor httpContextAccessor,
-            IActionContextAccessor actionContextAccessor,
             [KeyFilter(RegistryKeys.RoadV3)] RestClient restClient,
             [KeyFilter(RegistryKeys.RoadV3)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<RoadSegmentControllerV3> logger)
-            : base(httpContextAccessor, redis, logger, restClient, cacheToggle, actionContextAccessor)
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle)
         {
         }
 
@@ -42,7 +41,7 @@ namespace Public.Api.RoadSegment.V3
 
         private ContentFormat DetermineFormat()
         {
-            return ContentFormat.For(EndpointType.BackOffice, ActionContextAccessor.ActionContext);
+            return ContentFormat.For(EndpointType.BackOffice, HttpContextAccessor.HttpContext);
         }
     }
 }

@@ -118,10 +118,5 @@ namespace Common.Infrastructure.Modules
     {
         public HealthUrls()
         { }
-
-        private HealthUrls(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        { }
-
     }
 }

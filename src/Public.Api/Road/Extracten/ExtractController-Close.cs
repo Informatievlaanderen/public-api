@@ -9,7 +9,6 @@ namespace Public.Api.Road.Extracten
     using Microsoft.AspNetCore.Mvc;
     using Public.Api.Infrastructure;
     using RestSharp;
-    using RoadRegistry.BackOffice.Api.Extracten;
 
     public partial class ExtractControllerV2
     {

@@ -14,9 +14,5 @@ namespace Common.Infrastructure.Configuration
                 .GetSection(sectionName)
                 .Bind(this);
         }
-
-        private NamedConfigurations(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        { }
     }
 }

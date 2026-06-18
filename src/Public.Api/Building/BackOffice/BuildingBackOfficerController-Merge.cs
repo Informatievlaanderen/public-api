@@ -24,7 +24,7 @@
 //         /// Samenvoegen tot één gebouw.
 //         /// </summary>
 //         /// <param name="mergeBuildingRequest"></param>
-//         /// <param name="actionContextAccessor"></param>
+//         /// <param name="httpContextAccessor"></param>
 //         /// <param name="problemDetailsHelper"></param>
 //         /// <param name="mergeBuildingToggle"></param>
 //         /// <param name="cancellationToken"></param>
@@ -44,8 +44,8 @@
 //         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
 //         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
 //         [SwaggerRequestExample(typeof(MergeBuildingRequest), typeof(MergeBuildingRequestExamples))]
-//         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", "string", "De URL van het aangemaakte ticket.")]
-//         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
+//         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "location", JsonSchemaType.String, "De URL van het aangemaakte ticket.")]
+//         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
 //         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
 //         [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedOAuthResponseExamplesV2))]
 //         [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenOAuthResponseExamplesV2))]
@@ -55,7 +55,7 @@
 //         [HttpPost(MergeBuildingRoute, Name = nameof(MergeBuilding))]
 //         public async Task<IActionResult> MergeBuilding(
 //                     [FromBody] MergeBuildingRequest mergeBuildingRequest,
-//                     [FromServices] IActionContextAccessor actionContextAccessor,
+//                     [FromServices] IHttpContextAccessor httpContextAccessor,
 //                     [FromServices] ProblemDetailsHelper problemDetailsHelper,
 //                     [FromServices] MergeBuildingToggle mergeBuildingToggle,
 //                     CancellationToken cancellationToken = default)
@@ -65,10 +65,10 @@
 //                 return NotFound();
 //             }
 //
-//             var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+//             var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 //
 //             RestRequest BackendRequest() =>
-//                 CreateBackendRequestWithJsonBody(MergeBuildingRoute, mergeBuildingRequest, Method.Post).AddHeaderAuthorization(actionContextAccessor);
+//                 CreateBackendRequestWithJsonBody(MergeBuildingRoute, mergeBuildingRequest, Method.Post).AddHeaderAuthorization(httpContextAccessor);
 //
 //             var value = await GetFromBackendWithBadRequestAsync(
 //                     contentFormat.ContentType,

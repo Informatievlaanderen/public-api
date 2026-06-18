@@ -15,9 +15,5 @@ namespace Common.ProblemDetailsException
         {
             RegistryName = registryName;
         }
-    
-        private NotFoundException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        { }
     }
 }

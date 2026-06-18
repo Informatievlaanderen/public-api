@@ -7,7 +7,6 @@ namespace Public.Api.Feeds.V2.Change
     using Autofac.Features.Indexed;
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Be.Vlaanderen.Basisregisters.Api.Search.Filtering;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
@@ -44,7 +43,7 @@ namespace Public.Api.Feeds.V2.Change
             _cacheToggles = cacheToggles;
         }
 
-        private static ContentFormat DetermineFormat(ActionContext context)
+        private static ContentFormat DetermineFormat(HttpContext context)
             => ContentFormat.For(EndpointType.ChangeFeed, context);
 
         private static RestRequest CreateBackendChangeFeedRequest(
@@ -69,10 +68,10 @@ namespace Public.Api.Feeds.V2.Change
             }
         }
 
-        protected bool CanGetFromCache(string toggleName, ActionContext actionContext)
+        protected bool CanGetFromCache(string toggleName, HttpContext httpContext)
         {
             return _cacheToggles[toggleName].FeatureEnabled
-                   && !actionContext.HttpContext.Request
+                   && !httpContext.Request
                        .Headers
                        .CacheControl
                        .Any(x => CacheControlHeaderValue.TryParse(x, out var value) && value.NoCache);

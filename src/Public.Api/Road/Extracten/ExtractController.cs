@@ -8,7 +8,6 @@ namespace Public.Api.Road.Extracten
     using FeatureToggle;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
     using Public.Api.Infrastructure.Configuration;
     using Public.Api.Infrastructure.Swagger;
@@ -27,13 +26,12 @@ namespace Public.Api.Road.Extracten
 
         public ExtractControllerV2(
             IHttpContextAccessor httpContextAccessor,
-            IActionContextAccessor actionContextAccessor,
             [KeyFilter(RegistryKeys.Road)] RestClient restClient,
             [KeyFilter(RegistryKeys.Road)] HttpClient httpClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<ExtractControllerV2> logger)
-            : base(httpContextAccessor, redis, logger, restClient, cacheToggle, actionContextAccessor)
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle)
         {
         }
     }

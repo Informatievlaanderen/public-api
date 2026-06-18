@@ -12,7 +12,6 @@
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -24,7 +23,7 @@
         /// Vraag een lijst met verdachte gevallen op.
         /// </summary>
         /// <param name="niscode">Filter op de NIS-code van het verdacht geval (exact) (optioneel).</param>
-        /// <param name="actionContextAccessor"></param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="suspiciousCasesToggle"></param>
         /// <param name="cancellationToken"></param>
@@ -53,7 +52,7 @@
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ListSuspiciousCases(
             [FromQuery] string? niscode,
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] ListSuspiciousCasesToggle suspiciousCasesToggle,
             CancellationToken cancellationToken = default)
@@ -63,11 +62,11 @@
                 return NotFound();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() => CreateBackendListRequest(
                 niscode,
-                actionContextAccessor);
+                httpContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,
@@ -81,7 +80,7 @@
 
         private static RestRequest CreateBackendListRequest(
             string? nisCode,
-            IActionContextAccessor actionContextAccessor)
+            IHttpContextAccessor httpContextAccessor)
         {
             var filter = new SuspiciousCasesListFilter
             {
@@ -90,7 +89,7 @@
 
             return new RestRequest("verdachte-gevallen")
                 .AddFiltering(filter)
-                .AddHeaderAuthorization(actionContextAccessor);
+                .AddHeaderAuthorization(httpContextAccessor);
         }
     }
 }

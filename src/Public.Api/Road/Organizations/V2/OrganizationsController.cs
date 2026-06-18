@@ -6,13 +6,12 @@ namespace Public.Api.Road.Organizations.V2
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
+    using Infrastructure.Configuration;
+    using Infrastructure.Swagger;
+    using Infrastructure.Version;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
-    using Public.Api.Infrastructure.Configuration;
-    using Public.Api.Infrastructure.Swagger;
-    using Public.Api.Infrastructure.Version;
     using RestSharp;
 
     [ApiVisible]
@@ -30,18 +29,17 @@ namespace Public.Api.Road.Organizations.V2
 
         public OrganizationsControllerV2(
             IHttpContextAccessor httpContextAccessor,
-            IActionContextAccessor actionContextAccessor,
             [KeyFilter(RegistryKeys.Road)] RestClient restClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<OrganizationsControllerV2> logger)
-            : base(httpContextAccessor, redis, logger, restClient, cacheToggle, actionContextAccessor)
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle)
         {
         }
 
         private ContentFormat DetermineFormat()
         {
-            return ContentFormat.For(EndpointType.BackOffice, ActionContextAccessor.ActionContext);
+            return ContentFormat.For(EndpointType.BackOffice, HttpContextAccessor.HttpContext);
         }
     }
 }

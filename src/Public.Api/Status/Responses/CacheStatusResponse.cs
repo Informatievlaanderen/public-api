@@ -9,10 +9,6 @@ namespace Public.Api.Status.Responses
     {
         public CacheStatusResponse()
         { }
-    
-        private CacheStatusResponse(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        { }
     }
 
     public class RegistryCacheStatus

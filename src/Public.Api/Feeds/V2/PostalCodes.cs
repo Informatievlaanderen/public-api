@@ -9,11 +9,11 @@ namespace Public.Api.Feeds.V2
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
     using PostalRegistry.Api.Oslo.PostalInformation.Responses;
     using Infrastructure;
     using Infrastructure.Configuration;
+    using Microsoft.OpenApi;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -23,7 +23,7 @@ namespace Public.Api.Feeds.V2
         /// <summary>
         /// Vraag een lijst met wijzigingen op postinfo op in het XML of Atom formaat (v2).
         /// </summary>
-        /// <param name="actionContextAccessor"></param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="restClients"></param>
         /// <param name="responseOptions"></param>
         /// <param name="from">Eventidentificator (volgnummer) vanaf waar de feed moet gestart of hernomen worden (optioneel).</param>
@@ -45,8 +45,8 @@ namespace Public.Api.Feeds.V2
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", "string", "De ETag van de response.")]
-        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", "string", "Correlatie identificator van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", JsonSchemaType.String, "De ETag van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PostalInformationSyndicationResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedResponseExamplesV2))]
@@ -56,7 +56,7 @@ namespace Public.Api.Feeds.V2
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultFeedCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> GetPostalCodesFeedV2(
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] IIndex<string, Lazy<RestClient>> restClients,
             [FromServices] IOptions<PostalOptionsV2> responseOptions,
             [FromQuery] long? from,
@@ -65,7 +65,7 @@ namespace Public.Api.Feeds.V2
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() => CreateBackendSyndicationRequest(
                 "postcodes",
@@ -84,7 +84,7 @@ namespace Public.Api.Feeds.V2
                 value,
                 Request.Query,
                 responseOptions.Value.Syndication.NextUri,
-                responseOptions.Value.Syndication.GetNextUri(actionContextAccessor));
+                responseOptions.Value.Syndication.GetNextUri(httpContextAccessor));
         }
     }
 }

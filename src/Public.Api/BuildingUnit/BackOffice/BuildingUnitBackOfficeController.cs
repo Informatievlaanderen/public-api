@@ -38,7 +38,7 @@ namespace Public.Api.BuildingUnit.BackOffice
             : base(httpContextAccessor, redis, logger, restClient, cacheToggle)
         { }
 
-        private static ContentFormat DetermineFormat(ActionContext context)
+        private static ContentFormat DetermineFormat(HttpContext context)
             => ContentFormat.For(EndpointType.BackOffice, context);
     }
 }

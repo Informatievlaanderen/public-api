@@ -9,11 +9,6 @@ namespace Public.Api.Status.Responses
     {
         public ImportStatusResponse()
         { }
-        
-        private ImportStatusResponse(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        { }
-
     }
 
     public class RegistryImportStatus

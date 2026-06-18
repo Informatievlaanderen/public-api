@@ -60,16 +60,15 @@
                 {
                     try
                     {
-                        await _amazonDynamoDb.PutItemAsync(new PutItemRequest
+                        var item = new PutItemRequest
                         {
                             TableName = _tableName,
-                            Item =
-                            {
-                                ["FeatureName"] = new AttributeValue(featureToggle),
-                                ["Enabled"] = new AttributeValue { BOOL = defaultEnabled }
-                            },
+                            Item = [],
                             ConditionExpression = "attribute_not_exists(FeatureName)"
-                        });
+                        };
+                        item.Item.Add("FeatureName", new AttributeValue(featureToggle));
+                        item.Item.Add("Enabled", new AttributeValue { BOOL = defaultEnabled });
+                        await _amazonDynamoDb.PutItemAsync(item);
                     }
                     catch (ConditionalCheckFailedException)
                     { }
@@ -90,7 +89,7 @@
                 {
                     var featureName = item["FeatureName"].S;
                     var enabled = item["Enabled"].BOOL;
-                    _featureToggles[featureName] = enabled;
+                    _featureToggles[featureName] = enabled ?? false;
                 }
 
                 scanRequest.ExclusiveStartKey = scanResponse.LastEvaluatedKey;

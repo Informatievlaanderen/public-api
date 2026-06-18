@@ -9,7 +9,6 @@
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using NotificationService.Api.Abstractions;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
@@ -22,7 +21,7 @@
         /// Vraag een lijst met actieve gepubliceerde notificaties op voor een bepaald platform.
         /// </summary>
         /// <param name="platform">Het platform waarvoor de notificaties worden opgevraagd.</param>
-        /// <param name="actionContextAccessor"></param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
@@ -49,7 +48,7 @@
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         public async Task<IActionResult> GetNotificationsByPlatform(
             [FromRoute] Platform platform,
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] GetNotificationsByPlatformToggle featureToggle,
             CancellationToken cancellationToken = default)
@@ -59,10 +58,10 @@
                 return NotFound();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() => new RestRequest($"{BackOfficeVersion}/notificaties/{platform}")
-                .AddHeaderAuthorization(actionContextAccessor);
+                .AddHeaderAuthorization(httpContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,

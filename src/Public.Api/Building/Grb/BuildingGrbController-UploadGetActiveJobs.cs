@@ -4,12 +4,10 @@ namespace Public.Api.Building.Grb
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.FeatureToggles;
-    using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
@@ -22,7 +20,7 @@ namespace Public.Api.Building.Grb
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [HttpGet("gebouwen/uploads/jobs/active", Name = nameof(BuildingGrbUploadGetActiveJobs))]
         public async Task<IActionResult> BuildingGrbUploadGetActiveJobs(
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] BuildingGrbUploadJobToggle buildingGrbUploadJobToggle,
             CancellationToken cancellationToken = default)
@@ -32,10 +30,10 @@ namespace Public.Api.Building.Grb
                 return NotFound();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() => new RestRequest("uploads/jobs/active", Method.Get)
-                .AddHeaderAuthorization(actionContextAccessor);
+                .AddHeaderAuthorization(httpContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,

@@ -35,7 +35,7 @@ namespace Public.Api.Feeds.V2
             ILogger<FeedV2Controller> logger)
             : base(httpContextAccessor, redis, logger) { }
 
-        private static ContentFormat DetermineFormat(ActionContext context)
+        private static ContentFormat DetermineFormat(HttpContext context)
             => ContentFormat.For(EndpointType.Sync, context);
 
         private static RestRequest CreateBackendSyndicationRequest(

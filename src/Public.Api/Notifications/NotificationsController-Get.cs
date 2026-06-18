@@ -11,7 +11,6 @@
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using NotificationService.Api.Abstractions;
     using RestSharp;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -25,7 +24,7 @@
         /// <param name="status"></param>
         /// <param name="vanaf"></param>
         /// <param name="tot"></param>
-        /// <param name="actionContextAccessor"></param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
@@ -49,7 +48,7 @@
             [FromQuery] NotificatieStatus? status,
             [FromQuery] DateTimeOffset? vanaf,
             [FromQuery] DateTimeOffset? tot,
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] GetNotificationsToggle featureToggle,
             CancellationToken cancellationToken = default)
@@ -59,7 +58,7 @@
                 return NotFound();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() => new RestRequest($"{BackOfficeVersion}/notificaties")
                 .AddFiltering(new NotificationsFilter
@@ -68,7 +67,7 @@
                     Vanaf = vanaf,
                     Tot = tot
                 })
-                .AddHeaderAuthorization(actionContextAccessor);
+                .AddHeaderAuthorization(httpContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,

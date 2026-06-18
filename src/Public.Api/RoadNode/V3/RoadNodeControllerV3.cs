@@ -28,12 +28,11 @@ namespace Public.Api.RoadNode.V3
     {
         public RoadNodeControllerV3(
             IHttpContextAccessor httpContextAccessor,
-            IActionContextAccessor actionContextAccessor,
             [KeyFilter(RegistryKeys.RoadV3)] RestClient restClient,
             [KeyFilter(RegistryKeys.RoadV3)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<RoadNodeControllerV3> logger)
-            : base(httpContextAccessor, redis, logger, restClient, cacheToggle, actionContextAccessor)
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle)
         {
         }
 
@@ -42,7 +41,7 @@ namespace Public.Api.RoadNode.V3
 
         private ContentFormat DetermineFormat()
         {
-            return ContentFormat.For(EndpointType.BackOffice, ActionContextAccessor.ActionContext);
+            return ContentFormat.For(EndpointType.BackOffice, HttpContextAccessor.HttpContext);
         }
     }
 }

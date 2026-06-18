@@ -9,7 +9,6 @@
     using Infrastructure.Swagger;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using NotificationService.Api.Abstractions;
     using RestSharp;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -21,7 +20,7 @@
         /// Maak een notificatie aan.
         /// </summary>
         /// <param name="request"></param>
-        /// <param name="actionContextAccessor"></param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
@@ -43,7 +42,7 @@
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> CreateNotification(
             [FromBody] MaakNotificatieRequest request,
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] CreateNotificationToggle featureToggle,
             CancellationToken cancellationToken = default)
@@ -53,12 +52,12 @@
                 return NotFound();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() =>
                 new RestRequest($"{BackOfficeVersion}/notificaties", Method.Post)
                     .AddBody(request)
-                    .AddHeaderAuthorization(actionContextAccessor);
+                    .AddHeaderAuthorization(httpContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,

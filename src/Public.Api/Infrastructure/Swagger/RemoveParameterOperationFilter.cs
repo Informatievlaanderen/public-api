@@ -1,7 +1,7 @@
 namespace Public.Api.Infrastructure.Swagger
 {
     using System.Linq;
-    using Microsoft.OpenApi.Models;
+    using Microsoft.OpenApi;
     using Swashbuckle.AspNetCore.SwaggerGen;
 
     public class RemoveParameterOperationFilter : IOperationFilter

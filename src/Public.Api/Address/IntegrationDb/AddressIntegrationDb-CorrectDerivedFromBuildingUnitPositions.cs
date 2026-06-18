@@ -9,7 +9,7 @@ namespace Public.Api.Address.IntegrationDb
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.OpenApi;
     using RestSharp;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
@@ -24,7 +24,7 @@ namespace Public.Api.Address.IntegrationDb
         /// Corrigeer adres posities met methode Afgeleid en specificatie Gebouweenheid (v2).
         /// </summary>
         /// <param name="request"></param>
-        /// <param name="actionContextAccessor"></param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="correctDerivedFromBuildingUnitPositionsToggle"></param>
         /// <param name="cancellationToken"></param>
@@ -45,13 +45,13 @@ namespace Public.Api.Address.IntegrationDb
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerRequestExample(typeof(CorrigerenAfgeleidVanGebouwEenhedenRequest), typeof(CorrigerenAfgeleidVanGebouwEenhedenRequestExamples))]
-        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status202Accepted, typeof(CorrigerenAfgeleidVanGebouwEenhedenResponseExample))]
         [SwaggerOperation(Description = "Corrigeer adres posities met methode Afgeleid en specificatie Gebouweenheid.")]
         [HttpPost(CorrectDerivedFromBuildingUnitPositionsRoute, Name = nameof(CorrectDerivedFromBuildingUnitPositions))]
         public async Task<IActionResult> CorrectDerivedFromBuildingUnitPositions(
             [FromBody] CorrigerenAfgeleidVanGebouwEenhedenRequest? request,
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] CorrectDerivedFromBuildingUnitPositionsAddressToggle correctDerivedFromBuildingUnitPositionsToggle,
             CancellationToken cancellationToken = default)
@@ -61,11 +61,11 @@ namespace Public.Api.Address.IntegrationDb
                 return NotFound();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() =>
                 CreateBackendRequestWithJsonBody($"{BackOfficeVersion}/adressen/corrigeren/afgeleid-van-gebouweenheid-posities", request, Method.Post)
-                    .AddHeaderAuthorization(actionContextAccessor);
+                    .AddHeaderAuthorization(httpContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,

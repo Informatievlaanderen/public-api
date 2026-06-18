@@ -6,13 +6,12 @@ namespace Public.Api.Road.Inwinning
     using Be.Vlaanderen.Basisregisters.Api;
     using Common.Infrastructure;
     using FeatureToggle;
+    using Infrastructure.Configuration;
+    using Infrastructure.Swagger;
+    using Infrastructure.Version;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Logging;
-    using Public.Api.Infrastructure.Configuration;
-    using Public.Api.Infrastructure.Swagger;
-    using Public.Api.Infrastructure.Version;
     using RestSharp;
 
     [ApiVersion(Version.V2)]
@@ -27,13 +26,12 @@ namespace Public.Api.Road.Inwinning
 
         public InwinningControllerV2(
             IHttpContextAccessor httpContextAccessor,
-            IActionContextAccessor actionContextAccessor,
             [KeyFilter(RegistryKeys.Road)] RestClient restClient,
             [KeyFilter(RegistryKeys.Road)] HttpClient httpClient,
             [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<InwinningControllerV2> logger)
-            : base(httpContextAccessor, redis, logger, restClient, cacheToggle, actionContextAccessor)
+            : base(httpContextAccessor, redis, logger, restClient, cacheToggle)
         {
         }
     }

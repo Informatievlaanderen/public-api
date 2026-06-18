@@ -5,12 +5,10 @@ namespace Public.Api.Building.Grb
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.FeatureToggles;
-    using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using RestSharp;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
@@ -23,7 +21,7 @@ namespace Public.Api.Building.Grb
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [HttpDelete("gebouwen/uploads/jobs/{objectId}", Name = nameof(BuildingGrbUploadCancelJob))]
         public async Task<IActionResult> BuildingGrbUploadCancelJob(
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] BuildingGrbUploadJobToggle buildingGrbUploadJobToggle,
             [FromRoute] Guid objectId,
@@ -34,11 +32,11 @@ namespace Public.Api.Building.Grb
                 return NotFound();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() => new RestRequest("uploads/jobs/{objectId}", Method.Delete)
                 .AddParameter("objectId", objectId, ParameterType.UrlSegment)
-                .AddHeaderAuthorization(actionContextAccessor);
+                .AddHeaderAuthorization(httpContextAccessor);
 
             var value = await GetFromBackendWithBadRequestAsync(
                 contentFormat.ContentType,

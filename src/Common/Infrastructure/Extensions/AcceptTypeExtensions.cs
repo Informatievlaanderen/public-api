@@ -47,7 +47,7 @@ namespace Common.Infrastructure.Extensions
 
         public static AcceptType DetermineAcceptType(
             this RequestHeaders requestHeaders,
-            ActionDescriptor? actionDescriptor)
+            HttpContext? httpContext)
         {
             var acceptHeaders = requestHeaders.Accept;
 
@@ -100,14 +100,16 @@ namespace Common.Infrastructure.Extensions
                 if (headerValue.Contains(AcceptTypes.Any)
                     || DefaultBrowserAcceptTypes.Any(acceptType => headerValue.Contains(acceptType)))
                 {
+                    var actionDescriptor =
+                        httpContext?.GetEndpoint()?.Metadata.GetMetadata<ControllerActionDescriptor>();
                     // We like to default to json,
                     // but we need to pick something the controller actually produces
-                    if (actionDescriptor is not ControllerActionDescriptor controllerActionDescriptor)
+                    if (actionDescriptor is not null)
                     {
                         return AcceptType.Json;
                     }
 
-                    var producesAttribute = controllerActionDescriptor
+                    var producesAttribute = actionDescriptor!
                         .ControllerTypeInfo
                         .GetCustomAttributes(inherit: true)
                         .OfType<ApiProducesAttribute>()

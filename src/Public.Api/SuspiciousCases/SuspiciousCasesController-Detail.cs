@@ -13,7 +13,6 @@
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
     using Microsoft.Extensions.Options;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
@@ -29,7 +28,7 @@
         /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt. De offset is echter beperkt tot 1000000, indien meer data dient ingelezen te worden is het gebruik van extra filters aangewezen op de service of verwijzen we naar de <a href="https://basisregisters.vlaanderen.be/producten/grar" target="_blank" >downloadproducten van het gebouwen- en adressenregister</a> (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
         /// <param name="niscode">Filter op de NIS-code van het verdacht geval (exact) (optioneel).</param>
-        /// <param name="actionContextAccessor"></param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="responseOptions"></param>
         /// <param name="suspiciousCasesToggle"></param>
@@ -62,7 +61,7 @@
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string? niscode,
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] IOptions<SuspiciousCasesOptionsV2> responseOptions,
             [FromServices] DetailSuspiciousCasesToggle suspiciousCasesToggle,
@@ -73,14 +72,14 @@
                 return NotFound();
             }
 
-            var contentFormat = DetermineFormat(actionContextAccessor.ActionContext);
+            var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(
                 type,
                 offset,
                 limit,
                 niscode,
-                actionContextAccessor);
+                httpContextAccessor);
 
             var nextUrl = responseOptions.Value.SuspiciousCasesTypeNextUrl.Replace("{type}", type.ToString());
 
@@ -100,7 +99,7 @@
             int? offset,
             int? limit,
             string? nisCode,
-            IActionContextAccessor actionContextAccessor)
+            IHttpContextAccessor httpContextAccessor)
         {
             var filter = new SuspiciousCasesDetailFilter
             {
@@ -111,7 +110,7 @@
                 .AddParameter("type", type, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
                 .AddFiltering(filter)
-                .AddHeaderAuthorization(actionContextAccessor);
+                .AddHeaderAuthorization(httpContextAccessor);
         }
     }
 }

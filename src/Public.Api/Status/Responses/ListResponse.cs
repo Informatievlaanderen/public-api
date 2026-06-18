@@ -26,9 +26,5 @@ namespace Public.Api.Status.Responses
 
         public ListResponse()
         { }
-
-        protected ListResponse(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        { }
     }
 }

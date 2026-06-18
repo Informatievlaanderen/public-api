@@ -16,9 +16,5 @@ namespace Common.ProblemDetailsException
         {
             RegistryName = registryName;
         }
-
-        private UnauthorizedException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        { }
     }
 }

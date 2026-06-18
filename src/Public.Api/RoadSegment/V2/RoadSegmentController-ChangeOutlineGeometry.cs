@@ -7,7 +7,7 @@ namespace Public.Api.RoadSegment.V2
     using Common.FeatureToggles;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Infrastructure;
+    using Microsoft.OpenApi;
     using Public.Api.Infrastructure;
     using Public.Api.Infrastructure.Swagger;
     using RestSharp;
@@ -25,7 +25,7 @@ namespace Public.Api.RoadSegment.V2
         /// </summary>
         /// <param name="id">Identificator van het wegsegment.</param>
         /// <param name="request"></param>
-        /// <param name="actionContextAccessor"></param>
+        /// <param name="httpContextAccessor"></param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
@@ -43,8 +43,8 @@ namespace Public.Api.RoadSegment.V2
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status412PreconditionFailed)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "ETag", "string", "De ETag van de response.")]
-        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", "string", "Correlatie identificator van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "ETag", JsonSchemaType.String, "De ETag van de response.")]
+        [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(RoadSegmentNotFoundResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
@@ -59,7 +59,7 @@ namespace Public.Api.RoadSegment.V2
         public async Task<IActionResult> ChangeRoadSegmentOutlineGeometryV2(
             [FromRoute] string id,
             [FromBody] PostChangeOutlineGeometryParameters request,
-            [FromServices] IActionContextAccessor actionContextAccessor,
+            [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
             [FromServices] ChangeRoadSegmentOutlineGeometryToggle featureToggle,
             CancellationToken cancellationToken)
