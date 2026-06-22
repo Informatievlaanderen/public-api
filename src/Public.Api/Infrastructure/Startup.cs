@@ -329,6 +329,10 @@ namespace Public.Api.Infrastructure
                 .ConfigureRegistryOptions<BuildingOptionsV2>(_configuration.GetSection("ApiConfiguration:BuildingRegistryV2"))
                 .ConfigureRegistryOptions<ParcelOptionsV2>(_configuration.GetSection("ApiConfiguration:ParcelRegistryV2"))
                 .ConfigureRegistryOptions<SuspiciousCasesOptionsV2>(_configuration.GetSection("ApiConfiguration:SuspiciousCases"))
+                .AddSingleton(new RoadRegistry.BackOffice.Api.Infrastructure.Options.ApiOptions //road ResponseExamples
+                {
+                    BaseUrl = baseUrl.TrimEnd('/')
+                })
                 .Configure<ExcludedRouteModelOptions>(_configuration.GetSection("ExcludedRoutes"))
                 .AddSingleton<IAmazonDynamoDB>(_ => amazonDynamoDbClient)
                 .AddSingleton<IDynamicFeatureToggleService>(_ =>
