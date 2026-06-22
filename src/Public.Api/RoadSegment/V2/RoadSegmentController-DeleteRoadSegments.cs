@@ -7,7 +7,7 @@ namespace Public.Api.RoadSegment.V2
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using RestSharp;
-    using RoadRegistry.BackOffice.Api.RoadSegments;
+    using RoadRegistry.BackOffice.Api.RoadSegments.V1;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using System.Threading;

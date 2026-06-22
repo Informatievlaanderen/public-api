@@ -5,13 +5,12 @@ namespace Public.Api.RoadSegment.V2
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.FeatureToggles;
-    using Common.Infrastructure;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Public.Api.Infrastructure;
     using Public.Api.Infrastructure.Swagger;
     using RestSharp;
-    using RoadRegistry.BackOffice.Api.RoadSegments;
+    using RoadRegistry.BackOffice.Api.RoadSegments.V1;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;

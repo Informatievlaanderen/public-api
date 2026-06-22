@@ -4,5 +4,6 @@ namespace Public.Api.Infrastructure.Version
     {
         public const string CurrentAdvertised = "2.0";
         public const string V2 = "2.0";
+        public const string V3 = "3.0";
     }
 }
