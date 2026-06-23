@@ -1,3 +1,10 @@
+# [7.22.0](https://github.com/informatievlaanderen/public-api/compare/v7.21.1...v7.22.0) (2026-06-23)
+
+
+### Features
+
+* **road:** add V3 read endpoints ([405b6fd](https://github.com/informatievlaanderen/public-api/commit/405b6fd30cee4ce6e00e16565c832aba9abd79f7))
+
 ## [7.21.1](https://github.com/informatievlaanderen/public-api/compare/v7.21.0...v7.21.1) (2026-05-27)
 
 
