@@ -1,3 +1,10 @@
+## [7.22.1](https://github.com/informatievlaanderen/public-api/compare/v7.22.0...v7.22.1) (2026-06-25)
+
+
+### Bug Fixes
+
+* **road:** V3 endpoints redirect to correct backoffice-api version ([9608e63](https://github.com/informatievlaanderen/public-api/commit/9608e632613a9dd2d32e7a69c954fa19dab87330))
+
 # [7.22.0](https://github.com/informatievlaanderen/public-api/compare/v7.21.1...v7.22.0) (2026-06-23)
 
 
