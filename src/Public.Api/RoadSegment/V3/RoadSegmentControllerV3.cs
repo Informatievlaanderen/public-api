@@ -29,8 +29,8 @@ namespace Public.Api.RoadSegment.V3
         public RoadSegmentControllerV3(
             IHttpContextAccessor httpContextAccessor,
             IActionContextAccessor actionContextAccessor,
-            [KeyFilter(RegistryKeys.Road)] RestClient restClient,
-            [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
+            [KeyFilter(RegistryKeys.RoadV3)] RestClient restClient,
+            [KeyFilter(RegistryKeys.RoadV3)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<RoadSegmentControllerV3> logger)
             : base(httpContextAccessor, redis, logger, restClient, cacheToggle, actionContextAccessor)

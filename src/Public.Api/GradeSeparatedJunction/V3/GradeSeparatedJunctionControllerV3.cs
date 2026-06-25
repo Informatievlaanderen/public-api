@@ -29,8 +29,8 @@ namespace Public.Api.GradeSeparatedJunction.V3
         public GradeSeparatedJunctionControllerV3(
             IHttpContextAccessor httpContextAccessor,
             IActionContextAccessor actionContextAccessor,
-            [KeyFilter(RegistryKeys.Road)] RestClient restClient,
-            [KeyFilter(RegistryKeys.Road)] IFeatureToggle cacheToggle,
+            [KeyFilter(RegistryKeys.RoadV3)] RestClient restClient,
+            [KeyFilter(RegistryKeys.RoadV3)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<GradeSeparatedJunctionControllerV3> logger)
             : base(httpContextAccessor, redis, logger, restClient, cacheToggle, actionContextAccessor)

@@ -20,6 +20,7 @@ namespace Public.Api.Infrastructure.Configuration
         public const string ParcelV2 = "ParcelRegistryV2";
         public const string ParcelBackOffice = "ParcelRegistryBackOffice";
         public const string Road = "RoadRegistry";
+        public const string RoadV3 = "RoadRegistryV3";
         public const string TicketingService = "TicketingService";
         public const string SuspiciousCases = "SuspiciousCases";
         public const string Notifications = "Notifications";
