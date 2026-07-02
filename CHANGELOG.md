@@ -1,3 +1,10 @@
+# [7.23.0](https://github.com/informatievlaanderen/public-api/compare/v7.22.1...v7.23.0) (2026-07-02)
+
+
+### Features
+
+* **road:** add create outlined roadsegment v3 ([ed4dd07](https://github.com/informatievlaanderen/public-api/commit/ed4dd07cd56df494d8ed615e10e057c05ca52cd1))
+
 ## [7.22.1](https://github.com/informatievlaanderen/public-api/compare/v7.22.0...v7.22.1) (2026-06-25)
 
 
