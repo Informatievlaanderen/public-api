@@ -338,6 +338,15 @@
         { }
     }
 
+    public sealed class CreateRoadSegmentOutlineV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadSegmentCreateOutlineV3";
+
+        public CreateRoadSegmentOutlineV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
     public sealed class GetRoadNodeV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
     {
         public override string Key => "RoadNodeGetV3";
