@@ -386,9 +386,9 @@
       },
       "Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api": {
         "type": "Direct",
-        "requested": "[4.66.1, )",
-        "resolved": "4.66.1",
-        "contentHash": "6XQ6JUp0iAIgoEfHPB5gWln+/hhWdwGlfNdEc4WW7ByGVVxzuLFuueIJ0V0YNU2KjRUVY72UqWXLLI457eoP7A==",
+        "requested": "[4.68.0, )",
+        "resolved": "4.68.0",
+        "contentHash": "R1YXOJwRlnDpRRl3gNmWnTFv5IbFKknN4CP+3K2/KodDLJKcJ/zH7CwdBlRmq1YIgiLwHH98ERmLJofvwAiwqg==",
         "dependencies": {
           "AWSSDK.Core": "3.7.402.35",
           "Be.Vlaanderen.Basisregisters.Api": "24.0.0",

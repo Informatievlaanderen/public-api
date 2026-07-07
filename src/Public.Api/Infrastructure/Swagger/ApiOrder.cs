@@ -75,6 +75,7 @@ namespace Public.Api.Infrastructure.Swagger
                 public const int DeleteRoadSegments = DeleteOutline + 1;
                 public const int LinkStreetName = DeleteRoadSegments + 1;
                 public const int UnlinkStreetName = LinkStreetName + 1;
+                public const int Split = UnlinkStreetName + 1;
             }
             public const int Inwinning = ChangeFeed + 20;
             public const int Inwinningsstatus = ChangeFeed + 30;
