@@ -1,3 +1,10 @@
+# [7.24.0](https://github.com/informatievlaanderen/public-api/compare/v7.23.0...v7.24.0) (2026-07-13)
+
+
+### Features
+
+* **road:** add split roadsegment v3 endpoint ([2cb84b7](https://github.com/informatievlaanderen/public-api/commit/2cb84b7c52aebd7934885d56fb6dcb74ae1869fc))
+
 # [7.23.0](https://github.com/informatievlaanderen/public-api/compare/v7.22.1...v7.23.0) (2026-07-02)
 
 
