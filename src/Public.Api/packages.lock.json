@@ -22,12 +22,12 @@
       },
       "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions": {
         "type": "Direct",
-        "requested": "[5.9.0, )",
-        "resolved": "5.9.0",
-        "contentHash": "7y7nAZwry27VNxJGGPScjKDnHyta6UI2DbzkU2DWXaBZqZLdpN3t2yu7r2ZrnRlm5Dna+QMvPabyUqFu9sfbhg==",
+        "requested": "[5.9.13, )",
+        "resolved": "5.9.13",
+        "contentHash": "WrMUALBw3Ldm0V26hH81zZWcAjvXpFGcQnXMZCjPEM5TGgpOi/d0QcyosjC6JsK/G5PiuM2AKW6lzSxIQAockQ==",
         "dependencies": {
           "Be.Vlaanderen.Basisregisters.Api": "24.3.0",
-          "Be.Vlaanderen.Basisregisters.GrAr.Edit": "22.8.1",
+          "Be.Vlaanderen.Basisregisters.GrAr.Edit": "22.11.0",
           "Be.Vlaanderen.Basisregisters.Sqs": "4.0.1",
           "Be.Vlaanderen.Basisregisters.TicketingService.Abstractions": "3.2.3",
           "MediatR.Contracts": "2.0.1",
