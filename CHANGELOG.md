@@ -1,3 +1,15 @@
+# [8.0.0](https://github.com/informatievlaanderen/public-api/compare/v7.24.0...v8.0.0) (2026-07-20)
+
+
+### Features
+
+* update packages + upgrade to dotnet 10 ([90d603d](https://github.com/informatievlaanderen/public-api/commit/90d603d967201fd5ca856f373f8068fb9e190311))
+
+
+### BREAKING CHANGES
+
+* update to dotnet 10
+
 # [7.24.0](https://github.com/informatievlaanderen/public-api/compare/v7.23.0...v7.24.0) (2026-07-13)
 
 
