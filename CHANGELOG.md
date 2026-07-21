@@ -1,3 +1,10 @@
+## [8.0.1](https://github.com/informatievlaanderen/public-api/compare/v8.0.0...v8.0.1) (2026-07-21)
+
+
+### Bug Fixes
+
+* **ci:** use access/secret for AWS upload ([104f803](https://github.com/informatievlaanderen/public-api/commit/104f80361c61f55dbfd4ed9f8944eb06cbba1e82))
+
 # [8.0.0](https://github.com/informatievlaanderen/public-api/compare/v7.24.0...v8.0.0) (2026-07-20)
 
 
