@@ -1,4 +1,4 @@
-namespace Public.Api.Feeds.V2.Change
+namespace Public.Api.Feeds.V3.Change
 {
     using System.Linq;
     using System.Net;
@@ -11,21 +11,21 @@ namespace Public.Api.Feeds.V2.Change
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
-    using Infrastructure.Swagger;
-    using Infrastructure.Version;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using Public.Api.Infrastructure.Swagger;
+    using Public.Api.Infrastructure.Version;
     using RestSharp;
 
     [ApiVisible]
-    [ApiVersion(Version.V2)]
+    [ApiVersion(Version.V3)]
     [ApiRoute("feeds/wijzigingen")]
     [ApiExplorerSettings(GroupName = FeedsGroupName)]
     [ApiOrder(ApiOrder.Feeds)]
     [ApiProduces(EndpointType.ChangeFeed)]
     [ApiKeyAuth("Sync")]
-    public partial class ChangeFeedV2Controller : ApiController<ChangeFeedV2Controller>
+    public partial class ChangeFeedV3Controller : ApiController<ChangeFeedV3Controller>
     {
         private readonly IIndex<string, IFeatureToggle> _cacheToggles;
 
@@ -33,11 +33,11 @@ namespace Public.Api.Feeds.V2.Change
 
         public const string FeedsGroupName = "Feeds";
 
-        public ChangeFeedV2Controller(
+        public ChangeFeedV3Controller(
             IHttpContextAccessor httpContextAccessor,
             ConnectionMultiplexerProvider redis,
             [FromServices] IIndex<string, IFeatureToggle> cacheToggles,
-            ILogger<ChangeFeedV2Controller> logger)
+            ILogger<ChangeFeedV3Controller> logger)
             : base(httpContextAccessor, redis, logger)
         {
             _cacheToggles = cacheToggles;

@@ -1,4 +1,4 @@
-﻿namespace Public.Api.Feeds.V2.Change
+﻿namespace Public.Api.Feeds.V3.Change
 {
     using System;
     using System.Collections.Generic;
@@ -6,43 +6,43 @@
     using System.Threading.Tasks;
     using Autofac.Features.Indexed;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using BuildingRegistry.Api.Oslo.Building.ChangeFeed;
     using CloudNative.CloudEvents;
     using Common.FeatureToggles;
     using Common.Infrastructure;
-    using Infrastructure;
-    using Infrastructure.Configuration;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.OpenApi;
+    using PostalRegistry.Api.Oslo.PostalInformation.Responses;
+    using Public.Api.Infrastructure;
+    using Public.Api.Infrastructure.Configuration;
     using RestSharp;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
     using ValidationProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails;
 
-    public partial class ChangeFeedV2Controller
+    public partial class ChangeFeedV3Controller
     {
         /// <summary>
-        /// Vraag een lijst op met wijzigingen over gebouwen (v2).
+        /// Vraag een lijst op met wijzigingen over postinformatie (v3).
         /// </summary>
         /// <param name="httpContextAccessor"></param>
         /// <param name="restClients"></param>
         /// <param name="pagina">Paginanummer dat aangeeft vanaf welke pagina de feedresultaten worden opgehaald (optioneel).</param>
-        /// <param name="changeFeedBuildingToggle"></param>
+        /// <param name="changeFeedPostalInformationToggle"></param>
         /// <param name="cancellationToken"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel).</param>
         /// <returns></returns>
-        /// <response code="200">Als de opvraging van de lijst met wijzigingen over gebouwen gelukt is.</response>
-        /// <response code="304">Als de lijst met wijzigingen van de gebouwen niet gewijzigd is ten opzicht van uw verzoek.</response>
+        /// <response code="200">Als de opvraging van de lijst met wijzigingen over postinformatie gelukt is.</response>
+        /// <response code="304">Als de lijst met wijzigingen van de postinformatie niet gewijzigd is ten opzicht van uw verzoek.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="401">Als er geen API key is meegegeven.</response>
         /// <response code="403">Als u niet beschikt over de correcte rechten om deze actie uit te voeren.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("gebouwen", Name = nameof(ChangeFeedBuilding))]
+        [HttpGet("postinfo", Name = nameof(ChangeFeedPostalInformation))]
         [ProducesResponseType(typeof(List<CloudEvent>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
@@ -52,26 +52,26 @@
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", JsonSchemaType.String, "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-page-complete", JsonSchemaType.Boolean, "Geeft aan of de pagina definitief is.<br/>`true`: er worden geen nieuwe wijzigingen meer aan deze pagina toegevoegd.<br/>`false`: er kunnen nog wijzigingen aan deze pagina worden toegevoegd.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(BuildingFeedResultExample))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PostalFeedResultExample))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
         [HttpCacheExpiration(MaxAge = DefaultFeedCaching)]
-        [SwaggerOperation(Description = "Vraag een lijst op van wijzigingen over gebouwen, bedoeld om een lokale kopie van het register efficiënt te synchroniseren.<br/>" +
+        [SwaggerOperation(Description = "Vraag een lijst op van wijzigingen over postinformatie, bedoeld om een lokale kopie van het register efficiënt te synchroniseren.<br/>" +
                                         "De response bestaat uit een batch <b>CloudEvents</b>. Voor de betekenis van de standaard CloudEvents-attributen verwijzen we naar de officiële <a href=\"https://cloudevents.io/\" target=\"_blank\">CloudEvents-documentatie</a>.<br/>" +
                                         "Geometrieën worden altijd meegegeven als <b>GML</b>, inclusief het <b>SRS</b>. Raadpleeg dit SRS altijd bij verwerking, aangezien de projectie kan wijzigen.<br/>" +
                                         "Aanbeveling: vraag de feed niet vaker op dan nodig. Stem de opvraagfrequentie af op je verwerkingscapaciteit en de gewenste actualiteit van je lokale kopie.")]
-        public async Task<IActionResult> ChangeFeedBuilding(
+        public async Task<IActionResult> ChangeFeedPostalInformation(
             [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] IIndex<string, Lazy<RestClient>> restClients,
-            [FromServices] ChangeFeedBuildingToggle changeFeedBuildingToggle,
+            [FromServices] ChangeFeedPostalInformationToggle changeFeedPostalInformationToggle,
             [FromQuery] int? pagina,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            if (!changeFeedBuildingToggle.FeatureEnabled)
+            if (!changeFeedPostalInformationToggle.FeatureEnabled)
                 return NotFound();
 
             var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
@@ -79,11 +79,11 @@
             pagina ??= 1;
 
             RestRequest BackendRequest() => CreateBackendChangeFeedRequest(
-                "gebouwen",
+                "postcodes",
                 pagina);
 
             var value = await GetFromBackendAsync(
-                    restClients[RegistryKeys.BuildingV2].Value,
+                    restClients[RegistryKeys.PostalV2].Value,
                     BackendRequest,
                     contentFormat.ContentType,
                     HandleBadRequest,
@@ -93,7 +93,7 @@
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
-        [HttpGet("gebouwen/{objectId}", Name = nameof(ChangeFeedBuildingById))]
+        [HttpGet("postinfo/{objectId}", Name = nameof(ChangeFeedPostalInformationById))]
         [ProducesResponseType(typeof(List<CloudEvent>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
@@ -102,32 +102,32 @@
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", JsonSchemaType.String, "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(BuildingFeedResultExample))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PostalFeedResultExample))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultFeedCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> ChangeFeedBuildingById(
+        public async Task<IActionResult> ChangeFeedPostalInformationById(
             [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromServices] IIndex<string, Lazy<RestClient>> restClients,
-            [FromRoute] int objectId,
+            [FromRoute] string objectId,
             [FromQuery] int? limit,
             [FromQuery] int? offset,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
-            [FromServices] ChangeFeedBuildingToggle changeFeedBuildingToggle,
+            [FromServices] ChangeFeedPostalInformationToggle changeFeedPostalInformationToggle,
             CancellationToken cancellationToken = default)
         {
-            if (!changeFeedBuildingToggle.FeatureEnabled)
+            if (!changeFeedPostalInformationToggle.FeatureEnabled)
                 return NotFound();
 
             var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             var value = await GetFromBackendAsync(
-                restClients[RegistryKeys.BuildingV2].Value,
-                () => new RestRequest($"gebouwen/{objectId}/wijzigingen", Method.Get).AddPagination(offset, limit),
+                restClients[RegistryKeys.PostalV2].Value,
+                () => new RestRequest($"postcodes/{objectId}/wijzigingen", Method.Get).AddPagination(offset, limit),
                 contentFormat.ContentType,
                 HandleBadRequest,
                 cancellationToken: cancellationToken);

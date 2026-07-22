@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:gemeente-transform:2026-01-01",
+  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:gemeente-transform:2026-01-21",
   "title": "Gemeente transform data",
   "type": "object",
   "additionalProperties": false,

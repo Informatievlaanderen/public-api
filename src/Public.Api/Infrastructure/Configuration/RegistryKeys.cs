@@ -2,8 +2,8 @@ namespace Public.Api.Infrastructure.Configuration
 {
     public static class RegistryKeys
     {
-        public const string Municipality = "MunicipalityRegistry";
         public const string MunicipalityV2 = "MunicipalityRegistryV2";
+        public const string MunicipalityV3 = "MunicipalityRegistryV3";
         public const string Postal = "PostalRegistry";
         public const string PostalV2 = "PostalRegistryV2";
         public const string StreetName = "StreetNameRegistry";

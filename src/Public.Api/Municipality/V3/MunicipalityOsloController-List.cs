@@ -1,4 +1,4 @@
-namespace Public.Api.Municipality.Oslo
+namespace Public.Api.Municipality.V3
 {
     using System;
     using System.Collections.Generic;
@@ -6,18 +6,19 @@ namespace Public.Api.Municipality.Oslo
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using Be.Vlaanderen.Basisregisters.GrAr.Oslo;
+    using Common.FeatureToggles;
     using Common.Infrastructure;
-    using Infrastructure;
-    using Infrastructure.Configuration;
-    using Infrastructure.Swagger;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
     using Microsoft.OpenApi;
     using MunicipalityRegistry.Api.Oslo.Municipality.Query;
-    using MunicipalityRegistry.Api.Oslo.Municipality.V2.Responses;
+    using MunicipalityRegistry.Api.Oslo.Municipality.V3.Responses;
+    using Public.Api.Infrastructure;
+    using Public.Api.Infrastructure.Configuration;
+    using Public.Api.Infrastructure.Swagger;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -25,7 +26,7 @@ namespace Public.Api.Municipality.Oslo
     public partial class MunicipalityOsloController
     {
         /// <summary>
-        /// Vraag een lijst met gemeenten op (v2).
+        /// Vraag een lijst met gemeenten op (v3).
         /// </summary>
         /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt. De offset is echter beperkt tot 1000000, indien meer data dient ingelezen te worden is het gebruik van extra filters aangewezen op de service of verwijzen we naar de <a href="https://basisregisters.vlaanderen.be/producten/grar" target="_blank" >downloadproducten van het gebouwen- en adressenregister</a> (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
@@ -39,6 +40,7 @@ namespace Public.Api.Municipality.Oslo
         /// `"vlaams"`
         /// </param>
         /// <param name="httpContextAccessor"></param>
+        /// <param name="osloV3MunicipalityToggle"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
@@ -46,11 +48,11 @@ namespace Public.Api.Municipality.Oslo
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="403">Als u niet beschikt over de correcte rechten om deze actie uit te voeren.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
-        /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
+        /// <response code="429">Als het aantal requests per seconde de limiet overschreden heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [ApiOrder(ApiOrder.Municipality.V2 + 2)]
-        [HttpGet("gemeenten", Name = nameof(ListMunicipalitiesV2))]
-        [ProducesResponseType(typeof(MunicipalityListOsloResponse), StatusCodes.Status200OK)]
+        [ApiOrder(ApiOrder.Municipality.V3 + 2)]
+        [HttpGet("gemeenten", Name = nameof(ListMunicipalitiesV3))]
+        [ProducesResponseType(typeof(MunicipalityListOsloV3Response), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
@@ -58,13 +60,13 @@ namespace Public.Api.Municipality.Oslo
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", JsonSchemaType.String, "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(MunicipalityListOsloResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> ListMunicipalitiesV2(
+        public async Task<IActionResult> ListMunicipalitiesV3(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
@@ -72,12 +74,16 @@ namespace Public.Api.Municipality.Oslo
             [FromQuery] string status,
             [FromQuery] string gewest,
             [FromServices] IHttpContextAccessor httpContextAccessor,
-            [FromServices] IOptions<MunicipalityOptionsV2> responseOptions,
+            [FromServices] OsloV3MunicipalityToggle osloV3MunicipalityToggle,
+            [FromServices] IOptions<MunicipalityOptionsV3> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
+            if (!osloV3MunicipalityToggle.FeatureEnabled)
+                return NotFound();
+
             var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
-            const Taal taal = Taal.NL;
+            const Taal taal = Taal.Nl;
 
             var isFlemishRegion = GetIsFlemishRegionQueryParameter(gewest);
 

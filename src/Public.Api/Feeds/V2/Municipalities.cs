@@ -10,7 +10,7 @@ namespace Public.Api.Feeds.V2
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
-    using MunicipalityRegistry.Api.Oslo.Municipality.Responses;
+    using MunicipalityRegistry.Api.Oslo.Municipality.V2.Responses;
     using Infrastructure;
     using Infrastructure.Configuration;
     using Microsoft.OpenApi;

@@ -10,7 +10,7 @@
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting" Version="11.0.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.CommandHandling" Version="11.0.0" />
 
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo" Version="7.0.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo" Version="7.2.3" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo" Version="7.0.1" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo" Version="6.0.2" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions" Version="6.0.2" />

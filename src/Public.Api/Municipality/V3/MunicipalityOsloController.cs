@@ -1,4 +1,4 @@
-namespace Public.Api.Municipality.Oslo
+namespace Public.Api.Municipality.V3
 {
     using Asp.Versioning;
     using Autofac.Features.AttributeFilters;
@@ -7,16 +7,16 @@ namespace Public.Api.Municipality.Oslo
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
-    using Infrastructure.Configuration;
-    using Infrastructure.Swagger;
-    using Infrastructure.Version;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using Public.Api.Infrastructure.Configuration;
+    using Public.Api.Infrastructure.Swagger;
+    using Public.Api.Infrastructure.Version;
     using RestSharp;
 
     [ApiVisible]
-    [ApiVersion(Version.V2)]
+    [ApiVersion(Version.V3)]
     [AdvertiseApiVersions(Version.V2, Version.V3)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Gemeenten")]
@@ -28,8 +28,8 @@ namespace Public.Api.Municipality.Oslo
 
         public MunicipalityOsloController(
             IHttpContextAccessor httpContextAccessor,
-            [KeyFilter(RegistryKeys.MunicipalityV2)] RestClient restClient,
-            [KeyFilter(RegistryKeys.MunicipalityV2)] IFeatureToggle cacheToggle,
+            [KeyFilter(RegistryKeys.MunicipalityV3)] RestClient restClient,
+            [KeyFilter(RegistryKeys.MunicipalityV3)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<MunicipalityOsloController> logger)
             : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }

@@ -2,7 +2,7 @@ namespace Public.Api.Infrastructure.Swagger
 {
     using System.Collections.Generic;
     using Feeds.V2;
-    using Feeds.V2.Change;
+    using Feeds.V3.Change;
     using Microsoft.AspNetCore.Mvc.Controllers;
     using Microsoft.OpenApi;
     using Swashbuckle.AspNetCore.SwaggerGen;
@@ -48,7 +48,7 @@ namespace Public.Api.Infrastructure.Swagger
             }
             if (context.ApiDescription.ActionDescriptor is ControllerActionDescriptor descriptor &&
                 (descriptor.ControllerTypeInfo.Name.Equals(nameof(FeedV2Controller))
-                 || descriptor.ControllerTypeInfo.Name.Equals(nameof(ChangeFeedV2Controller))))
+                 || descriptor.ControllerTypeInfo.Name.Equals(nameof(ChangeFeedV3Controller))))
             {
                 operation.Parameters.Add(new OpenApiParameter
                 {

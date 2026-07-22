@@ -1,4 +1,4 @@
-﻿namespace Public.Api.Feeds.V2.Change
+﻿namespace Public.Api.Feeds.V3.Change
 {
     using System;
     using System.Collections.Generic;
@@ -9,23 +9,23 @@
     using CloudNative.CloudEvents;
     using Common.FeatureToggles;
     using Common.Infrastructure;
-    using Infrastructure;
-    using Infrastructure.Configuration;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.OpenApi;
-    using MunicipalityRegistry.Api.Oslo.Municipality.Responses;
+    using MunicipalityRegistry.Api.Oslo.Municipality.V3.Responses;
+    using Public.Api.Infrastructure;
+    using Public.Api.Infrastructure.Configuration;
     using RestSharp;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
     using ValidationProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails;
 
-    public partial class ChangeFeedV2Controller
+    public partial class ChangeFeedV3Controller
     {
         /// <summary>
-        /// Vraag een lijst op met wijzigingen over gemeenten (v2).
+        /// Vraag een lijst op met wijzigingen over gemeenten (v3).
         /// </summary>
         /// <param name="httpContextAccessor"></param>
         /// <param name="restClients"></param>
@@ -53,11 +53,11 @@
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-page-complete", JsonSchemaType.Boolean, "Geeft aan of de pagina definitief is.<br/>`true`: er worden geen nieuwe wijzigingen meer aan deze pagina toegevoegd.<br/>`false`: er kunnen nog wijzigingen aan deze pagina worden toegevoegd.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(MunicipalityFeedResultExample))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
         [HttpCacheExpiration(MaxAge = DefaultFeedCaching)]
         [SwaggerOperation(Description = "Vraag een lijst op van wijzigingen over gemeenten, bedoeld om een lokale kopie van het register efficiënt te synchroniseren.<br/>" +
                                         "De response bestaat uit een batch <b>CloudEvents</b>. Voor de betekenis van de standaard CloudEvents-attributen verwijzen we naar de officiële <a href=\"https://cloudevents.io/\" target=\"_blank\">CloudEvents-documentatie</a>.<br/>" +
@@ -83,7 +83,7 @@
                 pagina);
 
             var value = await GetFromBackendAsync(
-                    restClients[RegistryKeys.MunicipalityV2].Value,
+                    restClients[RegistryKeys.MunicipalityV3].Value,
                     BackendRequest,
                     contentFormat.ContentType,
                     HandleBadRequest,
@@ -103,11 +103,11 @@
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", JsonSchemaType.String, "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(MunicipalityFeedResultExample))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status401Unauthorized, typeof(UnauthorizedResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultFeedCaching, NoStore = true, NoTransform = true)]
         public async Task<IActionResult> ChangeFeedMunicipalityById(
@@ -126,7 +126,7 @@
             var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             var value = await GetFromBackendAsync(
-                restClients[RegistryKeys.MunicipalityV2].Value,
+                restClients[RegistryKeys.MunicipalityV3].Value,
                 () => new RestRequest($"gemeenten/{nisCode}/wijzigingen", Method.Get).AddPagination(offset, limit),
                 contentFormat.ContentType,
                 HandleBadRequest,
