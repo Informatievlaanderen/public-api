@@ -1,16 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:gemeente:2026-01-01",
+  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:gemeente:2026-01-21",
   "title": "Gemeente event data (create/update/delete)",
   "type": "object",
   "additionalProperties": false,
-  "required": ["@id", "objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
+  "required": ["objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
   "properties": {
-    "@id": {
-      "type": "string",
-      "format": "uri",
-      "description": "De persistente URI die dit gemeente-object identificeert."
-    },
     "objectId": {
       "type": "string",
       "description": "De objectidentificator van de gemeente."
@@ -60,25 +55,25 @@
       "allOf": [
         {
           "if": {
-            "properties": { "naam": { "const": "gemeenteStatus" } },
+            "properties": { "naam": { "const": "status" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
-                "enum": [null, "voorgesteld", "inGebruik", "gehistoreerd"]
+                "enum": [null, "https://data.vlaanderen.be/id/concept/gemeentestatus/voorgesteld", "https://data.vlaanderen.be/id/concept/gemeentestatus/inGebruik", "https://data.vlaanderen.be/id/concept/gemeentestatus/gehistoreerd"]
               },
               "nieuweWaarde": {
                 "type": "string",
-                "enum": ["voorgesteld", "inGebruik", "gehistoreerd"]
+                "enum": ["https://data.vlaanderen.be/id/concept/gemeentestatus/voorgesteld", "https://data.vlaanderen.be/id/concept/gemeentestatus/inGebruik", "https://data.vlaanderen.be/id/concept/gemeentestatus/gehistoreerd"]
               }
             }
           }
         },
         {
           "if": {
-            "properties": { "naam": { "const": "officieleTalen" } },
+            "properties": { "naam": { "const": "officieleTaal" } },
             "required": ["naam"]
           },
           "then": {
@@ -97,7 +92,7 @@
         },
         {
           "if": {
-            "properties": { "naam": { "const": "faciliteitenTalen" } },
+            "properties": { "naam": { "const": "faciliteitenTaal" } },
             "required": ["naam"]
           },
           "then": {
@@ -115,32 +110,32 @@
         },
         {
           "if": {
-            "properties": { "naam": { "const": "gemeentenamen" } },
+            "properties": { "naam": { "const": "gemeentenaam" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": "array",
-                "items": { "$ref": "#/$defs/gemeentenaam" }
+                "items": { "$ref": "#/$defs/gemeentenaamItem" }
               },
               "nieuweWaarde": {
                 "type": "array",
                 "minItems": 1,
-                "items": { "$ref": "#/$defs/gemeentenaam" }
+                "items": { "$ref": "#/$defs/gemeentenaamItem" }
               }
             }
           }
         }
       ]
     },
-    "gemeentenaam": {
+    "gemeentenaamItem": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["spelling", "taal"],
+      "required": ["@value", "@language"],
       "properties": {
-        "spelling": { "type": "string" },
-        "taal": { "type": "string", "pattern": "^[a-z]{2}$" }
+        "@value": { "type": "string" },
+        "@language": { "type": "string", "pattern": "^[a-z]{2}$" }
       }
     }
   }

@@ -9,4 +9,14 @@
         {
         }
     }
+
+    public sealed class OsloV3MunicipalityToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "OsloV3MunicipalityToggle";
+
+        public OsloV3MunicipalityToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        {
+        }
+    }
 }

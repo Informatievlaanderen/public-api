@@ -1,17 +1,17 @@
-namespace Public.Api.Municipality.Oslo
+namespace Public.Api.Municipality.V3
 {
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using Be.Vlaanderen.Basisregisters.GrAr.Oslo;
     using Common.Infrastructure;
-    using Infrastructure;
-    using Infrastructure.Swagger;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.OpenApi;
-    using MunicipalityRegistry.Api.Oslo.Municipality.V2.Responses;
+    using MunicipalityRegistry.Api.Oslo.Municipality.V3.Responses;
+    using Public.Api.Infrastructure;
+    using Public.Api.Infrastructure.Swagger;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;

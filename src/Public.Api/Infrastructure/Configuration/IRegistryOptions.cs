@@ -5,7 +5,7 @@ namespace Public.Api.Infrastructure.Configuration
 
     public interface IRegistryOptions
     {
-        SyndicationOptions Syndication { get; set; }
+        SyndicationOptions? Syndication { get; set; }
     }
 
     /// <summary>

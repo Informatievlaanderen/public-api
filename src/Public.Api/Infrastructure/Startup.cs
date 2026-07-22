@@ -312,6 +312,7 @@ namespace Public.Api.Infrastructure
                     lastModifiedInjectorFunc: _ => new RedisLastModifiedInjector())
 
                 .ConfigureRegistryOptions<MunicipalityOptionsV2>(_configuration.GetSection("ApiConfiguration:MunicipalityRegistryV2"))
+                .ConfigureRegistryOptions<MunicipalityOptionsV3>(_configuration.GetSection("ApiConfiguration:MunicipalityRegistryV3"))
                 .ConfigureRegistryOptions<PostalOptionsV2>(_configuration.GetSection("ApiConfiguration:PostalRegistryV2"))
                 .ConfigureRegistryOptions<StreetNameOptionsV2>(_configuration.GetSection("ApiConfiguration:StreetNameRegistryV2"))
                 .ConfigureRegistryOptions<AddressOptionsV2>(_configuration.GetSection("ApiConfiguration:AddressRegistryV2"))
