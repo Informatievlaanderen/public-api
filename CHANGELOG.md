@@ -1,3 +1,10 @@
+# [8.1.0](https://github.com/informatievlaanderen/public-api/compare/v8.0.1...v8.1.0) (2026-07-22)
+
+
+### Features
+
+* add v3 municipality + moved changefeeds to v3 ([b92ea2b](https://github.com/informatievlaanderen/public-api/commit/b92ea2b9207c5ef3ef796b7b3e2f457b70e00f32))
+
 ## [8.0.1](https://github.com/informatievlaanderen/public-api/compare/v8.0.0...v8.0.1) (2026-07-21)
 
 
