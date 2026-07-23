@@ -13,7 +13,7 @@ namespace Public.Api.StreetName.BackOffice
     using Microsoft.OpenApi;
     using RestSharp;
     using StreetNameRegistry.Api.BackOffice.Abstractions.Requests;
-    using StreetNameRegistry.Api.Oslo.StreetName.Detail;
+    using StreetNameRegistry.Api.Oslo.StreetName.V2.Detail;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;

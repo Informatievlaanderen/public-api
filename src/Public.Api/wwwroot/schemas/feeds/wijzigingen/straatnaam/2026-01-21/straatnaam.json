@@ -1,16 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:straatnaam:2026-01-01",
+  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:straatnaam:2026-01-21",
   "title": "Straatnaam event data (create/update/delete)",
   "type": "object",
   "additionalProperties": false,
-  "required": ["@id", "objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
+  "required": ["objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
   "properties": {
-    "@id": {
-      "type": "string",
-      "format": "uri",
-      "description": "De persistente URI die dit straatnaam-object identificeert."
-    },
     "objectId": {
       "type": "string",
       "description": "De objectidentificator van de straatnaam."
@@ -60,63 +55,63 @@
       "allOf": [
         {
           "if": {
-            "properties": { "naam": { "const": "straatnaamStatus" } },
+            "properties": { "naam": { "const": "status" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
-                "enum": [null, "voorgesteld", "afgekeurd", "inGebruik", "gehistoreerd"]
+                "enum": [null, "https://data.vlaanderen.be/id/concept/straatnaamstatus/voorgesteld", "https://data.vlaanderen.be/id/concept/straatnaamstatus/afgekeurd", "https://data.vlaanderen.be/id/concept/straatnaamstatus/inGebruik", "https://data.vlaanderen.be/id/concept/straatnaamstatus/gehistoreerd"]
               },
               "nieuweWaarde": {
                 "type": "string",
-                "enum": ["voorgesteld", "afgekeurd", "inGebruik", "gehistoreerd"]
+                "enum": ["https://data.vlaanderen.be/id/concept/straatnaamstatus/voorgesteld", "https://data.vlaanderen.be/id/concept/straatnaamstatus/afgekeurd", "https://data.vlaanderen.be/id/concept/straatnaamstatus/inGebruik", "https://data.vlaanderen.be/id/concept/straatnaamstatus/gehistoreerd"]
               }
             }
           }
         },
         {
           "if": {
-            "properties": { "naam": { "const": "straatnamen" } },
+            "properties": { "naam": { "const": "straatnaam" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": "array",
-                "items": { "$ref": "#/$defs/straatnaam" }
+                "items": { "$ref": "#/$defs/straatnaamItem" }
               },
               "nieuweWaarde": {
                 "type": "array",
                 "minItems": 1,
-                "items": { "$ref": "#/$defs/straatnaam" }
+                "items": { "$ref": "#/$defs/straatnaamItem" }
               }
             }
           }
         },
         {
           "if": {
-            "properties": { "naam": { "const": "homoniemToevoegingen" } },
+            "properties": { "naam": { "const": "homoniemToevoeging" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": "array",
-                "items": { "$ref": "#/$defs/homoniemToevoeging" }
+                "items": { "$ref": "#/$defs/homoniemToevoegingItem" }
               },
               "nieuweWaarde": {
                 "type": "array",
                 "minItems": 1,
-                "items": { "$ref": "#/$defs/homoniemToevoeging" }
+                "items": { "$ref": "#/$defs/homoniemToevoegingItem" }
               }
             }
           }
         },
         {
           "if": {
-            "properties": { "naam": { "const": "gemeente.id" } },
+            "properties": { "naam": { "const": "isToegekendDoor" } },
             "required": ["naam"]
           },
           "then": {
@@ -128,22 +123,22 @@
         }
       ]
     },
-    "straatnaam": {
+    "straatnaamItem": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["spelling", "taal"],
+      "required": ["@value", "@language"],
       "properties": {
-        "spelling": { "type": "string" },
-        "taal": { "type": "string", "pattern": "^[a-z]{2}$" }
+        "@value": { "type": "string" },
+        "@language": { "type": "string", "pattern": "^[a-z]{2}$" }
       }
     },
-    "homoniemToevoeging": {
+    "homoniemToevoegingItem": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["spelling", "taal"],
+      "required": ["@value", "@language"],
       "properties": {
-        "spelling": { "type": "string" },
-        "taal": { "type": "string", "pattern": "^[a-z]{2}$" }
+        "@value": { "type": "string" },
+        "@language": { "type": "string", "pattern": "^[a-z]{2}$" }
       }
     }
   }

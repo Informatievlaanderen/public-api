@@ -16,7 +16,7 @@
     using Public.Api.Infrastructure;
     using Public.Api.Infrastructure.Configuration;
     using RestSharp;
-    using StreetNameRegistry.Api.Oslo.StreetName.ChangeFeed;
+    using StreetNameRegistry.Api.Oslo.StreetName.V3.ChangeFeed;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -83,7 +83,7 @@
                 pagina);
 
             var value = await GetFromBackendAsync(
-                    restClients[RegistryKeys.StreetNameV2].Value,
+                    restClients[RegistryKeys.StreetNameV3].Value,
                     BackendRequest,
                     contentFormat.ContentType,
                     HandleBadRequest,
@@ -126,7 +126,7 @@
             var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             var value = await GetFromBackendAsync(
-                restClients[RegistryKeys.StreetNameV2].Value,
+                restClients[RegistryKeys.StreetNameV3].Value,
                 () => new RestRequest($"straatnamen/{objectId}/wijzigingen", Method.Get).AddPagination(offset, limit),
                 contentFormat.ContentType,
                 HandleBadRequest,

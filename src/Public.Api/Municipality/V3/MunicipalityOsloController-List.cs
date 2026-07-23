@@ -48,7 +48,7 @@ namespace Public.Api.Municipality.V3
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="403">Als u niet beschikt over de correcte rechten om deze actie uit te voeren.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
-        /// <response code="429">Als het aantal requests per seconde de limiet overschreden heeft.</response>
+        /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [ApiOrder(ApiOrder.Municipality.V3 + 2)]
         [HttpGet("gemeenten", Name = nameof(ListMunicipalitiesV3))]

@@ -1,4 +1,4 @@
-namespace Public.Api.StreetName.Oslo
+namespace Public.Api.StreetName.V3
 {
     using Asp.Versioning;
     using Autofac.Features.AttributeFilters;
@@ -16,7 +16,7 @@ namespace Public.Api.StreetName.Oslo
     using RestSharp;
 
     [ApiVisible]
-    [ApiVersion(Version.V2)]
+    [ApiVersion(Version.V3)]
     [AdvertiseApiVersions(Version.V2, Version.V3)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Straatnamen")]
@@ -28,8 +28,8 @@ namespace Public.Api.StreetName.Oslo
 
         public StreetNameOsloController(
             IHttpContextAccessor httpContextAccessor,
-            [KeyFilter(RegistryKeys.StreetNameV2)] RestClient restClient,
-            [KeyFilter(RegistryKeys.StreetNameV2)] IFeatureToggle cacheToggle,
+            [KeyFilter(RegistryKeys.StreetNameV3)] RestClient restClient,
+            [KeyFilter(RegistryKeys.StreetNameV3)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<StreetNameOsloController> logger)
             : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
