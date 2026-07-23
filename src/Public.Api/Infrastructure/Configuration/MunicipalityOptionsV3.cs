@@ -4,6 +4,6 @@ namespace Public.Api.Infrastructure.Configuration
 
     public class MunicipalityOptionsV3 : ResponseOptionsV3, IRegistryOptions
     {
-        public SyndicationOptions Syndication { get; set; }
+        public SyndicationOptions? Syndication { get; set; }
     }
 }

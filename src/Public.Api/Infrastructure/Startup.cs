@@ -314,6 +314,7 @@ namespace Public.Api.Infrastructure
                 .ConfigureRegistryOptions<MunicipalityOptionsV2>(_configuration.GetSection("ApiConfiguration:MunicipalityRegistryV2"))
                 .ConfigureRegistryOptions<MunicipalityOptionsV3>(_configuration.GetSection("ApiConfiguration:MunicipalityRegistryV3"))
                 .ConfigureRegistryOptions<PostalOptionsV2>(_configuration.GetSection("ApiConfiguration:PostalRegistryV2"))
+                .ConfigureRegistryOptions<PostalOptionsV3>(_configuration.GetSection("ApiConfiguration:PostalRegistryV3"))
                 .ConfigureRegistryOptions<StreetNameOptionsV2>(_configuration.GetSection("ApiConfiguration:StreetNameRegistryV2"))
                 .ConfigureRegistryOptions<AddressOptionsV2>(_configuration.GetSection("ApiConfiguration:AddressRegistryV2"))
                 .ConfigureRegistryOptions<BuildingOptionsV2>(_configuration.GetSection("ApiConfiguration:BuildingRegistryV2"))

@@ -19,6 +19,7 @@ namespace Public.Api.Infrastructure.Swagger
         {
             public const int Base = Municipality.Base + 100;
             public const int V2 = Base + 20;
+            public const int V3 = Base + 30;
         }
 
         public static class StreetName

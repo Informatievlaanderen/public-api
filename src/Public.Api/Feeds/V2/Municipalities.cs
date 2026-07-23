@@ -83,7 +83,7 @@ namespace Public.Api.Feeds.V2
             return BackendListResponseResult.Create(
                 value,
                 Request.Query,
-                responseOptions.Value.Syndication.NextUri,
+                responseOptions.Value.Syndication!.NextUri,
                 responseOptions.Value.Syndication.GetNextUri(httpContextAccessor));
         }
     }

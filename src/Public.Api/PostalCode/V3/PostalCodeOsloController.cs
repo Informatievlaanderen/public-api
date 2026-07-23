@@ -1,4 +1,4 @@
-namespace Public.Api.PostalCode.Oslo
+namespace Public.Api.PostalCode.V3
 {
     using Asp.Versioning;
     using Autofac.Features.AttributeFilters;
@@ -7,16 +7,16 @@ namespace Public.Api.PostalCode.Oslo
     using Common.Infrastructure.Controllers;
     using Common.Infrastructure.Controllers.Attributes;
     using FeatureToggle;
-    using Infrastructure.Configuration;
-    using Infrastructure.Swagger;
-    using Infrastructure.Version;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using Public.Api.Infrastructure.Configuration;
+    using Public.Api.Infrastructure.Swagger;
+    using Public.Api.Infrastructure.Version;
     using RestSharp;
 
     [ApiVisible]
-    [ApiVersion(Version.V2)]
+    [ApiVersion(Version.V3)]
     [AdvertiseApiVersions(Version.V2, Version.V3)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Postinfo")]
@@ -28,8 +28,8 @@ namespace Public.Api.PostalCode.Oslo
 
         public PostalCodeOsloController(
             IHttpContextAccessor httpContextAccessor,
-            [KeyFilter(RegistryKeys.PostalV2)] RestClient restClient,
-            [KeyFilter(RegistryKeys.PostalV2)] IFeatureToggle cacheToggle,
+            [KeyFilter(RegistryKeys.PostalV3)] RestClient restClient,
+            [KeyFilter(RegistryKeys.PostalV3)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<PostalCodeOsloController> logger)
             : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }

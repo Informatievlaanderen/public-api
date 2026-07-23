@@ -359,9 +359,9 @@
       },
       "Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo": {
         "type": "Direct",
-        "requested": "[7.2.3, )",
-        "resolved": "7.2.3",
-        "contentHash": "XVXK4A0IKcsNLQwZY0Wg3RyBsdLKYbgqL/Rt7/LJ/nNoEW8CXrvlxtmG3WpVk0bcq89T+jeL0O/zo6TOuseW6Q==",
+        "requested": "[7.2.6, )",
+        "resolved": "7.2.6",
+        "contentHash": "wyEbQ3VVNcuQj/Z7ked5WGp/nI8RwJ5FcfliQmnECQ+eDfdVfk99Tc3LXohryrfr1p6uvXIl4MlA4pSFhjStcA==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Autofac": "9.2.0",
@@ -452,15 +452,24 @@
       },
       "Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo": {
         "type": "Direct",
-        "requested": "[7.0.1, )",
-        "resolved": "7.0.1",
-        "contentHash": "vgvfUyi7LnGRX+komGSAf+7LNJW943w7qarbQygNXOvec+6922LT70bSxyxOFYZvlZ3CJa4aq9Qeclz56zpgZw==",
+        "requested": "[7.1.0, )",
+        "resolved": "7.1.0",
+        "contentHash": "jxW5JWIl9hQ6g+qLuAcoPUTU+cEwlIsgMDwG1Tl4EIkp6kGGc3/7b6gTPbJ9KH/fvGsy9zQ9586LC0smYvZHuQ==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
+          "Autofac": "9.1.0",
           "Be.Vlaanderen.Basisregisters.AggregateSource": "11.0.0",
+          "Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore": "11.0.0",
           "Be.Vlaanderen.Basisregisters.Api": "27.0.0",
+          "Be.Vlaanderen.Basisregisters.Aws.DistributedMutex": "5.1.0",
+          "Be.Vlaanderen.Basisregisters.EventHandling": "7.1.0",
+          "Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic": "5.1.0",
+          "Be.Vlaanderen.Basisregisters.Utilities.HexByteConvertor": "5.1.0",
           "CsvHelper": "33.1.0",
-          "Datadog.Trace.Bundle": "3.45.0"
+          "Datadog.Trace.Bundle": "3.45.0",
+          "Destructurama.JsonNet": "4.0.2",
+          "Microsoft.SyndicationFeed.ReaderWriter": "1.0.2",
+          "NodaTime": "3.3.2"
         }
       },
       "Be.Vlaanderen.Basisregisters.ProblemDetails": {
