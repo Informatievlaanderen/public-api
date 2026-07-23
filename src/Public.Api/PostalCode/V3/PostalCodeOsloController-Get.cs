@@ -1,17 +1,18 @@
-namespace Public.Api.PostalCode.Oslo
+namespace Public.Api.PostalCode.V3
 {
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Common.FeatureToggles;
     using Common.Infrastructure;
-    using Infrastructure;
-    using Infrastructure.Swagger;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.OpenApi;
-    using PostalRegistry.Api.Oslo.PostalInformation.V2.Responses;
+    using PostalRegistry.Api.Oslo.PostalInformation.V3.Responses;
+    using Public.Api.Infrastructure;
+    using Public.Api.Infrastructure.Swagger;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
@@ -19,10 +20,11 @@ namespace Public.Api.PostalCode.Oslo
     public partial class PostalCodeOsloController
     {
         /// <summary>
-        /// Vraag postinfo voor een postcode op (v2).
+        /// Vraag postinfo voor een postcode op (v3).
         /// </summary>
         /// <param name="objectId">Identificator van de postinfo.</param>
         /// <param name="httpContextAccessor"></param>
+        /// <param name="osloV3PostalInformationToggle"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de postinfo voor een postcode gevonden is.</response>
@@ -34,9 +36,9 @@ namespace Public.Api.PostalCode.Oslo
         /// <response code="410">Als de postinfo voor een postcode verwijderd is.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("postinfo/{objectId}", Name = nameof(GetPostalCodeV2))]
-        [ApiOrder(ApiOrder.PostalCode.V2 + 1)]
-        [ProducesResponseType(typeof(PostalInformationOsloResponse), StatusCodes.Status200OK)]
+        [HttpGet("postinfo/{objectId}", Name = nameof(GetPostalCodeV3))]
+        [ApiOrder(ApiOrder.PostalCode.V3 + 1)]
+        [ProducesResponseType(typeof(PostalInformationOsloV3Response), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(void), StatusCodes.Status304NotModified)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
@@ -48,24 +50,28 @@ namespace Public.Api.PostalCode.Oslo
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(PostalInformationOsloResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status304NotModified, typeof(NotModifiedResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(PostalInformationGoneResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(PostalInformationNotFoundResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(PostalInformationNotFoundResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
         [HttpCacheExpiration(MaxAge = DefaultDetailCaching)]
-        public async Task<IActionResult> GetPostalCodeV2(
+        public async Task<IActionResult> GetPostalCodeV3(
             [FromRoute] string objectId,
             [FromServices] IHttpContextAccessor httpContextAccessor,
+            [FromServices] OsloV3PostalInformationToggle osloV3PostalInformationToggle,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
+            if (!osloV3PostalInformationToggle.FeatureEnabled)
+                return NotFound();
+
             var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
-            var cacheKey = $"oslo/postalinfo:{objectId}";
+            var cacheKey = $"oslo-v3/postalinfo:{objectId}";
 
             var value = await (CanGetFromCache(httpContextAccessor.HttpContext!)
                 ? GetFromCacheThenFromBackendAsync(

@@ -1,16 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:postinfo:2026-01-01",
+  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:postinfo:2026-01-21",
   "title": "Postinfo event data (create/update/delete)",
   "type": "object",
   "additionalProperties": false,
-  "required": ["@id", "objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
+  "required": ["objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
   "properties": {
-    "@id": {
-      "type": "string",
-      "format": "uri",
-      "description": "De persistente URI die dit postinfo-object identificeert."
-    },
     "objectId": {
       "type": "string",
       "description": "De objectidentificator van de postinfo."
@@ -60,44 +55,44 @@
       "allOf": [
         {
           "if": {
-            "properties": { "naam": { "const": "postInfoStatus" } },
+            "properties": { "naam": { "const": "status" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
-                "enum": [null, "gerealiseerd", "gehistoreerd"]
+                "enum": [null, "https://data.vlaanderen.be/id/concept/postinfostatus/gerealiseerd", "https://data.vlaanderen.be/id/concept/postinfostatus/gehistoreerd"]
               },
               "nieuweWaarde": {
                 "type": "string",
-                "enum": ["gerealiseerd", "gehistoreerd"]
+                "enum": ["https://data.vlaanderen.be/id/concept/postinfostatus/gerealiseerd", "https://data.vlaanderen.be/id/concept/postinfostatus/gehistoreerd"]
               }
             }
           }
         },
         {
           "if": {
-            "properties": { "naam": { "const": "postnamen" } },
+            "properties": { "naam": { "const": "postnaam" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": "array",
-                "items": { "$ref": "#/$defs/postnaam" }
+                "items": { "$ref": "#/$defs/postnaamItem" }
               },
               "nieuweWaarde": {
                 "type": "array",
                 "minItems": 1,
-                "items": { "$ref": "#/$defs/postnaam" }
+                "items": { "$ref": "#/$defs/postnaamItem" }
               }
             }
           }
         },
         {
           "if": {
-            "properties": { "naam": { "const": "gemeente.id" } },
+            "properties": { "naam": { "const": "isToegekendAan" } },
             "required": ["naam"]
           },
           "then": {
@@ -109,13 +104,13 @@
         }
       ]
     },
-    "postnaam": {
+    "postnaamItem": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["spelling", "taal"],
+      "required": ["@value", "@language"],
       "properties": {
-        "spelling": { "type": "string" },
-        "taal": { "type": "string", "pattern": "^[a-z]{2}$" }
+        "@value": { "type": "string" },
+        "@language": { "type": "string", "pattern": "^[a-z]{2}$" }
       }
     }
   }

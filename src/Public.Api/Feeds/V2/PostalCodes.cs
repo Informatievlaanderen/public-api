@@ -10,7 +10,7 @@ namespace Public.Api.Feeds.V2
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
-    using PostalRegistry.Api.Oslo.PostalInformation.Responses;
+    using PostalRegistry.Api.Oslo.PostalInformation.V2.Responses;
     using Infrastructure;
     using Infrastructure.Configuration;
     using Microsoft.OpenApi;
@@ -83,7 +83,7 @@ namespace Public.Api.Feeds.V2
             return BackendListResponseResult.Create(
                 value,
                 Request.Query,
-                responseOptions.Value.Syndication.NextUri,
+                responseOptions.Value.Syndication!.NextUri,
                 responseOptions.Value.Syndication.GetNextUri(httpContextAccessor));
         }
     }

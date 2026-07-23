@@ -8,4 +8,14 @@
             : base(dynamicFeatureToggleService)
         { }
     }
+
+    public sealed class OsloV3PostalInformationToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "OsloV3PostalInformationToggle";
+
+        public OsloV3PostalInformationToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        {
+        }
+    }
 }

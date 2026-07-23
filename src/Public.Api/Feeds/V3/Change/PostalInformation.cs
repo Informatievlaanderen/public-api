@@ -13,7 +13,7 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.OpenApi;
-    using PostalRegistry.Api.Oslo.PostalInformation.Responses;
+    using PostalRegistry.Api.Oslo.PostalInformation.V3.Responses;
     using Public.Api.Infrastructure;
     using Public.Api.Infrastructure.Configuration;
     using RestSharp;
@@ -83,7 +83,7 @@
                 pagina);
 
             var value = await GetFromBackendAsync(
-                    restClients[RegistryKeys.PostalV2].Value,
+                    restClients[RegistryKeys.PostalV3].Value,
                     BackendRequest,
                     contentFormat.ContentType,
                     HandleBadRequest,
@@ -126,7 +126,7 @@
             var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             var value = await GetFromBackendAsync(
-                restClients[RegistryKeys.PostalV2].Value,
+                restClients[RegistryKeys.PostalV3].Value,
                 () => new RestRequest($"postcodes/{objectId}/wijzigingen", Method.Get).AddPagination(offset, limit),
                 contentFormat.ContentType,
                 HandleBadRequest,
