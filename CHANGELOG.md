@@ -1,3 +1,10 @@
+# [8.2.0](https://github.com/informatievlaanderen/public-api/compare/v8.1.0...v8.2.0) (2026-07-23)
+
+
+### Features
+
+* **postinfo:** add v3 ([5bfd989](https://github.com/informatievlaanderen/public-api/commit/5bfd989a92c7f80ee851f20dd4794bd576b0ad28))
+
 # [8.1.0](https://github.com/informatievlaanderen/public-api/compare/v8.0.1...v8.1.0) (2026-07-22)
 
 
