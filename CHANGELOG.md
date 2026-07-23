@@ -1,3 +1,5 @@
+## [8.2.2](https://github.com/informatievlaanderen/public-api/compare/v8.2.1...v8.2.2) (2026-07-23)
+
 ## [8.2.1](https://github.com/informatievlaanderen/public-api/compare/v8.2.0...v8.2.1) (2026-07-23)
 
 # [8.2.0](https://github.com/informatievlaanderen/public-api/compare/v8.1.0...v8.2.0) (2026-07-23)
