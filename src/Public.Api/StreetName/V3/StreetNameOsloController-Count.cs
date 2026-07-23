@@ -1,4 +1,4 @@
-namespace Public.Api.StreetName.Oslo
+namespace Public.Api.StreetName.V3
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -12,15 +12,15 @@ namespace Public.Api.StreetName.Oslo
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.OpenApi;
     using RestSharp;
-    using StreetNameRegistry.Api.Oslo.StreetName.V2.Count;
-    using StreetNameRegistry.Api.Oslo.StreetName.V2.List;
+    using StreetNameRegistry.Api.Oslo.StreetName.V3.Count;
+    using StreetNameRegistry.Api.Oslo.StreetName.V3.List;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class StreetNameOsloController
     {
         /// <summary>
-        /// Vraag het totaal aantal straatnamen op.
+        /// Vraag het totaal aantal straatnamen op (v3).
         /// </summary>
         /// <param name="gemeentenaam">Filter op de gemeentenaam van de straatnaam (exact) (optioneel).</param>
         /// <param name="httpContextAccessor"></param>
@@ -31,8 +31,8 @@ namespace Public.Api.StreetName.Oslo
         /// <response code="403">Als u niet beschikt over de correcte rechten om deze actie uit te voeren.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("straatnamen/totaal-aantal", Name = nameof(CountStreetNamesV2))]
-        [ApiOrder(ApiOrder.StreetName.V2 + 3)]
+        [HttpGet("straatnamen/totaal-aantal", Name = nameof(CountStreetNamesV3))]
+        [ApiOrder(ApiOrder.StreetName.V3 + 3)]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(TotaalAantalResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
@@ -41,12 +41,12 @@ namespace Public.Api.StreetName.Oslo
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", JsonSchemaType.String, "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(TotalCountResponseExample))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultCountCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> CountStreetNamesV2(
+        public async Task<IActionResult> CountStreetNamesV3(
             [FromQuery] string gemeentenaam,
             [FromServices] IHttpContextAccessor httpContextAccessor,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,

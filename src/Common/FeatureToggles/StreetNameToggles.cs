@@ -107,4 +107,14 @@
             : base(dynamicFeatureToggleService)
         { }
     }
+
+    public sealed class OsloV3StreetNameToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "OsloV3StreetNameToggle";
+
+        public OsloV3StreetNameToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        {
+        }
+    }
 }

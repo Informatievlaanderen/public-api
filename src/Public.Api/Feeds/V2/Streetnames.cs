@@ -14,7 +14,7 @@ namespace Public.Api.Feeds.V2
     using Microsoft.Extensions.Options;
     using Microsoft.OpenApi;
     using RestSharp;
-    using StreetNameRegistry.Api.Oslo.StreetName.Sync;
+    using StreetNameRegistry.Api.Oslo.StreetName.V2.Sync;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
@@ -83,7 +83,7 @@ namespace Public.Api.Feeds.V2
             return BackendListResponseResult.Create(
                 value,
                 Request.Query,
-                responseOptions.Value.Syndication.NextUri,
+                responseOptions.Value.Syndication!.NextUri,
                 responseOptions.Value.Syndication.GetNextUri(httpContextAccessor));
         }
     }

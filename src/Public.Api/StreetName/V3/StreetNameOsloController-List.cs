@@ -1,4 +1,4 @@
-namespace Public.Api.StreetName.Oslo
+namespace Public.Api.StreetName.V3
 {
     using System;
     using System.Collections.Generic;
@@ -16,14 +16,14 @@ namespace Public.Api.StreetName.Oslo
     using Microsoft.Extensions.Options;
     using Microsoft.OpenApi;
     using RestSharp;
-    using StreetNameRegistry.Api.Oslo.StreetName.V2.List;
+    using StreetNameRegistry.Api.Oslo.StreetName.V3.List;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
     public partial class StreetNameOsloController
     {
         /// <summary>
-        /// Vraag een lijst met straatnamen op (v2).
+        /// Vraag een lijst met straatnamen op (v3).
         /// </summary>
         /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt. De offset is echter beperkt tot 1000000, indien meer data dient ingelezen te worden is het gebruik van extra filters aangewezen op de service of verwijzen we naar de <a href="https://basisregisters.vlaanderen.be/producten/grar" target="_blank" >downloadproducten van het gebouwen- en adressenregister</a> (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
@@ -48,9 +48,9 @@ namespace Public.Api.StreetName.Oslo
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("straatnamen", Name = nameof(ListStreetNamesV2))]
-        [ApiOrder(ApiOrder.StreetName.V2 + 2)]
-        [ProducesResponseType(typeof(StreetNameListOsloResponse), StatusCodes.Status200OK)]
+        [HttpGet("straatnamen", Name = nameof(ListStreetNamesV3))]
+        [ApiOrder(ApiOrder.StreetName.V3 + 2)]
+        [ProducesResponseType(typeof(StreetNameListOsloV3Response), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
@@ -58,13 +58,13 @@ namespace Public.Api.StreetName.Oslo
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", JsonSchemaType.String, "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(StreetNameListOsloResponseExamples))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> ListStreetNamesV2(
+        public async Task<IActionResult> ListStreetNamesV3(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
@@ -74,7 +74,7 @@ namespace Public.Api.StreetName.Oslo
             [FromQuery] string status,
             [FromQuery] string gewest,
             [FromServices] IHttpContextAccessor httpContextAccessor,
-            [FromServices] IOptions<StreetNameOptionsV2> responseOptions,
+            [FromServices] IOptions<StreetNameOptionsV3> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {

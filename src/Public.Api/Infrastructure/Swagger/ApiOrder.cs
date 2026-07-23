@@ -26,7 +26,8 @@ namespace Public.Api.Infrastructure.Swagger
         {
             public const int Base = PostalCode.Base + 100;
             public const int V2 = Base + 20;
-            public const int Edit = Base + 30;
+            public const int V3 = Base + 30;
+            public const int Edit = Base + 50;
         }
 
         public static class Address
