@@ -83,9 +83,9 @@ namespace Public.Api.Tickets
 
     public class TicketExample : IExamplesProvider<Ticket>
     {
-        private readonly ResponseOptions _responseOptions;
+        private readonly ResponseOptionsV2 _responseOptions;
 
-        public TicketExample(IOptions<ResponseOptions> responseOptions)
+        public TicketExample(IOptions<ResponseOptionsV2> responseOptions)
         {
             _responseOptions = responseOptions.Value;
         }
