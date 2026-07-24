@@ -1,3 +1,10 @@
+# [8.3.0](https://github.com/informatievlaanderen/public-api/compare/v8.2.2...v8.3.0) (2026-07-24)
+
+
+### Features
+
+* **streetname:** add v3 ([2466f6a](https://github.com/informatievlaanderen/public-api/commit/2466f6a47a4efe03d42dda94ce4644d6b658e1f0))
+
 ## [8.2.2](https://github.com/informatievlaanderen/public-api/compare/v8.2.1...v8.2.2) (2026-07-23)
 
 ## [8.2.1](https://github.com/informatievlaanderen/public-api/compare/v8.2.0...v8.2.1) (2026-07-23)
