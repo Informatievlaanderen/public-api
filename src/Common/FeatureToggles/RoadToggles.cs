@@ -356,6 +356,15 @@
         { }
     }
 
+    public sealed class RoadSegmentSplitByJunctionV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadSegmentSplitByJunctionV3";
+
+        public RoadSegmentSplitByJunctionV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
     public sealed class GetRoadNodeV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
     {
         public override string Key => "RoadNodeGetV3";
