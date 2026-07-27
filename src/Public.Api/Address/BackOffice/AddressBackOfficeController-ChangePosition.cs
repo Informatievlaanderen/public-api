@@ -9,7 +9,7 @@ namespace Public.Api.Address.BackOffice
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using RestSharp;
-    using AddressRegistry.Api.Oslo.Address.Detail;
+    using AddressRegistry.Api.Oslo.Address.V2.Detail;
     using Common.FeatureToggles;
     using Common.Infrastructure.Extensions;
     using Infrastructure.Swagger;

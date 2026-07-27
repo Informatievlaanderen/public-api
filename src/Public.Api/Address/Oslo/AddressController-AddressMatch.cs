@@ -3,7 +3,7 @@ namespace Public.Api.Address.Oslo
     using System.ComponentModel.DataAnnotations;
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Oslo.AddressMatch.Responses;
+    using AddressRegistry.Api.Oslo.AddressMatch.V2.Responses;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Common.Infrastructure;

@@ -3,7 +3,7 @@ namespace Public.Api.Address.Oslo
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Oslo.Address.Search;
+    using AddressRegistry.Api.Oslo.Address.V2.Search;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.FeatureToggles;
     using Common.Infrastructure;

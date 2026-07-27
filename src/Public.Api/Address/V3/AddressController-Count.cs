@@ -1,11 +1,12 @@
-namespace Public.Api.Address.Oslo
+namespace Public.Api.Address.V3
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Oslo.Address.V2.List;
-    using AddressRegistry.Api.Oslo.Address.V2.Count;
+    using AddressRegistry.Api.Oslo.Address.V3.List;
+    using AddressRegistry.Api.Oslo.Address.V3.Count;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using Common.FeatureToggles;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers.Attributes;
     using Infrastructure;
@@ -21,7 +22,7 @@ namespace Public.Api.Address.Oslo
     public partial class AddressOsloController
     {
         /// <summary>
-        /// Vraag het totaal aantal adressen op (v2).
+        /// Vraag het totaal aantal adressen op (v3).
         /// </summary>
         /// <param name="gemeentenaam">Filter op de gemeentenaam van het adres (exact) (optioneel).</param>
         /// <param name="postcode">Filter op de postcode van het adres (exact) (optioneel).</param>
@@ -30,6 +31,7 @@ namespace Public.Api.Address.Oslo
         /// <param name="huisnummer">Filter op het huisnummer van het adres (exact) (optioneel).</param>
         /// <param name="busnummer">Filter op het busnummer van het adres (exact) (optioneel).</param>
         /// <param name="httpContextAccessor"></param>
+        /// <param name="osloV3AddressToggle"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van het totaal aantal adressen gelukt is.</response>
@@ -37,8 +39,8 @@ namespace Public.Api.Address.Oslo
         /// <response code="403">Als u niet beschikt over de correcte rechten om deze actie uit te voeren.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("adressen/totaal-aantal", Name = nameof(CountAddressesV2))]
-        [ApiOrder(ApiOrder.Address.V2 + 3)]
+        [HttpGet("adressen/totaal-aantal", Name = nameof(CountAddressesV3))]
+        [ApiOrder(ApiOrder.Address.V3 + 3)]
         [ApiProduces(EndpointType.Oslo)]
         [ApiExplorerSettings(IgnoreApi = true)]
         [ProducesResponseType(typeof(TotaalAantalResponse), StatusCodes.Status200OK)]
@@ -48,12 +50,12 @@ namespace Public.Api.Address.Oslo
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", JsonSchemaType.String, "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(TotalCountOsloResponseExample))]
-        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
-        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultCountCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> CountAddressesV2(
+        public async Task<IActionResult> CountAddressesV3(
             [FromQuery] string gemeentenaam,
             [FromQuery] int? postcode,
             [FromQuery] string straatnaam,
@@ -61,9 +63,13 @@ namespace Public.Api.Address.Oslo
             [FromQuery] string huisnummer,
             [FromQuery] string busnummer,
             [FromServices] IHttpContextAccessor httpContextAccessor,
+            [FromServices] OsloV3AddressToggle osloV3AddressToggle,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
+            if (!osloV3AddressToggle.FeatureEnabled)
+                return NotFound();
+
             var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() => CreateBackendCountRequest(

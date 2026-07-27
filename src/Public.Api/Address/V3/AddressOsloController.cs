@@ -1,4 +1,4 @@
-namespace Public.Api.Address.Oslo
+namespace Public.Api.Address.V3
 {
     using Asp.Versioning;
     using Autofac.Features.AttributeFilters;
@@ -15,7 +15,7 @@ namespace Public.Api.Address.Oslo
     using RestSharp;
 
     [ApiVisible]
-    [ApiVersion(Version.V2)]
+    [ApiVersion(Version.V3)]
     [AdvertiseApiVersions(Version.V2, Version.V3)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Adressen")]
@@ -26,8 +26,8 @@ namespace Public.Api.Address.Oslo
 
         public AddressOsloController(
             IHttpContextAccessor httpContextAccessor,
-            [KeyFilter(RegistryKeys.AddressV2)] RestClient restClient,
-            [KeyFilter(RegistryKeys.AddressV2)] IFeatureToggle cacheToggle,
+            [KeyFilter(RegistryKeys.AddressV3)] RestClient restClient,
+            [KeyFilter(RegistryKeys.AddressV3)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
             ILogger<AddressOsloController> logger)
             : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }

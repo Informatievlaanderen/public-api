@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Oslo.Address.ChangeFeed;
+    using AddressRegistry.Api.Oslo.Address.V3.ChangeFeed;
     using Autofac.Features.Indexed;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using CloudNative.CloudEvents;

@@ -9,8 +9,8 @@ namespace Public.Api.Infrastructure.Configuration
         public const string StreetNameV2 = "StreetNameRegistryV2";
         public const string StreetNameV3 = "StreetNameRegistryV3";
         public const string StreetNameBackOffice = "StreetNameRegistryBackOffice";
-        public const string Address = "AddressRegistry";
         public const string AddressV2 = "AddressRegistryV2";
+        public const string AddressV3 = "AddressRegistryV3";
         public const string AddressBackOffice = "AddressRegistryBackOffice";
         public const string Building = "BuildingRegistry";
         public const string BuildingV2 = "BuildingRegistryV2";

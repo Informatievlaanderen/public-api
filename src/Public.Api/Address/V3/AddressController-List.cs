@@ -1,13 +1,14 @@
-namespace Public.Api.StreetName.V3
+namespace Public.Api.Address.V3
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using AddressRegistry.Api.Oslo.Address.V3.List;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
     using Common.FeatureToggles;
     using Common.Infrastructure;
+    using Common.Infrastructure.Controllers.Attributes;
     using Infrastructure;
     using Infrastructure.Configuration;
     using Infrastructure.Swagger;
@@ -17,71 +18,77 @@ namespace Public.Api.StreetName.V3
     using Microsoft.Extensions.Options;
     using Microsoft.OpenApi;
     using RestSharp;
-    using StreetNameRegistry.Api.Oslo.StreetName.V3.List;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
 
-    public partial class StreetNameOsloController
+    public partial class AddressOsloController
     {
         /// <summary>
-        /// Vraag een lijst met straatnamen op (v3).
+        /// Vraag een lijst met adressen op (v3).
         /// </summary>
         /// <param name="offset">Nulgebaseerde index van de eerste instantie die teruggegeven wordt. De offset is echter beperkt tot 1000000, indien meer data dient ingelezen te worden is het gebruik van extra filters aangewezen op de service of verwijzen we naar de <a href="https://basisregisters.vlaanderen.be/producten/grar" target="_blank" >downloadproducten van het gebouwen- en adressenregister</a> (optioneel).</param>
         /// <param name="limit">Aantal instanties dat teruggegeven wordt. Maximaal kunnen er 500 worden teruggegeven. Wanneer limit niet wordt meegegeven dan default 100 instanties (optioneel).</param>
-        /// <param name="sort">Optionele sortering van het resultaat (id, naam-nl, naam-fr, naam-de, naam-en).</param>
-        /// <param name="straatnaam">Filter op de naam van de straatnaam (exact) (optioneel).</param>
-        /// <param name="gemeentenaam">Filter op de gemeentenaam van de straatnaam (exact) (optioneel).</param>
-        /// <param name="niscode">Filter op de NIS-code van de straatnaam (exact) (optioneel).</param>
+        /// <param name="sort">Optionele sortering van het resultaat (id, postcode, huisnummer, busnummer).</param>
+        /// <param name="gemeentenaam">Filter op de gemeentenaam van het adres (exact) (optioneel).</param>
+        /// <param name="postcode">Filter op de postcode van het adres (exact) (optioneel).</param>
+        /// <param name="straatnaam">Filter op de straatnaam van het adres (exact) (optioneel).</param>
+        /// <param name="homoniemToevoeging">Filter op de homoniemtoevoeging van het adres (exact) (optioneel).</param>
+        /// <param name="huisnummer">Filter op het huisnummer van het adres (exact) (optioneel).</param>
+        /// <param name="busnummer">Filter op het busnummer van het adres (exact) (optioneel).</param>
+        /// <param name="niscode">Filter op de NIS-code van het adres (exact) (optioneel).</param>
         /// <param name="status">
-        /// Filter op de status van de straatnaam (exact) (optioneel). \
+        /// Filter op de status van het adres (exact) (optioneel). \
         /// `"voorgesteld"` `"inGebruik"` `"gehistoreerd"` `"afgekeurd"`
         /// </param>
-        /// <param name="gewest">Filter op het gewest van de straatnaam (exact) (optioneel). \
-        /// `"vlaams"`
-        /// </param>
+        /// <param name="straatnaamObjectId">Filter op de objectidentificator van de gekoppelde straatnaam (exact) (optioneel).</param>
         /// <param name="httpContextAccessor"></param>
-        /// <param name="osloV3StreetNameToggle"></param>
+        /// <param name="osloV3AddressToggle"></param>
         /// <param name="responseOptions"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als de opvraging van een lijst met straatnamen gelukt is.</response>
+        /// <response code="200">Als de opvraging van een lijst met adressen gelukt is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="403">Als u niet beschikt over de correcte rechten om deze actie uit te voeren.</response>
         /// <response code="406">Als het gevraagde formaat niet beschikbaar is.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpGet("straatnamen", Name = nameof(ListStreetNamesV3))]
-        [ApiOrder(ApiOrder.StreetName.V3 + 2)]
-        [ProducesResponseType(typeof(StreetNameListOsloV3Response), StatusCodes.Status200OK)]
+        [HttpGet("adressen", Name = nameof(ListAddressesV3))]
+        [ApiOrder(ApiOrder.Address.V3 + 2)]
+        [ApiProduces(EndpointType.Oslo)]
+        [ProducesResponseType(typeof(AddressListOsloV3Response), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "ETag", JsonSchemaType.String, "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status200OK, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(StreetNameListOsloResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(AddressListOsloResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
         [HttpCacheValidation(NoCache = true, MustRevalidate = true, ProxyRevalidate = true)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Private, MaxAge = DefaultListCaching, NoStore = true, NoTransform = true)]
-        public async Task<IActionResult> ListStreetNamesV3(
+        public async Task<IActionResult> ListAddressesV3(
             [FromQuery] int? offset,
             [FromQuery] int? limit,
             [FromQuery] string sort,
-            [FromQuery] string straatnaam,
             [FromQuery] string gemeentenaam,
+            [FromQuery] int? postcode,
+            [FromQuery] string straatnaam,
+            [FromQuery] string homoniemToevoeging,
+            [FromQuery] string huisnummer,
+            [FromQuery] string busnummer,
             [FromQuery] string niscode,
             [FromQuery] string status,
-            [FromQuery] string gewest,
+            [FromQuery] int? straatnaamObjectId,
             [FromServices] IHttpContextAccessor httpContextAccessor,
-            [FromServices] OsloV3StreetNameToggle osloV3StreetNameToggle,
-            [FromServices] IOptions<StreetNameOptionsV3> responseOptions,
+            [FromServices] OsloV3AddressToggle osloV3AddressToggle,
+            [FromServices] IOptions<AddressOptionsV3> responseOptions,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
-            if (!osloV3StreetNameToggle.FeatureEnabled)
+            if (!osloV3AddressToggle.FeatureEnabled)
                 return NotFound();
 
             var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
@@ -92,56 +99,62 @@ namespace Public.Api.StreetName.V3
                 limit,
                 taal,
                 sort,
-                straatnaam,
+                busnummer,
+                huisnummer,
+                postcode,
                 gemeentenaam,
+                straatnaam,
+                homoniemToevoeging,
                 niscode,
                 status,
-                gewest);
+                straatnaamObjectId);
 
-            var value = await GetFromBackendAsync(
-                contentFormat.ContentType,
-                BackendRequest,
-                CreateDefaultHandleBadRequest(),
-                cancellationToken);
+            var value = await  GetFromBackendAsync(
+                    contentFormat.ContentType,
+                    BackendRequest,
+                    CreateDefaultHandleBadRequest(),
+                    cancellationToken);
 
             return BackendListResponseResult.Create(value, Request.Query, responseOptions.Value.VolgendeUrl);
         }
 
-        private static RestRequest CreateBackendListRequest(
-            int? offset,
+        private static RestRequest CreateBackendListRequest(int? offset,
             int? limit,
             Taal language,
             string sort,
-            string streetNameName,
+            string boxNumber,
+            string houseNumber,
+            int? postalCode,
             string municipalityName,
-            string nisCode,
+            string streetName,
+            string homonymAddition,
+            string niscode,
             string status,
-            string? gewest)
+            int? streetNameId)
         {
-            var filter = new StreetNameFilter
+            var filter = new AddressFilter
             {
-                StreetNameName = streetNameName,
+                BoxNumber = boxNumber,
+                HouseNumber = houseNumber,
+                PostalCode = postalCode?.ToString() ?? string.Empty,
                 MunicipalityName = municipalityName,
-                NisCode = nisCode,
+                StreetName = streetName,
+                HomonymAddition = homonymAddition,
+                NisCode = niscode,
                 Status = status,
-                IsInFlemishRegion = gewest?.Equals("vlaams", StringComparison.OrdinalIgnoreCase)
+                StreetNameId = streetNameId?.ToString()
             };
 
-            // id, naam-nl, naam-fr, naam-de, naam-en
+            // id, postcode, huisnummer, busnummer
             var sortMapping = new Dictionary<string, string>
             {
+                { "BusNummer", "BoxNumber" },
+                { "huisnummer", "HouseNumber" },
+                { "postcode", "PostalCode" },
                 { "Id", "PersistentLocalId" },
-                { "NaamNl", "NameDutch" },
-                { "Naam-Nl", "NameDutch" },
-                { "NaamEn", "NameEnglish" },
-                { "Naam-En", "NameEnglish" },
-                { "NaamFr", "NameFrench" },
-                { "Naam-Fr", "NameFrench" },
-                { "NaamDe", "NameGerman" },
-                { "Naam-De", "NameGerman" },
             };
 
-            return new RestRequest("straatnamen?taal={language}")
+            return new RestRequest("adressen?taal={language}")
                 .AddParameter("language", language, ParameterType.UrlSegment)
                 .AddPagination(offset, limit)
                 .AddFiltering(filter)

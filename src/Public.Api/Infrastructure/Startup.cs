@@ -318,6 +318,7 @@ namespace Public.Api.Infrastructure
                 .ConfigureRegistryOptions<StreetNameOptionsV2>(_configuration.GetSection("ApiConfiguration:StreetNameRegistryV2"))
                 .ConfigureRegistryOptions<StreetNameOptionsV3>(_configuration.GetSection("ApiConfiguration:StreetNameRegistryV3"))
                 .ConfigureRegistryOptions<AddressOptionsV2>(_configuration.GetSection("ApiConfiguration:AddressRegistryV2"))
+                .ConfigureRegistryOptions<AddressOptionsV3>(_configuration.GetSection("ApiConfiguration:AddressRegistryV3"))
                 .ConfigureRegistryOptions<BuildingOptionsV2>(_configuration.GetSection("ApiConfiguration:BuildingRegistryV2"))
                 .ConfigureRegistryOptions<ParcelOptionsV2>(_configuration.GetSection("ApiConfiguration:ParcelRegistryV2"))
                 .ConfigureRegistryOptions<SuspiciousCasesOptionsV2>(_configuration.GetSection("ApiConfiguration:SuspiciousCases"))
