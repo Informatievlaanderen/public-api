@@ -1,16 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:adres:2026-01-01",
+  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:adres:2026-01-21",
   "title": "Adres event data (create/update/delete)",
   "type": "object",
   "additionalProperties": false,
-  "required": ["@id", "objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
+  "required": ["objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
   "properties": {
-    "@id": {
-      "type": "string",
-      "format": "uri",
-      "description": "De persistente URI die dit adres-object identificeert."
-    },
     "objectId": {
       "type": "string",
       "description": "De objectidentificator van het adres."
@@ -60,25 +55,25 @@
       "allOf": [
         {
           "if": {
-            "properties": { "naam": { "const": "adresStatus" } },
+            "properties": { "naam": { "const": "status" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
-                "enum": [null, "voorgesteld", "afgekeurd", "inGebruik", "gehistoreerd"]
+                "enum": [null, "https://data.vlaanderen.be/id/concept/adresstatus/voorgesteld", "https://data.vlaanderen.be/id/concept/adresstatus/afgekeurd", "https://data.vlaanderen.be/id/concept/adresstatus/inGebruik", "https://data.vlaanderen.be/id/concept/adresstatus/gehistoreerd"]
               },
               "nieuweWaarde": {
                 "type": "string",
-                "enum": ["voorgesteld", "afgekeurd", "inGebruik", "gehistoreerd"]
+                "enum": ["https://data.vlaanderen.be/id/concept/adresstatus/voorgesteld", "https://data.vlaanderen.be/id/concept/adresstatus/afgekeurd", "https://data.vlaanderen.be/id/concept/adresstatus/inGebruik", "https://data.vlaanderen.be/id/concept/adresstatus/gehistoreerd"]
               }
             }
           }
         },
         {
           "if": {
-            "properties": { "naam": { "const": "straatnaam.id" } },
+            "properties": { "naam": { "const": "heeftStraatnaam" } },
             "required": ["naam"]
           },
           "then": {
@@ -114,7 +109,7 @@
         },
         {
           "if": {
-            "properties": { "naam": { "const": "postcode" } },
+            "properties": { "naam": { "const": "heeftPostinfo" } },
             "required": ["naam"]
           },
           "then": {
@@ -138,7 +133,7 @@
         },
         {
           "if": {
-            "properties": { "naam": { "const": "adresPositie" } },
+            "properties": { "naam": { "const": "positie.geometrie" } },
             "required": ["naam"]
           },
           "then": {
@@ -157,36 +152,36 @@
         },
         {
           "if": {
-            "properties": { "naam": { "const": "positieGeometrieMethode" } },
+            "properties": { "naam": { "const": "positie.methode" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
-                "enum": [null, "aangeduidDoorBeheerder", "afgeleidVanObject", "geïnterpoleerd"]
+                "enum": [null, "https://data.vlaanderen.be/id/concept/geometriemethode/aangeduidDoorBeheerder", "https://data.vlaanderen.be/id/concept/geometriemethode/afgeleidVanObject", "https://data.vlaanderen.be/id/concept/geometriemethode/geïnterpoleerd"]
               },
               "nieuweWaarde": {
                 "type": "string",
-                "enum": ["aangeduidDoorBeheerder", "afgeleidVanObject", "geïnterpoleerd"]
+                "enum": ["https://data.vlaanderen.be/id/concept/geometriemethode/aangeduidDoorBeheerder", "https://data.vlaanderen.be/id/concept/geometriemethode/afgeleidVanObject", "https://data.vlaanderen.be/id/concept/geometriemethode/geïnterpoleerd"]
               }
             }
           }
         },
         {
           "if": {
-            "properties": { "naam": { "const": "positieSpecificatie" } },
+            "properties": { "naam": { "const": "positie.specificatie" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
-                "enum": [null, "gemeente", "straat", "perceel", "lot", "standplaats", "ligplaats", "gebouw", "gebouweenheid", "ingang", "wegsegment"]
+                "enum": [null, "https://data.vlaanderen.be/id/concept/geometriespecificatie/gemeente", "https://data.vlaanderen.be/id/concept/geometriespecificatie/straat", "https://data.vlaanderen.be/id/concept/geometriespecificatie/perceel", "https://data.vlaanderen.be/id/concept/geometriespecificatie/lot", "https://data.vlaanderen.be/id/concept/geometriespecificatie/standplaats", "https://data.vlaanderen.be/id/concept/geometriespecificatie/ligplaats", "https://data.vlaanderen.be/id/concept/geometriespecificatie/gebouw", "https://data.vlaanderen.be/id/concept/geometriespecificatie/gebouweenheid", "https://data.vlaanderen.be/id/concept/geometriespecificatie/ingang", "https://data.vlaanderen.be/id/concept/geometriespecificatie/wegsegment"]
               },
               "nieuweWaarde": {
                 "type": "string",
-                "enum": ["gemeente", "straat", "perceel", "lot", "standplaats", "ligplaats", "gebouw", "gebouweenheid", "ingang", "wegsegment"]
+                "enum": ["https://data.vlaanderen.be/id/concept/geometriespecificatie/gemeente", "https://data.vlaanderen.be/id/concept/geometriespecificatie/straat", "https://data.vlaanderen.be/id/concept/geometriespecificatie/perceel", "https://data.vlaanderen.be/id/concept/geometriespecificatie/lot", "https://data.vlaanderen.be/id/concept/geometriespecificatie/standplaats", "https://data.vlaanderen.be/id/concept/geometriespecificatie/ligplaats", "https://data.vlaanderen.be/id/concept/geometriespecificatie/gebouw", "https://data.vlaanderen.be/id/concept/geometriespecificatie/gebouweenheid", "https://data.vlaanderen.be/id/concept/geometriespecificatie/ingang", "https://data.vlaanderen.be/id/concept/geometriespecificatie/wegsegment"]
               }
             }
           }
@@ -196,16 +191,12 @@
     "adresPositie": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["type", "projectie", "gml"],
+      "required": ["type", "gml"],
       "properties": {
         "type": {
           "type": "string",
-          "const": "Point",
+          "const": "Punt",
           "description": "Het type geometrie."
-        },
-        "projectie": {
-          "type": "string",
-          "description": "Het ruimtelijk referentiesysteem van de geometrie."
         },
         "gml": {
           "type": "string",

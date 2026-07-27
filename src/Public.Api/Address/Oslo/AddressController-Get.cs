@@ -2,7 +2,7 @@ namespace Public.Api.Address.Oslo
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using AddressRegistry.Api.Oslo.Address.Detail;
+    using AddressRegistry.Api.Oslo.Address.V2.Detail;
     using Be.Vlaanderen.Basisregisters.Api.ETag;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Common.Infrastructure;

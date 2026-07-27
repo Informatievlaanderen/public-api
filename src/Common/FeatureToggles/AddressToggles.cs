@@ -215,6 +215,16 @@
             : base(dynamicFeatureToggleService)
         { }
     }
+
+    public sealed class OsloV3AddressToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "OsloV3AddressToggle";
+
+        public OsloV3AddressToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        {
+        }
+    }
 }
 
 

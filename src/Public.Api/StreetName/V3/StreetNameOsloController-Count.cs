@@ -4,6 +4,7 @@ namespace Public.Api.StreetName.V3
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using Common.FeatureToggles;
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Swagger;
@@ -24,6 +25,7 @@ namespace Public.Api.StreetName.V3
         /// </summary>
         /// <param name="gemeentenaam">Filter op de gemeentenaam van de straatnaam (exact) (optioneel).</param>
         /// <param name="httpContextAccessor"></param>
+        /// <param name="osloV3StreetNameToggle"></param>
         /// <param name="ifNoneMatch">If-None-Match header met ETag van een vorig verzoek (optioneel). </param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de opvraging van het totaal aantal straatnamen gelukt is.</response>
@@ -49,9 +51,13 @@ namespace Public.Api.StreetName.V3
         public async Task<IActionResult> CountStreetNamesV3(
             [FromQuery] string gemeentenaam,
             [FromServices] IHttpContextAccessor httpContextAccessor,
+            [FromServices] OsloV3StreetNameToggle osloV3StreetNameToggle,
             [FromHeader(Name = HeaderNames.IfNoneMatch)] string ifNoneMatch,
             CancellationToken cancellationToken = default)
         {
+            if (!osloV3StreetNameToggle.FeatureEnabled)
+                return NotFound();
+
             var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             RestRequest BackendRequest() => CreateBackendCountRequest(gemeentenaam);
