@@ -30,7 +30,7 @@
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Legacy" Version="25.4.2" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Oslo" Version="25.4.2" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Edit" Version="25.4.2" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.ChangeFeed" Version="25.4.2" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.ChangeFeed" Version="25.5.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Provenance" Version="25.4.2" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Import" Version="25.4.2" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.EventHandling" Version="7.1.0" />

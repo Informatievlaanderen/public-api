@@ -247,12 +247,12 @@
       },
       "Be.Vlaanderen.Basisregisters.GrAr.ChangeFeed": {
         "type": "Direct",
-        "requested": "[25.4.2, )",
-        "resolved": "25.4.2",
-        "contentHash": "szxDamgY18DFnfgDpt2HZa/D0gkZS1E2+NnhUkdr2oEDTA8dgaiPHq1TVjBanVVx25hRDa8HMwXwesINueRRSw==",
+        "requested": "[25.5.0, )",
+        "resolved": "25.5.0",
+        "contentHash": "fDy4zXC56cb78RNSnnEHWw0rfnKaIEOVvB59lU0aw9iy4FJH0egn7udXfK9xQP+9bj9jEXFhHInq+yJuNcZ/hQ==",
         "dependencies": {
-          "Be.Vlaanderen.Basisregisters.GrAr.Common": "25.4.2",
-          "Be.Vlaanderen.Basisregisters.GrAr.Legacy": "25.4.2",
+          "Be.Vlaanderen.Basisregisters.GrAr.Common": "25.5.0",
+          "Be.Vlaanderen.Basisregisters.GrAr.Legacy": "25.5.0",
           "Be.Vlaanderen.Basisregisters.ProjectionHandling.LastChangedList": "16.0.0",
           "Be.Vlaanderen.Basisregisters.Utilities.Rfc3339DateTimeOffset": "5.1.0",
           "CloudNative.CloudEvents.NewtonsoftJson": "2.8.0",
