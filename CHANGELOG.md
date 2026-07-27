@@ -1,3 +1,10 @@
+# [8.4.0](https://github.com/informatievlaanderen/public-api/compare/v8.3.2...v8.4.0) (2026-07-27)
+
+
+### Features
+
+* **road:** add endpoint to split roadsegments by junction ([8d8693e](https://github.com/informatievlaanderen/public-api/commit/8d8693ec40dea85a4a84f142ef0b5ff892b9f1b9))
+
 ## [8.3.2](https://github.com/informatievlaanderen/public-api/compare/v8.3.1...v8.3.2) (2026-07-24)
 
 
