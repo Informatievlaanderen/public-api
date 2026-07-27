@@ -1,3 +1,10 @@
+## [8.5.1](https://github.com/informatievlaanderen/public-api/compare/v8.5.0...v8.5.1) (2026-07-27)
+
+
+### Bug Fixes
+
+* **docs:** update packages ([6dc87fe](https://github.com/informatievlaanderen/public-api/commit/6dc87febab76ef095dc139a4faeed8f862b8a8d9))
+
 # [8.5.0](https://github.com/informatievlaanderen/public-api/compare/v8.4.0...v8.5.0) (2026-07-27)
 
 
