@@ -1,3 +1,10 @@
+## [8.5.3](https://github.com/informatievlaanderen/public-api/compare/v8.5.2...v8.5.3) (2026-07-28)
+
+
+### Bug Fixes
+
+* address change feed url ([30c23c1](https://github.com/informatievlaanderen/public-api/commit/30c23c1d5cc9d24e1d4daac6de3fb4d56bc40271))
+
 ## [8.5.2](https://github.com/informatievlaanderen/public-api/compare/v8.5.1...v8.5.2) (2026-07-28)
 
 
