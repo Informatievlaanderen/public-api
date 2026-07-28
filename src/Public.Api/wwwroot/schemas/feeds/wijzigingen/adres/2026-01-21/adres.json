@@ -159,11 +159,11 @@
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
-                "enum": [null, "https://data.vlaanderen.be/id/concept/geometriemethode/aangeduidDoorBeheerder", "https://data.vlaanderen.be/id/concept/geometriemethode/afgeleidVanObject", "https://data.vlaanderen.be/id/concept/geometriemethode/geïnterpoleerd"]
+                "enum": [null, "https://data.vlaanderen.be/id/concept/geometriemethode/aangeduidDoorBeheerder", "https://data.vlaanderen.be/id/concept/geometriemethode/afgeleidVanObject", "https://data.vlaanderen.be/id/concept/geometriemethode/geinterpoleerd"]
               },
               "nieuweWaarde": {
                 "type": "string",
-                "enum": ["https://data.vlaanderen.be/id/concept/geometriemethode/aangeduidDoorBeheerder", "https://data.vlaanderen.be/id/concept/geometriemethode/afgeleidVanObject", "https://data.vlaanderen.be/id/concept/geometriemethode/geïnterpoleerd"]
+                "enum": ["https://data.vlaanderen.be/id/concept/geometriemethode/aangeduidDoorBeheerder", "https://data.vlaanderen.be/id/concept/geometriemethode/afgeleidVanObject", "https://data.vlaanderen.be/id/concept/geometriemethode/geinterpoleerd"]
               }
             }
           }
