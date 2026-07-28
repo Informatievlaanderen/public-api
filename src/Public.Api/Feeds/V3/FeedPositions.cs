@@ -1,4 +1,4 @@
-﻿namespace Public.Api.Feeds.V2
+﻿namespace Public.Api.Feeds.V3
 {
     using System;
     using System.Collections.Generic;
@@ -11,6 +11,7 @@
     using Be.Vlaanderen.Basisregisters.Api;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
     using Be.Vlaanderen.Basisregisters.GrAr.Legacy;
+    using Change;
     using Common.FeatureToggles;
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers;
@@ -30,10 +31,10 @@
     using Version = Infrastructure.Version.Version;
 
     [ApiVisible]
-    [ApiVersion(Version.V2)]
+    [ApiVersion(Version.V3)]
     [ApiRoute("feeds/posities")]
-    [ApiExplorerSettings(GroupName = FeedV2Controller.FeedsGroupName)]
-    [ApiOrder(ApiOrder.Feeds + 20)]
+    [ApiExplorerSettings(GroupName = ChangeFeedV3Controller.FeedsGroupName)]
+    [ApiOrder(ApiOrder.ChangeFeeds + 20)]
     [ApiProduces(EndpointType.Json)]
     [ApiKeyAuth("Sync")]
     public class FeedPositionsController : ApiController<FeedPositionsController>
@@ -130,10 +131,10 @@
 
         private static readonly Dictionary<FeedPositiesRegister, string> RegistryKeysByEndpoint = new()
         {
-            { FeedPositiesRegister.Gemeenten, RegistryKeys.MunicipalityV2 },
-            { FeedPositiesRegister.Postinfo, RegistryKeys.PostalV2 },
-            { FeedPositiesRegister.Straatnamen, RegistryKeys.StreetNameV2 },
-            { FeedPositiesRegister.Adressen, RegistryKeys.AddressV2 },
+            { FeedPositiesRegister.Gemeenten, RegistryKeys.MunicipalityV3 },
+            { FeedPositiesRegister.Postinfo, RegistryKeys.PostalV3 },
+            { FeedPositiesRegister.Straatnamen, RegistryKeys.StreetNameV3 },
+            { FeedPositiesRegister.Adressen, RegistryKeys.AddressV3 },
             { FeedPositiesRegister.Gebouwen, RegistryKeys.BuildingV2 },
             { FeedPositiesRegister.Gebouweenheden, RegistryKeys.BuildingV2 },
             { FeedPositiesRegister.Percelen, RegistryKeys.ParcelV2 }

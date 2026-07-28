@@ -22,7 +22,7 @@ namespace Public.Api.Feeds.V3.Change
     [ApiVersion(Version.V3)]
     [ApiRoute("feeds/wijzigingen")]
     [ApiExplorerSettings(GroupName = FeedsGroupName)]
-    [ApiOrder(ApiOrder.Feeds)]
+    [ApiOrder(ApiOrder.ChangeFeeds)]
     [ApiProduces(EndpointType.ChangeFeed)]
     [ApiKeyAuth("Sync")]
     public partial class ChangeFeedV3Controller : ApiController<ChangeFeedV3Controller>

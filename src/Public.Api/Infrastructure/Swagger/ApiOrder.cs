@@ -105,6 +105,7 @@ namespace Public.Api.Infrastructure.Swagger
 
         public const int Extract = Road.ChangeFeed + 100;
         public const int Feeds = Extract + 100;
+        public const int ChangeFeeds = Feeds + 20;
 
         public static class SuspiciousCases
         {
