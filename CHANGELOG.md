@@ -1,3 +1,10 @@
+## [8.5.2](https://github.com/informatievlaanderen/public-api/compare/v8.5.1...v8.5.2) (2026-07-28)
+
+
+### Bug Fixes
+
+* **feeds:** move posities endpoint to v3 ([048c85f](https://github.com/informatievlaanderen/public-api/commit/048c85f0398fcc444ebe63b05ed12b70144a8801))
+
 ## [8.5.1](https://github.com/informatievlaanderen/public-api/compare/v8.5.0...v8.5.1) (2026-07-27)
 
 
