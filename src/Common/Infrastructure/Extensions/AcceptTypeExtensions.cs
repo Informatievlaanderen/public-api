@@ -8,6 +8,7 @@ namespace Common.Infrastructure.Extensions
     using Controllers.Attributes;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Http.Headers;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Abstractions;
     using Microsoft.AspNetCore.Mvc.Controllers;
     using Microsoft.Net.Http.Headers;
@@ -104,7 +105,7 @@ namespace Common.Infrastructure.Extensions
                         httpContext?.GetEndpoint()?.Metadata.GetMetadata<ControllerActionDescriptor>();
                     // We like to default to json,
                     // but we need to pick something the controller actually produces
-                    if (actionDescriptor is not null)
+                    if (actionDescriptor is null)
                     {
                         return AcceptType.Json;
                     }
