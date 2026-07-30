@@ -1,3 +1,10 @@
+## [8.5.5](https://github.com/informatievlaanderen/public-api/compare/v8.5.4...v8.5.5) (2026-07-30)
+
+
+### Bug Fixes
+
+* get correct default response types ([6524486](https://github.com/informatievlaanderen/public-api/commit/65244868010d5100948be7854143a04c197cfba9))
+
 ## [8.5.4](https://github.com/informatievlaanderen/public-api/compare/v8.5.3...v8.5.4) (2026-07-28)
 
 ## [8.5.3](https://github.com/informatievlaanderen/public-api/compare/v8.5.2...v8.5.3) (2026-07-28)
