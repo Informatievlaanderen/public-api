@@ -18,10 +18,10 @@ namespace Public.Api.RoadSegment.V3
 
     public partial class RoadSegmentControllerV3
     {
-        private const string SplitByJunctionRoadSegmentRoute = "wegsegmenten/acties/knippenopkruising";
+        private const string ChangeAttributesRoadSegmentRoute = "wegsegmenten/acties/wijzigen/attributen";
 
         /// <summary>
-        ///     Knip wegsegmenten op een kruising. (v3)
+        ///     Wijzig attribuutwaarde(n) voor één of meerdere wegsegmenten. (v3)
         /// </summary>
         /// <param name="request"></param>
         /// <param name="problemDetailsHelper"></param>
@@ -29,32 +29,29 @@ namespace Public.Api.RoadSegment.V3
         /// <param name="cancellationToken"></param>
         /// <response code="202">Als het wegsegment gevonden is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
-        /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpPost(SplitByJunctionRoadSegmentRoute, Name = nameof(SplitRoadSegmentsByJunctionV3))]
-        [ApiOrder(ApiOrder.Road.RoadSegment.Split)]
+        [HttpPost(ChangeAttributesRoadSegmentRoute, Name = nameof(ChangeRoadSegmentAttributesV3))]
+        [ApiOrder(ApiOrder.Road.RoadSegment.ChangeAttributes)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status412PreconditionFailed)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "ETag", JsonSchemaType.String, "De ETag van de response.")]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV3))]
-        [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
-        [SwaggerRequestExample(typeof(SplitRoadSegmentsByJunctionV2Parameters), typeof(SplitRoadSegmentsByJunctionV2ParametersExamples))]
+        [SwaggerRequestExample(typeof(ChangeRoadSegmentAttributesV2Parameters), typeof(ChangeRoadSegmentAttributesV2ParametersExamples))]
         [SwaggerAuthorizeOperation(
-            OperationId = nameof(SplitRoadSegmentsByJunctionV3),
-            Description = "Knip wegsegmenten op een kruising.",
-            Authorize = Scopes.DvWrGeschetsteWegBeheer
+            OperationId = nameof(ChangeRoadSegmentAttributesV3),
+            Description = "Wijzig attribuutwaarde(n) voor één of meerdere wegsegmenten.",
+            Authorize = Scopes.DvWrAttribuutWaardenBeheer
         )]
-        public async Task<IActionResult> SplitRoadSegmentsByJunctionV3(
-            [FromBody] SplitRoadSegmentsByJunctionV2Parameters request,
+        public async Task<IActionResult> ChangeRoadSegmentAttributesV3(
+            [FromBody] ChangeRoadSegmentAttributesV2Parameters request,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] RoadSegmentSplitByJunctionV3Toggle featureToggle,
+            [FromServices] ChangeRoadSegmentAttributesV3Toggle featureToggle,
             CancellationToken cancellationToken = default)
         {
             if (!featureToggle.FeatureEnabled)
@@ -65,7 +62,7 @@ namespace Public.Api.RoadSegment.V3
             var contentFormat = DetermineFormat();
 
             RestRequest BackendRequest() =>
-                CreateBackendRestRequest(Method.Post, SplitByJunctionRoadSegmentRoute)
+                CreateBackendRestRequest(Method.Post, ChangeAttributesRoadSegmentRoute)
                     .AddJsonBody(request);
 
             var value = await GetFromBackendWithBadRequestAsync(
