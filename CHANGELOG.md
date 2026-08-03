@@ -1,3 +1,10 @@
+# [8.6.0](https://github.com/informatievlaanderen/public-api/compare/v8.5.5...v8.6.0) (2026-08-03)
+
+
+### Features
+
+* **road:** add roadsegments change attributes v3 endpoint ([281bab5](https://github.com/informatievlaanderen/public-api/commit/281bab5d67e2bd59ce07ef41df0c9bc810bd34e1))
+
 ## [8.5.5](https://github.com/informatievlaanderen/public-api/compare/v8.5.4...v8.5.5) (2026-07-30)
 
 
