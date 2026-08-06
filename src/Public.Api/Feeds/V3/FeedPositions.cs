@@ -52,7 +52,7 @@
         /// <param name="restClients"></param>
         /// <param name="register">Het register waarvoor je de posities opvraagt.</param>
         /// <param name="feed">Eventidentificator van de XML/Atom feeds (1) (optioneel).</param>
-        /// <param name="download">De identificator in het dowloadbestand (_metadata.dbf) (1) (optioneel).</param>
+        /// <param name="download">De waarde van het veld `download_event_id` in het dowloadbestand (_metadata.dbf) (1) (optioneel).</param>
         /// <param name="wijzigingFeedId">De Id van de entry in de wijzigingen feed (1) (optioneel).</param>
         /// <param name="feedPositionsToggle"></param>
         /// <param name="cancellationToken"></param>
@@ -94,17 +94,6 @@
 
             if(register is null)
                 return Ok(new FeedPositieResponse());
-
-            // will be removed once all feeds are ready
-            if (register != FeedPositiesRegister.Adressen)
-            {
-                return Ok(new FeedPositieResponse
-                {
-                    Feed = download ?? feed,
-                    WijzigingenFeedPagina = null,
-                    WijzigingenFeedId = null
-                });
-            }
 
             RestRequest BackendRequest() => CreateRequest(register.Value, feed, download, wijzigingFeedId);
             var value = await GetFromBackendAsync(
