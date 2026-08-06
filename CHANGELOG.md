@@ -1,3 +1,10 @@
+## [8.6.1](https://github.com/informatievlaanderen/public-api/compare/v8.6.0...v8.6.1) (2026-08-06)
+
+
+### Bug Fixes
+
+* **posities:** enable posities + update docs address ([3f85c7e](https://github.com/informatievlaanderen/public-api/commit/3f85c7e1449e6e9077a8f853fc29452b16deb8a4))
+
 # [8.6.0](https://github.com/informatievlaanderen/public-api/compare/v8.5.5...v8.6.0) (2026-08-03)
 
 
