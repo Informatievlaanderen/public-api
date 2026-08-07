@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/runtime-deps:10.0.9-noble-amd64
+FROM mcr.microsoft.com/dotnet/runtime-deps:10.0.10-noble-amd64
 LABEL maintainer="Digitaal Vlaanderen <digitaal.vlaanderen@vlaanderen.be>"
 
 COPY / /app
