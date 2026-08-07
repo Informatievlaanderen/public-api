@@ -132,7 +132,7 @@
         private static readonly Dictionary<FeedPositiesRegister, string> ResourceNames = new()
         {
             { FeedPositiesRegister.Gemeenten, "gemeenten" },
-            { FeedPositiesRegister.Postinfo, "postinfo" },
+            { FeedPositiesRegister.Postinfo, "postcodes" },
             { FeedPositiesRegister.Straatnamen, "straatnamen" },
             { FeedPositiesRegister.Adressen, "adressen" },
             { FeedPositiesRegister.Gebouwen, "gebouwen" },
