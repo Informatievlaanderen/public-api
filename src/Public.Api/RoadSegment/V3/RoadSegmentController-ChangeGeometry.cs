@@ -18,10 +18,10 @@ namespace Public.Api.RoadSegment.V3
 
     public partial class RoadSegmentControllerV3
     {
-        private const string SplitRoadSegmentRoute = "wegsegmenten/{id}/acties/knippen";
+        private const string ChangeGeometryRoadSegmentRoute = "wegsegmenten/{id}/acties/wijzigen/geometrie";
 
         /// <summary>
-        ///     Knip een wegsegment. (v3)
+        ///     Wijzig de geometrie van een wegsegment. (v3)
         /// </summary>
         /// <param name="id"></param>
         /// <param name="request"></param>
@@ -31,14 +31,16 @@ namespace Public.Api.RoadSegment.V3
         /// <response code="202">Als het wegsegment gevonden is.</response>
         /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="404">Als het wegsegment niet gevonden kan worden.</response>
+        /// <response code="410">Als het wegsegment verwijderd is.</response>
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpPost(SplitRoadSegmentRoute, Name = nameof(SplitRoadSegmentV3))]
-        [ApiOrder(ApiOrder.Road.RoadSegment.Split)]
+        [HttpPost(ChangeGeometryRoadSegmentRoute, Name = nameof(ChangeRoadSegmentGeometryV3))]
+        [ApiOrder(ApiOrder.Road.RoadSegment.ChangeAttributes)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status410Gone)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status412PreconditionFailed)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
@@ -46,20 +48,21 @@ namespace Public.Api.RoadSegment.V3
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(RoadSegmentNotFoundResponseExamplesV3))]
+        [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(RoadSegmentGoneResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
-        [SwaggerRequestExample(typeof(SplitRoadSegmentV2Parameters), typeof(SplitRoadSegmentV2ParametersExamples))]
+        [SwaggerRequestExample(typeof(ChangeRoadSegmentGeometryV2Parameters), typeof(ChangeRoadSegmentGeometryV2ParametersExamples))]
         [SwaggerAuthorizeOperation(
-            OperationId = nameof(SplitRoadSegmentV3),
-            Description = "Knip een wegsegment op de opgegeven knippositie.",
+            OperationId = nameof(ChangeRoadSegmentGeometryV3),
+            Description = "Wijzig de geometrie van een wegsegment. Wegknopen op het start- of eindpunt verplaatsen mee, net als de aansluitende wegsegmenten.",
             Authorize = Scopes.DvWrGeschetsteWegBeheer
         )]
-        public async Task<IActionResult> SplitRoadSegmentV3(
+        public async Task<IActionResult> ChangeRoadSegmentGeometryV3(
             [FromRoute] int id,
-            [FromBody] SplitRoadSegmentV2Parameters request,
+            [FromBody] ChangeRoadSegmentGeometryV2Parameters request,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] SplitRoadSegmentV3Toggle featureToggle,
+            [FromServices] RoadSegmentChangeGeometryV3Toggle featureToggle,
             CancellationToken cancellationToken = default)
         {
             if (!featureToggle.FeatureEnabled)
@@ -70,7 +73,7 @@ namespace Public.Api.RoadSegment.V3
             var contentFormat = DetermineFormat();
 
             RestRequest BackendRequest() =>
-                CreateBackendRestRequest(Method.Post, SplitRoadSegmentRoute)
+                CreateBackendRestRequest(Method.Post, ChangeGeometryRoadSegmentRoute)
                     .AddJsonBody(request)
                     .AddParameter(nameof(id), id, ParameterType.UrlSegment);
 
