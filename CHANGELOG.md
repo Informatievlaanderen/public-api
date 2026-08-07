@@ -1,3 +1,15 @@
+# [8.7.0](https://github.com/informatievlaanderen/public-api/compare/v8.6.1...v8.7.0) (2026-08-07)
+
+
+### Bug Fixes
+
+* **feeds:** posities postcode url ([5105655](https://github.com/informatievlaanderen/public-api/commit/5105655062fdc4c18bea4488a0d635d54923f86d))
+
+
+### Features
+
+* **road:** roadsegment edit geometry v3 ([9ee32d5](https://github.com/informatievlaanderen/public-api/commit/9ee32d5f8ca792e7513887d5c5e9303337826cb2))
+
 ## [8.6.1](https://github.com/informatievlaanderen/public-api/compare/v8.6.0...v8.6.1) (2026-08-06)
 
 
