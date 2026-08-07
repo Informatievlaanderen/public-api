@@ -389,9 +389,9 @@
       },
       "Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions": {
         "type": "Direct",
-        "requested": "[7.0.4, )",
-        "resolved": "7.0.4",
-        "contentHash": "YlqlcBcwxI7HyhGXGfax9MJv1aECNam8xehCwG92/lYuWXQqKmXvU1xMnYlt+YrDvTQ8DdgxlCtzHUNsFGTUsA==",
+        "requested": "[7.0.6, )",
+        "resolved": "7.0.6",
+        "contentHash": "5yAbn3NB8uLP3uEyDu3KYyqX5mJDkMyyRm6IPdcAQqFg5JFD+lwki7rtKihqkq7h2Sisz1Qy8XlC5X1iyKqxoA==",
         "dependencies": {
           "Autofac": "9.1.0",
           "Be.Vlaanderen.Basisregisters.Api": "27.0.0",
