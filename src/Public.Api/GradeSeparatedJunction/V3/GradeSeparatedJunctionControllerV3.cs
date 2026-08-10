@@ -36,8 +36,8 @@ namespace Public.Api.GradeSeparatedJunction.V3
         {
         }
 
-        protected override string NotFoundExceptionMessage => "Onbestaand ongelijkgrondse kruising.";
-        protected override string GoneExceptionMessage => "Verwijderd ongelijkgrondse kruising.";
+        protected override string NotFoundExceptionMessage => "Onbestaande ongelijkgrondse kruising.";
+        protected override string GoneExceptionMessage => "Verwijderde ongelijkgrondse kruising.";
 
         private ContentFormat DetermineFormat()
         {

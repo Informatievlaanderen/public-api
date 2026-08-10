@@ -36,8 +36,8 @@ namespace Public.Api.RoadNode.V3
         {
         }
 
-        protected override string NotFoundExceptionMessage => "Onbestaand wegknoop.";
-        protected override string GoneExceptionMessage => "Verwijderd wegknoop.";
+        protected override string NotFoundExceptionMessage => "Onbestaande wegknoop.";
+        protected override string GoneExceptionMessage => "Verwijderde wegknoop.";
 
         private ContentFormat DetermineFormat()
         {
