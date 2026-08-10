@@ -1,3 +1,10 @@
+## [8.7.1](https://github.com/informatievlaanderen/public-api/compare/v8.7.0...v8.7.1) (2026-08-10)
+
+
+### Bug Fixes
+
+* **road:** grammar "Onbestaand xxx" ([4ff2f3a](https://github.com/informatievlaanderen/public-api/commit/4ff2f3aeae002aaea181e73e652746bd17cdb60f))
+
 # [8.7.0](https://github.com/informatievlaanderen/public-api/compare/v8.6.1...v8.7.0) (2026-08-07)
 
 
