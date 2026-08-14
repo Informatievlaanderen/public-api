@@ -374,11 +374,20 @@
         { }
     }
 
-    public sealed class RoadSegmentRealizeV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    public sealed class RoadSegmentChangeFromPlannedToRealizedV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
     {
-        public override string Key => "RoadSegmentRealizeV3";
+        public override string Key => "RoadSegmentChangeFromPlannedToRealizedV3";
 
-        public RoadSegmentRealizeV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+        public RoadSegmentChangeFromPlannedToRealizedV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadSegmentCorrectFromRealizedToPlannedV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadSegmentCorrectFromRealizedToPlannedV3";
+
+        public RoadSegmentCorrectFromRealizedToPlannedV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
             : base(dynamicFeatureToggleService)
         { }
     }
