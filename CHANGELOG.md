@@ -1,3 +1,10 @@
+# [8.9.0](https://github.com/informatievlaanderen/public-api/compare/v8.8.0...v8.9.0) (2026-08-14)
+
+
+### Features
+
+* **road:** roadsegment v3 correct from realized to planned ([60fe2ff](https://github.com/informatievlaanderen/public-api/commit/60fe2ff51d70bfe1f15b85fcac137e59dc530489))
+
 # [8.8.0](https://github.com/informatievlaanderen/public-api/compare/v8.7.1...v8.8.0) (2026-08-11)
 
 
