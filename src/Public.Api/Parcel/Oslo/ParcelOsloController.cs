@@ -17,7 +17,7 @@ namespace Public.Api.Parcel.Oslo
 
     [ApiVisible]
     [ApiVersion(Version.V2)]
-    [AdvertiseApiVersions(Version.V2)]
+    [AdvertiseApiVersions(Version.V2, Version.V3)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Percelen")]
     [ApiProduces(EndpointType.Oslo)]

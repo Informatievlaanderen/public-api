@@ -157,7 +157,7 @@ namespace Public.Api.Infrastructure
                             typeof(ProposeStreetNameRequest).GetTypeInfo().Assembly.GetName().Name,
                             typeof(AddressRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ApproveAddressRequest).GetTypeInfo().Assembly.GetName().Name,
-                            typeof(ResponseOptions).GetTypeInfo().Assembly.GetName().Name,
+                            typeof(ResponseOptionsV2).GetTypeInfo().Assembly.GetName().Name,
                             typeof(PlanBuildingResponse).GetTypeInfo().Assembly.GetName().Name,
                             typeof(ParcelRegistry.Api.Oslo.Infrastructure.Startup).GetTypeInfo().Assembly.GetName().Name,
                             typeof(AttachAddressRequest).GetTypeInfo().Assembly.GetName().Name,
@@ -320,7 +320,9 @@ namespace Public.Api.Infrastructure
                 .ConfigureRegistryOptions<AddressOptionsV2>(_configuration.GetSection("ApiConfiguration:AddressRegistryV2"))
                 .ConfigureRegistryOptions<AddressOptionsV3>(_configuration.GetSection("ApiConfiguration:AddressRegistryV3"))
                 .ConfigureRegistryOptions<BuildingOptionsV2>(_configuration.GetSection("ApiConfiguration:BuildingRegistryV2"))
+                .ConfigureRegistryOptions<BuildingOptionsV3>(_configuration.GetSection("ApiConfiguration:BuildingRegistryV3"))
                 .ConfigureRegistryOptions<ParcelOptionsV2>(_configuration.GetSection("ApiConfiguration:ParcelRegistryV2"))
+                .ConfigureRegistryOptions<ParcelOptionsV3>(_configuration.GetSection("ApiConfiguration:ParcelRegistryV3"))
                 .ConfigureRegistryOptions<SuspiciousCasesOptionsV2>(_configuration.GetSection("ApiConfiguration:SuspiciousCases"))
                 .AddSingleton(new RoadRegistry.BackOffice.Api.Infrastructure.Options.ApiOptions //road ResponseExamples
                 {

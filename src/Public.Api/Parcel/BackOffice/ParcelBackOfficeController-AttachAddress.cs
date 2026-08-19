@@ -12,7 +12,7 @@ namespace Public.Api.Parcel.BackOffice
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.OpenApi;
     using ParcelRegistry.Api.BackOffice.Abstractions.Requests;
-    using ParcelRegistry.Api.Oslo.Parcel.Detail;
+    using ParcelRegistry.Api.Oslo.Parcel.V2.Detail;
     using RestSharp;
     using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;

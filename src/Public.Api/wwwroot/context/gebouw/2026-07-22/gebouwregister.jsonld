@@ -1,0 +1,290 @@
+{
+    "@context": {
+        "2DGebouwgeometrie": {
+            "@context": {
+                "geometrie": {
+                    "@id": "https://data.vlaanderen.be/ns/gebouw#geometrie",
+                    "@type": "http://www.w3.org/ns/locn#Geometry"
+                },
+                "methode": {
+                    "@id": "https://data.vlaanderen.be/ns/gebouw#methode",
+                    "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+                }
+            },
+            "@id": "https://data.vlaanderen.be/ns/gebouw#2DGebouwgeometrie"
+        },
+        "2DGeometrieMethodeWaarde": {
+            "@id": "http://www.w3.org/2004/02/skos/core#Concept"
+        },
+        "Adres": {
+            "@context": {
+                "identificator": {
+                    "@id": "http://www.w3.org/ns/adms#identifier",
+                    "@type": "http://www.w3.org/ns/adms#Identifier"
+                },
+                "isToegekendAan": {
+                    "@container": "@set",
+                    "@id": "https://data.vlaanderen.be/ns/adres#isToegekendAan",
+                    "@type": "https://data.vlaanderen.be/ns/adres#AdresseerbaarObject"
+                }
+            },
+            "@id": "https://data.vlaanderen.be/ns/adres#Adres"
+        },
+        "AdresseerbaarObject": {
+            "@context": {
+                "toegekendAdres": {
+                    "@container": "@set",
+                    "@id": "https://implementatie.data.vlaanderen.be/ns/gebouw#toegekendAdres",
+                    "@type": "https://data.vlaanderen.be/ns/adres#Adres"
+                }
+            },
+            "@id": "https://data.vlaanderen.be/ns/adres#AdresseerbaarObject"
+        },
+        "Boolean": {
+            "@id": "http://www.w3.org/2001/XMLSchema#boolean"
+        },
+        "DataEnvelop": {
+            "@context": {
+                "data": {
+                    "@container": "@set",
+                    "@id": "https://implementatie.data.vlaanderen.be/ns/gebouw#data",
+                    "@type": "http://www.w3.org/ns/prov#Entity"
+                }
+            },
+            "@id": "https://implementatie.data.vlaanderen.be/ns/gebouw#DataEnvelop"
+        },
+        "Envelop": {
+            "@id": "https://implementatie.data.vlaanderen.be/ns/generiek#Envelope"
+        },
+        "FunctieWaarde": {
+            "@id": "http://www.w3.org/2004/02/skos/core#Concept"
+        },
+        "Gebouw": {
+            "@context": {
+                "bestaatUit": {
+                    "@container": "@set",
+                    "@id": "https://data.vlaanderen.be/ns/gebouw#bestaatUit",
+                    "@type": "https://data.vlaanderen.be/ns/gebouw#Gebouweenheid"
+                },
+                "identificator": {
+                    "@id": "http://www.w3.org/ns/adms#identifier",
+                    "@type": "http://www.w3.org/ns/adms#Identifier"
+                },
+                "ligtOp": {
+                    "@container": "@set",
+                    "@id": "https://data.vlaanderen.be/ns/gebouw#ligtOp",
+                    "@type": "https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid"
+                }
+            },
+            "@id": "https://data.vlaanderen.be/ns/gebouw#Gebouw"
+        },
+        "GebouwEnvelop": {
+            "@context": {
+                "data": {
+                    "@container": "@set",
+                    "@id": "https://implementatie.data.vlaanderen.be/ns/gebouw#data",
+                    "@type": "http://www.w3.org/ns/prov#Entity"
+                }
+            },
+            "@id": "https://implementatie.data.vlaanderen.be/ns/gebouw#GebouwEnvelop"
+        },
+        "GebouweenhedenEnvelop": {
+            "@context": {
+                "data": {
+                    "@container": "@set",
+                    "@id": "https://implementatie.data.vlaanderen.be/ns/gebouw#data",
+                    "@type": "https://data.vlaanderen.be/ns/gebouw#Gebouweenheid"
+                }
+            },
+            "@id": "https://implementatie.data.vlaanderen.be/ns/gebouw#GebouweenhedenEnvelop"
+        },
+        "Gebouweenheid": {
+            "@context": {
+                "afwijkingVastgesteld": {
+                    "@id": "https://implementatie.data.vlaanderen.be/ns/gebouw#afwijkingVastgesteld",
+                    "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+                },
+                "identificator": {
+                    "@id": "http://www.w3.org/ns/adms#identifier",
+                    "@type": "http://www.w3.org/ns/adms#Identifier"
+                },
+                "isDeelVan": {
+                    "@id": "http://purl.org/dc/terms/isPartOf",
+                    "@type": "https://data.vlaanderen.be/ns/gebouw#Gebouw"
+                },
+                "positie": {
+                    "@id": "https://data.vlaanderen.be/ns/adres#positie",
+                    "@type": "https://data.vlaanderen.be/ns/generiek#GeografischePositie"
+                },
+                "toegekendAdres": {
+                    "@container": "@set",
+                    "@id": "https://implementatie.data.vlaanderen.be/ns/gebouw#toegekendAdres",
+                    "@type": "https://data.vlaanderen.be/ns/adres#Adres"
+                }
+            },
+            "@id": "https://data.vlaanderen.be/ns/gebouw#Gebouweenheid"
+        },
+        "GebouweenheidEnvelop": {
+            "@context": {
+                "data": {
+                    "@id": "https://implementatie.data.vlaanderen.be/ns/gebouw#data",
+                    "@type": "https://data.vlaanderen.be/ns/gebouw#Gebouweenheid"
+                }
+            },
+            "@id": "https://implementatie.data.vlaanderen.be/ns/gebouw#GebouweenheidEnvelop"
+        },
+        "GebouweenheidstatusWaarde": {
+            "@id": "http://www.w3.org/2004/02/skos/core#Concept"
+        },
+        "GebouwenEnvelop": {
+            "@context": {
+                "data": {
+                    "@container": "@set",
+                    "@id": "https://implementatie.data.vlaanderen.be/ns/gebouw#data",
+                    "@type": "http://www.w3.org/ns/prov#Entity"
+                }
+            },
+            "@id": "https://implementatie.data.vlaanderen.be/ns/gebouw#GebouwenEnvelop"
+        },
+        "GebouwstatusWaarde": {
+            "@id": "http://www.w3.org/2004/02/skos/core#Concept"
+        },
+        "GeografischePositie": {
+            "@context": {
+                "geometrie": {
+                    "@id": "http://www.w3.org/ns/locn#geometry",
+                    "@type": "http://www.opengis.net/ont/sf#Point"
+                },
+                "methode": {
+                    "@id": "https://data.vlaanderen.be/ns/generiek#methode",
+                    "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+                },
+                "specificatie": {
+                    "@id": "https://data.vlaanderen.be/ns/generiek#specificatie",
+                    "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+                }
+            },
+            "@id": "https://data.vlaanderen.be/ns/generiek#GeografischePositie"
+        },
+        "Geometrie": {
+            "@context": {
+                "gml": {
+                    "@id": "http://www.opengis.net/ont/geosparql#asGML",
+                    "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+                }
+            },
+            "@id": "http://www.w3.org/ns/locn#Geometry"
+        },
+        "GestructureerdeIdentificator": {
+            "@context": {
+                "lokaleIdentificator": {
+                    "@id": "https://data.vlaanderen.be/ns/generiek#lokaleIdentificator",
+                    "@type": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                "naamruimte": {
+                    "@id": "https://data.vlaanderen.be/ns/generiek#naamruimte",
+                    "@type": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                "versieIdentificator": {
+                    "@id": "https://data.vlaanderen.be/ns/generiek#versieIdentificator",
+                    "@type": "http://www.w3.org/2001/XMLSchema#string"
+                }
+            },
+            "@id": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator"
+        },
+        "Identificator": {
+            "@context": {
+                "gestructureerdeIdentificator": {
+                    "@id": "https://data.vlaanderen.be/ns/generiek#gestructureerdeIdentificator",
+                    "@type": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator"
+                },
+                "identificator": {
+                    "@id": "http://www.w3.org/2004/02/skos/core#notation",
+                    "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+                }
+            },
+            "@id": "http://www.w3.org/ns/adms#Identifier"
+        },
+        "Integer": {
+            "@id": "http://www.w3.org/2001/XMLSchema#integer"
+        },
+        "Literal": {
+            "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
+        },
+        "Object": {
+            "@context": {
+                "identificator": {
+                    "@id": "http://www.w3.org/ns/adms#identifier",
+                    "@type": "http://www.w3.org/ns/adms#Identifier"
+                }
+            },
+            "@id": "http://www.w3.org/ns/prov#Entity"
+        },
+        "Perceelstatus": {
+            "@id": "http://www.w3.org/2004/02/skos/core#Concept"
+        },
+        "Polygoon": {
+            "@context": {
+                "gml": {
+                    "@id": "http://www.opengis.net/ont/geosparql#asGML",
+                    "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+                }
+            },
+            "@id": "http://www.opengis.net/ont/sf#Polygon"
+        },
+        "Problemdetail": {
+            "@context": {
+                "detail": {
+                    "@id": "http://purl.org/dc/terms/description",
+                    "@type": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                "instance": {
+                    "@id": "http://purl.org/dc/terms/references",
+                    "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+                },
+                "status": {
+                    "@id": "http://www.w3.org/ns/adms#status",
+                    "@type": "http://www.w3.org/2001/XMLSchema#integer"
+                },
+                "title": {
+                    "@id": "http://purl.org/dc/terms/title",
+                    "@type": "http://www.w3.org/2001/XMLSchema#string"
+                },
+                "type": {
+                    "@id": "http://purl.org/dc/terms/type",
+                    "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+                }
+            },
+            "@id": "https://implementatie.data.vlaanderen.be/ns/generiek#Problemdetail"
+        },
+        "Punt": {
+            "@context": {
+                "gml": {
+                    "@id": "http://www.opengis.net/ont/geosparql#asGML",
+                    "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+                }
+            },
+            "@id": "http://www.opengis.net/ont/sf#Point"
+        },
+        "RuimtelijkeEenheid": {
+            "@context": {
+                "identificator": {
+                    "@id": "http://www.w3.org/ns/adms#identifier",
+                    "@type": "http://www.w3.org/ns/adms#Identifier"
+                },
+                "toegekendAdres": {
+                    "@container": "@set",
+                    "@id": "https://implementatie.data.vlaanderen.be/ns/gebouw#toegekendAdres",
+                    "@type": "https://data.vlaanderen.be/ns/adres#Adres"
+                }
+            },
+            "@id": "https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid"
+        },
+        "String": {
+            "@id": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "Uri": {
+            "@id": "http://www.w3.org/2001/XMLSchema#anyURI"
+        }
+    }
+}

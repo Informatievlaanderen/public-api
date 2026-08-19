@@ -1,16 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:perceel:2026-01-01",
+  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:perceel:2026-01-21",
   "title": "Perceel event data (create/update/delete)",
   "type": "object",
   "additionalProperties": false,
-  "required": ["@id", "objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
+  "required": ["objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
   "properties": {
-    "@id": {
-      "type": "string",
-      "format": "uri",
-      "description": "De persistente URI die dit perceel-object identificeert."
-    },
     "objectId": {
       "type": "string",
       "description": "De objectidentificator van het perceel."
@@ -60,25 +55,25 @@
       "allOf": [
         {
           "if": {
-            "properties": { "naam": { "const": "perceelStatus" } },
+            "properties": { "naam": { "const": "status" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
-                "enum": [null, "gerealiseerd", "gehistoreerd"]
+                "enum": [null, "https://data.vlaanderen.be/id/concept/perceelstatus/gerealiseerd", "https://data.vlaanderen.be/id/concept/perceelstatus/gehistoreerd"]
               },
               "nieuweWaarde": {
                 "type": "string",
-                "enum": ["gerealiseerd", "gehistoreerd"]
+                "enum": ["https://data.vlaanderen.be/id/concept/perceelstatus/gerealiseerd", "https://data.vlaanderen.be/id/concept/perceelstatus/gehistoreerd"]
               }
             }
           }
         },
         {
           "if": {
-            "properties": { "naam": { "const": "adresIds" } },
+            "properties": { "naam": { "const": "toegekendAdres" } },
             "required": ["naam"]
           },
           "then": {

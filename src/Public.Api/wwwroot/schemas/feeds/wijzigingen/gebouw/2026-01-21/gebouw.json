@@ -1,16 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:gebouw:2026-01-01",
+  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:gebouw:2026-01-21",
   "title": "Gebouw event data (create/update/delete)",
   "type": "object",
   "additionalProperties": false,
-  "required": ["@id", "objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
+  "required": ["objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
   "properties": {
-    "@id": {
-      "type": "string",
-      "format": "uri",
-      "description": "De persistente URI die dit gebouw-object identificeert."
-    },
     "objectId": {
       "type": "string",
       "description": "De objectidentificator van het gebouw."
@@ -60,25 +55,25 @@
       "allOf": [
         {
           "if": {
-            "properties": { "naam": { "const": "gebouwStatus" } },
+            "properties": { "naam": { "const": "status" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
-                "enum": [null, "gepland", "inAanbouw", "nietGerealiseerd", "gerealiseerd", "gehistoreerd"]
+                "enum": [null, "https://data.vlaanderen.be/id/concept/gebouwstatus/gepland", "https://data.vlaanderen.be/id/concept/gebouwstatus/inAanbouw", "https://data.vlaanderen.be/id/concept/gebouwstatus/nietGerealiseerd", "https://data.vlaanderen.be/id/concept/gebouwstatus/gerealiseerd", "https://data.vlaanderen.be/id/concept/gebouwstatus/gehistoreerd"]
               },
               "nieuweWaarde": {
                 "type": "string",
-                "enum": ["gepland", "inAanbouw", "nietGerealiseerd", "gerealiseerd", "gehistoreerd"]
+                "enum": ["https://data.vlaanderen.be/id/concept/gebouwstatus/gepland", "https://data.vlaanderen.be/id/concept/gebouwstatus/inAanbouw", "https://data.vlaanderen.be/id/concept/gebouwstatus/nietGerealiseerd", "https://data.vlaanderen.be/id/concept/gebouwstatus/gerealiseerd", "https://data.vlaanderen.be/id/concept/gebouwstatus/gehistoreerd"]
               }
             }
           }
         },
         {
           "if": {
-            "properties": { "naam": { "const": "gebouwGeometrie" } },
+            "properties": { "naam": { "const": "geometrie.geometrie" } },
             "required": ["naam"]
           },
           "then": {
@@ -97,18 +92,18 @@
         },
         {
           "if": {
-            "properties": { "naam": { "const": "geometrieMethode" } },
+            "properties": { "naam": { "const": "geometrie.methode" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
-                "enum": [null, "ingeschetst", "ingemetenGRB"]
+                "enum": [null, "https://data.vlaanderen.be/id/concept/2Dgeometriemethode/ingeschetst", "https://data.vlaanderen.be/id/concept/2Dgeometriemethode/ingemetenGRB"]
               },
               "nieuweWaarde": {
                 "type": "string",
-                "enum": ["ingeschetst", "ingemetenGRB"]
+                "enum": ["https://data.vlaanderen.be/id/concept/2Dgeometriemethode/ingeschetst", "https://data.vlaanderen.be/id/concept/2Dgeometriemethode/ingemetenGRB"]
               }
             }
           }
@@ -118,16 +113,12 @@
     "gebouwGeometrie": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["type", "projectie", "gml"],
+      "required": ["type", "gml"],
       "properties": {
         "type": {
           "type": "string",
           "const": "Polygon",
           "description": "Het type geometrie."
-        },
-        "projectie": {
-          "type": "string",
-          "description": "Het ruimtelijk referentiesysteem van de geometrie."
         },
         "gml": {
           "type": "string",

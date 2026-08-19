@@ -13,7 +13,7 @@ namespace Public.Api.Feeds.V3.Change
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.OpenApi;
-    using ParcelRegistry.Api.Oslo.Parcel.ChangeFeed;
+    using ParcelRegistry.Api.Oslo.Parcel.V3.ChangeFeed;
     using Public.Api.Infrastructure;
     using Public.Api.Infrastructure.Configuration;
     using RestSharp;

@@ -42,21 +42,24 @@ namespace Public.Api.Infrastructure.Swagger
         {
             public const int Base = Address.Base + 100;
             public const int V2 = Base + 20;
-            public const int Edit = Base + 30;
+            public const int V3 = Base + 30;
+            public const int Edit = Base + 50;
         }
 
         public static class BuildingUnit
         {
             public const int Base = Building.Base + 100;
             public const int V2 = Base + 20;
-            public const int Edit = Base + 30;
+            public const int V3 = Base + 30;
+            public const int Edit = Base + 50;
         }
 
         public static class Parcel
         {
             public const int Base = BuildingUnit.Base + 100;
             public const int V2 = Base + 20;
-            public const int Edit = Base + 30;
+            public const int V3 = Base + 30;
+            public const int Edit = Base + 50;
         }
 
         public static class Road

@@ -26,4 +26,14 @@
             : base(dynamicFeatureToggleService)
         { }
     }
+
+    public sealed class OsloV3ParcelToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "OsloV3ParcelToggle";
+
+        public OsloV3ParcelToggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        {
+        }
+    }
 }
