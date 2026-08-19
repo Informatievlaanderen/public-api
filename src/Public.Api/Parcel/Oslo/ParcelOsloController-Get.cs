@@ -10,7 +10,7 @@ namespace Public.Api.Parcel.Oslo
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.OpenApi;
-    using ParcelRegistry.Api.Oslo.Parcel.Detail;
+    using ParcelRegistry.Api.Oslo.Parcel.V2.Detail;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;

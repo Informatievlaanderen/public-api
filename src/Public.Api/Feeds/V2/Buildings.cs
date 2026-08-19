@@ -5,7 +5,7 @@ namespace Public.Api.Feeds.V2
     using System.Threading.Tasks;
     using Autofac.Features.Indexed;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using BuildingRegistry.Api.Oslo.Building.Sync;
+    using BuildingRegistry.Api.Oslo.Building.V2.Sync;
     using Common.Infrastructure;
     using Infrastructure;
     using Infrastructure.Configuration;

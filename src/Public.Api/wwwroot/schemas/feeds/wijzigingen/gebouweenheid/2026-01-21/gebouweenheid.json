@@ -1,16 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:gebouweenheid:2026-01-01",
+  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:gebouweenheid:2026-01-21",
   "title": "Gebouweenheid event data (create/update/delete)",
   "type": "object",
   "additionalProperties": false,
-  "required": ["@id", "objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
+  "required": ["objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
   "properties": {
-    "@id": {
-      "type": "string",
-      "format": "uri",
-      "description": "De persistente URI die dit gebouweenheid-object identificeert."
-    },
     "objectId": {
       "type": "string",
       "description": "De objectidentificator van de gebouweenheid."
@@ -60,7 +55,7 @@
       "allOf": [
         {
           "if": {
-            "properties": { "naam": { "const": "gebouw.id" } },
+            "properties": { "naam": { "const": "isDeelVan" } },
             "required": ["naam"]
           },
           "then": {
@@ -72,43 +67,43 @@
         },
         {
           "if": {
-            "properties": { "naam": { "const": "gebouweenheidStatus" } },
+            "properties": { "naam": { "const": "status" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
-                "enum": [null, "gepland", "nietGerealiseerd", "gerealiseerd", "gehistoreerd"]
+                "enum": [null, "https://data.vlaanderen.be/id/concept/gebouweenheidstatus/gepland", "https://data.vlaanderen.be/id/concept/gebouweenheidstatus/nietGerealiseerd", "https://data.vlaanderen.be/id/concept/gebouweenheidstatus/gerealiseerd", "https://data.vlaanderen.be/id/concept/gebouweenheidstatus/gehistoreerd"]
               },
               "nieuweWaarde": {
                 "type": "string",
-                "enum": ["gepland", "nietGerealiseerd", "gerealiseerd", "gehistoreerd"]
+                "enum": ["https://data.vlaanderen.be/id/concept/gebouweenheidstatus/gepland", "https://data.vlaanderen.be/id/concept/gebouweenheidstatus/nietGerealiseerd", "https://data.vlaanderen.be/id/concept/gebouweenheidstatus/gerealiseerd", "https://data.vlaanderen.be/id/concept/gebouweenheidstatus/gehistoreerd"]
               }
             }
           }
         },
         {
           "if": {
-            "properties": { "naam": { "const": "gebouweenheidFunctie" } },
+            "properties": { "naam": { "const": "functie" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
-                "enum": [null, "nietGekend", "gemeenschappelijkDeel"]
+                "enum": [null, "https://data.vlaanderen.be/id/concept/gebouweenheidfunctie/nietGekend", "https://data.vlaanderen.be/id/concept/gebouweenheidfunctie/gemeenschappelijkDeel"]
               },
               "nieuweWaarde": {
                 "type": "string",
-                "enum": ["nietGekend", "gemeenschappelijkDeel"]
+                "enum": ["https://data.vlaanderen.be/id/concept/gebouweenheidfunctie/nietGekend", "https://data.vlaanderen.be/id/concept/gebouweenheidfunctie/gemeenschappelijkDeel"]
               }
             }
           }
         },
         {
           "if": {
-            "properties": { "naam": { "const": "gebouweenheidPositie" } },
+            "properties": { "naam": { "const": "positie.geometrie" } },
             "required": ["naam"]
           },
           "then": {
@@ -127,25 +122,25 @@
         },
         {
           "if": {
-            "properties": { "naam": { "const": "positieGeometrieMethode" } },
+            "properties": { "naam": { "const": "positie.methode" } },
             "required": ["naam"]
           },
           "then": {
             "properties": {
               "oudeWaarde": {
                 "type": ["null", "string"],
-                "enum": [null, "aangeduidDoorBeheerder", "afgeleidVanObject", "geïnterpoleerd"]
+                "enum": [null, "https://data.vlaanderen.be/id/concept/geometriemethode/aangeduidDoorBeheerder", "https://data.vlaanderen.be/id/concept/geometriemethode/afgeleidVanObject", "https://data.vlaanderen.be/id/concept/geometriemethode/geinterpoleerd"]
               },
               "nieuweWaarde": {
                 "type": "string",
-                "enum": ["aangeduidDoorBeheerder", "afgeleidVanObject", "geïnterpoleerd"]
+                "enum": ["https://data.vlaanderen.be/id/concept/geometriemethode/aangeduidDoorBeheerder", "https://data.vlaanderen.be/id/concept/geometriemethode/afgeleidVanObject", "https://data.vlaanderen.be/id/concept/geometriemethode/geinterpoleerd"]
               }
             }
           }
         },
         {
           "if": {
-            "properties": { "naam": { "const": "adresIds" } },
+            "properties": { "naam": { "const": "toegekendAdres" } },
             "required": ["naam"]
           },
           "then": {
@@ -188,16 +183,12 @@
     "gebouweenheidPositie": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["type", "projectie", "gml"],
+      "required": ["type", "gml"],
       "properties": {
         "type": {
           "type": "string",
           "const": "Point",
           "description": "Het type geometrie."
-        },
-        "projectie": {
-          "type": "string",
-          "description": "Het ruimtelijk referentiesysteem van de geometrie."
         },
         "gml": {
           "type": "string",

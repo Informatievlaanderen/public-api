@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using Autofac.Features.Indexed;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
-    using BuildingRegistry.Api.Oslo.BuildingUnit.ChangeFeed;
+    using BuildingRegistry.Api.Oslo.BuildingUnit.V3.ChangeFeed;
     using CloudNative.CloudEvents;
     using Common.FeatureToggles;
     using Common.Infrastructure;

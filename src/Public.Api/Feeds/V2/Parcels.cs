@@ -13,7 +13,7 @@ namespace Public.Api.Feeds.V2
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
     using Microsoft.OpenApi;
-    using ParcelRegistry.Api.Oslo.Parcel.Sync;
+    using ParcelRegistry.Api.Oslo.Parcel.V2.Sync;
     using RestSharp;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;

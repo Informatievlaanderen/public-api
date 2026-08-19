@@ -17,7 +17,7 @@ namespace Public.Api.BuildingUnit.Oslo
 
     [ApiVisible]
     [ApiVersion(Version.V2)]
-    [AdvertiseApiVersions(Version.V2)]
+    [AdvertiseApiVersions(Version.V2, Version.V3)]
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Gebouweenheden")]
     [ApiProduces(EndpointType.Oslo)]

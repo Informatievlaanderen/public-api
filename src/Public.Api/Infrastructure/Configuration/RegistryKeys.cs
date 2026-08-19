@@ -12,12 +12,12 @@ namespace Public.Api.Infrastructure.Configuration
         public const string AddressV2 = "AddressRegistryV2";
         public const string AddressV3 = "AddressRegistryV3";
         public const string AddressBackOffice = "AddressRegistryBackOffice";
-        public const string Building = "BuildingRegistry";
         public const string BuildingV2 = "BuildingRegistryV2";
+        public const string BuildingV3 = "BuildingRegistryV3";
         public const string BuildingBackOffice = "BuildingRegistryBackOffice";
         public const string BuildingGrb = "BuildingRegistryGrb";
-        public const string Parcel = "ParcelRegistry";
         public const string ParcelV2 = "ParcelRegistryV2";
+        public const string ParcelV3 = "ParcelRegistryV3";
         public const string ParcelBackOffice = "ParcelRegistryBackOffice";
         public const string Road = "RoadRegistry";
         public const string RoadV3 = "RoadRegistryV3";
