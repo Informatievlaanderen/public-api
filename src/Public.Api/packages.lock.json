@@ -217,13 +217,13 @@
       },
       "Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo": {
         "type": "Direct",
-        "requested": "[6.0.0, )",
-        "resolved": "6.0.0",
-        "contentHash": "ctpT1OGmLJWrrwyrrba4t3BzrcgGNfqgHmWiVgm25ix3EYetuSlmz/QH8S9UyMBnL6+x/p/5g6YSuBi5hHH9vQ==",
+        "requested": "[6.2.0, )",
+        "resolved": "6.2.0",
+        "contentHash": "o2HSDomQkK3a8TAZ8e/sMEJ/axscTNGQBkoOjlOf4VmcXqslnIvX+sQYq2EEU9HSIgwdp9PavPZusOvqjg+oRw==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Be.Vlaanderen.Basisregisters.Api": "27.0.0",
-          "Be.Vlaanderen.Basisregisters.GrAr.Legacy": "24.1.0",
+          "Be.Vlaanderen.Basisregisters.GrAr.Legacy": "25.9.4",
           "Datadog.Trace.Bundle": "3.45.0",
           "MediatR": "[12.5.0, 13.0.0)"
         }
