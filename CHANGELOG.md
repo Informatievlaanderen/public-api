@@ -1,3 +1,10 @@
+## [8.10.3](https://github.com/informatievlaanderen/public-api/compare/v8.10.2...v8.10.3) (2026-08-20)
+
+
+### Bug Fixes
+
+* **feed:** urls + examples building+parcel ([ba77ad6](https://github.com/informatievlaanderen/public-api/commit/ba77ad6e4ccf31b366a82ec32ad63b61dd3d3dcd))
+
 ## [8.10.2](https://github.com/informatievlaanderen/public-api/compare/v8.10.1...v8.10.2) (2026-08-20)
 
 
