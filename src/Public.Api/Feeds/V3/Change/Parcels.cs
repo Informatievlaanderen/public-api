@@ -83,7 +83,7 @@ namespace Public.Api.Feeds.V3.Change
                 pagina);
 
             var value = await GetFromBackendAsync(
-                    restClients[RegistryKeys.ParcelV2].Value,
+                    restClients[RegistryKeys.ParcelV3].Value,
                     BackendRequest,
                     contentFormat.ContentType,
                     HandleBadRequest,
@@ -126,7 +126,7 @@ namespace Public.Api.Feeds.V3.Change
             var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             var value = await GetFromBackendAsync(
-                restClients[RegistryKeys.ParcelV2].Value,
+                restClients[RegistryKeys.ParcelV3].Value,
                 () => new RestRequest($"percelen/{objectId}/wijzigingen", Method.Get).AddPagination(offset, limit),
                 contentFormat.ContentType,
                 HandleBadRequest,

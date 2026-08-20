@@ -203,9 +203,9 @@
       },
       "Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions": {
         "type": "Direct",
-        "requested": "[6.2.1, )",
-        "resolved": "6.2.1",
-        "contentHash": "oCv8954O9rkC4OvyL7MPvN6lW2bqbN1RMNda8EGq8aWuXNwSyiHhPn4HdP5PEgKJLKXiVkzEHE7jU613un5dXg==",
+        "requested": "[6.2.2, )",
+        "resolved": "6.2.2",
+        "contentHash": "7zSudRl9WOmU3f5hU7IJuMflVi05JU6EffiLl38r7nC23FEOqz9sZ8VnhmWYhX6RXj5toPklbfpbuWgYmsN/sw==",
         "dependencies": {
           "Be.Vlaanderen.Basisregisters.Api": "27.0.0",
           "Be.Vlaanderen.Basisregisters.GrAr.Edit": "25.9.4",
@@ -217,9 +217,9 @@
       },
       "Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo": {
         "type": "Direct",
-        "requested": "[6.2.1, )",
-        "resolved": "6.2.1",
-        "contentHash": "5ie/eZoeqAaEeCI1d1ynQmLNY5MWK6JXQlzXlA7S/w/uMS+00jX7TfE7w5DiKqVUs2FYhoIYjldqWvGu5zXaDA==",
+        "requested": "[6.2.2, )",
+        "resolved": "6.2.2",
+        "contentHash": "b7hWTREfQhjCjHgPGThbscV7IvNxMXO/Wn8Apb4EcYVOENfHaQta9iZWogAEu4vLRlhMICRFMb8JUF18vmqyxA==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Be.Vlaanderen.Basisregisters.Api": "27.0.0",
@@ -389,9 +389,9 @@
       },
       "Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions": {
         "type": "Direct",
-        "requested": "[7.1.1, )",
-        "resolved": "7.1.1",
-        "contentHash": "Qo1xw+ePBGdjT+ik+E0JYlHUmcMp1rPjM4oW2ijUTKmX9JLm8GUOmug66VDLcIPvzbYjyx+wJ2AbohAjx/Pn1w==",
+        "requested": "[7.1.2, )",
+        "resolved": "7.1.2",
+        "contentHash": "7SukEwrQrcM6ZNLg/N9yTvvADQL+EkSOrr+r1xyH0ta541+Ti8xHXTw/XNyWPIhHkeYWmgVNv9vNCWcX/NshFw==",
         "dependencies": {
           "Autofac": "9.1.0",
           "Be.Vlaanderen.Basisregisters.Api": "27.0.0",
@@ -424,9 +424,9 @@
       },
       "Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo": {
         "type": "Direct",
-        "requested": "[7.1.1, )",
-        "resolved": "7.1.1",
-        "contentHash": "sKiLHjXknC8nV2BJdEhD3NQ/tuyi5H4I6igZf8AVoP5mIQjzFqAPhg15p4xGl/pPmWALbxgqYCwBeOjLnyr1ag==",
+        "requested": "[7.1.2, )",
+        "resolved": "7.1.2",
+        "contentHash": "vK6WKyQmUvtKJ/qQX/cwFDRFlbmBSNKLvzpXy6O8jbXP23WKJKtrTf8+3fvDlCo7Nb9tNwMJ9nKnIH7wWHiU6Q==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Autofac": "9.1.0",

@@ -83,7 +83,7 @@
                 pagina);
 
             var value = await GetFromBackendAsync(
-                    restClients[RegistryKeys.BuildingV2].Value,
+                    restClients[RegistryKeys.BuildingV3].Value,
                     BackendRequest,
                     contentFormat.ContentType,
                     HandleBadRequest,
@@ -126,7 +126,7 @@
             var contentFormat = DetermineFormat(httpContextAccessor.HttpContext!);
 
             var value = await GetFromBackendAsync(
-                restClients[RegistryKeys.BuildingV2].Value,
+                restClients[RegistryKeys.BuildingV3].Value,
                 () => new RestRequest($"gebouwen/{objectId}/wijzigingen", Method.Get).AddPagination(offset, limit),
                 contentFormat.ContentType,
                 HandleBadRequest,
