@@ -1,3 +1,10 @@
+# [8.10.0](https://github.com/informatievlaanderen/public-api/compare/v8.9.0...v8.10.0) (2026-08-20)
+
+
+### Features
+
+* add parcel + building + buildingunit v3 ([5030a9f](https://github.com/informatievlaanderen/public-api/commit/5030a9fe41f10a8254b780a6fe6c0c6e4921f828))
+
 # [8.9.0](https://github.com/informatievlaanderen/public-api/compare/v8.8.0...v8.9.0) (2026-08-14)
 
 
