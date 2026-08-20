@@ -585,12 +585,12 @@
       },
       "CloudNative.CloudEvents.NewtonsoftJson": {
         "type": "Direct",
-        "requested": "[2.8.0, )",
-        "resolved": "2.8.0",
-        "contentHash": "BIs7Tg73XqRDnk1m60leowADsXNJyg7a9wQnim2zfamory1jXRtrd9N1ppX3DbaTjSd2w5rqRk9ufLfgzIFBcg==",
+        "requested": "[2.9.0, )",
+        "resolved": "2.9.0",
+        "contentHash": "eQO3wjCldSTg5nZm8kH98dZBz21GhQndP4IiPirSFV89ZPm1JltqKdgTui3IEpjuIi/+q1xRB7qh9hzD5r4nOQ==",
         "dependencies": {
-          "CloudNative.CloudEvents": "2.8.0",
-          "Newtonsoft.Json": "13.0.3"
+          "CloudNative.CloudEvents": "2.9.0",
+          "Newtonsoft.Json": "13.0.4"
         }
       },
       "Datadog.Trace.Bundle": {
@@ -920,8 +920,8 @@
       },
       "CloudNative.CloudEvents": {
         "type": "Transitive",
-        "resolved": "2.8.0",
-        "contentHash": "RvabvAQV7u3FZcZL5UlRmFz3/T5nMl86GpChpRvHKRHbO+/I4LBcZ0xRqYnNfAh30gM+h/JkSBHEnbhl0zmGtA=="
+        "resolved": "2.9.0",
+        "contentHash": "Qh8/MS3YBI78Q5+AVXN/hNQZkhFW5OyDHdn4Wi05ZzlylKOsTypBiQQ1u0U8iOZ24HMe8Hc0VH2CIwnY4YTGEA=="
       },
       "CommandLineParser": {
         "type": "Transitive",
@@ -1002,8 +1002,7 @@
         "resolved": "11.11.0",
         "contentHash": "viTKWaMbL3yJYgGI0DiCeavNbE9UPMWFVK2XS9nYXGbm3NDMd0/L5ER4wBzmTtW3BYh3SrlSXm9RACiKZ6stlA==",
         "dependencies": {
-          "FluentValidation": "11.11.0",
-          "Microsoft.Extensions.Dependencyinjection.Abstractions": "2.1.0"
+          "FluentValidation": "11.11.0"
         }
       },
       "Fluid.Core": {
@@ -1259,11 +1258,6 @@
         "type": "Transitive",
         "resolved": "10.0.0",
         "contentHash": "xvhmF2dlwC3e8KKSuWOjJkjQdKG80991CUqjDnqzV1Od0CgMqbDw49kGJ9RiGrp3nbLTYCSb3c+KYo6TcENYRw=="
-      },
-      "Microsoft.Extensions.DependencyInjection.Abstractions": {
-        "type": "Transitive",
-        "resolved": "2.1.0",
-        "contentHash": "8/CtASu80UIoyG+r8FstrmZW5GLtXxzoYpjj3jV0FKZCL5CiFgSH3pAmqut/dC68mu7N1bU6v0UtKKL3gCUQGQ=="
       },
       "Microsoft.Extensions.DependencyModel": {
         "type": "Transitive",
