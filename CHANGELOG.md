@@ -1,3 +1,10 @@
+## [8.10.1](https://github.com/informatievlaanderen/public-api/compare/v8.10.0...v8.10.1) (2026-08-20)
+
+
+### Bug Fixes
+
+* rfcdatetime xml + bump building ([708f266](https://github.com/informatievlaanderen/public-api/commit/708f266532edcd87195f1ad396234eebc3b80904))
+
 # [8.10.0](https://github.com/informatievlaanderen/public-api/compare/v8.9.0...v8.10.0) (2026-08-20)
 
 
