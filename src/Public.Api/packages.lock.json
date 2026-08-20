@@ -203,9 +203,9 @@
       },
       "Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions": {
         "type": "Direct",
-        "requested": "[6.2.0, )",
-        "resolved": "6.2.0",
-        "contentHash": "3NiEbVOpK771N3t4eD3j1zzJLdrbsrT3koghBkjVhdpSDgurjZ5im1vLHqepob39IFx4Ea2ZEewdGJiHmzsgTA==",
+        "requested": "[6.2.1, )",
+        "resolved": "6.2.1",
+        "contentHash": "oCv8954O9rkC4OvyL7MPvN6lW2bqbN1RMNda8EGq8aWuXNwSyiHhPn4HdP5PEgKJLKXiVkzEHE7jU613un5dXg==",
         "dependencies": {
           "Be.Vlaanderen.Basisregisters.Api": "27.0.0",
           "Be.Vlaanderen.Basisregisters.GrAr.Edit": "25.9.4",
@@ -217,9 +217,9 @@
       },
       "Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo": {
         "type": "Direct",
-        "requested": "[6.2.0, )",
-        "resolved": "6.2.0",
-        "contentHash": "o2HSDomQkK3a8TAZ8e/sMEJ/axscTNGQBkoOjlOf4VmcXqslnIvX+sQYq2EEU9HSIgwdp9PavPZusOvqjg+oRw==",
+        "requested": "[6.2.1, )",
+        "resolved": "6.2.1",
+        "contentHash": "5ie/eZoeqAaEeCI1d1ynQmLNY5MWK6JXQlzXlA7S/w/uMS+00jX7TfE7w5DiKqVUs2FYhoIYjldqWvGu5zXaDA==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Be.Vlaanderen.Basisregisters.Api": "27.0.0",
@@ -1002,7 +1002,8 @@
         "resolved": "11.11.0",
         "contentHash": "viTKWaMbL3yJYgGI0DiCeavNbE9UPMWFVK2XS9nYXGbm3NDMd0/L5ER4wBzmTtW3BYh3SrlSXm9RACiKZ6stlA==",
         "dependencies": {
-          "FluentValidation": "11.11.0"
+          "FluentValidation": "11.11.0",
+          "Microsoft.Extensions.Dependencyinjection.Abstractions": "2.1.0"
         }
       },
       "Fluid.Core": {
@@ -1258,6 +1259,11 @@
         "type": "Transitive",
         "resolved": "10.0.0",
         "contentHash": "xvhmF2dlwC3e8KKSuWOjJkjQdKG80991CUqjDnqzV1Od0CgMqbDw49kGJ9RiGrp3nbLTYCSb3c+KYo6TcENYRw=="
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions": {
+        "type": "Transitive",
+        "resolved": "2.1.0",
+        "contentHash": "8/CtASu80UIoyG+r8FstrmZW5GLtXxzoYpjj3jV0FKZCL5CiFgSH3pAmqut/dC68mu7N1bU6v0UtKKL3gCUQGQ=="
       },
       "Microsoft.Extensions.DependencyModel": {
         "type": "Transitive",

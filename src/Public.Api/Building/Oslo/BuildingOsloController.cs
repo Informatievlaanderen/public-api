@@ -21,7 +21,7 @@ namespace Public.Api.Building.Oslo
     [ApiRoute("")]
     [ApiExplorerSettings(GroupName = "Gebouwen")]
     [ApiProduces(EndpointType.Oslo)]
-    public partial class BuildingOsloController : RegistryApiController<V3.BuildingOsloController>
+    public partial class BuildingOsloController : RegistryApiController<BuildingOsloController>
     {
         protected override string NotFoundExceptionMessage => "Onbestaand gebouw.";
         protected override string GoneExceptionMessage => "Verwijderd gebouw.";
@@ -31,7 +31,7 @@ namespace Public.Api.Building.Oslo
             [KeyFilter(RegistryKeys.BuildingV2)] RestClient restClient,
             [KeyFilter(RegistryKeys.BuildingV2)] IFeatureToggle cacheToggle,
             ConnectionMultiplexerProvider redis,
-            ILogger<V3.BuildingOsloController> logger)
+            ILogger<BuildingOsloController> logger)
             : base(httpContextAccessor, redis, logger, restClient, cacheToggle) { }
 
         private static ContentFormat DetermineFormat(HttpContext context)

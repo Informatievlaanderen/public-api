@@ -15,6 +15,9 @@
     <DocumentationFile>bin\Release\net10.0\Public.Api.xml</DocumentationFile>
     <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Be.Vlaanderen.Basisregisters.Utilities.Rfc3339DateTimeOffset.xml" CopyToOutputDirectory="Always" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Dockerfile" CopyToOutputDirectory="Always" />
