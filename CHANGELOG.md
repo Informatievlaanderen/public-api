@@ -1,3 +1,10 @@
+## [8.10.2](https://github.com/informatievlaanderen/public-api/compare/v8.10.1...v8.10.2) (2026-08-20)
+
+
+### Bug Fixes
+
+* bump packages ([4394fbf](https://github.com/informatievlaanderen/public-api/commit/4394fbf0ff05367a933575987c40c87e7d6aa9b1))
+
 ## [8.10.1](https://github.com/informatievlaanderen/public-api/compare/v8.10.0...v8.10.1) (2026-08-20)
 
 
