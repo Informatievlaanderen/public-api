@@ -22,9 +22,9 @@
       },
       "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions": {
         "type": "Direct",
-        "requested": "[6.2.1, )",
-        "resolved": "6.2.1",
-        "contentHash": "Rau1XuqW0sQfZ485TLUhBAOhjEVrJIOw11MSkNi2dLWyjEBv7hUniaoH9ykGF5zUi0w0K0EV2iJcRBUqnVKdtA==",
+        "requested": "[6.2.2, )",
+        "resolved": "6.2.2",
+        "contentHash": "o5BWd7vxxIZlgbrMJWLKtYMvCubX5s6aCjJoHz76k7Tq947UbhN7dsF0PsN4LuKnRbGomf+De3IzXY2epZkwRA==",
         "dependencies": {
           "Autofac": "9.1.0",
           "Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore": "11.0.0",
@@ -33,9 +33,9 @@
           "Be.Vlaanderen.Basisregisters.Crab": "5.1.0",
           "Be.Vlaanderen.Basisregisters.EventHandling": "7.1.0",
           "Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic": "5.1.0",
-          "Be.Vlaanderen.Basisregisters.GrAr.Common": "25.8.2",
-          "Be.Vlaanderen.Basisregisters.GrAr.Edit": "25.8.2",
-          "Be.Vlaanderen.Basisregisters.GrAr.Provenance": "25.8.2",
+          "Be.Vlaanderen.Basisregisters.GrAr.Common": "25.9.2",
+          "Be.Vlaanderen.Basisregisters.GrAr.Edit": "25.9.2",
+          "Be.Vlaanderen.Basisregisters.GrAr.Provenance": "25.9.2",
           "Be.Vlaanderen.Basisregisters.MessageHandling.AwsSqs.Simple": "7.1.0",
           "Be.Vlaanderen.Basisregisters.Sqs": "5.3.0",
           "Be.Vlaanderen.Basisregisters.TicketingService.Abstractions": "4.0.0",
@@ -1002,8 +1002,7 @@
         "resolved": "11.11.0",
         "contentHash": "viTKWaMbL3yJYgGI0DiCeavNbE9UPMWFVK2XS9nYXGbm3NDMd0/L5ER4wBzmTtW3BYh3SrlSXm9RACiKZ6stlA==",
         "dependencies": {
-          "FluentValidation": "11.11.0",
-          "Microsoft.Extensions.Dependencyinjection.Abstractions": "2.1.0"
+          "FluentValidation": "11.11.0"
         }
       },
       "Fluid.Core": {
@@ -1259,11 +1258,6 @@
         "type": "Transitive",
         "resolved": "10.0.0",
         "contentHash": "xvhmF2dlwC3e8KKSuWOjJkjQdKG80991CUqjDnqzV1Od0CgMqbDw49kGJ9RiGrp3nbLTYCSb3c+KYo6TcENYRw=="
-      },
-      "Microsoft.Extensions.DependencyInjection.Abstractions": {
-        "type": "Transitive",
-        "resolved": "2.1.0",
-        "contentHash": "8/CtASu80UIoyG+r8FstrmZW5GLtXxzoYpjj3jV0FKZCL5CiFgSH3pAmqut/dC68mu7N1bU6v0UtKKL3gCUQGQ=="
       },
       "Microsoft.Extensions.DependencyModel": {
         "type": "Transitive",
