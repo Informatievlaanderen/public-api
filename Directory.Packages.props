@@ -11,16 +11,16 @@
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting" Version="11.0.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.CommandHandling" Version="11.0.0" />
 
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo" Version="7.2.8" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo" Version="7.2.1" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo" Version="6.1.3" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions" Version="6.1.3" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo" Version="6.2.1" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions" Version="6.2.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo" Version="7.3.2" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo" Version="7.2.3" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo" Version="6.1.5" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions" Version="6.1.5" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo" Version="6.2.2" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions" Version="6.2.2" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo" Version="6.2.1" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions" Version="6.2.1" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo" Version="7.1.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions" Version="7.1.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo" Version="7.1.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions" Version="7.1.1" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api" Version="5.10.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.IntegrationDb.Api.Abstractions" Version="4.1.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.NotificationService.Api.Abstractions" Version="2.0.0" />
