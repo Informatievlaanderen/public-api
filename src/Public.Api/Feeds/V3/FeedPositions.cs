@@ -124,9 +124,9 @@
             { FeedPositiesRegister.Postinfo, RegistryKeys.PostalV3 },
             { FeedPositiesRegister.Straatnamen, RegistryKeys.StreetNameV3 },
             { FeedPositiesRegister.Adressen, RegistryKeys.AddressV3 },
-            { FeedPositiesRegister.Gebouwen, RegistryKeys.BuildingV2 },
-            { FeedPositiesRegister.Gebouweenheden, RegistryKeys.BuildingV2 },
-            { FeedPositiesRegister.Percelen, RegistryKeys.ParcelV2 }
+            { FeedPositiesRegister.Gebouwen, RegistryKeys.BuildingV3 },
+            { FeedPositiesRegister.Gebouweenheden, RegistryKeys.BuildingV3 },
+            { FeedPositiesRegister.Percelen, RegistryKeys.ParcelV3 }
         };
 
         private static readonly Dictionary<FeedPositiesRegister, string> ResourceNames = new()
