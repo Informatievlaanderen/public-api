@@ -1,3 +1,10 @@
+## [8.10.5](https://github.com/informatievlaanderen/public-api/compare/v8.10.4...v8.10.5) (2026-08-24)
+
+
+### Bug Fixes
+
+* **feed:** posities endpoint building/units/parcel ([355d1c4](https://github.com/informatievlaanderen/public-api/commit/355d1c429fe186f5338efa9c8a69a01e73668bb1))
+
 ## [8.10.4](https://github.com/informatievlaanderen/public-api/compare/v8.10.3...v8.10.4) (2026-08-24)
 
 ## [8.10.3](https://github.com/informatievlaanderen/public-api/compare/v8.10.2...v8.10.3) (2026-08-20)
