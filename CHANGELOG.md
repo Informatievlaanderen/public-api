@@ -1,3 +1,10 @@
+# [8.11.0](https://github.com/informatievlaanderen/public-api/compare/v8.10.5...v8.11.0) (2026-08-25)
+
+
+### Features
+
+* **road:** roadsegment v3 change geometrydrawmethod ([09ce31f](https://github.com/informatievlaanderen/public-api/commit/09ce31f488462e3e6e1057c54e083e79c928bee9))
+
 ## [8.10.5](https://github.com/informatievlaanderen/public-api/compare/v8.10.4...v8.10.5) (2026-08-24)
 
 
