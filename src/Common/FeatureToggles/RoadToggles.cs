@@ -392,6 +392,15 @@
         { }
     }
 
+    public sealed class RoadSegmentChangeGeometryDrawMethodV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadSegmentChangeGeometryDrawMethodV3";
+
+        public RoadSegmentChangeGeometryDrawMethodV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
     public sealed class ChangeRoadSegmentAttributesV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
     {
         public override string Key => "RoadSegmentChangeAttributesV3";
