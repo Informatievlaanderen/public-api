@@ -1,3 +1,11 @@
+## [8.11.1](https://github.com/informatievlaanderen/public-api/compare/v8.11.0...v8.11.1) (2026-08-27)
+
+
+### Bug Fixes
+
+* **featuretoggles:** apply the default to a newly migrated toggle ([2ce21f8](https://github.com/informatievlaanderen/public-api/commit/2ce21f82c1b9d374c579541f3dd07f9b1f12ea30))
+* **road:** order wegen endpoints by method, entity type and api version ([52b48c7](https://github.com/informatievlaanderen/public-api/commit/52b48c79237b2d52b2a19fb5df5267e4074e9735))
+
 # [8.11.0](https://github.com/informatievlaanderen/public-api/compare/v8.10.5...v8.11.0) (2026-08-25)
 
 
