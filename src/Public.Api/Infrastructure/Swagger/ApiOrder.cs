@@ -68,42 +68,66 @@ namespace Public.Api.Infrastructure.Swagger
             public const int RoadExtract = ChangeFeed + 0;
             public const int Information = ChangeFeed + 0;
             public const int RoadUpload = ChangeFeed + 0;
-            public const int Organization = ChangeFeed + 0;
-            public static class RoadSegment
-            {
-                public const int Root = ChangeFeed + 10;
-
-                public const int Get = Root + 1;
-                public const int ChangeAttributes = Get + 1;
-                public const int ChangeDynamicAttributes = ChangeAttributes + 1;
-                public const int CreateOutline = ChangeDynamicAttributes + 1;
-                public const int ChangeOutlineGeometry = CreateOutline + 1;
-                public const int DeleteOutline = ChangeOutlineGeometry + 1;
-                public const int DeleteRoadSegments = DeleteOutline + 1;
-                public const int LinkStreetName = DeleteRoadSegments + 1;
-                public const int UnlinkStreetName = LinkStreetName + 1;
-                public const int Split = UnlinkStreetName + 1;
-            }
             public const int Inwinning = ChangeFeed + 20;
-            public const int Inwinningsstatus = ChangeFeed + 30;
+
+            // Endpoints of the "Wegen" group are ordered by:
+            // 1. http method: GET, POST
+            // 2. entity type: wegknopen, wegsegmenten, ongelijkgrondse kruisingen,
+            //    gelijkgrondse kruisingen, inwinningsstatus, organisaties
+            // 3. the order which was already in place
+            // 4. api version: v2, v3
+            // An endpoint which exists in multiple versions shares one value: equal values
+            // keep their original order, which puts v2 before v3.
+            // The wegsegmenten acties are ordered by kind: schetsen, statuswijzigingen,
+            // corrigeren, the remaining acties, wijzigen, verwijderen.
+            private const int GetBase = ChangeFeed + 10;
+            private const int PostBase = ChangeFeed + 40;
+
             public static class RoadNode
             {
-                public const int Root = ChangeFeed + 40;
+                public const int Root = GetBase + 0;
 
-                public const int Get = Root + 1;
+                public const int Get = GetBase + 0;
             }
+
+            public static class RoadSegment
+            {
+                public const int Root = GetBase + 1;
+
+                public const int Get = GetBase + 1;
+
+                public const int CreateOutline = PostBase + 0;
+                public const int ChangeFromPlannedToRealized = PostBase + 1;
+                public const int CorrectFromRealizedToPlanned = PostBase + 2;
+                public const int LinkStreetName = PostBase + 3;
+                public const int UnlinkStreetName = PostBase + 4;
+                public const int Split = PostBase + 5;
+                public const int SplitByJunction = PostBase + 6;
+                public const int ChangeAttributes = PostBase + 7;
+                public const int ChangeGeometry = PostBase + 8;
+                public const int ChangeGeometryDrawMethod = PostBase + 9;
+                public const int ChangeDynamicAttributes = PostBase + 10;
+                public const int ChangeOutlineGeometry = PostBase + 11;
+                public const int DeleteOutline = PostBase + 12;
+                public const int DeleteRoadSegments = PostBase + 13;
+            }
+
             public static class GradeSeparatedJunction
             {
-                public const int Root = ChangeFeed + 50;
+                public const int Root = GetBase + 2;
 
-                public const int Get = Root + 1;
+                public const int Get = GetBase + 2;
             }
+
             public static class GradeJunction
             {
-                public const int Root = ChangeFeed + 60;
+                public const int Root = GetBase + 3;
 
-                public const int Get = Root + 1;
+                public const int Get = GetBase + 3;
             }
+
+            public const int Inwinningsstatus = GetBase + 4;
+            public const int Organization = GetBase + 5;
         }
 
         public const int Extract = Road.ChangeFeed + 100;
