@@ -105,8 +105,20 @@ namespace Public.Api.Infrastructure
                 });
             }
 
-            var dynamoDbFeatureToggleService = new DynamoDbFeatureToggleService(amazonDynamoDbClient, _configuration["FeatureToggleTableName"]);
+            var dynamoDbFeatureToggleService = new DynamoDbFeatureToggleService(
+                amazonDynamoDbClient,
+                _configuration["FeatureToggleTableName"],
+                _configuration.GetValue<bool>("FeatureToggleDefaultEnabled"));
             dynamoDbFeatureToggleService.Initialize().GetAwaiter().GetResult();
+
+            // Migrate before the toggles are read: IKeyedFeatureToggle snapshots its value in the
+            // constructor, so a newly added toggle has to be stored before the action model
+            // conventions take their snapshot, or it stays hidden until the next startup.
+            dynamoDbFeatureToggleService
+                .Migrate(KeyedFeatureToggleExtensions.GetFeatureToggles(dynamoDbFeatureToggleService))
+                .GetAwaiter()
+                .GetResult();
+
             var keyedFeatureToggles = KeyedFeatureToggleExtensions.GetFeatureToggles(dynamoDbFeatureToggleService);
 
             services
@@ -330,13 +342,7 @@ namespace Public.Api.Infrastructure
                 })
                 .Configure<ExcludedRouteModelOptions>(_configuration.GetSection("ExcludedRoutes"))
                 .AddSingleton<IAmazonDynamoDB>(_ => amazonDynamoDbClient)
-                .AddSingleton<IDynamicFeatureToggleService>(_ =>
-                {
-                    var defaultEnabled = _configuration.GetValue<bool>("FeatureToggleDefaultEnabled");
-                    dynamoDbFeatureToggleService.Migrate(keyedFeatureToggles, defaultEnabled).GetAwaiter().GetResult();
-
-                    return dynamoDbFeatureToggleService;
-                })
+                .AddSingleton<IDynamicFeatureToggleService>(dynamoDbFeatureToggleService)
                 .RegisterFeatureToggles();
 
             services
@@ -351,7 +357,6 @@ namespace Public.Api.Infrastructure
             ILoggerFactory loggerFactory,
             IApiVersionDescriptionProvider apiVersionProvider)
         {
-            serviceProvider.GetRequiredService<IDynamicFeatureToggleService>(); // trigger migration
             var version = Assembly.GetEntryAssembly()?.GetName().Version;
 
             app
