@@ -19,7 +19,8 @@
     /// .AddSingleton&lt;IDynamicFeatureToggleService&gt;(c =>
     /// {
     ///     var featureToggleService = new DynamoDbFeatureToggleService(c.GetRequiredService&lt;IAmazonDynamoDB&gt;(),
-    ///         _configuration["FeatureToggleTableName"]);
+    ///         _configuration["FeatureToggleTableName"],
+    ///         _configuration.GetValue&lt;bool&gt;("FeatureToggleDefaultEnabled"));
     ///     featureToggleService.Initialize().GetAwaiter().GetResult();
     ///     return featureToggleService;
     /// })
@@ -29,18 +30,21 @@
     {
         private readonly IAmazonDynamoDB _amazonDynamoDb;
         private readonly string _tableName;
+        private readonly bool _defaultEnabled;
 
         private readonly Dictionary<string, bool> _featureToggles =
             new Dictionary<string, bool>(StringComparer.CurrentCultureIgnoreCase);
 
         public DynamoDbFeatureToggleService(
             IAmazonDynamoDB amazonDynamoDb,
-            string tableName)
+            string tableName,
+            bool defaultEnabled)
         {
             ArgumentException.ThrowIfNullOrEmpty(tableName);
 
             _amazonDynamoDb = amazonDynamoDb;
             _tableName = tableName;
+            _defaultEnabled = defaultEnabled;
         }
 
         public async Task Initialize()
@@ -52,11 +56,11 @@
         public bool IsFeatureEnabled(string featureName)
             => _featureToggles.ContainsKey(featureName) && _featureToggles[featureName];
 
-        public async Task Migrate(IEnumerable<IKeyedFeatureToggle> keyedFeatureToggles, bool defaultEnabled)
+        public async Task Migrate(IEnumerable<IKeyedFeatureToggle> keyedFeatureToggles)
         {
             foreach (var featureToggle in keyedFeatureToggles.Select(x => x.Key))
             {
-                if (_featureToggles.TryAdd(featureToggle, false))
+                if (_featureToggles.TryAdd(featureToggle, _defaultEnabled))
                 {
                     try
                     {
@@ -67,7 +71,7 @@
                             ConditionExpression = "attribute_not_exists(FeatureName)"
                         };
                         item.Item.Add("FeatureName", new AttributeValue(featureToggle));
-                        item.Item.Add("Enabled", new AttributeValue { BOOL = defaultEnabled });
+                        item.Item.Add("Enabled", new AttributeValue { BOOL = _defaultEnabled });
                         await _amazonDynamoDb.PutItemAsync(item);
                     }
                     catch (ConditionalCheckFailedException)
