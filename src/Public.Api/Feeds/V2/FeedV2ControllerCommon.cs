@@ -42,13 +42,15 @@ namespace Public.Api.Feeds.V2
             string resourcename,
             long? from,
             int? limit,
+            string? objectCrs,
             SyncEmbedValue embed)
             => new RestRequest($"{resourcename}/sync")
                     .AddPagination(NoPaging, limit)
                     .AddFiltering(new
                     {
                         position = from ?? 0,
-                        embed = embed.ToString()
+                        embed = embed.ToString(),
+                        objectCrs = objectCrs,
                     });
 
         protected void HandleBadRequest(HttpStatusCode statusCode)
