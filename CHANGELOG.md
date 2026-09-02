@@ -1,3 +1,10 @@
+## [8.11.2](https://github.com/informatievlaanderen/public-api/compare/v8.11.1...v8.11.2) (2026-09-02)
+
+
+### Bug Fixes
+
+* **parcel:** v3 cache hit when using capakey ([80ada8b](https://github.com/informatievlaanderen/public-api/commit/80ada8b4dab189d04526d0a38163f5757c627fc8))
+
 ## [8.11.1](https://github.com/informatievlaanderen/public-api/compare/v8.11.0...v8.11.1) (2026-08-27)
 
 
