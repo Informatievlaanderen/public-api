@@ -132,7 +132,7 @@ namespace Public.Api.Parcel.V3
 
             RestRequest BackendRequest() => CreateBackendDetailRequest(objectId);
 
-            var cacheKey = $"oslo/parcel:{objectId}";
+            var cacheKey = $"oslo-v3/parcel:{objectId}";
 
             var value = await (CanGetFromCache(httpContextAccessor.HttpContext!)
                 ? GetFromCacheThenFromBackendAsync(
