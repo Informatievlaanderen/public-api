@@ -383,6 +383,15 @@ namespace Common.FeatureToggles
         { }
     }
 
+    public sealed class RoadSegmentChangeFromPlannedToNotRealizedV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadSegmentChangeFromPlannedToNotRealizedV3";
+
+        public RoadSegmentChangeFromPlannedToNotRealizedV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
     public sealed class RoadSegmentCorrectFromRealizedToPlannedV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
     {
         public override string Key => "RoadSegmentCorrectFromRealizedToPlannedV3";

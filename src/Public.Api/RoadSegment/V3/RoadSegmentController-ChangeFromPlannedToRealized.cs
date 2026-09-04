@@ -21,7 +21,7 @@ namespace Public.Api.RoadSegment.V3
         private const string RealizeRoadSegmentRoute = "wegsegmenten/{id}/acties/geplandnaargerealiseerd";
 
         /// <summary>
-        ///     Markeer een `gepland` wegsegment als `gerealiseerd`. (v3)
+        ///     Markeer een gepland wegsegment als gerealiseerd. (v3)
         /// </summary>
         /// <param name="id"></param>
         /// <param name="problemDetailsHelper"></param>

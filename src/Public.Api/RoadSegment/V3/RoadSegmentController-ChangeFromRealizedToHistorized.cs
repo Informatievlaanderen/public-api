@@ -21,7 +21,7 @@ namespace Public.Api.RoadSegment.V3
         private const string ChangeFromRealizedToHistorizedRoadSegmentRoute = "wegsegmenten/{id}/acties/gerealiseerdnaargehistoreerd";
 
         /// <summary>
-        ///     Markeer een `gerealiseerd` wegsegment als `gehistoreerd`. (v3)
+        ///     Markeer een gerealiseerd wegsegment als gehistoreerd. (v3)
         /// </summary>
         /// <param name="id"></param>
         /// <param name="problemDetailsHelper"></param>

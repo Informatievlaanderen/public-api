@@ -21,7 +21,7 @@ namespace Public.Api.RoadSegment.V3
         private const string ChangeFromOutOfUseToHistorizedRoadSegmentRoute = "wegsegmenten/{id}/acties/buitengebruiknaargehistoreerd";
 
         /// <summary>
-        ///     Markeer een `buiten gebruik` wegsegment als `gehistoreerd`. (v3)
+        ///     Markeer een wegsegment buiten gebruik als gehistoreerd. (v3)
         /// </summary>
         /// <param name="id"></param>
         /// <param name="problemDetailsHelper"></param>

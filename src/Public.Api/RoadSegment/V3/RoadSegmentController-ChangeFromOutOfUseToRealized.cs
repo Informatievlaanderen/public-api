@@ -21,7 +21,7 @@ namespace Public.Api.RoadSegment.V3
         private const string ChangeFromOutOfUseToRealizedRoadSegmentRoute = "wegsegmenten/{id}/acties/buitengebruiknaargerealiseerd";
 
         /// <summary>
-        ///     Markeer een `buiten gebruik` wegsegment als `gerealiseerd`. (v3)
+        ///     Markeer een wegsegment buiten gebruik als gerealiseerd. (v3)
         /// </summary>
         /// <param name="id"></param>
         /// <param name="problemDetailsHelper"></param>
