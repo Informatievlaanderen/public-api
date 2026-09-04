@@ -1,3 +1,10 @@
+# [8.12.0](https://github.com/informatievlaanderen/public-api/compare/v8.11.2...v8.12.0) (2026-09-04)
+
+
+### Features
+
+* **road:** add the remaining road segment v3 status change endpoints ([10d5c9a](https://github.com/informatievlaanderen/public-api/commit/10d5c9a80011c9f6c4483276b73267abf0877d60)), closes [Informatievlaanderen/road-registry#2075](https://github.com/Informatievlaanderen/road-registry/issues/2075)
+
 ## [8.11.2](https://github.com/informatievlaanderen/public-api/compare/v8.11.1...v8.11.2) (2026-09-02)
 
 
