@@ -97,26 +97,27 @@ namespace Public.Api.Infrastructure.Swagger
                 public const int Get = GetBase + 1;
 
                 public const int CreateOutline = PostBase + 0;
-                public const int ChangeFromPlannedToRealized = PostBase + 1;
-                public const int ChangeFromOutOfUseToRealized = PostBase + 2;
-                public const int ChangeFromRealizedToOutOfUse = PostBase + 3;
-                public const int ChangeFromRealizedToHistorized = PostBase + 4;
-                public const int ChangeFromOutOfUseToHistorized = PostBase + 5;
-                public const int CorrectFromRealizedToPlanned = PostBase + 6;
-                public const int CorrectFromNotRealizedToPlanned = PostBase + 7;
-                public const int CorrectFromHistorizedToRealized = PostBase + 8;
-                public const int CorrectFromHistorizedToOutOfUse = PostBase + 9;
-                public const int LinkStreetName = PostBase + 10;
-                public const int UnlinkStreetName = PostBase + 11;
-                public const int Split = PostBase + 12;
-                public const int SplitByJunction = PostBase + 13;
-                public const int ChangeAttributes = PostBase + 14;
-                public const int ChangeGeometry = PostBase + 15;
-                public const int ChangeGeometryDrawMethod = PostBase + 16;
-                public const int ChangeDynamicAttributes = PostBase + 17;
-                public const int ChangeOutlineGeometry = PostBase + 18;
-                public const int DeleteOutline = PostBase + 19;
-                public const int DeleteRoadSegments = PostBase + 20;
+                public const int ChangeFromPlannedToRealized = CreateOutline + 1;
+                public const int ChangeFromPlannedToNotRealized = ChangeFromPlannedToRealized + 1;
+                public const int ChangeFromOutOfUseToRealized = ChangeFromPlannedToNotRealized + 1;
+                public const int ChangeFromRealizedToOutOfUse = ChangeFromOutOfUseToRealized + 1;
+                public const int ChangeFromRealizedToHistorized = ChangeFromRealizedToOutOfUse + 1;
+                public const int ChangeFromOutOfUseToHistorized = ChangeFromRealizedToHistorized + 1;
+                public const int CorrectFromRealizedToPlanned = ChangeFromOutOfUseToHistorized + 1;
+                public const int CorrectFromNotRealizedToPlanned = CorrectFromRealizedToPlanned + 1;
+                public const int CorrectFromHistorizedToRealized = CorrectFromNotRealizedToPlanned + 1;
+                public const int CorrectFromHistorizedToOutOfUse = CorrectFromHistorizedToRealized + 1;
+                public const int LinkStreetName = CorrectFromHistorizedToOutOfUse + 1;
+                public const int UnlinkStreetName = LinkStreetName + 1;
+                public const int Split = UnlinkStreetName + 1;
+                public const int SplitByJunction = Split + 1;
+                public const int ChangeAttributes = SplitByJunction + 1;
+                public const int ChangeGeometry = ChangeAttributes + 1;
+                public const int ChangeGeometryDrawMethod = ChangeGeometry + 1;
+                public const int ChangeDynamicAttributes = ChangeGeometryDrawMethod + 1;
+                public const int ChangeOutlineGeometry = ChangeDynamicAttributes + 1;
+                public const int DeleteOutline = ChangeOutlineGeometry + 1;
+                public const int DeleteRoadSegments = DeleteOutline + 1;
             }
 
             public static class GradeSeparatedJunction

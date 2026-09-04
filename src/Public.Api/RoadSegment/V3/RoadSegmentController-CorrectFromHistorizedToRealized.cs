@@ -18,10 +18,10 @@ namespace Public.Api.RoadSegment.V3
 
     public partial class RoadSegmentControllerV3
     {
-        private const string CorrectFromHistorizedToOutOfUseRoadSegmentRoute = "wegsegmenten/{id}/acties/corrigeren/gehistoreerdnaarbuitengebruik";
+        private const string CorrectFromHistorizedToRealizedRoadSegmentRoute = "wegsegmenten/{id}/acties/corrigeren/gehistoreerdnaargerealiseerd";
 
         /// <summary>
-        ///     Corrigeer een `gehistoreerd` wegsegment naar `buiten gebruik`. (v3)
+        ///     Corrigeer een gehistoreerd wegsegment naar gerealiseerd. (v3)
         /// </summary>
         /// <param name="id"></param>
         /// <param name="problemDetailsHelper"></param>
@@ -34,8 +34,8 @@ namespace Public.Api.RoadSegment.V3
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpPost(CorrectFromHistorizedToOutOfUseRoadSegmentRoute, Name = nameof(CorrectRoadSegmentFromHistorizedToOutOfUseV3))]
-        [ApiOrder(ApiOrder.Road.RoadSegment.CorrectFromHistorizedToOutOfUse)]
+        [HttpPost(CorrectFromHistorizedToRealizedRoadSegmentRoute, Name = nameof(CorrectRoadSegmentFromHistorizedToRealizedV3))]
+        [ApiOrder(ApiOrder.Road.RoadSegment.CorrectFromHistorizedToRealized)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -52,14 +52,14 @@ namespace Public.Api.RoadSegment.V3
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
         [SwaggerAuthorizeOperation(
-            OperationId = nameof(CorrectRoadSegmentFromHistorizedToOutOfUseV3),
-            Description = "Corrigeer een `gehistoreerd` wegsegment naar `buiten gebruik`. Zowel de oude als de nieuwe status houden het wegsegment buiten het wegennet, dus enkel de status wijzigt: de geometrie, de attributen en de wegknopen blijven ongemoeid.",
+            OperationId = nameof(CorrectRoadSegmentFromHistorizedToRealizedV3),
+            Description = "Corrigeer een `gehistoreerd` wegsegment naar `gerealiseerd`. Het wegsegment wordt aan het wegennet geknoopt: de uiteinden worden naar bestaande wegknopen binnen 1 meter gesnapt, waar er geen ligt komt een eindknoop, en kruisingen met gerealiseerde wegsegmenten worden als gelijkgrondse kruising vastgelegd.",
             Authorize = Scopes.DvWrGeschetsteWegBeheer
         )]
-        public async Task<IActionResult> CorrectRoadSegmentFromHistorizedToOutOfUseV3(
+        public async Task<IActionResult> CorrectRoadSegmentFromHistorizedToRealizedV3(
             [FromRoute] int id,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] RoadSegmentCorrectFromHistorizedToOutOfUseV3Toggle featureToggle,
+            [FromServices] RoadSegmentCorrectFromHistorizedToRealizedV3Toggle featureToggle,
             CancellationToken cancellationToken = default)
         {
             if (!featureToggle.FeatureEnabled)
@@ -70,7 +70,7 @@ namespace Public.Api.RoadSegment.V3
             var contentFormat = DetermineFormat();
 
             RestRequest BackendRequest() =>
-                CreateBackendRestRequest(Method.Post, CorrectFromHistorizedToOutOfUseRoadSegmentRoute)
+                CreateBackendRestRequest(Method.Post, CorrectFromHistorizedToRealizedRoadSegmentRoute)
                     .AddParameter(nameof(id), id, ParameterType.UrlSegment);
 
             var value = await GetFromBackendWithBadRequestAsync(
