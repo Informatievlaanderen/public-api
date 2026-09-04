@@ -18,10 +18,10 @@ namespace Public.Api.RoadSegment.V3
 
     public partial class RoadSegmentControllerV3
     {
-        private const string RealizeRoadSegmentRoute = "wegsegmenten/{id}/acties/geplandnaargerealiseerd";
+        private const string CorrectFromNotRealizedToPlannedRoadSegmentRoute = "wegsegmenten/{id}/acties/corrigeren/nietgerealiseerdnaargepland";
 
         /// <summary>
-        ///     Markeer een `gepland` wegsegment als `gerealiseerd`. (v3)
+        ///     Corrigeer een `niet gerealiseerd` wegsegment naar `gepland`. (v3)
         /// </summary>
         /// <param name="id"></param>
         /// <param name="problemDetailsHelper"></param>
@@ -34,8 +34,8 @@ namespace Public.Api.RoadSegment.V3
         /// <response code="412">Als de If-Match header niet overeenkomt met de laatste ETag.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
-        [HttpPost(RealizeRoadSegmentRoute, Name = nameof(ChangeRoadSegmentFromPlannedToRealizedV3))]
-        [ApiOrder(ApiOrder.Road.RoadSegment.ChangeFromPlannedToRealized)]
+        [HttpPost(CorrectFromNotRealizedToPlannedRoadSegmentRoute, Name = nameof(CorrectRoadSegmentFromNotRealizedToPlannedV3))]
+        [ApiOrder(ApiOrder.Road.RoadSegment.CorrectFromNotRealizedToPlanned)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
@@ -52,14 +52,14 @@ namespace Public.Api.RoadSegment.V3
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
         [SwaggerAuthorizeOperation(
-            OperationId = nameof(ChangeRoadSegmentFromPlannedToRealizedV3),
-            Description = "Markeer een `gepland` wegsegment als `gerealiseerd`. Het wegsegment wordt aan het wegennet geknoopt: de uiteinden worden naar bestaande wegknopen binnen 1 meter gesnapt, waar er geen ligt komt een eindknoop, en kruisingen met gerealiseerde wegsegmenten worden als gelijkgrondse kruising vastgelegd.",
+            OperationId = nameof(CorrectRoadSegmentFromNotRealizedToPlannedV3),
+            Description = "Corrigeer een `niet gerealiseerd` wegsegment naar `gepland`. Zowel de oude als de nieuwe status houden het wegsegment buiten het wegennet, dus enkel de status wijzigt: de geometrie, de attributen en de wegknopen blijven ongemoeid.",
             Authorize = Scopes.DvWrGeschetsteWegBeheer
         )]
-        public async Task<IActionResult> ChangeRoadSegmentFromPlannedToRealizedV3(
+        public async Task<IActionResult> CorrectRoadSegmentFromNotRealizedToPlannedV3(
             [FromRoute] int id,
             [FromServices] ProblemDetailsHelper problemDetailsHelper,
-            [FromServices] RoadSegmentChangeFromPlannedToRealizedV3Toggle featureToggle,
+            [FromServices] RoadSegmentCorrectFromNotRealizedToPlannedV3Toggle featureToggle,
             CancellationToken cancellationToken = default)
         {
             if (!featureToggle.FeatureEnabled)
@@ -70,7 +70,7 @@ namespace Public.Api.RoadSegment.V3
             var contentFormat = DetermineFormat();
 
             RestRequest BackendRequest() =>
-                CreateBackendRestRequest(Method.Post, RealizeRoadSegmentRoute)
+                CreateBackendRestRequest(Method.Post, CorrectFromNotRealizedToPlannedRoadSegmentRoute)
                     .AddParameter(nameof(id), id, ParameterType.UrlSegment);
 
             var value = await GetFromBackendWithBadRequestAsync(

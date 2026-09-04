@@ -98,18 +98,25 @@ namespace Public.Api.Infrastructure.Swagger
 
                 public const int CreateOutline = PostBase + 0;
                 public const int ChangeFromPlannedToRealized = PostBase + 1;
-                public const int CorrectFromRealizedToPlanned = PostBase + 2;
-                public const int LinkStreetName = PostBase + 3;
-                public const int UnlinkStreetName = PostBase + 4;
-                public const int Split = PostBase + 5;
-                public const int SplitByJunction = PostBase + 6;
-                public const int ChangeAttributes = PostBase + 7;
-                public const int ChangeGeometry = PostBase + 8;
-                public const int ChangeGeometryDrawMethod = PostBase + 9;
-                public const int ChangeDynamicAttributes = PostBase + 10;
-                public const int ChangeOutlineGeometry = PostBase + 11;
-                public const int DeleteOutline = PostBase + 12;
-                public const int DeleteRoadSegments = PostBase + 13;
+                public const int ChangeFromOutOfUseToRealized = PostBase + 2;
+                public const int ChangeFromRealizedToOutOfUse = PostBase + 3;
+                public const int ChangeFromRealizedToHistorized = PostBase + 4;
+                public const int ChangeFromOutOfUseToHistorized = PostBase + 5;
+                public const int CorrectFromRealizedToPlanned = PostBase + 6;
+                public const int CorrectFromNotRealizedToPlanned = PostBase + 7;
+                public const int CorrectFromHistorizedToRealized = PostBase + 8;
+                public const int CorrectFromHistorizedToOutOfUse = PostBase + 9;
+                public const int LinkStreetName = PostBase + 10;
+                public const int UnlinkStreetName = PostBase + 11;
+                public const int Split = PostBase + 12;
+                public const int SplitByJunction = PostBase + 13;
+                public const int ChangeAttributes = PostBase + 14;
+                public const int ChangeGeometry = PostBase + 15;
+                public const int ChangeGeometryDrawMethod = PostBase + 16;
+                public const int ChangeDynamicAttributes = PostBase + 17;
+                public const int ChangeOutlineGeometry = PostBase + 18;
+                public const int DeleteOutline = PostBase + 19;
+                public const int DeleteRoadSegments = PostBase + 20;
             }
 
             public static class GradeSeparatedJunction
