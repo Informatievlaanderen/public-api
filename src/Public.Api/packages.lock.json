@@ -595,11 +595,11 @@
       },
       "Datadog.Trace.Bundle": {
         "type": "Direct",
-        "requested": "[3.49.0, )",
-        "resolved": "3.49.0",
-        "contentHash": "HKn7L+zsDP3UXNerVynAUdqg9GgAP4+qOKlehStHljcFN2akIQvciIr3XF/eOLcjw0D6s3gIsOF9LI7hcDjB9A==",
+        "requested": "[3.52.0, )",
+        "resolved": "3.52.0",
+        "contentHash": "NIuILn+uGzxlXfsLIRNlVJRDISlnn7r6uhFwykWO2JBYcLaEv12B3xqchtBP1/AfeG/jFV416mEWB2+JK9aP5Q==",
         "dependencies": {
-          "Datadog.Trace": "3.49.0"
+          "Datadog.Trace": "3.52.0"
         }
       },
       "Asp.Versioning.Abstractions": {
@@ -944,8 +944,8 @@
       },
       "Datadog.Trace": {
         "type": "Transitive",
-        "resolved": "3.49.0",
-        "contentHash": "YTpJQcU+psHou1bx4sB/1DjujE69ok80PwS8JrYHbt+TWuFk+Khdzq2UdxJe5mc5KoU1ooRGNDoxYlg/SfASXA=="
+        "resolved": "3.52.0",
+        "contentHash": "G8WuCz0zvOglQLsBVYX8rpjDrkjBjhB5Yr5L+Cls/F+3GbQOiKZFd/l5EGh65Reysl7odEHUIBDSCYLbiU7Acg=="
       },
       "Destructurama.JsonNet": {
         "type": "Transitive",
