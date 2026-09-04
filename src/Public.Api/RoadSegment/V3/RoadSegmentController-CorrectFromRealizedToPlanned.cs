@@ -21,7 +21,7 @@ namespace Public.Api.RoadSegment.V3
         private const string CorrectFromRealizedToPlannedRoadSegmentRoute = "wegsegmenten/{id}/acties/corrigeren/gerealiseerdnaargepland";
 
         /// <summary>
-        ///     Corrigeer een `gerealiseerd` wegsegment naar `gepland`. (v3)
+        ///     Corrigeer een gerealiseerd wegsegment naar gepland. (v3)
         /// </summary>
         /// <param name="id"></param>
         /// <param name="problemDetailsHelper"></param>
