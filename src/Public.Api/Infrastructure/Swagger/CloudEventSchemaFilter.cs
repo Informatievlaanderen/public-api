@@ -24,6 +24,7 @@
             cloudEventSchema.Properties.Add("datacontenttype", new OpenApiSchema { Type = JsonSchemaType.String });
             cloudEventSchema.Properties.Add("dataschema", new OpenApiSchema { Type = JsonSchemaType.String, Format = "uri" });
             cloudEventSchema.Properties.Add("data", new OpenApiSchema { Type = JsonSchemaType.Object });
+            cloudEventSchema.Properties.Add("subject", new OpenApiSchema { Type = JsonSchemaType.String });
             // Add extension attributes
             cloudEventSchema.Properties.Add("basisregisterseventtype", new OpenApiSchema { Type = JsonSchemaType.String | JsonSchemaType.Null, Description = "Basisregister-specifieke event type." });
             cloudEventSchema.Properties.Add("basisregisterscausationid", new OpenApiSchema { Type = JsonSchemaType.String | JsonSchemaType.Null, Description = "Identifier om wijzigingen met elkaar te correleren o.b.v. het veroorzakend proces." });
