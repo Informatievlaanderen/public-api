@@ -79,8 +79,13 @@
           "then": {
             "properties": {
               "oudeWaarde": {
-                "type": "array",
-                "items": { "$ref": "#/$defs/straatnaamItem" }
+                "oneOf": [
+                  { "type": "null" },
+                  {
+                    "type": "array",
+                    "items": { "$ref": "#/$defs/straatnaamItem" }
+                  }
+                ]
               },
               "nieuweWaarde": {
                 "type": "array",
@@ -98,8 +103,13 @@
           "then": {
             "properties": {
               "oudeWaarde": {
-                "type": "array",
-                "items": { "$ref": "#/$defs/homoniemToevoegingItem" }
+                "oneOf": [
+                  { "type": "null" },
+                  {
+                    "type": "array",
+                    "items": { "$ref": "#/$defs/homoniemToevoegingItem" }
+                  }
+                ]
               },
               "nieuweWaarde": {
                 "type": "array",
