@@ -1,4 +1,4 @@
-﻿namespace Common.FeatureToggles
+namespace Common.FeatureToggles
 {
     public sealed class ChangeRoadSegmentAttributesToggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
     {
@@ -388,6 +388,69 @@
         public override string Key => "RoadSegmentCorrectFromRealizedToPlannedV3";
 
         public RoadSegmentCorrectFromRealizedToPlannedV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadSegmentChangeFromOutOfUseToRealizedV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadSegmentChangeFromOutOfUseToRealizedV3";
+
+        public RoadSegmentChangeFromOutOfUseToRealizedV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadSegmentChangeFromRealizedToOutOfUseV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadSegmentChangeFromRealizedToOutOfUseV3";
+
+        public RoadSegmentChangeFromRealizedToOutOfUseV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadSegmentChangeFromRealizedToHistorizedV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadSegmentChangeFromRealizedToHistorizedV3";
+
+        public RoadSegmentChangeFromRealizedToHistorizedV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadSegmentChangeFromOutOfUseToHistorizedV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadSegmentChangeFromOutOfUseToHistorizedV3";
+
+        public RoadSegmentChangeFromOutOfUseToHistorizedV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadSegmentCorrectFromNotRealizedToPlannedV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadSegmentCorrectFromNotRealizedToPlannedV3";
+
+        public RoadSegmentCorrectFromNotRealizedToPlannedV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadSegmentCorrectFromHistorizedToRealizedV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadSegmentCorrectFromHistorizedToRealizedV3";
+
+        public RoadSegmentCorrectFromHistorizedToRealizedV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadSegmentCorrectFromHistorizedToOutOfUseV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadSegmentCorrectFromHistorizedToOutOfUseV3";
+
+        public RoadSegmentCorrectFromHistorizedToOutOfUseV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
             : base(dynamicFeatureToggleService)
         { }
     }

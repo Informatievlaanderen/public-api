@@ -21,7 +21,7 @@ namespace Public.Api.RoadSegment.V3
         private const string CorrectFromRealizedToPlannedRoadSegmentRoute = "wegsegmenten/{id}/acties/corrigeren/gerealiseerdnaargepland";
 
         /// <summary>
-        ///     Corrigeer een gerealiseerd wegsegment naar gepland. (v3)
+        ///     Corrigeer een `gerealiseerd` wegsegment naar `gepland`. (v3)
         /// </summary>
         /// <param name="id"></param>
         /// <param name="problemDetailsHelper"></param>
@@ -53,7 +53,7 @@ namespace Public.Api.RoadSegment.V3
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
         [SwaggerAuthorizeOperation(
             OperationId = nameof(CorrectRoadSegmentFromRealizedToPlannedV3),
-            Description = "Corrigeer een gerealiseerd wegsegment naar gepland. Het wegsegment wordt losgemaakt van het wegennet: begin- en eindknoop worden verwijderd waar ze niets meer dragen, de kruisingen waartoe het wegsegment behoort verdwijnen, en de wegknooptypes van aansluitende wegsegmenten worden aangepast waar nodig.",
+            Description = "Corrigeer een `gerealiseerd` wegsegment naar `gepland`. Het wegsegment wordt losgemaakt van het wegennet: begin- en eindknoop worden verwijderd waar ze niets meer dragen, de kruisingen waartoe het wegsegment behoort verdwijnen, en de wegknooptypes van aansluitende wegsegmenten worden aangepast waar nodig.",
             Authorize = Scopes.DvWrGeschetsteWegBeheer
         )]
         public async Task<IActionResult> CorrectRoadSegmentFromRealizedToPlannedV3(
