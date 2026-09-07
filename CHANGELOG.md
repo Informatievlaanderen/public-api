@@ -1,3 +1,10 @@
+# [8.13.0](https://github.com/informatievlaanderen/public-api/compare/v8.12.0...v8.13.0) (2026-09-07)
+
+
+### Features
+
+* add missing roadsegment status change edit v3 endpoint ([711bbe5](https://github.com/informatievlaanderen/public-api/commit/711bbe55a444a2ea2986b9a717f5f1e6257099a4))
+
 # [8.12.0](https://github.com/informatievlaanderen/public-api/compare/v8.11.2...v8.12.0) (2026-09-04)
 
 
