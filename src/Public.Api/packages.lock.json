@@ -22,9 +22,9 @@
       },
       "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions": {
         "type": "Direct",
-        "requested": "[6.2.2, )",
-        "resolved": "6.2.2",
-        "contentHash": "o5BWd7vxxIZlgbrMJWLKtYMvCubX5s6aCjJoHz76k7Tq947UbhN7dsF0PsN4LuKnRbGomf+De3IzXY2epZkwRA==",
+        "requested": "[6.4.5, )",
+        "resolved": "6.4.5",
+        "contentHash": "QsnGrhLqDNYzyZsADuNcn7p5IaF4qwoZq5t9JgmjLqmzI56qzHV8on5ZESuq2biA6BtHCUxp+a+Y+qG7VT+9mg==",
         "dependencies": {
           "Autofac": "9.1.0",
           "Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore": "11.0.0",
@@ -33,9 +33,9 @@
           "Be.Vlaanderen.Basisregisters.Crab": "5.1.0",
           "Be.Vlaanderen.Basisregisters.EventHandling": "7.1.0",
           "Be.Vlaanderen.Basisregisters.Generators.Guid.Deterministic": "5.1.0",
-          "Be.Vlaanderen.Basisregisters.GrAr.Common": "25.9.2",
-          "Be.Vlaanderen.Basisregisters.GrAr.Edit": "25.9.2",
-          "Be.Vlaanderen.Basisregisters.GrAr.Provenance": "25.9.2",
+          "Be.Vlaanderen.Basisregisters.GrAr.Common": "26.1.0",
+          "Be.Vlaanderen.Basisregisters.GrAr.Edit": "26.1.0",
+          "Be.Vlaanderen.Basisregisters.GrAr.Provenance": "26.1.0",
           "Be.Vlaanderen.Basisregisters.MessageHandling.AwsSqs.Simple": "7.1.0",
           "Be.Vlaanderen.Basisregisters.Sqs": "5.3.0",
           "Be.Vlaanderen.Basisregisters.TicketingService.Abstractions": "4.0.0",
@@ -59,9 +59,9 @@
       },
       "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo": {
         "type": "Direct",
-        "requested": "[6.2.2, )",
-        "resolved": "6.2.2",
-        "contentHash": "VMtfYuulmGbhRCqyC6zmvJ942vcvwkzbj3W3yoOXrZLBoLA7OOKhyyzntHIb8ofGbo0uuxrpgInRL8wElVMH8A==",
+        "requested": "[6.4.5, )",
+        "resolved": "6.4.5",
+        "contentHash": "k5P4Fe1yEBhHTB1bWIRGQvrgJqLxT/PBe6wrDIS+ca1XmrvtLYMcIsjn2MpDHbSZdl15YiX7iQ6abWQWFkubZA==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Autofac": "9.1.0",
