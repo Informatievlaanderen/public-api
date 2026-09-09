@@ -1,3 +1,10 @@
+## [8.13.2](https://github.com/informatievlaanderen/public-api/compare/v8.13.1...v8.13.2) (2026-09-09)
+
+
+### Bug Fixes
+
+* bump packages ([7715dc3](https://github.com/informatievlaanderen/public-api/commit/7715dc3fd3146c02714ec19c65a847f68f45fb27))
+
 ## [8.13.1](https://github.com/informatievlaanderen/public-api/compare/v8.13.0...v8.13.1) (2026-09-09)
 
 # [8.13.0](https://github.com/informatievlaanderen/public-api/compare/v8.12.0...v8.13.0) (2026-09-07)
