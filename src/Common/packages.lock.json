@@ -147,12 +147,13 @@
       },
       "StackExchange.Redis": {
         "type": "Direct",
-        "requested": "[2.8.37, )",
-        "resolved": "2.8.37",
-        "contentHash": "ULscDAQR+z132IsLczXcM/PG+EyfQMNxhvqjG1Xd/h/J1O9prsUU4pG9d95xv77lUF8v3X6owpf/11Uh0uvZAQ==",
+        "requested": "[2.13.17, )",
+        "resolved": "2.13.17",
+        "contentHash": "P7o7ZDBAmBrOLQEw8Pt44iIA08ioj48smRxn4Jp6yzCu6P3DOSU6lj7f+IOtN3pPvSgC9YufvM92ycukEEBCYQ==",
         "dependencies": {
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
-          "Pipelines.Sockets.Unofficial": "2.2.8"
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
+          "Pipelines.Sockets.Unofficial": "2.2.16",
+          "System.IO.Hashing": "10.0.2"
         }
       },
       "Asp.Versioning.Abstractions": {
@@ -952,8 +953,8 @@
       },
       "Pipelines.Sockets.Unofficial": {
         "type": "Transitive",
-        "resolved": "2.2.8",
-        "contentHash": "zG2FApP5zxSx6OcdJQLbZDk2AVlN2BNQD6MorwIfV6gVj0RRxWPEp2LXAxqDGZqeNV1Zp0BNPcNaey/GXmTdvQ=="
+        "resolved": "2.2.16",
+        "contentHash": "nonu9l0YrZH6krVYbskBjE7uG0VMAnvOQ9PU+RmzUsy+++vHkqzzCkHRoP877OiA3iRTxJyNDLfpcU8hrJ3/YQ=="
       },
       "Polly": {
         "type": "Transitive",
@@ -1096,6 +1097,11 @@
           "Microsoft.IdentityModel.JsonWebTokens": "8.16.0",
           "Microsoft.IdentityModel.Tokens": "8.16.0"
         }
+      },
+      "System.IO.Hashing": {
+        "type": "Transitive",
+        "resolved": "10.0.2",
+        "contentHash": "AKJknIFi9O3+rGExxTry188JPvUoZAPcCtS2qdqyFhIzsxQ1Ap94BeGDG0VzVEHakhmRxmJtVih6TsHoghIt/g=="
       },
       "System.Security.Cryptography.Pkcs": {
         "type": "Transitive",
