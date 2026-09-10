@@ -25,14 +25,14 @@
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.IntegrationDb.Api.Abstractions" Version="4.1.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.NotificationService.Api.Abstractions" Version="2.0.0" />
 
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Common" Version="26.1.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.CrsTransform" Version="26.1.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Legacy" Version="26.1.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Oslo" Version="26.1.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Edit" Version="26.1.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.ChangeFeed" Version="26.1.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Provenance" Version="26.1.0" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Import" Version="26.1.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Common" Version="26.2.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.CrsTransform" Version="26.2.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Legacy" Version="26.2.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Oslo" Version="26.2.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Edit" Version="26.2.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.ChangeFeed" Version="26.2.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Provenance" Version="26.2.0" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.GrAr.Import" Version="26.2.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.EventHandling" Version="7.1.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.ProblemDetails" Version="10.1.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.AspNetCore.Swagger" Version="7.0.0" />

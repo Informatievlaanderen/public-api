@@ -4,7 +4,7 @@
   "title": "Gemeente event data (create/update/delete)",
   "type": "object",
   "additionalProperties": false,
-  "required": ["objectId", "naamruimte", "versieId", "nisCodes", "attributen"],
+  "required": ["objectId", "naamruimte", "versieId", "attributen"],
   "properties": {
     "objectId": {
       "type": "string",
@@ -19,15 +19,6 @@
       "type": "string",
       "format": "date-time",
       "description": "Tijdstip van deze versie van het gemeente-object."
-    },
-    "nisCodes": {
-      "type": "array",
-      "minItems": 1,
-      "items": {
-        "type": "string",
-        "pattern": "^[0-9]{5}$"
-      },
-      "description": "De NIS-code(s) van de betrokken gemeente(n) op het moment van de wijziging. Bruikbaar voor client-side filtering."
     },
     "attributen": {
       "type": "array",
