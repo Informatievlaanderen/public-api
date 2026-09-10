@@ -1,3 +1,10 @@
+# [8.14.0](https://github.com/informatievlaanderen/public-api/compare/v8.13.3...v8.14.0) (2026-09-10)
+
+
+### Features
+
+* **road:** add the v3 endpoints for the new road registry management actions ([43a9c04](https://github.com/informatievlaanderen/public-api/commit/43a9c0488f20a944af8aea493a4de93248594795))
+
 ## [8.13.3](https://github.com/informatievlaanderen/public-api/compare/v8.13.2...v8.13.3) (2026-09-09)
 
 ## [8.13.2](https://github.com/informatievlaanderen/public-api/compare/v8.13.1...v8.13.2) (2026-09-09)
