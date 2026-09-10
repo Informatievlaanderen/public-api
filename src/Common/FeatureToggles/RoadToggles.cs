@@ -508,4 +508,58 @@ namespace Common.FeatureToggles
             : base(dynamicFeatureToggleService)
         { }
     }
+
+    public sealed class DeleteRoadSegmentsV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadSegmentDeleteSegmentsV3";
+
+        public DeleteRoadSegmentsV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RemoveRoadNodeV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadNodeRemoveV3";
+
+        public RemoveRoadNodeV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class ChangeRoadNodeAttributesV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadNodeChangeAttributesV3";
+
+        public ChangeRoadNodeAttributesV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class ChangeGradeSeparatedJunctionToGradeJunctionV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "GradeSeparatedJunctionChangeToGradeJunctionV3";
+
+        public ChangeGradeSeparatedJunctionToGradeJunctionV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class ChangeGradeSeparatedJunctionAttributesV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "GradeSeparatedJunctionChangeAttributesV3";
+
+        public ChangeGradeSeparatedJunctionAttributesV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class ChangeGradeJunctionToGradeSeparatedJunctionV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "GradeJunctionChangeToGradeSeparatedJunctionV3";
+
+        public ChangeGradeJunctionToGradeSeparatedJunctionV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
 }
