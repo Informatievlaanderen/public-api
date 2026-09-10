@@ -14,11 +14,11 @@
       },
       "AWSSDK.DynamoDBv2": {
         "type": "Direct",
-        "requested": "[4.0.101.2, )",
-        "resolved": "4.0.101.2",
-        "contentHash": "VDJoDhYIlt8hwdVCMiSE5xqWU4BMCUYy82adx3iCTVKaY3EWTB61bNlqgCFp+Ui49+7jyvv8oAlxifYzVI6y7A==",
+        "requested": "[4.0.103.7, )",
+        "resolved": "4.0.103.7",
+        "contentHash": "0zGKYOL0OwgXkYU4fKd8T6cwd1QYYTuRDU9xNldR7v+Y9H14PMzbCae01LF29Ti0U0eQV2E1GKS77pmSChfS+Q==",
         "dependencies": {
-          "AWSSDK.Core": "[4.0.100.5, 5.0.0)"
+          "AWSSDK.Core": "[4.0.102.4, 5.0.0)"
         }
       },
       "Be.Vlaanderen.Basisregisters.Api": {
@@ -194,8 +194,8 @@
       },
       "AWSSDK.Core": {
         "type": "Transitive",
-        "resolved": "4.0.100.5",
-        "contentHash": "OYkCEqfNDh6uDlsCF+pBCOi9LvaEg9m2iU5xtbMci3yW8SpCIPOijiqB5OINIhdDvrQAltFd0x4BeYfF7GJVSw=="
+        "resolved": "4.0.102.4",
+        "contentHash": "cFMZnb05RV290HDdybtgR5b/ypkLekeaoHde4tiQHLmgegGLMmcEKsvThnLm1PJOeWSNFcBxzC5fomOvWiW24A=="
       },
       "Be.Vlaanderen.Basisregisters.AggregateSource": {
         "type": "Transitive",
