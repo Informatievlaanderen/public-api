@@ -484,12 +484,13 @@
       },
       "Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api": {
         "type": "Direct",
-        "requested": "[5.14.0, )",
-        "resolved": "5.14.0",
-        "contentHash": "atfrfHbbTX7o9Yd1VwoNj2G1Dbpr+uoP/jeJ0JupKRiAOaL0oFAOFcfU4nfgahEjaVs2LQYZpXejOXfrhhaYpA==",
+        "requested": "[5.17.0, )",
+        "resolved": "5.17.0",
+        "contentHash": "RnByyUNPS1ma/2qHfjBUB9kTY8XPR1HmOafGXGrQjnArJMNm+xvfPsd20DECB6Xux4BBmEsXLNMVtjZU/dAg9w==",
         "dependencies": {
           "AWSSDK.Core": "4.0.9.7",
           "Be.Vlaanderen.Basisregisters.Api": "27.0.0",
+          "Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Logging": "5.1.1",
           "Be.Vlaanderen.Basisregisters.Auth.AcmIdm": "5.0.0",
           "Be.Vlaanderen.Basisregisters.Aws.DistributedMutex": "5.1.0",
           "Be.Vlaanderen.Basisregisters.GrAr.Common": "25.5.0",
@@ -693,8 +694,8 @@
       },
       "Be.Vlaanderen.Basisregisters.AspNetCore.Mvc.Logging": {
         "type": "Transitive",
-        "resolved": "5.1.0",
-        "contentHash": "HF7jEfNUbB6ysdP7k2Kw3NkbTQlaotj8PhVYhvvwLuGm5qSjdfmorRx52YlQMMJAw1V51b46xU4I9YfTNO+i8w==",
+        "resolved": "5.1.1",
+        "contentHash": "CiIP7NndppNl8QfFuy7mnBw2h9khxd0ISH37+W5hQLCT6FFU2TZHeoKUdusxLBrlsXB/zZw7Bfz9ND4cBOsiQg==",
         "dependencies": {
           "Newtonsoft.Json": "13.0.4"
         }
@@ -1002,8 +1003,7 @@
         "resolved": "11.11.0",
         "contentHash": "viTKWaMbL3yJYgGI0DiCeavNbE9UPMWFVK2XS9nYXGbm3NDMd0/L5ER4wBzmTtW3BYh3SrlSXm9RACiKZ6stlA==",
         "dependencies": {
-          "FluentValidation": "11.11.0",
-          "Microsoft.Extensions.Dependencyinjection.Abstractions": "2.1.0"
+          "FluentValidation": "11.11.0"
         }
       },
       "Fluid.Core": {
@@ -1259,11 +1259,6 @@
         "type": "Transitive",
         "resolved": "10.0.0",
         "contentHash": "xvhmF2dlwC3e8KKSuWOjJkjQdKG80991CUqjDnqzV1Od0CgMqbDw49kGJ9RiGrp3nbLTYCSb3c+KYo6TcENYRw=="
-      },
-      "Microsoft.Extensions.DependencyInjection.Abstractions": {
-        "type": "Transitive",
-        "resolved": "2.1.0",
-        "contentHash": "8/CtASu80UIoyG+r8FstrmZW5GLtXxzoYpjj3jV0FKZCL5CiFgSH3pAmqut/dC68mu7N1bU6v0UtKKL3gCUQGQ=="
       },
       "Microsoft.Extensions.DependencyModel": {
         "type": "Transitive",

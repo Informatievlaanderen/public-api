@@ -88,6 +88,10 @@ namespace Public.Api.Infrastructure.Swagger
                 public const int Root = GetBase + 0;
 
                 public const int Get = GetBase + 0;
+
+                // The POST endpoints of the wegknopen come before those of the wegsegmenten, which start at PostBase.
+                public const int ChangeAttributes = PostBase - 10;
+                public const int Remove = ChangeAttributes + 1;
             }
 
             public static class RoadSegment
@@ -125,6 +129,10 @@ namespace Public.Api.Infrastructure.Swagger
                 public const int Root = GetBase + 2;
 
                 public const int Get = GetBase + 2;
+
+                // After the POST endpoints of the wegsegmenten, which end at DeleteRoadSegments.
+                public const int ChangeToGradeJunction = PostBase + 30;
+                public const int ChangeAttributes = ChangeToGradeJunction + 1;
             }
 
             public static class GradeJunction
@@ -132,6 +140,8 @@ namespace Public.Api.Infrastructure.Swagger
                 public const int Root = GetBase + 3;
 
                 public const int Get = GetBase + 3;
+
+                public const int ChangeToGradeSeparatedJunction = PostBase + 40;
             }
 
             public const int Inwinningsstatus = GetBase + 4;
