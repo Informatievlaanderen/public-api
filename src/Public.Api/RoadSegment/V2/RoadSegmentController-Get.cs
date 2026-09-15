@@ -11,6 +11,7 @@ namespace Public.Api.RoadSegment.V2
     using Common.ProblemDetailsException;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.OpenApi;
     using Public.Api.Infrastructure;
     using Public.Api.Infrastructure.ProblemDetailsExceptionMappings;
     using Public.Api.Infrastructure.Swagger;
@@ -41,6 +42,7 @@ namespace Public.Api.RoadSegment.V2
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        [SwaggerResponseHeader(StatusCodes.Status404NotFound, HeaderNames.Link, JsonSchemaType.String, "De URL van het wegsegment in v3.")]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(GetRoadSegmentResponseResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(RoadSegmentNotFoundResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]

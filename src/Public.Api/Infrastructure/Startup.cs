@@ -95,31 +95,8 @@ namespace Public.Api.Infrastructure
                 ? baseUrl.Substring(0, baseUrl.Length - 1)
                 : baseUrl;
 
-            var amazonDynamoDbClient = new AmazonDynamoDBClient(RegionEndpoint.EUWest1);
-            if (_webHostEnvironment.IsDevelopment())
-            {
-                amazonDynamoDbClient = new AmazonDynamoDBClient(new AmazonDynamoDBConfig
-                {
-                    RegionEndpoint = RegionEndpoint.EUWest1,
-                    ServiceURL = "http://localhost:8000",
-                });
-            }
-
-            var dynamoDbFeatureToggleService = new DynamoDbFeatureToggleService(
-                amazonDynamoDbClient,
-                _configuration["FeatureToggleTableName"],
-                _configuration.GetValue<bool>("FeatureToggleDefaultEnabled"));
-            dynamoDbFeatureToggleService.Initialize().GetAwaiter().GetResult();
-
-            // Migrate before the toggles are read: IKeyedFeatureToggle snapshots its value in the
-            // constructor, so a newly added toggle has to be stored before the action model
-            // conventions take their snapshot, or it stays hidden until the next startup.
-            dynamoDbFeatureToggleService
-                .Migrate(KeyedFeatureToggleExtensions.GetFeatureToggles(dynamoDbFeatureToggleService))
-                .GetAwaiter()
-                .GetResult();
-
-            var keyedFeatureToggles = KeyedFeatureToggleExtensions.GetFeatureToggles(dynamoDbFeatureToggleService);
+            var featureToggleService = CreateFeatureToggleService(services);
+            var keyedFeatureToggles = KeyedFeatureToggleExtensions.GetFeatureToggles(featureToggleService);
 
             services
                 .ConfigureDefaultForApi<Startup>(new StartupConfigureOptions
@@ -131,9 +108,7 @@ namespace Public.Api.Infrastructure
                             .GetChildren()
                             .Select(c => c.Value!)
                             .ToArray(),
-                        Headers = new[] {ApiKeyAuthAttribute.ApiKeyHeaderName},
-                        // Points to the successor of what moved to a newer version of the API (e.g. a road segment in v3).
-                        ExposedHeaders = new[] {HeaderNames.Link}
+                        Headers = [ApiKeyAuthAttribute.ApiKeyHeaderName]
                     },
                     Server =
                     {
@@ -343,12 +318,44 @@ namespace Public.Api.Infrastructure
                     BaseUrl = baseUrl.TrimEnd('/')
                 })
                 .Configure<ExcludedRouteModelOptions>(_configuration.GetSection("ExcludedRoutes"))
-                .AddSingleton<IAmazonDynamoDB>(_ => amazonDynamoDbClient)
-                .AddSingleton<IDynamicFeatureToggleService>(dynamoDbFeatureToggleService)
+                .AddSingleton<IDynamicFeatureToggleService>(featureToggleService)
                 .RegisterFeatureToggles();
 
             services
                 .RemoveAll<IApiControllerSpecification>();
+        }
+
+        /// <summary>Creates the feature toggle service, whose toggles are stored in DynamoDB.</summary>
+        /// <remarks>Virtual so that a test can compose the API without DynamoDB.</remarks>
+        protected virtual IDynamicFeatureToggleService CreateFeatureToggleService(IServiceCollection services)
+        {
+            var amazonDynamoDbClient = new AmazonDynamoDBClient(RegionEndpoint.EUWest1);
+            if (_webHostEnvironment.IsDevelopment())
+            {
+                amazonDynamoDbClient = new AmazonDynamoDBClient(new AmazonDynamoDBConfig
+                {
+                    RegionEndpoint = RegionEndpoint.EUWest1,
+                    ServiceURL = "http://localhost:8000",
+                });
+            }
+
+            var dynamoDbFeatureToggleService = new DynamoDbFeatureToggleService(
+                amazonDynamoDbClient,
+                _configuration["FeatureToggleTableName"],
+                _configuration.GetValue<bool>("FeatureToggleDefaultEnabled"));
+            dynamoDbFeatureToggleService.Initialize().GetAwaiter().GetResult();
+
+            // Migrate before the toggles are read: IKeyedFeatureToggle snapshots its value in the
+            // constructor, so a newly added toggle has to be stored before the action model
+            // conventions take their snapshot, or it stays hidden until the next startup.
+            dynamoDbFeatureToggleService
+                .Migrate(KeyedFeatureToggleExtensions.GetFeatureToggles(dynamoDbFeatureToggleService))
+                .GetAwaiter()
+                .GetResult();
+
+            services.AddSingleton<IAmazonDynamoDB>(_ => amazonDynamoDbClient);
+
+            return dynamoDbFeatureToggleService;
         }
 
         public void Configure(

@@ -2,7 +2,6 @@ namespace Public.Api.Infrastructure
 {
     using System;
     using System.Linq;
-    using System.Reflection;
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
     using Autofac.Features.AttributeFilters;
@@ -13,6 +12,7 @@ namespace Public.Api.Infrastructure
     using Common.Infrastructure.Modules;
     using Extract;
     using Feeds.V2;
+    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Modules;
@@ -28,34 +28,7 @@ namespace Public.Api.Infrastructure
             => new HostBuilder()
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureContainer<ContainerBuilder>((hostContext, containerBuilder) =>
-                {
-                    var marketingVersion = new MarketingVersion(hostContext.Configuration);
-
-                    containerBuilder
-                        .RegisterModule(new ApiConfigurationModule(hostContext.Configuration))
-                        .RegisterModule(new RedisModule(hostContext.Configuration))
-                        .RegisterModule(new ExtractDownloadModule(hostContext.Configuration, marketingVersion))
-                        .RegisterModule(new StatusModule(hostContext.Configuration))
-                        .RegisterModule(new InfoModule(hostContext.Configuration));
-
-                    RegisterExamples(containerBuilder);
-
-                    containerBuilder
-                        .RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                        .Where(t => t.IsSubClassOfGeneric(typeof(RegistryApiController<>)))
-                        .WithAttributeFiltering();
-
-                    containerBuilder
-                        .RegisterType<FeedV2Controller>()
-                        .WithAttributeFiltering();
-
-                    containerBuilder
-                        .RegisterType<ExtractController>()
-                        .WithAttributeFiltering();
-
-                    containerBuilder
-                        .RegisterInstance(marketingVersion);
-                })
+                    ConfigureContainer(hostContext.Configuration, containerBuilder))
                 .UseDefaultForApi<Startup>(
                     new ProgramOptions
                     {
@@ -73,6 +46,38 @@ namespace Public.Api.Infrastructure
                             CommandLineArgs = args
                         }
                     });
+
+        /// <summary>Registers what the host adds to the services of the API.</summary>
+        /// <remarks>Public so that a test composes the API as the host does.</remarks>
+        public static void ConfigureContainer(IConfiguration configuration, ContainerBuilder containerBuilder)
+        {
+            var marketingVersion = new MarketingVersion(configuration);
+
+            containerBuilder
+                .RegisterModule(new ApiConfigurationModule(configuration))
+                .RegisterModule(new RedisModule(configuration))
+                .RegisterModule(new ExtractDownloadModule(configuration, marketingVersion))
+                .RegisterModule(new StatusModule(configuration))
+                .RegisterModule(new InfoModule(configuration));
+
+            RegisterExamples(containerBuilder);
+
+            containerBuilder
+                .RegisterAssemblyTypes(typeof(Program).Assembly)
+                .Where(t => t.IsSubClassOfGeneric(typeof(RegistryApiController<>)))
+                .WithAttributeFiltering();
+
+            containerBuilder
+                .RegisterType<FeedV2Controller>()
+                .WithAttributeFiltering();
+
+            containerBuilder
+                .RegisterType<ExtractController>()
+                .WithAttributeFiltering();
+
+            containerBuilder
+                .RegisterInstance(marketingVersion);
+        }
 
         private static void RegisterExamples(ContainerBuilder containerBuilder)
         {
