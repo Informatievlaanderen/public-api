@@ -62,6 +62,7 @@ jobs:
       registry: ${{ vars.VBR_DEVOPS_DOCKER_REGISTRY }}/public-api
       image-file: api-legacy-image.tar
       image-name: api-legacy
+      test-project: Public.Api.Tests
       build-project: Public.Api
       semver: ${{ needs.set-release-version.outputs.version }}
       dotnet-version: ${{ vars.VBR_DOTNET_VERSION_10 }}

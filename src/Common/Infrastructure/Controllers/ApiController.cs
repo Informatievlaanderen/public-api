@@ -163,7 +163,8 @@ namespace Common.Infrastructure.Controllers
             Action<HttpStatusCode> handleNotOkResponseAction,
             ProblemDetailsHelper problemDetailsHelper,
             ICollection<KeyValuePair<string, string>>? headersToForward = null,
-            CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken = default,
+            Action<RestResponse>? inspectNotOkResponse = null)
         {
             var contentType = acceptType.ToMimeTypeString();
 
@@ -204,6 +205,8 @@ namespace Common.Infrastructure.Controllers
                     response.StatusCode);
             }
 
+            // Before the status code is turned into an exception, which leaves nothing of the response to answer with.
+            inspectNotOkResponse?.Invoke(response);
             handleNotOkResponseAction(response.StatusCode);
 
             throw new ApiException("Fout bij de bron.", (int)response.StatusCode, response.ErrorException);
