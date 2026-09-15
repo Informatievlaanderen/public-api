@@ -1,3 +1,10 @@
+# [8.15.0](https://github.com/informatievlaanderen/public-api/compare/v8.14.2...v8.15.0) (2026-09-15)
+
+
+### Features
+
+* **road:** pass the Link header of a road segment that moved to v3 GAWR-7720 ([cc13fc7](https://github.com/informatievlaanderen/public-api/commit/cc13fc73293a1f451e9e8e877ac66bdd41ad96e8))
+
 ## [8.14.2](https://github.com/informatievlaanderen/public-api/compare/v8.14.1...v8.14.2) (2026-09-10)
 
 ## [8.14.1](https://github.com/informatievlaanderen/public-api/compare/v8.14.0...v8.14.1) (2026-09-10)
