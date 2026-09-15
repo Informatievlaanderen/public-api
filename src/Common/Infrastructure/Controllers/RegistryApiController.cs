@@ -81,7 +81,8 @@ namespace Common.Infrastructure.Controllers
             Action<HttpStatusCode> handleNotOkResponseAction,
             ProblemDetailsHelper problemDetailsHelper,
             ICollection<KeyValuePair<string, string>>? headersToForward = null,
-            CancellationToken cancellationToken = default)
+            CancellationToken cancellationToken = default,
+            Action<RestResponse>? inspectNotOkResponse = null)
             => await GetFromBackendWithBadRequestAsync(
                 _restClient,
                 createBackendRequestFunc,
@@ -89,7 +90,8 @@ namespace Common.Infrastructure.Controllers
                 handleNotOkResponseAction,
                 problemDetailsHelper,
                 headersToForward,
-                cancellationToken);
+                cancellationToken,
+                inspectNotOkResponse);
 
         protected static RestRequest CreateBackendRequestWithJsonBody<TRequest>(string path, TRequest? body, Method method)
             where TRequest : class

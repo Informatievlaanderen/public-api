@@ -131,7 +131,9 @@ namespace Public.Api.Infrastructure
                             .GetChildren()
                             .Select(c => c.Value!)
                             .ToArray(),
-                        Headers = new[] {ApiKeyAuthAttribute.ApiKeyHeaderName}
+                        Headers = new[] {ApiKeyAuthAttribute.ApiKeyHeaderName},
+                        // Points to the successor of what moved to a newer version of the API (e.g. a road segment in v3).
+                        ExposedHeaders = new[] {HeaderNames.Link}
                     },
                     Server =
                     {

@@ -44,6 +44,7 @@ namespace Common.Infrastructure
         public const string IfRange = "If-Range";
         public const string IfUnmodifiedSince = "If-Unmodified-Since";
         public const string LastModified = "Last-Modified";
+        public const string Link = "Link";
         public const string Location = "Location";
         public const string MaxForwards = "Max-Forwards";
         public const string Method = ":method";
