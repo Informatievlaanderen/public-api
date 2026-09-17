@@ -56,7 +56,10 @@ namespace Public.Api.RoadSegment.V3
         [SwaggerAuthorizeOperation(
             OperationId = nameof(ChangeRoadSegmentGeometryV3),
             Description = "Wijzig de geometrie van een wegsegment. Wegknopen op het start- of eindpunt verplaatsen mee, net als de aansluitende wegsegmenten.",
-            Authorize = Scopes.DvWrGeschetsteWegBeheer
+            Authorize = [
+                $"`{Scopes.DvWrGeschetsteWegBeheer}`: voor wegsegmenten met geometriemethode 'ingeschetst'",
+                $"`{Scopes.DvWrIngemetenWegBeheer}`: voor wegsegmenten met geometriemethode 'ingemeten'"
+            ]
         )]
         public async Task<IActionResult> ChangeRoadSegmentGeometryV3(
             [FromRoute] int id,

@@ -54,7 +54,10 @@ namespace Public.Api.RoadSegment.V3
         [SwaggerAuthorizeOperation(
             OperationId = nameof(CorrectRoadSegmentFromHistorizedToOutOfUseV3),
             Description = "Corrigeer een `gehistoreerd` wegsegment naar `buiten gebruik`. Zowel de oude als de nieuwe status houden het wegsegment buiten het wegennet, dus enkel de status wijzigt: de geometrie, de attributen en de wegknopen blijven ongemoeid.",
-            Authorize = Scopes.DvWrGeschetsteWegBeheer
+            Authorize = [
+                $"`{Scopes.DvWrGeschetsteWegBeheer}`: voor wegsegmenten met geometriemethode 'ingeschetst'",
+                $"`{Scopes.DvWrIngemetenWegBeheer}`: voor wegsegmenten met geometriemethode 'ingemeten'"
+            ]
         )]
         public async Task<IActionResult> CorrectRoadSegmentFromHistorizedToOutOfUseV3(
             [FromRoute] int id,

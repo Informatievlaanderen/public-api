@@ -45,7 +45,7 @@ namespace Public.Api.RoadSegment.V2
         [SwaggerAuthorizeOperation(
             OperationId = nameof(DeleteRoadSegmentsV2),
             Description = "Verwijder wegsegmenten.",
-            Authorize = Scopes.DvWrUitzonderingenBeheer
+            Authorize = [Scopes.DvWrUitzonderingenBeheer]
         )]
         public async Task<IActionResult> DeleteRoadSegmentsV2(
             [FromBody] DeleteRoadSegmentsParameters request,

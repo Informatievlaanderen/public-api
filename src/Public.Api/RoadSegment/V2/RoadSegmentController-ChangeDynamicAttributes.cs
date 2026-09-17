@@ -53,7 +53,7 @@ namespace Public.Api.RoadSegment.V2
         [SwaggerAuthorizeOperation(
             OperationId = nameof(ChangeRoadSegmentDynamicAttributesV2),
             Description = "Dynamische attributen wijzigen van een wegsegment: wegverharding, wegbreedte en aantal rijstroken.",
-            Authorize = Scopes.DvWrAttribuutWaardenBeheer
+            Authorize = [Scopes.DvWrAttribuutWaardenBeheer]
         )]
         public async Task<IActionResult> ChangeRoadSegmentDynamicAttributesV2(
             [FromBody] ChangeRoadSegmentsDynamicAttributesParameters request,

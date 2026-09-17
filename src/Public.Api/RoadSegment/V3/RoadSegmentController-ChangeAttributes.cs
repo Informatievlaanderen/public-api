@@ -46,7 +46,7 @@ namespace Public.Api.RoadSegment.V3
         [SwaggerAuthorizeOperation(
             OperationId = nameof(ChangeRoadSegmentAttributesV3),
             Description = "Wijzig attribuutwaarde(n) voor één of meerdere wegsegmenten.",
-            Authorize = Scopes.DvWrAttribuutWaardenBeheer
+            Authorize = [Scopes.DvWrAttribuutWaardenBeheer]
         )]
         public async Task<IActionResult> ChangeRoadSegmentAttributesV3(
             [FromBody] ChangeRoadSegmentAttributesV2Parameters request,

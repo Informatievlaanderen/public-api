@@ -49,7 +49,7 @@ namespace Public.Api.RoadNode.V3
         [SwaggerAuthorizeOperation(
             OperationId = nameof(ChangeRoadNodeAttributesV3),
             Description = "Wijzig één of meerdere attribuutwaarden voor één of meerdere wegknopen.",
-            Authorize = Scopes.DvWrAttribuutWaardenBeheer
+            Authorize = [Scopes.DvWrAttribuutWaardenBeheer]
         )]
         public async Task<IActionResult> ChangeRoadNodeAttributesV3(
             [FromBody] ChangeRoadNodeAttributesV2Parameters request,

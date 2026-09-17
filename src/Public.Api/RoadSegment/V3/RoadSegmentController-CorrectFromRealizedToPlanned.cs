@@ -54,7 +54,10 @@ namespace Public.Api.RoadSegment.V3
         [SwaggerAuthorizeOperation(
             OperationId = nameof(CorrectRoadSegmentFromRealizedToPlannedV3),
             Description = "Corrigeer een `gerealiseerd` wegsegment naar `gepland`. Het wegsegment wordt losgemaakt van het wegennet: begin- en eindknoop worden verwijderd waar ze niets meer dragen, de kruisingen waartoe het wegsegment behoort verdwijnen, en de wegknooptypes van aansluitende wegsegmenten worden aangepast waar nodig.",
-            Authorize = Scopes.DvWrGeschetsteWegBeheer
+            Authorize = [
+                $"`{Scopes.DvWrGeschetsteWegBeheer}`: voor wegsegmenten met geometriemethode 'ingeschetst'",
+                $"`{Scopes.DvWrIngemetenWegBeheer}`: voor wegsegmenten met geometriemethode 'ingemeten'"
+            ]
         )]
         public async Task<IActionResult> CorrectRoadSegmentFromRealizedToPlannedV3(
             [FromRoute] int id,

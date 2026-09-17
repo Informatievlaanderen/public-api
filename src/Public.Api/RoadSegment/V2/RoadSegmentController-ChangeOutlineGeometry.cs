@@ -54,7 +54,7 @@ namespace Public.Api.RoadSegment.V2
         [SwaggerAuthorizeOperation(
             OperationId = nameof(ChangeRoadSegmentOutlineGeometryV2),
             Description = "Wijzig de geometrie van een wegsegment met geometriemethode 'ingeschetst'.",
-            Authorize = Scopes.DvWrGeschetsteWegBeheer
+            Authorize = [Scopes.DvWrGeschetsteWegBeheer]
         )]
         public async Task<IActionResult> ChangeRoadSegmentOutlineGeometryV2(
             [FromRoute] string id,

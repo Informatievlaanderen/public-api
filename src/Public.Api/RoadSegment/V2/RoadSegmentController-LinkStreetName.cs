@@ -53,7 +53,7 @@ namespace Public.Api.RoadSegment.V2
         [SwaggerAuthorizeOperation(
             OperationId = nameof(LinkRoadSegmentStreetNameV2),
             Description = "Koppel een linker- en/of rechterstraatnaam met status `voorgesteld` of `inGebruik` aan een wegsegment waaraan momenteel geen linker- en/of rechterstraatnaam gekoppeld werd.",
-            Authorize = Scopes.DvWrAttribuutWaardenBeheer
+            Authorize = [Scopes.DvWrAttribuutWaardenBeheer]
         )]
         public async Task<IActionResult> LinkRoadSegmentStreetNameV2(
             [FromRoute] string id,
