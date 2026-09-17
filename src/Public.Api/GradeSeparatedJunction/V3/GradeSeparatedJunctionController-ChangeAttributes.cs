@@ -56,7 +56,7 @@ namespace Public.Api.GradeSeparatedJunction.V3
         [SwaggerAuthorizeOperation(
             OperationId = nameof(ChangeGradeSeparatedJunctionAttributesV3),
             Description = "Wijzig attribuutwaarde(n) voor een ongelijkgrondse kruising: het onder- en bovenliggende wegsegment omwisselen, of het type aanpassen.",
-            Authorize = Scopes.DvWrAttribuutWaardenBeheer
+            Authorize = [Scopes.DvWrAttribuutWaardenBeheer]
         )]
         public async Task<IActionResult> ChangeGradeSeparatedJunctionAttributesV3(
             [FromRoute] int id,

@@ -53,7 +53,7 @@ namespace Public.Api.RoadSegment.V3
         [SwaggerAuthorizeOperation(
             OperationId = nameof(SplitRoadSegmentV3),
             Description = "Knip een wegsegment op de opgegeven knippositie.",
-            Authorize = Scopes.DvWrGeschetsteWegBeheer
+            Authorize = [Scopes.DvWrGeschetsteWegBeheer]
         )]
         public async Task<IActionResult> SplitRoadSegmentV3(
             [FromRoute] int id,

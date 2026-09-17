@@ -48,7 +48,7 @@ namespace Public.Api.RoadSegment.V3
         [SwaggerAuthorizeOperation(
             OperationId = nameof(RoadSegmentChangeGeometryDrawMethodV3),
             Description = "Wijzig de geometriemethode voor één of meerdere wegsegmenten.",
-            Authorize = Scopes.DvWrIngemetenWegBeheer
+            Authorize = [Scopes.DvWrIngemetenWegBeheer]
         )]
         public async Task<IActionResult> RoadSegmentChangeGeometryDrawMethodV3(
             [FromBody] ChangeRoadSegmentGeometryDrawMethodV2Parameters request,

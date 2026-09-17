@@ -51,10 +51,10 @@ namespace Public.Api.RoadSegment.V3
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
-        [SwaggerAuthorizesOperation(
+        [SwaggerAuthorizeOperation(
             OperationId = nameof(CorrectRoadSegmentFromNotRealizedToPlannedV3),
             Description = "Corrigeer een `niet gerealiseerd` wegsegment naar `gepland`. Zowel de oude als de nieuwe status houden het wegsegment buiten het wegennet, dus enkel de status wijzigt: de geometrie, de attributen en de wegknopen blijven ongemoeid.",
-            AuthorizationScopes = [
+            Authorize = [
                 $"`{Scopes.DvWrGeschetsteWegBeheer}`: voor wegsegmenten met geometriemethode 'ingeschetst'",
                 $"`{Scopes.DvWrIngemetenWegBeheer}`: voor wegsegmenten met geometriemethode 'ingemeten'"
             ]

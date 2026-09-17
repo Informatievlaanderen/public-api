@@ -53,10 +53,10 @@ namespace Public.Api.RoadSegment.V3
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
         [SwaggerRequestExample(typeof(ChangeRoadSegmentGeometryV2Parameters), typeof(ChangeRoadSegmentGeometryV2ParametersExamples))]
-        [SwaggerAuthorizesOperation(
+        [SwaggerAuthorizeOperation(
             OperationId = nameof(ChangeRoadSegmentGeometryV3),
             Description = "Wijzig de geometrie van een wegsegment. Wegknopen op het start- of eindpunt verplaatsen mee, net als de aansluitende wegsegmenten.",
-            AuthorizationScopes = [
+            Authorize = [
                 $"`{Scopes.DvWrGeschetsteWegBeheer}`: voor wegsegmenten met geometriemethode 'ingeschetst'",
                 $"`{Scopes.DvWrIngemetenWegBeheer}`: voor wegsegmenten met geometriemethode 'ingemeten'"
             ]

@@ -54,7 +54,7 @@ namespace Public.Api.RoadNode.V3
         [SwaggerAuthorizeOperation(
             OperationId = nameof(RemoveRoadNodeV3),
             Description = "Verwijder een wegknoop. De aansluitende wegsegmenten worden hierbij samengevoegd: twee bij een validatieknoop, paarsgewijs bij een echte knoop met precies vier aansluitende wegsegmenten.",
-            Authorize = Scopes.DvWrGeschetsteWegBeheer
+            Authorize = [Scopes.DvWrGeschetsteWegBeheer]
         )]
         public async Task<IActionResult> RemoveRoadNodeV3(
             [FromRoute] int id,

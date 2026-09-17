@@ -50,7 +50,7 @@ namespace Public.Api.RoadSegment.V3
         [SwaggerAuthorizeOperation(
             OperationId = nameof(CreateRoadSegmentOutlineV3),
             Description = "Voeg een nieuw wegsegment toe aan het Wegenregister met geometriemethode 'ingeschetst'.",
-            Authorize = Scopes.DvWrGeschetsteWegBeheer
+            Authorize = [Scopes.DvWrGeschetsteWegBeheer]
         )]
         public async Task<IActionResult> CreateRoadSegmentOutlineV3(
             [FromBody] CreateOutlinedRoadSegmentV2Parameters request,
