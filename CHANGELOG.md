@@ -1,3 +1,11 @@
+## [8.15.1](https://github.com/informatievlaanderen/public-api/compare/v8.15.0...v8.15.1) (2026-09-17)
+
+
+### Bug Fixes
+
+* **road:** bump road-registry to 5.18.3 and document 410 on split GAWR-7625 ([8e3e465](https://github.com/informatievlaanderen/public-api/commit/8e3e4657824526e2048672ad22fedbcbda5dc503))
+* **road:** describe ingemeten/ingeschetst optional scopes ([99614a5](https://github.com/informatievlaanderen/public-api/commit/99614a5da71f390f305d08ff79dfb696d0aed9bb))
+
 # [8.15.0](https://github.com/informatievlaanderen/public-api/compare/v8.14.2...v8.15.0) (2026-09-15)
 
 
