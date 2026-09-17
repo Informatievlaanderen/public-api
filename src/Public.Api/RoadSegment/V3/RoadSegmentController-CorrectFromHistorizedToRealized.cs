@@ -51,10 +51,13 @@ namespace Public.Api.RoadSegment.V3
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
-        [SwaggerAuthorizeOperation(
+        [SwaggerAuthorizesOperation(
             OperationId = nameof(CorrectRoadSegmentFromHistorizedToRealizedV3),
             Description = "Corrigeer een `gehistoreerd` wegsegment naar `gerealiseerd`. Het wegsegment wordt aan het wegennet geknoopt: de uiteinden worden naar bestaande wegknopen binnen 1 meter gesnapt, waar er geen ligt komt een eindknoop, en kruisingen met gerealiseerde wegsegmenten worden als gelijkgrondse kruising vastgelegd.",
-            Authorize = Scopes.DvWrGeschetsteWegBeheer
+            AuthorizationScopes = [
+                $"`{Scopes.DvWrGeschetsteWegBeheer}`: voor wegsegmenten met geometriemethode 'ingeschetst'",
+                $"`{Scopes.DvWrIngemetenWegBeheer}`: voor wegsegmenten met geometriemethode 'ingemeten'"
+            ]
         )]
         public async Task<IActionResult> CorrectRoadSegmentFromHistorizedToRealizedV3(
             [FromRoute] int id,

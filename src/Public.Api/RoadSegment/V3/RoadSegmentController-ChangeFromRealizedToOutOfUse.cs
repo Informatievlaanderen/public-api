@@ -51,10 +51,13 @@ namespace Public.Api.RoadSegment.V3
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV3))]
-        [SwaggerAuthorizeOperation(
+        [SwaggerAuthorizesOperation(
             OperationId = nameof(ChangeRoadSegmentFromRealizedToOutOfUseV3),
             Description = "Markeer een `gerealiseerd` wegsegment als `buiten gebruik`. Het wegsegment wordt losgemaakt van het wegennet: begin- en eindknoop worden verwijderd waar ze niets meer dragen, de kruisingen waartoe het wegsegment behoort verdwijnen, en de wegknooptypes van aansluitende wegsegmenten worden aangepast waar nodig.",
-            Authorize = Scopes.DvWrGeschetsteWegBeheer
+            AuthorizationScopes = [
+                $"`{Scopes.DvWrGeschetsteWegBeheer}`: voor wegsegmenten met geometriemethode 'ingeschetst'",
+                $"`{Scopes.DvWrIngemetenWegBeheer}`: voor wegsegmenten met geometriemethode 'ingemeten'"
+            ]
         )]
         public async Task<IActionResult> ChangeRoadSegmentFromRealizedToOutOfUseV3(
             [FromRoute] int id,
