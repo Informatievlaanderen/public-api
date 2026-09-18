@@ -48,7 +48,7 @@ namespace Public.Api.RoadSegment.V3
         [SwaggerAuthorizeOperation(
             OperationId = nameof(DeleteRoadSegmentsV3),
             Description = "Verwijder één of meerdere wegsegmenten. De wegknopen waar een verwijderd wegsegment aan hing worden aangepast of verwijderd, de kruisingen waar het deel van uitmaakte verdwijnen mee, en wegsegmenten die na de verwijdering nog enkel door een validatieknoop gescheiden worden, worden samengevoegd.",
-            Authorize = [Scopes.DvWrIngemetenWegBeheer]
+            Authorize = [Scopes.DvWrUitzonderingenBeheer]
         )]
         public async Task<IActionResult> DeleteRoadSegmentsV3(
             [FromBody] DeleteRoadSegmentsV2Parameters request,
