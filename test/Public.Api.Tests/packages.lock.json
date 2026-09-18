@@ -92,8 +92,8 @@
       },
       "AWSSDK.Core": {
         "type": "Transitive",
-        "resolved": "4.0.100.5",
-        "contentHash": "OYkCEqfNDh6uDlsCF+pBCOi9LvaEg9m2iU5xtbMci3yW8SpCIPOijiqB5OINIhdDvrQAltFd0x4BeYfF7GJVSw=="
+        "resolved": "4.0.102.6",
+        "contentHash": "YwUi9qpz/OHqwEgsf8I5jj1aC/xkkjmF91R8Yx6yD66dhOiORgQJynYQk0fzI4xdhBgUaw8SRGbMkLRrvL+CNA=="
       },
       "AWSSDK.SQS": {
         "type": "Transitive",
@@ -1639,7 +1639,7 @@
       "common": {
         "type": "Project",
         "dependencies": {
-          "AWSSDK.DynamoDBv2": "[4.0.101.2, )",
+          "AWSSDK.DynamoDBv2": "[4.0.103.8, )",
           "Autofac.Extensions.DependencyInjection": "[11.0.2, )",
           "Be.Vlaanderen.Basisregisters.Api": "[27.0.0, )",
           "FeatureToggle.Common": "[4.0.2, )",
@@ -1657,8 +1657,8 @@
       "public.api": {
         "type": "Project",
         "dependencies": {
-          "AWSSDK.DynamoDBv2": "[4.0.101.2, )",
-          "AWSSDK.S3": "[4.0.101.2, )",
+          "AWSSDK.DynamoDBv2": "[4.0.103.8, )",
+          "AWSSDK.S3": "[4.0.103.3, )",
           "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions": "[6.4.5, )",
           "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo": "[6.4.5, )",
           "Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting": "[11.0.0, )",
@@ -1706,20 +1706,20 @@
       },
       "AWSSDK.DynamoDBv2": {
         "type": "CentralTransitive",
-        "requested": "[4.0.101.2, )",
-        "resolved": "4.0.101.2",
-        "contentHash": "VDJoDhYIlt8hwdVCMiSE5xqWU4BMCUYy82adx3iCTVKaY3EWTB61bNlqgCFp+Ui49+7jyvv8oAlxifYzVI6y7A==",
+        "requested": "[4.0.103.8, )",
+        "resolved": "4.0.103.8",
+        "contentHash": "GE/WCQvd2iO4T5U4kpj8cSCOFdWRJZ7maxXOP7OiQEQ9LZ2e5exfkB7ni1hyyLQzfQSehqZis9OAK+z2B6+Mag==",
         "dependencies": {
-          "AWSSDK.Core": "[4.0.100.5, 5.0.0)"
+          "AWSSDK.Core": "[4.0.102.6, 5.0.0)"
         }
       },
       "AWSSDK.S3": {
         "type": "CentralTransitive",
-        "requested": "[4.0.101.2, )",
-        "resolved": "4.0.101.2",
-        "contentHash": "kYd4oTKCNUE1JGTCyrdUFDKZYiKgLLzgoJB9KdgPGfrPP+KjUFA2IOI03N+4C5Ihv9YKKCgsUArYQnaWw2HJjQ==",
+        "requested": "[4.0.103.3, )",
+        "resolved": "4.0.103.3",
+        "contentHash": "dndlr57QVnGDPTaQx4NlYhM7WvNLmfYVEanCVgRr8cPYPRGlT+/1vLoQEqeRr3McEFW/0v/hOjMxvcxNh9yWTw==",
         "dependencies": {
-          "AWSSDK.Core": "[4.0.100.5, 5.0.0)"
+          "AWSSDK.Core": "[4.0.102.6, 5.0.0)"
         }
       },
       "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions": {
