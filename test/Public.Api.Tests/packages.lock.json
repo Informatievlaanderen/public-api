@@ -1685,7 +1685,7 @@
           "Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo": "[7.1.2, )",
           "Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo": "[7.2.5, )",
           "Be.Vlaanderen.Basisregisters.ProblemDetails": "[10.1.0, )",
-          "Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api": "[5.18.3, )",
+          "Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api": "[5.19.1, )",
           "Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions": "[6.1.5, )",
           "Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo": "[6.1.5, )",
           "Be.Vlaanderen.Basisregisters.TicketingService.Abstractions": "[4.0.0, )",
@@ -2194,9 +2194,9 @@
       },
       "Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api": {
         "type": "CentralTransitive",
-        "requested": "[5.18.3, )",
-        "resolved": "5.18.3",
-        "contentHash": "Vrg7Wq8B6rY1GiRHHjq85+jfP7RB40KdGO3hHJbxjoGIdThLpo7E3deBILpO1atXUOjAkt8qVZAc7I1oZs2y2g==",
+        "requested": "[5.19.1, )",
+        "resolved": "5.19.1",
+        "contentHash": "ogLSvBam5a832gkM0UZ+hDmrAr7EAO16AxS5ZYfMJuwn6jVWmlTfk44IPY+8+dlIsKUqaVQvxpPufsZXczhqhg==",
         "dependencies": {
           "AWSSDK.Core": "4.0.9.7",
           "Be.Vlaanderen.Basisregisters.Api": "27.0.0",
