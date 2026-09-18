@@ -38,12 +38,13 @@ namespace Swashbuckle.AspNetCore.Annotations
                     sb.AppendLine("Authorization scopes:");
                     foreach (var item in _authorize)
                     {
-                        sb.AppendLine(item);
+                        sb.AppendLine("<br />");
+                        sb.AppendLine($"{System.Net.WebUtility.HtmlEncode(item)}");
                     }
                 }
                 sb.AppendLine("<br />");
                 sb.AppendLine("<br />");
-                sb.AppendLine(Description);
+                sb.AppendLine(System.Net.WebUtility.HtmlEncode(Description));
                 Description = sb.ToString();
             }
         }
