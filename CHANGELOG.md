@@ -1,3 +1,11 @@
+## [8.15.2](https://github.com/informatievlaanderen/public-api/compare/v8.15.1...v8.15.2) (2026-09-18)
+
+
+### Bug Fixes
+
+* multiple authorization scopes use unordered list ([370921a](https://github.com/informatievlaanderen/public-api/commit/370921a67e3692e29002293c75f9bb9b9a3a0ac8))
+* **road:** remove road segments in v3 requires the uitzonderingen scope GAWR-7765 ([d3c842a](https://github.com/informatievlaanderen/public-api/commit/d3c842a1ea24ee1f17ef74919e50d00f7e3ae58b))
+
 ## [8.15.1](https://github.com/informatievlaanderen/public-api/compare/v8.15.0...v8.15.1) (2026-09-17)
 
 
