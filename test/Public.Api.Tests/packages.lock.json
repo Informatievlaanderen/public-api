@@ -1659,8 +1659,8 @@
         "dependencies": {
           "AWSSDK.DynamoDBv2": "[4.0.101.2, )",
           "AWSSDK.S3": "[4.0.101.2, )",
-          "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions": "[6.4.5, )",
-          "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo": "[6.4.5, )",
+          "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions": "[6.4.6, )",
+          "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo": "[6.4.6, )",
           "Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting": "[11.0.0, )",
           "Be.Vlaanderen.Basisregisters.Api": "[27.0.0, )",
           "Be.Vlaanderen.Basisregisters.AspNetCore.Swagger": "[7.0.0, )",
@@ -1724,9 +1724,9 @@
       },
       "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[6.4.5, )",
-        "resolved": "6.4.5",
-        "contentHash": "QsnGrhLqDNYzyZsADuNcn7p5IaF4qwoZq5t9JgmjLqmzI56qzHV8on5ZESuq2biA6BtHCUxp+a+Y+qG7VT+9mg==",
+        "requested": "[6.4.6, )",
+        "resolved": "6.4.6",
+        "contentHash": "8JynOWzJZOrCystJ6f98BgHvspffQ2i8a63PiKs74qZTrIbP0mPMC+TakzwxNqzTP8ub0SGY+4Ub4jGghj1JBA==",
         "dependencies": {
           "Autofac": "9.1.0",
           "Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore": "11.0.0",
@@ -1765,9 +1765,9 @@
       },
       "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo": {
         "type": "CentralTransitive",
-        "requested": "[6.4.5, )",
-        "resolved": "6.4.5",
-        "contentHash": "k5P4Fe1yEBhHTB1bWIRGQvrgJqLxT/PBe6wrDIS+ca1XmrvtLYMcIsjn2MpDHbSZdl15YiX7iQ6abWQWFkubZA==",
+        "requested": "[6.4.6, )",
+        "resolved": "6.4.6",
+        "contentHash": "AS7G5yWLv94IuHBADE2JeLQMNiyCkc9YasrUsQoG8wQEV0QYZxjR5bHauj9kwwEJ+e3hwjF6izNSw4isOEafew==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Autofac": "9.1.0",
