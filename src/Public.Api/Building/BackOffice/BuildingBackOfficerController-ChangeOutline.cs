@@ -3,6 +3,7 @@ namespace Public.Api.Building.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using BuildingRegistry.Api.BackOffice.Abstractions.Building.Requests;
     using BuildingRegistry.Api.Oslo.Building.V2.Detail;
     using Common.FeatureToggles;
@@ -60,7 +61,10 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Wijzig de geometrie van een geschetst gebouw. De gekoppelde gebouweenheden moeten in deze nieuwe geometrie liggen.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Wijzig de geometrie van een geschetst gebouw. De gekoppelde gebouweenheden moeten in deze nieuwe geometrie liggen.",
+            Authorize = [Scopes.DvGrGeschetstgebouwBeheer]
+        )]
         [HttpPost(CorrectBuildingGeometryOutlineRoute, Name = nameof(ChangeBuildingGeometryOutline))]
         public async Task<IActionResult> ChangeBuildingGeometryOutline(
             [FromRoute] int objectId,

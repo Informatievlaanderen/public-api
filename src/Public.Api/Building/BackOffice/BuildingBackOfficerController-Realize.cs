@@ -3,6 +3,7 @@ namespace Public.Api.Building.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using BuildingRegistry.Api.Oslo.Building.V2.Detail;
     using Common.FeatureToggles;
     using Common.Infrastructure;
@@ -58,7 +59,10 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Wijzig de gebouwstatus van `inAanbouw` naar `gerealiseerd`. Gekoppelde gebouweenheden met status `gepland` worden `gerealiseerd`.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Wijzig de gebouwstatus van `inAanbouw` naar `gerealiseerd`. Gekoppelde gebouweenheden met status `gepland` worden `gerealiseerd`.",
+            Authorize = [Scopes.DvGrGeschetstgebouwBeheer]
+        )]
         [HttpPost(RealizeBuildingRoute, Name = nameof(RealizeBuilding))]
         public async Task<IActionResult> RealizeBuilding(
             [FromRoute] int objectId,

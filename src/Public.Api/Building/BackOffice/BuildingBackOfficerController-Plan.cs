@@ -3,6 +3,7 @@ namespace Public.Api.Building.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using BuildingRegistry.Api.BackOffice.Abstractions.Building.Requests;
     using Common.FeatureToggles;
     using Common.Infrastructure.Extensions;
@@ -51,7 +52,10 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenOAuthResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Voer een nieuw geschetst gebouw in met status `gepland`.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Voer een nieuw geschetst gebouw in met status `gepland`.",
+            Authorize = [Scopes.DvGrGeschetstgebouwBeheer]
+        )]
         [HttpPost(PlanBuildingRoute, Name = nameof(PlanBuilding))]
         public async Task<IActionResult> PlanBuilding(
                     [FromBody] PlanBuildingRequest planBuildingRequest,
