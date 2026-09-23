@@ -3,6 +3,7 @@ namespace Public.Api.Address.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.Infrastructure;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
@@ -58,7 +59,10 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Wijzig de adresstatus van `voorgesteld` naar `afgekeurd`. Gekoppelde busnummers met status `voorgesteld` worden `afgekeurd`. Als er een gebouweenheid of perceel gekoppeld is aan het adres, wordt deze koppeling verwijderd.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Wijzig de adresstatus van `voorgesteld` naar `afgekeurd`. Gekoppelde busnummers met status `voorgesteld` worden `afgekeurd`. Als er een gebouweenheid of perceel gekoppeld is aan het adres, wordt deze koppeling verwijderd.",
+            Authorize = [Scopes.DvArAdresBeheer]
+        )]
         [HttpPost(RejectRoute, Name = nameof(RejectAddress))]
         public async Task<IActionResult> RejectAddress(
             [FromRoute] int objectId,

@@ -3,6 +3,7 @@ namespace Public.Api.Address.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.Infrastructure;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
@@ -58,7 +59,10 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Corrigeer officieelToegekend van een adres van `false` naar `true`. Gekoppelde busnummers worden niet mee gecorrigeerd.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Corrigeer officieelToegekend van een adres van `false` naar `true`. Gekoppelde busnummers worden niet mee gecorrigeerd.",
+            Authorize = [Scopes.DvArAdresBeheer]
+        )]
         [HttpPost(CorrectDeregulationRoute, Name = nameof(CorrectDeregulationAddress))]
         public async Task<IActionResult> CorrectDeregulationAddress(
             [FromRoute] int objectId,

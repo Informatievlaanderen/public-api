@@ -5,6 +5,7 @@ namespace Public.Api.Address.BackOffice
     using AddressRegistry.Api.BackOffice.Abstractions.Requests;
     using AddressRegistry.Api.Oslo.Address.V2.Detail;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.FeatureToggles;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
@@ -61,7 +62,10 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerRequestExample(typeof(CorrectAddressPostalCodeRequest), typeof(CorrectAddressPostalCodeRequestExamples))]
-        [SwaggerOperation(Description = "Correctie van de postinfoId van een adres. Gekoppelde busnummers worden ook gecorrigeerd naar het nieuwe postinfoId. Het postinfoId moet in de gekoppelde gemeente van het adres liggen.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Correctie van de postinfoId van een adres. Gekoppelde busnummers worden ook gecorrigeerd naar het nieuwe postinfoId. Het postinfoId moet in de gekoppelde gemeente van het adres liggen.",
+            Authorize = [Scopes.DvArAdresBeheer]
+        )]
         [HttpPost(CorrectPostalCodeRoute, Name = nameof(CorrectPostalCodeAddress))]
         public async Task<IActionResult> CorrectPostalCodeAddress(
             [FromRoute] int objectId,

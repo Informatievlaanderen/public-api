@@ -4,6 +4,7 @@ namespace Public.Api.Address.BackOffice
     using System.Threading.Tasks;
     using AddressRegistry.Api.BackOffice.Abstractions.Requests;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.FeatureToggles;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
@@ -51,7 +52,10 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerRequestExample(typeof(ProposeAddressRequest), typeof(ProposeAddressRequestExamples))]
-        [SwaggerOperation(Description = "Voer een nieuw adres in met status `voorgesteld` binnen een straatnaam met status `voorgesteld` of `inGebruik`.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Voer een nieuw adres in met status `voorgesteld` binnen een straatnaam met status `voorgesteld` of `inGebruik`.",
+            Authorize = [Scopes.DvArAdresBeheer]
+        )]
         [HttpPost(ProposeAddressRoute, Name = nameof(ProposeAddress))]
         public async Task<IActionResult> ProposeAddress(
             [FromBody] ProposeAddressRequest proposeAddressRequest,

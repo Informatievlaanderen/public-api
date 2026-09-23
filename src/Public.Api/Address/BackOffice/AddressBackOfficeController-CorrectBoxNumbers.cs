@@ -4,6 +4,7 @@ namespace Public.Api.Address.BackOffice
     using System.Threading.Tasks;
     using AddressRegistry.Api.BackOffice.Abstractions.Requests;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.FeatureToggles;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
@@ -53,7 +54,10 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerRequestExample(typeof(CorrectAddressBoxNumbersRequest), typeof(CorrectAddressBoxNumbersRequestExamples))]
-        [SwaggerOperation(Description = "Correctie van meerdere busnummers van een huisnummeradres.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Correctie van meerdere busnummers van een huisnummeradres.",
+            Authorize = [Scopes.DvArAdresBeheer]
+        )]
         [HttpPost(CorrectBoxNumbersRoute, Name = nameof(CorrectBoxNumbersAddress))]
         public async Task<IActionResult> CorrectBoxNumbersAddress(
             [FromBody] CorrectAddressBoxNumbersRequest correctAddressBoxNumbersRequest,

@@ -4,6 +4,7 @@ namespace Public.Api.Address.BackOffice
     using System.Threading.Tasks;
     using AddressRegistry.Api.BackOffice.Abstractions.Requests;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.Infrastructure;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
@@ -64,7 +65,10 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerRequestExample(typeof(ChangeAddressPositionRequest), typeof(ChangeAddressPositionRequestExamples))]
-        [SwaggerOperation(Description = "Wijzig de positiespecificatie, positiegeometriemethode of positie van een adres.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Wijzig de positiespecificatie, positiegeometriemethode of positie van een adres.",
+            Authorize = [Scopes.DvArAdresBeheer]
+        )]
         [HttpPost(ChangePositionRoute, Name = nameof(ChangeAddressPosition))]
         public async Task<IActionResult> ChangeAddressPosition(
             [FromRoute] int objectId,

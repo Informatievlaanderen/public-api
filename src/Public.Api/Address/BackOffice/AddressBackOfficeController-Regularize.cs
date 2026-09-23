@@ -3,6 +3,7 @@ namespace Public.Api.Address.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.Infrastructure;
     using Infrastructure;
     using Microsoft.AspNetCore.Http;
@@ -58,7 +59,10 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Wijzig officieelToegekend van een adres van `false` naar `true`. Gekoppelde busnummers wijzigen niet mee van status.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Wijzig officieelToegekend van een adres van `false` naar `true`. Gekoppelde busnummers wijzigen niet mee van status.",
+            Authorize = [Scopes.DvArAdresBeheer]
+        )]
         [HttpPost(RegularizeRoute, Name = nameof(RegularizeAddress))]
         public async Task<IActionResult> RegularizeAddress(
             [FromRoute] int objectId,
