@@ -3,6 +3,7 @@ namespace Public.Api.Parcel.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.FeatureToggles;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
@@ -60,7 +61,10 @@ namespace Public.Api.Parcel.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerRequestExample(typeof(DetachAddressRequest), typeof(DetachAddressRequestExamples))]
-        [SwaggerOperation(Description = "Ontkoppel een adresId van een perceel.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Ontkoppel een adresId van een perceel.",
+            Authorize = [Scopes.DvArAdresBeheer]
+        )]
         [HttpPost(DetachAddressParcelRoute, Name = nameof(DetachAddressParcel))]
         public async Task<IActionResult> DetachAddressParcel(
             [FromBody] DetachAddressRequest request,
