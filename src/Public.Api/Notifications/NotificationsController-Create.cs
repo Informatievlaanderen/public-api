@@ -3,6 +3,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.FeatureToggles;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
@@ -11,6 +12,7 @@
     using Microsoft.AspNetCore.Mvc;
     using NotificationService.Api.Abstractions;
     using RestSharp;
+    using Swashbuckle.AspNetCore.Annotations;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
     using ValidationProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails;
 
@@ -40,6 +42,9 @@
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        [SwaggerAuthorizeOperation(
+            Authorize = [$"{Scopes.DvArAdresUitzonderingen}` en `{Scopes.DvGrGeschetstgebouwUitzonderingen}` en `{Scopes.DvGrIngemetengebouwUitzonderingen}` en `{Scopes.DvWrUitzonderingenBeheer}"]
+        )]
         public async Task<IActionResult> CreateNotification(
             [FromBody] MaakNotificatieRequest request,
             [FromServices] IHttpContextAccessor httpContextAccessor,

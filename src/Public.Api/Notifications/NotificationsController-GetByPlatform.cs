@@ -3,6 +3,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.FeatureToggles;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
@@ -11,6 +12,7 @@
     using Microsoft.AspNetCore.Mvc;
     using NotificationService.Api.Abstractions;
     using RestSharp;
+    using Swashbuckle.AspNetCore.Annotations;
     using Swashbuckle.AspNetCore.Filters;
     using ProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ProblemDetails;
     using ValidationProblemDetails = Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails;
@@ -46,6 +48,9 @@
         [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
+        [SwaggerAuthorizeOperation(
+            Authorize = [Scopes.DvArAdresBeheer]
+        )]
         public async Task<IActionResult> GetNotificationsByPlatform(
             [FromRoute] Platform platform,
             [FromServices] IHttpContextAccessor httpContextAccessor,
