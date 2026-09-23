@@ -3,6 +3,7 @@ namespace Public.Api.BuildingUnit.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using BuildingRegistry.Api.BackOffice.Abstractions.BuildingUnit.Requests;
     using BuildingRegistry.Api.Oslo.BuildingUnit.V2.Detail;
     using Common.FeatureToggles;
@@ -62,7 +63,10 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Verplaats de gebouweenheid naar het doelgebouw.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Verplaats de gebouweenheid naar het doelgebouw.",
+            Authorize = [$"{Scopes.DvGrGeschetstgebouwUitzonderingen}` en `{Scopes.DvGrIngemetengebouwUitzonderingen}"]
+        )]
         [HttpPost(MoveBuildingUnitRoute, Name = nameof(MoveBuildingUnit))]
         public async Task<IActionResult> MoveBuildingUnit(
             [FromRoute] int objectId,

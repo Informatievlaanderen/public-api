@@ -3,6 +3,7 @@ namespace Public.Api.BuildingUnit.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using BuildingRegistry.Api.Oslo.BuildingUnit.V2.Detail;
     using Common.FeatureToggles;
     using Common.Infrastructure;
@@ -58,9 +59,12 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Correctie van de verwijdering van een gebouweenheid. Er wordt automatisch een gemeenschappelijkDeel aangemaakt vanaf dat er 2 gebouweenheden met status `gepland` of `gerealiseerd` aan een gebouw gekoppeld zijn. De status van het gemeenschappelijkDeel is `gerealiseerd`. <br>" +
+        [SwaggerAuthorizeOperation(
+            Description = "Correctie van de verwijdering van een gebouweenheid. Er wordt automatisch een gemeenschappelijkDeel aangemaakt vanaf dat er 2 gebouweenheden met status `gepland` of `gerealiseerd` aan een gebouw gekoppeld zijn. De status van het gemeenschappelijkDeel is `gerealiseerd`. <br>" +
         "Wanneer de geometrie van een gebouw gewijzigd is na de opheffing van een gebouweenheid en hierdoor de positie van de gebouweenheid buiten de nieuwe geometrie ligt dan wijzigt bij de correctie van de opheffing de positie van de gebouweenheid  naar de centroïde van de gebouw geometrie. <br>" +
-        "Wanneer de positieGeometrieMethode `aangeduidDoorBeheerder` is dan wijzigt dit automatisch naar `afgeleidVanObject`.")]
+        "Wanneer de positieGeometrieMethode `aangeduidDoorBeheerder` is dan wijzigt dit automatisch naar `afgeleidVanObject`.",
+            Authorize = [$"{Scopes.DvGrGeschetstgebouwBeheer}` en `{Scopes.DvGrGeschetstgebouwUitzonderingen}"]
+        )]
         [HttpPost(CorrectBuildingUnitRemovalRoute, Name = nameof(CorrectBuildingUnitRemoval))]
         public async Task<IActionResult> CorrectBuildingUnitRemoval(
             [FromRoute] int objectId,
