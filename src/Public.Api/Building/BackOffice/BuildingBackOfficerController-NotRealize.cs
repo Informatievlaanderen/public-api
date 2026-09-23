@@ -3,6 +3,7 @@ namespace Public.Api.Building.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using BuildingRegistry.Api.Oslo.Building.V2.Detail;
     using Common.FeatureToggles;
     using Common.Infrastructure;
@@ -58,7 +59,10 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Wijzig de gebouwstatus van `gepland` of `inAanbouw` naar `nietGerealiseerd`. Gekoppelde gebouweenheden met status `gepland` worden `nietGerealiseerd`. Als er aan deze gekoppelde gebouweenheden adressen zijn gekoppeld, worden deze koppelingen verwijderd.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Wijzig de gebouwstatus van `gepland` of `inAanbouw` naar `nietGerealiseerd`. Gekoppelde gebouweenheden met status `gepland` worden `nietGerealiseerd`. Als er aan deze gekoppelde gebouweenheden adressen zijn gekoppeld, worden deze koppelingen verwijderd.",
+            Authorize = [Scopes.DvGrGeschetstgebouwBeheer]
+        )]
         [HttpPost(NotRealizeBuildingRoute, Name = nameof(NotRealizeBuilding))]
         public async Task<IActionResult> NotRealizeBuilding(
             [FromRoute] int objectId,

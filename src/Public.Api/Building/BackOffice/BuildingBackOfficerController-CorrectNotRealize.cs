@@ -3,6 +3,7 @@ namespace Public.Api.Building.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using BuildingRegistry.Api.Oslo.Building.V2.Detail;
     using Common.FeatureToggles;
     using Common.Infrastructure;
@@ -58,7 +59,10 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Correctie van de gebouwstatus van `nietGerealiseerd` naar `gepland`. Gekoppelde gebouweenheden corrigeren niet mee van status.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Correctie van de gebouwstatus van `nietGerealiseerd` naar `gepland`. Gekoppelde gebouweenheden corrigeren niet mee van status.",
+            Authorize = [Scopes.DvGrGeschetstgebouwBeheer]
+        )]
         [HttpPost(CorrectBuildingNotRealizationRoute, Name = nameof(CorrectBuildingNotRealization))]
         public async Task<IActionResult> CorrectBuildingNotRealization(
             [FromRoute] int objectId,
