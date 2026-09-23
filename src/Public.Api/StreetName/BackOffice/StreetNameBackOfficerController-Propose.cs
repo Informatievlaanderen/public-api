@@ -3,6 +3,7 @@ namespace Public.Api.StreetName.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.FeatureToggles;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
@@ -51,7 +52,10 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status403Forbidden, typeof(ForbiddenOAuthResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Voer een nieuwe straatnaam in met status `voorgesteld` binnen een gemeente met status `voorgesteld` of `inGebruik`.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Voer een nieuwe straatnaam in met status `voorgesteld` binnen een gemeente met status `voorgesteld` of `inGebruik`.",
+            Authorize = [Scopes.DvArAdresBeheer]
+        )]
         [HttpPost(ProposeStreetNameRoute, Name = nameof(ProposeStreetName))]
         public async Task<IActionResult> ProposeStreetName(
             [FromBody] ProposeStreetNameRequest streetNameProposeRequest,

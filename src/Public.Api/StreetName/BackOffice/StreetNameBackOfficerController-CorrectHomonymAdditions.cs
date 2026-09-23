@@ -3,6 +3,7 @@ namespace Public.Api.StreetName.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.FeatureToggles;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
@@ -61,7 +62,10 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerRequestExample(typeof(CorrectStreetNameNamesRequest), typeof(StreetNameCorrectNamesRequestExamples))]
-        [SwaggerOperation(Description = "Correctie or verwijdering van de homoniemtoevoegingen van een straatnaam met status `voorgesteld` of `inGebruik`.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Correctie or verwijdering van de homoniemtoevoegingen van een straatnaam met status `voorgesteld` of `inGebruik`.",
+            Authorize = [$"{Scopes.DvArAdresBeheer}` en `{Scopes.DvArAdresUitzonderingen}"]
+        )]
         [HttpPost(CorrectStreetNameHomonymAdditionsRoute, Name = nameof(CorrectStreetNameHomonymAdditions))]
         public async Task<IActionResult> CorrectStreetNameHomonymAdditions(
             [FromRoute] int objectId,

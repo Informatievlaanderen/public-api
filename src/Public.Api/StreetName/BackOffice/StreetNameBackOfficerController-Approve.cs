@@ -3,6 +3,7 @@ namespace Public.Api.StreetName.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.FeatureToggles;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
@@ -58,7 +59,10 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Wijzig de straatnaamstatus van `voorgesteld` naar `inGebruik`. Gekoppelde adressen wijzigen niet mee van status.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Wijzig de straatnaamstatus van `voorgesteld` naar `inGebruik`. Gekoppelde adressen wijzigen niet mee van status.",
+            Authorize = [Scopes.DvArAdresBeheer]
+        )]
         [HttpPost(ApproveStreetNameRoute, Name = nameof(ApproveStreetName))]
         public async Task<IActionResult> ApproveStreetName(
             [FromRoute] int objectId,
