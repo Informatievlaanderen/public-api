@@ -3,6 +3,7 @@ namespace Public.Api.BuildingUnit.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using BuildingRegistry.Api.BackOffice.Abstractions.BuildingUnit.Requests;
     using BuildingRegistry.Api.Oslo.BuildingUnit.V2.Detail;
     using Common.FeatureToggles;
@@ -61,7 +62,10 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Ontkoppel een adresId van een gebouweenheid.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Ontkoppel een adresId van een gebouweenheid.",
+            Authorize = [Scopes.DvGrGeschetstgebouwBeheer]
+        )]
         [HttpPost(DetachAddressBuildingUnitRoute, Name = nameof(DetachAddressBuildingUnit))]
         public async Task<IActionResult> DetachAddressBuildingUnit(
             [FromRoute] int objectId,

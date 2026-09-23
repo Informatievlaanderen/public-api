@@ -3,6 +3,7 @@ namespace Public.Api.BuildingUnit.BackOffice
     using System.Threading;
     using System.Threading.Tasks;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using BuildingRegistry.Api.Oslo.BuildingUnit.V2.Detail;
     using Common.FeatureToggles;
     using Common.Infrastructure;
@@ -58,7 +59,10 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Wijzig de gebouweenheidsstatus van `gepland` naar `nietGerealiseerd`. Het gemeenschappelijkDeel wordt automatisch `gehistoreerd` wanneer status `gerealiseerd` is en `nietGerealiseerd` wanneer status `gepland` is van zodra er in een gebouw minder dan 2 geplande of gerealiseerde gebouweenheden aanwezig zijn. Als er een adres gekoppeld is aan de gebouweenheid, wordt deze koppeling verwijderd.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Wijzig de gebouweenheidsstatus van `gepland` naar `nietGerealiseerd`. Het gemeenschappelijkDeel wordt automatisch `gehistoreerd` wanneer status `gerealiseerd` is en `nietGerealiseerd` wanneer status `gepland` is van zodra er in een gebouw minder dan 2 geplande of gerealiseerde gebouweenheden aanwezig zijn. Als er een adres gekoppeld is aan de gebouweenheid, wordt deze koppeling verwijderd.",
+            Authorize = [Scopes.DvGrGeschetstgebouwBeheer]
+        )]
         [HttpPost(NotRealizeBuildingUnitRoute, Name = nameof(NotRealizeBuildingUnit))]
         public async Task<IActionResult> NotRealizeBuildingUnit(
             [FromRoute] int objectId,
