@@ -5,6 +5,7 @@ namespace Public.Api.Address.BackOffice
     using AddressRegistry.Api.BackOffice.Abstractions.Requests;
     using AddressRegistry.Api.Oslo.Address.V2.Detail;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.FeatureToggles;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
@@ -61,7 +62,10 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerRequestExample(typeof(CorrectAddressPositionRequest), typeof(CorrectAddressPositionRequestExamples))]
-        [SwaggerOperation(Description = "Correctie van de positiespecificatie, positiegeometriemethode of positie van een adres. Gekoppelde busnummers corrigeren niet mee.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Correctie van de positiespecificatie, positiegeometriemethode of positie van een adres. Gekoppelde busnummers corrigeren niet mee.",
+            Authorize = [Scopes.DvArAdresBeheer]
+        )]
         [HttpPost(CorrectPositionRoute, Name = nameof(CorrectPositionAddress))]
         public async Task<IActionResult> CorrectPositionAddress(
             [FromRoute] int objectId,

@@ -4,6 +4,7 @@ namespace Public.Api.Address.BackOffice
     using System.Threading.Tasks;
     using AddressRegistry.Api.Oslo.Address.V2.Detail;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.FeatureToggles;
     using Common.Infrastructure;
     using Common.Infrastructure.Extensions;
@@ -58,7 +59,10 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status412PreconditionFailed, typeof(PreconditionFailedResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
-        [SwaggerOperation(Description = "Correctie van de verwijdering van een adres. Gekoppelde busnummers worden niet mee gecorrigeerd.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Correctie van de verwijdering van een adres. Gekoppelde busnummers worden niet mee gecorrigeerd.",
+            Authorize = [$"{Scopes.DvArAdresBeheer}` en `{Scopes.DvArAdresUitzonderingen}"]
+        )]
         [HttpPost(CorrectRemovalRoute, Name = nameof(CorrectRemovalAddress))]
         public async Task<IActionResult> CorrectRemovalAddress(
             [FromRoute] int objectId,

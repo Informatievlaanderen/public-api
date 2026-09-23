@@ -4,6 +4,7 @@ namespace Public.Api.Address.BackOffice
     using System.Threading.Tasks;
     using AddressRegistry.Api.BackOffice.Abstractions.Requests;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.FeatureToggles;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
@@ -51,7 +52,10 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV2))]
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerRequestExample(typeof(ReaddressRequest), typeof(ReaddressRequestExamples))]
-        [SwaggerOperation(Description = "De adressen worden in bulk hernummerd binnen dezelfde of andere straatnaam. Gekoppelde adresseerbare gebouweenheden en percelen, adrespositie en status worden van het oude adres overgenomen.")]
+        [SwaggerAuthorizeOperation(
+            Description = "De adressen worden in bulk hernummerd binnen dezelfde of andere straatnaam. Gekoppelde adresseerbare gebouweenheden en percelen, adrespositie en status worden van het oude adres overgenomen.",
+            Authorize = [Scopes.DvArAdresBeheer]
+        )]
         [HttpPost(ReaddressStreetNameAddressesRoute, Name = nameof(ReaddressStreetNameAddresses))]
         public async Task<IActionResult> ReaddressStreetNameAddresses(
             [FromBody] ReaddressRequest readdressRequest,
