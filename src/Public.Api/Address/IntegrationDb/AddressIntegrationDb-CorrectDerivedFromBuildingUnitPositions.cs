@@ -4,6 +4,7 @@ namespace Public.Api.Address.IntegrationDb
     using System.Threading.Tasks;
     using Basisregisters.IntegrationDb.Api.Abstractions.Address.CorrectDerivedFromBuildingUnitPositions;
     using Be.Vlaanderen.Basisregisters.Api.Exceptions;
+    using Be.Vlaanderen.Basisregisters.Auth.AcmIdm;
     using Common.FeatureToggles;
     using Common.Infrastructure.Extensions;
     using Infrastructure;
@@ -47,7 +48,10 @@ namespace Public.Api.Address.IntegrationDb
         [SwaggerRequestExample(typeof(CorrigerenAfgeleidVanGebouwEenhedenRequest), typeof(CorrigerenAfgeleidVanGebouwEenhedenRequestExamples))]
         [SwaggerResponseHeader(StatusCodes.Status202Accepted, "x-correlation-id", JsonSchemaType.String, "Correlatie identificator van de response.")]
         [SwaggerResponseExample(StatusCodes.Status202Accepted, typeof(CorrigerenAfgeleidVanGebouwEenhedenResponseExample))]
-        [SwaggerOperation(Description = "Corrigeer adres posities met methode Afgeleid en specificatie Gebouweenheid.")]
+        [SwaggerAuthorizeOperation(
+            Description = "Corrigeer adres posities met methode Afgeleid en specificatie Gebouweenheid.",
+            Authorize = [Scopes.DvArAdresUitzonderingen]
+        )]
         [HttpPost(CorrectDerivedFromBuildingUnitPositionsRoute, Name = nameof(CorrectDerivedFromBuildingUnitPositions))]
         public async Task<IActionResult> CorrectDerivedFromBuildingUnitPositions(
             [FromBody] CorrigerenAfgeleidVanGebouwEenhedenRequest? request,
