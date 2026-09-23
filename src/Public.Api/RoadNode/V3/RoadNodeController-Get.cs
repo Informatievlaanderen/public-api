@@ -21,13 +21,13 @@ namespace Public.Api.RoadNode.V3
         /// <summary>
         ///     Vraag een wegknoop op (v3).
         /// </summary>
-        /// <param name="id">De identificator van het wegknoop.</param>
+        /// <param name="id">De identificator van de wegknoop.</param>
         /// <param name="problemDetailsHelper"></param>
         /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
-        /// <response code="200">Als het wegknoop gevonden is.</response>
-        /// <response code="404">Als het wegknoop niet gevonden kan worden.</response>
-        /// <response code="410">Als het wegknoop verwijderd is.</response>
+        /// <response code="200">Als de wegknoop gevonden is.</response>
+        /// <response code="404">Als de wegknoop niet gevonden kan worden.</response>
+        /// <response code="410">Als de wegknoop verwijderd is.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
         /// <response code="500">Als er een interne fout is opgetreden.</response>
         [HttpGet(GetRoadNodeRoute, Name = nameof(GetRoadNodeV3))]
