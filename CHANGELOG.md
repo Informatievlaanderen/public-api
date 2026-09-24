@@ -1,3 +1,16 @@
+# [8.16.0](https://github.com/informatievlaanderen/public-api/compare/v8.15.4...v8.16.0) (2026-09-24)
+
+
+### Features
+
+* add authorize scopes address ([d2636dc](https://github.com/informatievlaanderen/public-api/commit/d2636dc36e63c7b5701272b3c48d5fdaea36fc58))
+* add authorize scopes building ([8b1bf82](https://github.com/informatievlaanderen/public-api/commit/8b1bf825aff04c809420a94d8b4dc15611d9be6b))
+* add authorize scopes buildingunit ([2799adc](https://github.com/informatievlaanderen/public-api/commit/2799adc50a53f1fe277bce614de7983f4da03277))
+* add authorize scopes notifications ([b5f60f1](https://github.com/informatievlaanderen/public-api/commit/b5f60f1f21cb0c2be1a60d7699c643f74c836e7b))
+* add authorize scopes parcel ([76b69c2](https://github.com/informatievlaanderen/public-api/commit/76b69c2013f88a2f2cd6f2691ba8470a120e54b7))
+* add authorize scopes streetname ([de01ac7](https://github.com/informatievlaanderen/public-api/commit/de01ac790d5b2b6443e9d293e4a9e378e0977ea8))
+* add authorize scopes suspicious + integration ([b4f0551](https://github.com/informatievlaanderen/public-api/commit/b4f0551e5ecf16bdc69479b908d90c2eccb1a0fb))
+
 ## [8.15.4](https://github.com/informatievlaanderen/public-api/compare/v8.15.3...v8.15.4) (2026-09-22)
 
 ## [8.15.3](https://github.com/informatievlaanderen/public-api/compare/v8.15.2...v8.15.3) (2026-09-21)
