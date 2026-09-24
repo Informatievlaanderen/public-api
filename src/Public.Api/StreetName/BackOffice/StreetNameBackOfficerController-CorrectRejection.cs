@@ -61,7 +61,7 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerAuthorizeOperation(
             Description = "Correctie van de straatnaamstatus van `afgekeurd` naar `voorgesteld`. Gekoppelde adressen corrigeren niet mee van status.",
-            Authorize = [$"{Scopes.DvArAdresBeheer}` en `{Scopes.DvArAdresUitzonderingen}"]
+            Authorize = [$"`{Scopes.DvArAdresBeheer}` en `{Scopes.DvArAdresUitzonderingen}`"]
         )]
         [HttpPost(CorrectStreetNameRejectionRoute, Name = nameof(CorrectStreetNameRejection))]
         public async Task<IActionResult> CorrectStreetNameRejection(

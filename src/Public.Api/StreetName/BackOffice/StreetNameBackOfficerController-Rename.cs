@@ -64,7 +64,7 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerRequestExample(typeof(RenameStreetNameRequest), typeof(RenameStreetNameRequestExamples))]
         [SwaggerAuthorizeOperation(
             Description = "Hernoemen van de straatnaam.",
-            Authorize = [$"{Scopes.DvArAdresBeheer}` en `{Scopes.DvArAdresUitzonderingen}"]
+            Authorize = [$"`{Scopes.DvArAdresBeheer}` en `{Scopes.DvArAdresUitzonderingen}`"]
         )]
         [HttpPost(RenameStreetNameRoute, Name = nameof(RenameStreetName))]
         public async Task<IActionResult> RenameStreetName(

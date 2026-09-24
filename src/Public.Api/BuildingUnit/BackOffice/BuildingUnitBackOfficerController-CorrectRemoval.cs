@@ -63,7 +63,7 @@ namespace Public.Api.BuildingUnit.BackOffice
             Description = "Correctie van de verwijdering van een gebouweenheid. Er wordt automatisch een gemeenschappelijkDeel aangemaakt vanaf dat er 2 gebouweenheden met status `gepland` of `gerealiseerd` aan een gebouw gekoppeld zijn. De status van het gemeenschappelijkDeel is `gerealiseerd`. <br>" +
         "Wanneer de geometrie van een gebouw gewijzigd is na de opheffing van een gebouweenheid en hierdoor de positie van de gebouweenheid buiten de nieuwe geometrie ligt dan wijzigt bij de correctie van de opheffing de positie van de gebouweenheid  naar de centroïde van de gebouw geometrie. <br>" +
         "Wanneer de positieGeometrieMethode `aangeduidDoorBeheerder` is dan wijzigt dit automatisch naar `afgeleidVanObject`.",
-            Authorize = [$"{Scopes.DvGrGeschetstgebouwBeheer}` en `{Scopes.DvGrGeschetstgebouwUitzonderingen}"]
+            Authorize = [$"`{Scopes.DvGrGeschetstgebouwBeheer}` en `{Scopes.DvGrGeschetstgebouwUitzonderingen}`"]
         )]
         [HttpPost(CorrectBuildingUnitRemovalRoute, Name = nameof(CorrectBuildingUnitRemoval))]
         public async Task<IActionResult> CorrectBuildingUnitRemoval(

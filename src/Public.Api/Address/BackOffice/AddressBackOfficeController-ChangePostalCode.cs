@@ -67,7 +67,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerAuthorizeOperation(
             Description =
             "Wijzig de postinfoId van een adres. Gekoppelde busnummers worden ook gewijzigd naar het nieuwe postinfoId. Het postinfoId mag buiten de gekoppelde gemeente van het adres liggen.",
-            Authorize = [$"{Scopes.DvArAdresBeheer}` en `{Scopes.DvArAdresUitzonderingen}"]
+            Authorize = [$"`{Scopes.DvArAdresBeheer}` en `{Scopes.DvArAdresUitzonderingen}`"]
         )]
         [HttpPost(ChangePostalCodeRoute, Name = nameof(ChangePostalCodeAddress))]
         public async Task<IActionResult> ChangePostalCodeAddress(

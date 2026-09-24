@@ -44,7 +44,7 @@
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerAuthorizeOperation(
-            Authorize = [$"{Scopes.DvArAdresUitzonderingen}` en `{Scopes.DvGrGeschetstgebouwUitzonderingen}` en `{Scopes.DvGrIngemetengebouwUitzonderingen}` en `{Scopes.DvWrUitzonderingenBeheer}"]
+            Authorize = [$"`{Scopes.DvArAdresUitzonderingen}` en `{Scopes.DvGrGeschetstgebouwUitzonderingen}` en `{Scopes.DvGrIngemetengebouwUitzonderingen}` en `{Scopes.DvWrUitzonderingenBeheer}`"]
         )]
         public async Task<IActionResult> DeleteNotification(
             [FromRoute] int id,

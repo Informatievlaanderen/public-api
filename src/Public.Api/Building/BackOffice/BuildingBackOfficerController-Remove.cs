@@ -61,7 +61,7 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerAuthorizeOperation(
             Description = "Het geschetst gebouw wordt verwijderd uit het gebouwenregister. Gekoppelde gebouweenheden met status `gepland`, `gerealiseerd` en `gehistoreerd` worden mee verwijderd. Als er aan deze gekoppelde gebouweenheden adressen zijn gekoppeld, worden deze koppelingen verwijderd.",
-            Authorize = [$"{Scopes.DvGrGeschetstgebouwBeheer}` en `{Scopes.DvGrGeschetstgebouwUitzonderingen}"]
+            Authorize = [$"`{Scopes.DvGrGeschetstgebouwBeheer}` en `{Scopes.DvGrGeschetstgebouwUitzonderingen}`"]
         )]
         [HttpPost(RemoveBuildingRoute, Name = nameof(RemoveBuilding))]
         public async Task<IActionResult> RemoveBuilding(

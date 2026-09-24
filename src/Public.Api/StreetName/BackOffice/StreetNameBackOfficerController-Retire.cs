@@ -61,7 +61,7 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerAuthorizeOperation(
             Description = "Wijzig de straatnaamstatus van `inGebruik` naar `gehistoreerd`. Gekoppelde adressen met status `voorgesteld` worden `afgekeurd` en gekoppelde adressen met status `inGebruik` worden `gehistoreerd`.",
-            Authorize = [$"{Scopes.DvArAdresBeheer}` en `{Scopes.DvArAdresUitzonderingen}"]
+            Authorize = [$"`{Scopes.DvArAdresBeheer}` en `{Scopes.DvArAdresUitzonderingen}`"]
         )]
         [HttpPost(RetireStreetNameRoute, Name = nameof(RetireStreetName))]
         public async Task<IActionResult> RetireStreetName(

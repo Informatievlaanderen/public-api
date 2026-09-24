@@ -65,7 +65,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerAuthorizeOperation(
             Description = "Verplaats de gebouweenheid naar het doelgebouw.",
-            Authorize = [$"{Scopes.DvGrGeschetstgebouwUitzonderingen}` en `{Scopes.DvGrIngemetengebouwUitzonderingen}"]
+            Authorize = [$"`{Scopes.DvGrGeschetstgebouwUitzonderingen}` en `{Scopes.DvGrIngemetengebouwUitzonderingen}`"]
         )]
         [HttpPost(MoveBuildingUnitRoute, Name = nameof(MoveBuildingUnit))]
         public async Task<IActionResult> MoveBuildingUnit(
