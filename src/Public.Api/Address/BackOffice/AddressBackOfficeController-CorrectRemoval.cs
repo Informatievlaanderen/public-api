@@ -61,7 +61,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerAuthorizeOperation(
             Description = "Correctie van de verwijdering van een adres. Gekoppelde busnummers worden niet mee gecorrigeerd.",
-            Authorize = [$"{Scopes.DvArAdresBeheer}` en `{Scopes.DvArAdresUitzonderingen}"]
+            Authorize = [$"`{Scopes.DvArAdresBeheer}` en `{Scopes.DvArAdresUitzonderingen}`"]
         )]
         [HttpPost(CorrectRemovalRoute, Name = nameof(CorrectRemovalAddress))]
         public async Task<IActionResult> CorrectRemovalAddress(

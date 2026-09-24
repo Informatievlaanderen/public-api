@@ -60,7 +60,7 @@ namespace Public.Api.BuildingUnit.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerAuthorizeOperation(
             Description = "De gebouweenheid wordt verwijderd uit het gebouwenregister. Het gemeenschappelijkDeel wordt automatisch gehistoreerd wanneer status `gerealiseerd` is en `nietGerealiseerd` wanneer status `gepland` is van zodra er in een gebouw minder dan 2 gebouweenheden aanwezig zijn. Wanneer alle andere gebouweenheden verwijderd zijn en het gemeenschappelijkDeel is het laatste dat overblijft met status `gehistoreerd` of `nietGerealiseerd` dan wordt dit gemeenschappelijkDeel automatisch verwijderd. Als er een adres gekoppeld is aan de gebouweenheid, wordt deze koppeling verwijderd.",
-            Authorize = [$"{Scopes.DvGrGeschetstgebouwBeheer}` en `{Scopes.DvGrGeschetstgebouwUitzonderingen}"]
+            Authorize = [$"`{Scopes.DvGrGeschetstgebouwBeheer}` en `{Scopes.DvGrGeschetstgebouwUitzonderingen}`"]
         )]
         [HttpPost(RemoveBuildingUnitRoute, Name = nameof(RemoveBuildingUnit))]
         public async Task<IActionResult> RemoveBuildingUnit(

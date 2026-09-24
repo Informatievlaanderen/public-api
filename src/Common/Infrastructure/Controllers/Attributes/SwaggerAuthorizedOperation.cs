@@ -31,7 +31,10 @@ namespace Swashbuckle.AspNetCore.Annotations
                 var sb = new StringBuilder();
                 if (_authorize.Length == 1)
                 {
-                    sb.AppendLine($"Authorization scopes: `{_authorize[0]}`");
+                    var scope = _authorize[0];
+                    sb.AppendLine(scope.Contains(' ')
+                        ? $"Authorization scopes: {scope}"
+                        : $"Authorization scopes: `{scope}`");
                 }
                 else
                 {

@@ -64,7 +64,7 @@ namespace Public.Api.StreetName.BackOffice
         [SwaggerRequestExample(typeof(CorrectStreetNameNamesRequest), typeof(StreetNameCorrectNamesRequestExamples))]
         [SwaggerAuthorizeOperation(
             Description = "Correctie or verwijdering van de homoniemtoevoegingen van een straatnaam met status `voorgesteld` of `inGebruik`.",
-            Authorize = [$"{Scopes.DvArAdresBeheer}` en `{Scopes.DvArAdresUitzonderingen}"]
+            Authorize = [$"`{Scopes.DvArAdresBeheer}` en `{Scopes.DvArAdresUitzonderingen}`"]
         )]
         [HttpPost(CorrectStreetNameHomonymAdditionsRoute, Name = nameof(CorrectStreetNameHomonymAdditions))]
         public async Task<IActionResult> CorrectStreetNameHomonymAdditions(

@@ -62,7 +62,7 @@ namespace Public.Api.Building.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerAuthorizeOperation(
             Description = "Het ingemeten gebouw wordt verwijderd uit het gebouwenregister. Het gebouw mag geen gebouweenheden bevatten.",
-            Authorize = [$"{Scopes.DvGrIngemetengebouwBeheer}` en `{Scopes.DvGrIngemetengebouwUitzonderingen}"]
+            Authorize = [$"`{Scopes.DvGrIngemetengebouwBeheer}` en `{Scopes.DvGrIngemetengebouwUitzonderingen}`"]
         )]
         [HttpPost(RemoveMeasuredBuildingRoute, Name = nameof(RemoveMeasuredBuildingRoute))]
         public async Task<IActionResult> RemoveMeasuredBuilding(

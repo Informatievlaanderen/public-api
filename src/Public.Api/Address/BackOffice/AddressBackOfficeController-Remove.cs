@@ -61,7 +61,7 @@ namespace Public.Api.Address.BackOffice
         [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseExamplesV2))]
         [SwaggerAuthorizeOperation(
             Description = "Het adres wordt verwijderd uit het adressenregister. Gekoppelde busnummers met status `voorgesteld`, `inGebruik`, `afgekeurd` en `gehistoreerd` worden mee verwijderd. Als er een gebouweenheid of perceel gekoppeld is aan het adres, wordt deze koppeling ook verwijderd.",
-            Authorize = [$"{Scopes.DvArAdresBeheer}` en `{Scopes.DvArAdresUitzonderingen}"]
+            Authorize = [$"`{Scopes.DvArAdresBeheer}` en `{Scopes.DvArAdresUitzonderingen}`"]
         )]
         [HttpPost(RemoveAddressRoute, Name = nameof(RemoveAddress))]
         public async Task<IActionResult> RemoveAddress(
