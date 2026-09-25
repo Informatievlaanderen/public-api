@@ -41,4 +41,13 @@
         {
         }
     }
+
+    public class UnauthorizedOAuthResponseExamplesV3 : UnauthorizedOAuthResponseExamples
+    {
+        public UnauthorizedOAuthResponseExamplesV3(
+            IHttpContextAccessor httpContextAccessor,
+            ProblemDetailsHelper problemDetailsHelper) : base(httpContextAccessor, problemDetailsHelper, "v3")
+        {
+        }
+    }
 }
