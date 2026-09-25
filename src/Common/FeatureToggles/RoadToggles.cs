@@ -562,4 +562,104 @@ namespace Common.FeatureToggles
             : base(dynamicFeatureToggleService)
         { }
     }
+
+    // The extracten endpoints in the hernieuwde datamodel, served on v3 and forwarded to the backoffice v2.
+    public sealed class RoadExtractDownloadRequestsByContourV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadExtractDownloadRequestsByContourV3";
+
+        public RoadExtractDownloadRequestsByContourV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadExtractDownloadRequestsByNisCodeV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadExtractDownloadRequestsByNisCodeV3";
+
+        public RoadExtractDownloadRequestsByNisCodeV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadExtractDownloadRequestsByFileV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadExtractDownloadRequestsByFileV3";
+
+        public RoadExtractDownloadRequestsByFileV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadExtractGetDownloadV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadExtractGetDownloadV3";
+
+        public RoadExtractGetDownloadV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadExtractGetUploadV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadExtractGetUploadV3";
+
+        public RoadExtractGetUploadV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadExtractGetDetailsV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadExtractGetDetailsV3";
+
+        public RoadExtractGetDetailsV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadListExtractsV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadListExtractsV3";
+
+        public RoadListExtractsV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadOverlappingExtractsByNisCodeV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadOverlappingExtractsByNisCodeV3";
+
+        public RoadOverlappingExtractsByNisCodeV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadOverlappingExtractsByContourV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadOverlappingExtractsByContourV3";
+
+        public RoadOverlappingExtractsByContourV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadUploadExtractV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadUploadExtractV3";
+
+        public RoadUploadExtractV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
+    public sealed class RoadCloseExtractV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadCloseExtractV3";
+
+        public RoadCloseExtractV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
 }
