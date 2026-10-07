@@ -1,3 +1,10 @@
+## [8.16.3](https://github.com/informatievlaanderen/public-api/compare/v8.16.2...v8.16.3) (2026-10-07)
+
+
+### Bug Fixes
+
+* bump redis ([34acd19](https://github.com/informatievlaanderen/public-api/commit/34acd19edb28f88347bf59d7b620800d70e39f40))
+
 ## [8.16.2](https://github.com/informatievlaanderen/public-api/compare/v8.16.1...v8.16.2) (2026-09-29)
 
 ## [8.16.1](https://github.com/informatievlaanderen/public-api/compare/v8.16.0...v8.16.1) (2026-09-28)
