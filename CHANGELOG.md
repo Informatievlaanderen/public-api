@@ -1,3 +1,10 @@
+# [8.17.0](https://github.com/informatievlaanderen/public-api/compare/v8.16.3...v8.17.0) (2026-10-08)
+
+
+### Features
+
+* **redis:** add compression support ([5cf002b](https://github.com/informatievlaanderen/public-api/commit/5cf002ba3991c80fbfa985cfb2c7fbf652a2d0b0))
+
 ## [8.16.3](https://github.com/informatievlaanderen/public-api/compare/v8.16.2...v8.16.3) (2026-10-07)
 
 
