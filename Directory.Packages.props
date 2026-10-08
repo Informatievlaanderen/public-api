@@ -50,6 +50,7 @@
         <PackageVersion Include="RestSharp" Version="114.0.0" />
         <PackageVersion Include="Marvin.Cache.Headers" Version="7.2.0" />
         <PackageVersion Include="StackExchange.Redis" Version="2.13.17" />
+        <PackageVersion Include="ZstdSharp.Port" Version="0.8.8" />
         <PackageVersion Include="CloudNative.CloudEvents.NewtonsoftJson" Version="2.8.0" />
 
         <PackageVersion Include="Serilog" Version="4.3.1" />
