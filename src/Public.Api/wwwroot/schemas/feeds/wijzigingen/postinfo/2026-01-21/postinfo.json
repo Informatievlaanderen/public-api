@@ -70,8 +70,13 @@
           "then": {
             "properties": {
               "oudeWaarde": {
-                "type": "array",
-                "items": { "$ref": "#/$defs/postnaamItem" }
+                "oneOf": [
+                  { "type": "null" },
+                  {
+                    "type": "array",
+                    "items": { "$ref": "#/$defs/postnaamItem" }
+                  }
+                ]
               },
               "nieuweWaarde": {
                 "type": "array",
