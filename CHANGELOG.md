@@ -1,3 +1,10 @@
+## [8.17.2](https://github.com/informatievlaanderen/public-api/compare/v8.17.1...v8.17.2) (2026-10-16)
+
+
+### Reverts
+
+* Revert "docs: allow null oudeWaarde for array attributes in gemeente and postinfo" ([5b7036e](https://github.com/informatievlaanderen/public-api/commit/5b7036ed9e831945781b74755f4f562c99e4ecdf))
+
 ## [8.17.1](https://github.com/informatievlaanderen/public-api/compare/v8.17.0...v8.17.1) (2026-10-15)
 
 # [8.17.0](https://github.com/informatievlaanderen/public-api/compare/v8.16.3...v8.17.0) (2026-10-08)
