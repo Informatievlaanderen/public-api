@@ -70,13 +70,8 @@
           "then": {
             "properties": {
               "oudeWaarde": {
-                "oneOf": [
-                  { "type": "null" },
-                  {
-                    "type": "array",
-                    "items": { "type": "string", "pattern": "^[a-z]{2}$" }
-                  }
-                ]
+                "type": "array",
+                "items": { "type": "string", "pattern": "^[a-z]{2}$" }
               },
               "nieuweWaarde": {
                 "type": "array",
@@ -94,13 +89,8 @@
           "then": {
             "properties": {
               "oudeWaarde": {
-                "oneOf": [
-                  { "type": "null" },
-                  {
-                    "type": "array",
-                    "items": { "type": "string", "pattern": "^[a-z]{2}$" }
-                  }
-                ]
+                "type": "array",
+                "items": { "type": "string", "pattern": "^[a-z]{2}$" }
               },
               "nieuweWaarde": {
                 "type": "array",
@@ -117,13 +107,8 @@
           "then": {
             "properties": {
               "oudeWaarde": {
-                "oneOf": [
-                  { "type": "null" },
-                  {
-                    "type": "array",
-                    "items": { "$ref": "#/$defs/gemeentenaamItem" }
-                  }
-                ]
+                "type": "array",
+                "items": { "$ref": "#/$defs/gemeentenaamItem" }
               },
               "nieuweWaarde": {
                 "type": "array",
