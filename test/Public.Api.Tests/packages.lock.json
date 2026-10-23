@@ -405,8 +405,8 @@
       },
       "Datadog.Trace": {
         "type": "Transitive",
-        "resolved": "3.49.0",
-        "contentHash": "YTpJQcU+psHou1bx4sB/1DjujE69ok80PwS8JrYHbt+TWuFk+Khdzq2UdxJe5mc5KoU1ooRGNDoxYlg/SfASXA=="
+        "resolved": "3.56.0",
+        "contentHash": "amCdG4FVXXGgLai2dKYFEAjhask4Xt7OYJ3Bn+kkbj5u+Pjil6oEwDxc0cAHvH81eVt6Mt7kFcSvPS8139D+YA=="
       },
       "Destructurama.JsonNet": {
         "type": "Transitive",
@@ -1697,7 +1697,7 @@
           "Be.Vlaanderen.Basisregisters.TicketingService.Abstractions": "[4.0.0, )",
           "CloudNative.CloudEvents.NewtonsoftJson": "[2.8.0, )",
           "Common": "[1.0.0, )",
-          "Datadog.Trace.Bundle": "[3.49.0, )"
+          "Datadog.Trace.Bundle": "[3.56.0, )"
         }
       },
       "Autofac.Extensions.DependencyInjection": {
@@ -2316,11 +2316,11 @@
       },
       "Datadog.Trace.Bundle": {
         "type": "CentralTransitive",
-        "requested": "[3.49.0, )",
-        "resolved": "3.49.0",
-        "contentHash": "HKn7L+zsDP3UXNerVynAUdqg9GgAP4+qOKlehStHljcFN2akIQvciIr3XF/eOLcjw0D6s3gIsOF9LI7hcDjB9A==",
+        "requested": "[3.56.0, )",
+        "resolved": "3.56.0",
+        "contentHash": "g0Nzhi8wnykGM6zCyADlj0bOkeWUK6qSGmx7BW6AZrYOacDEWso9JtNSpKK2wk7Kj6e+RcHAsnfKOkRSngpLvw==",
         "dependencies": {
-          "Datadog.Trace": "3.49.0"
+          "Datadog.Trace": "3.56.0"
         }
       },
       "FeatureToggle.Common": {
