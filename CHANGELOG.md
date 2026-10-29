@@ -1,3 +1,10 @@
+## [8.17.4](https://github.com/informatievlaanderen/public-api/compare/v8.17.3...v8.17.4) (2026-10-29)
+
+
+### Bug Fixes
+
+* **road:** bump road-registry to 5.28.2 and document 400 on get v3 GAWR-7798 ([9cb9909](https://github.com/informatievlaanderen/public-api/commit/9cb9909d6814a78bd15645974c15ab3d4c89c9d0))
+
 ## [8.17.3](https://github.com/informatievlaanderen/public-api/compare/v8.17.2...v8.17.3) (2026-10-23)
 
 ## [8.17.2](https://github.com/informatievlaanderen/public-api/compare/v8.17.1...v8.17.2) (2026-10-16)
