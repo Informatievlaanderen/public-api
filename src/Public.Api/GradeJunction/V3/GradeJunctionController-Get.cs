@@ -26,6 +26,7 @@ namespace Public.Api.GradeJunction.V3
         /// <param name="featureToggle"></param>
         /// <param name="cancellationToken"></param>
         /// <response code="200">Als de gelijkgrondse kruising gevonden is.</response>
+        /// <response code="400">Als uw verzoek foutieve data bevat.</response>
         /// <response code="404">Als de gelijkgrondse kruising niet gevonden kan worden.</response>
         /// <response code="410">Als de gelijkgrondse kruising verwijderd is.</response>
         /// <response code="429">Als het aantal requests per seconde de limiet overschreven heeft.</response>
@@ -33,11 +34,13 @@ namespace Public.Api.GradeJunction.V3
         [HttpGet(GetGradeJunctionRoute, Name = nameof(GetGradeJunctionV3))]
         [ApiOrder(ApiOrder.Road.GradeJunction.Get)]
         [ProducesResponseType(typeof(GelijkgrondseKruisingV2Detail), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Be.Vlaanderen.Basisregisters.BasicApiProblem.ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status410Gone)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status429TooManyRequests)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(GelijkgrondseKruisingV2DetailResponseExamples))]
+        [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExamplesV3))]
         [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(GradeJunctionNotFoundResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status410Gone, typeof(GradeJunctionGoneResponseExamples))]
         [SwaggerResponseExample(StatusCodes.Status429TooManyRequests, typeof(TooManyRequestsResponseExamplesV3))]
