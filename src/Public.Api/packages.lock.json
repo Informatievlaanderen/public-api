@@ -4,20 +4,20 @@
     "net10.0": {
       "AWSSDK.DynamoDBv2": {
         "type": "Direct",
-        "requested": "[4.0.101.2, )",
-        "resolved": "4.0.101.2",
-        "contentHash": "VDJoDhYIlt8hwdVCMiSE5xqWU4BMCUYy82adx3iCTVKaY3EWTB61bNlqgCFp+Ui49+7jyvv8oAlxifYzVI6y7A==",
+        "requested": "[4.0.110.2, )",
+        "resolved": "4.0.110.2",
+        "contentHash": "7iX/ajll26r4C5RaJFrGavg7NTER6b4JMK8gZCx2qHfWVpokrphFL5D7llAz9PuTeqZDbNzzyIIZB2Clyi1PqQ==",
         "dependencies": {
-          "AWSSDK.Core": "[4.0.100.5, 5.0.0)"
+          "AWSSDK.Core": "[4.0.102.19, 5.0.0)"
         }
       },
       "AWSSDK.S3": {
         "type": "Direct",
-        "requested": "[4.0.101.2, )",
-        "resolved": "4.0.101.2",
-        "contentHash": "kYd4oTKCNUE1JGTCyrdUFDKZYiKgLLzgoJB9KdgPGfrPP+KjUFA2IOI03N+4C5Ihv9YKKCgsUArYQnaWw2HJjQ==",
+        "requested": "[4.0.104.11, )",
+        "resolved": "4.0.104.11",
+        "contentHash": "leP2ZC3gVaNHXZleKOMHmedex6fTrr6u1ZQFuezIGjT01oPwP0j6YI00jlPwlakTC0Uo5a0eOOY2Q/eYzsU9wg==",
         "dependencies": {
-          "AWSSDK.Core": "[4.0.100.5, 5.0.0)"
+          "AWSSDK.Core": "[4.0.102.19, 5.0.0)"
         }
       },
       "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions": {
@@ -647,8 +647,8 @@
       },
       "AWSSDK.Core": {
         "type": "Transitive",
-        "resolved": "4.0.100.5",
-        "contentHash": "OYkCEqfNDh6uDlsCF+pBCOi9LvaEg9m2iU5xtbMci3yW8SpCIPOijiqB5OINIhdDvrQAltFd0x4BeYfF7GJVSw=="
+        "resolved": "4.0.102.19",
+        "contentHash": "Hb6P2ui6y0U+UNUjcC4ASFFoTLzCijhMzfOCXfoFTXq/o0YWQsO1oSH1NG2GQ9dlIT693xeeih0yAcfeL1dphg=="
       },
       "AWSSDK.SQS": {
         "type": "Transitive",
@@ -1789,7 +1789,7 @@
       "common": {
         "type": "Project",
         "dependencies": {
-          "AWSSDK.DynamoDBv2": "[4.0.101.2, )",
+          "AWSSDK.DynamoDBv2": "[4.0.110.2, )",
           "Autofac.Extensions.DependencyInjection": "[11.0.2, )",
           "Be.Vlaanderen.Basisregisters.Api": "[27.0.0, )",
           "FeatureToggle.Common": "[4.0.2, )",
