@@ -1685,7 +1685,7 @@
           "Be.Vlaanderen.Basisregisters.GrAr.Oslo": "[26.2.0, )",
           "Be.Vlaanderen.Basisregisters.GrAr.Provenance": "[26.2.0, )",
           "Be.Vlaanderen.Basisregisters.IntegrationDb.Api.Abstractions": "[4.1.0, )",
-          "Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo": "[7.3.5, )",
+          "Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo": "[7.3.6, )",
           "Be.Vlaanderen.Basisregisters.NotificationService.Api.Abstractions": "[2.0.0, )",
           "Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions": "[7.1.2, )",
           "Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo": "[7.1.2, )",
@@ -2075,9 +2075,9 @@
       },
       "Be.Vlaanderen.Basisregisters.MunicipalityRegistry.Api.Oslo": {
         "type": "CentralTransitive",
-        "requested": "[7.3.5, )",
-        "resolved": "7.3.5",
-        "contentHash": "y9WPohdpSO+PT8hXq89Mrs5A0gAkg8WmTLSgwnI9mCiNg3i+Q5hFRPFIpPXgfNKNvDXX/R/C5xwO+Zl8qA02zg==",
+        "requested": "[7.3.6, )",
+        "resolved": "7.3.6",
+        "contentHash": "o7yl1J0hU10r0IFy6Uy+xR2ffS8bdvhIInEottn+fEMBtScWouzOTgOSinhpF4f6GJ3R4I98ehEAGDmfssjHAg==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Autofac": "9.2.0",
