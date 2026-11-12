@@ -1,3 +1,10 @@
+## [8.17.5](https://github.com/informatievlaanderen/public-api/compare/v8.17.4...v8.17.5) (2026-11-12)
+
+
+### Bug Fixes
+
+* bump packges building + address ([26db7d2](https://github.com/informatievlaanderen/public-api/commit/26db7d2240c2d6f6d4500073f84c596a25bf007b))
+
 ## [8.17.4](https://github.com/informatievlaanderen/public-api/compare/v8.17.3...v8.17.4) (2026-10-29)
 
 
