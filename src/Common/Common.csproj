@@ -18,6 +18,7 @@
     <PackageReference Include="RestSharp" />
     <PackageReference Include="Marvin.Cache.Headers" />
     <PackageReference Include="StackExchange.Redis" />
+    <PackageReference Include="ZstdSharp.Port" />
 
     <PackageReference Include="Serilog" />
     <PackageReference Include="Serilog.Settings.Configuration" />

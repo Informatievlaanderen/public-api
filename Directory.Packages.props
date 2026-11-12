@@ -15,13 +15,13 @@
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.PostalRegistry.Api.Oslo" Version="7.2.5" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.Oslo" Version="6.1.5" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.StreetNameRegistry.Api.BackOffice.Abstractions" Version="6.1.5" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo" Version="6.4.6" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions" Version="6.4.6" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo" Version="6.2.2" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions" Version="6.2.2" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo" Version="6.4.10" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions" Version="6.4.10" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo" Version="6.5.7" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions" Version="6.5.7" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.Oslo" Version="7.1.2" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.ParcelRegistry.Api.BackOffice.Abstractions" Version="7.1.2" />
-        <PackageVersion Include="Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api" Version="5.19.1" />
+        <PackageVersion Include="Be.Vlaanderen.Basisregisters.RoadRegistry.BackOffice.Api" Version="5.28.2" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.IntegrationDb.Api.Abstractions" Version="4.1.0" />
         <PackageVersion Include="Be.Vlaanderen.Basisregisters.NotificationService.Api.Abstractions" Version="2.0.0" />
 
@@ -49,7 +49,8 @@
         <PackageVersion Include="FeatureToggle.Common" Version="4.0.2" />
         <PackageVersion Include="RestSharp" Version="114.0.0" />
         <PackageVersion Include="Marvin.Cache.Headers" Version="7.2.0" />
-        <PackageVersion Include="StackExchange.Redis" Version="2.8.37" />
+        <PackageVersion Include="StackExchange.Redis" Version="2.13.17" />
+        <PackageVersion Include="ZstdSharp.Port" Version="0.8.8" />
         <PackageVersion Include="CloudNative.CloudEvents.NewtonsoftJson" Version="2.8.0" />
 
         <PackageVersion Include="Serilog" Version="4.3.1" />

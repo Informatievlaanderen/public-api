@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:adres-transform:2026-01-01",
+  "$id": "urn:basisregisters:schemas:feeds:wijzigingen:adres-transform:2026-01-21",
   "title": "Adres transform data",
   "type": "object",
   "additionalProperties": false,

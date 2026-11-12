@@ -1,3 +1,46 @@
+## [8.17.5](https://github.com/informatievlaanderen/public-api/compare/v8.17.4...v8.17.5) (2026-11-12)
+
+
+### Bug Fixes
+
+* bump packges building + address ([26db7d2](https://github.com/informatievlaanderen/public-api/commit/26db7d2240c2d6f6d4500073f84c596a25bf007b))
+
+## [8.17.4](https://github.com/informatievlaanderen/public-api/compare/v8.17.3...v8.17.4) (2026-10-29)
+
+
+### Bug Fixes
+
+* **road:** bump road-registry to 5.28.2 and document 400 on get v3 GAWR-7798 ([9cb9909](https://github.com/informatievlaanderen/public-api/commit/9cb9909d6814a78bd15645974c15ab3d4c89c9d0))
+
+## [8.17.3](https://github.com/informatievlaanderen/public-api/compare/v8.17.2...v8.17.3) (2026-10-23)
+
+## [8.17.2](https://github.com/informatievlaanderen/public-api/compare/v8.17.1...v8.17.2) (2026-10-16)
+
+
+### Reverts
+
+* Revert "docs: allow null oudeWaarde for array attributes in gemeente and postinfo" ([5b7036e](https://github.com/informatievlaanderen/public-api/commit/5b7036ed9e831945781b74755f4f562c99e4ecdf))
+
+## [8.17.1](https://github.com/informatievlaanderen/public-api/compare/v8.17.0...v8.17.1) (2026-10-15)
+
+# [8.17.0](https://github.com/informatievlaanderen/public-api/compare/v8.16.3...v8.17.0) (2026-10-08)
+
+
+### Features
+
+* **redis:** add compression support ([5cf002b](https://github.com/informatievlaanderen/public-api/commit/5cf002ba3991c80fbfa985cfb2c7fbf652a2d0b0))
+
+## [8.16.3](https://github.com/informatievlaanderen/public-api/compare/v8.16.2...v8.16.3) (2026-10-07)
+
+
+### Bug Fixes
+
+* bump redis ([34acd19](https://github.com/informatievlaanderen/public-api/commit/34acd19edb28f88347bf59d7b620800d70e39f40))
+
+## [8.16.2](https://github.com/informatievlaanderen/public-api/compare/v8.16.1...v8.16.2) (2026-09-29)
+
+## [8.16.1](https://github.com/informatievlaanderen/public-api/compare/v8.16.0...v8.16.1) (2026-09-28)
+
 # [8.16.0](https://github.com/informatievlaanderen/public-api/compare/v8.15.4...v8.16.0) (2026-09-24)
 
 

@@ -127,6 +127,16 @@ namespace Common.Infrastructure.Controllers
                         var cachedHeaders = cachedValues.FirstOrDefault(x => x.Name.Equals(HeadersKey));
                         var cachedLastModified = cachedValues.FirstOrDefault(x => x.Name.Equals(LastModifiedKey));
                         var cachedETag = cachedValues.FirstOrDefault(x => x.Name.Equals(ETagKey));
+                        var cachedCompression = cachedValues.FirstOrDefault(x => x.Name.Equals(RedisValueDecoder.CompressionKey));
+
+                        if (!RedisValueDecoder.TryDecode(cachedValue.Value, cachedCompression.Value, out var content))
+                        {
+                            _logger.LogWarning(
+                                "Unsupported compression {Compression} for record {Record} in Redis.",
+                                cachedCompression.Value.ToString(),
+                                key);
+                            return null;
+                        }
 
                         var headers = JsonConvert.DeserializeObject<Dictionary<string, string[]>>(cachedHeaders.Value) ?? new Dictionary<string, string[]>();
                         headers.TryGetValue(AddVersionHeaderMiddleware.HeaderName, out var downstreamVersion);
@@ -136,7 +146,7 @@ namespace Common.Infrastructure.Controllers
                         }
 
                         return new BackendResponse(
-                            cachedValue.Value,
+                            content,
                             downstreamVersion?.First(),
                             DateTimeOffset.ParseExact(
                                 cachedLastModified.Value,

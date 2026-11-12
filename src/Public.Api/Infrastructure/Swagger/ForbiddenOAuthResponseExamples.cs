@@ -40,4 +40,13 @@
         {
         }
     }
+
+    public class ForbiddenOAuthResponseExamplesV3 : ForbiddenOAuthResponseExamples
+    {
+        public ForbiddenOAuthResponseExamplesV3(
+            IHttpContextAccessor httpContextAccessor,
+            ProblemDetailsHelper problemDetailsHelper) : base(httpContextAccessor, problemDetailsHelper, "v3")
+        {
+        }
+    }
 }
