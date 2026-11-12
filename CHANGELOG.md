@@ -1,3 +1,10 @@
+# [8.18.0](https://github.com/informatievlaanderen/public-api/compare/v8.17.5...v8.18.0) (2026-11-12)
+
+
+### Features
+
+* **road:** expose the extracten in the hernieuwde datamodel on v3 GAWR-7199 ([2ac3b26](https://github.com/informatievlaanderen/public-api/commit/2ac3b26784d417eeb02d8ffaaa7aa5d0a19b3d01))
+
 ## [8.17.5](https://github.com/informatievlaanderen/public-api/compare/v8.17.4...v8.17.5) (2026-11-12)
 
 
