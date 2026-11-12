@@ -1665,15 +1665,15 @@
         "dependencies": {
           "AWSSDK.DynamoDBv2": "[4.0.101.2, )",
           "AWSSDK.S3": "[4.0.101.2, )",
-          "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions": "[6.4.6, )",
-          "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo": "[6.4.6, )",
+          "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions": "[6.4.10, )",
+          "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo": "[6.4.10, )",
           "Be.Vlaanderen.Basisregisters.AggregateSource.ExplicitRouting": "[11.0.0, )",
           "Be.Vlaanderen.Basisregisters.Api": "[27.0.0, )",
           "Be.Vlaanderen.Basisregisters.AspNetCore.Swagger": "[7.0.0, )",
           "Be.Vlaanderen.Basisregisters.AspNetCore.Swagger.ReDoc": "[7.0.0, )",
           "Be.Vlaanderen.Basisregisters.Auth.AcmIdm": "[5.0.0, )",
-          "Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions": "[6.2.2, )",
-          "Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo": "[6.2.2, )",
+          "Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions": "[6.5.7, )",
+          "Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo": "[6.5.7, )",
           "Be.Vlaanderen.Basisregisters.CommandHandling": "[11.0.0, )",
           "Be.Vlaanderen.Basisregisters.EventHandling": "[7.1.0, )",
           "Be.Vlaanderen.Basisregisters.GrAr.ChangeFeed": "[26.2.0, )",
@@ -1730,9 +1730,9 @@
       },
       "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.BackOffice.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[6.4.6, )",
-        "resolved": "6.4.6",
-        "contentHash": "8JynOWzJZOrCystJ6f98BgHvspffQ2i8a63PiKs74qZTrIbP0mPMC+TakzwxNqzTP8ub0SGY+4Ub4jGghj1JBA==",
+        "requested": "[6.4.10, )",
+        "resolved": "6.4.10",
+        "contentHash": "/tKeok59HZb0yAvdlhcD3f4doGAzEToYoVxIOXvw8PLc/QMLoIRNHLIlG9CUU42yYQqW2iGRqdNn6rAz1UhCVw==",
         "dependencies": {
           "Autofac": "9.1.0",
           "Be.Vlaanderen.Basisregisters.AggregateSource.SqlStreamStore": "11.0.0",
@@ -1771,9 +1771,9 @@
       },
       "Be.Vlaanderen.Basisregisters.AddressRegistry.Api.Oslo": {
         "type": "CentralTransitive",
-        "requested": "[6.4.6, )",
-        "resolved": "6.4.6",
-        "contentHash": "AS7G5yWLv94IuHBADE2JeLQMNiyCkc9YasrUsQoG8wQEV0QYZxjR5bHauj9kwwEJ+e3hwjF6izNSw4isOEafew==",
+        "requested": "[6.4.10, )",
+        "resolved": "6.4.10",
+        "contentHash": "hz+0kzu4l0HWmTx5i1kwmI2xldFmV0C/X9iwSnXhgblm87fczUcMYf3bCTZWHx1z1eEWgXYXkaR+OwMlX9syeg==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Autofac": "9.1.0",
@@ -1917,12 +1917,12 @@
       },
       "Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.BackOffice.Abstractions": {
         "type": "CentralTransitive",
-        "requested": "[6.2.2, )",
-        "resolved": "6.2.2",
-        "contentHash": "7zSudRl9WOmU3f5hU7IJuMflVi05JU6EffiLl38r7nC23FEOqz9sZ8VnhmWYhX6RXj5toPklbfpbuWgYmsN/sw==",
+        "requested": "[6.5.7, )",
+        "resolved": "6.5.7",
+        "contentHash": "CJNgU82rl7S7uuynmfUkKgSvTu7zTvnKg80lacRdMPmVUjzT9y/ejjVhY4DNAHJmfIi/VQKGQIZnOxXx1PI4bw==",
         "dependencies": {
           "Be.Vlaanderen.Basisregisters.Api": "27.0.0",
-          "Be.Vlaanderen.Basisregisters.GrAr.Edit": "25.9.4",
+          "Be.Vlaanderen.Basisregisters.GrAr.Edit": "26.1.0",
           "Be.Vlaanderen.Basisregisters.Sqs": "5.3.0",
           "Be.Vlaanderen.Basisregisters.TicketingService.Abstractions": "4.0.0",
           "MediatR.Contracts": "2.0.1",
@@ -1931,13 +1931,13 @@
       },
       "Be.Vlaanderen.Basisregisters.BuildingRegistry.Api.Oslo": {
         "type": "CentralTransitive",
-        "requested": "[6.2.2, )",
-        "resolved": "6.2.2",
-        "contentHash": "b7hWTREfQhjCjHgPGThbscV7IvNxMXO/Wn8Apb4EcYVOENfHaQta9iZWogAEu4vLRlhMICRFMb8JUF18vmqyxA==",
+        "requested": "[6.5.7, )",
+        "resolved": "6.5.7",
+        "contentHash": "mkT8NWf7ysVdtCbBnekAJp1NUHYNqDvVTbTDsT3Ce+y2p7zNf+mtK5UatYwbx2uoUx4AIK4N+zchjidqAmp37A==",
         "dependencies": {
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "Be.Vlaanderen.Basisregisters.Api": "27.0.0",
-          "Be.Vlaanderen.Basisregisters.GrAr.Legacy": "25.9.4",
+          "Be.Vlaanderen.Basisregisters.GrAr.Legacy": "26.1.0",
           "Datadog.Trace.Bundle": "3.45.0",
           "MediatR": "[12.5.0, 13.0.0)"
         }
