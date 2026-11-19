@@ -99,6 +99,7 @@ namespace Public.Api.Infrastructure.Swagger
                 public const int Root = GetBase + 1;
 
                 public const int Get = GetBase + 1;
+                public const int List = Get;
 
                 public const int CreateOutline = PostBase + 0;
                 public const int ChangeFromPlannedToRealized = CreateOutline + 1;

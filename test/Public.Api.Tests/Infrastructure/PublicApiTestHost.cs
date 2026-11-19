@@ -64,6 +64,16 @@ namespace Public.Api.Tests.Infrastructure
                             },
                             configureSerialization: serialization => serialization.UseSerializer<JsonNetSerializer>()))
                         .Keyed<RestClient>(RegistryKeys.Road);
+
+                    // The v3 endpoints of the road registry go to its v2 API, on the same fake backend.
+                    containerBuilder
+                        .Register(_ => new RestClient(
+                            new RestClientOptions(new Uri("http://road-registry.test/v2"))
+                            {
+                                ConfigureMessageHandler = _ => roadRegistry
+                            },
+                            configureSerialization: serialization => serialization.UseSerializer<JsonNetSerializer>()))
+                        .Keyed<RestClient>(RegistryKeys.RoadV3);
                 })
                 .ConfigureWebHost(webHost => webHost
                     .UseTestServer()

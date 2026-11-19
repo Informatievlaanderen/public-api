@@ -338,6 +338,15 @@ namespace Common.FeatureToggles
         { }
     }
 
+    public sealed class ListRoadSegmentsV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
+    {
+        public override string Key => "RoadSegmentListV3";
+
+        public ListRoadSegmentsV3Toggle(IDynamicFeatureToggleService? dynamicFeatureToggleService)
+            : base(dynamicFeatureToggleService)
+        { }
+    }
+
     public sealed class CreateRoadSegmentOutlineV3Toggle : KeyedFeatureToggleBase, IKeyedFeatureToggle
     {
         public override string Key => "RoadSegmentCreateOutlineV3";
