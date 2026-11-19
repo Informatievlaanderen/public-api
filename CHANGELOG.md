@@ -1,3 +1,10 @@
+# [8.19.0](https://github.com/informatievlaanderen/public-api/compare/v8.18.0...v8.19.0) (2026-11-19)
+
+
+### Features
+
+* **road:** lijst van wegsegmenten opvragen (v3) GAWR-7815 ([cc94bac](https://github.com/informatievlaanderen/public-api/commit/cc94bac1898775f8c7853dc1fedbd4b23bf0c2ce))
+
 # [8.18.0](https://github.com/informatievlaanderen/public-api/compare/v8.17.5...v8.18.0) (2026-11-12)
 
 
