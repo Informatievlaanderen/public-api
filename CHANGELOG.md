@@ -1,3 +1,10 @@
+## [8.19.1](https://github.com/informatievlaanderen/public-api/compare/v8.19.0...v8.19.1) (2026-11-20)
+
+
+### Bug Fixes
+
+* **road:** bump road-registry to 5.37.1 GAWR-7861 GAWR-7863 ([924f948](https://github.com/informatievlaanderen/public-api/commit/924f9488bca728df0e94cdc74670ba46041f19fe))
+
 # [8.19.0](https://github.com/informatievlaanderen/public-api/compare/v8.18.0...v8.19.0) (2026-11-19)
 
 
