@@ -192,9 +192,9 @@
       },
       "Be.Vlaanderen.Basisregisters.Auth.AcmIdm": {
         "type": "Direct",
-        "requested": "[5.0.0, )",
-        "resolved": "5.0.0",
-        "contentHash": "zCRsMTvzuncsq27VkpwlKR8ovhjRanBaGs/zTw+MFoFKi9RI+UikpIdKNB/Q3cQl0MY3kjPMRV6MDOx1qvYN/Q==",
+        "requested": "[5.1.0, )",
+        "resolved": "5.1.0",
+        "contentHash": "u9+/bP5PruXqnexLA24T9WRM0wpOWq4dC/WVyZgFvVxw7frKgc+k9Q8uFemUDBUAS8y4h80IYJGZIgXd/lNVLQ==",
         "dependencies": {
           "Be.Vlaanderen.Basisregisters.NisCodeService.Abstractions": "7.0.0",
           "Duende.AspNetCore.Authentication.OAuth2Introspection": "7.0.1",
