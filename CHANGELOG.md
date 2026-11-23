@@ -1,3 +1,10 @@
+## [8.19.3](https://github.com/informatievlaanderen/public-api/compare/v8.19.2...v8.19.3) (2026-11-23)
+
+
+### Bug Fixes
+
+* read a parameter of the wrong type as text instead of answering 500 GAWR-7870 ([11c41be](https://github.com/informatievlaanderen/public-api/commit/11c41be919fa1e373bd302156864979d943f6302))
+
 ## [8.19.2](https://github.com/informatievlaanderen/public-api/compare/v8.19.1...v8.19.2) (2026-11-23)
 
 
