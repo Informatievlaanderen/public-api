@@ -1,3 +1,10 @@
+## [8.19.2](https://github.com/informatievlaanderen/public-api/compare/v8.19.1...v8.19.2) (2026-11-23)
+
+
+### Bug Fixes
+
+* **road:** document the geometriemethode endpoint as ingemeten-only GAWR-7869 ([1a89e7c](https://github.com/informatievlaanderen/public-api/commit/1a89e7c2f95f055266aae11ccf67b8d0bd018d02))
+
 ## [8.19.1](https://github.com/informatievlaanderen/public-api/compare/v8.19.0...v8.19.1) (2026-11-20)
 
 
