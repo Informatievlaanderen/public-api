@@ -1,6 +1,8 @@
 namespace Public.Api.Tests.Infrastructure
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Net;
     using System.Net.Http.Headers;
     using System.Text;
@@ -20,7 +22,7 @@ namespace Public.Api.Tests.Infrastructure
     [Collection(PublicApiCollection.Name)]
     public class ScalarAsStringJsonConverterTests
     {
-        private const string Route = "/v3/wegsegmenten/acties/wijzigen/geometriemethode";
+        private const string ChangeGeometryDrawMethodRoute = "/v3/wegsegmenten/acties/wijzigen/geometriemethode";
 
         private readonly PublicApiTestHost _host;
 
@@ -69,6 +71,77 @@ namespace Public.Api.Tests.Infrastructure
         }
 
         /// <summary>
+        /// The converter is in front of every string the public API binds, so what it must not do is disturb a request
+        /// that is right: a whole body has to arrive at the registry as it was sent. Through wijzig attribuutwaarden,
+        /// the richest body v3 takes - several groups, nested arrays, positions along the segment, sides, identifiers
+        /// and seven kinds of enumeration name, with the optional parts left out of one group and filled in on the
+        /// other.
+        /// </summary>
+        [Fact]
+        public async Task WhenAComplexRequestIsValid_ThenTheWholeBodyIsPassedOnUnchanged()
+        {
+            const string body = """
+                                [
+                                  {
+                                    "wegsegmenten": [481110, 481111],
+                                    "morfologie": [{ "morfologie": "weg bestaande uit 1 rijbaan" }],
+                                    "wegcategorie": [{ "wegcategorie": "lokale ontsluitingsweg" }]
+                                  },
+                                  {
+                                    "wegsegmenten": [481112],
+                                    "morfologie": [
+                                      { "vanPositie": 0.0, "totPositie": 12.5, "morfologie": "weg bestaande uit 1 rijbaan" },
+                                      { "vanPositie": 12.5, "totPositie": 30.0, "morfologie": "weg bestaande uit 2 rijbanen" }
+                                    ],
+                                    "wegverharding": [{ "vanPositie": 0.0, "totPositie": 30.0, "wegverharding": "halfverhard" }],
+                                    "toegang": [{ "vanPositie": 0.0, "totPositie": 30.0, "toegang": "openbare weg" }],
+                                    "straatnaam": [{ "kant": "links", "identificator": "https://data.vlaanderen.be/id/straatnaam/14291" }],
+                                    "wegbeheerder": [{ "kant": "rechts", "wegbeheerder": "AWV114" }],
+                                    "verkeerstypeAuto": [{ "vanPositie": 0.0, "totPositie": 30.0, "richting": "heen" }],
+                                    "verkeerstypeFiets": [{ "vanPositie": 0.0, "totPositie": 30.0, "richting": "beide" }],
+                                    "verkeerstypeVoetganger": [{ "vanPositie": 0.0, "totPositie": 30.0, "richting": "niet gekend" }]
+                                  }
+                                ]
+                                """;
+
+            var forwarded = AcceptAndCaptureTheForwardedBody();
+
+            using var response = await ChangeAttributes(body);
+
+            response.StatusCode.Should().NotBe(HttpStatusCode.InternalServerError);
+            response.StatusCode.Should().NotBe(HttpStatusCode.BadRequest);
+
+            // The parameters that were left out are serialized as null on the way to the registry, which says the same
+            // thing as leaving them out. Everything else has to be there, value for value.
+            var sent = JArray.Parse(body);
+            var arrived = WithoutNulls(JArray.Parse(forwarded.Should().ContainSingle().Subject));
+
+            JToken.DeepEquals(arrived, sent).Should().BeTrue($"what arrived at the registry was{Environment.NewLine}{arrived}");
+        }
+
+        private static JToken WithoutNulls(JToken token)
+        {
+            switch (token)
+            {
+                case JArray array:
+                    return new JArray(array.Select(WithoutNulls));
+
+                case JObject o:
+                    return new JObject(o.Properties()
+                        .Where(property => property.Value.Type != JTokenType.Null)
+                        .Select(property => new JProperty(property.Name, WithoutNulls(property.Value))));
+
+                default:
+                    return token;
+            }
+        }
+
+        private async Task<HttpResponseMessage> ChangeAttributes(string body)
+        {
+            return await Post("/v3/wegsegmenten/acties/wijzigen/attributen", body);
+        }
+
+        /// <summary>
         /// Answers 202 and keeps the body the public API sent, read while the request is on its way: the content of a
         /// request that has been sent is disposed of by the time the call returns.
         /// </summary>
@@ -96,7 +169,12 @@ namespace Public.Api.Tests.Infrastructure
 
         private async Task<HttpResponseMessage> ChangeGeometryDrawMethod(string body)
         {
-            using var request = new HttpRequestMessage(HttpMethod.Post, Route)
+            return await Post(ChangeGeometryDrawMethodRoute, body);
+        }
+
+        private async Task<HttpResponseMessage> Post(string route, string body)
+        {
+            using var request = new HttpRequestMessage(HttpMethod.Post, route)
             {
                 Content = new StringContent(body, Encoding.UTF8, "application/json")
             };
