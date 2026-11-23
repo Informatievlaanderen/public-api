@@ -28,6 +28,7 @@ namespace Public.Api.Infrastructure
     using Common.Infrastructure;
     using Common.Infrastructure.Controllers.Attributes;
     using Configuration;
+    using Json;
     using Marvin.Cache.Headers;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -267,6 +268,21 @@ namespace Public.Api.Infrastructure
                     }
                 }
                 .EnableJsonErrorActionFilterOption())
+
+                // A string converter is registered for every string this api binds, and a token that is not
+                // a string comes out of it as null - which ends as a 500 on a parameter that is required,
+                // where it is the registry behind this api that should answer for the value (GAWR-7870).
+                // Reading such a token as the text it was sent as goes in front of that converter, which
+                // keeps handling the strings themselves. Registered here, after the api has configured its
+                // own, so there is one to be put in front of.
+                .Configure<MvcNewtonsoftJsonOptions>(options =>
+                {
+                    var converters = options.SerializerSettings.Converters;
+                    var stringConverter = converters.FirstOrDefault(converter => converter.CanConvert(typeof(string)));
+
+                    // First, because Newtonsoft takes the first converter that says it can convert the type.
+                    converters.Insert(0, new ScalarAsStringJsonConverter(stringConverter));
+                })
 
                 .AddHttpClient()
 
